@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Numerical Analysis Using Julia</span></a>
+ <span class="menu-text">들어가며</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -492,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>를 통해 반복한다. Julia 코드는 다음과 같다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">function</span> <span class="fu">jacobi_iteration</span>(</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">function</span> <span class="fu">iteration_jacobi</span>(</span>
 <span id="cb1-4"><a href="#cb1-4"></a>    A<span class="op">::</span><span class="dt">AbstractMatrix</span>, </span>
 <span id="cb1-5"><a href="#cb1-5"></a>    b<span class="op">::</span><span class="dt">Vector</span>, </span>
 <span id="cb1-6"><a href="#cb1-6"></a>    x0<span class="op">::</span><span class="dt">Vector</span>; </span>
@@ -513,20 +513,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21"></a>        x <span class="op">=</span> T<span class="op">*</span>x0 <span class="op">+</span> c</span>
 <span id="cb1-22"><a href="#cb1-22"></a>        <span class="cf">if</span> <span class="fu">norm</span>(x <span class="op">.-</span> x0, <span class="cn">Inf</span>)<span class="op">/</span><span class="fu">norm</span>(x, <span class="cn">Inf</span>)<span class="op">&lt;</span> etol</span>
 <span id="cb1-23"><a href="#cb1-23"></a>            nitter <span class="op">=</span> i</span>
-<span id="cb1-24"><a href="#cb1-24"></a>            <span class="cf">return</span> x</span>
-<span id="cb1-25"><a href="#cb1-25"></a>        <span class="cf">else</span> </span>
-<span id="cb1-26"><a href="#cb1-26"></a>            x0 <span class="op">=</span> x</span>
-<span id="cb1-27"><a href="#cb1-27"></a>        <span class="cf">end</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a>    <span class="cf">end</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-24"><a href="#cb1-24"></a>            <span class="fu">println</span>(nitter)</span>
+<span id="cb1-25"><a href="#cb1-25"></a>            <span class="cf">return</span> x</span>
+<span id="cb1-26"><a href="#cb1-26"></a>        <span class="cf">else</span> </span>
+<span id="cb1-27"><a href="#cb1-27"></a>            x0 <span class="op">=</span> x</span>
+<span id="cb1-28"><a href="#cb1-28"></a>        <span class="cf">end</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>    <span class="cf">end</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <p><span class="math inline">\(\boldsymbol{A} = \left[ \,\begin{array}{rr} 10 &amp; -1 &amp; 2 &amp; 0\\ -1 &amp; 11 &amp; -1&amp; 3\\ 2 &amp; -1 &amp; 10 &amp;-1 \\ 0 &amp; 3 &amp; -1 &amp; 8 \end{array}\,\right]\)</span> 와 <span class="math inline">\(\boldsymbol{b}= \left[ \begin{array}{rr}6 \\25 \\ -11 \\ 15 \end{array}\right]\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Ax}=\boldsymbol{b}\)</span> 의 해는 <span class="math inline">\(\boldsymbol{x} = \left[\, \begin{array}{rr} 1 \\ 2 \\ -1 \\ 2 \end{array}\,\right]\)</span> 이다.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">10.0</span> <span class="op">-</span><span class="fl">1.0</span> <span class="fl">2.0</span> <span class="fl">0.0</span>; <span class="op">-</span><span class="fl">1</span> <span class="fl">11</span> <span class="op">-</span><span class="fl">1</span> <span class="fl">3</span>; <span class="fl">2</span> <span class="op">-</span><span class="fl">1</span> <span class="fl">10</span> <span class="op">-</span><span class="fl">1</span>; <span class="fl">0</span> <span class="fl">3</span> <span class="op">-</span><span class="fl">1</span> <span class="fl">8</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="fl">6</span>, <span class="fl">25</span>, <span class="op">-</span><span class="fl">11</span>, <span class="fl">15</span>]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>]</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="fu">jacobi_iteration</span>(A, b, x0, etol<span class="op">=</span><span class="fl">1.0e-5</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="fu">iteration_jacobi</span>(A, b, x0, etol<span class="op">=</span><span class="fl">1.0e-5</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>를 이용하면 다음과 같은 결과를 얻는다.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>4-element Vector{Float64}:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  0.9999964637124269</span>
@@ -547,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \]</span></p>
 <p>를 통해 반복한다.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">function</span> <span class="fu">gauss_siedel_iteration</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">function</span> <span class="fu">iteration_gauss_siedel</span>(</span>
 <span id="cb4-3"><a href="#cb4-3"></a>    A<span class="op">::</span><span class="dt">AbstractMatrix</span>, </span>
 <span id="cb4-4"><a href="#cb4-4"></a>    b<span class="op">::</span><span class="dt">Vector</span>, </span>
 <span id="cb4-5"><a href="#cb4-5"></a>    x0<span class="op">::</span><span class="dt">Vector</span>; </span>
@@ -568,13 +569,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-20"><a href="#cb4-20"></a>        x <span class="op">=</span> T<span class="op">*</span>x0 <span class="op">+</span> c</span>
 <span id="cb4-21"><a href="#cb4-21"></a>        <span class="cf">if</span> <span class="fu">norm</span>(x <span class="op">.-</span> x0, <span class="cn">Inf</span>)<span class="op">/</span><span class="fu">norm</span>(x, <span class="cn">Inf</span>)<span class="op">&lt;</span> etol</span>
 <span id="cb4-22"><a href="#cb4-22"></a>            nitter <span class="op">=</span> i</span>
-<span id="cb4-23"><a href="#cb4-23"></a>            <span class="cf">return</span> x</span>
-<span id="cb4-24"><a href="#cb4-24"></a>        <span class="cf">else</span> </span>
-<span id="cb4-25"><a href="#cb4-25"></a>            x0 <span class="op">=</span> x</span>
-<span id="cb4-26"><a href="#cb4-26"></a>        <span class="cf">end</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a>    <span class="cf">end</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-23"><a href="#cb4-23"></a>            <span class="fu">println</span>(nitter)</span>
+<span id="cb4-24"><a href="#cb4-24"></a>            <span class="cf">return</span> x</span>
+<span id="cb4-25"><a href="#cb4-25"></a>        <span class="cf">else</span> </span>
+<span id="cb4-26"><a href="#cb4-26"></a>            x0 <span class="op">=</span> x</span>
+<span id="cb4-27"><a href="#cb4-27"></a>        <span class="cf">end</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>    <span class="cf">end</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>야코비 방법과 가우스-지델 방법 모두 <span class="math inline">\(\boldsymbol{x}^{(k+1)} = \boldsymbol{Tx}^{(k)} + \boldsymbol{c}\)</span> 형태의 반복법을 사용한다. 우리는 <a href="#thm-iterative_method">정리&nbsp;1</a> 로 부터 <span class="math inline">\(\rho(\boldsymbol{T})&lt;1\)</span> 일 경우에만 이 반복법에 의해 답을 얻을 수 있다는 것을 안다. 일반적으로 가우스-지델 방법이 야코비 방법보다 빠르게 원하는 정확도의 답을 얻지만 가우스-지델 방법이 이 조건을 충족하지 못하고 야코비 방법은 충족하는 경우 야코비 방법을 사용 할 수 있다. 물론 거꾸로 야코비 방법이 이 조건을 충족하지 못하고 가우스-지델 방법이 충족할 수 도 있다.</p>
 <p><br></p>
 <div id="exm-spectral_radius" class="theorem example">

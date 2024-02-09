@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Numerical Analysis Using Julia</span></a>
+ <span class="menu-text">들어가며</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -288,6 +288,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#sec-richardson_extrapolation" id="toc-sec-richardson_extrapolation" class="nav-link" data-scroll-target="#sec-richardson_extrapolation">리처드슨 외삽법</a></li>
   <li><a href="#롬버그-적분" id="toc-롬버그-적분" class="nav-link" data-scroll-target="#롬버그-적분">롬버그 적분</a></li>
+  </ul></li>
+  <li><a href="#가우스-구적법" id="toc-가우스-구적법" class="nav-link" data-scroll-target="#가우스-구적법"><span class="header-section-number">4</span> 가우스 구적법</a>
+  <ul class="collapse">
+  <li><a href="#르장드르-다항식을-이용한-가우스-구적법" id="toc-르장드르-다항식을-이용한-가우스-구적법" class="nav-link" data-scroll-target="#르장드르-다항식을-이용한-가우스-구적법">르장드르 다항식을 이용한 가우스 구적법</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -792,6 +796,218 @@ N_{k, m+1} = \dfrac{1}{4^{m} -1} \left[4^{m}N_{k+1, m}  - N_{k, m}\right] + O(h^
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>함수 <span class="math inline">\(f(x)\)</span> 를 <span class="math inline">\([a,\,b]\)</span> 구간에서 <span class="math inline">\(n=2^{k_{M}}-1\)</span> 개의 구간, 즉 <span class="math inline">\(a=x_1 &lt; \cdots &lt; x_n=b\)</span> 의 구간에서의 사다리꼴 적분을 수행했다면 <span class="math inline">\(h= \dfrac{b-a}{n-1}\)</span> 에 대해 <span class="math inline">\(O(h^2)\)</span> 의 정확도를 갖는 적분이지만 롬버그 적분을 통해 <span class="math inline">\(O(h^{2{k_M}+2})\)</span> 의 정확도를 갖는 적분값을 구할 수 있다. 더구나. 실제로 계산하는 함수값의 갯수는 <span class="math inline">\(n\)</span> 개이며 나머지는 이미 계산된 값들에 대한 단순한 사칙연산이므로 훨씬 빠르게 계산 할 수 있다.</p>
 <p>예를 들어 우리는 <span class="math inline">\(\displaystyle \int_0^1 \sqrt{x}\, dx=\frac{2}{3}\)</span> 임을 안다. 롬버그 적분을 통해 <span class="math inline">\(k_M=4\)</span> 으로 계산한 결과는 <span class="math inline">\(0.665693\)</span> 이며 이것보보다 오차가 작은 사다리꼴 적분을 얻기 위해서는 구간을 35개의 구간으로, 즉 <span class="math inline">\(x_1=0,\, x_{36}=1\)</span> 로 나누어야 한다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="가우스-구적법" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="가우스-구적법"><span class="header-section-number">4</span> 가우스 구적법</h2>
+<p>함수 <span class="math inline">\(f(x)\)</span> 를 <span class="math inline">\([a,\,b]\)</span> 구간에서 적분 할 때 <span class="math inline">\([a,\,b]\)</span> 구간에서 <span class="math inline">\(n\)</span> 개의 점 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 을 선택하여</p>
+<p><span class="math display">\[
+\int_a^b f(x) \, dx \approx a_1 f(x_1)+ \cdots + a_n f(x_n)
+\]</span></p>
+<p>로 근사하는 것을 <strong>가우스 구적법 (Gaussian quadrature)</strong> 라고 한다. 뉴턴 코츠 방법은 점 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 이 등간격인데 반해 가우스 구적법은 등간격일 필요가 없으며, 적분을 잘 근사하는 점을 찾아야 한다는 것이다. 가우스 구적법은 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 을 선택해야 하며 등간격일 필요가 없다. 이 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 을 <strong>노드(nodes)</strong> 라고 한다.</p>
+<p><br></p>
+<p>본격적으로 들어가기 전에 이미 미적분학에서 배웠을 한가지를 확인하고 가자. 우리는 임의의 구간 <span class="math inline">\([a,\,b]\)</span> 에 대한 함수 <span class="math inline">\(f(x)\)</span> 의 적분을 <span class="math inline">\([-1,\,1]\)</span> 구간에 대한 적분으로 바꿀 수 있다. 즉,</p>
+<p><span id="eq-integra_variable_transform"><span class="math display">\[
+\int_{a}^b f(x)\, dx = \int_{-1}^1 f\left(\dfrac{(b-a)t+ (b+a)}{2}\right)\,\left(\dfrac{b-a}{2}\right) dt
+\tag{17}\]</span></span></p>
+<p>이다.</p>
+<section id="르장드르-다항식을-이용한-가우스-구적법" class="level3">
+<h3 class="anchored" data-anchor-id="르장드르-다항식을-이용한-가우스-구적법">르장드르 다항식을 이용한 가우스 구적법</h3>
+<p><span class="math inline">\(n\)</span> 차 르장드르 다항식 <span class="math inline">\(P_n(x)\)</span> 은 다음과 같은 성질을 가진다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(P_n(x)\)</span> 는 <span class="math inline">\(n\)</span> 차 다항식으로 최고차항의 계수는 항상 <span class="math inline">\(1\)</span> 이다.</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\displaystyle \int_{-1}^1 P_n (x) \, P_m (x)\, dx = \dfrac{\delta_{mn}}{2n+1}\)</span> 이다.</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(P_0(x) = 1,\, P_1(x) = x\)</span> 이며 아래의 점화식으로 고차 다항식을 구할 수 있다.</p>
+<p><span class="math display">\[
+(n+1)P_{n+1}(x) - (2n+1)xP_{n}(x) + nP_{n-1}(x)=0
+\]</span></p>
+<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(P_n(-x) = (-1)^nP_n(x)\)</span>, <span class="math inline">\(P_n(1) = 1\)</span>.</p>
+<p>  (<span class="math inline">\(5\)</span>) <span class="math inline">\(n\ge 1\)</span> 에 대한 <span class="math inline">\(P_n(x)\)</span> 는 <span class="math inline">\([-1,\,1]\)</span> 구간에서 <span class="math inline">\(n\)</span> 개의 서로 다른 근을 갖는다.</p>
+<p>  (<span class="math inline">\(6\)</span>) 임의의 <span class="math inline">\(n\)</span> 차 다항식은 <span class="math inline">\(P_1(x),\ldots,\,P_n(x)\)</span> 의 선형결합으로 표현 할 수 있다.</p>
+<p><br></p>
+<div id="prp-gaussian_quadrature_1" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 1 </strong></span><span class="math inline">\(P_n(x)\)</span> 에 대한 <span class="math inline">\(n\)</span> 개의 근을 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 이라고 하고 <span class="math inline">\(c_i = \displaystyle \int_{-1}^1 \prod_{j=1,\, j\ne i}^n \dfrac{x-x_j}{x_i-x_j}\, dx\)</span> 라고 하면 임의의 다항식 <span class="math inline">\(p(x)\)</span> 에 대해 다음이 성립한다.</p>
+<p><span class="math display">\[
+\int_{-1}^1 p(x) \, dx = \sum_{i=1}^n c_i p(x_i).
+\]</span></p>
+</div>
+<p>::: {.proof}</p>
+<p>(<span class="math inline">\(1\)</span>) 우선 <span class="math inline">\(p(x)\)</span> 의 차수가 <span class="math inline">\(n\)</span> 보다 작은 경우를 보자. <span class="math inline">\(p(x)\)</span> 를 <a href="../../src/numerical_analysis_using_julia/04_interpolation.html#sec-interpolation_lagrange">라그랑쥬 다항식</a>에 대해 표현하면</p>
+<p><span class="math display">\[
+p(x) = \sum_{i=1}^n p(x_i)l_i(x) = \sum_{i=1}^n \prod_{j=1,\, j\ne i}^n \dfrac{x-x_j}{x_i-x_j} p(x_i)
+\]</span></p>
+<p>이며,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{-1}^1 p(x)\, dx &amp;=\int_{-1}^1 \left[\sum_{i=1}^n \prod_{j=1,\, j\ne i}^n \dfrac{x-x_j}{x_i-x_j} p(x_i)\right]\, dx \\
+&amp;= \sum_{i=1}^n  \left[\prod_{j=1,j\ne i}^n \int_{-1}^1 \dfrac{x-x_j}{x_i-x_j}\, dx \right] p(x_i)  = \sum_{i=1}^n c_i p(x_i)
+\end{aligned}
+\]</span></p>
+<p>이다.</p>
+<p>(<span class="math inline">\(2\)</span>) 이제 <span class="math inline">\(p(x)\)</span> 의 차수 <span class="math inline">\(m\)</span> 이 <span class="math inline">\(n\)</span> 보다 크거나 같고 <span class="math inline">\(2n\)</span> 보다 작은 경우를 보자. 다항식의 나누기를 생각하면,</p>
+<p><span class="math display">\[
+p(x) =  q(x)P_n (x) + r(x)
+\]</span></p>
+<p>를 생각 할 수 있다. 이 때 <span class="math inline">\(x_i,\, i=1,\ldots,\,n\)</span> 은 <span class="math inline">\(P_n(x)\)</span> 의 근이므로</p>
+<p><span class="math display">\[
+p(x_i) = r(x_i)
+\]</span></p>
+<p>이다. 여기서 <span class="math inline">\(q(x)\)</span> 는 <span class="math inline">\(m-n\)</span> 차 다항식이고 <span class="math inline">\(r(x)\)</span> 는 <span class="math inline">\(n\)</span> 보다 차수를 갖는 다항식이다. 르장드르 다항식의 성질 (<span class="math inline">\(6\)</span>) 으로 부터 우리는 <span class="math inline">\(q(x)\)</span> 가 <span class="math inline">\(P_1(x),\ldots,\,P_{m-n}\)</span> 의 선형결합으로 표현 될 수 있다는 것을 안다. <span class="math inline">\(m&lt;2n\)</span> 이므로 <span class="math inline">\(m&lt;n\)</span> 이며, 르장드르 다항식의 성질 (<span class="math inline">\(2\)</span>) 에 의해 <span class="math inline">\(\int q(x)P_n(x) = 0\)</span> 이다. 따라서</p>
+<p><span class="math display">\[
+\int_{-1}^1 p(x) = \int_{-1}^1 r(x) = \sum_{i=1}^n\left[\prod_{j=1,j\ne i}^n \int_{-1}^1 \dfrac{x-x_j}{x_i-x_j}\, dx \right] r(x_i) = \sum_{i=1}^n c_i p(x_i)
+\]</span></p>
+<p>이다.</p>
+<p>이제 <span class="math inline">\(P_n(x)\)</span> 에 대한 근을 통해 <span class="math inline">\(\displaystyle C_n^i = \left[\prod_{j=1,j\ne i}^n \int_{-1}^1 \dfrac{x-x_j}{x_i-x_j}\, dx \right]\)</span> 를 테이블로 가지고 있다면 우리는 적분을 쉽게 계산 할 수 있다. 아래는 <span class="math inline">\(n=2\)</span> 부터 <span class="math inline">\(n=7\)</span> 까지의 테이블이다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">order</th>
+<th style="text-align: center;">Point</th>
+<th style="text-align: center;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1.000000000000000</td>
+<td style="text-align: center;">-0.577350269189626</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1.000000000000000</td>
+<td style="text-align: center;">0.577350269189626</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0.888888888888889</td>
+<td style="text-align: center;">0.000000000000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0.555555555555556</td>
+<td style="text-align: center;">-0.774596669241483</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0.555555555555556</td>
+<td style="text-align: center;">0.774596669241483</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0.652145154862546</td>
+<td style="text-align: center;">-0.339981043584856</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0.652145154862546</td>
+<td style="text-align: center;">0.339981043584856</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0.347854845137454</td>
+<td style="text-align: center;">-0.861136311594053</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0.347854845137454</td>
+<td style="text-align: center;">0.861136311594053</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.568888888888889</td>
+<td style="text-align: center;">0.000000000000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.478628670499367</td>
+<td style="text-align: center;">-0.538469310105683</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.478628670499367</td>
+<td style="text-align: center;">0.538469310105683</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.236926885056189</td>
+<td style="text-align: center;">-0.906179845938664</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.236926885056189</td>
+<td style="text-align: center;">0.906179845938664</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0.360761573048139</td>
+<td style="text-align: center;">0.661209386466264</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0.360761573048139</td>
+<td style="text-align: center;">-0.661209386466264</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0.467913934572691</td>
+<td style="text-align: center;">-0.238619186083197</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0.467913934572691</td>
+<td style="text-align: center;">0.238619186083197</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0.171324492379170</td>
+<td style="text-align: center;">-0.932469514203152</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0.171324492379170</td>
+<td style="text-align: center;">0.932469514203152</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.417959183673469</td>
+<td style="text-align: center;">0.000000000000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.381830050505119</td>
+<td style="text-align: center;">0.405845151377397</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.381830050505119</td>
+<td style="text-align: center;">-0.405845151377397</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.279705391489277</td>
+<td style="text-align: center;">-0.741531185599394</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.279705391489277</td>
+<td style="text-align: center;">0.741531185599394</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.129484966168870</td>
+<td style="text-align: center;">-0.949107912342758</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.129484966168870</td>
+<td style="text-align: center;">0.949107912342758</td>
+</tr>
+</tbody>
+</table>
+<p>르장드르 함수를 이용한 가우스 구적법은 <code>NAJ.jl</code> 의 <code>integrate_gauss_quadrature</code> 함수로 구현되었다. 위의 테이블을 이용하여 쉽게 구한다. 간단한 예로 함수 <span class="math inline">\(f(x)=x^4\)</span> 의 <span class="math inline">\([0,\,1]\)</span> 구간에서의 적분을 <span class="math inline">\(n=3\)</span> 에서 구하는 방법은 아래와 같다. 답은 0.2 가 정확히 나온다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">NAJ</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate_gauss_quadrature</span>(x<span class="op">-&gt;</span>x<span class="op">^</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">0</span>, <span class="fl">1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>르장드르 함수를 이용한 가우스 구적법은 적분하고자 하는 함수가 매끄럽고 적분 구간에서 발산하지 않을 때 사용할 수 있다.</p>
 
 
 </section>

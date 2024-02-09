@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Numerical Analysis Using Julia</span></a>
+ <span class="menu-text">들어가며</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -272,12 +272,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#superposition" id="toc-superposition" class="nav-link" data-scroll-target="#superposition">Superposition</a></li>
   </ul></li>
-  <li><a href="#상미분-방정식과-초기값-문제" id="toc-상미분-방정식과-초기값-문제" class="nav-link" data-scroll-target="#상미분-방정식과-초기값-문제"><span class="header-section-number">2</span> 상미분 방정식과 초기값 문제</a>
+  <li><a href="#상미분-방정식과-초기값-문제" id="toc-상미분-방정식과-초기값-문제" class="nav-link" data-scroll-target="#상미분-방정식과-초기값-문제"><span class="header-section-number">2</span> 상미분 방정식과 초기값 문제</a></li>
+  <li><a href="#오일러-방법-newtons-method" id="toc-오일러-방법-newtons-method" class="nav-link" data-scroll-target="#오일러-방법-newtons-method"><span class="header-section-number">3</span> 오일러 방법 (Newton’s method)</a>
   <ul class="collapse">
-  <li><a href="#오일러-방법-newtons-method" id="toc-오일러-방법-newtons-method" class="nav-link" data-scroll-target="#오일러-방법-newtons-method">오일러 방법 (Newton’s method)</a></li>
-  <li><a href="#차-룽게-쿠타-방법-rk2" id="toc-차-룽게-쿠타-방법-rk2" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk2">2차 룽게-쿠타 방법 (RK2)</a></li>
-  <li><a href="#차-룽게-쿠타-방법-rk4" id="toc-차-룽게-쿠타-방법-rk4" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk4">4차 룽게-쿠타 방법 (RK4)</a></li>
-  <li><a href="#예제-examples" id="toc-예제-examples" class="nav-link" data-scroll-target="#예제-examples">예제 (Examples)</a></li>
+  <li><a href="#일변수-일차-미분-방정식" id="toc-일변수-일차-미분-방정식" class="nav-link" data-scroll-target="#일변수-일차-미분-방정식">일변수 일차 미분 방정식</a></li>
+  <li><a href="#다변수-일차-미분-방정식" id="toc-다변수-일차-미분-방정식" class="nav-link" data-scroll-target="#다변수-일차-미분-방정식">다변수 일차 미분 방정식</a></li>
+  <li><a href="#일변수-이차-미분-방정식" id="toc-일변수-이차-미분-방정식" class="nav-link" data-scroll-target="#일변수-이차-미분-방정식">일변수 이차 미분 방정식</a></li>
+  <li><a href="#다변수-이차-미분-방정식" id="toc-다변수-이차-미분-방정식" class="nav-link" data-scroll-target="#다변수-이차-미분-방정식">다변수 이차 미분 방정식</a></li>
+  </ul></li>
+  <li><a href="#차-룽게-쿠타-방법-rk2" id="toc-차-룽게-쿠타-방법-rk2" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk2"><span class="header-section-number">4</span> 2차 룽게-쿠타 방법 (RK2)</a></li>
+  <li><a href="#차-룽게-쿠타-방법-rk4" id="toc-차-룽게-쿠타-방법-rk4" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk4"><span class="header-section-number">5</span> 4차 룽게-쿠타 방법 (RK4)</a></li>
+  <li><a href="#예제-examples" id="toc-예제-examples" class="nav-link" data-scroll-target="#예제-examples"><span class="header-section-number">6</span> 예제 (Examples)</a>
+  <ul class="collapse">
+  <li><a href="#단순-조화-진동자" id="toc-단순-조화-진동자" class="nav-link" data-scroll-target="#단순-조화-진동자">단순 조화 진동자</a></li>
+  <li><a href="#감쇄-조화-진동자" id="toc-감쇄-조화-진동자" class="nav-link" data-scroll-target="#감쇄-조화-진동자">감쇄 조화 진동자</a></li>
+  <li><a href="#진자pendulum-문제" id="toc-진자pendulum-문제" class="nav-link" data-scroll-target="#진자pendulum-문제">진자(Pendulum) 문제</a></li>
+  <li><a href="#체-문제" id="toc-체-문제" class="nav-link" data-scroll-target="#체-문제">2체 문제</a></li>
+  </ul></li>
+  <li><a href="#runge-kutta-fehlberg-방법rkf" id="toc-runge-kutta-fehlberg-방법rkf" class="nav-link" data-scroll-target="#runge-kutta-fehlberg-방법rkf"><span class="header-section-number">7</span> Runge-Kutta-Fehlberg 방법(RKF)</a>
+  <ul class="collapse">
   <li><a href="#마치며" id="toc-마치며" class="nav-link" data-scroll-target="#마치며">마치며</a></li>
   </ul></li>
   </ul>
@@ -324,43 +337,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br></p>
 </section>
 </section>
-<section id="상미분-방정식과-초기값-문제" class="level2 page-columns page-full" data-number="2">
+<section id="상미분-방정식과-초기값-문제" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="상미분-방정식과-초기값-문제"><span class="header-section-number">2</span> 상미분 방정식과 초기값 문제</h2>
 <p>상미분 방정식(ODE, Ordinary differential equation)은 하나의 독립변수에 대한 미분방정식이다. <span class="math inline">\(f(t)\)</span> 에 대한 미분방정식이 <span class="math inline">\(f\)</span> 에 대해 최대 <span class="math inline">\(n\)</span> 차 미분까지 포함되었을 경우, <span class="math inline">\(n\)</span>-차 상미분 방정식이라 한다. 일반적으로 <span class="math inline">\(n\)</span> 차 미분 방정식은 다음 꼴로 주어진다.</p>
 <p><span class="math display">\[
 f^{(n)}(t) = F\left(t, f(t), f'(t), \ldots, f^{(n-1)}(t)\right)
 \]</span></p>
-<p>이 방정식과 초기값 <span class="math inline">\(f^{(k)}(t_1),\, k=1,\,2,\ldots, (n-1)\)</span> 을 통해 <span class="math inline">\(f(t)\)</span> 를 알아내는 것을 <strong>초기값 문제 (initial value problem)</strong> 이라고 한다.</p>
+<p>이 방정식과 초기값 <span class="math inline">\(f(t_0),\,f^{(1)}(t_0), \ldots, f^{(n-1)}(t_0)\)</span> 을 통해 <span class="math inline">\(f(t)\)</span> 를 알아내는 것을 <strong>초기값 문제 (initial value problem)</strong> 이라고 한다.</p>
 <p>가장 간단한 미분방정식이라면</p>
 <p><span class="math display">\[
 f'(t) = F(t, f(t))
 \]</span></p>
-<p>꼴로 주어진 미분방정식이며 이것은</p>
+<p>꼴이며 이 미분방정식을</p>
 <p><span class="math display">\[
 f(t+h) = f(t) + F(t, f(t)) h + O(h^2)
 \]</span></p>
-<p>를 이용하여 1차 근사로 풀 수 있다. 즉 <span class="math inline">\(t_n = t_0 +hn\)</span> 라고 할 때,</p>
+<p>를 이용하여 1차 근사로 풀 수 있다. 즉 <span class="math inline">\(t_i = t_0 +ih\)</span> 라고 할 때,</p>
 <p><span class="math display">\[
-f(t_{n+1}) = f(t_n) + F(t_n, f(t_n))h, \qquad n=0,\,1,\,2,\ldots
+f(t_{i+1}) = f(t_i) + F(t_i, f(t_i))h, \qquad i=0,\,1,\,2,\ldots
 \]</span></p>
-<p>로 풀 수 있다. 이것이 잠시 후 다를 오일러 방법이다. 우리는 앞서 <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html#sec-richardson_extrapolation">리차드슨 외삽법</a> 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 <span class="math inline">\(F(t_n, f(t_n))\)</span> 뿐만 아니라 몇몇 <span class="math inline">\(\alpha_i\)</span> 값에 대해 <span class="math inline">\(F(t_n, f(t_n + \alpha_i h))\)</span> 를 선형결합하여</p>
+<p>로 풀 수 있다. 이것이 잠시 후 다를 오일러 방법이다. 우리는 앞서 <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html#sec-richardson_extrapolation">리차드슨 외삽법</a> 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 <span class="math inline">\(F(t_i, f(t_i))\)</span> 뿐만 아니라 몇몇 <span class="math inline">\(\alpha_j\)</span> 값에 대해 <span class="math inline">\(F(t_i, f(t_i + \alpha_j h))\)</span> 를 선형결합하여</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(t_{n+1}) &amp;= f(t_n) + \sum_i c_i F(t_n, f(t_n + \alpha_i h))h + O(h^k), \\
-&amp;= f(t_n) + \tilde{F}(t_n, h, f) +O(h^k)
+f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
+&amp;= f(t_i) + \tilde{F}(t_i, h, f) +O(h^k)
 \end{aligned}
 \]</span></p>
-<p>이며, <span class="math inline">\(k&gt;2\)</span> 이 되도록 할 수 있다. 이 <span class="math inline">\(\tilde{F}(t_n, h, f)\)</span> 를 얻는 방법이 오일러 방법, 룽게-쿠타 방법 등이 존재한다. 이제 수치해석적인 방법을 통해</p>
-<p><span class="math display">\[
-f(t_{n+1}) = f(t_n) + \tilde{F}(t_n, f, h)h
-\]</span></p>
-<p>를 얻을 있다고 하자. 다변수 미분방정식의 경우를 보자.</p>
+<p>이며, <span class="math inline">\(k&gt;2\)</span> 이 되도록 할 수 있다. 이 <span class="math inline">\(\tilde{F}(t_n, h, f)\)</span> 를 얻는 방법에는 오일러 방법, 룽게-쿠타 방법 등이 존재한다.</p>
+<p>다변수 미분방정식의 경우를 보자.</p>
 <p><span class="math display">\[
 \boldsymbol{x}^{(n)}(t) = \boldsymbol{F}(t, \boldsymbol{x}(t),\ldots,\boldsymbol{x}^{(n-1)}(t))
 \]</span></p>
-<p>과 초기조건 <span class="math inline">\(\boldsymbol{x}(t_0) ,\ldots,\,\boldsymbol{x}^{(n-1)}(t_0)\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}:[a,\,b] \to \mathbb{R}^m\)</span> 을 구한다고 하자. <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix} x_1(t) &amp; \cdots &amp; x_m(t) \end{bmatrix}^T\)</span> 라 할 때</p>
+<p>과 초기조건 <span class="math inline">\(\boldsymbol{x}(t_0) ,\ldots,\,\boldsymbol{x}^{(n-1)}(t_0)\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}:[a,\,b] \to \mathbb{R}^m\)</span> 을 구한다고 하자. <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix} x_1(t) &amp; \cdots &amp; x_m(t) \end{bmatrix}^T\)</span> 라 할 때 1변수의 경우와 마찬가지로</p>
 <p><span class="math display">\[
-\boldsymbol{x}(t_{n+1}) =  \boldsymbol{x}(t_n) +\tilde{\boldsymbol{F}}(t_n, h, \boldsymbol{x}, \ldots, \boldsymbol{x}^{(n-1)})
+\boldsymbol{x}(t_{i+1}) =  \boldsymbol{x}(t_i) +\tilde{\boldsymbol{F}}(t_i, \boldsymbol{h}, \boldsymbol{x}, \ldots, \boldsymbol{x}^{(n-1)})
 \]</span></p>
 <p>을 통해 구한다.</p>
 <p><br></p>
@@ -371,13 +381,10 @@ f(t_{n+1}) = f(t_n) + \tilde{F}(t_n, f, h)h
 \]</span></p>
 <p>를 만족할 때 이 함수 <span class="math inline">\(f\)</span> 는 <span class="math inline">\(D\)</span> 에서 <strong>Lipschitz 조건</strong> 을 만족한다 라고 하며 이때의 <span class="math inline">\(L\)</span> 을 <strong>Lipschitz 상수</strong> 라고 한다. Lipschitz 조건을 만족하는 함수는 모든 <span class="math inline">\(t_0 \in [a,\,b]\)</span> 와 <span class="math inline">\(\boldsymbol{x}_0 \in D\)</span> 에 대해 다음을 만족하는 함수 <span class="math inline">\(\boldsymbol{x}:I \to D\)</span> 가 존재한다.</p>
 <p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\boldsymbol{x}\)</span> 는 <span class="math inline">\(C^1_{[a,\,b]}\)</span> 급 함수이다.</p>
-<p>  (<span class="math inline">\(2\)</span>) $모든 <span class="math inline">\(t\in I\)</span> 에서 <span class="math inline">\(\boldsymbol{x}'(t) = f(t, \boldsymbol{x}(t))\)</span> 이다.</p>
+<p>  (<span class="math inline">\(2\)</span>) 모든 <span class="math inline">\(t\in I\)</span> 에서 <span class="math inline">\(\boldsymbol{x}'(t) = f(t, \boldsymbol{x}(t))\)</span> 이다.</p>
 <p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\boldsymbol{x}(t_0) = \boldsymbol{x}_0\)</span> 이다.</p>
 </div>
 <p><br></p>
-<div id="prp-lipschitz_condtion" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 2 </strong></span>&nbsp;</p>
-</div>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -385,67 +392,79 @@ f(t_{n+1}) = f(t_n) + \tilde{F}(t_n, f, h)h
 </div>
 <div class="callout-body-container">
 <div id="def-convex" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 1 (convex) </strong></span>집합 $ ^{n}$ 가 모든 <span class="math inline">\(\lambda \in [0,\,1]\)</span> 와 <span class="math inline">\(\boldsymbol{x}_1,\,\boldsymbol{x}_2\in D\)</span> 에 대해 <span class="math inline">\(\lambda \boldsymbol{x}_1 + (1-\lambda)\boldsymbol{x}_2\in D\)</span> 일 때 <span class="math inline">\(D\)</span> 를 <strong>convex</strong> 라고 한다.</p>
+<p><span class="theorem-title"><strong>정의 1 (convex) </strong></span>집합 <span class="math inline">\(D\subset \mathbb{R}\times \mathbb{R}^{n}\)</span> 가 모든 <span class="math inline">\(\lambda \in [0,\,1]\)</span> 와 <span class="math inline">\(\boldsymbol{x}_1,\,\boldsymbol{x}_2\in D\)</span> 에 대해 <span class="math inline">\(\lambda \boldsymbol{x}_1 + (1-\lambda)\boldsymbol{x}_2\in D\)</span> 일 때 <span class="math inline">\(D\)</span> 를 <strong>convex</strong> 라고 한다.</p>
 </div>
 </div>
 </div>
 </div>
 <p><br></p>
 <div id="prp-convex" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 3 </strong></span><span class="math inline">\(f(t,\,\boldsymbol{x}):D \subset \mathbb{R}\times \mathbb{R}^{n} \to \mathbb{R}^m\)</span> 이 convex <span class="math inline">\(D\)</span> 에서 정의되어 있으며 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
+<p><span class="theorem-title"><strong>명제 2 </strong></span><span class="math inline">\(f(t,\,\boldsymbol{x}):D \subset \mathbb{R}\times \mathbb{R}^{n} \to \mathbb{R}^m\)</span> 이 convex <span class="math inline">\(D\)</span> 에서 정의되어 있으며 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
 <p><span class="math display">\[
-\left\|\sum_{i=1}\partial_i f(t, \boldsymbol{x}) \right\|
+\forall (t,\,\boldsymbol{x})\in D,\, \left\|\sum_{i=1}\partial_i f(t, \boldsymbol{x}) \right\| \le L
 \]</span></p>
+<p>이면 <span class="math inline">\(f\)</span> 는 변수 <span class="math inline">\(\boldsymbol{x}\)</span> 와 Lipschitz 상수 <span class="math inline">\(L\)</span> 에 대해 Lipschitz 조건을 만족한다.</p>
 </div>
-<section id="오일러-방법-newtons-method" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="오일러-방법-newtons-method">오일러 방법 (Newton’s method)</h3>
+<p><br></p>
+<div id="thm-initial_value_problem" class="theorem">
+<p><span class="theorem-title"><strong>정리 1 </strong></span><span class="math inline">\(D=\{(t,\, \boldsymbol{x}) : t\in [a,\,b],\, \boldsymbol{x} \in \mathbb{R}^n\}\)</span> 에서 정의된 함수 <span class="math inline">\(\boldsymbol{f}:D\to \mathbb{R}^n\)</span> 이 <span class="math inline">\(D\)</span> 에서 Lipsschitz 조건을 만족하면 <span class="math inline">\(\boldsymbol{x} = \boldsymbol{f}(t, \boldsymbol{x})\)</span> 의 초기값 문제는 유일한 해를 갖는다.</p>
+</div>
+<p><br></p>
+</section>
+<section id="오일러-방법-newtons-method" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="오일러-방법-newtons-method"><span class="header-section-number">3</span> 오일러 방법 (Newton’s method)</h2>
 <p>오일러 방법은 초기값이 주어졌을 때 수치해석적으로 미분방정식의 해를 구하는 가장 간단한 방법이다. 가장 간단한 만큼 일반적으로 오차가 크지만 상미분방정식의 초기값 문제를 푸는 여러가지 기법을 익힐 수 있다.</p>
-<section id="일변수-일차-미분-방정식" class="level4">
-<h4 class="anchored" data-anchor-id="일변수-일차-미분-방정식">일변수 일차 미분 방정식</h4>
+<section id="일변수-일차-미분-방정식" class="level3">
+<h3 class="anchored" data-anchor-id="일변수-일차-미분-방정식">일변수 일차 미분 방정식</h3>
 <p>아래와 같은 미분방정식</p>
 <p><span class="math display">\[
 x'(t) = \dfrac{dx}{dt} = f(t, x)
 \]</span></p>
-<p>과 초기조건 <span class="math inline">\(x(t_1)\)</span> 이 주어졌다고 하자. 테일러 전개에 의해</p>
+<p>와 초기조건 <span class="math inline">\(x(t_0)\)</span> 이 주어졌다고 하자. 테일러 전개에 의해</p>
 <p><span class="math display">\[
 \begin{aligned}
 x(t+h) &amp;= x(t) + x'(t)h + O(h^2) \\
 &amp;= x(t) + f(t, x)h + O(h^2)
 \end{aligned}
 \]</span></p>
-<p>를 이용하는 방법이다.</p>
-</section>
-<section id="다변수-일차-미분-방정식" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="다변수-일차-미분-방정식">다변수 일차 미분 방정식</h4>
-<p><span class="math inline">\(\boldsymbol{x}:\mathbb{R}\to \mathbb{R}^n\)</span> 이며 <span class="math inline">\(x_i(t)\)</span> 가 <span class="math inline">\(\boldsymbol{x}(t)\)</span> 의 <span class="math inline">\(i\)</span> 번째 성분일 때 미분방정식이 <span class="math inline">\(\boldsymbol{f}:\mathbb{R}^{n+1}\to \mathbb{R}^n\)</span> 에 대해</p>
+<p>를 이용하는 방법이다. <span class="math inline">\(i=1,\,2,\ldots,\)</span> 에 대해 <span class="math inline">\(t_i = t_1 + ih\)</span> 로 놓고</p>
 <p><span class="math display">\[
-\boldsymbol{x}'(t)=\dfrac{d\boldsymbol{x}}{dt} = \boldsymbol{f}(t, x_1,\ldots,\,x_n)
+x(t_{i+1}) =  x(t_i) + f(t_i, x_i) h
 \]</span></p>
-<p>로 주어지고, 초기값 <span class="math inline">\(t_1,\,\boldsymbol{x}(t_1)\)</span> 가 주어졌을 때 가장 간단하게 <span class="math inline">\(\boldsymbol{x}(t)\)</span> 를 구하는 방법이다. 테일러 전개를 이용하면,</p>
+<p>로 근사한다. 이 때 <span class="math inline">\(t_i,\,i=0,\,1,\ldots\)</span> 를 <strong>mesh point</strong> 라고 한다.</p>
+<p><br></p>
+</section>
+<section id="다변수-일차-미분-방정식" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="다변수-일차-미분-방정식">다변수 일차 미분 방정식</h3>
+<p><span class="math inline">\(\boldsymbol{x}:\mathbb{R}\to \mathbb{R}^n\)</span> 이며 <span class="math inline">\(x_j(t)\)</span> 가 <span class="math inline">\(\boldsymbol{x}(t)\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분일 때 미분방정식이 <span class="math inline">\(\boldsymbol{f}:\mathbb{R}^{n+1}\to \mathbb{R}^n\)</span> 에 대해</p>
 <p><span class="math display">\[
-x_i(t + h) = y_i(t) + x_i'(t)h+ \dfrac{x_i''(\xi)}{2}h^2
+\boldsymbol{x}'(t)=\dfrac{d\boldsymbol{x}}{dt} = \boldsymbol{f}(t, \boldsymbol{x})
+\]</span></p>
+<p>로 주어지고, 초기값 <span class="math inline">\(t_0,\,\boldsymbol{x}(t_0)\)</span> 가 주어졌을 때 가장 간단하게 <span class="math inline">\(\boldsymbol{x}(t)\)</span> 를 구하는 방법이다. 테일러 전개를 이용하면,</p>
+<p><span class="math display">\[
+x_j(t + h) = x_j(t) + x_j'(t)h+ \dfrac{x_j''(\xi)}{2}h^2
 \]</span></p>
 <p>를 만족하는 <span class="math inline">\(\xi\in (t,\, t+h)\)</span> 이 존재한다는 것을 안다. 이 때 <span class="math inline">\(|h | \ll 1\)</span> 이면,</p>
 <p><span class="math display">\[
-x_i(t + h) \approx x_i(t) + x_i'(t)h
+x_j(t + h) \approx x_j(t) + x_i'(t)h
 \]</span></p>
 <p>임을 이용하는 것이 오일러 벙법이다.</p>
-<p><span class="math inline">\(t_{k+1}=t_k+h\)</span> 일 때,</p>
+<p><span class="math inline">\(t_{i+1}=t_i+h\)</span> 일 때,</p>
 <p><span class="math display">\[
-\boldsymbol{x}(t_{k+1}) = \boldsymbol{x} (t_k) + \boldsymbol{f}(t_k, x_1(x_k), \ldots, x_n(t_k))\, h
+\boldsymbol{x}(t_{i+1}) = \boldsymbol{x} (t_i) + \boldsymbol{f}(t_i, x_1(x_i), \ldots, x_n(t_i))\, h
 \]</span></p>
-<p>를 이용하여 <span class="math inline">\(\boldsymbol{x}(t_{k+1})\)</span> 값을 구한다. 아래와 같이 julia 로 구현 할 수 있다.</p>
+<p>를 이용하여 <span class="math inline">\(\boldsymbol{x}(t_{i+1})\)</span> 값을 구한다. 아래와 같이 julia 로 구현 할 수 있다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 일변수에 대한 오일러 방법</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ode_euler</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    fp<span class="op">::</span><span class="dt">Function</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    t1<span class="op">::</span><span class="dt">Real</span>, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    x1<span class="op">::</span><span class="dt">Real</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    t0<span class="op">::</span><span class="dt">Real</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    x0<span class="op">::</span><span class="dt">Real</span>,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    Npoints<span class="op">::</span><span class="dt">Integer</span>, </span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> <span class="fl">1.0e-6</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    tn <span class="op">=</span> t1 <span class="op">.+</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">:</span>(Npoints<span class="op">-</span><span class="fl">1</span>)) <span class="op">*</span> h</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    tn <span class="op">=</span> t0 <span class="op">.+</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">1</span><span class="op">:</span>(Npoints<span class="op">-</span><span class="fl">1</span>)) <span class="op">*</span> h</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    xn <span class="op">=</span> <span class="fu">zero</span>(tn)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    xn[<span class="fl">1</span>] <span class="op">=</span> x1</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    xn[<span class="fl">1</span>] <span class="op">=</span> x0</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>(Npoints<span class="op">-</span><span class="fl">1</span>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        xn[i<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> xn[i] <span class="op">+</span> <span class="fu">fp</span>(tn[i], xn[i])<span class="op">*</span> h</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
@@ -514,8 +533,8 @@ x_i(t + h) \approx x_i(t) + x_i'(t)h
 </div>
 <p><br></p>
 </section>
-<section id="일변수-이차-미분-방정식" class="level4">
-<h4 class="anchored" data-anchor-id="일변수-이차-미분-방정식">일변수 이차 미분 방정식</h4>
+<section id="일변수-이차-미분-방정식" class="level3">
+<h3 class="anchored" data-anchor-id="일변수-이차-미분-방정식">일변수 이차 미분 방정식</h3>
 <p><span class="math inline">\(\dfrac{d^2x}{dt^2} = f(t, x, x')\)</span> 으로 주어진 미분방정식과 초기값 <span class="math inline">\(x(t_1),\, x'(t_1)\)</span> 이 주어졌다고 하자. <span class="math inline">\(y(t) = x'(t)\)</span> 라고 하면,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -547,79 +566,79 @@ x'(t) &amp;= y(t)
 <p>1차원 조화진동자는 잘 알려져 있다 시피 삼각함수로 그 진폭이 커지면 안되지만 여기서는 커지는데 이것은 오일러 방법이 기본적으로 에러에 취약하기 때문이다. 이로 인해 실제 계산에서는 오일러 방법은 잘 사용되지 않는다.</p>
 <p><br></p>
 </section>
-<section id="다변수-이차-미분-방정식" class="level4">
-<h4 class="anchored" data-anchor-id="다변수-이차-미분-방정식">다변수 이차 미분 방정식</h4>
+<section id="다변수-이차-미분-방정식" class="level3">
+<h3 class="anchored" data-anchor-id="다변수-이차-미분-방정식">다변수 이차 미분 방정식</h3>
 <p><span class="math inline">\(\dfrac{d^2\boldsymbol{x}}{dt^2} = \boldsymbol{f}(t, \boldsymbol{x}, \boldsymbol{x}')\)</span> 으로 주어진 미분방정식은,</p>
 <p><span class="math display">\[
 \begin{aligned}
-\boldsymbol{v}(t_{n}+h) &amp;=\boldsymbol{v}(t_n) + \boldsymbol{f}(t, \boldsymbol{x}(t_n), \boldsymbol{v}(t_n)) h,\\
-\boldsymbol{x}(t_n+h) &amp;=\boldsymbol{x}(t_n) + \boldsymbol{v}(t_n)h
+\boldsymbol{v}(t_{i}+h) &amp;=\boldsymbol{v}(t_i) + \boldsymbol{f}(t, \boldsymbol{x}(t_i), \boldsymbol{v}(t_i)) h,\\
+\boldsymbol{x}(t_i+h) &amp;=\boldsymbol{x}(t_i) + \boldsymbol{v}(t_i)h
 \end{aligned}
 \]</span></p>
 <p>와 같이 2개의 1차 미분방정식에 대한 오일러 방법에 의한 해로 주어진다.</p>
 <p><br></p>
 </section>
 </section>
-<section id="차-룽게-쿠타-방법-rk2" class="level3">
-<h3 class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk2">2차 룽게-쿠타 방법 (RK2)</h3>
+<section id="차-룽게-쿠타-방법-rk2" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk2"><span class="header-section-number">4</span> 2차 룽게-쿠타 방법 (RK2)</h2>
 <p>역시 <span class="math display">\[
 \dfrac{d\boldsymbol{x}}{dt} = \boldsymbol{f}(t, \boldsymbol{x})
 \]</span></p>
-<p>와 초기조건 <span class="math inline">\(\boldsymbol{x}_0 = \boldsymbol{f}(t_0)\)</span> 가 주어졌다고 하자. 우리는 여기서,</p>
+<p>와 초기조건 <span class="math inline">\(\boldsymbol{x}_0 = \boldsymbol{f}(t_0)\)</span> 가 주어졌다고 하자. <span class="math inline">\(\boldsymbol{x}\)</span> 와 <span class="math inline">\(\boldsymbol{f}(t,\boldsymbol{x})\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 각각 <span class="math inline">\(x_j,\, f_j(t,\,\boldsymbol{x})\)</span> 라고 하면,</p>
 <p><span class="math display">\[
-\dfrac{d^2\boldsymbol{x}}{dt^2 } = \dfrac{d}{dt}f(t, \,\boldsymbol{x}) = \dfrac{\partial f}{\partial t} + \sum_j\dfrac{dx_j}{dt} \cdot \dfrac{\partial \boldsymbol{f}}{\partial x_j}
+\dfrac{d^2 x_j}{dt^2 } = \dfrac{d}{dt}f_j(t, \,\boldsymbol{x}) = \dfrac{\partial f_j}{\partial t} + \sum_k\dfrac{dx_k}{dt} \cdot \dfrac{\partial f_j}{\partial x_k}
 \]</span></p>
 <p>라는 것을 안다. 이것을 이용하여 2차항까지 테일러 전개를 하면, <span class="math display">\[
 \begin{aligned}
-x_i(t+h) &amp; = x_i(t) + \dfrac{dx_i}{dt}h  + \dfrac{1}{2}\dfrac{d^2 x_i}{dt^2}h^2 + \cdots \\
-&amp;= x_i(t)  + f_i(t, \boldsymbol{x})\, h + \dfrac{1}{2} \left(\dfrac{\partial f_i}{\partial t} + \sum_j \dfrac{dx_j}{dt} \dfrac{\partial f_i}{\partial x_j}\right) h^2 + \cdots \\
-&amp;= x_i(t)  + f(t, \boldsymbol{x})\, h + \dfrac{1}{2} \left(\dfrac{\partial f}{\partial t} + \sum_j f_j(t,\,\boldsymbol{x}) \dfrac{\partial f_i}{\partial x_j}\right) h^2 + \cdots
+x_j(t+h) &amp; = x_j(t) + \dfrac{dx_j}{dt}h  + \dfrac{1}{2}\dfrac{d^2 x_j}{dt^2}h^2 + \cdots \\
+&amp;= x_j(t)  + f_j(t, \boldsymbol{x})\, h + \dfrac{1}{2} \left(\dfrac{\partial f_j}{\partial t} + \sum_k \dfrac{dx_k}{dt} \dfrac{\partial f_j}{\partial x_k}\right) h^2 + \cdots \\
+&amp;= x_j(t)  + f_j(t, \boldsymbol{x})\, h + \dfrac{1}{2} \left(\dfrac{\partial f_j}{\partial t} + \sum_k f_k(t,\,\boldsymbol{x}) \dfrac{\partial f_i}{\partial x_k}\right) h^2 + \cdots
 \end{aligned}
 \]</span></p>
 <p>이다. 이 때,</p>
 <p><span class="math display">\[
 \begin{aligned}
-\boldsymbol{k}_1 &amp;= \boldsymbol{f}(t_n, \boldsymbol{x}(t_n)) \,,\\
-\boldsymbol{k}_2 &amp;= \boldsymbol{f}\left( t_n + \dfrac{h}{2},\, \boldsymbol{x}(t_n) + \dfrac{h}{2} \boldsymbol{k}_1\right)
+\boldsymbol{k}_1 &amp;= \boldsymbol{f}(t_i, \boldsymbol{x}(t_i)) \,,\\
+\boldsymbol{k}_2 &amp;= \boldsymbol{f}\left( t_i + \dfrac{h}{2},\, \boldsymbol{x}(t_i) + \dfrac{h}{2} \boldsymbol{k}_1\right)
 \end{aligned}
 \]</span></p>
-<p>라 하자. 그렇다면, 야코비안 행렬 <span class="math inline">\(\left(\boldsymbol{J}_\boldsymbol{f}(t_n, \boldsymbol{x}(t_n))\right)_{ij} = \dfrac{\partial f_i}{\partial x_j}(t_n, \boldsymbol{x}(t_n))\)</span> 에 대해</p>
+<p>라 하자. 그렇다면, 야코비안 행렬 <span class="math inline">\(\left(\boldsymbol{J}_\boldsymbol{f}(t_i, \boldsymbol{x}(t_i))\right)_{jk} = \dfrac{\partial f_j}{\partial x_k}(t_i, \boldsymbol{x}(t_i))\)</span> 에 대해</p>
 <p><span class="math display">\[
 \begin{aligned}
-\boldsymbol{k}_2 &amp;= \boldsymbol{f}(t_n,\, \boldsymbol{x}(t_n)) +  \dfrac{h}{2} \dfrac{\partial \boldsymbol{f}}{\partial t}(t_n,\, \boldsymbol{x}(t_n)) + \dfrac{h}{2} \boldsymbol{J}_\boldsymbol{f}(t_n, \boldsymbol{x}(t_n)) \boldsymbol{k}_1 \\
-&amp;= \boldsymbol{k}_1 + \dfrac{h}{2} \left(\dfrac{\partial \boldsymbol{f}}{\partial t}(t_n,\, \boldsymbol{x}(t_n))  + \boldsymbol{J}_\boldsymbol{f}(t_n, \boldsymbol{x}(t_n)) \boldsymbol{k}_1 \right)
+\boldsymbol{k}_2 &amp;= \boldsymbol{f}(t_i,\, \boldsymbol{x}(t_i)) +  \dfrac{h}{2} \dfrac{\partial \boldsymbol{f}}{\partial t}(t_i,\, \boldsymbol{x}(t_n)) + \dfrac{h}{2} \boldsymbol{J}_\boldsymbol{f}(t_i, \boldsymbol{x}(t_i)) \boldsymbol{k}_1 \\
+&amp;= \boldsymbol{k}_1 + \dfrac{h}{2} \left(\dfrac{\partial \boldsymbol{f}}{\partial t}(t_i,\, \boldsymbol{x}(t_i))  + \boldsymbol{J}_\boldsymbol{f}(t_i, \boldsymbol{x}(t_i)) \boldsymbol{k}_1 \right)
 \end{aligned}
 \]</span></p>
 <p>이므로,</p>
 <p><span class="math display">\[
 \begin{aligned}
-\dfrac{\partial \boldsymbol{f}}{\partial t}(t_n,\, \boldsymbol{x}(t_n))  + \boldsymbol{J}_\boldsymbol{f}(t_n, \boldsymbol{x}(t_n)) \boldsymbol{k}_1 &amp; = \dfrac{2}{h}(\boldsymbol{k}_2-\boldsymbol{k}_1)
+\dfrac{\partial \boldsymbol{f}}{\partial t}(t_i,\, \boldsymbol{x}(t_i))  + \boldsymbol{J}_\boldsymbol{f}(t_i, \boldsymbol{x}(t_i)) \boldsymbol{k}_1 &amp; = \dfrac{2}{h}(\boldsymbol{k}_2-\boldsymbol{k}_1)
 \end{aligned}
 \]</span></p>
 <p>이다. 이를 이용하면,</p>
 <p><span class="math display">\[
-\boldsymbol{x}(t_{n+1}) = \boldsymbol{x}(t_n) + \boldsymbol{k}_1h + \dfrac{h^2}{2} \dfrac{2}{h} (\boldsymbol{k}_2-\boldsymbol{k}_1) = \boldsymbol{x}(t_n)+ \dfrac{h}{2}(\boldsymbol{k}_1+\boldsymbol{k}_2)
+\boldsymbol{x}(t_{i+1}) = \boldsymbol{x}(t_i) + \boldsymbol{k}_1h + \dfrac{h^2}{2} \dfrac{2}{h} (\boldsymbol{k}_2-\boldsymbol{k}_1) = \boldsymbol{x}(t_i)+ \dfrac{h}{2}(\boldsymbol{k}_1+\boldsymbol{k}_2)
 \]</span></p>
 <p>을 얻는다. 이것을 2차 룽게-쿠타 방법(RK2)이라 한다.</p>
 <p><br></p>
 </section>
-<section id="차-룽게-쿠타-방법-rk4" class="level3">
-<h3 class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk4">4차 룽게-쿠타 방법 (RK4)</h3>
+<section id="차-룽게-쿠타-방법-rk4" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk4"><span class="header-section-number">5</span> 4차 룽게-쿠타 방법 (RK4)</h2>
 <p>2차 룽게 쿠타 방법은 테일러 전개의 2차항까지 사용하였다. 4차 룽게-쿠타 방법(RK4)은 테일러 전개의 4차항까지 사용한다. <span class="math display">\[
 \boldsymbol{x}(t+h)  = \boldsymbol{x}(x) + \boldsymbol{x}'(x) h + \dfrac{\boldsymbol{x}''(t)}{2} h^2 + \dfrac{\boldsymbol{x}^{(3)}(t)}{6}h^3 + \dfrac{\boldsymbol{x}^{(4)}(t)}{24}h^4 + \cdots
 \]</span></p>
 <p>아래와 같이 <span class="math inline">\(\boldsymbol{k}_1,\,\boldsymbol{k}_2,\,\boldsymbol{k}_3,\,\boldsymbol{k}_4\)</span> 를 정의하면, <span class="math display">\[
 \begin{aligned}
-\boldsymbol{k}_{1} &amp;= \boldsymbol{f}(t_{n},\, \boldsymbol{x}(t_{n})),\\
-\boldsymbol{k}_{2}&amp;=\ \boldsymbol{f}\!\left( t_{n}+{\frac {h}{2}},\, \boldsymbol{x}(t_{n})+ \frac{h}{2}\boldsymbol{k}_{1}\right),\\
-\boldsymbol{k}_{3}&amp;=\ \boldsymbol{f}\!\left(t_{n}+{\frac {h}{2}},\,  \boldsymbol{x}(t_{n})+\frac{h}{2} \boldsymbol{k}_{2}\right),\\
-\boldsymbol{k}_{4}&amp;=\ \boldsymbol{f}\!\left(t_{n}+h,\, \boldsymbol{x}(t_{n})+h\boldsymbol{k}_{3}\right).
+\boldsymbol{k}_{1} &amp;= \boldsymbol{f}(t_{i},\, \boldsymbol{x}(t_{i})),\\
+\boldsymbol{k}_{2}&amp;=\ \boldsymbol{f}\!\left( t_{i}+{\frac {h}{2}},\, \boldsymbol{x}(t_{i})+ \frac{h}{2}\boldsymbol{k}_{1}\right),\\
+\boldsymbol{k}_{3}&amp;=\ \boldsymbol{f}\!\left(t_{i}+{\frac {h}{2}},\,  \boldsymbol{x}(t_{i})+\frac{h}{2} \boldsymbol{k}_{2}\right),\\
+\boldsymbol{k}_{4}&amp;=\ \boldsymbol{f}\!\left(t_{i}+h,\, \boldsymbol{x}(t_{i})+h\boldsymbol{k}_{3}\right).
 \end{aligned}
 \]</span></p>
 <p>4차항까지의 테일러 전개가 아래와 같다는 것을 보일 수 있다. 아주 지루한 과정이므로 여기서는 생략한다. <span class="math display">\[
 \begin{aligned}
-t_{n+1}&amp;=t_{n}+h, \\
-\boldsymbol{x}(t_{n+1})&amp;=\boldsymbol{x}(t_{n})+{\frac {h}{6}}\left(\boldsymbol{k}_{1}+2 \boldsymbol{k}_{2}+2\boldsymbol{k}_{3}+\boldsymbol{k}_{4}\right).
+t_{i+1}&amp;=t_{i}+h, \\
+\boldsymbol{x}(t_{i+1})&amp;=\boldsymbol{x}(t_{i})+{\frac {h}{6}}\left(\boldsymbol{k}_{1}+2 \boldsymbol{k}_{2}+2\boldsymbol{k}_{3}+\boldsymbol{k}_{4}\right).
 \end{aligned}
 \]</span></p>
 <p>RK2 및 RK4 이용하여 상미분 방정식을 푸는 julia 코드는 아래와 같다. 모두 이변수 함수 <code>f</code> 와 초기값 <code>x0</code>, <code>y0</code>, 위의 <span class="math inline">\(h\)</span> 에 해당하는 값 <code>epsilon</code> 과 초기 값을 포함하여 몇개의 점에 대해 얻을지에 대한 <code>Npoints</code> 를 인자로 받는다.</p>
@@ -673,11 +692,11 @@ t_{n+1}&amp;=t_{n}+h, \\
 </div>
 <p><br></p>
 </section>
-<section id="예제-examples" class="level3">
-<h3 class="anchored" data-anchor-id="예제-examples">예제 (Examples)</h3>
-<section id="단순-조화-진동자" class="level4">
-<h4 class="anchored" data-anchor-id="단순-조화-진동자">단순 조화 진동자</h4>
-<p><a href="#eq-sho1d">식&nbsp;2</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{y}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
+<section id="예제-examples" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="예제-examples"><span class="header-section-number">6</span> 예제 (Examples)</h2>
+<section id="단순-조화-진동자" class="level3">
+<h3 class="anchored" data-anchor-id="단순-조화-진동자">단순 조화 진동자</h3>
+<p><a href="#eq-sho1d">식&nbsp;2</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sho1d</span>(y<span class="op">::</span><span class="dt">Vector{&lt;:Real}</span>, k<span class="op">::</span><span class="dt">Real</span>, x0<span class="op">=</span><span class="fl">0.0</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [y[<span class="fl">2</span>], <span class="fu">-k*</span>(y[<span class="fl">1</span>]<span class="op">-</span>x0)]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
@@ -694,8 +713,8 @@ t_{n+1}&amp;=t_{n}+h, \\
 <p>오일러 방법이나 RK2 방법에서는 실제의 해와 많이 다르게 진폭(amplitude) 가 증가하지만 RK4 방법에서는 최소한 우리가 관찰한 영역에서는 진폭이 증가하지 않는다.</p>
 <p><br></p>
 </section>
-<section id="감쇄-조화-진동자" class="level4">
-<h4 class="anchored" data-anchor-id="감쇄-조화-진동자">감쇄 조화 진동자</h4>
+<section id="감쇄-조화-진동자" class="level3">
+<h3 class="anchored" data-anchor-id="감쇄-조화-진동자">감쇄 조화 진동자</h3>
 <p><span class="math display">\[
 m \dfrac{d^2x}{dt^2} + \gamma \dfrac{dx}{dt} + kx=0
 \]</span></p>
@@ -724,8 +743,8 @@ x(t) = \exp(-\lambda t) \left[ a \exp \left(\sqrt{-\omega^2} \right)+ b \exp \le
 </div>
 <p><br></p>
 </section>
-<section id="진자pendulum-문제" class="level4">
-<h4 class="anchored" data-anchor-id="진자pendulum-문제">진자(Pendulum) 문제</h4>
+<section id="진자pendulum-문제" class="level3">
+<h3 class="anchored" data-anchor-id="진자pendulum-문제">진자(Pendulum) 문제</h3>
 <p><img src="ch10_ode_initial_value_problem/simple pendulum.png" width="250"></p>
 <p><br></p>
 <p>중력가속도 <span class="math inline">\(g\)</span> 의 영향을 받는 길이 <span class="math inline">\(L\)</span>인 진자의 운동은 다음의 미분방정식으로 기술된다.</p>
@@ -760,8 +779,8 @@ x(t) = \exp(-\lambda t) \left[ a \exp \left(\sqrt{-\omega^2} \right)+ b \exp \le
 <p>와 같다. 오일러 방법은 비교적 빠르게, RK2 는 비교적 느리게 발산하지만 RK4 는 시간 범위 내에서 안정적임을 알 수 있다.</p>
 <p><br></p>
 </section>
-<section id="체-문제" class="level4">
-<h4 class="anchored" data-anchor-id="체-문제">2체 문제</h4>
+<section id="체-문제" class="level3">
+<h3 class="anchored" data-anchor-id="체-문제">2체 문제</h3>
 <p>중력에 의한 2체 문제를 생각해보자. <span class="math inline">\(m_1\)</span> 과 <span class="math inline">\(m_2\)</span> 의 질량을 갖는 두 점입자가 오직 만유인력에 의해서만 영향을 받아 움직일 때, 그 운동은 다음의 2차 미분방정식에 의해 기술된다.</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -781,8 +800,11 @@ m_2\ddot{\boldsymbol{r}}_2  = - \dfrac{Gm_1m_2}{\|\boldsymbol{r}_1-\boldsymbol{r
 \end{bmatrix} \cdot \boldsymbol{s}
 \]</span></p>
 <p>이제 두 점입자의 초기 위치와 속도가 주어지면 <span class="math inline">\(\boldsymbol{s}_{i+1} = \boldsymbol{s}_i+ \dfrac{d\boldsymbol{s}}{dt} h\)</span> 를 이용하여 이 문제를 풀 수 있다.</p>
+<p><br></p>
 </section>
 </section>
+<section id="runge-kutta-fehlberg-방법rkf" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="runge-kutta-fehlberg-방법rkf"><span class="header-section-number">7</span> Runge-Kutta-Fehlberg 방법(RKF)</h2>
 <section id="마치며" class="level3">
 <h3 class="anchored" data-anchor-id="마치며">마치며</h3>
 <p>이번 장에서는 상미분 방정식을 푸는 가장 기본적인 방법인 오일러 방법과 2차, 4차 룽게-쿠타 방법을 배웠다. 수치해석이 늘 그렇듯이 간단한 미분방정식은 잘 풀 수 있지만 다양하고 복잡한 문제에서는 더 정확한 방법을 사용해야 한다</p>

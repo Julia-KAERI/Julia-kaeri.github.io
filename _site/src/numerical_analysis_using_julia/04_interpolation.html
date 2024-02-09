@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Numerical Analysis Using Julia</span></a>
+ <span class="menu-text">들어가며</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -314,6 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="바이어슈트라스-근사정리" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="바이어슈트라스-근사정리"><span class="header-section-number">1</span> 바이어슈트라스 근사정리</h2>
 <p>이산적인 데이터 <span class="math inline">\((x_1,\,y_1),\,(x_2,\,y_2),\ldots,\, (x_N,\, y_N)\)</span> 가 주어졌으며 <span class="math inline">\(x_1&lt;x_2&lt;\cdots &lt;x_N\)</span> 으로 정렬되어 있다고 하자. 이 때 주어진 데이터를 바탕으로 임의의 <span class="math inline">\(x\)</span> 값을 추측할 경우, <span class="math inline">\(x_1 \le x \le x_N\)</span> 의 <span class="math inline">\(x\)</span> 값에 대해 추측하는 것을 보간법(interpolation) 이라 하고, <span class="math inline">\(x&lt;x_1\)</span> 이거나 <span class="math inline">\(x &gt;x_N\)</span> 일 경우 추축하는것을 외삽법(extrapolation) 이라 한다. 여기서는 보간법에 대해 다루기로 한다. 기본적으로 여기서 다루는 보간법은 데이터를 다항식으로 근사시키는데, 이 방법은 아래의 바이어스트라스 근사 정리(Weierstrass approximation theorem)로 정당화된다.</p>
+<p><br></p>
 <div id="thm-Weierstrass_approximation_theorem" class="theorem">
 <p><span class="theorem-title"><strong>정리 1 (바이어슈트라스 근사 정리) </strong></span>함수 <span class="math inline">\(f : X \subset \mathbb{R} \to \mathbb{R}\)</span> 가 <span class="math inline">\([a,\,b] \subset I\)</span> 구간에서 연속일 때, 임의의 <span class="math inline">\(\varepsilon &gt; 0\)</span> 에 대해</p>
 <p><span class="math display">\[
@@ -360,7 +361,7 @@ V_{n} (x) = a_0 + a_1 x + \cdots + a_{n-1}x^{n-1}
 <div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> [x<span class="op">^</span>(j<span class="op">-</span><span class="fl">1</span>) for x <span class="kw">in</span> xp, j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(xp)]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>이렇게 생성된 <code>V</code> 와 데이터로 알고 있는 <span class="math inline">\(y_1,\ldots,\, y_n\)</span> 에 대한 배열 <code>yp</code> 에 대해 다항식은</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SimplePolynomial</span>(V<span class="op">\</span>yp)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>로 구할 수 있다. 이것은 <code>simplepolynomials.jl</code> 의 <code>valdermond_polynomial</code> 함수로 구현되었다.</p>
+<p>로 구할 수 있다. 이것은 <code>NAJ.jl</code> 의 <code>valdermond_polynomial</code> 함수로 구현되었다.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">function</span> <span class="fu">valdermond_polynomial</span>(</span>
 <span id="cb4-2"><a href="#cb4-2"></a>    xp<span class="op">::</span><span class="dt">AbstractVector{T1}</span>, </span>
 <span id="cb4-3"><a href="#cb4-3"></a>    yp<span class="op">::</span><span class="dt">AbstractVector{T2}</span></span>

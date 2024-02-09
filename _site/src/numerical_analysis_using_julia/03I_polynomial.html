@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Numerical Analysis Using Julia</span></a>
+ <span class="menu-text">들어가며</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="일변수-다항식의-julia-구현" class="level1 unnumbered">
 <h1 class="unnumbered">일변수 다항식의 Julia 구현</h1>
-<p>수치해석에서는 다항식을 아주 많이 사용한다. 2023년 9월 현재 Julia 언어의 생태계에서는 <a href="https://github.com/JuliaMath/Polynomials.jl"><code>Polynomials.jl</code></a> 이 다항식을 다루는 패키지로 널리 사용되지만 아직 표준적인 라이브러리라고는 볼 수 없다. 이것을 사용해도 되지만 일단 수치해석과 julia 언어에 대한 연습으로 다항식을 표현하는 복합 타입(<code>struct</code> type) 을 만들어보자. 그 이름은 일단 <code>SimplePolynomial</code> 로 하도록 하자. 전체 파일은 <code>simplepolynomials.jl</code> 로 제공된다.</p>
+<p>수치해석에서는 다항식을 아주 많이 사용한다. 2023년 9월 현재 Julia 언어의 생태계에서는 <a href="https://github.com/JuliaMath/Polynomials.jl"><code>Polynomials.jl</code></a> 이 다항식을 다루는 패키지로 널리 사용되지만 아직 표준적인 라이브러리라고는 볼 수 없다. 이것을 사용해도 되지만 일단 수치해석과 julia 언어에 대한 연습으로 다항식을 표현하는 복합 타입(<code>struct</code> type) 을 만들어보자. 그 이름은 일단 <code>SimplePolynomial</code> 로 하도록 하자. 이것은 앞서 소개했던 <a href="https://github.com/Julia-KAERI/NAJ.jl.git">NAJ.jl</a> 에 포함되어 있다.</p>
 <p>Julia 는 객체 지향 언어가 아니기 때문에 클래스와 클래스의 상속이라는 개념이 존재하지 않으며 대부분 복합 타입이 그 역할을 대신한다. 복합 타입에 대해서는 <a href="../../src/introduction_to_julia/09_composite_types.html">복합 타입</a> 과 공식 매뉴얼의 <a href="https://docs.julialang.org/en/v1/manual/types/">Types</a> 를 참고하라. 복합 타입의 가장 큰 장점중의 하나는 타입 변수를 함수처럼 사용 할 수 있다는 것이다. 만약 우리가 계수로 <code>SimpliePolynomial</code> 복합 타입을 만들었다면, 이 복합 타입 변수를 함수처럼 사용 할 수 있다. 여기서는 그것을 사용한다.</p>
 <p>다항식 함수값의 계산을 위해 julia 는 <code>evalpoly</code> 함수를 제공한다. <code>evalpoly(1.0, [2.0, 3.0])</code> 은 다항식 <span class="math inline">\(p(x)=2.0+3.0x\)</span> 에 대해 <code>p(1.0)</code> 을 계산해준다. 자세한 것은 <code>evalpoly</code> 에 대한 자체 설명을 확인하라. 일변수 다항식을 구현하는 이유는 단순히 다항식의 함수값을 계산하는 것 이외에 다항식의 덧셈, 뺄셈, 곱셈, 미분, 적분과 기타 앞으로 배울 다항식에 관련된 여러 기능이 필요해서이다. <code>evalpoly</code> 는 이것까지 제공하지는 않는다.</p>
 <p><br></p>
@@ -376,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>를 보자. <code>p</code> 는 <code>SimplePolynomial</code> 타입이므로 <code>coeffs</code> 필드를 가지고 있다. 예를 들어 <code>mypoly=SimplePolynomial([1.0, 2.0])</code> 이라고 정의했으면 <code>mypoly</code> 는 다항식 <span class="math inline">\(1+2x\)</span> 를 의미하며 <code>mypoly(1.0)</code> 은 <code>evalpoly(1.0, [1, 2])</code>, 즉 <span class="math inline">\(1 + 2.0 \times 1.0\)</span> 을 반환한다. 이렇게 정의해주면 우리는 도트 연산자를 사용해 줄 수 있다. 아래의 <code>In [4]</code> 와 <code>In [6]</code> 을 보라.</p>
 <p>33번째 줄부터는 행렬에 대한 다항식을 구현하였으며 이를 위해 맨 앞에 <code>LinearAlgebra</code> 모듈을 임포트 했다. 행렬에 대한 다항식의 경우 정사각 행렬임을 확인하기 위해 <code>@assert size(x)[1] == size(x)[2]</code> 이 필요하다.</p>
 <p>이제 실제 사용해보자 <code>simplepolynomials.jl</code> 이 존재하는 파일 경로를 <code>include</code> 해 준다. 그리고 나서 다음과 같이 사용 할 수 있다.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>In [<span class="fl">1</span>]<span class="op">:</span> <span class="fu">include</span>(<span class="st">"simplepolynomials.jl"</span>); <span class="co"># 실제로는 simplepolynomials.jl 의 경로 전체를 절대경로, 혹은 상대경로로 입력한다</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>In [<span class="fl">1</span>]<span class="op">:</span> <span class="im">using</span> <span class="bu">NAJ</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>In [<span class="fl">2</span>]<span class="op">:</span> p1 <span class="op">=</span> <span class="fu">SimplePolynomial</span>([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>])</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Out[<span class="fl">2</span>]<span class="op">:</span> <span class="fu">SimplePolynomial</span>(<span class="fl">3.0</span> x<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2.0</span> x<span class="op">^</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1.0</span>)</span>
@@ -545,12 +545,10 @@ p(x) = c \prod_{i=1}^n (x-x_i)
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">prod</span>([<span class="fu">SimplePolynomial</span>([<span class="op">-</span>x0, <span class="fl">1</span>]) for x0 <span class="kw">in</span> xp])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>그렇다면,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">In</span> <span class="pp">[</span><span class="ss">1</span><span class="pp">]</span>: include<span class="er">(</span><span class="st">"simplepolynomials.jl"</span><span class="kw">)</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">Out</span><span class="op">[</span><span class="dv">1</span><span class="op">]</span><span class="ex">:</span> newton_polynomial <span class="er">(</span><span class="ex">generic</span> function with 1 method<span class="kw">)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">In</span> <span class="pp">[</span><span class="ss">2</span><span class="pp">]</span>: pp3 = polynomial_from_roots<span class="er">(</span><span class="ex">[1.0,</span> 1.0, 2.0]<span class="kw">)</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="va">Out</span><span class="op">[</span><span class="dv">2</span><span class="op">]</span><span class="ex">:</span> SimplePolynomial<span class="er">(</span><span class="ex">1.0</span> x^3 <span class="at">-</span> 4.0 x^2 + 5.0 x^1 <span class="at">-</span> 2.0<span class="kw">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>의 결과가 나온다. <span class="math inline">\((x-1)^2(x-2)= x^3-4x^2+5x-2\)</span> 이므로 정확한 결과가 나왔다. 이 다항식 복합타입은 앞으로도 계속 개선되며 사용 될 것이다.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pp3 <span class="op">=</span> <span class="fu">polynomial_from_roots</span>([<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>])</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>에 대해 다음의 출력이 나온다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SimplePolynomial</span>(<span class="fl">1.0</span> x<span class="op">^</span><span class="fl">3</span> <span class="op">-</span> <span class="fl">4.0</span> x<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">5.0</span> x<span class="op">^</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">2.0</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="math inline">\((x-1)^2(x-2)= x^3-4x^2+5x-2\)</span> 이므로 정확한 결과가 나왔다. 이 다항식 복합타입은 앞으로도 계속 개선되며 사용 될 것이다.</p>
 
 
 </section>

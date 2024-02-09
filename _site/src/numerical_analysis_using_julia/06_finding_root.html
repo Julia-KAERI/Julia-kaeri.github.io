@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Numerical Analysis Using Julia</span></a>
+ <span class="menu-text">들어가며</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -339,31 +339,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="이분법에-대한-julia-함수" class="level4">
 <h4 class="anchored" data-anchor-id="이분법에-대한-julia-함수">이분법에 대한 julia 함수</h4>
 <p>이분법을 <code>bisection</code> 함수로 구현해보자. 우선 인자로 해를 구하고자 하는 함수(<code>f</code>) 와, 양 끝 구간(<code>a</code>, <code>b</code>), 그리고 허용범위(<code>xtol</code>)가 필요하다. 이분법은 잠시 뒤에 보이겠지만 허용범위가 양수일 경우 유한번의 반복으로 허용범위 내의 근사적 해를 구한다. 실제 계산에서는 필요하지 않을 수도 있지만 여기서는 몇번의 반복으로 해를 구했는지 확인하기 위해 <code>bisection</code> 함수가 근사적 해와 반복 횟수를 반환하도록 한다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">function</span> <span class="fu">bisection</span>(f<span class="op">::</span><span class="dt">Function</span>,     <span class="co"># 함수</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>    a<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 1</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>    b<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 2</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>    xtol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,             <span class="co"># 해의 오차의 허용 범위</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-10</span>)           <span class="co"># 해의 함수값의 허용 범위</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>    a, b <span class="op">=</span> <span class="fu">minmax</span>(a, b)</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    <span class="fu">f</span>(a)<span class="fu">*f</span>(b) <span class="op">&lt;=</span> <span class="fl">0</span> <span class="op">||</span> <span class="fu">error</span>(<span class="st">"f(a)*f(b) should be negative"</span>) </span>
-<span id="cb1-9"><a href="#cb1-9"></a>    c <span class="op">=</span> (a<span class="op">+</span>b)<span class="op">/</span><span class="fl">2</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>    <span class="cf">while</span> ((b<span class="op">-</span>a) <span class="op">&gt;</span> <span class="fl">2</span><span class="op">*</span>xtol) <span class="op">||</span> (<span class="fu">abs</span>(<span class="fu">f</span>(c))<span class="op">&lt;</span>etol)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>        Niter <span class="op">+=</span><span class="fl">1</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>        </span>
-<span id="cb1-13"><a href="#cb1-13"></a>        <span class="cf">if</span> <span class="fu">f</span>(c) <span class="op">==</span> <span class="fl">0.0</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>            <span class="cf">break</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>        <span class="cf">elseif</span> <span class="fu">f</span>(a)<span class="fu">*f</span>(c) <span class="op">&lt;</span> <span class="fl">0</span> </span>
-<span id="cb1-16"><a href="#cb1-16"></a>            a, b <span class="op">=</span> a, c</span>
-<span id="cb1-17"><a href="#cb1-17"></a>        <span class="cf">else</span> </span>
-<span id="cb1-18"><a href="#cb1-18"></a>            a, b <span class="op">=</span> c, b </span>
-<span id="cb1-19"><a href="#cb1-19"></a>        <span class="cf">end</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>        c <span class="op">=</span> (a<span class="op">+</span>b)<span class="op">/</span><span class="fl">2</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>    <span class="cf">end</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a>    <span class="cf">return</span> c, Niter</span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">function</span> <span class="fu">rootfinding_bisection</span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    f<span class="op">::</span><span class="dt">Function</span>,                    <span class="co"># 함수</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    a<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 1</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    b<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 2</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    xtol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,            <span class="co"># 해의 오차의 허용 범위</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-10</span>)           <span class="co"># 해의 함수값의 허용 범위</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    a, b <span class="op">=</span> <span class="fu">minmax</span>(a, b)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="fu">f</span>(a)<span class="fu">*f</span>(b) <span class="op">&lt;=</span> <span class="fl">0</span> <span class="op">||</span> <span class="fu">error</span>(<span class="st">"f(a)*f(b) should be negative"</span>) </span>
+<span id="cb1-10"><a href="#cb1-10"></a>    c <span class="op">=</span> (a<span class="op">+</span>b)<span class="op">/</span><span class="fl">2</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">while</span> ((b<span class="op">-</span>a) <span class="op">&gt;</span> <span class="fl">2</span><span class="op">*</span>xtol) <span class="op">||</span> (<span class="fu">abs</span>(<span class="fu">f</span>(c))<span class="op">&lt;</span>etol)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        Niter <span class="op">+=</span><span class="fl">1</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>        </span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="cf">if</span> <span class="fu">f</span>(c) <span class="op">==</span> <span class="fl">0.0</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>            <span class="cf">break</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>        <span class="cf">elseif</span> <span class="fu">f</span>(a)<span class="fu">*f</span>(c) <span class="op">&lt;</span> <span class="fl">0</span> </span>
+<span id="cb1-17"><a href="#cb1-17"></a>            a, b <span class="op">=</span> a, c</span>
+<span id="cb1-18"><a href="#cb1-18"></a>        <span class="cf">else</span> </span>
+<span id="cb1-19"><a href="#cb1-19"></a>            a, b <span class="op">=</span> c, b </span>
+<span id="cb1-20"><a href="#cb1-20"></a>        <span class="cf">end</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>        c <span class="op">=</span> (a<span class="op">+</span>b)<span class="op">/</span><span class="fl">2</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="cf">end</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="cf">return</span> c, Niter</span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>이제 이분법을 이용하여 <span class="math inline">\(\sqrt{2}\)</span> 의 근사값을 구할 수 있다. <span class="math inline">\(\sqrt{2}\)</span> 는 <span class="math inline">\(f(x)=x^2-2\)</span> 의 근이므로</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bisection</span>(x <span class="op">-&gt;</span> x<span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">0.0</span>, <span class="fl">4.0</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rootfinding_bisection</span>(x <span class="op">-&gt;</span> x<span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">0.0</span>, <span class="fl">4.0</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>라 하면, <code>sqrt2</code> 의 값은 다음과 같다.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1.4142135605216026,</span> 28<span class="kw">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
@@ -420,10 +421,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br></p>
 <div id="exm-fixed_point_1" class="theorem example">
-<p><span class="theorem-title"><strong>보기 1 </strong></span>함수 <span class="math inline">\(f(x) = x^2-2\)</span> 를 생각하자. <span class="math inline">\(f(0)=-2\)</span> 이며 <span class="math inline">\(f(2)=2\)</span> 이므로 <span class="math inline">\([0,\,2]\)</span> 구간에서 해가 반드시 존재한다.</p>
+<p><span class="theorem-title"><strong>예제 1 </strong></span>함수 <span class="math inline">\(f(x) = x^2-2\)</span> 를 생각하자. <span class="math inline">\(f(0)=-2\)</span> 이며 <span class="math inline">\(f(2)=2\)</span> 이므로 <span class="math inline">\([0,\,2]\)</span> 구간에서 해가 반드시 존재한다.</p>
 </div>
 <div id="exm-fixed_point_2" class="theorem example">
-<p><span class="theorem-title"><strong>보기 2 </strong></span>이제 고정점 정리를 이용하여 <span class="math inline">\(f(x)=x^3 − 2x^2 − 1 = 0\)</span> 의 해를 <span class="math inline">\([1,\,3]\)</span> 구간에서 구해보자. <span class="math inline">\(g(x) = x-f(x)\)</span> 로 놓으면, <span class="math inline">\(g(1) = 3,\, g(3)=-5\)</span> 이므로 고정점 정리의 가정 <span class="math inline">\(g([a,\,b]) \subset [a,\,b]\)</span> 에 위배된다. <span class="math inline">\(p\)</span> 가 <span class="math inline">\(f(x)\)</span> 의 해이면 <span class="math inline">\(p^3 = 2p^2+1\)</span> 이므로 <span class="math inline">\(p\)</span> 는 <span class="math inline">\(h(x) = (2x^2+1)^{1/3}\)</span> 의 해이다. <span class="math inline">\(h(1) \approx 1.442,\, h(3) \approx 2.668\)</span> 이므로 <span class="math inline">\(h(x)\)</span> 는 고정점 정리의 제 1 조건을 만족한다. 또한</p>
+<p><span class="theorem-title"><strong>예제 2 </strong></span>이제 고정점 정리를 이용하여 <span class="math inline">\(f(x)=x^3 − 2x^2 − 1 = 0\)</span> 의 해를 <span class="math inline">\([1,\,3]\)</span> 구간에서 구해보자. <span class="math inline">\(g(x) = x-f(x)\)</span> 로 놓으면, <span class="math inline">\(g(1) = 3,\, g(3)=-5\)</span> 이므로 고정점 정리의 가정 <span class="math inline">\(g([a,\,b]) \subset [a,\,b]\)</span> 에 위배된다. <span class="math inline">\(p\)</span> 가 <span class="math inline">\(f(x)\)</span> 의 해이면 <span class="math inline">\(p^3 = 2p^2+1\)</span> 이므로 <span class="math inline">\(p\)</span> 는 <span class="math inline">\(h(x) = (2x^2+1)^{1/3}\)</span> 의 해이다. <span class="math inline">\(h(1) \approx 1.442,\, h(3) \approx 2.668\)</span> 이므로 <span class="math inline">\(h(x)\)</span> 는 고정점 정리의 제 1 조건을 만족한다. 또한</p>
 <p><span class="math display">\[
 h'(x) = \dfrac{4x}{3(2x^2+1)^{2/3}}
 \]</span></p>
@@ -492,34 +493,35 @@ f_1(x) = f(p_1) + f'(p_1)(x-p_1)
 <li><p><span class="math inline">\(p_{n+1} = p_{n}- \dfrac{f(p_{n})}{f'(p_{n})}\)</span> 을 계속 반복</p></li>
 </ol>
 <p>이를 구현한 코드는 아래와 같다. 앞서 언급했듯이 뉴턴 방법은 분할법과는 달리 항상 해를 발견하는 것을 보장하지 않는다. 따라서 무한 루프에 빠지는 것을 방지하기 위해 최대 반복 횟수(<code>MaxIter</code>) 를 함수의 인자로 입력한다. <span class="math inline">\(p_n\)</span> 에서의 미분값이 <span class="math inline">\(0\)</span> 일 경우 <span class="math inline">\(p_{n+1}\)</span> 을 구할 수 없으며, <span class="math inline">\(|f'(p_n)|\)</span> 이 매우 작을 경우 원하는 범위를 벗어나기 때문에 미분값의 절대값의 최소값을 지정하여 그 절대값보다 작을 경우는 에러를 발생시키도록 한다. 이분법의 경우는 구간을 좁혀가는 방법이기 때문에 구간의 범위를 허용범위로 정했지만 뉴턴 방법에서는 <span class="math inline">\(|f(p_n)|\)</span> 값이 특정 값 <span class="math inline">\(\delta&gt;0\)</span> 보다 작을 때 <span class="math inline">\(x_n\)</span> 을 근사적 해로 간주하며 <span class="math inline">\(\delta\)</span> 를 허용범위로 한다. 다음 함수에서는 이 허용범위를 <code>etol</code> 인자로 전달한다.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">function</span> <span class="fu">newton_method</span>(f<span class="op">::</span><span class="dt">Function</span>, <span class="co"># 함수</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>    df<span class="op">::</span><span class="dt">Function</span>,                   <span class="co"># 도함수</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    p<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 시작값</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>    MaxIter<span class="op">::</span><span class="dt">Int64</span>=<span class="fl">100_000</span>,         <span class="co"># 최대 반복 횟수</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,            <span class="co"># 해의 함수값의 허용 범위</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>    dfmin<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-6</span>)           <span class="co"># 미분값의 절대값의 허용되는 최소값</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    </span>
-<span id="cb7-8"><a href="#cb7-8"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>MaxIter</span>
-<span id="cb7-10"><a href="#cb7-10"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(p)) <span class="op">&lt;</span> etol</span>
-<span id="cb7-11"><a href="#cb7-11"></a>            <span class="cf">break</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>        <span class="cf">elseif</span> <span class="fu">abs</span>(<span class="fu">df</span>(p)) <span class="op">&lt;</span> dfmin </span>
-<span id="cb7-13"><a href="#cb7-13"></a>            <span class="fu">error</span>(<span class="st">"df ≈ 0.0"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14"></a>        <span class="cf">end</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>        p <span class="op">=</span> p <span class="op">-</span> <span class="fu">f</span>(p)<span class="op">/</span><span class="fu">df</span>(p)</span>
-<span id="cb7-16"><a href="#cb7-16"></a>        Niter <span class="op">+=</span> <span class="fl">1</span>       </span>
-<span id="cb7-17"><a href="#cb7-17"></a>        </span>
-<span id="cb7-18"><a href="#cb7-18"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(p)) <span class="op">&lt;</span> etol </span>
-<span id="cb7-19"><a href="#cb7-19"></a>            <span class="cf">return</span> (p, Niter)</span>
-<span id="cb7-20"><a href="#cb7-20"></a>        <span class="cf">end</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a>    <span class="cf">end</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>    <span class="fu">error</span>(<span class="st">"최대 반복 횟수 </span><span class="sc">$</span>MaxIter<span class="st"> 에 도달하였으나 답을 찾지 못함"</span>)</span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="kw">end</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">function</span> <span class="fu">rootfinding_newton</span>(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    f<span class="op">::</span><span class="dt">Function</span>,                    <span class="co"># 함수</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    df<span class="op">::</span><span class="dt">Function</span>,                   <span class="co"># 도함수</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    p<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 시작값</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    MaxIter<span class="op">::</span><span class="dt">Int64</span>=<span class="fl">100_000</span>,         <span class="co"># 최대 반복 횟수</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,            <span class="co"># 해의 함수값의 허용 범위</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    dfmin<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-6</span>)           <span class="co"># 미분값의 절대값의 허용되는 최소값</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>MaxIter</span>
+<span id="cb7-11"><a href="#cb7-11"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(p)) <span class="op">&lt;</span> etol</span>
+<span id="cb7-12"><a href="#cb7-12"></a>            <span class="cf">break</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>        <span class="cf">elseif</span> <span class="fu">abs</span>(<span class="fu">df</span>(p)) <span class="op">&lt;</span> dfmin </span>
+<span id="cb7-14"><a href="#cb7-14"></a>            <span class="fu">error</span>(<span class="st">"df ≈ 0.0"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15"></a>        <span class="cf">end</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>        p <span class="op">=</span> p <span class="op">-</span> <span class="fu">f</span>(p)<span class="op">/</span><span class="fu">df</span>(p)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>        Niter <span class="op">+=</span> <span class="fl">1</span>       </span>
+<span id="cb7-18"><a href="#cb7-18"></a>        </span>
+<span id="cb7-19"><a href="#cb7-19"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(p)) <span class="op">&lt;</span> etol </span>
+<span id="cb7-20"><a href="#cb7-20"></a>            <span class="cf">return</span> (p, Niter)</span>
+<span id="cb7-21"><a href="#cb7-21"></a>        <span class="cf">end</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>    <span class="cf">end</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>    <span class="fu">error</span>(<span class="st">"최대 반복 횟수 </span><span class="sc">$</span>MaxIter<span class="st"> 에 도달하였으나 답을 찾지 못함"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="kw">end</span></span>
 <span id="cb7-25"><a href="#cb7-25"></a></span>
-<span id="cb7-26"><a href="#cb7-26"></a><span class="fu">f2</span>(x) <span class="op">=</span> <span class="fu">x*</span>(x<span class="op">-</span><span class="fl">1</span>.)<span class="fu">*</span>(x<span class="op">-</span><span class="fl">2</span>.)<span class="op">+</span><span class="fl">5</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a><span class="fu">df2</span>(x) <span class="op">=</span> <span class="fl">3</span><span class="op">*</span>x<span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="fl">6</span><span class="op">*</span>x<span class="op">+</span><span class="fl">2</span></span>
-<span id="cb7-28"><a href="#cb7-28"></a><span class="fu">newton_method</span>(f2, df2, <span class="fl">1.2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-26"><a href="#cb7-26"></a></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="fu">f2</span>(x) <span class="op">=</span> <span class="fu">x*</span>(x<span class="op">-</span><span class="fl">1</span>.)<span class="fu">*</span>(x<span class="op">-</span><span class="fl">2</span>.)<span class="op">+</span><span class="fl">5</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="fu">df2</span>(x) <span class="op">=</span> <span class="fl">3</span><span class="op">*</span>x<span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="fl">6</span><span class="op">*</span>x<span class="op">+</span><span class="fl">2</span></span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="fu">rootfinding_newton</span>(f2, df2, <span class="fl">1.2</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><span class="math inline">\(f_2(x) = x(x-1)(x-2)+5\)</span> 에 대한 해를 구하였으며, 시작점 <span class="math inline">\(x_i = 1.2\)</span> 로 부터 추산했을 때 그 결과는 다음과 같다.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">-0.9041608591349207,</span> 24<span class="kw">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>만약 <span class="math inline">\(0.0\)</span> 부터시작한다면, 즉 <code>newton_method(f2, df2, 0.0)</code> 를 실행한다면,</p>
@@ -529,7 +531,7 @@ f_1(x) = f(p_1) + f'(p_1)(x-p_1)
 </section>
 <section id="뉴턴-방법의-단점과-수렴" class="level4">
 <h4 class="anchored" data-anchor-id="뉴턴-방법의-단점과-수렴">뉴턴 방법의 단점과 수렴</h4>
-<p>Bisection method는 두 시작점에서의 함수값의 곱이 음수이면 무조건 하나의 해를 원하는 오차 내에서 찾을 수 있다. 그러나, Newton method 는 해를 찾을 수 없는 경우도 생기는데 가장 대표적인 경우는 위의 과정중에 어떤 <span class="math inline">\(x_k\)</span> 에 에서 <span class="math inline">\(f'(x_k)=0\)</span> 인 경우이다. 또한 시작점이 해와 충분히 가깝지 않을 경우 발산 할 수 있다. 우리는 뉴턴 방법을 통해 무조건 해를 갖는 조건을 보일 수 있다.</p>
+<p>이분법은 두 시작점에서의 함수값의 곱이 음수이면 무조건 하나의 해를 원하는 오차 내에서 찾을 수 있다. 그러나, Newton method 는 해를 찾을 수 없는 경우도 생기는데 가장 대표적인 경우는 위의 과정중에 어떤 <span class="math inline">\(x_k\)</span> 에 에서 <span class="math inline">\(f'(x_k)=0\)</span> 인 경우이다. 또한 시작점이 해와 충분히 가깝지 않을 경우 발산 할 수 있다. 우리는 뉴턴 방법을 통해 무조건 해를 갖는 조건을 보일 수 있다.</p>
 <div id="thm-convergence_of_newton_method" class="theorem">
 <p><span class="theorem-title"><strong>정리 2 (뉴턴 방법의 수렴정리) </strong></span><span class="math inline">\(f\in C^2_{[a,\,b]}\)</span> 인 실함수 <span class="math inline">\(f\)</span> 에 대해 <span class="math inline">\(f(p)=0\)</span> 이며 <span class="math inline">\(f'(p)\ne 0\)</span> 이라 하자. 그렇다면 어떤 <span class="math inline">\(\delta&gt;0\)</span> 이 존재하여 <span class="math inline">\(p_1\in [p-\delta,\, p+\delta]\)</span> 이라면 뉴턴 방법을 통해 얻은 수열 <span class="math inline">\(\langle p_n\rangle\)</span> 은 <span class="math inline">\(p\)</span> 로 수렴한다.</p>
 </div>
@@ -564,32 +566,33 @@ g'(x) = 1-\dfrac{(f'(x))^2-f(x) f''(x)}{(f'(x))^2} = \dfrac{f(x)f''(x)}{(f'(x))^
 <p><span class="math display">\[
 p_{n+1} = p_n - \dfrac{f(p_n)}{g(p_n)} \,\qquad \textrm{where } g(p_n)=\dfrac{f(p_n)-f(p_{n-1})}{p_n -p_{n-1}}.
 \]</span></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">secant</span>(f<span class="op">::</span><span class="dt">Function</span>,    <span class="co"># 함수</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    p0<span class="op">::</span><span class="dt">Real</span>,                   <span class="co"># 시작값 1</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    p1<span class="op">::</span><span class="dt">Real</span>,                   <span class="co"># 시작값 2</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    MaxIter<span class="op">::</span><span class="dt">Int64 </span><span class="op">=</span> <span class="fl">100_000</span>,   <span class="co"># 최대 반복 횟수</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,        <span class="co"># 해의 함수값의 허용 범위</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    dfmin<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-6</span>)       <span class="co"># 도함수의 근사값의 절대값에 허용되는 최소값</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>MaxIter</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        gx <span class="op">=</span> (<span class="fu">f</span>(p1)<span class="fu">-f</span>(p0))<span class="op">/</span>(p1<span class="op">-</span>p0)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(p1)) <span class="op">&lt;</span> etol </span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> p1, Niter</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elseif</span> <span class="fu">abs</span>(gx)<span class="op">&lt;</span>dfmin</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">error</span>(<span class="st">"df ≈ 0.0"</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        p0, p1 <span class="op">=</span> p1, p1 <span class="op">-</span> <span class="fu">f</span>(p1)<span class="op">/</span>gx</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        Niter <span class="op">+=</span> <span class="fl">1</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">error</span>(<span class="st">"최대 반복 횟수 </span><span class="sc">$</span>MaxIter<span class="st"> 에 도달하였으나 답을 찾지 못함."</span>)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>이것에 대해 <code>newton_method</code> 와 비교해보았다.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">rootfinding_secant</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">Function</span>,                <span class="co"># 함수</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    p0<span class="op">::</span><span class="dt">Real</span>,                   <span class="co"># 시작값 1</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    p1<span class="op">::</span><span class="dt">Real</span>,                   <span class="co"># 시작값 2</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    MaxIter<span class="op">::</span><span class="dt">Int64 </span><span class="op">=</span> <span class="fl">100_000</span>,   <span class="co"># 최대 반복 횟수</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,        <span class="co"># 해의 함수값의 허용 범위</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    dfmin<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-6</span>)       <span class="co"># 도함수의 근사값의 절대값에 허용되는 최소값</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>MaxIter</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        gx <span class="op">=</span> (<span class="fu">f</span>(p1)<span class="fu">-f</span>(p0))<span class="op">/</span>(p1<span class="op">-</span>p0)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(p1)) <span class="op">&lt;</span> etol </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> p1, Niter</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elseif</span> <span class="fu">abs</span>(gx)<span class="op">&lt;</span>dfmin</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            <span class="fu">error</span>(<span class="st">"df ≈ 0.0"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        p0, p1 <span class="op">=</span> p1, p1 <span class="op">-</span> <span class="fu">f</span>(p1)<span class="op">/</span>gx</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        Niter <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">error</span>(<span class="st">"최대 반복 횟수 </span><span class="sc">$</span>MaxIter<span class="st"> 에 도달하였으나 답을 찾지 못함."</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>이것에 대해 뉴턴법과 비교해보았다.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f2</span>(x) <span class="op">=</span> <span class="fu">x*</span>(x<span class="op">-</span><span class="fl">1</span>.)<span class="fu">*</span>(x<span class="op">-</span><span class="fl">2</span>.)<span class="op">+</span><span class="fl">5</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">df2</span>(x) <span class="op">=</span> <span class="fl">3</span><span class="op">*</span>x<span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="fl">6</span><span class="op">*</span>x<span class="op">+</span><span class="fl">2</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">newton_method</span>(f2, df2, <span class="fl">0.0</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">secant</span>(f2, <span class="fl">0.0</span>, <span class="fl">0.1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rootfinding_newton</span>(f2, df2, <span class="fl">0.0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rootfinding_secant</span>(f2, <span class="fl">0.0</span>, <span class="fl">0.1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>를 수행하면</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">-0.9041608591349207,</span> 7<span class="kw">)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">-0.9041608591355101,</span> 10<span class="kw">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -603,38 +606,39 @@ p_{n+1} = p_n - \dfrac{f(p_n)}{g(p_n)} \,\qquad \textrm{where } g(p_n)=\dfrac{f(
 c = b-f(b) \cdot \dfrac{b-a}{f(b)-f(a)}
 \]</span></p>
 <p>에 대한 <span class="math inline">\(f(c)\)</span> 를 생각한다. 이 방법은 도함수가 필요 없으며, 많은 경우 이분법보다 빨리 해를 찾는다는 장점이 있다.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">function</span> <span class="fu">regula_falci</span>(f<span class="op">::</span><span class="dt">Function</span>,  <span class="co"># 함수</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>    a<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 1</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>    b<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 2</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>    MaxIter<span class="op">::</span><span class="dt">Int64 </span><span class="op">=</span> <span class="fl">100_000</span>,       <span class="co"># 최대 반복 회수</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>    xtol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,            <span class="co"># 해의 오차의 허용 범위</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,            <span class="co"># 해의 함수값의 허용 범위</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>    dfmin<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-6</span>)           <span class="co"># 도함수의 근사값의 절대값에 허용되는 최소값</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a></span>
-<span id="cb13-9"><a href="#cb13-9"></a>    a, b <span class="op">=</span> <span class="fu">minmax</span>(a, b)</span>
-<span id="cb13-10"><a href="#cb13-10"></a>    <span class="pp">@assert</span> <span class="fu">f</span>(a)<span class="fu">*f</span>(b) <span class="op">&lt;</span> <span class="fl">0</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a></span>
-<span id="cb13-12"><a href="#cb13-12"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a></span>
-<span id="cb13-14"><a href="#cb13-14"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>MaxIter</span>
-<span id="cb13-15"><a href="#cb13-15"></a>        Niter <span class="op">+=</span><span class="fl">1</span></span>
-<span id="cb13-16"><a href="#cb13-16"></a>        gx <span class="op">=</span>  (<span class="fu">f</span>(b)<span class="fu">-f</span>(a))<span class="op">/</span>(b<span class="op">-</span>a)</span>
-<span id="cb13-17"><a href="#cb13-17"></a>        c <span class="op">=</span> <span class="fu">b-f</span>(b)<span class="op">/</span>gx</span>
-<span id="cb13-18"><a href="#cb13-18"></a>        <span class="cf">if</span> (<span class="fu">abs</span>(b<span class="op">-</span>a)<span class="op">&lt;</span>xtol) <span class="op">||</span> (<span class="fu">abs</span>(<span class="fu">f</span>(c))<span class="op">&lt;</span>etol)</span>
-<span id="cb13-19"><a href="#cb13-19"></a>            <span class="cf">return</span> c, Niter</span>
-<span id="cb13-20"><a href="#cb13-20"></a>        <span class="cf">elseif</span> <span class="fu">abs</span>(gx) <span class="op">&lt;</span> dfmin </span>
-<span id="cb13-21"><a href="#cb13-21"></a>            <span class="fu">error</span>(<span class="st">"df ≈ 0.0"</span>)</span>
-<span id="cb13-22"><a href="#cb13-22"></a>        <span class="cf">end</span></span>
-<span id="cb13-23"><a href="#cb13-23"></a>        </span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">function</span> <span class="fu">rootfinding_regula_falci</span>(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    f<span class="op">::</span><span class="dt">Function</span>,                    <span class="co"># 함수</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>    a<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 1</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>    b<span class="op">::</span><span class="dt">Real</span>,                        <span class="co"># 구간값 2</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>    MaxIter<span class="op">::</span><span class="dt">Int64 </span><span class="op">=</span> <span class="fl">100_000</span>,       <span class="co"># 최대 반복 회수</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    xtol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,            <span class="co"># 해의 오차의 허용 범위</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>    etol<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-8</span>,            <span class="co"># 해의 함수값의 허용 범위</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>    dfmin<span class="op">::</span><span class="dt">Real </span><span class="op">=</span> <span class="fl">1.0e-6</span>)           <span class="co"># 도함수의 근사값의 절대값에 허용되는 최소값</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a></span>
+<span id="cb13-10"><a href="#cb13-10"></a>    a, b <span class="op">=</span> <span class="fu">minmax</span>(a, b)</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="pp">@assert</span> <span class="fu">f</span>(a)<span class="fu">*f</span>(b) <span class="op">&lt;</span> <span class="fl">0</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a></span>
+<span id="cb13-13"><a href="#cb13-13"></a>    Niter <span class="op">=</span> <span class="fl">0</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a></span>
+<span id="cb13-15"><a href="#cb13-15"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>MaxIter</span>
+<span id="cb13-16"><a href="#cb13-16"></a>        Niter <span class="op">+=</span><span class="fl">1</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>        gx <span class="op">=</span>  (<span class="fu">f</span>(b)<span class="fu">-f</span>(a))<span class="op">/</span>(b<span class="op">-</span>a)</span>
+<span id="cb13-18"><a href="#cb13-18"></a>        c <span class="op">=</span> <span class="fu">b-f</span>(b)<span class="op">/</span>gx</span>
+<span id="cb13-19"><a href="#cb13-19"></a>        <span class="cf">if</span> (<span class="fu">abs</span>(b<span class="op">-</span>a)<span class="op">&lt;</span>xtol) <span class="op">||</span> (<span class="fu">abs</span>(<span class="fu">f</span>(c))<span class="op">&lt;</span>etol)</span>
+<span id="cb13-20"><a href="#cb13-20"></a>            <span class="cf">return</span> c, Niter</span>
+<span id="cb13-21"><a href="#cb13-21"></a>        <span class="cf">elseif</span> <span class="fu">abs</span>(gx) <span class="op">&lt;</span> dfmin </span>
+<span id="cb13-22"><a href="#cb13-22"></a>            <span class="fu">error</span>(<span class="st">"df ≈ 0.0"</span>)</span>
+<span id="cb13-23"><a href="#cb13-23"></a>        <span class="cf">end</span></span>
 <span id="cb13-24"><a href="#cb13-24"></a>        </span>
-<span id="cb13-25"><a href="#cb13-25"></a>        <span class="cf">if</span> <span class="fu">f</span>(b)<span class="fu">*f</span>(c) <span class="op">&lt;</span> <span class="fl">0</span> </span>
-<span id="cb13-26"><a href="#cb13-26"></a>            a, b <span class="op">=</span> b, c</span>
-<span id="cb13-27"><a href="#cb13-27"></a>        <span class="cf">else</span> </span>
-<span id="cb13-28"><a href="#cb13-28"></a>            a, b <span class="op">=</span> a, c</span>
-<span id="cb13-29"><a href="#cb13-29"></a>        <span class="cf">end</span></span>
-<span id="cb13-30"><a href="#cb13-30"></a>    <span class="cf">end</span></span>
-<span id="cb13-31"><a href="#cb13-31"></a>    <span class="fu">error</span>(<span class="st">"최대 반복 횟수 </span><span class="sc">$</span>MaxIter<span class="st"> 에 도달하였으나 답을 찾지 못함."</span>)</span>
-<span id="cb13-32"><a href="#cb13-32"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-25"><a href="#cb13-25"></a>        </span>
+<span id="cb13-26"><a href="#cb13-26"></a>        <span class="cf">if</span> <span class="fu">f</span>(b)<span class="fu">*f</span>(c) <span class="op">&lt;</span> <span class="fl">0</span> </span>
+<span id="cb13-27"><a href="#cb13-27"></a>            a, b <span class="op">=</span> b, c</span>
+<span id="cb13-28"><a href="#cb13-28"></a>        <span class="cf">else</span> </span>
+<span id="cb13-29"><a href="#cb13-29"></a>            a, b <span class="op">=</span> a, c</span>
+<span id="cb13-30"><a href="#cb13-30"></a>        <span class="cf">end</span></span>
+<span id="cb13-31"><a href="#cb13-31"></a>    <span class="cf">end</span></span>
+<span id="cb13-32"><a href="#cb13-32"></a>    <span class="fu">error</span>(<span class="st">"최대 반복 횟수 </span><span class="sc">$</span>MaxIter<span class="st"> 에 도달하였으나 답을 찾지 못함."</span>)</span>
+<span id="cb13-33"><a href="#cb13-33"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 </section>
 <section id="네가지-방법의-비교" class="level3">
@@ -642,10 +646,10 @@ c = b-f(b) \cdot \dfrac{b-a}{f(b)-f(a)}
 <p><span class="math inline">\(f(x)=x-\cos(x)\)</span> 에 대한 해를 구해보자. <span class="math inline">\(f'(x) = 1+\sin(x)\)</span> 이므로 <span class="math inline">\(f(x)\)</span> 는 단조증가함수이다. <span class="math inline">\(f(0)=-1&lt;0\)</span> 이며 <span class="math inline">\(f(\pi/2) = \pi/2&gt;0\)</span> 이므로 우리는 <span class="math inline">\((0,\, \pi/2)\)</span> 구간에서 단 하나의 해가 존재한다는 것을 알 수 있다. 우리는 앞서 네가지 방법에서 해를 발견할 경우 해와 반복 수행 햇수를 반환하도록 코딩하였다.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> <span class="fu">x-cos</span>(x)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(x) <span class="op">=</span> <span class="fl">1</span><span class="fu">+sin</span>(x)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">bisection</span>(f, <span class="fl">0</span>, <span class="cn">π</span><span class="op">/</span><span class="fl">2</span>))</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">newton_method</span>(f, df, <span class="fl">0.0</span>))</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">secant</span>(f, <span class="fl">0</span>, <span class="cn">π</span><span class="op">/</span><span class="fl">2</span>))</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">regula_falci</span>(f, <span class="fl">0</span>, <span class="cn">π</span><span class="op">/</span><span class="fl">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">rootfinding_bisection</span>(f, <span class="fl">0</span>, <span class="cn">π</span><span class="op">/</span><span class="fl">2</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">rootfinding_newton</span>(f, df, <span class="fl">0.0</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">rootfinding_secant</span>(f, <span class="fl">0</span>, <span class="cn">π</span><span class="op">/</span><span class="fl">2</span>))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="fu">rootfinding_regula_falci</span>(f, <span class="fl">0</span>, <span class="cn">π</span><span class="op">/</span><span class="fl">2</span>))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>그 결과는 다음과 같다.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0.7390851321023699,</span> 27<span class="kw">)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0.739085133385284,</span> 4<span class="kw">)</span></span>
