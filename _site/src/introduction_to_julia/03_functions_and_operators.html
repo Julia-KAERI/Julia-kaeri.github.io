@@ -332,6 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-anonymous_function_do_end_begin_end" id="toc-sec-anonymous_function_do_end_begin_end" class="nav-link" data-scroll-target="#sec-anonymous_function_do_end_begin_end">익명 함수 : <code>do ... end</code>, <code>begin ... end</code></a></li>
   <li><a href="#선택적-인자" id="toc-선택적-인자" class="nav-link" data-scroll-target="#선택적-인자">선택적 인자</a></li>
   <li><a href="#키워드-인자" id="toc-키워드-인자" class="nav-link" data-scroll-target="#키워드-인자">키워드 인자</a></li>
+  <li><a href="#인자와-반환값의-타입-지정" id="toc-인자와-반환값의-타입-지정" class="nav-link" data-scroll-target="#인자와-반환값의-타입-지정">인자와 반환값의 타입 지정</a></li>
   <li><a href="#함수의-시그너쳐와-메서드" id="toc-함수의-시그너쳐와-메서드" class="nav-link" data-scroll-target="#함수의-시그너쳐와-메서드">함수의 시그너쳐와 메서드</a></li>
   </ul></li>
   </ul>
@@ -400,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>-x</code></td>
-<td style="text-align: left;">덧셈에 대한 역원</td>
+<td style="text-align: left;">덧셈에 대한 역원. 혹은 <code>x</code> 에 <code>-1</code> 을 곱한 수</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><code>x + y</code></td>
@@ -530,7 +531,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-short_circuiting_operators" class="level3">
 <h3 class="anchored" data-anchor-id="sec-short_circuiting_operators">short-circuiting 연산</h3>
-<p><code>x &amp;&amp; y</code> 에서 <code>x</code> 가 불(Bool) 값이고 <code>y</code> 가 어떤 명령문일때, <code>x</code> 가 <code>true</code> 이면 <code>y</code> 를 실행시키고 <code>x</code> 가 <code>false</code> 이면 <code>false</code> 를 리턴합니다. <code>x || y</code> 일 때는 반대로 <code>x</code> 가 <code>true</code> 이면 <code>true</code> 를 리턴하고 <code>x</code> 가 거짓이면 <code>y</code> 를 실행시킵니다. 불 연산을 사용하여 조건에 따라 실행시키는 것을 short-circuiting 연산이라고 하며, julia 에서 상당히 많이 사용되는 테크닉 입니다.</p>
+<p>논리연산자 <code>x &amp;&amp; y</code> 는 <code>x</code> 를 먼저 평가하여 <code>true</code> 이면 <code>y</code> 를 평가하며 <code>y</code> 도 <code>true</code> 이면 연산의 결과는 <code>true</code> 가 됩니다. <code>x</code> 가 <code>false</code> 이면 <code>y</code> 는 평가할 필요가 없이 결과는 <code>false</code> 가 됩니다. 그런데 <code>y</code> 가 불 값이 아닌 어떤 기능을 하는 함수라면 어떻게 될까요? <code>x &amp;&amp; y</code> 는 <code>x</code> 가 <code>true</code> 일 경우에만 <code>y</code> 를 실행시키는 조건부 실행문이 됩니다. <code>x || y</code> 일 때는 반대로 <code>x</code> 가 <code>true</code> 이면 <code>true</code> 를 리턴하고 <code>x</code> 가 거짓이면 <code>y</code> 를 실행시킵니다. 불 연산을 사용하여 조건에 따라 실행시키는 것을 <strong>short-circuiting</strong> 연산이라고 하며, julia 에서 상당히 많이 사용되는 테크닉 입니다.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>In [19]: x=3</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Out[19]: 3</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -606,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>In [25]: 427&gt;&gt;2 #427 나누기 2^2=4 의 몫</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Out[25]: 106</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>입니다.. 비트연산에 대해 편리한 함수로 입력값을 비트 문자열로 바꾸어주는 <code>bitstring()</code> 함수가 있습니다.</p>
+<p>입니다. 비트연산에 대해 편리한 함수로 입력값을 비트 문자열로 바꾸어주는 <code>bitstring()</code> 함수가 있습니다.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>In [26]: bitstring(1)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Out[26]: "0000000000000000000000000000000000000000000000000000000000000001"</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -771,7 +772,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>In [11]: madd2(3, -2)</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>Out[11]: 1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>익명함수가 실제로 널리 사용되는 부분은 <a href="../../src/introduction_to_julia/04_containers.html#sec-anonymous_function_in_map"><code>map</code> 함수에서의 익명함수의 사용</a> 에서 볼 수 있듯이 <code>map</code>, <code>reduce</code>, 등에서 유용하게 사용됩니다. 또한 <a href="../../src/introduction_to_julia/06_arrays.html#sec-array_comprehension"><code>배열 comprehension</code></a> 에서도 널리 사용됩니다.</p>
+<p>익명함수는 <a href="../../src/introduction_to_julia/04_containers.html#sec-anonymous_function_in_map"><code>map</code> 함수에서의 익명함수의 사용</a> 에서 볼 수 있듯이 <code>map</code>, <code>reduce</code>, 등에서 유용하게 사용됩니다. 또한 <a href="../../src/introduction_to_julia/06_arrays.html#sec-array_comprehension"><code>배열 comprehension</code></a> 에서도 유용하게 사용 할 수 있습니다.</p>
 <p><br></p>
 </section>
 <section id="sec-anonymous_function_do_end_begin_end" class="level3">
@@ -781,7 +782,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="선택적-인자" class="level3">
 <h3 class="anchored" data-anchor-id="선택적-인자">선택적 인자</h3>
-<p>인자를 입력하지 않아도 되는 인자를 선택적 인자(optional arguments) 라고 합니다.</p>
+<p>인자의 값을 입력하지 않아도 되는 인자를 선택적 인자(optional arguments) 라고 합니다.</p>
 <section id="기본값이-있는-선택적-인자" class="level4">
 <h4 class="anchored" data-anchor-id="기본값이-있는-선택적-인자">기본값이 있는 선택적 인자</h4>
 <p>함수의 특정 인자에 대한 기본값을 정할 수 있으며 함수를 실행 할 때 이 인자에 값을 입력하지 않으면 기본값이 사용됩니다. 영어로는 Optional argument 라고 합니다. 예를 들어,</p>
@@ -799,7 +800,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">+</span>y</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>이 경우 <code>optional_arg(3)</code> 은 <code>y=nothing</code> 으로 입력이 되기 때무문에 <span class="math inline">\(9\)</span> 를 반환하지만 <code>optional_arg(3, 4)</code> 는 <code>y=4</code> 로 입력이 되므로 <code>3+4</code> 인 <code>7</code> 이 반환됩니다.</p>
+<p>이 경우 <code>optional_arg(3)</code> 은 <code>y=nothing</code> 으로 입력이 되기 때문에 <span class="math inline">\(9\)</span> 를 반환하지만 <code>optional_arg(3, 4)</code> 는 <code>y=4</code> 로 입력이 되므로 <code>3+4</code> 인 <code>7</code> 이 반환됩니다.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>In [10]: function optional_arg(x, y::Union{Nothing, Integer} = nothing)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             if y === nothing</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                 return x^2</span>
@@ -832,8 +833,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>color = red, x=1, y=2</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>함수 호출에서 키워드로 정해진 인자는 인자의 입력 순서를 무시하며, 키워드가 없는 인자끼리의 순서대로 인자가 입력된다는 것을 알 수 있습니다.</p>
 <p><br></p>
-<section id="인자와-반환값의-타입-지정" class="level4">
-<h4 class="anchored" data-anchor-id="인자와-반환값의-타입-지정">인자와 반환값의 타입 지정</h4>
+</section>
+<section id="인자와-반환값의-타입-지정" class="level3">
+<h3 class="anchored" data-anchor-id="인자와-반환값의-타입-지정">인자와 반환값의 타입 지정</h3>
 <p>함수를 정의 할 때 인자나 반환값의 타입을 <code>::</code> 연산자를 통해 지정 할 수 있습니다. 예를 들어,</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mfunc</span>(x<span class="op">::</span><span class="dt">Int64</span>)<span class="op">::</span><span class="dt">Int64</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">+</span><span class="fl">1</span></span>
@@ -855,7 +857,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>In [3]: myfunc2(2.0)</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>Out[3]: 1</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-</section>
+<p>여러분들은 타입에 너무 엄격한 것이 아니냐고 생각 할 수 있습니다. 만약 어떠 함수의 인자로 <code>UInt8</code> 이든 <code>Int64</code> 든 상관 없이 정수만을 받고 싶을 수도 있습니다. 이에 대한 방법은 <a href="../../src/introduction_to_julia/08_type_hierarchy.html#sec-type_hierarchy"><code>타입의 계층 구조</code></a> 에서 다루도록 하겠습니다.</p>
+<p><br></p>
 </section>
 <section id="함수의-시그너쳐와-메서드" class="level3">
 <h3 class="anchored" data-anchor-id="함수의-시그너쳐와-메서드">함수의 시그너쳐와 메서드</h3>

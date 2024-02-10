@@ -334,11 +334,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-splat_operator_for_containers" class="level2">
 <h2 class="anchored" data-anchor-id="sec-splat_operator_for_containers">컨테이너에 대한 사용법</h2>
 <p>튜플이나 <code>StepRange</code> 혹은 1차원 배열과 같이 순서가 있는 컨테이너에 대해서는 직관적으로 알 수 있습니다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>In [1]: a1, a2, a3... = (1, "a", (2, 3), 4, sin)</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>In [1]: a1, a2, a3... = (1, "a", (2, 3), 4, sin)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Out[1]: (1, "a", (2, 3), 4, sin)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>In [2]: a1, a2</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Out[2]: (1, "a")  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Out[2]: (1, "a")    </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>In [3]: b1, b2, b3... = 1:10</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Out[3]: 1:10</span>
@@ -398,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-splat_operator_in_function_definition" class="level2">
 <h2 class="anchored" data-anchor-id="sec-splat_operator_in_function_definition">함수를 정의할 때의 사용법</h2>
 <p>다음을 봅시다.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>In [6]: function ps(xs...)</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>In [6]: function ps(xs...)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        println(typeof(xs))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        return xs[1], xs[2]</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        end</span>
@@ -408,27 +408,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Tuple{Int64, Int64, Int64, String}</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Out[7]: (1, 2)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>함수 정의에서 인자로 <code>xs...</code> 가 사용되었습니다. 이것은 인자를 모두 <code>xs</code> 라는 변수의 튜플로 받는다는 뜻입니다. 즉 <code>In [7]</code> 에서 함수 내부적으로 인자는 <code>(1, 2, 3, "c")</code> 입니다. 일부의 인자에 대해서만 사용할 경우에는 다음과 같습니다.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>In [9]: function ps2(x1, xs...)</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>In [9]: function ps2(x1, xs...)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        return xs[1], xs[2]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        end</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Out[9]: ps2 (generic function with 1 method)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>In [10]: ps2(1,2,3,4,5,6)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>Out[10]: (2, 3)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>키워드 인자도 역시 <code>...</code> 를 사용하여 받을 수 있습니다. 다음의 함수를 봅시다. 예를 들어,</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ps3</span>(xs<span class="op">...</span>;vs<span class="op">...</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="op">...</span>         </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>와 같은 함수는 키워드가 없는 인자들은 <code>xs</code> 라는 변수의 튜플로, 키워드로 제시된 인자들은 <code>vs</code> 라는 기명 튜플(NamedTuple) 인자로 받습니다.</p>
 <p><br></p>
 </section>
 <section id="sec-splat_operator_in_function_argument" class="level2">
 <h2 class="anchored" data-anchor-id="sec-splat_operator_in_function_argument">함수를 실행시킬때 인자에서의 사용법</h2>
 <p>함수의 정의에서는 인자를 튜플로 묶는다면 함수를 사용할 때는 컨테이너를 풉니다. 예를 들어,</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>In [12]: function ps3(a1, a2, a3)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>         return a1+(a2*a3)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         end</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>In [12]: function ps3(a1, a2, a3)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>         return a1+(a2*a3)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         end</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>와 같은 함수를 사용해야 한다고 합시다. 그런데 다른 함수의 계산 결과로 <code>aa=(a1, a2, a3)</code> 를 얻었다고 합시다. <code>ps3(aa[1], aa[2], aa[3])</code> 와 같이 실행 시킬 수도 있지만</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>In [13]: aa=(2, 3, 4)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Out[13]: (2, 3, 4)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>In [14]: ps3(aa...)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Out[14]: 14</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>In [13]: aa=(2, 3, 4)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Out[13]: (2, 3, 4)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>In [14]: ps3(aa...)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Out[14]: 14</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>처럼 <code>ps3</code> 함수를 실행 시킬 때 인자로 <code>a...</code> 를 쓰면 튜플이 풀려서 <code>ps3(aa[1], aa[2], aa[3])</code> 를 실행시킨 것과 같게됩니다.</p>
 
 
