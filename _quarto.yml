@@ -101,6 +101,8 @@ website:
           href: src/numerical_analysis_using_julia/04I_interpolation_struct.qmd
         - text: "5장 일변수 함수의 미분과 적분"
           href: src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.qmd
+        - text: "Interude : Bezier 곡선"
+          href: src/numerical_analysis_using_julia/05_I_Bezier.qmd
         - text: "6장 일변수 방정식의 해"
           href: src/numerical_analysis_using_julia/06_finding_root.qmd
         # - text: "7장 행렬의 분해"
@@ -122,6 +124,9 @@ website:
         - src/tools/tools.qmd
         - text: "Asymptote"
           href: src/tools/Asymptote/asymptote.qmd
+        - text: "Tikz"
+          href: src/tools/tikz/tikz.qmd
+
         # - text: "해석역학의 기본 개념"
         #   href: src/classical_mechanics/Lanczos/ch01/01_01.qmd
         # - text: "Tutorial: Authoring"
