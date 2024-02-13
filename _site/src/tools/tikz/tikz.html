@@ -190,7 +190,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#설치-및-사전준비" id="toc-설치-및-사전준비" class="nav-link active" data-scroll-target="#설치-및-사전준비"><span class="header-section-number">1</span> 설치 및 사전준비</a></li>
-  <li><a href="#기본-예제" id="toc-기본-예제" class="nav-link" data-scroll-target="#기본-예제"><span class="header-section-number">2</span> 기본 예제</a></li>
+  <li><a href="#기본-예제" id="toc-기본-예제" class="nav-link" data-scroll-target="#기본-예제"><span class="header-section-number">2</span> 기본 예제</a>
+  <ul class="collapse">
+  <li><a href="#직선" id="toc-직선" class="nav-link" data-scroll-target="#직선">직선</a></li>
+  <li><a href="#그리드와-직선의-두께" id="toc-그리드와-직선의-두께" class="nav-link" data-scroll-target="#그리드와-직선의-두께">그리드와 직선의 두께</a></li>
+  <li><a href="#닫힌-선분" id="toc-닫힌-선분" class="nav-link" data-scroll-target="#닫힌-선분">닫힌 선분</a></li>
+  <li><a href="#곡선" id="toc-곡선" class="nav-link" data-scroll-target="#곡선">곡선</a></li>
+  <li><a href="#함수" id="toc-함수" class="nav-link" data-scroll-target="#함수">함수</a></li>
+  <li><a href="#도형" id="toc-도형" class="nav-link" data-scroll-target="#도형">도형</a></li>
+  <li><a href="#좌표계" id="toc-좌표계" class="nav-link" data-scroll-target="#좌표계">좌표계</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -266,6 +275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="기본-예제" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="기본-예제"><span class="header-section-number">2</span> 기본 예제</h2>
+<section id="직선" class="level3">
+<h3 class="anchored" data-anchor-id="직선">직선</h3>
 <p>다음은 교차하는 직선과 교점을 그린 것이다.</p>
 <div class="cell" data-layout-align="center">
 <details>
@@ -298,37 +309,183 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>\filldraw[black] (0,0) circle (2pt) node[anchor=west]{Intersection point};</code> 는 <span class="math inline">\((0, 0)\)</span> 에 반지름 2 인 속이 꽉 찬 원을 그리며, <span class="math inline">\((0, 0)\)</span> 을 서쪽으로 두는 문자열 <code>Intersection point</code> 를 출력하라는 의미이다.</p></li>
 </ul>
 <p><br></p>
-<p>다음은 곡선을 그린 것이다.</p>
+</section>
+<section id="그리드와-직선의-두께" class="level3">
+<h3 class="anchored" data-anchor-id="그리드와-직선의-두께">그리드와 직선의 두께</h3>
 <div class="cell" data-layout-align="center">
 <details>
 <summary>코드</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tikz_3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tikz_2_2</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 2</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "tikz 3"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "그리드와 직선의 두께"</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>\begin{tikzpicture}[scale<span class="ot">=</span><span class="fl">1.0</span>]</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>\<span class="fu">draw</span> (<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>) <span class="sc">--</span> (<span class="dv">2</span>,<span class="dv">0</span>);</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>\filldraw [blue] (<span class="dv">0</span>,<span class="dv">0</span>) <span class="fu">circle</span> (2pt);</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>\draw[cyan] (<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>) .. <span class="fu">controls</span> (<span class="dv">0</span>,<span class="dv">0</span>) <span class="fu">..</span> (<span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>);</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>\draw[magenta] (<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>) .. <span class="fu">controls</span> (<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>) <span class="fu">and</span> (<span class="dv">1</span>,<span class="dv">0</span>) <span class="fu">..</span> (<span class="dv">2</span>,<span class="dv">2</span>);</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>\end{tikzpicture}</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>\begin{tikzpicture}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    \draw[gray, very thick] (<span class="dv">0</span>,<span class="dv">0</span>) <span class="fu">grid</span> (<span class="dv">4</span>,<span class="dv">3</span>);</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    \draw[blue, dashed] (<span class="dv">0</span>,<span class="dv">0</span>) <span class="sc">--</span> (<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">--</span> (<span class="dv">3</span>,<span class="dv">3</span>) <span class="sc">--</span> (<span class="dv">4</span>,<span class="dv">2</span>);</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    \draw[red, <span class="ot">-&gt;</span>, thick] (<span class="dv">2</span>,<span class="dv">0</span>) <span class="sc">--</span> (<span class="fl">3.5</span>,<span class="fl">2.5</span>);</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>\end{tikzpicture}</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-tikz_2_2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="tikz_files/figure-html/fig-tikz_2_2-1.png" class="img-fluid figure-img" width="192"></p>
+<p></p><figcaption class="figure-caption">그림&nbsp;3: 그리드와 직선의 두께</figcaption><p></p>
+</figure>
+</div>
+</div>
+<ul>
+<li><code>\draw[gray, very thick] (0,0) grid (4,3);</code> 는 <span class="math inline">\((0, 0)\)</span> 부터 <span class="math inline">\((4, 3)\)</span> 까지 가로, 세로 1 간격의 그리드를 회색(gray) 의 두꺼운 선(very thick) 으로 그린다.</li>
+<li><code>draw[blue, dashed] (0,0) -- (1,2) -- (3,3) -- (4,2);</code> 는 이어지는 파선(dashed) 을 파란 색으로 그린다.</li>
+<li><code>\draw[red, -&gt;, thick] (2,0) -- (3.5,2.5);</code> 는 끝점에 화살표가 있는 빨간 선을 두껍게(thick) 그린다.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="닫힌-선분" class="level3">
+<h3 class="anchored" data-anchor-id="닫힌-선분">닫힌 선분</h3>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tikz_2_3</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 2</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "닫힌 선분"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>\begin{tikzpicture}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    \draw[green, thick] (<span class="dv">0</span>,<span class="dv">0</span>) <span class="sc">--</span> (<span class="dv">1</span>,<span class="dv">2</span>) <span class="sc">--</span> (<span class="dv">3</span>,<span class="dv">3</span>) <span class="sc">--</span> (<span class="dv">3</span>,<span class="sc">-</span><span class="dv">1</span>)<span class="sc">--</span>cycle;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>\end{tikzpicture}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-tikz_2_3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="tikz_files/figure-html/fig-tikz_2_3-1.png" class="img-fluid figure-img" width="192"></p>
+<p></p><figcaption class="figure-caption">그림&nbsp;4: 닫힌 선분</figcaption><p></p>
+</figure>
+</div>
+</div>
+<ul>
+<li><code>\draw[green, thick] (0,0) -- (1,2) -- (3,3) -- (3,-1)--cycle;</code> 에서 <code>--cycle</code> 은 이 앞의 <code>(3, -1)</code> 을 맨 앞의 <code>(0, 0)</code> 과 연결시키라는 의미이다.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="곡선" class="level3">
+<h3 class="anchored" data-anchor-id="곡선">곡선</h3>
+<p>다음은 곡선을 그린 것이다.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tikz_3</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 2</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "tikz 3"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>\begin{tikzpicture}[scale<span class="ot">=</span><span class="fl">1.0</span>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>\<span class="fu">draw</span> (<span class="sc">-</span><span class="dv">2</span>,<span class="dv">0</span>) <span class="sc">--</span> (<span class="dv">2</span>,<span class="dv">0</span>);</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>\filldraw [blue] (<span class="dv">0</span>,<span class="dv">0</span>) <span class="fu">circle</span> (2pt);</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>\draw[cyan] (<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>) .. <span class="fu">controls</span> (<span class="dv">0</span>,<span class="dv">0</span>) <span class="fu">..</span> (<span class="dv">2</span>,<span class="sc">-</span><span class="dv">2</span>);</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>\draw[magenta] (<span class="sc">-</span><span class="dv">2</span>,<span class="dv">2</span>) .. <span class="fu">controls</span> (<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>) <span class="fu">and</span> (<span class="dv">1</span>,<span class="dv">0</span>) <span class="fu">..</span> (<span class="dv">2</span>,<span class="dv">2</span>);</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>\end{tikzpicture}</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-tikz_3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="tikz_files/figure-html/fig-tikz_3-1.png" class="img-fluid figure-img" width="192"></p>
-<p></p><figcaption class="figure-caption">그림&nbsp;3: tikz 3</figcaption><p></p>
+<p></p><figcaption class="figure-caption">그림&nbsp;5: tikz 3</figcaption><p></p>
 </figure>
 </div>
 </div>
-<p><code>\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);</code> 는 <span class="math inline">\((-2, 2)\)</span> 와 <span class="math inline">\((2, 2)\)</span> 를 끝점으로 하는, <span class="math inline">\((-1, 0)\)</span> 과 <span class="math inline">\((1, 0)\)</span> 을</p>
+<ul>
+<li><code>\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);</code> 는 <span class="math inline">\((-2, 2)\)</span> 와 <span class="math inline">\((2, 2)\)</span> 를 끝점으로 하고 <span class="math inline">\((-1, 0)\)</span> 과 <span class="math inline">\((1, 0)\)</span> 을 제어점으로 하는 사차 베지어 곡선을 magenta 색으로 그린다.</li>
+<li><code>\draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);</code> 는 (<span class="math inline">\(-2, 2)\)</span> 와 <span class="math inline">\((2, 2)\)</span> 를 끝점으로 하고 제어점이 <span class="math inline">\((0, 0)\)</span> 인 사차 베지어 곡선을 cyan 색으로 그린다. 즉 <code>\draw[magenta] (-2,2) .. controls (0,0) and (0,0) .. (2,2);</code> 과 같다.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="함수" class="level3">
+<h3 class="anchored" data-anchor-id="함수">함수</h3>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tikz_4</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 4</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "tikz 3"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>\begin{tikzpicture}[domain<span class="ot">=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  \draw[very thin,color<span class="ot">=</span>gray] (<span class="sc">-</span><span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">1.1</span>) <span class="fu">grid</span> (<span class="fl">3.9</span>,<span class="fl">3.9</span>);</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  \draw[<span class="ot">-&gt;</span>] (<span class="sc">-</span><span class="fl">0.2</span>,<span class="dv">0</span>) <span class="sc">--</span> (<span class="fl">4.2</span>,<span class="dv">0</span>) node[right] {<span class="sc">$</span>x<span class="sc">$</span>};</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  \draw[<span class="ot">-&gt;</span>] (<span class="dv">0</span>,<span class="sc">-</span><span class="fl">1.2</span>) <span class="sc">--</span> (<span class="dv">0</span>,<span class="fl">4.2</span>) node[above] {<span class="sc">$</span><span class="fu">f</span>(x)<span class="sc">$</span>};</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  \draw[color<span class="ot">=</span>red]    <span class="fu">plot</span> (\x,\x)             node[right] {<span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span>x<span class="sc">$</span>};</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  % \x r means to convert <span class="st">'\x'</span> from degrees to _r_adians<span class="sc">:</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  \draw[color<span class="ot">=</span>blue]   <span class="fu">plot</span> (\x,{<span class="fu">sin</span>(\x r)})    node[right] {<span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> \sin x<span class="sc">$</span>};</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  \draw[color<span class="ot">=</span>orange] <span class="fu">plot</span> (\x,{<span class="fl">0.05</span><span class="sc">*</span><span class="fu">exp</span>(\x)}) node[right] {<span class="sc">$</span><span class="fu">f</span>(x) <span class="ot">=</span> \frac{<span class="dv">1</span>}{<span class="dv">20</span>} e<span class="sc">^</span>x<span class="sc">$</span>};</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>\end{tikzpicture}</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-tikz_4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="tikz_files/figure-html/fig-tikz_4-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption">그림&nbsp;6: tikz 3</figcaption><p></p>
+</figure>
+</div>
+</div>
+<ul>
+<li><code>\begin{tikzpicture}[domain=0:4]</code> 에서 <code>[domain=0:4]</code> 은 함수를 사용할 때 <span class="math inline">\([0, 4]\)</span> 구간을 사용한다는 의미이다.</li>
+<li><code>\draw[color=red] plot (\x,\x) node[right] {$f(x) =x$};</code> 팔간색 선으로 <span class="math inline">\(y=x\)</span> 그래프를 그리며 끝점의 오른쪽에 <span class="math inline">\(f(x)=x\)</span> 라는 문자열을 넣으라는 의미.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="도형" class="level3">
+<h3 class="anchored" data-anchor-id="도형">도형</h3>
+<p><br></p>
+</section>
+<section id="좌표계" class="level3">
+<h3 class="anchored" data-anchor-id="좌표계">좌표계</h3>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tikz_co_1</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 2</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "좌표계"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>\begin{tikzpicture}</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  \draw [red,<span class="ot">-&gt;</span>](<span class="dv">0</span>,<span class="dv">0</span>) <span class="sc">--</span> (xyz cs<span class="sc">:</span><span class="at">x=</span><span class="dv">2</span>) node[right, black] {<span class="sc">$</span>x<span class="sc">$</span>};</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  \draw [green,<span class="ot">-&gt;</span>](<span class="dv">0</span>,<span class="dv">0</span>) <span class="sc">--</span> (xyz cs<span class="sc">:</span><span class="at">y=</span><span class="dv">2</span>) node[right, black] {<span class="sc">$</span>y<span class="sc">$</span>};</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  \draw [blue,<span class="ot">-&gt;</span>](<span class="dv">0</span>,<span class="dv">0</span>) <span class="sc">--</span> (xyz cs<span class="sc">:</span><span class="at">z=</span><span class="dv">2</span>) node[right, black] {<span class="sc">$</span>z<span class="sc">$</span>};</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  \draw [red, thick, <span class="ot">-&gt;</span>] (<span class="dv">0</span>, <span class="dv">0</span>) <span class="sc">--</span> (xyz cs<span class="sc">:</span><span class="at">x=</span><span class="dv">2</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">z=</span><span class="dv">1</span>);</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  \draw [red, dashed] (xyz cs<span class="sc">:</span><span class="at">x=</span><span class="dv">2</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">z=</span><span class="dv">1</span>) <span class="sc">--</span> (xyz cs<span class="sc">:</span><span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">2</span>, <span class="at">z=</span><span class="dv">1</span>);</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>\end{tikzpicture}</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-tikz_co_1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="tikz_files/figure-html/fig-tikz_co_1-1.png" class="img-fluid figure-img" width="192"></p>
+<p></p><figcaption class="figure-caption">그림&nbsp;7: 좌표계</figcaption><p></p>
+</figure>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

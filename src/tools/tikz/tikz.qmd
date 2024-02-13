@@ -56,6 +56,8 @@ brew install --cask rstudio
 
 ## 기본 예제
 
+### 직선 
+
 다음은 교차하는 직선과 교점을 그린 것이다.
 
 ```{r, engine = 'tikz'}
@@ -80,10 +82,54 @@ brew install --cask rstudio
 
 - `\filldraw[black] (0,0) circle (2pt) node[anchor=west]{Intersection point};` 는 $(0, 0)$ 에 반지름 2 인 속이 꽉 찬 원을 그리며, $(0, 0)$ 을 서쪽으로 두는 문자열 `Intersection point` 를 출력하라는 의미이다. 
 
+</br>
 
+### 그리드와 직선의 두께
 
+```{r, engine = 'tikz'}
+#| label: fig-tikz_2_2
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 2
+#| fig-align: center
+#| fig-cap: "그리드와 직선의 두께"
+
+\begin{tikzpicture}
+    \draw[gray, very thick] (0,0) grid (4,3);
+    \draw[blue, dashed] (0,0) -- (1,2) -- (3,3) -- (4,2);
+    \draw[red, ->, thick] (2,0) -- (3.5,2.5);
+\end{tikzpicture}
+```
+
+- `\draw[gray, very thick] (0,0) grid (4,3);` 는 $(0, 0)$ 부터 $(4, 3)$ 까지 가로, 세로 1 간격의 그리드를 회색(gray) 의 두꺼운 선(very thick) 으로 그린다. 
+- `draw[blue, dashed] (0,0) -- (1,2) -- (3,3) -- (4,2);` 는 이어지는 파선(dashed) 을 파란 색으로 그린다.
+- `\draw[red, ->, thick] (2,0) -- (3.5,2.5);` 는 끝점에 화살표가 있는 빨간 선을 두껍게(thick) 그린다.
 
 </br>
+
+### 닫힌 선분
+
+```{r, engine = 'tikz'}
+#| label: fig-tikz_2_3
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 2
+#| fig-align: center
+#| fig-cap: "닫힌 선분"
+
+\begin{tikzpicture}
+    \draw[green, thick] (0,0) -- (1,2) -- (3,3) -- (3,-1)--cycle;
+\end{tikzpicture}
+```
+
+- `\draw[green, thick] (0,0) -- (1,2) -- (3,3) -- (3,-1)--cycle;` 에서 `--cycle` 은 이 앞의 `(3, -1)` 을 맨 앞의 `(0, 0)` 과 연결시키라는 의미이다.
+
+</br>
+
+
+### 곡선
 
 다음은 곡선을 그린 것이다.
 
@@ -105,4 +151,65 @@ brew install --cask rstudio
 \end{tikzpicture}
 ```
 
-`\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);` 는 $(-2, 2)$ 와 $(2, 2)$ 를 끝점으로 하는, $(-1, 0)$ 과 $(1, 0)$ 을 
+- `\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);` 는 $(-2, 2)$ 와 $(2, 2)$ 를 끝점으로 하고 $(-1, 0)$ 과 $(1, 0)$ 을 제어점으로 하는 사차 베지어 곡선을 magenta 색으로 그린다. 
+- `\draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);` 는 ($-2, 2)$ 와 $(2, 2)$ 를 끝점으로 하고 제어점이 $(0, 0)$ 인 사차 베지어 곡선을 cyan 색으로 그린다. 즉 `\draw[magenta] (-2,2) .. controls (0,0) and (0,0) .. (2,2);` 과 같다.
+
+</br>
+
+### 함수
+
+```{r, engine = 'tikz'}
+#| label: fig-tikz_4
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 4
+#| fig-align: center
+#| fig-cap: "tikz 3"
+\begin{tikzpicture}[domain=0:4]
+  \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+
+  \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+  \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+
+  \draw[color=red]    plot (\x,\x)             node[right] {$f(x) =x$};
+  % \x r means to convert '\x' from degrees to _r_adians:
+  \draw[color=blue]   plot (\x,{sin(\x r)})    node[right] {$f(x) = \sin x$};
+  \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} e^x$};
+\end{tikzpicture}
+```
+
+- `\begin{tikzpicture}[domain=0:4]` 에서 `[domain=0:4]` 은 함수를 사용할 때 $[0, 4]$ 구간을 사용한다는 의미이다.
+- `\draw[color=red] plot (\x,\x) node[right] {$f(x) =x$};` 팔간색 선으로 $y=x$ 그래프를 그리며 끝점의 오른쪽에 $f(x)=x$ 라는 문자열을 넣으라는 의미.
+
+</br>
+
+### 도형
+
+
+
+
+</br>
+
+### 좌표계
+
+
+```{r, engine = 'tikz'}
+#| label: fig-tikz_co_1
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 2
+#| fig-align: center
+#| fig-cap: "좌표계"
+\begin{tikzpicture}
+  \draw [red,->](0,0) -- (xyz cs:x=2) node[right, black] {$x$};
+  \draw [green,->](0,0) -- (xyz cs:y=2) node[right, black] {$y$};
+  \draw [blue,->](0,0) -- (xyz cs:z=2) node[right, black] {$z$};
+
+  \draw [red, thick, ->] (0, 0) -- (xyz cs:x=2, y=2, z=1);
+  \draw [red, dashed] (xyz cs:x=2, y=2, z=1) -- (xyz cs:x=0, y=2, z=1);
+
+\end{tikzpicture}
+
+```
