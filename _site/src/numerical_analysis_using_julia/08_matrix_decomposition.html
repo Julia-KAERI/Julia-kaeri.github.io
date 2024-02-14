@@ -284,8 +284,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#boldsymbolllast-분해" id="toc-boldsymbolllast-분해" class="nav-link" data-scroll-target="#boldsymbolllast-분해"><span class="math inline">\(\boldsymbol{LL}^\ast\)</span> 분해</a></li>
   <li><a href="#구현" id="toc-구현" class="nav-link" data-scroll-target="#구현">구현</a></li>
   <li><a href="#boldsymbolldlast-분해" id="toc-boldsymbolldlast-분해" class="nav-link" data-scroll-target="#boldsymbolldlast-분해"><span class="math inline">\(\boldsymbol{LDL}^\ast\)</span> 분해</a></li>
+  <li><a href="#sec-crout_decompositioni" id="toc-sec-crout_decompositioni" class="nav-link" data-scroll-target="#sec-crout_decompositioni">크라우트 분해</a></li>
   </ul></li>
-  <li><a href="#크라우트-분해" id="toc-크라우트-분해" class="nav-link" data-scroll-target="#크라우트-분해"><span class="header-section-number">3</span> 크라우트 분해</a></li>
+  <li><a href="#하우스홀더-행렬과-qr-분해" id="toc-하우스홀더-행렬과-qr-분해" class="nav-link" data-scroll-target="#하우스홀더-행렬과-qr-분해"><span class="header-section-number">3</span> 하우스홀더 행렬과 QR 분해</a>
+  <ul class="collapse">
+  <li><a href="#하우스홀더-행렬" id="toc-하우스홀더-행렬" class="nav-link" data-scroll-target="#하우스홀더-행렬">하우스홀더 행렬</a></li>
+  <li><a href="#하우스홀더-변환과-하우스홀더-반사" id="toc-하우스홀더-변환과-하우스홀더-반사" class="nav-link" data-scroll-target="#하우스홀더-변환과-하우스홀더-반사">하우스홀더 변환과 하우스홀더 반사</a></li>
+  <li><a href="#하우스홀더-변환과-qr-분해" id="toc-하우스홀더-변환과-qr-분해" class="nav-link" data-scroll-target="#하우스홀더-변환과-qr-분해">하우스홀더 변환과 QR 분해</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -620,17 +626,164 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 </div>
 <p><br></p>
 </section>
+<section id="sec-crout_decompositioni" class="level3">
+<h3 class="anchored" data-anchor-id="sec-crout_decompositioni">크라우트 분해</h3>
+<p>숄레스키 분해와는 유사한 분해로 크라우트 분해가 있다. <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html#sec-pseudodiagonal_matrix">삼중대각행렬</a> 을 하쌍대각행렬 <span class="math inline">\(\boldsymbol{L}\)</span> 과 대각성분이 모두 <span class="math inline">\(1\)</span> 인 상쌍대각행렬 <span class="math inline">\(\boldsymbol{U}\)</span> 의 곱으로 분해하는 것을 <strong>크라우트 분해 (Crount decomposition)</strong> 라고 한다.</p>
+<p><br></p>
 </section>
-<section id="크라우트-분해" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="크라우트-분해"><span class="header-section-number">3</span> 크라우트 분해</h2>
-<p><a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html#sec-pseudodiagonal_matrix">삼중대각행렬</a> 을 하쌍대각행렬 <span class="math inline">\(\boldsymbol{L}\)</span> 과 대각성분이 모두 <span class="math inline">\(1\)</span> 인 상쌍대각행렬 <span class="math inline">\(\boldsymbol{U}\)</span> 의 곱으로 분해하는 것을 크라우트 분해라고 한다.</p>
+</section>
+<section id="하우스홀더-행렬과-qr-분해" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="하우스홀더-행렬과-qr-분해"><span class="header-section-number">3</span> 하우스홀더 행렬과 QR 분해</h2>
+<section id="하우스홀더-행렬" class="level3">
+<h3 class="anchored" data-anchor-id="하우스홀더-행렬">하우스홀더 행렬</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-householder_matrix" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 5 (하우스홀더 행렬과 하우스홀더 변환) </strong></span><span class="math inline">\(\mathbb{C}^{n\times 1}\)</span> 에서의 벡터 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대해 다음과 같이 정의된 <span class="math inline">\(\boldsymbol{H}_v\)</span> 를 <strong>하우스홀더 행렬 (Householder matrix)</strong> 이라 한다.</p>
 <p><span class="math display">\[
-\boldsymbol{A} =\begin{bmatrix} A_{11} &amp; A_{12} &amp; 0 &amp;  \cdots &amp; \cdots &amp; &amp; 0 \\
-A_{21} &amp; A_{22} &amp; A_{23} &amp; 0 &amp; \cdots &amp; &amp; 0 \\
-0 &amp; A_{32} &amp; A_{33} &amp; A_{34} &amp; 0 &amp; \cdots &amp; 0\end{bmatrix}
+\begin{aligned}
+\boldsymbol{H}_{\boldsymbol{v}} := I_n- \dfrac{2\boldsymbol{v}\boldsymbol{v}^{\ast}}{\|\boldsymbol{v}\|^2}, \qquad \text{i. e. }\quad
+(\boldsymbol{H}_{\boldsymbol{v}})_{ij} := \delta_{ij} - \dfrac{2 v_i \overline{v_j}}{\|\boldsymbol{v}\|^2}.
+\end{aligned}
+\]</span> 여기서 <span class="math inline">\(\boldsymbol{v}\boldsymbol{v}^{\ast}\)</span> 는 벡터의 내적이 아니라 <span class="math inline">\(n\times 1\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}\)</span> 와 <span class="math inline">\(1 \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}^{\ast}\)</span> 가 곱해진 <span class="math inline">\(n \times n\)</span> 행렬을 의미한다. 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{C}^n\)</span> 에 대해 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \boldsymbol{x}\in \mathbb{C}^n\)</span> 을 <strong>하우스홀더 변환</strong> 이라 한다. <span class="math inline">\(\boldsymbol{v}\)</span> 가 단위벡터일 경우, 즉 <span class="math inline">\(\|\boldsymbol{v}\|=1\)</span> 라면 좀 더 간단하게 쓸 수 있다.</p>
+<p><span class="math display">\[
+\boldsymbol{H}_{\boldsymbol{v}} = I_n- 2\boldsymbol{v}\boldsymbol{v}^{\ast},\qquad \text{where } \|\boldsymbol{v}\|=1.
 \]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div id="prp-perperties_of_householder_matrix" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 7 </strong></span>하우스홀더 행렬 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \in \mathcal{M}_{n \times n}(\mathbb{C})\)</span> 은 다음의 특징을 가진다.</p>
+<p>  (<span class="math inline">\(1\)</span>) 에르미트 행렬이다. 즉 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}= \boldsymbol{H}_{\boldsymbol{v}}^\ast\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) 유니타리 행렬이다. 즉 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} (\boldsymbol{H}_{\boldsymbol{v}})^\ast = I\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) <span class="math inline">\(\boldsymbol{v}\)</span> 가 단위벡터일 경우에만 보여도 된다. <span class="math inline">\(\boldsymbol{H} = \boldsymbol{H}_{\boldsymbol{v}}\)</span> 라 하면,</p>
+<p><span class="math display">\[
+(\boldsymbol{H}^\ast)_{ij} = \overline{H_{ji}}= \delta_{ij}-2 \overline{v_j \overline{v_i}} = \delta_{ij}-2 v_i \overline{v_j} = (\boldsymbol{H})_{ij}
+\]</span></p>
+<p>이므로 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\)</span> 는 에르미트 행렬이다.</p>
+<p>(<span class="math inline">\(2\)</span>) 또한,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left(\boldsymbol{H} (\boldsymbol{H}^\ast)\right)_{ij} &amp;= \left((\boldsymbol{H})^2\right)_{ij} = \sum_{k}(\delta_{ik}-2 v_i \overline{v_k})(\delta_{kj} -2 v_k \overline{v_j}) \\
+&amp;= \sum_k \delta_{ik}\delta_{kj} - 2\sum_k \delta_{ik}v_k \overline{v_j} - 2 \sum_k \delta_{kj} v_i \overline{v_k} + 4 \sum_{k} v_i \overline{v_j} v_k \overline{v_k} \\
+&amp;= \delta_{ij} - 2 v_i \overline{v_{j}} - 2 v_i \overline{v_j} + 4 v_i \overline{v_j} = \delta_{ij}
+\end{aligned}
+\]</span></p>
+<p>이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<div id="cor-perperties_of_householder_matrix" class="theorem corollary">
+<p><span class="theorem-title"><strong>따름정리 1 </strong></span>실수체에서 정의된 하우스홀더 행렬 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \in \mathcal{M}_{n \times n}(\mathbb{R})\)</span> 은 대칭행렬이며 직교행렬이다.</p>
+</div>
+<p><br></p>
+</section>
+<section id="하우스홀더-변환과-하우스홀더-반사" class="level3">
+<h3 class="anchored" data-anchor-id="하우스홀더-변환과-하우스홀더-반사">하우스홀더 변환과 하우스홀더 반사</h3>
+<p>하우스 홀더 변환이 리플렉션(reflection, 반사) 라고 불린다. 수학적으로 <span class="math inline">\(\mathbb{R}^n\)</span> 공간에서 벡터 <span class="math inline">\(\boldsymbol{v}\)</span> 만으로 <span class="math inline">\(\boldsymbol{v}\)</span> 와 수직이며 원점을 지나는 평면이 유일하게 정의될 수 있다. 임의의 벡터 <span class="math inline">\(\boldsymbol{x} \in \mathbb{F}^n\)</span> 에 대해,</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x})_k &amp;=  x_k - \dfrac{2}{\|\boldsymbol{v}\|^2}  \sum_{j=1}^n v_k \overline{v_j} x_j\\
+\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} &amp;= \boldsymbol{x} - 2 \dfrac{\langle \boldsymbol{x},\,  \boldsymbol{v} \rangle \boldsymbol{v}}{\|\boldsymbol{v}\|^2}
+\end{aligned}
+\]</span></p>
+<p>이며, <span class="math inline">\(\boldsymbol{x}\)</span> 의 <span class="math inline">\(\boldsymbol{v}\)</span> 벡터에 대한 projection <span class="math inline">\(\text{Proj}_\boldsymbol{v}\boldsymbol{x}= \langle \boldsymbol{v},\, \boldsymbol{x}\rangle \boldsymbol{v}\)</span> 이므로,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dfrac{1}{2 }(\boldsymbol{x}+\boldsymbol{Hx}) &amp;= \boldsymbol{x} - \langle \boldsymbol{v,\,  x}\rangle \boldsymbol{v} = \boldsymbol{x} - \text{Proj}_{\boldsymbol{v}} \boldsymbol{x} \\
+\boldsymbol{x}-\boldsymbol{Hx} &amp;= 2\langle \boldsymbol{v ,\, x} \rangle  \boldsymbol{v} = 2\, \text{Proj}_{\boldsymbol{v}}\boldsymbol{x}
+\end{aligned}
+\]</span></p>
+<p>이다. 즉 <span class="math inline">\(\boldsymbol{x}\)</span> 와 <span class="math inline">\(\boldsymbol{Hx}\)</span> 는 <span class="math inline">\(\boldsymbol{v}\)</span> 에 의해 정의되는 평면에 대해 대칭이다.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span> [black, very thick, -&gt;](0, 0) -- (2, 2)  node[right] {<span class="ss">$</span><span class="sc">\boldsymbol</span><span class="ss">{v}$</span>};</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span> [red, very thick, -&gt;] (0, 0) -- (-2.646, 1 ) node[left] {<span class="ss">$</span><span class="sc">\boldsymbol</span><span class="ss">{H_v x}$</span>};</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span> [blue, very thick, -&gt;] (0, 0) -- (-0.646, 3 ) node[left] {<span class="ss">$</span><span class="sc">\boldsymbol</span><span class="ss">{x}$</span>};</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span> [green, dashed, thick] (1, -1) -- (-2, 2 ) node[left, black] {Plane normal to <span class="ss">$</span><span class="sc">\boldsymbol</span><span class="ss">{v}$</span>};</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-householder_1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="08_matrix_decomposition_files/figure-html/fig-householder_1-1.png" class="quarto-discovered-preview-image img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption">그림&nbsp;1: Householder 반사</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p><span class="math inline">\(\boldsymbol{x}\)</span> 를 <span class="math inline">\(\boldsymbol{v}\)</span> 와 평행한 부분과 수직한 부분으로 분리하자. 즉 <span class="math inline">\(\boldsymbol{x}_{\|} = \text{Proj}_{\boldsymbol{v}}\boldsymbol{x}\)</span>, <span class="math inline">\(\boldsymbol{x}_{\perp} = \boldsymbol{x}-\text{Proj}_{\boldsymbol{v}}\boldsymbol{x}\)</span> 라 하면, <span class="math inline">\(\boldsymbol{x} = \boldsymbol{x}_{\|} + \boldsymbol{x}_{\perp}\)</span> 이며 <span class="math inline">\(\boldsymbol{x}\cdot \boldsymbol{v} = \boldsymbol{x}_{\|}\cdot \boldsymbol{v}\)</span> 이다.</p>
+<p><span class="math display">\[
+\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x} - 2 \boldsymbol{x}_{\|} = \boldsymbol{x}_{\perp} - \boldsymbol{x}_{\|}
+\]</span></p>
+<p>이다.</p>
+<p><br></p>
+</section>
+<section id="하우스홀더-변환과-qr-분해" class="level3">
+<h3 class="anchored" data-anchor-id="하우스홀더-변환과-qr-분해">하우스홀더 변환과 QR 분해</h3>
+<p>::: {#prp-householder_transform}</p>
+<p><span class="math inline">\(\mathcal{M}_m (\mathbb{F})\)</span> 에서의 벡터 <span class="math inline">\(\boldsymbol{x}\)</span> 과 표준 기저 <span class="math inline">\(\{\boldsymbol{e}_1,\ldots,\,\boldsymbol{e}_m\}\)</span> 를 생각하자. <span class="math inline">\(\alpha\)</span> 를 <span class="math inline">\(\boldsymbol{x}\)</span> 의 첫번째 성분 <span class="math inline">\(x_1 = re^{i\theta}\)</span> 에 대해 다음과 같이 정의한다.</p>
+<p><span class="math display">\[
+\alpha = \left\{ \begin{array}{ll} \|\boldsymbol{x}\|_2  &amp; \text{where } \mathbb{F}=\mathbb{R}, \\ e^{i\theta}\|\boldsymbol{x}\|_2 \qquad &amp; \text{where } \mathbb{F} =\mathbb{C}. \end{array} \right.
+\]</span></p>
+<p><span class="math inline">\(\boldsymbol{x}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{v}\)</span> 를 다음과 같이 정하자.</p>
+<p><span class="math display">\[
+\boldsymbol{v} = \boldsymbol{x} - \alpha \boldsymbol{e}_1, \\
+\]</span></p>
+<div id="prp-householder_1" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 8 </strong></span>이 때 <span class="math inline">\(\boldsymbol{x}\)</span> 의 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대한 하우스홀더 변환 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}\)</span> 는 다음과 같다.</p>
+<p><span class="math display">\[
+\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \boldsymbol{e}_1.
+\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2\)</span> 이며 <span class="math inline">\(|\alpha|^2 = \|\boldsymbol{x}\|_2^2\)</span> 이다. <span class="math inline">\(a=\alpha\overline{x}_1=\overline{\alpha}x_1\)</span> 이라 놓고 다음을 계산해 보자. <span class="math display">\[
+\begin{aligned}
+\langle \boldsymbol{x},\,\boldsymbol{v}\rangle &amp; = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \boldsymbol{e}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
+\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &amp;= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha\boldsymbol{e}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
+&amp;= 2 \langle \boldsymbol{x},\, \boldsymbol{v} \rangle
+\end{aligned}
+\]</span></p>
+<p>이므로, (잠시 <span class="math inline">\(\|\boldsymbol{x}\|_2\)</span> 를 <span class="math inline">\(\|\boldsymbol{x}\|\)</span> 라 하자.)</p>
+<p><span class="math display">\[
+\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \boldsymbol{e}_1
+\]</span></p>
+<p>이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<p>이미 설명한 그람 슈미트 방법과 유사하게</p>
+<p>이제 <span class="math inline">\(\boldsymbol{Q}_1= \boldsymbol{Q},\, \boldsymbol{A}=\boldsymbol{A}_1\)</span> 이라 놓으면,</p>
+<p><span class="math display">\[
+\boldsymbol{Q}_1\boldsymbol{A}_1 = \begin{bmatrix}\alpha _{1} &amp; \ast &amp;\cdots &amp;\ast \\0 &amp; &amp; &amp;\\ \vdots &amp; &amp; \boldsymbol{A}_2 &amp; \\ 0 &amp; &amp; &amp; \end{bmatrix}
+\]</span></p>
+<p>꼴이 된다. 이제 행렬 <span class="math inline">\(m \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{A}_k\)</span> 가 <span class="math inline">\(k\)</span> 번째 행까지는 상삼각 행렬의 모양을 따른다고 하자. 즉 <span class="math inline">\(j\le k\)</span> 이고 <span class="math inline">\(i&gt;k\)</span> 이면 <span class="math inline">\((\boldsymbol{A}_k)_{ij}=0\)</span> 이라 하자. 이 때 <span class="math inline">\(\boldsymbol{A}_k\)</span> 의 <span class="math inline">\(k\)</span> 번째 행부터 <span class="math inline">\(m\)</span> 행, <span class="math inline">\(k\)</span> 번째 열부터 <span class="math inline">\(m\)</span> 열까지를 <span class="math inline">\(\boldsymbol{A}'_k\)</span> 라 하고,(julia 로 표현하면 <code>Ak[k:end, k:end]</code> 가 될 것이다) 이 <span class="math inline">\(\boldsymbol{A}'_k\)</span> 에 대해 앞서 <span class="math inline">\(\boldsymbol{A}\)</span> 에 했던 것과 똑같은 과정을 수행하는 하우스홀더 행렬을 <span class="math inline">\(\boldsymbol{Q}'_k\)</span> 라 하면 <span class="math inline">\(\boldsymbol{Q}'_k \boldsymbol{A}'_k\)</span> 는 <span class="math inline">\(\boldsymbol{Q}_1\boldsymbol{A}_1\)</span> 처럼 첫번째 열에서는 첫번째 행을 제외한 나며지 행의 값이 <span class="math inline">\(0\)</span> 이 된다. 만약</p>
+<p><span class="math display">\[
+\boldsymbol{Q}_k = \begin{bmatrix} \boldsymbol{I}_{k-1} &amp; 0 \\ 0 &amp; \boldsymbol{Q}_k'\end{bmatrix}
+\]</span></p>
+<p>이라 하면, <span class="math inline">\((k-1)\times (k-1)\)</span> 단위행렬 <span class="math inline">\(I_{k-1}\)</span> 과 <span class="math inline">\(\boldsymbol{A}_k\)</span> 를 <span class="math inline">\(k\)</span> 행 과 <span class="math inline">\(k\)</span> 열 부터 잘라 <span class="math inline">\(\boldsymbol{A}_{k} = \begin{bmatrix} B_{k} &amp; C_{k} \\ 0 &amp;\boldsymbol{A}'_{k}\end{bmatrix}\)</span> 로 만들자. <span class="math inline">\(B_k\)</span> 는 <span class="math inline">\((k-1) \times (k-1)\)</span> 행렬이며 <span class="math inline">\(\boldsymbol{A}'_{k}\)</span> 는 <span class="math inline">\((m-k+1)\times (n-k+1)\)</span> 행렬이다. <span class="math inline">\(\boldsymbol{A}_k\)</span> 가 <span class="math inline">\(k\)</span> 열까지 상삼각 행렬 모양이므로 <span class="math inline">\(B_k\)</span> 아래는 <span class="math inline">\(0\)</span> 행렬이다. 두 행렬의 곱은 <span class="math display">\[
+\boldsymbol{Q}_k \boldsymbol{A}_k = \begin{bmatrix} \boldsymbol{I}_{k-1} &amp; 0 \\ 0 &amp; \boldsymbol{Q}_k' \end{bmatrix} \begin{bmatrix} B_{k} &amp; C_{k} \\ 0 &amp;\boldsymbol{A}'_{k}\end{bmatrix} = \begin{bmatrix} B_k &amp; C_k \\ 0 &amp; \boldsymbol{Q}'_k \boldsymbol{A'}_k \end{bmatrix}
+\]</span></p>
+<p>이 되고 <span class="math inline">\(\boldsymbol{Q}'_k \boldsymbol{A}'_k\)</span> 의 첫번째 열은 첫번째 행을 제외하면 모두 <span class="math inline">\(0\)</span> 이므로 <span class="math inline">\(\boldsymbol{Q}_k \boldsymbol{A}_k\)</span> 는 <span class="math inline">\(k\)</span> 열까지 상삼각 행렬 꼴이 된다.</p>
+<p><span class="math inline">\(L = \min\{m,\,n\}\)</span> 이라 하면 <span class="math inline">\(\boldsymbol{Q}_L \boldsymbol{Q}_{L-1} \cdots \boldsymbol{Q}_1 \boldsymbol{A}\)</span> 는 상삼각행렬꼴이 된다. 이를 <span class="math inline">\(\boldsymbol{R}\)</span> 이라 하자. <span class="math inline">\(\boldsymbol{Q}'_k\)</span> 가 하우스홀더 행렬이므로</p>
+<p><span class="math display">\[
+\boldsymbol{Q}_k \boldsymbol{Q}_k^\ast = \begin{bmatrix} \boldsymbol{I}_{k-1} &amp; 0 \\ 0 &amp; \boldsymbol{Q}_k'\end{bmatrix} \begin{bmatrix} \boldsymbol{I}_{k-1} &amp; 0 \\ 0 &amp; (\boldsymbol{Q}_k')^\ast\end{bmatrix} = \begin{bmatrix} I_{k-1} &amp; 0 \\0 &amp; \boldsymbol{Q}_k'
+(\boldsymbol{Q}_k')^\ast\end{bmatrix} = I
+\]</span></p>
+<p>이다. 즉 <span class="math inline">\(\boldsymbol{Q}_k\)</span> 도 직교행렬이다. <span class="math inline">\(\boldsymbol{Q}_k\)</span> 가 에르미트 행렬임은 쉽게 보일 수 있다. 이제,</p>
+<p><span class="math display">\[
+\boldsymbol{Q}_L \cdots \boldsymbol{Q}_1 \boldsymbol{A} = \boldsymbol{R} \implies \boldsymbol{A} = \boldsymbol{Q}_1^\ast \cdots \boldsymbol{Q}_L^\ast \boldsymbol{R}
+\]</span></p>
+<p>임은 쉽게 보일 수 있다. 직교행렬의 곱은 직교행렬이므로 <span class="math inline">\(\boldsymbol{Q}_1^\ast \cdots \boldsymbol{Q}_L^\ast\)</span> 도 직교행렬이다. 따라서 QR 분해를 할 수 있다.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
