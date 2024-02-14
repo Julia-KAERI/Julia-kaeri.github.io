@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -139,56 +173,86 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/01x_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 표기법과 명제들</span></a>
+  <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2장 표기법과 명제들</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/02_linear_system.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 수치해석 입문 : 선형 시스템과 다항식</span></a>
+  <a href="../../src/numerical_analysis_using_julia/03_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3장 수치해석 입문 : 선형 시스템과 다항식</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03_matrix_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3장 Julia 에서의 행렬 계산</span></a>
+  <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4장 Julia 에서의 행렬 계산</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03I_polynomial.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 다항식의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04_interpolation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4장 다항식을 이용한 보간법</span></a>
+  <a href="../../src/numerical_analysis_using_julia/05_interpolation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5장 다항식을 이용한 보간법</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 국소적 보간법의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5장 일변수 함수의 미분과 적분</span></a>
+  <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6장 일변수 함수의 미분과 적분</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : Bezier 곡선</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/06_finding_root.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6장 일변수 방정식의 해</span></a>
+  <a href="../../src/numerical_analysis_using_julia/07_finding_root.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7장 일변수 방정식의 해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8장 행렬의 분해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9장 반복법을 이용한 선형 시스템의 해 구하기</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10장 최소자승 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11장 상미분 방정식의 초기값 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12장 상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -232,6 +296,8 @@ ul.task-list li input[type="checkbox"] {
 <li>알고리즘은 julia 코드로 최대한 읽고 이해하기 쉬운 코드로 제시한다. 이 julia 코드는 자체로서 알고리즘이 원하는 동작을 하는 코드이다.</li>
 <li>이 책에서 많은 경우 앞부분에서 사용했던 알고리즘이나 방법을 뒤에서 사용하는 경우가 많이 있다. 이를 위해 여기서 구현한 것들을 julia 패키지로 만들었고 github 에 올려두었다. <a href="https://github.com/Julia-KAERI/NAJ.jl.git">NAJ.jl</a> 이며 julia 에 설치 할 수 있다.</li>
 </ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> ]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="pp">@v1</span><span class="fl">.10</span>) pkg<span class="op">&gt;</span> add https<span class="op">://</span>github.com<span class="op">/</span>Julia<span class="op">-</span>KAERI<span class="op">/</span>NAJ.jl.git</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 

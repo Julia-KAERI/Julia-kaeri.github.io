@@ -159,7 +159,7 @@ s3 = permutedims(hcat((c2.(t))...))
 scatter([-2, 2, 0], [2, 2, 0], aspect_ratio = :equal, dpi=300)
 plot!(s[:,1], s[:, 2], label = "Quadratic")
 plot!(s2[:,1], s2[:, 2], label = "Cubic")
-plot!(s3[:,1], s3[:, 2], label = "Quadratic2")
+plot!(s3[:,1], s3[:, 2], label = "Quadratic2") 
 ```
 
 를 통해 다음 그림을 얻을 수 있을 것이다.

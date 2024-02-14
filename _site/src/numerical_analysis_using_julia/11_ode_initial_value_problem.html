@@ -64,6 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -99,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -125,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Julia 프로그래밍 언어</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/numerical_analysis_using_julia/index.html" rel="" target="">
+    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
   </li>  
   <li class="nav-item">
@@ -143,10 +145,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html">11장 상미분 방정식의 초기값 문제</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">들어가며</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1장 수치해석과 알고리즘</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2장 표기법과 명제들</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/03_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3장 수치해석 입문 : 선형 시스템과 다항식</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4장 Julia 에서의 행렬 계산</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interude : 다항식의 구현</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/05_interpolation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5장 다항식을 이용한 보간법</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interude : 국소적 보간법의 구현</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6장 일변수 함수의 미분과 적분</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interude : Bezier 곡선</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/07_finding_root.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7장 일변수 방정식의 해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8장 행렬의 분해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9장 반복법을 이용한 선형 시스템의 해 구하기</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10장 최소자승 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">11장 상미분 방정식의 초기값 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12장 상미분 방정식의 경계값 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">부록</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -241,7 +362,7 @@ f(t+h) = f(t) + F(t, f(t)) h + O(h^2)
 <p><span class="math display">\[
 f(t_{i+1}) = f(t_i) + F(t_i, f(t_i))h, \qquad i=0,\,1,\,2,\ldots
 \]</span></p>
-<p>로 풀 수 있다. 이것이 잠시 후 다를 오일러 방법이다. 우리는 앞서 <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html#sec-richardson_extrapolation">리차드슨 외삽법</a> 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 <span class="math inline">\(F(t_i, f(t_i))\)</span> 뿐만 아니라 몇몇 <span class="math inline">\(\alpha_j\)</span> 값에 대해 <span class="math inline">\(F(t_i, f(t_i + \alpha_j h))\)</span> 를 선형결합하여</p>
+<p>로 풀 수 있다. 이것이 잠시 후 다를 오일러 방법이다. 우리는 앞서 <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#sec-richardson_extrapolation">리차드슨 외삽법</a> 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 <span class="math inline">\(F(t_i, f(t_i))\)</span> 뿐만 아니라 몇몇 <span class="math inline">\(\alpha_j\)</span> 값에 대해 <span class="math inline">\(F(t_i, f(t_i + \alpha_j h))\)</span> 를 선형결합하여</p>
 <p><span class="math display">\[
 \begin{aligned}
 f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
@@ -260,7 +381,7 @@ f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
 <p>을 통해 구한다.</p>
 <p><br></p>
 <div id="prp-lipschitz_condtion" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 1 (Lipschitz 조건) </strong></span><span class="math inline">\(t\in I= [a,\,b]\)</span> 와 <a href="../../src/numerical_analysis_using_julia/01x_notations_and_propositions.html#def-n_cell"><span class="math inline">\(n\)</span>-cell</a> <span class="math inline">\(D\)</span> 의 데카르트곱 <span class="math inline">\(I \times D\)</span> 에서 정의되며 연속인 함수 <span class="math inline">\(f(t, \boldsymbol{x})\)</span> 가</p>
+<p><span class="theorem-title"><strong>명제 1 (Lipschitz 조건) </strong></span><span class="math inline">\(t\in I= [a,\,b]\)</span> 와 <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#def-n_cell"><span class="math inline">\(n\)</span>-cell</a> <span class="math inline">\(D\)</span> 의 데카르트곱 <span class="math inline">\(I \times D\)</span> 에서 정의되며 연속인 함수 <span class="math inline">\(f(t, \boldsymbol{x})\)</span> 가</p>
 <p><span class="math display">\[
 (t, \boldsymbol{x}_1),\,(t, \boldsymbol{x}_2)\in I \times D \implies \|f(t, \boldsymbol{x}_1) - f(t, \boldsymbol{x}_2) \| \le L\|\boldsymbol{x}_1 - \boldsymbol{x}_2\|
 \]</span></p>
@@ -932,6 +1053,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">10장 최소자승 문제</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="pagination-link">
+        <span class="nav-page-text">12장 상미분 방정식의 경계값 문제</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

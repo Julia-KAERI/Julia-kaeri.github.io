@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" rel="next">
-<link href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" rel="prev">
+<link href="../../src/numerical_analysis_using_julia/06I_Bezier.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html">5장 일변수 함수의 미분과 적분</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html">6장 일변수 함수의 미분과 적분</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -176,56 +176,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/01x_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 표기법과 명제들</span></a>
+  <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2장 표기법과 명제들</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/02_linear_system.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 수치해석 입문 : 선형 시스템과 다항식</span></a>
+  <a href="../../src/numerical_analysis_using_julia/03_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3장 수치해석 입문 : 선형 시스템과 다항식</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03_matrix_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3장 Julia 에서의 행렬 계산</span></a>
+  <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4장 Julia 에서의 행렬 계산</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03I_polynomial.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 다항식의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04_interpolation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4장 다항식을 이용한 보간법</span></a>
+  <a href="../../src/numerical_analysis_using_julia/05_interpolation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5장 다항식을 이용한 보간법</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 국소적 보간법의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">5장 일변수 함수의 미분과 적분</span></a>
+  <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">6장 일변수 함수의 미분과 적분</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : Bezier 곡선</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/06_finding_root.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6장 일변수 방정식의 해</span></a>
+  <a href="../../src/numerical_analysis_using_julia/07_finding_root.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7장 일변수 방정식의 해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8장 행렬의 분해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9장 반복법을 이용한 선형 시스템의 해 구하기</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10장 최소자승 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11장 상미분 방정식의 초기값 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12장 상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -342,7 +372,7 @@ f(x+h)-f(x-h) &amp;= 2f'(x) h + \dfrac{1}{6} \left(f^{(3)}(\xi_2) +f^{(3)}(\xi_1
 f(x+h) -2 f(x) + f(x-h) &amp;= f''(x) h^2 + \dfrac{1}{24}\left(f^{(4)}(\xi'_1) +f^{(4)}(\xi'_2) \right)h^4
 \end{aligned}
 \]</span></p>
-<p>이므로 우리는 이것을 이용하여 1차 뿐만 아니라 2차 도함수에 대한 근사값도 구할 수 있다. 여기서 <span class="math inline">\(f^{(3)}(\xi_2) +f^{(3)}(\xi_1)\)</span> 를 보자. <span class="math inline">\(\xi_1\in [x-h,\,x],\, \xi_2 \in [x,\,x+h]\)</span> 인데, <span class="math inline">\(f\in C^3_{[x-h,x+h]}\)</span> 이면 <a href="../../src/numerical_analysis_using_julia/01x_notations_and_propositions.html#prp-intermediate_value_for_many_points">따름정리 : 여러 점의 경우</a> 에 의해 <span class="math inline">\(f^{(3)}(\xi) = \frac{1}{2}\left(f^{(3)}(\xi_2) +f^{(3)}(\xi_1) \right)\)</span> 를 만족하는 <span class="math inline">\(\xi\in[x-h,\,x+h]\)</span> 가 존재하며, 같은 이유로 <span class="math inline">\(f\in C^4_{[x-h,\,x+h]}\)</span> 이면 <span class="math inline">\(f^{(4)}(\xi')=\frac{1}{2}\left(f^{(4)}(\xi'_1) +f^{(4)}(\xi'_2) \right)\)</span> 를 만족하는 <span class="math inline">\(\xi'\in [x-h,\,x+h]\)</span> 가 항상 존재한다. 따라서 다음과 같이 도함수와 2차도함수를 근사 할 수 있다.</p>
+<p>이므로 우리는 이것을 이용하여 1차 뿐만 아니라 2차 도함수에 대한 근사값도 구할 수 있다. 여기서 <span class="math inline">\(f^{(3)}(\xi_2) +f^{(3)}(\xi_1)\)</span> 를 보자. <span class="math inline">\(\xi_1\in [x-h,\,x],\, \xi_2 \in [x,\,x+h]\)</span> 인데, <span class="math inline">\(f\in C^3_{[x-h,x+h]}\)</span> 이면 <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#prp-intermediate_value_for_many_points">따름정리 : 여러 점의 경우</a> 에 의해 <span class="math inline">\(f^{(3)}(\xi) = \frac{1}{2}\left(f^{(3)}(\xi_2) +f^{(3)}(\xi_1) \right)\)</span> 를 만족하는 <span class="math inline">\(\xi\in[x-h,\,x+h]\)</span> 가 존재하며, 같은 이유로 <span class="math inline">\(f\in C^4_{[x-h,\,x+h]}\)</span> 이면 <span class="math inline">\(f^{(4)}(\xi')=\frac{1}{2}\left(f^{(4)}(\xi'_1) +f^{(4)}(\xi'_2) \right)\)</span> 를 만족하는 <span class="math inline">\(\xi'\in [x-h,\,x+h]\)</span> 가 항상 존재한다. 따라서 다음과 같이 도함수와 2차도함수를 근사 할 수 있다.</p>
 <p><span id="eq-difference_3points"><span class="math display">\[
 \begin{aligned}
 f'(x) &amp;= \dfrac{f(x+h)-f(x-h)}{2h} - \dfrac{f^{(3)}(\xi)}{6}h^2 ,\\
@@ -482,7 +512,7 @@ f(x) = f(x^m_i)+f'(x^m_i)(x-x_m) + \dfrac{1}{2}f^{(2)}(\xi) (x-x_i^m)^2
 <p><span class="math display">\[
 \int_a^b f(x) \,dx= \sum_{i=1}^{n-1} f\left(\dfrac{x_{i}+x_{i+1}}{2}\right) h + \dfrac{h^3}{24} \sum_{i=1}^{n-1}f^{(2)}(\xi_i)
 \]</span></p>
-<p>이다. <span class="math inline">\(f\in C^2_{[a,\,b]}\)</span> 라면 <a href="../../src/numerical_analysis_using_julia/01x_notations_and_propositions.html#prp-intermediate_value_for_many_points">따름정리 : 여러 점의 경우</a> 에 의해 <span class="math inline">\(\displaystyle \sum_{i=1}^{n-1}f^{(2)}(\xi_i) = (n-1)f^{(2)}(\xi)\)</span> 를 만족하는 <span class="math inline">\(\xi\in [a,\,b]\)</span> 가 존재하므로,</p>
+<p>이다. <span class="math inline">\(f\in C^2_{[a,\,b]}\)</span> 라면 <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#prp-intermediate_value_for_many_points">따름정리 : 여러 점의 경우</a> 에 의해 <span class="math inline">\(\displaystyle \sum_{i=1}^{n-1}f^{(2)}(\xi_i) = (n-1)f^{(2)}(\xi)\)</span> 를 만족하는 <span class="math inline">\(\xi\in [a,\,b]\)</span> 가 존재하므로,</p>
 <p><span class="math display">\[
 \int_a^b f(x) \, dx =  \sum_{i=1}^{n-1} f\left(\dfrac{x_{i}+x_{i+1}}{2}\right) h + \dfrac{(n-1)h^3}{24} f^{(2)}(\xi)
 \]</span></p>
@@ -501,7 +531,7 @@ a=x_1&lt;x_2&lt;\cdots &lt;x_n=b
 \]</span></p>
 <p>가 성립한다고 하자. 함수 <span class="math inline">\(f(x)\)</span> 를 <span class="math inline">\([x_i,\, x_{i+1}]\)</span> 구간에서 1차 다항식 <span class="math inline">\(\tilde{f}(x) = \dfrac{y_{i+1}-y_i}{x_{i+1}-x_i}(x-x_i)+y_i\)</span> 으로 근사하는 것을 <strong>사다리꼴 방법 (trapzoidal method)</strong> 이라고 한다.</p>
 <p><br></p>
-<p><span class="math inline">\([x_{i-1},\, x_i]\)</span> 구간에서 <span class="math inline">\((x_{i-1},\, f(x_{i-1}))\)</span> 과 <span class="math inline">\((x_{i},\, f(x_i))\)</span> 를 1차 다항식으로 근사하면 <a href="../../src/numerical_analysis_using_julia/04_interpolation.html#sec-error_for_polynomial_interpolation">다항식을 이용한 보간법의 오차</a> 의 <strong>정리 1</strong> 에서 보았듯이 다음을 만족하는 <span class="math inline">\(\xi\in [x_{i-1},\, x_i]\)</span> 가 존재한다. <span class="math display">\[
+<p><span class="math inline">\([x_{i-1},\, x_i]\)</span> 구간에서 <span class="math inline">\((x_{i-1},\, f(x_{i-1}))\)</span> 과 <span class="math inline">\((x_{i},\, f(x_i))\)</span> 를 1차 다항식으로 근사하면 <a href="../../src/numerical_analysis_using_julia/05_interpolation.html#sec-error_for_polynomial_interpolation">다항식을 이용한 보간법의 오차</a> 의 <strong>정리 1</strong> 에서 보았듯이 다음을 만족하는 <span class="math inline">\(\xi\in [x_{i-1},\, x_i]\)</span> 가 존재한다. <span class="math display">\[
 \begin{aligned}
 f(x) = \tilde{f}(x) + \dfrac{f^{(2)}(\xi_i)}{2}(x-x_{i-1})(x-x_i).\\
 \end{aligned}
@@ -752,7 +782,7 @@ N_{2m+2}(h) =  \dfrac{1}{4^{m} -1} \left[4^{m}N_{2m} \left(\dfrac{h}{2}\right) -
 <p>교과서적인 교재에서 <span class="math inline">\(R_{k, j}\)</span> 로 쓰는 표기법은 리처드슨 외삽법의 표기법을 좀 꼬아서 사용하기 때문에 개인적으로 마음에 들지 않았다. 여기서는 리처드슨 외사법의 표기법을 거의 그대로 가지고 오는 방법으로 표기하도록 하겠다. 다른 교재들과는 다르므로 혼동을 줄 수 있다.</p>
 </div>
 </div>
-<p>앞서 사다리꼴 방법을 통해 <span class="math inline">\(O(h^2)\)</span> 의 오차를 갖는 함수 <span class="math inline">\(f\)</span> 의 적분값을 얻었다. 이것을 <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html#sec-richardson_extrapolation_with_even_order_error">짝수승 오차의 리차드슨 외삽법</a>과 결합하면 <span class="math inline">\(O(h^4)\)</span> 의 오차를 갖는 적분값을 계산 할 수 있을 것이다.</p>
+<p>앞서 사다리꼴 방법을 통해 <span class="math inline">\(O(h^2)\)</span> 의 오차를 갖는 함수 <span class="math inline">\(f\)</span> 의 적분값을 얻었다. 이것을 <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#sec-richardson_extrapolation_with_even_order_error">짝수승 오차의 리차드슨 외삽법</a>과 결합하면 <span class="math inline">\(O(h^4)\)</span> 의 오차를 갖는 적분값을 계산 할 수 있을 것이다.</p>
 <p><a href="#eq-trapzoidal_value">식&nbsp;8</a> 의 사다리꼴 적분 <span class="math inline">\(I_T[f, a, b, n]\)</span> 에서 <span class="math inline">\(n\)</span> 을 <span class="math inline">\(2^k\)</span> 로 잡았을 때의 적분을 <span class="math inline">\(N_{k, 1}\)</span> 이라고 하자. 즉,</p>
 <p><span id="eq-trapzoidal_value2"><span class="math display">\[
 N_{k, 1} = I_T[f, a, b, 2^k] = \dfrac{h}{2}\left(f(x_1)+ f(x_{2^k}) + \sum_{i=2}^{2^k-1} f(x_i)\right)
@@ -808,7 +838,7 @@ N_{k, m+1} = \dfrac{1}{4^{m} -1} \left[4^{m}N_{k+1, m}  - N_{k, m}\right] + O(h^
 \]</span></p>
 </div>
 <p>::: {.proof}</p>
-<p>(<span class="math inline">\(1\)</span>) 우선 <span class="math inline">\(p(x)\)</span> 의 차수가 <span class="math inline">\(n\)</span> 보다 작은 경우를 보자. <span class="math inline">\(p(x)\)</span> 를 <a href="../../src/numerical_analysis_using_julia/04_interpolation.html#sec-interpolation_lagrange">라그랑쥬 다항식</a>에 대해 표현하면</p>
+<p>(<span class="math inline">\(1\)</span>) 우선 <span class="math inline">\(p(x)\)</span> 의 차수가 <span class="math inline">\(n\)</span> 보다 작은 경우를 보자. <span class="math inline">\(p(x)\)</span> 를 <a href="../../src/numerical_analysis_using_julia/05_interpolation.html#sec-interpolation_lagrange">라그랑쥬 다항식</a>에 대해 표현하면</p>
 <p><span class="math display">\[
 p(x) = \sum_{i=1}^n p(x_i)l_i(x) = \sum_{i=1}^n \prod_{j=1,\, j\ne i}^n \dfrac{x-x_j}{x_i-x_j} p(x_i)
 \]</span></p>
@@ -1234,12 +1264,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" class="pagination-link">
+      <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interude : 국소적 보간법의 구현</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" class="pagination-link">
+      <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="pagination-link">
         <span class="nav-page-text">Interude : Bezier 곡선</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

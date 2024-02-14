@@ -491,7 +491,7 @@ $$
 
 ::: {.proof}
 
-$\boldsymbol{A}$ 가 가역이며 [행렬의 노름의 정의](03_matrix_algebra.qmd#def-matrix_norm)에 의해 
+$\boldsymbol{A}$ 가 가역이며 [행렬의 노름의 정의](04_matrix_algebra.qmd#def-matrix_norm)에 의해 
 $$
 \|\boldsymbol{x}-\overline{\boldsymbol{x}}\| = \|\boldsymbol{A}^{-1}\boldsymbol{r}\| \le \|\boldsymbol{A}^{-1}\| \cdot \|\boldsymbol{r}\|
 $$

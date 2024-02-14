@@ -15,3 +15,9 @@ crossref:
 
 1. 알고리즘은 julia 코드로 최대한 읽고 이해하기 쉬운 코드로 제시한다. 이 julia 코드는 자체로서 알고리즘이 원하는 동작을 하는 코드이다.
 2. 이 책에서 많은 경우 앞부분에서 사용했던 알고리즘이나 방법을 뒤에서 사용하는 경우가 많이 있다. 이를 위해 여기서 구현한 것들을 julia 패키지로 만들었고 github 에 올려두었다. [NAJ.jl](https://github.com/Julia-KAERI/NAJ.jl.git) 이며 julia 에 설치 할 수 있다.
+
+```julia
+julia> ]
+(@v1.10) pkg> add https://github.com/Julia-KAERI/NAJ.jl.git
+```
+

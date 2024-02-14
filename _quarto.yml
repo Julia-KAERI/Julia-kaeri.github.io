@@ -87,34 +87,34 @@ website:
         - src/numerical_analysis_using_julia/index.qmd
         - text: "1장 수치해석과 알고리즘"
           href: src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.qmd
-        - text: "Interude : 표기법과 명제들"
-          href: src/numerical_analysis_using_julia/01x_notations_and_propositions.qmd
-        - text: "2장 수치해석 입문 : 선형 시스템과 다항식"
-          href: src/numerical_analysis_using_julia/02_linear_system.qmd
-        - text: "3장 Julia 에서의 행렬 계산"
-          href: src/numerical_analysis_using_julia/03_matrix_algebra.qmd
+        - text: "2장 표기법과 명제들"
+          href: src/numerical_analysis_using_julia/02_notations_and_propositions.qmd
+        - text: "3장 수치해석 입문 : 선형 시스템과 다항식"
+          href: src/numerical_analysis_using_julia/03_linear_system.qmd
+        - text: "4장 Julia 에서의 행렬 계산"
+          href: src/numerical_analysis_using_julia/04_matrix_algebra.qmd
         - text: "Interude : 다항식의 구현"
-          href: src/numerical_analysis_using_julia/03I_polynomial.qmd
-        - text: "4장 다항식을 이용한 보간법"
-          href: src/numerical_analysis_using_julia/04_interpolation.qmd
+          href: src/numerical_analysis_using_julia/04I_polynomial.qmd
+        - text: "5장 다항식을 이용한 보간법"
+          href: src/numerical_analysis_using_julia/05_interpolation.qmd
         - text: "Interude : 국소적 보간법의 구현"
-          href: src/numerical_analysis_using_julia/04I_interpolation_struct.qmd
-        - text: "5장 일변수 함수의 미분과 적분"
-          href: src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.qmd
+          href: src/numerical_analysis_using_julia/05I_interpolation_struct.qmd
+        - text: "6장 일변수 함수의 미분과 적분"
+          href: src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.qmd
         - text: "Interude : Bezier 곡선"
-          href: src/numerical_analysis_using_julia/05_I_Bezier.qmd
-        - text: "6장 일변수 방정식의 해"
-          href: src/numerical_analysis_using_julia/06_finding_root.qmd
-        # - text: "7장 행렬의 분해"
-        #   href: src/numerical_analysis_using_julia/07_matrix_decomposition.qmd
-        # - text: "8장 반복법을 이용한 선형 시스템의 해 구하기"
-        #   href: src/numerical_analysis_using_julia/08_iterative_method_for_linear_system.qmd
-        # - text: "9장 최소자승 문제"
-        #   href: src/numerical_analysis_using_julia/09_least_square_problem.qmd
-        # - text: "10장 상미분 방정식의 초기값 문제"
-        #   href: src/numerical_analysis_using_julia/10_ode_initial_value_problem.qmd
-        # - text: "11장 상미분 방정식의 경계값 문제"
-        #   href: src/numerical_analysis_using_julia/11_ode_boundary_value_problem.qmd
+          href: src/numerical_analysis_using_julia/06I_Bezier.qmd
+        - text: "7장 일변수 방정식의 해"
+          href: src/numerical_analysis_using_julia/07_finding_root.qmd
+        - text: "8장 행렬의 분해"
+          href: src/numerical_analysis_using_julia/08_matrix_decomposition.qmd
+        - text: "9장 반복법을 이용한 선형 시스템의 해 구하기"
+          href: src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.qmd
+        - text: "10장 최소자승 문제"
+          href: src/numerical_analysis_using_julia/10_least_square_problem.qmd
+        - text: "11장 상미분 방정식의 초기값 문제"
+          href: src/numerical_analysis_using_julia/11_ode_initial_value_problem.qmd
+        - text: "12장 상미분 방정식의 경계값 문제"
+          href: src/numerical_analysis_using_julia/12_ode_boundary_value_problem.qmd
         - text: "부록"
           href: src/numerical_analysis_using_julia/A01_appendix_01.qmd
           

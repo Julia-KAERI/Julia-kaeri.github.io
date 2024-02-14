@@ -279,7 +279,7 @@ $$
 F(x) = f(x)-P_{n-1}(x) - (f(x)-P_{n-1}(x)) = 0
 $$
 
-이므로 $x,\,x_1,\ldots,\,x_n$ 의 $n+1$ 개의 점에서 $F(t)=0$ 이 된다. [일반화된 롤의 정리](05_calculus_of_one_variable_function.qmd#sec-generalized_roll_theorem)
+이므로 $x,\,x_1,\ldots,\,x_n$ 의 $n+1$ 개의 점에서 $F(t)=0$ 이 된다. [일반화된 롤의 정리](06_calculus_of_one_variable_function.qmd#sec-generalized_roll_theorem)
 를 이용하면 $n$ 개의 점에서 $F'(t)=0$ 이며, 이것을 반복하면 $F^{(n)}(\xi)=0$ 을 만족하는 $\xi\in [a,\,b]$ 가 존재한다. 그런데 $P_{n-1}(x)$ 는 $n-1$ 차 다항식이므로 $P_{n-1}^{(n)} (x)=0$ 이며 ($1$) 의 $\displaystyle \prod_{i=1}^n \dfrac{(t-x_i)}{(x-x_i)}$ 에 대한 $n$ 차 미분은
 
 $$

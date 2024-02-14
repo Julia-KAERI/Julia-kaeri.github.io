@@ -88,7 +88,7 @@ $$
 x'' = p(t)x' + q(t) x + r(t)
 $$ {#eq-diffeq_1}
 
-우리는 [일변수 함수의 미분과 적분](05_calculus_of_one_variable_function.qmd) 에서 차분법을 통해 미분값을 계산하였다. 
+우리는 [일변수 함수의 미분과 적분](06_calculus_of_one_variable_function.qmd) 에서 차분법을 통해 미분값을 계산하였다. 
 
 $$
 \begin{aligned}

@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" rel="next">
-<link href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" rel="prev">
+<link href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/06I_Bezier.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/06_finding_root.html">6장 일변수 방정식의 해</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/07_finding_root.html">7장 일변수 방정식의 해</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -176,56 +176,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/01x_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 표기법과 명제들</span></a>
+  <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2장 표기법과 명제들</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/02_linear_system.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 수치해석 입문 : 선형 시스템과 다항식</span></a>
+  <a href="../../src/numerical_analysis_using_julia/03_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3장 수치해석 입문 : 선형 시스템과 다항식</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03_matrix_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3장 Julia 에서의 행렬 계산</span></a>
+  <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4장 Julia 에서의 행렬 계산</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03I_polynomial.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 다항식의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04_interpolation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4장 다항식을 이용한 보간법</span></a>
+  <a href="../../src/numerical_analysis_using_julia/05_interpolation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5장 다항식을 이용한 보간법</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 국소적 보간법의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5장 일변수 함수의 미분과 적분</span></a>
+  <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6장 일변수 함수의 미분과 적분</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : Bezier 곡선</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/06_finding_root.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">6장 일변수 방정식의 해</span></a>
+  <a href="../../src/numerical_analysis_using_julia/07_finding_root.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">7장 일변수 방정식의 해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8장 행렬의 분해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9장 반복법을 이용한 선형 시스템의 해 구하기</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10장 최소자승 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11장 상미분 방정식의 초기값 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12장 상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -287,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1" class="anchored" data-anchor-id="하나의-해를-찾는-법"><span class="header-section-number">1</span> 하나의 해를 찾는 법</h2>
 <section id="이분법-bisection-method" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="이분법-bisection-method">이분법 (Bisection Method)</h3>
-<p>함수 <span class="math inline">\(f\)</span> 가 <span class="math inline">\((a,\,b)\)</span> 에서 연속이며, <span class="math inline">\(f(a)&lt;0\)</span> 이고 <span class="math inline">\(f(b)&gt;0\)</span> 이거나 혹은 <span class="math inline">\(f(a)&gt;0\)</span> 이고 <span class="math inline">\(f(b)&lt;0\)</span> 이라 하자. 즉 <span class="math inline">\(f(a)\cdot f(b)&lt;0\)</span> 이라고 하자. <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html#thm-intermediate_value_theorem">중간값 정리</a> 에 따라, <span class="math inline">\(f(a)\cdot f(b)&lt;0\)</span> 이면, <span class="math inline">\((a,\,b)\)</span> 구간의 최소한 한 점에서 <span class="math inline">\(f(x)=0\)</span> 의 해가 존재한다는 것을 안다. 이 조건만으로는 해가 <span class="math inline">\((a,\,b)\)</span> 구간에서 몇개인지는 모르지만 최소한 하나는 존재한다는 것을 알 수 있다. 이분법은 이 조건이 만족하는 구간에서 하나의 근사적인 해를 구하는 방법이다.</p>
+<p>함수 <span class="math inline">\(f\)</span> 가 <span class="math inline">\((a,\,b)\)</span> 에서 연속이며, <span class="math inline">\(f(a)&lt;0\)</span> 이고 <span class="math inline">\(f(b)&gt;0\)</span> 이거나 혹은 <span class="math inline">\(f(a)&gt;0\)</span> 이고 <span class="math inline">\(f(b)&lt;0\)</span> 이라 하자. 즉 <span class="math inline">\(f(a)\cdot f(b)&lt;0\)</span> 이라고 하자. <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#thm-intermediate_value_theorem">중간값 정리</a> 에 따라, <span class="math inline">\(f(a)\cdot f(b)&lt;0\)</span> 이면, <span class="math inline">\((a,\,b)\)</span> 구간의 최소한 한 점에서 <span class="math inline">\(f(x)=0\)</span> 의 해가 존재한다는 것을 안다. 이 조건만으로는 해가 <span class="math inline">\((a,\,b)\)</span> 구간에서 몇개인지는 모르지만 최소한 하나는 존재한다는 것을 알 수 있다. 이분법은 이 조건이 만족하는 구간에서 하나의 근사적인 해를 구하는 방법이다.</p>
 <ol type="1">
 <li><p>일단 <span class="math inline">\(f(a)&lt;0,\, f(b)&gt;0\)</span> 인 경우에 대해 생각하자. <span class="math inline">\(c=\dfrac{a+b}{2}\)</span> 로 놓으면 <span class="math inline">\(a&lt;b&lt;c\)</span> 이다.</p></li>
 <li><p>우연히도 <span class="math inline">\(f(c) =0\)</span> 이면 우리는 원하는 것을 얻었으므로 끝이다. <span class="math inline">\(f(c)&gt;0\)</span> 이면, <span class="math inline">\(f(a)\cdot f(c)&lt;0\)</span> 이므로 역시 중간값 정리에 의해 <span class="math inline">\((a,\,c)\)</span> 구간에 해가 반드시 존재한다. <span class="math inline">\((c,\,b)\)</span> 구간에 존재여부는 이 조건에서는 알 수 없으며, 우리는 이 구간은 이제 잊는다. <span class="math inline">\(f(c)&lt;0\)</span> 이면 <span class="math inline">\(f(c)\cdot f(b)&lt;0\)</span> 이므로 <span class="math inline">\((c,\,b)\)</span> 구간에 해가 존재한다.</p></li>
@@ -909,13 +939,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" class="pagination-link">
+      <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interude : Bezier 곡선</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" class="pagination-link">
-        <span class="nav-page-text">부록</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" class="pagination-link">
+        <span class="nav-page-text">8장 행렬의 분해</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

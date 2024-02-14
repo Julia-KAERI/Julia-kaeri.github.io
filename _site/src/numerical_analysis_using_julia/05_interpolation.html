@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" rel="next">
-<link href="../../src/numerical_analysis_using_julia/03I_polynomial.html" rel="prev">
+<link href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/04I_polynomial.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/04_interpolation.html">4장 다항식을 이용한 보간법</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/05_interpolation.html">5장 다항식을 이용한 보간법</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -176,56 +176,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/01x_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 표기법과 명제들</span></a>
+  <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2장 표기법과 명제들</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/02_linear_system.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 수치해석 입문 : 선형 시스템과 다항식</span></a>
+  <a href="../../src/numerical_analysis_using_julia/03_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3장 수치해석 입문 : 선형 시스템과 다항식</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03_matrix_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3장 Julia 에서의 행렬 계산</span></a>
+  <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4장 Julia 에서의 행렬 계산</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03I_polynomial.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 다항식의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04_interpolation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">4장 다항식을 이용한 보간법</span></a>
+  <a href="../../src/numerical_analysis_using_julia/05_interpolation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5장 다항식을 이용한 보간법</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 국소적 보간법의 구현</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5장 일변수 함수의 미분과 적분</span></a>
+  <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6장 일변수 함수의 미분과 적분</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_I_Bezier.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : Bezier 곡선</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/06_finding_root.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6장 일변수 방정식의 해</span></a>
+  <a href="../../src/numerical_analysis_using_julia/07_finding_root.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7장 일변수 방정식의 해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8장 행렬의 분해</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9장 반복법을 이용한 선형 시스템의 해 구하기</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10장 최소자승 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11장 상미분 방정식의 초기값 문제</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12장 상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -475,7 +505,7 @@ F(t) = f(t) - P_{n-1} (t) - (f(x)-P_{n-1} (x)) \prod_{i=1}^n \dfrac{(t-x_i)}{(x-
 <p><span class="math display">\[
 F(x) = f(x)-P_{n-1}(x) - (f(x)-P_{n-1}(x)) = 0
 \]</span></p>
-<p>이므로 <span class="math inline">\(x,\,x_1,\ldots,\,x_n\)</span> 의 <span class="math inline">\(n+1\)</span> 개의 점에서 <span class="math inline">\(F(t)=0\)</span> 이 된다. <a href="../../src/numerical_analysis_using_julia/05_calculus_of_one_variable_function.html#sec-generalized_roll_theorem">일반화된 롤의 정리</a> 를 이용하면 <span class="math inline">\(n\)</span> 개의 점에서 <span class="math inline">\(F'(t)=0\)</span> 이며, 이것을 반복하면 <span class="math inline">\(F^{(n)}(\xi)=0\)</span> 을 만족하는 <span class="math inline">\(\xi\in [a,\,b]\)</span> 가 존재한다. 그런데 <span class="math inline">\(P_{n-1}(x)\)</span> 는 <span class="math inline">\(n-1\)</span> 차 다항식이므로 <span class="math inline">\(P_{n-1}^{(n)} (x)=0\)</span> 이며 (<span class="math inline">\(1\)</span>) 의 <span class="math inline">\(\displaystyle \prod_{i=1}^n \dfrac{(t-x_i)}{(x-x_i)}\)</span> 에 대한 <span class="math inline">\(n\)</span> 차 미분은</p>
+<p>이므로 <span class="math inline">\(x,\,x_1,\ldots,\,x_n\)</span> 의 <span class="math inline">\(n+1\)</span> 개의 점에서 <span class="math inline">\(F(t)=0\)</span> 이 된다. <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#sec-generalized_roll_theorem">일반화된 롤의 정리</a> 를 이용하면 <span class="math inline">\(n\)</span> 개의 점에서 <span class="math inline">\(F'(t)=0\)</span> 이며, 이것을 반복하면 <span class="math inline">\(F^{(n)}(\xi)=0\)</span> 을 만족하는 <span class="math inline">\(\xi\in [a,\,b]\)</span> 가 존재한다. 그런데 <span class="math inline">\(P_{n-1}(x)\)</span> 는 <span class="math inline">\(n-1\)</span> 차 다항식이므로 <span class="math inline">\(P_{n-1}^{(n)} (x)=0\)</span> 이며 (<span class="math inline">\(1\)</span>) 의 <span class="math inline">\(\displaystyle \prod_{i=1}^n \dfrac{(t-x_i)}{(x-x_i)}\)</span> 에 대한 <span class="math inline">\(n\)</span> 차 미분은</p>
 <p><span class="math display">\[
 \dfrac{d^n}{dt^n} \left(\prod_{i=1}^n \dfrac{(t-x_i)}{(x-x_i)}\right) = \dfrac{n!}{\prod_{i=1}^n (x-x_i)}
 \]</span></p>
@@ -1085,12 +1115,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/numerical_analysis_using_julia/03I_polynomial.html" class="pagination-link">
+      <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interude : 다항식의 구현</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/04I_interpolation_struct.html" class="pagination-link">
+      <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="pagination-link">
         <span class="nav-page-text">Interude : 국소적 보간법의 구현</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
