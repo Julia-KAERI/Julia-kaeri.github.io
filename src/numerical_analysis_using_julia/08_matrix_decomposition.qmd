@@ -476,7 +476,7 @@ positive definite 행렬 $\boldsymbol{A}$ 는 어떤 대각성분이 모두 $1$ 
 </br>
 
 
-## 하우스홀더 행렬과 QR 분해
+## QR 분해
 
 ### 하우스홀더 행렬
 
@@ -486,7 +486,7 @@ positive definite 행렬 $\boldsymbol{A}$ 는 어떤 대각성분이 모두 $1$ 
 
 #### 하우스홀더 행렬과 하우스홀더 변환
 
-$\mathbb{C}^{n\times 1}$ 에서의 벡터 $\boldsymbol{v}$ 에 대해 다음과 같이 정의된 $\boldsymbol{H}_v$ 를 **하우스홀더 행렬 (Householder matrix)** 이라 한다.
+벡터공간 $\mathcal{M}_n(\mathbb{C})$ 에서의 벡터 $\boldsymbol{v}$ 에 대해 다음과 같이 정의된 $\boldsymbol{H}_v$ 를 **하우스홀더 행렬 (Householder matrix)** 이라 한다.
 
 $$
 \begin{aligned}
@@ -542,7 +542,7 @@ $$
 
 ::: {#cor-perperties_of_householder_matrix}
 
-실수체에서 정의된 하우스홀더 행렬 $\boldsymbol{H}_{\boldsymbol{v}} \in \mathcal{M}_{n \times n}(\mathbb{R})$ 은 대칭행렬이며 직교행렬이다.
+실수성분의 하우스홀더 행렬 $\boldsymbol{H}_{\boldsymbol{v}} \in \mathcal{M}_{n \times n}(\mathbb{R})$ 은 대칭행렬이며 직교행렬이다.
 
 :::
 
@@ -595,38 +595,42 @@ $$
 
 이다.
 
-</br>
+</br>   
 
 ### 하우스홀더 변환과 QR 분해
 
-::: {#prp-householder_transform} 
 
-$\mathcal{M}_m (\mathbb{F})$ 에서의 벡터 $\boldsymbol{x}$ 과 표준 기저 $\{\boldsymbol{e}_1,\ldots,\,\boldsymbol{e}_m\}$ 를 생각하자. $\alpha$ 를 $\boldsymbol{x}$ 의 첫번째 성분 $x_1 = re^{i\theta}$ 에 대해 다음과 같이 정의한다.
+$\mathcal{M}_n (\mathbb{F})$ 에서의 벡터 $\boldsymbol{x}$ 과 표준 기저 $\{\hat{\boldsymbol{e}}_1,\ldots,\,\hat{\boldsymbol{e}}_n\}$ 를 생각하자. $\alpha$ 를 $\boldsymbol{x}$ 의 첫번째 성분 $x_1 = re^{i\theta}$ 에 대해 다음과 같이 정의한다.
 
 $$
 \alpha = \left\{ \begin{array}{ll} \|\boldsymbol{x}\|_2  & \text{where } \mathbb{F}=\mathbb{R}, \\ e^{i\theta}\|\boldsymbol{x}\|_2 \qquad & \text{where } \mathbb{F} =\mathbb{C}. \end{array} \right.
 $$
 
-$\boldsymbol{x}$ 에 대해 $\boldsymbol{v}$ 를 다음과 같이 정하자.
+$\boldsymbol{x}$ 에 대해 $\boldsymbol{v}$ 를 다음과 같이 정하자. 
 
 $$
-\boldsymbol{v} = \boldsymbol{x} - \alpha \boldsymbol{e}_1, \\
+\boldsymbol{v} = \boldsymbol{x} - \alpha \hat{\boldsymbol{e}}_1, \\
 $$
 
-::: {#prp-householder_1}
-이 때 $\boldsymbol{x}$ 의 $\boldsymbol{v}$ 에 대한 하우스홀더 변환 $\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}$ 는 다음과 같다.
+이렇게 정해진 $\boldsymbol{v}$ 를 **하우스홀더 벡터(householder vector)** 라고 한다. 이 때 $\boldsymbol{x}$ 의 $\boldsymbol{v}$ 에 대한 하우스홀더 변환 $\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}$ 는 다음과 같다.
 
 $$
-\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \boldsymbol{e}_1.
+\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1.
 $$
+
+::: {#exr-householder-1}
+
+위의 식을 증명하라.
+
 :::
 
-::: {.proof}
+::: {.solution}
+
 $\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2$ 이며 $|\alpha|^2 = \|\boldsymbol{x}\|_2^2$ 이다. $a=\alpha\overline{x}_1=\overline{\alpha}x_1$ 이라 놓고 다음을 계산해 보자. 
 $$
 \begin{aligned}
-\langle \boldsymbol{x},\,\boldsymbol{v}\rangle & = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \boldsymbol{e}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
-\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha\boldsymbol{e}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
+\langle \boldsymbol{x},\,\boldsymbol{v}\rangle & = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \hat{\boldsymbol{e}}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
+\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha \hat{\boldsymbol{e}}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
 &= 2 \langle \boldsymbol{x},\, \boldsymbol{v} \rangle
 \end{aligned}
 $$
@@ -634,7 +638,7 @@ $$
 이므로, (잠시 $\|\boldsymbol{x}\|_2$ 를 $\|\boldsymbol{x}\|$ 라 하자.)
 
 $$
-\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \boldsymbol{e}_1
+\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1
 $$
 
 이다. $\square$
@@ -644,9 +648,6 @@ $$
 </br>
 
 이미 설명한 그람 슈미트 방법과 유사하게
-
-
-
 
 
 이제 $\boldsymbol{Q}_1= \boldsymbol{Q},\, \boldsymbol{A}=\boldsymbol{A}_1$ 이라 놓으면, 

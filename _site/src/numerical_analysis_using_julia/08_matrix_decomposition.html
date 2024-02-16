@@ -286,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#boldsymbolldlast-분해" id="toc-boldsymbolldlast-분해" class="nav-link" data-scroll-target="#boldsymbolldlast-분해"><span class="math inline">\(\boldsymbol{LDL}^\ast\)</span> 분해</a></li>
   <li><a href="#sec-crout_decompositioni" id="toc-sec-crout_decompositioni" class="nav-link" data-scroll-target="#sec-crout_decompositioni">크라우트 분해</a></li>
   </ul></li>
-  <li><a href="#하우스홀더-행렬과-qr-분해" id="toc-하우스홀더-행렬과-qr-분해" class="nav-link" data-scroll-target="#하우스홀더-행렬과-qr-분해"><span class="header-section-number">3</span> 하우스홀더 행렬과 QR 분해</a>
+  <li><a href="#qr-분해" id="toc-qr-분해" class="nav-link" data-scroll-target="#qr-분해"><span class="header-section-number">3</span> QR 분해</a>
   <ul class="collapse">
   <li><a href="#하우스홀더-행렬" id="toc-하우스홀더-행렬" class="nav-link" data-scroll-target="#하우스홀더-행렬">하우스홀더 행렬</a></li>
   <li><a href="#하우스홀더-변환과-하우스홀더-반사" id="toc-하우스홀더-변환과-하우스홀더-반사" class="nav-link" data-scroll-target="#하우스홀더-변환과-하우스홀더-반사">하우스홀더 변환과 하우스홀더 반사</a></li>
@@ -632,8 +632,8 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 <p><br></p>
 </section>
 </section>
-<section id="하우스홀더-행렬과-qr-분해" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="하우스홀더-행렬과-qr-분해"><span class="header-section-number">3</span> 하우스홀더 행렬과 QR 분해</h2>
+<section id="qr-분해" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="qr-분해"><span class="header-section-number">3</span> QR 분해</h2>
 <section id="하우스홀더-행렬" class="level3">
 <h3 class="anchored" data-anchor-id="하우스홀더-행렬">하우스홀더 행렬</h3>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -643,7 +643,7 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 </div>
 <div class="callout-body-container">
 <div id="def-householder_matrix" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 5 (하우스홀더 행렬과 하우스홀더 변환) </strong></span><span class="math inline">\(\mathbb{C}^{n\times 1}\)</span> 에서의 벡터 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대해 다음과 같이 정의된 <span class="math inline">\(\boldsymbol{H}_v\)</span> 를 <strong>하우스홀더 행렬 (Householder matrix)</strong> 이라 한다.</p>
+<p><span class="theorem-title"><strong>정의 5 (하우스홀더 행렬과 하우스홀더 변환) </strong></span>벡터공간 <span class="math inline">\(\mathcal{M}_n(\mathbb{C})\)</span> 에서의 벡터 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대해 다음과 같이 정의된 <span class="math inline">\(\boldsymbol{H}_v\)</span> 를 <strong>하우스홀더 행렬 (Householder matrix)</strong> 이라 한다.</p>
 <p><span class="math display">\[
 \begin{aligned}
 \boldsymbol{H}_{\boldsymbol{v}} := I_n- \dfrac{2\boldsymbol{v}\boldsymbol{v}^{\ast}}{\|\boldsymbol{v}\|^2}, \qquad \text{i. e. }\quad
@@ -681,7 +681,7 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 </div>
 <p><br></p>
 <div id="cor-perperties_of_householder_matrix" class="theorem corollary">
-<p><span class="theorem-title"><strong>따름정리 1 </strong></span>실수체에서 정의된 하우스홀더 행렬 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \in \mathcal{M}_{n \times n}(\mathbb{R})\)</span> 은 대칭행렬이며 직교행렬이다.</p>
+<p><span class="theorem-title"><strong>따름정리 1 </strong></span>실수성분의 하우스홀더 행렬 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \in \mathcal{M}_{n \times n}(\mathbb{R})\)</span> 은 대칭행렬이며 직교행렬이다.</p>
 </div>
 <p><br></p>
 </section>
@@ -728,32 +728,32 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 </section>
 <section id="하우스홀더-변환과-qr-분해" class="level3">
 <h3 class="anchored" data-anchor-id="하우스홀더-변환과-qr-분해">하우스홀더 변환과 QR 분해</h3>
-<p>::: {#prp-householder_transform}</p>
-<p><span class="math inline">\(\mathcal{M}_m (\mathbb{F})\)</span> 에서의 벡터 <span class="math inline">\(\boldsymbol{x}\)</span> 과 표준 기저 <span class="math inline">\(\{\boldsymbol{e}_1,\ldots,\,\boldsymbol{e}_m\}\)</span> 를 생각하자. <span class="math inline">\(\alpha\)</span> 를 <span class="math inline">\(\boldsymbol{x}\)</span> 의 첫번째 성분 <span class="math inline">\(x_1 = re^{i\theta}\)</span> 에 대해 다음과 같이 정의한다.</p>
+<p><span class="math inline">\(\mathcal{M}_n (\mathbb{F})\)</span> 에서의 벡터 <span class="math inline">\(\boldsymbol{x}\)</span> 과 표준 기저 <span class="math inline">\(\{\hat{\boldsymbol{e}}_1,\ldots,\,\hat{\boldsymbol{e}}_n\}\)</span> 를 생각하자. <span class="math inline">\(\alpha\)</span> 를 <span class="math inline">\(\boldsymbol{x}\)</span> 의 첫번째 성분 <span class="math inline">\(x_1 = re^{i\theta}\)</span> 에 대해 다음과 같이 정의한다.</p>
 <p><span class="math display">\[
 \alpha = \left\{ \begin{array}{ll} \|\boldsymbol{x}\|_2  &amp; \text{where } \mathbb{F}=\mathbb{R}, \\ e^{i\theta}\|\boldsymbol{x}\|_2 \qquad &amp; \text{where } \mathbb{F} =\mathbb{C}. \end{array} \right.
 \]</span></p>
 <p><span class="math inline">\(\boldsymbol{x}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{v}\)</span> 를 다음과 같이 정하자.</p>
 <p><span class="math display">\[
-\boldsymbol{v} = \boldsymbol{x} - \alpha \boldsymbol{e}_1, \\
+\boldsymbol{v} = \boldsymbol{x} - \alpha \hat{\boldsymbol{e}}_1, \\
 \]</span></p>
-<div id="prp-householder_1" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 8 </strong></span>이 때 <span class="math inline">\(\boldsymbol{x}\)</span> 의 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대한 하우스홀더 변환 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}\)</span> 는 다음과 같다.</p>
+<p>이렇게 정해진 <span class="math inline">\(\boldsymbol{v}\)</span> 를 <strong>하우스홀더 벡터(householder vector)</strong> 라고 한다. 이 때 <span class="math inline">\(\boldsymbol{x}\)</span> 의 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대한 하우스홀더 변환 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}\)</span> 는 다음과 같다.</p>
 <p><span class="math display">\[
-\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \boldsymbol{e}_1.
+\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1.
 \]</span></p>
+<div id="exr-householder-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>연습문제 1 </strong></span>위의 식을 증명하라.</p>
 </div>
-<div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2\)</span> 이며 <span class="math inline">\(|\alpha|^2 = \|\boldsymbol{x}\|_2^2\)</span> 이다. <span class="math inline">\(a=\alpha\overline{x}_1=\overline{\alpha}x_1\)</span> 이라 놓고 다음을 계산해 보자. <span class="math display">\[
+<div class="solution proof">
+<p><span class="proof-title"><em>(해답)</em>. </span><span class="math inline">\(\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2\)</span> 이며 <span class="math inline">\(|\alpha|^2 = \|\boldsymbol{x}\|_2^2\)</span> 이다. <span class="math inline">\(a=\alpha\overline{x}_1=\overline{\alpha}x_1\)</span> 이라 놓고 다음을 계산해 보자. <span class="math display">\[
 \begin{aligned}
-\langle \boldsymbol{x},\,\boldsymbol{v}\rangle &amp; = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \boldsymbol{e}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
-\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &amp;= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha\boldsymbol{e}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
+\langle \boldsymbol{x},\,\boldsymbol{v}\rangle &amp; = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \hat{\boldsymbol{e}}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
+\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &amp;= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha \hat{\boldsymbol{e}}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
 &amp;= 2 \langle \boldsymbol{x},\, \boldsymbol{v} \rangle
 \end{aligned}
 \]</span></p>
 <p>이므로, (잠시 <span class="math inline">\(\|\boldsymbol{x}\|_2\)</span> 를 <span class="math inline">\(\|\boldsymbol{x}\|\)</span> 라 하자.)</p>
 <p><span class="math display">\[
-\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \boldsymbol{e}_1
+\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1
 \]</span></p>
 <p>이다. <span class="math inline">\(\square\)</span></p>
 </div>
