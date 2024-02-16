@@ -292,6 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#하우스홀더-변환과-하우스홀더-반사" id="toc-하우스홀더-변환과-하우스홀더-반사" class="nav-link" data-scroll-target="#하우스홀더-변환과-하우스홀더-반사">하우스홀더 변환과 하우스홀더 반사</a></li>
   <li><a href="#하우스홀더-변환과-qr-분해" id="toc-하우스홀더-변환과-qr-분해" class="nav-link" data-scroll-target="#하우스홀더-변환과-qr-분해">하우스홀더 변환과 QR 분해</a></li>
   </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">4</span> 연습문제</a></li>
   </ul>
 </nav>
     </div>
@@ -644,15 +645,15 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 <div class="callout-body-container">
 <div id="def-householder_matrix" class="theorem definition">
 <p><span class="theorem-title"><strong>정의 5 (하우스홀더 행렬과 하우스홀더 변환) </strong></span>벡터공간 <span class="math inline">\(\mathcal{M}_n(\mathbb{C})\)</span> 에서의 벡터 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대해 다음과 같이 정의된 <span class="math inline">\(\boldsymbol{H}_v\)</span> 를 <strong>하우스홀더 행렬 (Householder matrix)</strong> 이라 한다.</p>
-<p><span class="math display">\[
+<p><span id="eq-householder_transformation_1"><span class="math display">\[
 \begin{aligned}
 \boldsymbol{H}_{\boldsymbol{v}} := I_n- \dfrac{2\boldsymbol{v}\boldsymbol{v}^{\ast}}{\|\boldsymbol{v}\|^2}, \qquad \text{i. e. }\quad
 (\boldsymbol{H}_{\boldsymbol{v}})_{ij} := \delta_{ij} - \dfrac{2 v_i \overline{v_j}}{\|\boldsymbol{v}\|^2}.
 \end{aligned}
-\]</span> 여기서 <span class="math inline">\(\boldsymbol{v}\boldsymbol{v}^{\ast}\)</span> 는 벡터의 내적이 아니라 <span class="math inline">\(n\times 1\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}\)</span> 와 <span class="math inline">\(1 \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}^{\ast}\)</span> 가 곱해진 <span class="math inline">\(n \times n\)</span> 행렬을 의미한다. 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{C}^n\)</span> 에 대해 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \boldsymbol{x}\in \mathbb{C}^n\)</span> 을 <strong>하우스홀더 변환</strong> 이라 한다. <span class="math inline">\(\boldsymbol{v}\)</span> 가 단위벡터일 경우, 즉 <span class="math inline">\(\|\boldsymbol{v}\|=1\)</span> 라면 좀 더 간단하게 쓸 수 있다.</p>
-<p><span class="math display">\[
+\tag{1}\]</span></span> 여기서 <span class="math inline">\(\boldsymbol{v}\boldsymbol{v}^{\ast}\)</span> 는 벡터의 내적이 아니라 <span class="math inline">\(n\times 1\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}\)</span> 와 <span class="math inline">\(1 \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}^{\ast}\)</span> 가 곱해진 <span class="math inline">\(n \times n\)</span> 행렬을 의미한다. 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{C}^n\)</span> 에 대해 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \boldsymbol{x}\in \mathbb{C}^n\)</span> 을 <strong>하우스홀더 변환</strong> 이라 한다. <span class="math inline">\(\boldsymbol{v}\)</span> 가 단위벡터일 경우, 즉 <span class="math inline">\(\|\boldsymbol{v}\|=1\)</span> 라면 좀 더 간단하게 쓸 수 있다.</p>
+<p><span id="eq-householder_transformation_2"><span class="math display">\[
 \boldsymbol{H}_{\boldsymbol{v}} = I_n- 2\boldsymbol{v}\boldsymbol{v}^{\ast},\qquad \text{where } \|\boldsymbol{v}\|=1.
-\]</span></p>
+\tag{2}\]</span></span></p>
 </div>
 </div>
 </div>
@@ -736,26 +737,30 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 <p><span class="math display">\[
 \boldsymbol{v} = \boldsymbol{x} - \alpha \hat{\boldsymbol{e}}_1, \\
 \]</span></p>
-<p>이렇게 정해진 <span class="math inline">\(\boldsymbol{v}\)</span> 를 <strong>하우스홀더 벡터(householder vector)</strong> 라고 한다. 이 때 <span class="math inline">\(\boldsymbol{x}\)</span> 의 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대한 하우스홀더 변환 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}\)</span> 는 다음과 같다.</p>
-<p><span class="math display">\[
+<p>이렇게 정해진 <span class="math inline">\(\boldsymbol{v}\)</span> 를 <strong>하우스홀더 벡터(householder vector)</strong> 라고 한다. 이 때 <span class="math inline">\(\boldsymbol{x}\)</span> 의 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대한 하우스홀더 변환 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}\)</span> 는 다음과 같다. (증명은 연습문제에)</p>
+<p><span id="eq-householder_vector"><span class="math display">\[
 \boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1.
-\]</span></p>
-<div id="exr-householder-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>연습문제 1 </strong></span>위의 식을 증명하라.</p>
+\tag{3}\]</span></span></p>
+<p><br></p>
+<p><a href="#eq-householder_transformation_1">식&nbsp;1</a> 에서 보듯이 <span class="math inline">\(\boldsymbol{v}\)</span> 에 스칼라곱을 해도 하우스홀더 변환은 변하지 않는다. 실제로 계산을 위해서는 주어진 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대해 <span class="math inline">\(\overline{\boldsymbol{v}}=\dfrac{1}{v_1}\boldsymbol{v}\)</span> 를 사용하여 변환을 하게되며 <span class="math inline">\(\overline{v}_1=1\)</span> 이 된다.</p>
+<p><br></p>
+<div id="thm-qr_decomposition_1" class="theorem">
+<p><span class="theorem-title"><strong>정리 2 </strong></span><span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{m \times n}(\mathbb{F})\)</span> 일 때 어떤 isometry <span class="math inline">\(\boldsymbol{Q}\in \mathcal{M}_{m \times m}(\mathbb{F})\)</span> 와 상삼각 행렬 <span class="math inline">\(\boldsymbol{R}\in \mathcal{M}_{m \times n}(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{A}=\boldsymbol{QR}\)</span> 이다.</p>
 </div>
-<div class="solution proof">
-<p><span class="proof-title"><em>(해답)</em>. </span><span class="math inline">\(\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2\)</span> 이며 <span class="math inline">\(|\alpha|^2 = \|\boldsymbol{x}\|_2^2\)</span> 이다. <span class="math inline">\(a=\alpha\overline{x}_1=\overline{\alpha}x_1\)</span> 이라 놓고 다음을 계산해 보자. <span class="math display">\[
-\begin{aligned}
-\langle \boldsymbol{x},\,\boldsymbol{v}\rangle &amp; = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \hat{\boldsymbol{e}}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
-\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &amp;= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha \hat{\boldsymbol{e}}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
-&amp;= 2 \langle \boldsymbol{x},\, \boldsymbol{v} \rangle
-\end{aligned}
-\]</span></p>
-<p>이므로, (잠시 <span class="math inline">\(\|\boldsymbol{x}\|_2\)</span> 를 <span class="math inline">\(\|\boldsymbol{x}\|\)</span> 라 하자.)</p>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>하우스홀더 행렬은 isometry 이며 에르미트 행렬임을 생각하자. <span class="math inline">\(n\)</span> 에 대한 induction 으로 증명한다.</p>
+<p><span class="math inline">\(n=1\)</span> 일 경우 <span class="math inline">\(\boldsymbol{x}=\boldsymbol{A}\)</span> 라고 하면 <span class="math inline">\(\boldsymbol{Q} = \boldsymbol{H}[\boldsymbol{x}]\)</span> 에 대해 <span class="math inline">\(\boldsymbol{QA}=\boldsymbol{R}\)</span> 은 2 행부터의 값이 <span class="math inline">\(0\)</span> 인 <span class="math inline">\(m \times 1\)</span> 행렬이다. <span class="math inline">\(\boldsymbol{A}=\boldsymbol{Q}^\ast \boldsymbol{R} = \boldsymbol{QR}\)</span> 이므로 <span class="math inline">\(n=1\)</span> 일 때 성립한다.</p>
+<p>이제 <span class="math inline">\(n\)</span> 보다 작거나 같은 자연수에 대해 성립함을 가정하자. <span class="math inline">\(\boldsymbol{A}_1\in \mathcal{M}_{m\times n}(\mathbb{F})\)</span> 와 <span class="math inline">\(\boldsymbol{a}\in \mathcal{M}_{m\times 1}(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{A}= \begin{bmatrix} \boldsymbol{A}_1 &amp; \boldsymbol{a} \end{bmatrix}\in \mathcal{M}_{m \times (n+1)}(\mathbb{F})\)</span> 이다. Induction 의 가정에 의해 <span class="math inline">\(\boldsymbol{A}_1 = \boldsymbol{Q}_1\boldsymbol{R}_1\)</span> 을 만족하는 isometry <span class="math inline">\(\boldsymbol{Q}_1\in \mathcal{M}_{m \times m}(\mathbb{F})\)</span> 와 상삼각 행렬 <span class="math inline">\(\boldsymbol{R}_1 \in \mathcal{M}_{m \times n}(\mathbb{F})\)</span> 이 존재한다. <span class="math inline">\(m &gt; n\)</span> 일 경우 <span class="math inline">\(n\)</span> 보다 큰 <span class="math inline">\(\boldsymbol{R}_1\)</span> 의 행벡터는 모두 영벡터이다.</p>
+<p><span class="math inline">\(\boldsymbol{a}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{w} = \boldsymbol{Q}_1^\ast\boldsymbol{a}\)</span> 라고 하자. <span class="math inline">\(\boldsymbol{Q}_1\in \mathcal{M}_{m \times m}(\mathbb{F})\)</span> 이다. <span class="math inline">\(\boldsymbol{w}\)</span> 는 첫행을 제외한 나머지 행이 <span class="math inline">\(0\)</span> 인 열벡터이다. 이제 <span class="math inline">\(\boldsymbol{w}\)</span> 의 <span class="math inline">\(1\)</span> 행부터 <span class="math inline">\(n\)</span> 행까지를 <span class="math inline">\(\boldsymbol{w}_1\)</span>, <span class="math inline">\(n+1\)</span> 행부터 <span class="math inline">\(m\)</span> 행 까지를 <span class="math inline">\(\boldsymbol{w}_2\)</span> 라고 하자. <span class="math inline">\(\boldsymbol{w}_2\)</span> 에 대해 <span class="math inline">\(\boldsymbol{w}_2 = \boldsymbol{Q}_2 \boldsymbol{r}_2\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{Q}_2 \in \mathcal{M}_{(m - n)\times (m - n)}(\mathbb{F})\)</span>, <span class="math inline">\(\boldsymbol{r}_2\in \mathcal{M}_{(m-n)}(\mathbb{F})\)</span> 가 존재한다.</p>
+<p>이제 <span class="math inline">\(\boldsymbol{A}_1=\boldsymbol{Q}_1\boldsymbol{R}_1\)</span> 이며 <span class="math inline">\(\boldsymbol{Q}_1\)</span> 은 <span class="math inline">\(n \times n\)</span> isomegtry 이고 <span class="math inline">\(\boldsymbol{R}_1\)</span> 은 <span class="math inline">\(m \times n\)</span> 상삼각행렬이라고 하자.</p>
 <p><span class="math display">\[
-\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1
+\boldsymbol{Q} = \boldsymbol{Q}_1 \begin{bmatrix} \boldsymbol{I}_{n} &amp; \boldsymbol{0} \\ \boldsymbol{0} &amp; \boldsymbol{Q}_2\end{bmatrix}
 \]</span></p>
-<p>이다. <span class="math inline">\(\square\)</span></p>
+<p>이라 하면,</p>
+<p><span class="math display">\[
+\boldsymbol{Q} \left[\begin{array}{c|c} \boldsymbol{R}_1 &amp; \begin{array}{c}  \boldsymbol{w}_1 \\ \boldsymbol{r}_2 \end{array} \end{array}\right]=\boldsymbol{Q}_1 \left[\begin{array}{c|c} \boldsymbol{R}_1 &amp; \begin{array}{c}  \boldsymbol{w}_1 \\ \boldsymbol{Qr}_2 \end{array} \end{array}\right] = \boldsymbol{A}
+\]</span></p>
+<p>이다.</p>
 </div>
 <p><br></p>
 <p>이미 설명한 그람 슈미트 방법과 유사하게</p>
@@ -781,9 +786,30 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 \boldsymbol{Q}_L \cdots \boldsymbol{Q}_1 \boldsymbol{A} = \boldsymbol{R} \implies \boldsymbol{A} = \boldsymbol{Q}_1^\ast \cdots \boldsymbol{Q}_L^\ast \boldsymbol{R}
 \]</span></p>
 <p>임은 쉽게 보일 수 있다. 직교행렬의 곱은 직교행렬이므로 <span class="math inline">\(\boldsymbol{Q}_1^\ast \cdots \boldsymbol{Q}_L^\ast\)</span> 도 직교행렬이다. 따라서 QR 분해를 할 수 있다.</p>
-
-
+<p><br></p>
 </section>
+</section>
+<section id="연습문제" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">4</span> 연습문제</h2>
+<div id="exr-householder-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>연습문제 1 </strong></span>위의 <a href="#eq-householder_vector">식&nbsp;3</a> 을 증명하라.</p>
+</div>
+<div class="solution proof">
+<p><span class="proof-title"><em>(해답)</em>. </span><span class="math inline">\(\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2\)</span> 이며 <span class="math inline">\(|\alpha|^2 = \|\boldsymbol{x}\|_2^2\)</span> 이다. <span class="math inline">\(a=\alpha\overline{x}_1=\overline{\alpha}x_1\)</span> 이라 놓고 다음을 계산해 보자. <span class="math display">\[
+\begin{aligned}
+\langle \boldsymbol{x},\,\boldsymbol{v}\rangle &amp; = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \hat{\boldsymbol{e}}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
+\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &amp;= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha \hat{\boldsymbol{e}}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
+&amp;= 2 \langle \boldsymbol{x},\, \boldsymbol{v} \rangle
+\end{aligned}
+\]</span></p>
+<p>이므로, (잠시 <span class="math inline">\(\|\boldsymbol{x}\|_2\)</span> 를 <span class="math inline">\(\|\boldsymbol{x}\|\)</span> 라 하자.)</p>
+<p><span class="math display">\[
+\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1
+\]</span></p>
+<p>이다.</p>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

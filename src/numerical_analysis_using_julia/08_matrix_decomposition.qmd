@@ -493,12 +493,12 @@ $$
 \boldsymbol{H}_{\boldsymbol{v}} := I_n- \dfrac{2\boldsymbol{v}\boldsymbol{v}^{\ast}}{\|\boldsymbol{v}\|^2}, \qquad \text{i. e. }\quad 
 (\boldsymbol{H}_{\boldsymbol{v}})_{ij} := \delta_{ij} - \dfrac{2 v_i \overline{v_j}}{\|\boldsymbol{v}\|^2}.
 \end{aligned}
-$$
+$$ {#eq-householder_transformation_1}
 여기서 $\boldsymbol{v}\boldsymbol{v}^{\ast}$ 는 벡터의 내적이 아니라 $n\times 1$ 행렬 $\boldsymbol{v}$ 와 $1 \times n$ 행렬 $\boldsymbol{v}^{\ast}$ 가 곱해진 $n \times n$ 행렬을 의미한다. 벡터 $\boldsymbol{x}\in \mathbb{C}^n$ 에 대해 $\boldsymbol{H}_{\boldsymbol{v}} \boldsymbol{x}\in \mathbb{C}^n$ 을 **하우스홀더 변환** 이라 한다. $\boldsymbol{v}$ 가 단위벡터일 경우, 즉 $\|\boldsymbol{v}\|=1$ 라면 좀 더 간단하게 쓸 수 있다.
 
 $$
 \boldsymbol{H}_{\boldsymbol{v}} = I_n- 2\boldsymbol{v}\boldsymbol{v}^{\ast},\qquad \text{where } \|\boldsymbol{v}\|=1.
-$$
+$$ {#eq-householder_transformation_2}
 
 :::
 :::
@@ -612,38 +612,54 @@ $$
 \boldsymbol{v} = \boldsymbol{x} - \alpha \hat{\boldsymbol{e}}_1, \\
 $$
 
-이렇게 정해진 $\boldsymbol{v}$ 를 **하우스홀더 벡터(householder vector)** 라고 한다. 이 때 $\boldsymbol{x}$ 의 $\boldsymbol{v}$ 에 대한 하우스홀더 변환 $\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}$ 는 다음과 같다.
+이렇게 정해진 $\boldsymbol{v}$ 를 **하우스홀더 벡터(householder vector)** 라고 한다. 이 때 $\boldsymbol{x}$ 의 $\boldsymbol{v}$ 에 대한 하우스홀더 변환 $\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}$ 는 다음과 같다. (증명은 연습문제에)
 
 $$
 \boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1.
+$$ {#eq-householder_vector}
+
+</br>
+
+@eq-householder_transformation_1 에서 보듯이 $\boldsymbol{v}$ 에 스칼라곱을 해도 하우스홀더 변환은 변하지 않는다. 실제로 계산을 위해서는 주어진 $\boldsymbol{v}$ 에 대해 $\overline{\boldsymbol{v}}=\dfrac{1}{v_1}\boldsymbol{v}$ 를 사용하여 변환을 하게되며 $\overline{v}_1=1$ 이 된다. 
+
+</br>
+
+::: {#thm-qr_decomposition_1}
+
+$\boldsymbol{A}\in \mathcal{M}_{m \times n}(\mathbb{F})$ 일 때 어떤 isometry $\boldsymbol{Q}\in \mathcal{M}_{m \times m}(\mathbb{F})$ 와 상삼각 행렬 $\boldsymbol{R}\in \mathcal{M}_{m \times n}(\mathbb{F})$ 에 대해 $\boldsymbol{A}=\boldsymbol{QR}$ 이다.
+
+:::
+
+::: {.proof}
+
+하우스홀더 행렬은 isometry 이며 에르미트 행렬임을 생각하자. $n$ 에 대한 induction 으로 증명한다. 
+
+$n=1$ 일 경우 $\boldsymbol{x}=\boldsymbol{A}$ 라고 하면  $\boldsymbol{Q} = \boldsymbol{H}[\boldsymbol{x}]$ 에 대해 $\boldsymbol{QA}=\boldsymbol{R}$ 은 2 행부터의 값이 $0$ 인 $m \times 1$ 행렬이다. $\boldsymbol{A}=\boldsymbol{Q}^\ast \boldsymbol{R} = \boldsymbol{QR}$ 이므로 $n=1$ 일 때 성립한다. 
+
+이제 $n$ 보다 작거나 같은 자연수에 대해 성립함을 가정하자. $\boldsymbol{A}_1\in \mathcal{M}_{m\times n}(\mathbb{F})$ 와 $\boldsymbol{a}\in \mathcal{M}_{m\times 1}(\mathbb{F})$ 에 대해 $\boldsymbol{A}= \begin{bmatrix} \boldsymbol{A}_1 & \boldsymbol{a} \end{bmatrix}\in \mathcal{M}_{m \times (n+1)}(\mathbb{F})$ 이다. Induction 의 가정에 의해 $\boldsymbol{A}_1 = \boldsymbol{Q}_1\boldsymbol{R}_1$ 을 만족하는 isometry $\boldsymbol{Q}_1\in \mathcal{M}_{m \times m}(\mathbb{F})$ 와 상삼각 행렬 $\boldsymbol{R}_1 \in \mathcal{M}_{m \times n}(\mathbb{F})$ 이 존재한다. $m > n$ 일 경우 $n$ 보다 큰 $\boldsymbol{R}_1$ 의 행벡터는 모두 영벡터이다.
+
+
+$\boldsymbol{a}$ 에 대해 $\boldsymbol{w} = \boldsymbol{Q}_1^\ast\boldsymbol{a}$ 라고 하자. $\boldsymbol{Q}_1\in \mathcal{M}_{m \times m}(\mathbb{F})$ 이다. $\boldsymbol{w}$ 는 첫행을 제외한 나머지 행이 $0$ 인 열벡터이다. 이제 $\boldsymbol{w}$ 의 $1$ 행부터 $n$ 행까지를 $\boldsymbol{w}_1$, $n+1$ 행부터 $m$ 행 까지를 $\boldsymbol{w}_2$ 라고 하자. $\boldsymbol{w}_2$ 에 대해 $\boldsymbol{w}_2 = \boldsymbol{Q}_2 \boldsymbol{r}_2$ 를 만족하는 $\boldsymbol{Q}_2 \in \mathcal{M}_{(m - n)\times (m - n)}(\mathbb{F})$, $\boldsymbol{r}_2\in \mathcal{M}_{(m-n)}(\mathbb{F})$ 가 존재한다. 
+
+이제  $\boldsymbol{A}_1=\boldsymbol{Q}_1\boldsymbol{R}_1$ 이며 $\boldsymbol{Q}_1$ 은 $n \times n$ isomegtry 이고 $\boldsymbol{R}_1$ 은 $m \times n$ 상삼각행렬이라고 하자. 
+
+$$
+\boldsymbol{Q} = \boldsymbol{Q}_1 \begin{bmatrix} \boldsymbol{I}_{n} & \boldsymbol{0} \\ \boldsymbol{0} & \boldsymbol{Q}_2\end{bmatrix}
 $$
 
-::: {#exr-householder-1}
+이라 하면, 
 
-위의 식을 증명하라.
+$$
+\boldsymbol{Q} \left[\begin{array}{c|c} \boldsymbol{R}_1 & \begin{array}{c}  \boldsymbol{w}_1 \\ \boldsymbol{r}_2 \end{array} \end{array}\right]=\boldsymbol{Q}_1 \left[\begin{array}{c|c} \boldsymbol{R}_1 & \begin{array}{c}  \boldsymbol{w}_1 \\ \boldsymbol{Qr}_2 \end{array} \end{array}\right] = \boldsymbol{A}
+$$
+
+이다. 
+
+
+
 
 :::
 
-::: {.solution}
-
-$\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2$ 이며 $|\alpha|^2 = \|\boldsymbol{x}\|_2^2$ 이다. $a=\alpha\overline{x}_1=\overline{\alpha}x_1$ 이라 놓고 다음을 계산해 보자. 
-$$
-\begin{aligned}
-\langle \boldsymbol{x},\,\boldsymbol{v}\rangle & = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \hat{\boldsymbol{e}}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
-\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha \hat{\boldsymbol{e}}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
-&= 2 \langle \boldsymbol{x},\, \boldsymbol{v} \rangle
-\end{aligned}
-$$
-
-이므로, (잠시 $\|\boldsymbol{x}\|_2$ 를 $\|\boldsymbol{x}\|$ 라 하자.)
-
-$$
-\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1
-$$
-
-이다. $\square$
-
-:::
 
 </br>
 
@@ -684,3 +700,35 @@ $$
 $$
 
 임은 쉽게 보일 수 있다. 직교행렬의 곱은 직교행렬이므로 $\boldsymbol{Q}_1^\ast \cdots \boldsymbol{Q}_L^\ast$ 도 직교행렬이다. 따라서 QR 분해를 할 수 있다. 
+
+
+</br>
+
+## 연습문제
+
+::: {#exr-householder-1}
+
+위의 @eq-householder_vector 을 증명하라.
+
+::: 
+
+::: {.solution}
+
+$\alpha \overline{x}_1 = \overline{\alpha}x_1 = |x_1| \|\boldsymbol{x}\|_2$ 이며 $|\alpha|^2 = \|\boldsymbol{x}\|_2^2$ 이다. $a=\alpha\overline{x}_1=\overline{\alpha}x_1$ 이라 놓고 다음을 계산해 보자. 
+$$
+\begin{aligned}
+\langle \boldsymbol{x},\,\boldsymbol{v}\rangle & = \langle \, \boldsymbol{x} , \boldsymbol{x}-\alpha \hat{\boldsymbol{e}}_1\rangle = \|\boldsymbol{x}\|_2^2-\overline{\alpha} x_1  = \|\boldsymbol{x}\|_2^2 - a\\
+\langle \boldsymbol{v},\,\boldsymbol{v}\rangle &= \langle \boldsymbol{x} -\alpha \boldsymbol{e}_1,\, \boldsymbol{x} -\alpha \hat{\boldsymbol{e}}_1 \rangle  = \|\boldsymbol{x}\|^2 - \overline{\alpha} x_1 -\alpha \overline{x_1} + |\alpha|^2 = 2(\|\boldsymbol{x}\|_2^2 -a) \\
+&= 2 \langle \boldsymbol{x},\, \boldsymbol{v} \rangle
+\end{aligned}
+$$
+
+이므로, (잠시 $\|\boldsymbol{x}\|_2$ 를 $\|\boldsymbol{x}\|$ 라 하자.)
+
+$$
+\boldsymbol{H}_\boldsymbol{v} \boldsymbol{x} = \boldsymbol{x} - 2\dfrac{\langle \boldsymbol{x},\, \boldsymbol{v}\rangle}{\|\boldsymbol{v}\|^2} \boldsymbol{v} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1
+$$
+
+이다. 
+
+:::
