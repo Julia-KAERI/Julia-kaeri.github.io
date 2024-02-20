@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 비선형 최소제곱 피팅</title>
+<title>Julia &amp; Numerical Anlaysis - 푸리에 변환</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/applications_of_julia/multithreads.html" rel="next">
-<link href="../../src/applications_of_julia/fileio.html" rel="prev">
+<link href="../../src/image_processing/tomography.html" rel="next">
+<link href="../../src/image_processing/introduction_to_signal_processing.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/introduction_to_julia/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../src/introduction_to_julia/index.html" rel="" target="">
  <span class="menu-text">Julia 프로그래밍 언어</span></a>
   </li>  
   <li class="nav-item">
@@ -97,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html" rel="" target="">
+    <a class="nav-link active" href="../../src/image_processing/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">영상 처리와 토모그래피</span></a>
   </li>  
   <li class="nav-item">
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/applications_of_julia/fileio.html">Julia 언어의 활용</a></li><li class="breadcrumb-item"><a href="../../src/applications_of_julia/leastsquarefit.html">비선형 최소제곱 피팅</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/image_processing/index.html">영상 처리 기초</a></li><li class="breadcrumb-item"><a href="../../src/image_processing/fourier_transform.html">푸리에 변환</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -135,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Julia 언어의 기초</span></a>
+ <span class="menu-text">영상 처리 기초</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -143,107 +143,28 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Julia</span></a>
+  <a href="../../src/image_processing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">영상 처리와 토모그래피</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/01_julia_language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1장 설치와 환경 구성</span></a>
+  <a href="../../src/image_processing/introduction_to_signal_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">신호처리의 기초</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/02_variables_basic_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 변수와 기본 타입</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/03_functions_and_operators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3장 함수와 연산자</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/04_containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4장 컨테이너</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/04_I_splat_operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : <code>...</code> 연산자</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/05_control_flows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5장 흐름 제어</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/06_arrays.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6장 배열</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/06_I_function_composition_and_piping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 함수의 합성과 전달</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/07_module_package.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7장 이름공간, 모듈, 패키지</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/07_I_sort.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 정렬</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/08_type_hierarchy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8장 타입의 계층구조와 메서드 디스패치</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/08_I_documentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 문서화</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/09_composite_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9장 복합 타입</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/09_I_pretty_printing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 보기 좋게 출력하기</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/10_metaprogramming_and_macro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10장 메타프로그래밍과 매크로</span></a>
+  <a href="../../src/image_processing/fourier_transform.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">푸리에 변환</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Julia 언어의 활용</span></a>
+ <span class="menu-text">주제별 처리</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -251,26 +172,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/applications_of_julia/fileio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">파일시스템과 파일입출력</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/applications_of_julia/leastsquarefit.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">비선형 최소제곱 피팅</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/applications_of_julia/multithreads.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">다중스레드</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/applications_of_julia/pkg_dev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">패키지 개발</span></a>
+  <a href="../../src/image_processing/tomography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">토모그래피</span></a>
   </div>
 </li>
       </ul>
@@ -281,14 +184,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#일변수-함수의-푸리에-급수와-푸리에-변환" id="toc-일변수-함수의-푸리에-급수와-푸리에-변환" class="nav-link active" data-scroll-target="#일변수-함수의-푸리에-급수와-푸리에-변환"><span class="header-section-number">1</span> 일변수 함수의 푸리에 급수와 푸리에 변환</a>
+  <ul class="collapse">
+  <li><a href="#디렉-델타-함수와-임펄스" id="toc-디렉-델타-함수와-임펄스" class="nav-link" data-scroll-target="#디렉-델타-함수와-임펄스">디렉 델타 함수와 임펄스</a></li>
+  <li><a href="#푸리에-급수" id="toc-푸리에-급수" class="nav-link" data-scroll-target="#푸리에-급수">푸리에 급수</a></li>
+  <li><a href="#변수-함수의-푸리에-변환" id="toc-변수-함수의-푸리에-변환" class="nav-link" data-scroll-target="#변수-함수의-푸리에-변환">1변수 함수의 푸리에 변환</a></li>
+  <li><a href="#impulse-train-의-푸리에-변환" id="toc-impulse-train-의-푸리에-변환" class="nav-link" data-scroll-target="#impulse-train-의-푸리에-변환">Impulse train 의 푸리에 변환</a></li>
+  <li><a href="#convolution-of-two-functions" id="toc-convolution-of-two-functions" class="nav-link" data-scroll-target="#convolution-of-two-functions">Convolution of two functions</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">비선형 최소제곱 피팅</h1>
+<h1 class="title">푸리에 변환</h1>
 </div>
 
 
@@ -303,9 +219,148 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>어떤 실험 결과가 <span class="math inline">\(m\)</span> 개의 독립 변수에 대해 <span class="math inline">\(n\)</span> 차원 벡터로 발생한다고 하자. 이에 대해 모델 함수 <span class="math inline">\(\boldsymbol{F}:\mathbb{R}^m \to \mathbb{R}^n\)</span></p>
+<section id="일변수-함수의-푸리에-급수와-푸리에-변환" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="일변수-함수의-푸리에-급수와-푸리에-변환"><span class="header-section-number">1</span> 일변수 함수의 푸리에 급수와 푸리에 변환</h2>
+<section id="디렉-델타-함수와-임펄스" class="level3">
+<h3 class="anchored" data-anchor-id="디렉-델타-함수와-임펄스">디렉 델타 함수와 임펄스</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-dirac_delta_fucntion" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 1 (디렉 델타 함수) </strong></span>Dirac 델타 함수 (델타 함수) <span class="math inline">\(\delta (t)\)</span> 는 다음의 두가지 성질을 갖는 함수로 정의된다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\delta(t) = \left\{ \begin{array}{ll} \infty \qquad &amp;\text{if } t= 0 \\ 0 &amp; \text{otherwise.} \end{array}\right.\)</span></p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\mathbb{R}\)</span> 에서 정의된 함수 <span class="math inline">\(f(t)\)</span> 에 대해 <span class="math inline">\(\displaystyle \int_{-\infty}^\infty \delta(t)\, f(t) \, dt = f(0)\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-impulse_function" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (Impulse) </strong></span>신호처리에서 디렉 델타 함수를 single impulse 로 간주하며, 주기 <span class="math inline">\(\Delta T\)</span> 로 반복되는 델타함수의 합 <span class="math inline">\(s_{\Delta T}(t)\)</span> 을 <strong>impulse train</strong> 이라 한다.</p>
+<p><span class="math display">\[
+s_{\Delta T} (t) = \sum_{k=-\infty}^{\infty} \delta (t - k\Delta T)
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>임의의 함수 <span class="math inline">\(f(t)\)</span> 에 대해 다음의 성질을 만족한다.</p>
+<p><span class="math display">\[
+\int_{-\infty}^\infty f(t) \, \delta (t-t_0) \, dt = f(t_0)
+\]</span></p>
+<p><br></p>
+</section>
+<section id="푸리에-급수" class="level3">
+<h3 class="anchored" data-anchor-id="푸리에-급수">푸리에 급수</h3>
+<p>어떤 함수가 주기 <span class="math inline">\(T\)</span> 를 갖는다는 것은 모든 <span class="math inline">\(t\in \mathbb{R}\)</span> 에 대해 <span class="math inline">\(f(t+T)=f(T)\)</span> 임을 의미한다. 이 경우 <span class="math inline">\(f(t)\)</span> 는 다음과 같이 표현 할 수 있다.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-fourier_series" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 3 (푸리에 급수) </strong></span>주기 <span class="math inline">\(T\)</span> 를 갖는 연속함수 <span class="math inline">\(f(t)\)</span> 는 다음과 같은 푸리에 급수로 표현 할 수 있다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(t) &amp;= \sum_{n=-\infty}^{\infty} c_n \exp \left(\dfrac{i 2\pi n}{T}t\right)\,,\\
+c_n &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) \exp \left(-\dfrac{i2\pi n }{T}t \right)\, dt\,, \qquad n\in \mathbb{Z}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div id="exm-fourier_exmapsion" class="theorem example">
+<p><span class="theorem-title"><strong>예제 1 (기저함수의 직교성) </strong></span>임의의 정수 <span class="math inline">\(m,\,n\)</span> 에 대해 다음이 성립함을 보여라.</p>
+<p><span class="math display">\[
+\int_{-T/2}^{T/2} \exp \left( \dfrac{i 2\pi m}{T}t\right) \exp \left(-\dfrac{i 2\pi n}{T}t \right)\, dt = \delta_{nm}
+\]</span></p>
+</div>
+<p><br></p>
+<section id="impulse-train-의-푸리에-전개" class="level4">
+<h4 class="anchored" data-anchor-id="impulse-train-의-푸리에-전개">Impulse train 의 푸리에 전개</h4>
+<p><span class="math display">\[
+\begin{aligned}
+c_n &amp;= \dfrac{1}{\Delta T} \int_{-\Delta T/2}^{\Delta T/2} s_{\Delta T} \, \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
+&amp;= \dfrac{1}{\Delta T} \sum_{k=-\infty}^\infty \int_{-\Delta T/2}^{\Delta T/2} \delta(t-k\Delta T) \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
+&amp;= \dfrac{1}{\Delta T}
+\end{aligned}
+\]</span></p>
+<p><br></p>
+<p>이므로,</p>
+<p><span class="math display">\[
+s_{\Delta T}(t) = \dfrac{1}{\Delta T} \sum_{n=-\infty}^{\infty} e^{i \dfrac{2 \pi n}{\Delta T}t}
+\]</span></p>
+<p>이다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="변수-함수의-푸리에-변환" class="level3">
+<h3 class="anchored" data-anchor-id="변수-함수의-푸리에-변환">1변수 함수의 푸리에 변환</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-fourier_transform" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 4 (푸리에 변환) </strong></span>함수 <span class="math inline">\(f(t)\)</span> 에 대한 푸리에 변환은 <span class="math inline">\(\mathfrak{F}[f(t)]\)</span> 로 쓰고 다음과 같이 정의된다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+F(\mu) &amp;:= \mathfrak{F}\left[ f(t)\right] = \int_{-\infty}^{\infty} f(t) \, e^{-2i\pi \mu t} \, dt,\\
+f(t) &amp;= \mathfrak{F}^{-1}[F(\mu)] = \int_{-\infty}^{\infty} F(\mu)\, e^{2i \pi \mu t} \, d\mu\,.
+\end{aligned}
+\]</span></p>
+<p>그리고 <span class="math inline">\(F(\mu) =\mathfrak{F}[f(t)]\)</span> 는 일반적으로 복소수이며, 그 절대값 <span class="math inline">\(|F(\mu)|\)</span> 를 <span class="math inline">\(f(t)\)</span> 의 <strong>Fourier spectrum</strong> 혹은 <strong>frequency spectrum</strong> 이라 한다.</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="impulse-train-의-푸리에-변환" class="level3">
+<h3 class="anchored" data-anchor-id="impulse-train-의-푸리에-변환">Impulse train 의 푸리에 변환</h3>
+<p><span class="math display">\[
+s_{\Delta T}(t) = \dfrac{1}{\Delta T} \sum_{k=-\infty}^{\infty} e^{i \dfrac{2\pi n}{\Delta T}t}
+\]</span></p>
+<p>이므로 이에 대한 푸리에 변환 <span class="math inline">\(S(\mu)\)</span> 는 다음과 같다.</p>
+<p><span class="math display">\[
+S(\mu) = \mathfrak{F}[s_{\Delta T}(t)] = \dfrac{1}{\Delta} \sum_{n=-\infty}^{\infty} \delta \left(\mu - \dfrac{n}{\Delta T}\right)
+\]</span></p>
+<p><br></p>
+</section>
+<section id="convolution-of-two-functions" class="level3">
+<h3 class="anchored" data-anchor-id="convolution-of-two-functions">Convolution of two functions</h3>
+<p><span class="math inline">\(f(t),\, g(t)\)</span> 에 대한 푸리에 변환이 각각 <span class="math inline">\(F(\mu),\, G(\mu)\)</span> 라 하자.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{F}[(f\ast g) (t)] &amp;= \int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty} f(x)g(t-x)\, dx \right] \,e^{-2i\pi \mu t}\, dt \\
+&amp;= \int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty} g(t-x) e^{-2i\pi t \mu} \, dt\right]f(x)\, dx \\
+&amp;= \int_{-\infty}^{\infty} G(\mu) e^{-2i\pi x\mu} \, f(x)\, dx = F(\mu) \, G(\mu) \\
+&amp;= (F \cdot G)(\mu)
+\end{aligned}
+\]</span></p>
+<p>이다.</p>
+<p>우리는 여기에 다음을 쉽게 보일 수 있다.</p>
+<p><span class="math display">\[
+\mathfrak{F}^{-1} \left[(F\ast G)(\mu)\right] = f(t)g(t)
+\]</span></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -543,13 +598,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/applications_of_julia/fileio.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">파일시스템과 파일입출력</span>
+      <a href="../../src/image_processing/introduction_to_signal_processing.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">신호처리의 기초</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/applications_of_julia/multithreads.html" class="pagination-link">
-        <span class="nav-page-text">다중스레드</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/image_processing/tomography.html" class="pagination-link">
+        <span class="nav-page-text">토모그래피</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

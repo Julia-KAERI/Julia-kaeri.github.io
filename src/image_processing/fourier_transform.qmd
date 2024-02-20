@@ -1,0 +1,176 @@
+---
+title: "푸리에 변환"
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+
+## 일변수 함수의 푸리에 급수와 푸리에 변환
+
+### 디렉 델타 함수와 임펄스 
+
+
+::: {.callout-note appearance="simple" icon="false"}
+::: {#def-dirac_delta_fucntion}
+
+#### 디렉 델타 함수
+
+Dirac 델타 함수 (델타 함수) $\delta (t)$ 는 다음의 두가지 성질을 갖는 함수로 정의된다.
+
+&emsp; ($1$) $\delta(t) = \left\{ \begin{array}{ll} \infty \qquad &\text{if } t= 0 \\ 0 & \text{otherwise.} \end{array}\right.$
+
+&emsp; ($2$) $\mathbb{R}$ 에서 정의된 함수 $f(t)$ 에 대해 $\displaystyle \int_{-\infty}^\infty  \delta(t)\, f(t) \, dt = f(0)$.
+
+:::
+:::
+</br>
+
+::: {.callout-note appearance="simple" icon="false"}
+::: {#def-impulse_function}
+
+#### Impulse
+
+신호처리에서 디렉 델타 함수를 single impulse 로 간주하며, 주기 $\Delta T$ 로 반복되는 델타함수의 합 $s_{\Delta T}(t)$ 을 **impulse train** 이라 한다.
+
+$$
+s_{\Delta T} (t) = \sum_{k=-\infty}^{\infty} \delta (t - k\Delta T)
+$$
+
+:::
+:::
+
+</br>
+
+임의의 함수 $f(t)$ 에 대해 다음의 성질을 만족한다.
+
+$$
+\int_{-\infty}^\infty f(t) \, \delta (t-t_0) \, dt = f(t_0)
+$$
+
+</br>
+
+### 푸리에 급수
+
+어떤 함수가 주기 $T$ 를 갖는다는 것은 모든 $t\in \mathbb{R}$ 에 대해 $f(t+T)=f(T)$ 임을 의미한다. 이 경우 $f(t)$ 는 다음과 같이 표현 할 수 있다.
+
+::: {.callout-note appearance="simple" icon="false"}
+::: {#def-fourier_series}
+
+#### 푸리에 급수
+
+주기 $T$ 를 갖는 연속함수 $f(t)$ 는 다음과 같은 푸리에 급수로 표현 할 수 있다.
+
+$$
+\begin{aligned}
+f(t) &= \sum_{n=-\infty}^{\infty} c_n \exp \left(\dfrac{i 2\pi n}{T}t\right)\,,\\
+c_n &= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) \exp \left(-\dfrac{i2\pi n }{T}t \right)\, dt\,, \qquad n\in \mathbb{Z}
+\end{aligned}
+$$
+
+:::
+:::
+
+
+</br>
+
+::: {#exm-fourier_exmapsion}
+
+#### 기저함수의 직교성
+
+임의의 정수 $m,\,n$ 에 대해 다음이 성립함을 보여라.
+
+$$
+\int_{-T/2}^{T/2} \exp \left( \dfrac{i 2\pi m}{T}t\right) \exp \left(-\dfrac{i 2\pi n}{T}t \right)\, dt = \delta_{nm}
+$$
+
+:::
+
+</br>
+
+
+#### Impulse train 의 푸리에 전개
+
+$$
+\begin{aligned}
+c_n &= \dfrac{1}{\Delta T} \int_{-\Delta T/2}^{\Delta T/2} s_{\Delta T} \, \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
+&= \dfrac{1}{\Delta T} \sum_{k=-\infty}^\infty \int_{-\Delta T/2}^{\Delta T/2} \delta(t-k\Delta T) \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
+&= \dfrac{1}{\Delta T}
+\end{aligned}
+$$
+
+</br>
+
+이므로, 
+
+$$
+s_{\Delta T}(t) = \dfrac{1}{\Delta T} \sum_{n=-\infty}^{\infty} e^{i \dfrac{2 \pi n}{\Delta T}t}
+$$
+
+이다.
+
+</br>
+
+
+### 1변수 함수의 푸리에 변환
+
+
+::: {.callout-note appearance="simple" icon="false"}
+::: {#def-fourier_transform}
+
+### 푸리에 변환
+
+함수 $f(t)$ 에 대한 푸리에 변환은 $\mathfrak{F}[f(t)]$ 로 쓰고 다음과 같이 정의된다.
+
+$$
+\begin{aligned}
+F(\mu) &:= \mathfrak{F}\left[ f(t)\right] = \int_{-\infty}^{\infty} f(t) \, e^{-2i\pi \mu t} \, dt,\\
+f(t) &= \mathfrak{F}^{-1}[F(\mu)] = \int_{-\infty}^{\infty} F(\mu)\, e^{2i \pi \mu t} \, d\mu\,.
+\end{aligned}
+$$
+
+그리고 $F(\mu) =\mathfrak{F}[f(t)]$ 는 일반적으로 복소수이며, 그 절대값 $|F(\mu)|$ 를 $f(t)$ 의 **Fourier spectrum** 혹은 **frequency spectrum** 이라 한다.
+
+:::
+:::
+
+
+</br>
+
+### Impulse train 의 푸리에 변환
+
+$$
+s_{\Delta T}(t) = \dfrac{1}{\Delta T} \sum_{k=-\infty}^{\infty} e^{i \dfrac{2\pi n}{\Delta T}t}
+$$
+
+이므로 이에 대한 푸리에 변환 $S(\mu)$ 는 다음과 같다.
+
+$$
+S(\mu) = \mathfrak{F}[s_{\Delta T}(t)] = \dfrac{1}{\Delta} \sum_{n=-\infty}^{\infty} \delta \left(\mu - \dfrac{n}{\Delta T}\right)
+$$
+
+</br>
+
+### Convolution of two functions
+
+
+
+$f(t),\, g(t)$ 에 대한 푸리에 변환이 각각 $F(\mu),\, G(\mu)$ 라 하자.
+
+$$
+\begin{aligned}
+\mathfrak{F}[(f\ast g) (t)] &= \int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty} f(x)g(t-x)\, dx \right] \,e^{-2i\pi \mu t}\, dt \\
+&= \int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty} g(t-x) e^{-2i\pi t \mu} \, dt\right]f(x)\, dx \\
+&= \int_{-\infty}^{\infty} G(\mu) e^{-2i\pi x\mu} \, f(x)\, dx = F(\mu) \, G(\mu) \\
+&= (F \cdot G)(\mu)
+\end{aligned}
+$$
+
+이다.
+
+우리는 여기에 다음을 쉽게 보일 수 있다.
+
+$$
+\mathfrak{F}^{-1} \left[(F\ast G)(\mu)\right] = f(t)g(t)
+$$

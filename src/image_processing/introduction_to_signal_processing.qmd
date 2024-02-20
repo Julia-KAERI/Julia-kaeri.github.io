@@ -1,0 +1,87 @@
+---
+title: "디지털 신호처리의 기초"
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+
+## 신호와 시스템
+
+### 신호와 신호처리
+
+**신호 (signal)** 는 시공간적으로, 혹은 어떤 독립변수에 의해 변하는 물리량을 의미한다. 즉 측정할 수 있는 양을 말하며 신호를 목적에 맞게 가공하는 과정을 **신호처리 (signal processing)** 라고 한다. 하나의 소스에서 발생되는 신호를 스칼라 신호라고 하고, 시간에 따라 두 개 이상의 소스에서 발생하는 신호를 벡터 신호라고 한다. 스칼라 신호는 하나의 독립 변수로 표현할 수 있으므로 1차원 신호라고 하고, 벡터 신호는 두 개 이상의 독립 변수로 표현되므로 다차원 신호라고 한다. 예를 들어 영상(image)신호는 2차원 신호이며, 동영상(video) 신호는 3차원 신호이다.
+
+
+</br>
+
+### 샘플링과 양자화
+
+신호 $s: A \subset \mathbb{R} \to \mathbb{R}$ 를 생각하자. $A$ 가 연속일 때 $A$ 에 포함되는 수열 $\langle t_k \rangle \subset A$ 을 뽑아 내어 신호를 $\{s_k = s(t_k)\}$ 로 재구성 하는 것을 **샘플링 (sampling)** 이라고 한다. 유한개의 $B \subset \{s(t):t\in A\}$ 에 대한 함수 $\phi : s(A) \to B$ 에 대해 $\overline{s}(t) = (\phi \circ s)(t)$ 로 $s(t)$ 를 표현하는 것을 **양자화 (quantization)** 이라고 한다. 
+
+
+</br>
+
+### 기본적인 신호
+
+| 신호 이름 | 신호의 정의 |
+|:----------:|:-------------|
+| Heaviside 계단 함수 (step function) | $\text{step}(x) = \left\{ \begin{array}{l} 1 \qquad & x \ge 0 \\ 0 & \text{otherwise}\end{array}\right.$ |
+| 직사각 함수 (rectangular function) |  $\text{rect}(x) = \left\{ \begin{array}{l} 1 \qquad & |x| \le 1/2 \\ 0 & \text{otherwise}\end{array}\right.$ |
+| 삼각 함수 (trianle function) | $\text{tri}(x) = \left\{ \begin{array}{l} 1 -|x| & x \le 1/2 \\ 0 & \text{otherwise}\end{array}\right.$ |
+| $\text{sinc}$ 함수 | $\text{sinc}(x) = \dfrac{\sin (\pi x)}{\pi x}$ |
+| 가우스 함수 | $\text{gauss}(x) = \dfrac{1}{\sqrt{\pi}} e^{-x^2}$ | 
+| 디렉 델타 함수 | @def-dirac_delta_function 참고 |
+|
+
+
+::: {.callout-note appearance="simple" icon="false"}
+::: {#def-dirac_delta_function}
+
+#### 디렉 델타 함수
+
+Dirac 델타 함수 (델타 함수) $\delta (t)$ 는 다음의 두가지 성질을 갖는 함수로 정의된다.
+
+&emsp; ($1$) $\delta(t) = \left\{ \begin{array}{ll} \infty \qquad &\text{if } t= 0 \\ 0 & \text{otherwise.} \end{array}\right.$
+
+&emsp; ($2$) $\mathbb{R}$ 에서 정의된 함수 $f(t)$ 에 대해 $\displaystyle \int_{-\infty}^\infty  \delta(t)\, f(t) \, dt = f(0)$.
+
+:::
+:::
+
+
+</br>
+
+### 시스템
+
+어떤 신호 $s:A \to X$ 를 받아들여 이 신호에 대한 다른 신호 $g: A \to X$ 를 만들어내는 것을 **시스템 (System)** 이라고 한다. 즉 $g(x) = \mathcal{L}[s(x)]$ 일 때 $\mathcal{L}$ 이 시스템을 기술하는 변환이다.
+
+</br>
+
+#### 선형 시스템
+
+시스템 $\mathcal{L}$ 이 신호 $s_1,\,s_2$ 와 신호 $s_1,\,s_2$ 에 대해
+
+$$
+\mathcal{L}[a_1 s_1 (x) + a_2 s_2(x)] = a_1 \mathcal{L}[s_1(x)] + a_2 \mathcal{L}[s_2(x)]
+$$
+
+를 만족 할 때 이 시스템을 **선형 시스템(linear system)** 이라고 한다.
+
+</br>
+
+#### 불변 시스템
+
+임의의 $x_0$ 에 대해 
+
+$$
+\mathcal{L}[s(x-x_0)] = g(x-x_0)
+$$
+
+일 때 이 시스템을 **불변 시스템 (invariant system)** 이라고 한다. $x$ 가 시간 변수이면 시간-불변 시스템, 공간 변수이면 공간 불변 시스템이라고 한다.
+
+</br>
+
+#### 
+
