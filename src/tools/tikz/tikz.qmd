@@ -186,7 +186,49 @@ brew install --cask rstudio
 
 ### 도형
 
+#### Shade 
 
+```{r, engine = 'tikz'}
+#| label: fig-tikz_shade
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 6
+#| fig-align: center
+#| fig-cap: "tikz shade"
+
+
+\begin{tikzpicture}[scale = 3, rounded corners,ultra thick]
+  \shade[top color=yellow,bottom color=black] (0,0) rectangle +(2,1);
+  \shade[left color=yellow,right color=black] (3,0) rectangle +(2,1);
+  \shadedraw[inner color=yellow,outer color=black,draw=yellow] (6,0) rectangle +(2,1);
+  \shade[ball color=green] (9,.5) circle (.5cm);
+\end{tikzpicture}
+```
+
+
+```{r, engine = 'tikz'}
+#| label: fig-tikz_shade2
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 3
+#| fig-align: center
+#| fig-cap: "tikz shade"
+
+
+\begin{tikzpicture}[scale=3]
+  \clip (-0.1,-0.2) rectangle (1.1,0.75);
+  \draw[step=.5cm,gray,very thin] (-1.4,-1.4) grid (1.4,1.4);
+  \draw (-1.5,0) -- (1.5,0);
+  \draw (0,-1.5) -- (0,1.5);
+  \draw (0,0) circle (1cm);
+  \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm) arc
+  (0:30:3mm) -- cycle;
+  \draw[red,very thick]  (30:1cm) -- +(0,-0.5);
+  \draw[blue,very thick] (30:1cm) ++(0,-0.5) -- (0,0);
+\end{tikzpicture}
+```
 
 
 </br>
@@ -210,4 +252,53 @@ brew install --cask rstudio
   \draw [red, thick, ->] (0, 0) -- (xyz cs:x=2, y=2, z=1);
   \draw [red, dashed] (xyz cs:x=2, y=2, z=1) -- (xyz cs:x=0, y=2, z=1);
 \end{tikzpicture}
+```
+
+</br>
+
+### 신호처리 함수
+
+```{r, engine = 'tikz'}
+#| label: fig-signal_functions
+#| code-fold: true
+#| output: asis
+#| fig-width: 5
+#| fig-align: center
+#| fig-cap: "기본적인 신호들"
+\usetikzlibrary{arrows}
+\begin{tikzpicture}[ >=stealth]
+
+
+\draw[->] (-2, 0) -- (2, 0) node[below, black] {$x$} ;
+\draw[ ->] (0, -0.5) -- (0, 1.5);
+\draw[thick] (-2, 0) -- (0, 0) node[below left, black] {$0$} -- (0, 1) node[left, black] {$1$}-- (2, 1) node[above left, black] {$\text{step}(x)$};
+
+\draw[->] (4, 0) -- (8, 0) node[below, black] {$x$} ;
+\draw[ ->] (6, -0.5) -- (6, 1.5);
+\draw[thick] (4, 0) -- (5.5, 0) node[below, black] {$-\frac{1}{2}$} -- (5.5, 1) -- (6, 1)  -- (6.5, 1)-- (6.5, 0)  node[below, black] {$\frac{1}{2}$} -- (8, 0) node[above left, black] {$\text{rect}(x)$};
+
+\draw[->] (-2, -3) -- (2, -3) node[below, black] {$x$} ;
+\draw[ ->] (0, -3.5) -- (0, -1.5);
+\draw[thick] (-2, -3) -- (-0.5, -3) node[below, black] {$-\frac{1}{2}$} -- (0, -2) -- (0.5, -3) node[below, black] {$-\frac{1}{2}$} -- (2, -3) node[above left, black] {$\text{tri}(x)$};
+
+
+\draw[->] (4, -3) node[above right, black] {$\text{sinc}(x)$} -- (8, -3) node[below, black] {$x$} ;
+\draw[ ->] (6, -3.5) -- (6, -1.5);
+\draw[domain=4.0:8.0, smooth, variable=\x, thick] plot ({\x}, {0.116*sin(500* (\x-6))/((\x-6)) -3 });
+\draw (6.36, -2.9) -- (6.36, -3.1) node[below, black] {$\pi$} ; 
+
+
+\draw[->] (-2, -6) -- (2, -6) node[below, black] {$x$} ;
+\draw[ ->] (0, -6.5) -- (0, -4);
+\draw[domain=-1.8:1.8, smooth, variable=\x, thick] plot ({\x}, {exp(-(\x)^2) - 6 });
+\node[black, right] at (0, -4.7) {$\text{gauss}(x)$};
+%\draw (6.36, -2.9) -- (6.36, -3.1) node[below, black] {$\pi$} ; 
+
+
+\draw[->] (4, -6)  -- (8, -6) node[below, black] {$x$} ;
+\draw[ ->] (6, -6.5) -- (6, -4);
+\draw[very thick] (4.2, -6) -- (6, -6) -- (6, -4) node[left, black] {$\infty$}-- (6, -6)  -- (7.8, -6) node[above left, black] {$\delta (x)$};
+
+\end{tikzpicture}
+
 ```

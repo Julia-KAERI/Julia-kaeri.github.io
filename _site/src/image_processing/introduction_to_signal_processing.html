@@ -188,12 +188,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#신호와-시스템" id="toc-신호와-시스템" class="nav-link active" data-scroll-target="#신호와-시스템"><span class="header-section-number">1</span> 신호와 시스템</a>
+  <li><a href="#신호" id="toc-신호" class="nav-link active" data-scroll-target="#신호"><span class="header-section-number">1</span> 신호</a>
   <ul class="collapse">
   <li><a href="#신호와-신호처리" id="toc-신호와-신호처리" class="nav-link" data-scroll-target="#신호와-신호처리">신호와 신호처리</a></li>
   <li><a href="#샘플링과-양자화" id="toc-샘플링과-양자화" class="nav-link" data-scroll-target="#샘플링과-양자화">샘플링과 양자화</a></li>
+  <li><a href="#sampling-theorem" id="toc-sampling-theorem" class="nav-link" data-scroll-target="#sampling-theorem">Sampling theorem</a></li>
   <li><a href="#기본적인-신호" id="toc-기본적인-신호" class="nav-link" data-scroll-target="#기본적인-신호">기본적인 신호</a></li>
-  <li><a href="#시스템" id="toc-시스템" class="nav-link" data-scroll-target="#시스템">시스템</a></li>
+  <li><a href="#디렉-델타-함수" id="toc-디렉-델타-함수" class="nav-link" data-scroll-target="#디렉-델타-함수">디렉 델타 함수</a></li>
+  <li><a href="#샘플링과-델타-함수" id="toc-샘플링과-델타-함수" class="nav-link" data-scroll-target="#샘플링과-델타-함수">샘플링과 델타 함수</a></li>
+  </ul></li>
+  <li><a href="#시스템" id="toc-시스템" class="nav-link" data-scroll-target="#시스템"><span class="header-section-number">2</span> 시스템</a>
+  <ul class="collapse">
+  <li><a href="#시스템의-종류" id="toc-시스템의-종류" class="nav-link" data-scroll-target="#시스템의-종류">시스템의 종류</a></li>
+  <li><a href="#임펄스-응답" id="toc-임펄스-응답" class="nav-link" data-scroll-target="#임펄스-응답">임펄스 응답</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,8 +225,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="신호와-시스템" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="신호와-시스템"><span class="header-section-number">1</span> 신호와 시스템</h2>
+<section id="신호" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="신호"><span class="header-section-number">1</span> 신호</h2>
 <section id="신호와-신호처리" class="level3">
 <h3 class="anchored" data-anchor-id="신호와-신호처리">신호와 신호처리</h3>
 <p><strong>신호 (signal)</strong> 는 시공간적으로, 혹은 어떤 독립변수에 의해 변하는 물리량을 의미한다. 즉 측정할 수 있는 양을 말하며 신호를 목적에 맞게 가공하는 과정을 <strong>신호처리 (signal processing)</strong> 라고 한다. 하나의 소스에서 발생되는 신호를 스칼라 신호라고 하고, 시간에 따라 두 개 이상의 소스에서 발생하는 신호를 벡터 신호라고 한다. 스칼라 신호는 하나의 독립 변수로 표현할 수 있으므로 1차원 신호라고 하고, 벡터 신호는 두 개 이상의 독립 변수로 표현되므로 다차원 신호라고 한다. 예를 들어 영상(image)신호는 2차원 신호이며, 동영상(video) 신호는 3차원 신호이다.</p>
@@ -228,6 +235,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="샘플링과-양자화" class="level3">
 <h3 class="anchored" data-anchor-id="샘플링과-양자화">샘플링과 양자화</h3>
 <p>신호 <span class="math inline">\(s: A \subset \mathbb{R} \to \mathbb{R}\)</span> 를 생각하자. <span class="math inline">\(A\)</span> 가 연속일 때 <span class="math inline">\(A\)</span> 에 포함되는 수열 <span class="math inline">\(\langle t_k \rangle \subset A\)</span> 을 뽑아 내어 신호를 <span class="math inline">\(\{s_k = s(t_k)\}\)</span> 로 재구성 하는 것을 <strong>샘플링 (sampling)</strong> 이라고 한다. 유한개의 <span class="math inline">\(B \subset \{s(t):t\in A\}\)</span> 에 대한 함수 <span class="math inline">\(\phi : s(A) \to B\)</span> 에 대해 <span class="math inline">\(\overline{s}(t) = (\phi \circ s)(t)\)</span> 로 <span class="math inline">\(s(t)\)</span> 를 표현하는 것을 <strong>양자화 (quantization)</strong> 이라고 한다.</p>
+<p>보통 샘플링은 독립 변수에 대해 주기적으로 데이터를 얻는다. 즉 <span class="math inline">\(s(t)\)</span> 에 대해 주기 <span class="math inline">\(T\)</span> 간격으로 샘플링 할 경우 <span class="math inline">\(t_k = kT\)</span> 라 놓고 <span class="math inline">\(s_k = s(t_k) = s(kT)\)</span> 를 얻게 된다. 이 때 <span class="math inline">\(1/T\)</span> 를 <em>sampling rate</em> 라고 한다.</p>
+<p><br></p>
+</section>
+<section id="sampling-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="sampling-theorem">Sampling theorem</h3>
+<p>아날로그 신호가 band-limited 인 경우, 즉 아날로그 신호의 최대 주파수가 <span class="math inline">\(\nu_M\)</span> 일 경우 샘플링 주파수 <span class="math inline">\(\nu_S\)</span> 가 <span class="math inline">\(\nu_M\)</span> 의 2배보다 크다면 원본 아날로그 신호를 복원 할 수 있다. 이 때 <span class="math inline">\(2\nu_M\)</span> 을 <em>Nyquist frequency</em> 혹은 <em>Nyqueist rate</em> 라고 한다.</p>
 <p><br></p>
 </section>
 <section id="기본적인-신호" class="level3">
@@ -266,14 +279,23 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td style="text-align: center;">디렉 델타 함수</td>
-<td style="text-align: left;"><a href="#def-dirac_delta_function">정의&nbsp;1</a> 참고</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(\delta (x)\)</span>, <a href="#def-dirac_delta_function">정의&nbsp;1</a> 참고</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/fig-signal_functions-1.png" class="quarto-discovered-preview-image img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">기본적인 신호들</figcaption><p></p>
+</figure>
+</div>
+</center>
+<p><br></p>
+</section>
+<section id="디렉-델타-함수" class="level3">
+<h3 class="anchored" data-anchor-id="디렉-델타-함수">디렉 델타 함수</h3>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -289,11 +311,76 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p><br></p>
+<div id="prp-img_properties_of_delta_function" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 1 (델타 함수의 성질) </strong></span>델타 함수는 다음과 같은 성질을 가진다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\delta(-x) = \delta (x)\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\displaystyle \int_{-\infty}^\infty f(x)\,\delta(x-x_0)\, dx = f(x_0)\)</span>.</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(a\ne 0\)</span> 에 대해 <span class="math inline">\(\delta (ax) = \dfrac{1}{|a|} \delta (x)\)</span>.</p>
+<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(\displaystyle \int_{-\infty}^\infty f(x) \,\delta'(x)\, dx = - f'(0)\)</span></p>
+<p>  (<span class="math inline">\(5\)</span>) <span class="math inline">\(g(x)\)</span> 가 미분가능하며 <span class="math inline">\(g(x) = 0\)</span> 가 유한개의 근 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 을 갖고, <span class="math inline">\(g'(x_i)\ne 0\)</span> 일 때</p>
+<p><span class="math display">\[
+\displaystyle \delta (g(x))= \sum_{i=1}^n \dfrac{\delta(x-x_i)}{|g'(x_i)|}.
+\]</span></p>
+<p>  (<span class="math inline">\(6\)</span>) <span class="math inline">\(\delta(x) = \displaystyle \dfrac{1}{2\pi} \int_{-\infty}^\infty e^{ikx}\, dk\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) <span class="math inline">\(\displaystyle \int_{-\infty}^\infty f(x)\, \delta(-x)\, dx = \int_{-\infty}^\infty f(-x) \, \delta (x) \, dx = f(0)\)</span>.</p>
+<p>(<span class="math inline">\(2\)</span>) <span class="math inline">\(t=x-x_0\)</span> 로 치환하여 적분한다.</p>
+<p>(<span class="math inline">\(3\)</span>) <span class="math inline">\(t=ax\)</span> 로 치환하여 적분한다. <span class="math inline">\(a&lt;0\)</span> 인 경우</p>
+<p><span class="math display">\[
+\int_{-\infty}^\infty f(x)\, \delta(ax) \, dx = \dfrac{1}{|a|}\int_{-\infty}^\infty f(x/a) \delta (x)\, dx = \dfrac{1}{|a|} f(0) = \int_{-\infty}^\infty f(x) \left(\dfrac{1}{|a|} \delta(x) \right)dx
+\]</span></p>
+<p>이다.</p>
+<p>(<span class="math inline">\(4\)</span>) 부분적분을 이용한다.</p>
+<p><span class="math display">\[
+\int_{-\infty}^\infty f(x) \, \delta (x)\,dx = f(x) \delta(x){\huge \mid}_{-\infty}^\infty - \int_{-\infty}^\infty f'(x)\, \delta (x)\,dx = -f'(0).
+\]</span></p>
+<p>(<span class="math inline">\(5\)</span>) <span class="math inline">\(g'(x_i) \ne 0\)</span> 이므로 각각의 <span class="math inline">\(x_i\)</span> 주위에 <span class="math inline">\(g(x)\)</span> 가 전단사가 되는 <span class="math inline">\((x_i-\epsilon_i,\, x_i+\epsilon_i)\)</span> 구간이 존재한다. 이 구간에서의 <span class="math inline">\(g(x)\)</span> 의 역함수를 <span class="math inline">\(h_i(x)\)</span> 라고 하자. <span class="math inline">\(g(x_i-\epsilon_i),\, g(x_i+\epsilon_i)\)</span> 가운데 작은수와 큰 수를 각각 <span class="math inline">\(t_1,\,t_2\)</span> 라고 하면,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int f(x) \, \delta(g(x))\,dx &amp;= \sum_{i=1}^n \int_{x_i - \epsilon_i}^{x_i + \epsilon_i} f(x)\, \delta(g(x))\, dx \\
+&amp;= \sum_{i=1}^n \int_{t_1}^{t_2} f(h_i(t))\, \delta(t) \dfrac{dt}{|g'(h_i(t))|} \\
+&amp;= \sum_{i=1} \dfrac{f(x_i)}{|g'(x_i)|} \\
+&amp;= \int_{-\infty}^\infty f(x) \left(\sum_{i=1}\dfrac{\delta(x-x_i)}{|g'(x_i)|}\right)\, dx
+\end{aligned}
+\]</span></p>
+<p>이다.</p>
+<p>(<span class="math inline">\(6\)</span>) <span class="math inline">\(d(x) = \int_{-\infty}^\infty e^{ikx}\, dk\)</span> 로 놓고 다음과 같이 적분을 할 수 있다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+d(x) = \int_{-\infty}^\infty e^{ikx}dk &amp;= \int_{-\infty}^0 e^{ikx}\, dk + \int_0^{\infty} e^{ikx}\, dk \\
+&amp;= \int_0^\infty e^{ikx}\, dk + \int_0^\infty e^{-ikx}\,dk \\
+&amp;= \lim_{\epsilon \to 0^+} \int_{0}^\infty (e^{ikx}+e^{-ikx})\, e^{-\epsilon k}\, dk \\
+&amp;= \lim_{\epsilon \to 0^+} \dfrac{2\epsilon}{\epsilon^2+x^2}
+\end{aligned}
+\]</span></p>
+<p>이 경우 <span class="math inline">\(d(0) = +\infty\)</span> 이며 <span class="math inline">\(d(x\ne 0) = 0\)</span> 이다. 우리는</p>
+<p><span class="math display">\[
+\displaystyle \int_{-\infty}^\infty \dfrac{\epsilon}{x^2+\epsilon^2}\, dx = \tan^{-1} (x/\epsilon) {\huge \mid}_{-\infty}^\infty = \pi
+\]</span></p>
+<p>임을 안다. 즉 <span class="math inline">\(\epsilon\)</span> 값과 무관하게 <span class="math inline">\(\int_{-\infty}^\infty d(x)\, dx = 2\pi\)</span> 이다. 따라서 <span class="math display">\[
+\int_{-\infty}^\infty f(x)\, d(x) \, dx = \lim_{\epsilon \to 0^+} \int_{-\infty}^\infty \dfrac{2\epsilon f(x)}{\epsilon^2+x^2}\, dx = 2\pi f(0)
+\]</span></p>
+<p>이므로 <span class="math inline">\(d(x) = 2\pi \delta(x)\)</span> 이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
 </section>
-<section id="시스템" class="level3">
-<h3 class="anchored" data-anchor-id="시스템">시스템</h3>
+<section id="샘플링과-델타-함수" class="level3">
+<h3 class="anchored" data-anchor-id="샘플링과-델타-함수">샘플링과 델타 함수</h3>
+<p>우리가 자연적으로 들어오는 연속 시그널 <span class="math inline">\(s(t)\)</span> 에 대해 <span class="math inline">\(T\)</span> 간격으로 샘플링을 한다고 하자. 이 때 <span class="math inline">\(t=0\)</span> 으로 부터 <span class="math inline">\(k\)</span> 번째 샘플링된 신호 <span class="math inline">\(\tilde{s}_k\)</span> 는</p>
+<p><span class="math display">\[
+\tilde{s}_k = \int_{-\infty}^\infty s(t) \,\delta(t-T k) \,dt
+\]</span></p>
+<p>로 부터 얻을 수 있다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="시스템" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="시스템"><span class="header-section-number">2</span> 시스템</h2>
 <p>어떤 신호 <span class="math inline">\(s:A \to X\)</span> 를 받아들여 이 신호에 대한 다른 신호 <span class="math inline">\(g: A \to X\)</span> 를 만들어내는 것을 <strong>시스템 (System)</strong> 이라고 한다. 즉 <span class="math inline">\(g(x) = \mathcal{L}[s(x)]\)</span> 일 때 <span class="math inline">\(\mathcal{L}\)</span> 이 시스템을 기술하는 변환이다.</p>
 <p><br></p>
+<section id="시스템의-종류" class="level3">
+<h3 class="anchored" data-anchor-id="시스템의-종류">시스템의 종류</h3>
 <section id="선형-시스템" class="level4">
 <h4 class="anchored" data-anchor-id="선형-시스템">선형 시스템</h4>
 <p>시스템 <span class="math inline">\(\mathcal{L}\)</span> 이 신호 <span class="math inline">\(s_1,\,s_2\)</span> 와 신호 <span class="math inline">\(s_1,\,s_2\)</span> 에 대해</p>
@@ -303,20 +390,47 @@ ul.task-list li input[type="checkbox"] {
 <p>를 만족 할 때 이 시스템을 <strong>선형 시스템(linear system)</strong> 이라고 한다.</p>
 <p><br></p>
 </section>
-<section id="불변-시스템" class="level4">
-<h4 class="anchored" data-anchor-id="불변-시스템">불변 시스템</h4>
+<section id="translation-invariant-system" class="level4">
+<h4 class="anchored" data-anchor-id="translation-invariant-system">Translation invariant system</h4>
 <p>임의의 <span class="math inline">\(x_0\)</span> 에 대해</p>
 <p><span class="math display">\[
 \mathcal{L}[s(x-x_0)] = g(x-x_0)
 \]</span></p>
-<p>일 때 이 시스템을 <strong>불변 시스템 (invariant system)</strong> 이라고 한다. <span class="math inline">\(x\)</span> 가 시간 변수이면 시간-불변 시스템, 공간 변수이면 공간 불변 시스템이라고 한다.</p>
+<p>일 때 이 시스템을 <strong>translation invariant system</strong> 이라고 한다. <span class="math inline">\(x\)</span> 가 시간 변수이면 시간-불변 시스템, 공간 변수이면 공간 불변 시스템이라고 한다.</p>
 <p><br></p>
 </section>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section"></h4>
-
-
+<section id="lti-시스템" class="level4">
+<h4 class="anchored" data-anchor-id="lti-시스템">LTI 시스템</h4>
+<p>선형이며 Translation invariant 인 시스템을 <strong>LTI (Linear translation invariant) 시스템</strong> 이라고 한다.</p>
+<p><br></p>
 </section>
+</section>
+<section id="임펄스-응답" class="level3">
+<h3 class="anchored" data-anchor-id="임펄스-응답">임펄스 응답</h3>
+<p>어떤 시스템의 성질을 알고자 할 때 주로 사용하는 방법은 시스템에 임퍼스 입력을 넣어 나오는 출력의 형태로 파악하는 것이다. 이를 <strong>임펄스 응답(impulse response)</strong> 이라고 한다. 임펄스 응답은 이산 시스템의 고유한 성질을 반영하게 되어 임펄스 응답 시스템이라고 부른다. 임펄스로는 아래와 같은 형태의 정규화된 직사각 함수가 많이 사용된다.</p>
+<p><span class="math display">\[
+s_0 (x) = \dfrac{1}{X_0} \text{rect}\left(\dfrac{x}{X_0}\right)
+\]</span></p>
+<p><span class="math inline">\(s_0(x)\)</span> 는 폭이 <span class="math inline">\(X_0\)</span> 인 직사각형이며 <span class="math inline">\(\displaystyle \int_{-\infty}^\infty s_0 (x) = 1\)</span> 이다. 이제 연속인 신호를 <span class="math inline">\(s_0\)</span></p>
+<!-- ```{r, engine = 'tikz'}
+#| label: fig-impulse_response
+#| code-fold: true
+#| output: asis
+#| fig-width: 3
+#| fig-align: center
+#| fig-cap: "기본적인 신호들"
+
+\usetikzlibrary{arrows}
+\begin{tikzpicture}[ >=stealth]
+
+\draw[->] (-3, 0) -- (3, 0) node[below, black] {$x$} ;
+\draw[red, domain=-2.8:2.8, smooth, variable=\x, thick] plot ({\x}, {exp(-(\x+1.5)^2/0.5) + 1.2* exp(-(\x+0.5)^2/0.6)  - 0.7*exp(-(\x-2)^2/0.3)});
+\draw[thick, densely dashed, blue] (-2.8, 0) -- (-0.1, 0) node[below, black] {$nX_0$}-- (-0.1, 0.75) -- (0.2, 0.75) -- (0.2, 0.0) -- (2.8, 0);
+\node [above, black] at (-1.0, 1.3) {$s (x)$};
+\end{tikzpicture}
+``` -->
+
+
 </section>
 </section>
 

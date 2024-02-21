@@ -9,48 +9,6 @@ crossref:
 
 ## 일변수 함수의 푸리에 급수와 푸리에 변환
 
-### 디렉 델타 함수와 임펄스 
-
-
-::: {.callout-note appearance="simple" icon="false"}
-::: {#def-dirac_delta_fucntion}
-
-#### 디렉 델타 함수
-
-Dirac 델타 함수 (델타 함수) $\delta (t)$ 는 다음의 두가지 성질을 갖는 함수로 정의된다.
-
-&emsp; ($1$) $\delta(t) = \left\{ \begin{array}{ll} \infty \qquad &\text{if } t= 0 \\ 0 & \text{otherwise.} \end{array}\right.$
-
-&emsp; ($2$) $\mathbb{R}$ 에서 정의된 함수 $f(t)$ 에 대해 $\displaystyle \int_{-\infty}^\infty  \delta(t)\, f(t) \, dt = f(0)$.
-
-:::
-:::
-</br>
-
-::: {.callout-note appearance="simple" icon="false"}
-::: {#def-impulse_function}
-
-#### Impulse
-
-신호처리에서 디렉 델타 함수를 single impulse 로 간주하며, 주기 $\Delta T$ 로 반복되는 델타함수의 합 $s_{\Delta T}(t)$ 을 **impulse train** 이라 한다.
-
-$$
-s_{\Delta T} (t) = \sum_{k=-\infty}^{\infty} \delta (t - k\Delta T)
-$$
-
-:::
-:::
-
-</br>
-
-임의의 함수 $f(t)$ 에 대해 다음의 성질을 만족한다.
-
-$$
-\int_{-\infty}^\infty f(t) \, \delta (t-t_0) \, dt = f(t_0)
-$$
-
-</br>
-
 ### 푸리에 급수
 
 어떤 함수가 주기 $T$ 를 갖는다는 것은 모든 $t\in \mathbb{R}$ 에 대해 $f(t+T)=f(T)$ 임을 의미한다. 이 경우 $f(t)$ 는 다음과 같이 표현 할 수 있다.
@@ -89,7 +47,6 @@ $$
 
 </br>
 
-
 #### Impulse train 의 푸리에 전개
 
 $$
@@ -113,64 +70,237 @@ $$
 </br>
 
 
-### 1변수 함수의 푸리에 변환
+### 푸리에 변환
 
 
 ::: {.callout-note appearance="simple" icon="false"}
 ::: {#def-fourier_transform}
 
-### 푸리에 변환
+### 1차원 푸리에 변환
 
 함수 $f(t)$ 에 대한 푸리에 변환은 $\mathfrak{F}[f(t)]$ 로 쓰고 다음과 같이 정의된다.
 
 $$
 \begin{aligned}
-F(\mu) &:= \mathfrak{F}\left[ f(t)\right] = \int_{-\infty}^{\infty} f(t) \, e^{-2i\pi \mu t} \, dt,\\
-f(t) &= \mathfrak{F}^{-1}[F(\mu)] = \int_{-\infty}^{\infty} F(\mu)\, e^{2i \pi \mu t} \, d\mu\,.
+F(u) &:= \mathfrak{F}\left[ f(t)\right] = \int_{-\infty}^{\infty} f(t) \, e^{-2i\pi u t} \, dt,\\
+f(t) &= \mathfrak{F}^{-1}[F(\mu)] = \int_{-\infty}^{\infty} F(u)\, e^{2i \pi u t} \, d\mu\,.
 \end{aligned}
 $$
 
-그리고 $F(\mu) =\mathfrak{F}[f(t)]$ 는 일반적으로 복소수이며, 그 절대값 $|F(\mu)|$ 를 $f(t)$ 의 **Fourier spectrum** 혹은 **frequency spectrum** 이라 한다.
 
 :::
 :::
 
 
-</br>
+::: {.callout-note appearance="simple" icon="false"}
+::: {#def-fourier_transform}
 
-### Impulse train 의 푸리에 변환
+### 2차원 푸리에 변환
 
-$$
-s_{\Delta T}(t) = \dfrac{1}{\Delta T} \sum_{k=-\infty}^{\infty} e^{i \dfrac{2\pi n}{\Delta T}t}
-$$
-
-이므로 이에 대한 푸리에 변환 $S(\mu)$ 는 다음과 같다.
-
-$$
-S(\mu) = \mathfrak{F}[s_{\Delta T}(t)] = \dfrac{1}{\Delta} \sum_{n=-\infty}^{\infty} \delta \left(\mu - \dfrac{n}{\Delta T}\right)
-$$
-
-</br>
-
-### Convolution of two functions
-
-
-
-$f(t),\, g(t)$ 에 대한 푸리에 변환이 각각 $F(\mu),\, G(\mu)$ 라 하자.
+함수 $f(x, y)$ 에 대한 푸리에 변환은 $\mathfrak{F}[f(x, y)]$ 로 쓰고 다음과 같이 정의된다.
 
 $$
 \begin{aligned}
-\mathfrak{F}[(f\ast g) (t)] &= \int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty} f(x)g(t-x)\, dx \right] \,e^{-2i\pi \mu t}\, dt \\
-&= \int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty} g(t-x) e^{-2i\pi t \mu} \, dt\right]f(x)\, dx \\
-&= \int_{-\infty}^{\infty} G(\mu) e^{-2i\pi x\mu} \, f(x)\, dx = F(\mu) \, G(\mu) \\
-&= (F \cdot G)(\mu)
+F(u,\,v) &= \mathfrak{F} \left[f(x,\,y)\right]=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,\,y)e^{-2i\pi (ux+vy)}\, dxdy\,, \\
+f (x,\,y) &= \mathfrak{F}^{-1} \left[F(u,\,v)\right] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u, v) e^{2i \pi (ux+vy)} \, dudv
 \end{aligned}
+$$
+
+:::
+:::
+
+
+위의 경우 $F(u)$ 와 $F(u,\,v)$ 는 복소수이므로 다음과 같이 표현 할 수 있다. 
+
+$$
+F(u,\,v) = |F(u,\,v)| e^{i\Phi(u,\,v)}
+$$
+
+
+이 때 $|F(u,\,v)|$ 를 **푸리에 스펙트럼 (Fourier spectrum)** 이라 하고, $\Phi(u,\,v)$ 를 **위상 (phase)** 이라 한다. 또한 $P(u,\,v) =|F(u,\,v)|^2$ 를 **푸리에 파워 스펙트럼 (Fourier power spectrum)** 이라 한다.
+
+</br>
+
+### 푸리에 변환의 몇가지 수학적 성질
+
+여기서 $F(u) = \mathfrak{F}[f(t)]$, $F(u, v) = \mathfrak{F}[f(x, y)]$ 이며, 2차원 푸리에 변환에 대해서 증명한다. 1차원에 대해서는 그 결과를 쉽게 유추 할 수 있다.
+
+::: {#prp-fourier_similarity}
+#### Similarity
+$$
+\mathfrak{F}[f(ax,\,by)] =\dfrac{1}{ab} F\left(\dfrac{u}{a},\, \dfrac{v}{b}\right)
+$$
+:::
+
+::: {.proof}
+
+$$
+\begin{aligned}
+\mathfrak{F}[f(ax,\,by)] &= \iint f(ax,\, by) e^{-2i\pi (ux+vy)}\,dxdy \qquad & t=ax,\, s=by\\
+&= \dfrac{1}{ab} \iint f(s,\,t) e^{-2i \pi (ut/a+vs/b)}\, dtds \\
+&= \dfrac{1}{ab} F \left(\dfrac{u}{a},\, \dfrac{v}{b} \right)
+\end{aligned}
+$$
+
+:::
+
+</br>
+
+::: {#prp-fourier_shift_property}
+#### Shift property
+
+$$
+\mathfrak{F}[f(x-a,\, y-b)] = \exp (i2\pi (au+bv)) F(u,\,v)
+$$
+
+:::
+
+::: {.proof}
+$$
+\begin{aligned}
+\mathfrak{F}[f(x-a,\, y-b) ]&= \iint f(x-a,\, y-b) e^{-2i\pi (ux+vy)} \,dxdy \qquad & t=x-a,\, s=y-b\\
+&=\iint f(t,\,s) e^{-2i\pi (ux+vy)} e^{2i\pi (au+bv)} \, dxdy \\
+&= e^{2i\pi (au+bv)}F(u,\,v)
+\end{aligned}
+$$
+
+:::
+
+</br>
+
+::: {#prp-fourier-differential}
+#### 도함수의 푸리에 변환
+
+$$
+\mathfrak{F}\left[ \dfrac{d^k}{dx^k}f(x) \right] =( 2i\pi u)^k F(u) 
+$$
+
+:::
+
+::: {.proof}
+$k=1$ 인 경우만 보이면 나머지는 쉽게 일반화 된다.$f(x)=\displaystyle \int_{-\infty}^{\infty} F(u)e^{2i\pi ux}\, du$ 이므로
+
+$$
+f'(x) =  \int_{-\infty}^{\infty}(2i\pi u) F(u)e^{2i \pi ux} \, du
+$$
+
+이다. 따라서 
+
+$$
+\mathfrak{F}[f'(x)] = (2i\pi u) F(u)
+$$
+이다.
+:::
+
+</br>
+
+### 주기적 임펄스 함수의 푸리에 변환
+
+단위 임펄스 함수(디렉 델타 함수)가 $T$ 를 주기로 반복되는 함수를 주기적 임펄스 함수라 하며 이를 $S_T(t)$ 라 하자. 이는 주기함수이므로 푸리에 급수로 표현 할 수 있으며 다음과 같다. 
+
+$$
+\begin{aligned}
+S_T(t) &= \sum_{n=-\infty}^{\infty} \delta \left(t-nT \right) = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \exp \left( \dfrac{-i2n\pi t}{T}\right)
+\end{aligned}
+$$
+
+단일 임펄스 함수 $\delta(\mu-\mu_0)$ 에 대한 푸리에 변환은 다음과 같다.
+
+$$
+\mathfrak{F}[\delta (\mu-\mu_0)] = \int_{-\infty}^{\infty} \delta (\mu-\mu_0) e^{2i\pi \mu t}\, d\mu = e^{2i\pi \mu_0 t}
+$$
+
+따라서,
+
+$$
+\mathfrak{F}^{-1} \left[ \delta \left( \mu-\dfrac{n}{T} \right) \right] = \exp \left( \dfrac{2in\pi t}{t} \right) \iff \mathfrak{F}\left[  \exp \left( \dfrac{2in\pi t}{t} \right) \right] =  \delta \left( \mu-\dfrac{n}{T} \right)
+$$
+
+이다. 이를 이용하면 $s_T(t)$ 의 푸리에 변환식 $S(u)=\mathfrak{F}[s_N(t)]$ 를 계산 할 수 있으며 다음과 같다.
+
+$$
+S (u) = \mathfrak{F}\left[\dfrac{1}{T} \sum_{n=-\infty}^{\infty} \exp \left( \dfrac{-i2n\pi t}{T}\right)\right] = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \mathfrak{F}\left[ \exp \left( \dfrac{-i2n\pi t}{T}\right) \right] = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \delta \left(u - \dfrac{n}{T}\right)
+$$
+
+
+</br>
+
+### Convolution 의 푸리에 변환
+
+두 함수 $f(t),\, g(t)$ 의 convolution  $f(t) \otimes g(t)$ 은 다음과 같이 정의된다.
+
+$$
+f(t) \otimes g(t) \equiv \int_{-\infty}^{\infty} f(\tau) g(t-\tau) \, d\tau
+$$
+
+$F(\mu)= \mathfrak{I}[f(t)],\, G(\mu)=\mathfrak{I}[g(t)]$ 라 할 때, $f(t)\otimes g(t)$ 의 푸리에 변환을 구하면,
+
+$$
+\begin{aligned}
+\mathfrak{I}[f(t) \otimes g(t)] &= \int_{-\infty}^{\infty} \left[ \int_{-\infty}^{\infty} f(\tau)g(t-\tau) d\tau\right] e^{-2in\pi \mu t}\, dt \\
+&= \int_{-\infty}^{\infty}f(\tau) \left[  \int_{-\infty}^{\infty} g(t-\tau)e^{-2in \pi \mu t}\, dt\right] \,d\tau \\
+&= \int_{-\infty}^{\infty} f(\tau) G(\mu)e^{-2in \pi \mu \tau} \, d\tau \\
+&= F(\mu)G(\mu)
+\end{aligned}
+$$
+
+
+즉 합성곱의 푸리에 변환은 푸리에 변환의 곱이다. 이를 응용하면 두 함수의 곱의 푸리에변환은 합성곱이 됨을 보일 수 있다. 즉,
+
+$$
+\mathfrak{F}[f(t)g(t)]=F(\mu)\otimes G(\mu)
+$$
+
+가 된다.
+
+## 푸리에 변환과 샘플링
+
+임의의 연속함수 $f(t)$ 를 $T$ 를 주기로 샘플링 하였다고 하자. 그렇다면 이 샘플링 $\tilde{f}(t)$ 은 다음과 같은 식으로 표현 할 수 있다.
+
+$$
+\tilde{f}(t) = \sum_{n=-\infty}^{\infty} f(t) \delta (t-nT)
+$$
+
+이 때 $\mathfrak{I}[f(t)]= F(\mu),\, \mathfrak{I}[s_T(t)]= S(\mu)$ 라 하자 $\displaystyle S(\mu)=\dfrac{1}{T} \sum_{n=-\infty}^{\infty} \delta \left( \mu - \dfrac{n}{T}\right)$ 임은 알고 있다. 그렇다면 $\tilde{F}(\mu)=\mathfrak{I}\left[\tilde{f}(t) \right]$ 를 구하면,
+
+$$
+\begin{aligned}
+\tilde{F}(\mu) & = F(\mu)\otimes S(\mu) = \int_{-\infty}^{\infty} F(\tau)S(\mu-\tau)\, d\tau \\
+&= \dfrac{1}{T} \sum_{n=-\infty}^{\infty}\int_{-\infty} F(\tau) \delta \left(\mu-\tau-\dfrac{n}{T}\right)\, d\tau \\
+&= \dfrac{1}{T}\sum_{n=-\infty}^{\infty} F\left( \mu - \dfrac{n}{T} \right)
+\end{aligned}
+$$
+
+이다. 즉, 주기 $T$ 로 샘플링된 연속 함수 $f(t)$의 함수의 푸리에 변환은 원래 함수의 푸리에 변환 $F(\mu)$ 를 주기 $1/T$ 를 갖는 임펄스 함수로 바꾼 형태임을 알 수 있다.
+
+
+## 이산 푸리에 변환 (Discrete Fourier Transformation, DFT)
+
+1차원 공간상의 함수 $f$ 에 대해 $k$ 번째 에서의 값을 $f_k$ 라 하자. 그리고 이 수열을 $\mathbf{f}$ 라 하자. 즉,
+$$
+\mathbf{f}=(f_0,\ldots,\,f_{N-1})
 $$
 
 이다.
 
-우리는 여기에 다음을 쉽게 보일 수 있다.
+우리는 여기서 한가지 가정을 하게 되는데 $f$ 이 주기 $N$ 을 갖는다는 것이다. 즉 $f_{k+N}=f_k$ 이다. 이 때 $\mathfrak{I}[\mathbf{f}]=\mathbf{F}=[F_1,\ldots,\,F_{N-1}]$ 의 $F_\mu$ 는 다음과 같이 구할 수 있다.
 
 $$
-\mathfrak{F}^{-1} \left[(F\ast G)(\mu)\right] = f(t)g(t)
+F_\mu = \dfrac{1}{N}\int_{0}^{N-1} f(t) \exp \left(-\dfrac{i2\pi \mu }{N}t \right)\, dt = \dfrac{1}{N} \sum_{k=0}^{N-1} f_i \exp\left(-\dfrac{i2\pi \mu }{N} k \right)
+$$
+
+또한 $f_k$ 는 다음과 같이 표현 할 수 있다.
+
+$$
+f_k = \sum_{\mu=0}^{N-1} F_\mu \exp \left(-\dfrac{i2\pi k\mu }{N} \right)
+$$
+
+
+### 이차원 이산 푸리에 변환
+
+$$
+\begin{aligned}
+F_{uv} &= \dfrac{1}{MN} \sum_{j=0}^{M-1}\sum_{k=0}^{N-1} f_{jk} \exp \left[-2i\pi \left(\dfrac{ju}{M}+\dfrac{kv}{N}\right)\right] \\
+f_{jk} &=  \sum_{j=0}^{M-1}\sum_{k=0}^{N-1} F_{uv} \exp \left[2i\pi \left(\dfrac{ju}{M}+\dfrac{kv}{N}\right)\right]
+\end{aligned}
 $$
