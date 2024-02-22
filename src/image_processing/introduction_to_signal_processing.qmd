@@ -168,13 +168,127 @@ $$
 
 ### 샘플링과 델타 함수
 
-우리가 자연적으로 들어오는 연속 시그널 $s(t)$ 에 대해 $T$ 간격으로 샘플링을 한다고 하자. 이 때 $t=0$ 으로 부터 $k$ 번째 샘플링된 신호 $\tilde{s}_k$ 는
+우리가 자연적으로 들어오는 연속 시그널 $s(t)$ 에 대해 $T$ 간격으로 샘플링을 한다고 하자. 이 때 $t=0$ 으로 부터 $Tk$ 에서 샘플링된 신호 $\tilde{s}_k$ 는
 
 $$
-\tilde{s}_k = \int_{-\infty}^\infty s(t) \,\delta(t-T k) \,dt
-$$
+\tilde{s}_k = \int_{-\infty}^\infty s(t) \,\delta(t-kT ) \,dt
+$$ {#eq-img_sampling}
 
 로 부터 얻을 수 있다. 
+
+그렇다면 $s(t)$ 에 대한 샘플링을
+
+$$
+\tilde{s}(t) = \sum_k \int_{-\infty}^\infty s(t) \delta (t-kT) \, dt = \int_{-\infty}^\infty s(t) \left[ \sum_{k} \delta (t-kT)\right]\, dt
+$$ {#eq-img_impluse_train}
+
+로 부터 얻을 수 있다. 이 때 델타함수가 주기적으로 반복되는 $S_T(t) = \sum_{k} \delta (t-kT)$ 를 **주기적 임펄스 함수 (periodic impulse function)** 이라고 한다.
+
+</br>
+
+### 이산 데이터
+
+우리가 컴퓨터에서 다루는 대부분의 데이터는 이산데이터이다. 연속함수의 샘플링과 양자화로 얻어진 이산데이터일 수도 있고, 자체로서 이산적인 값을 갖는 데이터 일 수도 있다. 이산데이터는 수학에서 수열을 다룰 때 처럼 1차원의 경우 $s_k$ 나 혹은 $s[k]$ 로 표현하며, 2차원의 경우 $s_{i, j}$ 나 $s[i, j]$ 로 표현한다.
+
+
+</br>
+
+## Convolution 과 Correlation
+
+@eq-img_sampling 과 같은 형태의 함수는 매우 중요하다. 즉 두 함수 $f,\,g$ 에 대해 $\int f(t) g(x-t) \, dt$ 는 $x$ 에 대한 함수이며 **convolution** 이라 하고 $f \ast g$ 로 표현한다. 이와 유사한 것이 $\int f(t) g(x+t)\, dt$ 로 정의되는 **cross-correlation**  혹은 줄여서 **correlation** 이며 $f\otimes g$ 로 표현한다. 
+
+::: {.callout-note appearance="simple" icon="false"}
+::: {#def-fourier_series}
+
+#### convolution 과 cross-correlation
+
+연속 함수 $f,\,g$ 에 대해 **convolution** $f \ast g$ 와 **cross-correlation** $f \otimes g$ 는 다음과 같이 정의된다.
+
+&emsp; ($1$) 1 차원
+$$
+\begin{aligned}
+(f \ast g) (x) &= \int_{-\infty}^\infty f(t)\, g(x-t)\, dt, \\
+(f \otimes g) (x) & = \int_{-\infty}^\infty f(t)\, g(x+t)\, dt
+\end{aligned}
+$$
+
+&emsp; ($2$) 2차원
+
+$$
+\begin{aligned}
+(f \ast g) (x, y) &= \int_{-\infty}^\infty f(x,  y)\, g(t-x, s-y)\, dtds, \\
+(f \otimes g) (x, y) & = \int_{-\infty}^\infty f(x, y)\, g(t+x, s+y)\, dtds
+\end{aligned}
+$$
+
+
+
+이산 데이터 $f,\,g$ 에 대해서는 다음과 같이 정의된다.
+
+&emsp; ($1$) 1 차원
+$$
+\begin{aligned}
+(f \ast g)[i] &= \sum_n f[n]\, g[i-n], \\
+(f \otimes g)[i] &= \sum_n f[n]\, g[i+n], \\
+\end{aligned}
+$$
+
+&emsp; ($2$) 2차원
+$$
+\begin{aligned}
+(f \ast g)[i, j] &= \sum_{m, n} f[m, n]\, g[i-m, j-n], \\
+(f \otimes g)[i, j] &= \sum_{m,n} f[m, n]\, g[i+m, j+n], \\
+\end{aligned}
+$$
+:::
+:::
+
+</br>
+
+### 기본적인 성질
+
+::: {#prp-basic_properties_of_convolution}
+
+$f,\,g,\,h$ 에 대해 다음이 성립한다.
+
+&emsp; ($1$) $f\ast g = g \ast f$.
+
+&emsp; ($2$) $f \ast (g \ast h) = (f \ast g) \ast h$.
+
+&emsp; ($3$) $f \ast (g+h) = f\ast g + f \ast h$. 
+
+:::
+
+::: {.proof}
+
+($1$) 연속함수인 경우 정의에서 $s=x-t$ 로 치환해서 증명 할 수 있다.
+
+($2$) ($1$) 에 의해 $f\ast (g\ast h) = (g \ast h)\ast f$ 이다. 그리고 
+
+$$
+\int f(t-a)g(x-t)\, dx = \int f(t')\,g(x-a-t')\,dt = (f\ast g)(x-a) \tag{A}
+$$ 
+
+를 이용한다. 
+$$
+\begin{aligned}
+f \ast (g \ast h) &= \int \left[\int h(t) g(x-t)\, dt \right] f(s-x)\, ds \\
+&= \int h(t) \left[\int g(x-t) f(s-x)\, ds\right] \, dt &; (\textrm{A}) \\
+&= \int h(t) ((g \ast f)(x-t)) \, dt = (g \ast f)\ast h
+\end{aligned}
+$$
+
+($3$) 쉽게 보일 수 있다.
+:::
+
+
+즉 convolution 에 대해서는 교환법칙, 결합법칙, 분배법칙이 성립한다. 그러나 cross-correlation 에 대해서는 분배법칙만 성립한다. 
+
+
+우리가 직접 다루는 데이터는 크기가 한정된 이산적인 데이터이다. $f$ 가 1 부터 $M$ 까지의 index 를 가지며 $g$ 가 1 부터 $N$ 까지의 인덱스를 갖는 1차원 배열이라고 하자. $
+
+
+
 
 
 </br>

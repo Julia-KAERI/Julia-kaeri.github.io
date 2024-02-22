@@ -196,8 +196,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#기본적인-신호" id="toc-기본적인-신호" class="nav-link" data-scroll-target="#기본적인-신호">기본적인 신호</a></li>
   <li><a href="#디렉-델타-함수" id="toc-디렉-델타-함수" class="nav-link" data-scroll-target="#디렉-델타-함수">디렉 델타 함수</a></li>
   <li><a href="#샘플링과-델타-함수" id="toc-샘플링과-델타-함수" class="nav-link" data-scroll-target="#샘플링과-델타-함수">샘플링과 델타 함수</a></li>
+  <li><a href="#이산-데이터" id="toc-이산-데이터" class="nav-link" data-scroll-target="#이산-데이터">이산 데이터</a></li>
   </ul></li>
-  <li><a href="#시스템" id="toc-시스템" class="nav-link" data-scroll-target="#시스템"><span class="header-section-number">2</span> 시스템</a>
+  <li><a href="#convolution-과-correlation" id="toc-convolution-과-correlation" class="nav-link" data-scroll-target="#convolution-과-correlation"><span class="header-section-number">2</span> Convolution 과 Correlation</a>
+  <ul class="collapse">
+  <li><a href="#기본적인-성질" id="toc-기본적인-성질" class="nav-link" data-scroll-target="#기본적인-성질">기본적인 성질</a></li>
+  </ul></li>
+  <li><a href="#시스템" id="toc-시스템" class="nav-link" data-scroll-target="#시스템"><span class="header-section-number">3</span> 시스템</a>
   <ul class="collapse">
   <li><a href="#시스템의-종류" id="toc-시스템의-종류" class="nav-link" data-scroll-target="#시스템의-종류">시스템의 종류</a></li>
   <li><a href="#임펄스-응답" id="toc-임펄스-응답" class="nav-link" data-scroll-target="#임펄스-응답">임펄스 응답</a></li>
@@ -367,16 +372,95 @@ d(x) = \int_{-\infty}^\infty e^{ikx}dk &amp;= \int_{-\infty}^0 e^{ikx}\, dk + \i
 </section>
 <section id="샘플링과-델타-함수" class="level3">
 <h3 class="anchored" data-anchor-id="샘플링과-델타-함수">샘플링과 델타 함수</h3>
-<p>우리가 자연적으로 들어오는 연속 시그널 <span class="math inline">\(s(t)\)</span> 에 대해 <span class="math inline">\(T\)</span> 간격으로 샘플링을 한다고 하자. 이 때 <span class="math inline">\(t=0\)</span> 으로 부터 <span class="math inline">\(k\)</span> 번째 샘플링된 신호 <span class="math inline">\(\tilde{s}_k\)</span> 는</p>
-<p><span class="math display">\[
-\tilde{s}_k = \int_{-\infty}^\infty s(t) \,\delta(t-T k) \,dt
-\]</span></p>
+<p>우리가 자연적으로 들어오는 연속 시그널 <span class="math inline">\(s(t)\)</span> 에 대해 <span class="math inline">\(T\)</span> 간격으로 샘플링을 한다고 하자. 이 때 <span class="math inline">\(t=0\)</span> 으로 부터 <span class="math inline">\(Tk\)</span> 에서 샘플링된 신호 <span class="math inline">\(\tilde{s}_k\)</span> 는</p>
+<p><span id="eq-img_sampling"><span class="math display">\[
+\tilde{s}_k = \int_{-\infty}^\infty s(t) \,\delta(t-kT ) \,dt
+\tag{1}\]</span></span></p>
 <p>로 부터 얻을 수 있다.</p>
+<p>그렇다면 <span class="math inline">\(s(t)\)</span> 에 대한 샘플링을</p>
+<p><span id="eq-img_impluse_train"><span class="math display">\[
+\tilde{s}(t) = \sum_k \int_{-\infty}^\infty s(t) \delta (t-kT) \, dt = \int_{-\infty}^\infty s(t) \left[ \sum_{k} \delta (t-kT)\right]\, dt
+\tag{2}\]</span></span></p>
+<p>로 부터 얻을 수 있다. 이 때 델타함수가 주기적으로 반복되는 <span class="math inline">\(S_T(t) = \sum_{k} \delta (t-kT)\)</span> 를 <strong>주기적 임펄스 함수 (periodic impulse function)</strong> 이라고 한다.</p>
+<p><br></p>
+</section>
+<section id="이산-데이터" class="level3">
+<h3 class="anchored" data-anchor-id="이산-데이터">이산 데이터</h3>
+<p>우리가 컴퓨터에서 다루는 대부분의 데이터는 이산데이터이다. 연속함수의 샘플링과 양자화로 얻어진 이산데이터일 수도 있고, 자체로서 이산적인 값을 갖는 데이터 일 수도 있다. 이산데이터는 수학에서 수열을 다룰 때 처럼 1차원의 경우 <span class="math inline">\(s_k\)</span> 나 혹은 <span class="math inline">\(s[k]\)</span> 로 표현하며, 2차원의 경우 <span class="math inline">\(s_{i, j}\)</span> 나 <span class="math inline">\(s[i, j]\)</span> 로 표현한다.</p>
 <p><br></p>
 </section>
 </section>
-<section id="시스템" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="시스템"><span class="header-section-number">2</span> 시스템</h2>
+<section id="convolution-과-correlation" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="convolution-과-correlation"><span class="header-section-number">2</span> Convolution 과 Correlation</h2>
+<p><a href="#eq-img_sampling">식&nbsp;1</a> 과 같은 형태의 함수는 매우 중요하다. 즉 두 함수 <span class="math inline">\(f,\,g\)</span> 에 대해 <span class="math inline">\(\int f(t) g(x-t) \, dt\)</span> 는 <span class="math inline">\(x\)</span> 에 대한 함수이며 <strong>convolution</strong> 이라 하고 <span class="math inline">\(f \ast g\)</span> 로 표현한다. 이와 유사한 것이 <span class="math inline">\(\int f(t) g(x+t)\, dt\)</span> 로 정의되는 <strong>cross-correlation</strong> 혹은 줄여서 <strong>correlation</strong> 이며 <span class="math inline">\(f\otimes g\)</span> 로 표현한다.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-fourier_series" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (convolution 과 cross-correlation) </strong></span>연속 함수 <span class="math inline">\(f,\,g\)</span> 에 대해 <strong>convolution</strong> <span class="math inline">\(f \ast g\)</span> 와 <strong>cross-correlation</strong> <span class="math inline">\(f \otimes g\)</span> 는 다음과 같이 정의된다.</p>
+<p>  (<span class="math inline">\(1\)</span>) 1 차원 <span class="math display">\[
+\begin{aligned}
+(f \ast g) (x) &amp;= \int_{-\infty}^\infty f(t)\, g(x-t)\, dt, \\
+(f \otimes g) (x) &amp; = \int_{-\infty}^\infty f(t)\, g(x+t)\, dt
+\end{aligned}
+\]</span></p>
+<p>  (<span class="math inline">\(2\)</span>) 2차원</p>
+<p><span class="math display">\[
+\begin{aligned}
+(f \ast g) (x, y) &amp;= \int_{-\infty}^\infty f(x,  y)\, g(t-x, s-y)\, dtds, \\
+(f \otimes g) (x, y) &amp; = \int_{-\infty}^\infty f(x, y)\, g(t+x, s+y)\, dtds
+\end{aligned}
+\]</span></p>
+<p>이산 데이터 <span class="math inline">\(f,\,g\)</span> 에 대해서는 다음과 같이 정의된다.</p>
+<p>  (<span class="math inline">\(1\)</span>) 1 차원 <span class="math display">\[
+\begin{aligned}
+(f \ast g)[i] &amp;= \sum_n f[n]\, g[i-n], \\
+(f \otimes g)[i] &amp;= \sum_n f[n]\, g[i+n], \\
+\end{aligned}
+\]</span></p>
+<p>  (<span class="math inline">\(2\)</span>) 2차원 <span class="math display">\[
+\begin{aligned}
+(f \ast g)[i, j] &amp;= \sum_{m, n} f[m, n]\, g[i-m, j-n], \\
+(f \otimes g)[i, j] &amp;= \sum_{m,n} f[m, n]\, g[i+m, j+n], \\
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<section id="기본적인-성질" class="level3">
+<h3 class="anchored" data-anchor-id="기본적인-성질">기본적인 성질</h3>
+<div id="prp-basic_properties_of_convolution" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 2 </strong></span><span class="math inline">\(f,\,g,\,h\)</span> 에 대해 다음이 성립한다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(f\ast g = g \ast f\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(f \ast (g \ast h) = (f \ast g) \ast h\)</span>.</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(f \ast (g+h) = f\ast g + f \ast h\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) 연속함수인 경우 정의에서 <span class="math inline">\(s=x-t\)</span> 로 치환해서 증명 할 수 있다.</p>
+<p>(<span class="math inline">\(2\)</span>) (<span class="math inline">\(1\)</span>) 에 의해 <span class="math inline">\(f\ast (g\ast h) = (g \ast h)\ast f\)</span> 이다. 그리고</p>
+<p><span class="math display">\[
+\int f(t-a)g(x-t)\, dx = \int f(t')\,g(x-a-t')\,dt = (f\ast g)(x-a) \tag{A}
+\]</span></p>
+<p>를 이용한다. <span class="math display">\[
+\begin{aligned}
+f \ast (g \ast h) &amp;= \int \left[\int h(t) g(x-t)\, dt \right] f(s-x)\, ds \\
+&amp;= \int h(t) \left[\int g(x-t) f(s-x)\, ds\right] \, dt &amp;; (\textrm{A}) \\
+&amp;= \int h(t) ((g \ast f)(x-t)) \, dt = (g \ast f)\ast h
+\end{aligned}
+\]</span></p>
+<p>(<span class="math inline">\(3\)</span>) 쉽게 보일 수 있다.</p>
+</div>
+<p>즉 convolution 에 대해서는 교환법칙, 결합법칙, 분배법칙이 성립한다. 그러나 cross-correlation 에 대해서는 분배법칙만 성립한다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="시스템" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="시스템"><span class="header-section-number">3</span> 시스템</h2>
 <p>어떤 신호 <span class="math inline">\(s:A \to X\)</span> 를 받아들여 이 신호에 대한 다른 신호 <span class="math inline">\(g: A \to X\)</span> 를 만들어내는 것을 <strong>시스템 (System)</strong> 이라고 한다. 즉 <span class="math inline">\(g(x) = \mathcal{L}[s(x)]\)</span> 일 때 <span class="math inline">\(\mathcal{L}\)</span> 이 시스템을 기술하는 변환이다.</p>
 <p><br></p>
 <section id="시스템의-종류" class="level3">
