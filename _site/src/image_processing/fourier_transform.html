@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#차원-dft" id="toc-차원-dft" class="nav-link" data-scroll-target="#차원-dft">1차원 DFT</a></li>
   <li><a href="#차원-dft-1" id="toc-차원-dft-1" class="nav-link" data-scroll-target="#차원-dft-1">2차원 DFT</a></li>
-  <li><a href="#고속-푸리에-변환" id="toc-고속-푸리에-변환" class="nav-link" data-scroll-target="#고속-푸리에-변환">고속 푸리에 변환</a></li>
+  <li><a href="#고속-푸리에-변환과-fftw.jl" id="toc-고속-푸리에-변환과-fftw.jl" class="nav-link" data-scroll-target="#고속-푸리에-변환과-fftw.jl">고속 푸리에 변환과 <code>FFTW.jl</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -230,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="1" class="anchored" data-anchor-id="푸리에-급수와-푸리에-변환"><span class="header-section-number">1</span> 푸리에 급수와 푸리에 변환</h2>
 <section id="푸리에-급수" class="level3">
 <h3 class="anchored" data-anchor-id="푸리에-급수">푸리에 급수</h3>
-<p>어떤 함수가 주기 <span class="math inline">\(T\)</span> 를 갖는다는 것은 모든 <span class="math inline">\(t\in \mathbb{R}\)</span> 에 대해 <span class="math inline">\(f(t+T)=f(T)\)</span> 임을 의미한다. 이 경우 <span class="math inline">\(f(t)\)</span> 는 다음과 같이 표현 할 수 있다.</p>
+<p>어떤 함수가 주기 <span class="math inline">\(T\)</span> 를 갖는다는 것은 모든 <span class="math inline">\(t\in \mathbb{R}\)</span> 에 대해 <span class="math inline">\(f(t+T)=f(T)\)</span> 임을 의미한다. 이 경우 <span class="math inline">\(f(t)\)</span> 는 다음과 같이 표현 할 수 있다. 주기 <span class="math inline">\(T\)</span> 에 대해 <span class="math inline">\(\nu = 1/T\)</span> 를 <strong>진동수(frequency)</strong> 라고 하고 <span class="math inline">\(\omega = 2\pi/T = 2\nu\)</span> 를 <strong>각진동수 (angular frequency)</strong> 라고 한다.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -238,16 +238,44 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <div id="def-fourier_series" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 1 (푸리에 급수) </strong></span>주기 <span class="math inline">\(T\)</span> 를 갖는 연속함수 <span class="math inline">\(f(t)\)</span> 는 다음과 같은 푸리에 급수로 표현 할 수 있다.</p>
+<p><span class="theorem-title"><strong>정의 1 (실함수의 푸리에 급수) </strong></span>주기 <span class="math inline">\(T\)</span> 를 갖는 실함수 <span class="math inline">\(f: X \subset \mathbb{R} \to \mathbb{R}\)</span> 는 다음과 같은 푸리에 급수로 표현 할 수 있다. 여기서 <span class="math inline">\(\omega = 2\pi/T\)</span> 이다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(t) &amp;= \sum_{n=-\infty}^{\infty} c_n \exp \left(\dfrac{i 2\pi n}{T}t\right)\,,\\
-c_n &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) \exp \left(-\dfrac{i2\pi n }{T}t \right)\, dt\,, \qquad n\in \mathbb{Z}
+f(t) &amp;= a_0 + \sum_{n=1}^{\infty} a_n \cos (n\omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)\,,\\
+\text{where}\qquad  a_0 &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t)\, dt\\
+a_n &amp;= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \cos (n\omega t)\, dt\\
+b_n &amp;= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \sin (n\omega t)\, dt\\
 \end{aligned}
 \]</span></p>
 </div>
 </div>
 </div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-fourier_series_2" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (푸리에 급수) </strong></span>주기 <span class="math inline">\(T\)</span> 를 갖는 함수 <span class="math inline">\(f(t)\)</span> 는 다음과 같은 푸리에 급수로 표현 할 수 있다. 여기서 <span class="math inline">\(\omega = 2\pi/T\)</span> 이다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(t) &amp;= \sum_{n=-\infty}^{\infty} c_n e^{in\omega t}\,,\\
+\text{where}\qquad c_n &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) e^{in\omega t}\, dt\,, \qquad n\in \mathbb{Z}
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><a href="#def-fourier_series">정의&nbsp;1</a> 는 실함수의 경우, <a href="#def-fourier_series_2">정의&nbsp;2</a> 는 실함수를 포함한 복소함수의 경우에 사용 할 수 있다. 아래 그림은 두가지 함수에 대한 푸리에 급수를 <span class="math inline">\(n=1,\ldots,\,4\)</span> 까지 표한 것이다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/fourier_expansion.png" class="quarto-discovered-preview-image img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">푸리에 급수</figcaption><p></p>
+</figure>
 </div>
 <p><br></p>
 <div id="exm-fourier_exmapsion" class="theorem example">
@@ -257,23 +285,27 @@ c_n &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) \exp \left(-\dfrac{i2\pi n }{T}t \
 \]</span></p>
 </div>
 <p><br></p>
-<section id="impulse-train-의-푸리에-전개" class="level4">
-<h4 class="anchored" data-anchor-id="impulse-train-의-푸리에-전개">Impulse train 의 푸리에 전개</h4>
-<p><span class="math display">\[
+<!-- #### Impulse train 의 푸리에 전개
+
+$$
 \begin{aligned}
-c_n &amp;= \dfrac{1}{\Delta T} \int_{-\Delta T/2}^{\Delta T/2} s_{\Delta T} \, \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
-&amp;= \dfrac{1}{\Delta T} \sum_{k=-\infty}^\infty \int_{-\Delta T/2}^{\Delta T/2} \delta(t-k\Delta T) \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
-&amp;= \dfrac{1}{\Delta T}
+c_n &= \dfrac{1}{\Delta T} \int_{-\Delta T/2}^{\Delta T/2} s_{\Delta T} \, \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
+&= \dfrac{1}{\Delta T} \sum_{k=-\infty}^\infty \int_{-\Delta T/2}^{\Delta T/2} \delta(t-k\Delta T) \exp \left(-i \dfrac{2\pi n}{\Delta T} t\right) \, dt \\
+&= \dfrac{1}{\Delta T}
 \end{aligned}
-\]</span></p>
-<p><br></p>
-<p>이므로,</p>
-<p><span class="math display">\[
+$$
+
+</br>
+
+이므로, 
+
+$$
 s_{\Delta T}(t) = \dfrac{1}{\Delta T} \sum_{n=-\infty}^{\infty} e^{i \dfrac{2 \pi n}{\Delta T}t}
-\]</span></p>
-<p>이다.</p>
+$$
+
+이다. -->
 <p><br></p>
-</section>
+<p><br></p>
 </section>
 <section id="푸리에-변환" class="level3">
 <h3 class="anchored" data-anchor-id="푸리에-변환">푸리에 변환</h3>
@@ -284,7 +316,7 @@ s_{\Delta T}(t) = \dfrac{1}{\Delta T} \sum_{n=-\infty}^{\infty} e^{i \dfrac{2 \p
 </div>
 <div class="callout-body-container">
 <div id="def-fourier_transform" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 2 (1차원 푸리에 변환) </strong></span>함수 <span class="math inline">\(f(t)\)</span> 에 대한 푸리에 변환은 <span class="math inline">\(\mathfrak{F}[f(t)]\)</span> 로 쓰고 다음과 같이 정의된다.</p>
+<p><span class="theorem-title"><strong>정의 3 (1차원 푸리에 변환) </strong></span>함수 <span class="math inline">\(f(t)\)</span> 에 대한 푸리에 변환은 <span class="math inline">\(\mathfrak{F}[f(t)]\)</span> 로 쓰고 다음과 같이 정의된다.</p>
 <p><span class="math display">\[
 \begin{aligned}
 F(u) &amp;:= \mathfrak{F}\left[ f(t)\right] = \int_{-\infty}^{\infty} f(t) \, e^{-2i\pi u t} \, dt,\\
@@ -302,7 +334,7 @@ f(t) &amp;= \mathfrak{F}^{-1}[F(\mu)] = \int_{-\infty}^{\infty} F(u)\, e^{2i \pi
 </div>
 <div class="callout-body-container">
 <div id="def-fourier_transform" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 3 (2차원 푸리에 변환) </strong></span>함수 <span class="math inline">\(f(x, y)\)</span> 에 대한 푸리에 변환은 <span class="math inline">\(\mathfrak{F}[f(x, y)]\)</span> 로 쓰고 다음과 같이 정의된다.</p>
+<p><span class="theorem-title"><strong>정의 4 (2차원 푸리에 변환) </strong></span>함수 <span class="math inline">\(f(x, y)\)</span> 에 대한 푸리에 변환은 <span class="math inline">\(\mathfrak{F}[f(x, y)]\)</span> 로 쓰고 다음과 같이 정의된다.</p>
 <p><span class="math display">\[
 \begin{aligned}
 F(u,\,v) &amp;= \mathfrak{F} \left[f(x,\,y)\right]=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,\,y)e^{-2i\pi (ux+vy)}\, dxdy\,, \\
@@ -445,8 +477,7 @@ f(t) \ast g(t) \equiv \int_{-\infty}^{\infty} f(\tau) g(t-\tau) \, d\tau
 <p><span class="math display">\[
 \ldots , \underline{1, 3, 2 , 4}, 1, 3,2,4, \underline{1, 3, 2,4},\ldots
 \]</span></p>
-<p>에 대한 푸리에 변환이라는 의미이다. (주기적으로 반복되는 것을 잘 보이게 하기 위해 밑줄로 표현하였다)</p>
-<p><span class="math inline">\(N\)</span> 개의 데이터가 <span class="math inline">\(N\)</span> 의 주기로 반복되기 때문에 전체적으로 주기는 <span class="math inline">\(0, 1,\ldots,\, N-1\)</span></p>
+<p>에 대한 푸리에 변환이라는 의미이다 (주기적으로 반복되는 것을 잘 보이게 하기 위해 밑줄로 표현하였다). <span class="math inline">\(N\)</span> 개의 데이터가 <span class="math inline">\(N\)</span> 의 주기로 반복되기 때문에 전체적으로 주기는 <span class="math inline">\(0, 1,\ldots,\, N-1\)</span> 이며</p>
 <p>이 때 <span class="math inline">\(\mathfrak{F}[f]=\langle F\rangle = (F_1,\ldots,\,F_{N-1})\)</span> 의 <span class="math inline">\(F_u\)</span> 는 다음과 같이 구할 수 있다.</p>
 <p><span class="math display">\[
 F_u = \dfrac{1}{N} \sum_{k=1}^{N} f_k \exp\left(-\dfrac{i2\pi (u-1) }{N} (k-1) \right)
@@ -468,9 +499,9 @@ f_{jk} &amp;=  \sum_{j=1}^{M}\sum_{k=1}^{N} F_{uv} \exp \left[2i\pi \left(\dfrac
 <p><br></p>
 <p><br></p>
 </section>
-<section id="고속-푸리에-변환" class="level3">
-<h3 class="anchored" data-anchor-id="고속-푸리에-변환">고속 푸리에 변환</h3>
-<p>이산 푸리</p>
+<section id="고속-푸리에-변환과-fftw.jl" class="level3">
+<h3 class="anchored" data-anchor-id="고속-푸리에-변환과-fftw.jl">고속 푸리에 변환과 <code>FFTW.jl</code></h3>
+<p>고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 의 연산이 필요하지만, FFT를 이용하면 <span class="math inline">\(\mathcal{O}(n \log n)\)</span> 의 연산만으로 가능하다. FFT 는 알고리즘이며 그것을 구현한 것 가운데 가장 널리 사용되는 것이 <a href="https://www.fftw.org">FFTW</a> 이다. FFTW 는 <em>Fastest Fourier Transform in the West</em> 의 약자로 C 언어로 구현되어 있으며, Julia 에서 가장 많이 사용하는 FFT 라이브러리인 <code>FFTW.jl</code> 은 <code>FFTW</code> 의 Julia 바인딩이다.</p>
 
 
 </section>
