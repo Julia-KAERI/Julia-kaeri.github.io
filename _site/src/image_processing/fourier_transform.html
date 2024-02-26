@@ -501,7 +501,7 @@ f_{jk} &amp;=  \sum_{j=1}^{M}\sum_{k=1}^{N} F_{uv} \exp \left[2i\pi \left(\dfrac
 </section>
 <section id="고속-푸리에-변환과-fftw.jl" class="level3">
 <h3 class="anchored" data-anchor-id="고속-푸리에-변환과-fftw.jl">고속 푸리에 변환과 <code>FFTW.jl</code></h3>
-<p>고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 의 연산이 필요하지만, FFT를 이용하면 <span class="math inline">\(\mathcal{O}(n \log n)\)</span> 의 연산만으로 가능하다. FFT 는 알고리즘이며 그것을 구현한 것 가운데 가장 널리 사용되는 것이 <a href="https://www.fftw.org">FFTW</a> 이다. FFTW 는 <em>Fastest Fourier Transform in the West</em> 의 약자로 C 언어로 구현되어 있으며, Julia 에서 가장 많이 사용하는 FFT 라이브러리인 <code>FFTW.jl</code> 은 <code>FFTW</code> 의 Julia 바인딩이다.</p>
+<p>고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 의 연산이 필요하지만, FFT를 이용하면 <span class="math inline">\(\mathcal{O}(n \log n)\)</span> 의 연산만으로 가능하다. FFT 는 알고리즘이며 그것을 구현한 것 가운데 가장 널리 사용되는 것이 <a href="https://www.fftw.org">FFTW</a> 이다. FFTW 는 <em>Fastest Fourier Transform in the West</em> 의 약자로 C 언어로 구현되어 있으며, Julia 에서 가장 많이 사용하는 FFT 라이브러리인 <code>FFTW.jl</code> 은 <code>FFTW</code> 의 Julia <a href="https://ko.wikipedia.org/wiki/언어_바인딩">바인딩</a> 이다.</p>
 
 
 </section>
