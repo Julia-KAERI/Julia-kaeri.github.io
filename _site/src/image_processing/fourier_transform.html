@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -227,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#푸리에-급수" id="toc-푸리에-급수" class="nav-link" data-scroll-target="#푸리에-급수">푸리에 급수</a></li>
   <li><a href="#푸리에-변환" id="toc-푸리에-변환" class="nav-link" data-scroll-target="#푸리에-변환">푸리에 변환</a></li>
   <li><a href="#푸리에-변환의-몇가지-수학적-성질" id="toc-푸리에-변환의-몇가지-수학적-성질" class="nav-link" data-scroll-target="#푸리에-변환의-몇가지-수학적-성질">푸리에 변환의 몇가지 수학적 성질</a></li>
-  <li><a href="#주기적-임펄스-함수의-푸리에-변환" id="toc-주기적-임펄스-함수의-푸리에-변환" class="nav-link" data-scroll-target="#주기적-임펄스-함수의-푸리에-변환">주기적 임펄스 함수의 푸리에 변환</a></li>
+  <li><a href="#샘플링-함수의-푸리에-변환" id="toc-샘플링-함수의-푸리에-변환" class="nav-link" data-scroll-target="#샘플링-함수의-푸리에-변환">샘플링 함수의 푸리에 변환</a></li>
   <li><a href="#convolution-의-푸리에-변환" id="toc-convolution-의-푸리에-변환" class="nav-link" data-scroll-target="#convolution-의-푸리에-변환">Convolution 의 푸리에 변환</a></li>
   <li><a href="#푸리에-변환과-샘플링" id="toc-푸리에-변환과-샘플링" class="nav-link" data-scroll-target="#푸리에-변환과-샘플링">푸리에 변환과 샘플링</a></li>
   </ul></li>
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -275,10 +275,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="theorem-title"><strong>정의 1 (실함수의 푸리에 급수) </strong></span>주기 <span class="math inline">\(T\)</span> 를 갖는 실함수 <span class="math inline">\(f: X \subset \mathbb{R} \to \mathbb{R}\)</span> 는 다음과 같은 푸리에 급수로 표현 할 수 있다. 여기서 <span class="math inline">\(\omega = 2\pi/T\)</span> 이다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(t) &amp;= a_0 + \sum_{n=1}^{\infty} a_n \cos (n\omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)\,,\\
-\text{where}\qquad  a_0 &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t)\, dt\\
-a_n &amp;= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \cos (n\omega t)\, dt\\
-b_n &amp;= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \sin (n\omega t)\, dt\\
+f(t) &amp;= \dfrac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos (n\omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)\,,\\
+\text{where}\qquad  a_n &amp;= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \cos (n\omega t)\, dt\\
+b_n &amp;= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \sin (n\omega t)\, dt.
 \end{aligned}
 \]</span></p>
 </div>
@@ -296,7 +295,7 @@ b_n &amp;= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \sin (n\omega t)\, dt\\
 <p><span class="math display">\[
 \begin{aligned}
 f(t) &amp;= \sum_{n=-\infty}^{\infty} c_n e^{in\omega t}\,,\\
-\text{where}\qquad c_n &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) e^{in\omega t}\, dt\,, \qquad n\in \mathbb{Z}
+\text{where}\qquad c_n &amp;= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) e^{-in\omega t}\, dt\,, \qquad n\in \mathbb{Z}
 \end{aligned}
 \]</span></p>
 </div>
@@ -312,6 +311,11 @@ f(t) &amp;= \sum_{n=-\infty}^{\infty} c_n e^{in\omega t}\,,\\
 </figure>
 </div>
 <p><br></p>
+<p><span class="math inline">\([-T/2,\, T/2]\)</span> 구간에서 연속인 함수의 집합 <span class="math inline">\(X\)</span> 를 생각하자. 이 집합은 벡터공간이다. 여기에 내적을 다음과 같이 정의한다.</p>
+<p><span class="math display">\[
+\langle \phi,\, \psi \rangle = \int_{-T/2}^{T/2} \psi^\ast(t)\, \phi(t)\, dt
+\]</span></p>
+<p>수학적으로 푸리에 급수가 의미 있기 위해서는 <span class="math inline">\(\omega = 2\pi/T\)</span> 에 대해 <span class="math inline">\(\{e^{in\omega t} : n\in \mathbb{Z}\}\)</span> 가 <span class="math inline">\([T/2,\,T/2]\)</span> 구간에서 연속인 모든 복소 함수의 집합에 대해 정규직교기저이어야 한다. 이것이</p>
 <div id="exm-fourier_exmapsion" class="theorem example">
 <p><span class="theorem-title"><strong>예제 1 (기저함수의 직교성) </strong></span>임의의 정수 <span class="math inline">\(m,\,n\)</span> 에 대해 다음이 성립함을 보여라.</p>
 <p><span class="math display">\[
@@ -446,25 +450,25 @@ F(u) = \mathfrak{F}\left[\text{rect}\left(\dfrac{x}{w}\right)\right] &amp;= \int
 </div>
 <p><br></p>
 </section>
-<section id="주기적-임펄스-함수의-푸리에-변환" class="level3">
-<h3 class="anchored" data-anchor-id="주기적-임펄스-함수의-푸리에-변환">주기적 임펄스 함수의 푸리에 변환</h3>
-<p>단위 임펄스 함수(디렉 델타 함수)가 <span class="math inline">\(T\)</span> 를 주기로 반복되는 함수를 주기적 임펄스 함수라 하며 이를 <span class="math inline">\(S_T(t)\)</span> 라 하자. 이는 주기함수이므로 푸리에 급수로 표현 할 수 있으며 다음과 같다.</p>
+<section id="샘플링-함수의-푸리에-변환" class="level3">
+<h3 class="anchored" data-anchor-id="샘플링-함수의-푸리에-변환">샘플링 함수의 푸리에 변환</h3>
+<p>샘플링 함수 <span class="math inline">\(S_T(t)\)</span> 를 생각하자. 이는 주기함수이므로 푸리에 급수로 표현 할 수 있으며 다음과 같다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-S_T(t) &amp;= \sum_{n=-\infty}^{\infty} \delta \left(t-nT \right) = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \exp \left( \dfrac{-i2n\pi t}{T}\right)
+S_T(t) &amp;= \sum_{k=-\infty}^{\infty} \delta \left(t-kT \right) = \dfrac{1}{T} \sum_{k=-\infty}^{\infty} \exp \left( \dfrac{-2\pi i k t}{T}\right)
 \end{aligned}
 \]</span></p>
-<p>단일 임펄스 함수 <span class="math inline">\(\delta(\mu-\mu_0)\)</span> 에 대한 푸리에 변환은 다음과 같다.</p>
+<p>단일 임펄스 함수 <span class="math inline">\(\delta(u-u_0)\)</span> 에 대한 푸리에 변환은 다음과 같다.</p>
 <p><span class="math display">\[
-\mathfrak{F}[\delta (\mu-\mu_0)] = \int_{-\infty}^{\infty} \delta (\mu-\mu_0) e^{2i\pi \mu t}\, d\mu = e^{2i\pi \mu_0 t}
+\mathfrak{F}[\delta (u-u_0)] = \int_{-\infty}^{\infty} \delta (u-u_0) e^{2\pi i u t}\, du = e^{2\pi i u_0 t}
 \]</span></p>
 <p>따라서,</p>
 <p><span class="math display">\[
-\mathfrak{F}^{-1} \left[ \delta \left( \mu-\dfrac{n}{T} \right) \right] = \exp \left( \dfrac{2in\pi t}{t} \right) \iff \mathfrak{F}\left[  \exp \left( \dfrac{2in\pi t}{t} \right) \right] =  \delta \left( \mu-\dfrac{n}{T} \right)
+\mathfrak{F}^{-1} \left[ \delta \left( u-\dfrac{k}{T} \right) \right] = \exp \left( \dfrac{2ik\pi t}{t} \right) \iff \mathfrak{F}\left[  \exp \left( \dfrac{2ik\pi t}{t} \right) \right] =  \delta \left(u-\dfrac{k}{T} \right)
 \]</span></p>
 <p>이다. 이를 이용하면 <span class="math inline">\(s_T(t)\)</span> 의 푸리에 변환식 <span class="math inline">\(S(u)=\mathfrak{F}[s_N(t)]\)</span> 를 계산 할 수 있으며 다음과 같다.</p>
 <p><span class="math display">\[
-S (u) = \mathfrak{F}\left[\dfrac{1}{T} \sum_{n=-\infty}^{\infty} \exp \left( \dfrac{-i2n\pi t}{T}\right)\right] = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \mathfrak{F}\left[ \exp \left( \dfrac{-i2n\pi t}{T}\right) \right] = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \delta \left(u - \dfrac{n}{T}\right)
+S (u) = \mathfrak{F}\left[\dfrac{1}{T} \sum_{k=-\infty}^{\infty} \exp \left( \dfrac{-2\pi i kt}{T}\right)\right] = \dfrac{1}{T} \sum_{k=-\infty}^{\infty} \mathfrak{F}\left[ \exp \left( \dfrac{-2\pi i k t}{T}\right) \right] = \dfrac{1}{T} \sum_{k=-\infty}^{\infty} \delta \left(u - \dfrac{k}{T}\right)
 \]</span></p>
 <p><br></p>
 </section>
@@ -495,21 +499,21 @@ f(t) \ast g(t) \equiv \int_{-\infty}^{\infty} f(\tau) g(t-\tau) \, d\tau
 <h3 class="anchored" data-anchor-id="푸리에-변환과-샘플링">푸리에 변환과 샘플링</h3>
 <p>임의의 연속함수 <span class="math inline">\(f(t)\)</span> 를 <span class="math inline">\(T\)</span> 를 주기로 샘플링 하였다고 하자. 그렇다면 이 샘플링 <span class="math inline">\(\tilde{f}(t)\)</span> 은 다음과 같은 식으로 표현 할 수 있다.</p>
 <p><span class="math display">\[
-\tilde{f}(t) = \sum_{n=-\infty}^{\infty} f(t) \, \delta (t-nT)
+\tilde{f}(t) = \sum_{k=-\infty}^{\infty} f(t) \, \delta (t-kT)
 \]</span></p>
-<p>이 때 <span class="math inline">\(\mathfrak{F}[f(t)]= F(\mu),\, \mathfrak{F}[s_T(t)]= S(\mu)\)</span> 라 하자 <span class="math inline">\(\displaystyle S(\mu)=\dfrac{1}{T} \sum_{n=-\infty}^{\infty} \delta \left( \mu - \dfrac{n}{T}\right)\)</span> 임은 알고 있다. 그렇다면 <span class="math inline">\(\tilde{F}(\mu)=\mathfrak{F}\left[\tilde{f}(t) \right]\)</span> 를 구하면,</p>
+<p>이 때 <span class="math inline">\(\mathfrak{F}[f(t)]= F(\mu),\, \mathfrak{F}[s_T(t)]= S(\mu)\)</span> 라 하자 <span class="math inline">\(\displaystyle S(\mu)=\dfrac{1}{T} \sum_{k=-\infty}^{\infty} \delta \left( \mu - \dfrac{k}{T}\right)\)</span> 임은 알고 있다. 그렇다면 <span class="math inline">\(\tilde{F}(\mu)=\mathfrak{F}\left[\tilde{f}(t) \right]\)</span> 를 구하면,</p>
 <p><span class="math display">\[
 \begin{aligned}
 \tilde{F}(\mu) &amp; = F(\mu)\otimes S(\mu) = \int_{-\infty}^{\infty} F(\tau)S(\mu-\tau)\, d\tau \\
-&amp;= \dfrac{1}{T} \sum_{n=-\infty}^{\infty}\int_{-\infty} F(\tau) \delta \left(\mu-\tau-\dfrac{n}{T}\right)\, d\tau \\
-&amp;= \dfrac{1}{T}\sum_{n=-\infty}^{\infty} F\left( \mu - \dfrac{n}{T} \right)
+&amp;= \dfrac{1}{T} \sum_{k=-\infty}^{\infty}\int_{-\infty} F(\tau) \delta \left(\mu-\tau-\dfrac{k}{T}\right)\, d\tau \\
+&amp;= \dfrac{1}{T}\sum_{k=-\infty}^{\infty} F\left( \mu - \dfrac{k}{T} \right)
 \end{aligned}
 \]</span></p>
 <p>이다. 즉, 주기 <span class="math inline">\(T\)</span> 로 샘플링된 연속 함수 <span class="math inline">\(f(t)\)</span>의 함수의 푸리에 변환은 원래 함수의 푸리에 변환 <span class="math inline">\(F(\mu)\)</span> 를 주기 <span class="math inline">\(1/T\)</span> 를 갖는 임펄스 함수로 바꾼 형태임을 알 수 있다.</p>
 <p><br></p>
 </section>
 </section>
-<section id="이산-푸리에-변환-discrete-fourier-transformation-dft" class="level2" data-number="2">
+<section id="이산-푸리에-변환-discrete-fourier-transformation-dft" class="level2 page-columns page-full" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="이산-푸리에-변환-discrete-fourier-transformation-dft"><span class="header-section-number">2</span> 이산 푸리에 변환 (Discrete Fourier Transformation, DFT)</h2>
 <section id="차원-dft" class="level3">
 <h3 class="anchored" data-anchor-id="차원-dft">1차원 DFT</h3>
@@ -538,21 +542,21 @@ f_k = \mathfrak{F}^{-1}[F]_k = \sum_{u=1}^{N} F_u \exp \left(\dfrac{i2\pi (k-1)}
 f_{k'} = \mathfrak{F}^{-1}[F]_{k'} &amp;=  \sum_{u=0}^{N-1} F_u \exp \left(\dfrac{i2\pi k'u}{N}  \right) \\
 &amp;= \dfrac{1}{N}\sum_{u=0}^{N-1} \left[\sum_{k=0}^{N-1} f_k \exp \left(\dfrac{-i2\pi k u}{N}  \right)  \right]\exp \left(\dfrac{i2\pi k'u}{N} \right)  \\
 &amp;= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \sum_{u=0}^{N-1} \exp\left( \dfrac{2\pi i (k'-k)u}{N}  \right) \\
-&amp;= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)}
+% &amp;= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)}
 \end{aligned}
 \]</span></p>
 <p>우리는 여기서 <span class="math inline">\(k'=k\)</span> 이면 <span class="math inline">\(\sum_{u=0}^{N-1} \exp (\cdots )= N\)</span> 임을 안다. <span class="math inline">\(k'\ne k\)</span> 라면 <span class="math inline">\(|k'-k|\le N-1\)</span> 이므로</p>
 <p><span class="math display">\[
 \sum_{u=0}^{N-1} \exp\left( \dfrac{2\pi i (k'-k)u}{N}  \right) = \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)} = 0
 \]</span></p>
-<p>이며, 이로부터 <span class="math inline">\(f_{k'} = \sum_{k=1}^N f_k \delta_{k, k'}\)</span> 을 얻었다. 즉 DFT 로도 푸리에 변환과 역변환이 똑같이 성립한다.</p>
+<p>이며, 이로부터 <span class="math inline">\(\mathfrak{F}^{-1}[F]_{k} = f_k\)</span> 을 얻었다. 즉 DFT 로도 푸리에 변환과 역변환이 똑같이 성립한다.</p>
 <p><br></p>
 <p>우리는 위의 식으로 부터 다음을 알 수 있다.</p>
 <ul>
 <li><p>푸리에 변환으로 얻는 <span class="math inline">\(F_u = \mathfrak{F}[f_k]\)</span> 의 변수 <span class="math inline">\(u\)</span> 는 각진동수(angular frequency) 이다. 따라서 이 신호를 진동수(frequency) 에 대한 신호로 바꾸고 싶다면 변수를 <span class="math inline">\(2\pi u\)</span> 로 변경시켜야 한다.</p></li>
 <li><p>입력되는 신호 <span class="math inline">\(f\)</span> 가 실수 신호더라도 푸리에 변환 신호는 복소수가 된다. 각진동수에 대한 분포를 알고싶다면 <span class="math inline">\(|F_u|\)</span> 를 보아야 한다. Julia 에서는 <code>abs</code> 함수가 복소수에 대한 절대값을 반환한다.</p></li>
 </ul>
-<p>다음은 1차원 DFT 와 IDFT 를 julia 로 구현한 것이다. 1차원 벡터 <code>x</code> 에 대해 <code>dft(x)</code> sk <code>idft(x)</code> 와 같이 사용한다.</p>
+<p>다음은 1차원 DFT 와 IDFT 를 julia 로 구현한 것이다. 1차원 벡터 <code>x</code> 에 대해 <code>dft(x)</code> sk <code>idft(x)</code> 와 같이 사용한다. 하지만 아래의 코드는 앞으로 사용하지 않는다. 그 이유는 곧 밝힌다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">_dft</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">Vector{T}</span>, </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    inverse <span class="op">=</span> <span class="cn">false</span>) <span class="kw">where</span> T<span class="op">&lt;:</span><span class="dt">Union{Real, Complex}</span></span>
@@ -582,7 +586,6 @@ f_{k'} = \mathfrak{F}^{-1}[F]_{k'} &amp;=  \sum_{u=0}^{N-1} F_u \exp \left(\dfra
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>dft <span class="op">=</span> v<span class="op">-&gt;</span> <span class="fu">_dft</span>(v, <span class="cn">false</span>)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>idft <span class="op">=</span> v<span class="op">-&gt;</span> <span class="fu">_dft</span>(v, <span class="cn">true</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<p><br></p>
 </section>
 <section id="차원-dft-1" class="level3">
 <h3 class="anchored" data-anchor-id="차원-dft-1">2차원 DFT</h3>
@@ -593,11 +596,13 @@ F_{uv} &amp;= \dfrac{1}{MN} \sum_{j=1}^{M}\sum_{k=1}^{N} f_{jk} \exp \left[-2i\p
 f_{jk} &amp;=  \sum_{j=1}^{M}\sum_{k=1}^{N} F_{uv} \exp \left[2i\pi \left(\dfrac{(j-1)(u-1)}{M}+\dfrac{(k-1)(v-1)}{N}\right)\right]
 \end{aligned}
 \]</span></p>
+<p>여기서도 <span class="math inline">\(\mathfrak{F}^{-1}\left[\mathfrak{F}[f]\right] = f\)</span> 와 <span class="math inline">\(\mathfrak{F}\left[\mathfrak{F}^{-1}[F]\right]=F\)</span> 가 성립한다.</p>
 <p><br></p>
 </section>
-<section id="고속-푸리에-변환과-fftw.jl" class="level3">
+<section id="고속-푸리에-변환과-fftw.jl" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="고속-푸리에-변환과-fftw.jl">고속 푸리에 변환과 <code>FFTW.jl</code></h3>
-<p>고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 의 연산이 필요하지만, FFT를 이용하면 <span class="math inline">\(\mathcal{O}(n \log n)\)</span> 의 연산만으로 가능하다. FFT 는 알고리즘이며 그것을 구현한 것 가운데 가장 널리 사용되는 것이 <a href="https://www.fftw.org">FFTW</a> 이다. FFTW 는 <em>Fastest Fourier Transform in the West</em> 의 약자로 C 언어로 구현되어 있으며, Julia 에서 가장 많이 사용하는 FFT 라이브러리인 <code>FFTW.jl</code> 은 <code>FFTW</code> 의 Julia <a href="https://ko.wikipedia.org/wiki/언어_바인딩">바인딩</a> 이다. 설치는 일반적인 라이브러리와 같이 <code>using Pkg; Pkg.add("FFTW")</code> 명령어를 사용한다.</p>
+<div class="page-columns page-full"><p>고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 <span class="math inline">\(\mathcal{O}(n^2)\)</span> 의 연산이 필요하지만, FFT를 이용하면 <span class="math inline">\(\mathcal{O}(n \log n)\)</span> 의 연산만으로 가능하다. FFT 는 알고리즘이며 그것을 구현한 것 가운데 가장 널리 사용되는 것이 <a href="https://www.fftw.org">FFTW</a> 이다. FFTW 는 <em>Fastest Fourier Transform in the West</em> 의 약자로 C 언어로 구현되어 있으며, Julia 에서 가장 많이 사용하는 FFT 라이브러리인 <code>FFTW.jl</code> 은 <code>FFTW</code> 의 Julia <a href="https://ko.wikipedia.org/wiki/언어_바인딩">바인딩</a> 이다. 설치는 일반적인 라이브러리와 같이 <code>using Pkg; Pkg.add("FFTW")</code> 명령어를 사용한다. </p><div class="no-row-height column-margin column-container"><span class="">바인딩이란 간략히 말하면 어떤 언어로 구현된 라이브러리를 다른 언어에서 사용 할 수 있도록 해 주는 라이브러리이다.</span></div></div>
+<p>푸리에 변환을 하는 함수는 차원에 무관하게 <code>fft</code> 이며, 역푸리에 변환을 하는 함수는 <code>ifft</code> 이다.</p>
 
 
 </section>

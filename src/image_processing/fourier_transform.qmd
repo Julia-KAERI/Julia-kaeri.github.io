@@ -23,10 +23,9 @@ crossref:
 
 $$
 \begin{aligned}
-f(t) &= a_0 + \sum_{n=1}^{\infty} a_n \cos (n\omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)\,,\\
-\text{where}\qquad  a_0 &= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t)\, dt\\
-a_n &= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \cos (n\omega t)\, dt\\
-b_n &= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \sin (n\omega t)\, dt\\
+f(t) &= \dfrac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos (n\omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)\,,\\
+\text{where}\qquad  a_n &= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \cos (n\omega t)\, dt\\
+b_n &= \dfrac{2}{T}\int_{-T/2}^{T/2} f(t) \sin (n\omega t)\, dt.
 \end{aligned}
 $$
 
@@ -45,7 +44,7 @@ $$
 $$
 \begin{aligned}
 f(t) &= \sum_{n=-\infty}^{\infty} c_n e^{in\omega t}\,,\\
-\text{where}\qquad c_n &= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) e^{in\omega t}\, dt\,, \qquad n\in \mathbb{Z}
+\text{where}\qquad c_n &= \dfrac{1}{T}\int_{-T/2}^{T/2} f(t) e^{-in\omega t}\, dt\,, \qquad n\in \mathbb{Z}
 \end{aligned}
 $$
 
@@ -62,6 +61,16 @@ $$
 
 
 </br>
+
+$[-T/2,\, T/2]$ 구간에서 연속인 함수의 집합 $X$ 를 생각하자. 이 집합은 벡터공간이다. 여기에 내적을 다음과 같이 정의한다. 
+
+$$
+\langle \phi,\, \psi \rangle = \int_{-T/2}^{T/2} \psi^\ast(t)\, \phi(t)\, dt
+$$
+
+
+수학적으로 푸리에 급수가 의미 있기 위해서는 $\omega = 2\pi/T$ 에 대해 $\{e^{in\omega t} : n\in \mathbb{Z}\}$ 가 $[T/2,\,T/2]$ 구간에서 연속인 모든 복소 함수의 집합에 대해 정규직교기저이어야 한다. 이것이 
+
 
 
 ::: {#exm-fourier_exmapsion}
@@ -246,32 +255,32 @@ $\text{rect}\left(\dfrac{x}{w}\right)$ 함수의 폭은 $w$ 이다. 그리고 $F
 </br>
 
 
-### 주기적 임펄스 함수의 푸리에 변환
+### 샘플링 함수의 푸리에 변환
 
-단위 임펄스 함수(디렉 델타 함수)가 $T$ 를 주기로 반복되는 함수를 주기적 임펄스 함수라 하며 이를 $S_T(t)$ 라 하자. 이는 주기함수이므로 푸리에 급수로 표현 할 수 있으며 다음과 같다. 
+샘플링 함수 $S_T(t)$ 를 생각하자. 이는 주기함수이므로 푸리에 급수로 표현 할 수 있으며 다음과 같다. 
 
 $$
 \begin{aligned}
-S_T(t) &= \sum_{n=-\infty}^{\infty} \delta \left(t-nT \right) = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \exp \left( \dfrac{-i2n\pi t}{T}\right)
+S_T(t) &= \sum_{k=-\infty}^{\infty} \delta \left(t-kT \right) = \dfrac{1}{T} \sum_{k=-\infty}^{\infty} \exp \left( \dfrac{-2\pi i k t}{T}\right)
 \end{aligned}
 $$
 
-단일 임펄스 함수 $\delta(\mu-\mu_0)$ 에 대한 푸리에 변환은 다음과 같다.
+단일 임펄스 함수 $\delta(u-u_0)$ 에 대한 푸리에 변환은 다음과 같다.
 
 $$
-\mathfrak{F}[\delta (\mu-\mu_0)] = \int_{-\infty}^{\infty} \delta (\mu-\mu_0) e^{2i\pi \mu t}\, d\mu = e^{2i\pi \mu_0 t}
+\mathfrak{F}[\delta (u-u_0)] = \int_{-\infty}^{\infty} \delta (u-u_0) e^{2\pi i u t}\, du = e^{2\pi i u_0 t}
 $$
 
 따라서,
 
 $$
-\mathfrak{F}^{-1} \left[ \delta \left( \mu-\dfrac{n}{T} \right) \right] = \exp \left( \dfrac{2in\pi t}{t} \right) \iff \mathfrak{F}\left[  \exp \left( \dfrac{2in\pi t}{t} \right) \right] =  \delta \left( \mu-\dfrac{n}{T} \right)
+\mathfrak{F}^{-1} \left[ \delta \left( u-\dfrac{k}{T} \right) \right] = \exp \left( \dfrac{2ik\pi t}{t} \right) \iff \mathfrak{F}\left[  \exp \left( \dfrac{2ik\pi t}{t} \right) \right] =  \delta \left(u-\dfrac{k}{T} \right)
 $$
 
 이다. 이를 이용하면 $s_T(t)$ 의 푸리에 변환식 $S(u)=\mathfrak{F}[s_N(t)]$ 를 계산 할 수 있으며 다음과 같다.
 
 $$
-S (u) = \mathfrak{F}\left[\dfrac{1}{T} \sum_{n=-\infty}^{\infty} \exp \left( \dfrac{-i2n\pi t}{T}\right)\right] = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \mathfrak{F}\left[ \exp \left( \dfrac{-i2n\pi t}{T}\right) \right] = \dfrac{1}{T} \sum_{n=-\infty}^{\infty} \delta \left(u - \dfrac{n}{T}\right)
+S (u) = \mathfrak{F}\left[\dfrac{1}{T} \sum_{k=-\infty}^{\infty} \exp \left( \dfrac{-2\pi i kt}{T}\right)\right] = \dfrac{1}{T} \sum_{k=-\infty}^{\infty} \mathfrak{F}\left[ \exp \left( \dfrac{-2\pi i k t}{T}\right) \right] = \dfrac{1}{T} \sum_{k=-\infty}^{\infty} \delta \left(u - \dfrac{k}{T}\right)
 $$
 
 
@@ -315,16 +324,16 @@ $$
 임의의 연속함수 $f(t)$ 를 $T$ 를 주기로 샘플링 하였다고 하자. 그렇다면 이 샘플링 $\tilde{f}(t)$ 은 다음과 같은 식으로 표현 할 수 있다.
 
 $$
-\tilde{f}(t) = \sum_{n=-\infty}^{\infty} f(t) \, \delta (t-nT)
+\tilde{f}(t) = \sum_{k=-\infty}^{\infty} f(t) \, \delta (t-kT)
 $$
 
-이 때 $\mathfrak{F}[f(t)]= F(\mu),\, \mathfrak{F}[s_T(t)]= S(\mu)$ 라 하자 $\displaystyle S(\mu)=\dfrac{1}{T} \sum_{n=-\infty}^{\infty} \delta \left( \mu - \dfrac{n}{T}\right)$ 임은 알고 있다. 그렇다면 $\tilde{F}(\mu)=\mathfrak{F}\left[\tilde{f}(t) \right]$ 를 구하면,
+이 때 $\mathfrak{F}[f(t)]= F(\mu),\, \mathfrak{F}[s_T(t)]= S(\mu)$ 라 하자 $\displaystyle S(\mu)=\dfrac{1}{T} \sum_{k=-\infty}^{\infty} \delta \left( \mu - \dfrac{k}{T}\right)$ 임은 알고 있다. 그렇다면 $\tilde{F}(\mu)=\mathfrak{F}\left[\tilde{f}(t) \right]$ 를 구하면,
 
 $$
 \begin{aligned}
 \tilde{F}(\mu) & = F(\mu)\otimes S(\mu) = \int_{-\infty}^{\infty} F(\tau)S(\mu-\tau)\, d\tau \\
-&= \dfrac{1}{T} \sum_{n=-\infty}^{\infty}\int_{-\infty} F(\tau) \delta \left(\mu-\tau-\dfrac{n}{T}\right)\, d\tau \\
-&= \dfrac{1}{T}\sum_{n=-\infty}^{\infty} F\left( \mu - \dfrac{n}{T} \right)
+&= \dfrac{1}{T} \sum_{k=-\infty}^{\infty}\int_{-\infty} F(\tau) \delta \left(\mu-\tau-\dfrac{k}{T}\right)\, d\tau \\
+&= \dfrac{1}{T}\sum_{k=-\infty}^{\infty} F\left( \mu - \dfrac{k}{T} \right)
 \end{aligned}
 $$
 
@@ -379,7 +388,7 @@ $$
 f_{k'} = \mathfrak{F}^{-1}[F]_{k'} &=  \sum_{u=0}^{N-1} F_u \exp \left(\dfrac{i2\pi k'u}{N}  \right) \\
 &= \dfrac{1}{N}\sum_{u=0}^{N-1} \left[\sum_{k=0}^{N-1} f_k \exp \left(\dfrac{-i2\pi k u}{N}  \right)  \right]\exp \left(\dfrac{i2\pi k'u}{N} \right)  \\
 &= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \sum_{u=0}^{N-1} \exp\left( \dfrac{2\pi i (k'-k)u}{N}  \right) \\
-&= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)}
+% &= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)}
 \end{aligned}
 $$
 
@@ -389,7 +398,7 @@ $$
 \sum_{u=0}^{N-1} \exp\left( \dfrac{2\pi i (k'-k)u}{N}  \right) = \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)} = 0
 $$
 
-이며, 이로부터 $f_{k'} = \sum_{k=1}^N f_k \delta_{k, k'}$ 을 얻었다. 즉 DFT 로도 푸리에 변환과 역변환이 똑같이 성립한다. 
+이며, 이로부터 $\mathfrak{F}^{-1}[F]_{k} = f_k$ 을 얻었다. 즉 DFT 로도 푸리에 변환과 역변환이 똑같이 성립한다. 
 
 </br>
 
@@ -401,7 +410,7 @@ $$
 
 
 
-다음은 1차원 DFT 와 IDFT 를 julia 로 구현한 것이다. 1차원 벡터 `x` 에 대해 `dft(x)` sk `idft(x)` 와 같이 사용한다. 
+다음은 1차원 DFT 와 IDFT 를 julia 로 구현한 것이다. 1차원 벡터 `x` 에 대해 `dft(x)` sk `idft(x)` 와 같이 사용한다. 하지만 아래의 코드는 앞으로 사용하지 않는다. 그 이유는 곧 밝힌다.
 
 ```julia
 function _dft(
@@ -433,13 +442,9 @@ end
 dft = v-> _dft(v, false)
 idft = v-> _dft(v, true)
 ```
-
 </br>
 
 
-
-
-</br>
 
 ### 2차원 DFT
 
@@ -452,6 +457,7 @@ f_{jk} &=  \sum_{j=1}^{M}\sum_{k=1}^{N} F_{uv} \exp \left[2i\pi \left(\dfrac{(j-
 \end{aligned}
 $$
 
+여기서도 $\mathfrak{F}^{-1}\left[\mathfrak{F}[f]\right] = f$ 와 $\mathfrak{F}\left[\mathfrak{F}^{-1}[F]\right]=F$ 가 성립한다. 
 
 
 
@@ -459,8 +465,9 @@ $$
 
 ### 고속 푸리에 변환과 `FFTW.jl`
 
-고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 $\mathcal{O}(n^2)$ 의 연산이 필요하지만, FFT를 이용하면 $\mathcal{O}(n \log n)$ 의 연산만으로 가능하다. FFT 는 알고리즘이며 그것을 구현한 것 가운데 가장 널리 사용되는 것이 [FFTW](https://www.fftw.org) 이다. FFTW 는 *Fastest Fourier Transform in the West* 의 약자로 C 언어로 구현되어 있으며, Julia 에서 가장 많이 사용하는 FFT 라이브러리인 `FFTW.jl` 은 `FFTW` 의 Julia [바인딩](https://ko.wikipedia.org/wiki/언어_바인딩) 이다. 설치는 일반적인 라이브러리와 같이 `using Pkg; Pkg.add("FFTW")` 명령어를 사용한다.
+고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 $\mathcal{O}(n^2)$ 의 연산이 필요하지만, FFT를 이용하면 $\mathcal{O}(n \log n)$ 의 연산만으로 가능하다. FFT 는 알고리즘이며 그것을 구현한 것 가운데 가장 널리 사용되는 것이 [FFTW](https://www.fftw.org) 이다. FFTW 는 *Fastest Fourier Transform in the West* 의 약자로 C 언어로 구현되어 있으며, Julia 에서 가장 많이 사용하는 FFT 라이브러리인 `FFTW.jl` 은 `FFTW` 의 Julia [바인딩](https://ko.wikipedia.org/wiki/언어_바인딩) 이다. 설치는 일반적인 라이브러리와 같이 `using Pkg; Pkg.add("FFTW")` 명령어를 사용한다. [바인딩이란 간략히 말하면 어떤 언어로 구현된 라이브러리를 다른 언어에서 사용 할 수 있도록 해 주는 라이브러리이다.]{.aside}
 
 
+푸리에 변환을 하는 함수는 차원에 무관하게 `fft` 이며, 역푸리에 변환을 하는 함수는 `ifft` 이다. 
 
 

@@ -182,7 +182,7 @@ $$
 \tilde{s}(t) = \sum_k \int_{-\infty}^\infty s(t) \delta (t-kT) \, dt = \int_{-\infty}^\infty s(t) \left[ \sum_{k} \delta (t-kT)\right]\, dt
 $$ {#eq-img_impluse_train}
 
-로 부터 얻을 수 있다. 이 때 델타함수가 주기적으로 반복되는 $S_T(t) = \sum_{k} \delta (t-kT)$ 를 **주기적 임펄스 함수 (periodic impulse function)** 이라고 한다.
+로 부터 얻을 수 있다. 이 때 델타함수가 주기적으로 반복되는 $S_T(t) = \sum_{k} \delta (t-kT)$ 를 **샘플링 함수(sampling function)** 혹은 **주기적 임펄스 함수 (periodic impulse function)** 이라고 한다.
 
 </br>
 
