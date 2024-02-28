@@ -1,0 +1,207 @@
+---
+title: "상미분 방정식"
+language: ../_language-ko_custom.yml 
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+
+
+
+## 기본 개념
+
+- 하나의 독립변수에 대한 미분방정식을 **상미분 방정식 (ordinary differential equation, ODE)** 이라고 하며, 여러 독립변수에 대한 미분방정식을 **편미분 방정식 (partial differential equation, PDE)** 라고 한다.
+- 함수에 미분을 포함한 연산자 $\mathcal{L}$ 가 함수 $f,\,g$ 와 상수 $a$ 에 대해 $\mathcal{L}(af(x) + g(x)) = a \mathcal{L}(f(x)) + \mathcal{L}(g(x))$ 를 만족하면 $\mathcal{L}$ 을 **선형 연산자(linear operator)** 라고 한다. 이제 여기서는 연산자 $\mathcal{L}$ 이 미분을 포함하는 연산자를 의미하며 미분방정식은 함수 $F(x)$ 에 대해 다음의 꼴로 주어진다.
+
+$$
+\mathcal{L}(f(x)) = F(x)
+$$ {#eq-diff_eq_basic}
+
+- 연산자 $\mathcal{L}$ 에 포함하는 최대차 미분이 $n$ 차 미분일 때 @eq-diff_eq_basic 을 $n$ 차 미분 방정식 이라고 한다.
+- homogenouse 는 두가지 의미가 있으며 아래에 설명한다.
+
+
+</br>
+
+### Homogeneous
+
+#### 일반적인 함수의 경우
+
+$n$ 개의 독립변수를 가진 함수 $f(x_1,\ldots,\,x_n)$ 가 어떤 $k$ 에 대해 $f(ax_1,\ldots,\,ax_k) = a^k f(x_1,\ldots,\,x_k)$ 를 만족할 때 이 함수를 **$k$ 차 동차 함수(homogeneous function)** 라고 한다. 
+
+
+#### 미분방정식의 경우
+
+미분 방정식에서 구하고자 하는 함수 $f$ 와 $f$ 의 모든 도함수의 곱의 차수(degree) 가 모든 방정식의 항에서 같을 때 이를 **homogeneous** 라고 한다. 즉 $(y')^2 + yy' =0$ 은 homogenous 이며 $y' + y + c=0$ 은 inhomogenouse 이다. 또한 $y'' + yy' = 0$ 도 inhomogeneous 이다.
+
+
+
+</br>
+
+### 일반해와 특수해
+
+선형미분방정식이 다음과 같이 주어졌다고 하자.
+
+$$
+\mathcal{L}(f(x)) = F(x).
+$$
+
+이 때 $\mathcal{L}(f(x))=0$ 를 만족하는 $f(x)$ 를 **일반해(general solution)** 이라고 한다. 선형 미분방정식의 
+
+우리가 어떻게 해서든 $\mathcal{L}(f) = F(x)$ 의 해를 얻었다면 이를 **특수해** 라고 한다. 2차 이상의 미분방정식의 경우 일반해가 여러개 나올 수 있으며, 일반해와 특수해의 합 역시 선형미분 방정식의 해이다. 즉 $f_g(x)$ 가 일반해이고 $f_s(x)$ 가 특수해라면, $f_g(x) + f_s(x)$ 역시 미분방정식의 해이다. 또한 일반해의 선형결합도 일반해이다. 즉 선형 미분방정식의 일반해는 벡터공간을 이룬다.
+
+</br>
+
+## 계수가 상수인 ODE 의 경우
+
+미분방정식이 다음과 같은 꼴로 주어졌다고 하자.
+
+$$
+\dfrac{d^ny}{dx^n} + a_{n-1} \dfrac{d^{n-1}y}{dx^{n-1}} + \cdots + a_1 \dfrac{dy}{dx} + a_0 y = F(x).
+$$ {#eq-constant_coefficients_ode}
+
+위 미분방정식은 $n$ 차 선형 미분방정식이다. 이 경우 $y=e^{mx}$ 를 놓으면 일반해, 즉 $F(x)=0$ 일 경우의 해를 구할 수 있다. 
+
+$$
+(m^n + a_{n-1}m^{n-1} + \cdots + a_n m + a_0)e^{mx}=0
+$$
+
+이며 이를 만족 하는 $m$ 은 복소수에서 $n$ 개 존재한다. 
+
+</br>
+
+## 2차 선형 ODE
+
+### Singularity 
+
+가장 간단한 다음 꼴의 2차 ODE 를 보자.
+
+$$
+y''  + p(x) y' + q(x) y  = 0
+$$ {#eq-simple_2nd_ode}
+
+이 식은 모든 항에서 $y$ 와 그 도함수가 1차이므로 homogeneous 하다. $p(x)$ 와 $q(x)$ 가 유한한 값을 가질 때 이 $x$ 를 **ordinary point** 라고 하며 그렇지 않을 때는 **singular point** 라고 한다. singular point 가운데 $\lim_{x\to x_0} |(x-x_0)p(x)|<\infty$, $\lim_{x\to x_0} |(x-x_0)q(x)|<\infty$ 이면 **regular singularity** 라고 하며 그렇지 않을 때 **irregular singularity** 라고 한다. 
+
+
+$x\to \infty$ 나 $x \to -\infty$ 의 경우에는 $z=1/x$ 로 치환하여 미분방정식을 $z$ 에 대한 미분방정식으로 바꾼다. $w(z) = y(z^{-1})$ 이라면, 
+
+$$
+\begin{aligned}
+y'(x) &= \dfrac{dy}{dz} \dfrac{dz}{dx} = - \dfrac{1}{x}^2 \dfrac{dw}{dz} = -z^2w', \\
+y'' (x) &= \dfrac{dy'}{dz}\dfrac{dz}{dx} = z^4 w'' + 2z^3 w'
+\end{aligned}
+$$
+
+
+이므로 @eq-simple_2nd_ode 는 다음과 같이 변형된다.
+
+$$
+4zw'' + \left[ 2z^3 - z^2 p(1/z) \right] w' + q(z^{-1}) w = 0.
+$$ {#eq-modified_simplie_2nd_ode}
+
+
+</br>
+
+| 이름 | 방정식 | regular singularity | irregular singularity|
+|:-----:|:----------------------------|:------------:|:------------:|
+| Hypergeometric | $x(x-1) y'' + [(1+a+b)x + c]\,y' +aby=0$ | $0, 1 \infty$ | |
+| Legendre | $(1-x^2) y'' -2xy' + l(l+1)y=0$ | $-1, 1, \infty$ | |
+| Chebyshev | $(1-x^2) y'' -xy' + n^2y = 0$ | $-1, 1, \infty$ | |
+| Confluent hypoergeometryc | $xy'' + (c-x)y' -ay = 0$ | $0$ | $\infty$ |
+| Bessel | $x^2y'' + xy' + (x^2-n^2)y = 0$ | $0$ |$\infty$ |
+| Laguerre | $xy'' + (1-x)y' + a y = 0$ | $0$ | $\infty$ |
+| SHO | $y'' + \omega^2 y' = 0$ | | $\infty$ |
+| Hermite | $y'' -2xy' + 2\alpha y = 0$ | | $\infty$ |
+
+: 중요한 2차 선형 ODE 와 singularity {#tbl-2nd_ode_singularity}
+
+ 
+
+</br>
+
+### 급수해 (Frobenius 방법)
+
+@eq-simple_2nd_ode 꼴로 주어진 2차 선형 homogeneous ODE 를 생각하자. 이 경우 $y$ 를 $x$ 의 급수로 놓고 해를 구하는 것을 Frobenius 방법이라고 한다. 즉,
+
+$$
+y(x) = \sum_{i=0}^\infty a_i x^{s+i}
+$$
+
+로 놓고 미분방정식에 대입하여 계수 $a_i$ 와 $s$ 를 구한다. 이 때 $a_0 \ne 0$ 이다. ($a_0=0$ 이라면 $a_k\ne 0$ 인 가장 작은 $k$ 값부터 잡을 수 있다.)
+
+</br>
+
+#### 단순조화진동자의 경우
+
+예를 들어 $y'' + \omega^2 y = 0$ 의 경우, 
+
+$$
+\begin{aligned}
+&\sum_{i=0}^\infty a_i (s+i)(s+i-1)x^{s+i-2} + \omega^2 \sum_{i=0}^\infty a_j x^{s+i} = 0 \\
+\implies & a_0 s(s-1)x^{s-2} + a_1 (s+1)s x^{s-1} + \sum_{i=0}^\infty \left[a_{i+2}(s+i+2)(s+i+1) +\omega^2 a_j\right]x^{s+i} = 0
+\end{aligned}
+$$
+
+이로부터 우리는 세가지 조건을 얻는다.
+
+&emsp; ($1$) $a_0 s(s-1) =0$, 
+
+&emsp; ($2$) $a_1s(s+1) = 0$, 
+
+&emsp; ($3$) $a_{i+2}(s+i+2)(s+i+1) + \omega^2 a_j = 0$
+
+$a_0\ne 0$ 이므로 ($1$) 의 조건에 의해 $s(s-1)=0$ 이어야 한다. 이 방정식은 $s$ 를 결정하는 중요한 방정식으로 **indicial equation** 이라고 한다. ($2$) 의 조건에서 $s=-1$ 일 경우 $a_0 = 0$ 이어야 하므로 조건에 위배된다. 따라서 남은 조건은 $s=0$ 이고 $a_1$ 을 자유로 두거나, $s=1$ 이며 $a_1=0$ 으로 두는 것 밖에 없다. 그리고 ($3$) 조건에 의해, 
+
+$$
+a_{i+2} = \dfrac{-\omega^2}{(i+1)(i+2)}a_i \implies  a_{2k} = (-1)^n \dfrac{\omega^{2k}}{(2k)!} a_0,\, a_{2k+1} = (-1)^n \dfrac{\omega^{2k}}{(2k+1)!} a_1
+$$
+
+를 만족해야 한다. $s=0$ 일 경우, 
+
+$$
+y(x){\large\mid}_{s=0}= a_0 \left[ \sum_{k=0}^\infty \dfrac{(-1)^k (\omega)^{2k}}{(2k)!} x^{2k} \right] + a_1 \left[ \sum_{k=0}^\infty \dfrac{(-1)^k (\omega)^{2k}}{(2k+1)!} x^{2k+1} \right] = a_0 \cos (\omega x) + \dfrac{a_1}{\omega} \sin (\omega x)
+$$
+
+이다. $s=1$ 인 경우는 같은 방법으로
+
+$$
+y(x) {\large \mid}_{s=1} =  \dfrac{a_0}{\omega}\sin (\omega x)
+$$
+
+임을 알 수 있다. 
+
+</br>
+
+### 
+
+
+</br>
+
+### Fuchs' theorem
+
+::: {#thm-fuchs}
+
+아래와 같은 꼴의 미분방정식을 생각하자.
+
+$$
+\displaystyle y''+p(x)y'+q(x)y=F(x)
+$$
+
+이 방정식은 $p(x),\, q(x),\, F(x)$ 가 $x=a$ 에서 해석적$^1$ 이거나 $a$ 가 regular singular point 라면 프로베니우스 방법에 의한 해를 가진다. 즉 이 미분방정식의 $x=a$ 근처의 해는 어떤 양수 $s$ 에 대해 
+[$^1$ 어떤 함수가 $a$ 근처에서 수렴하는 멱급수로 표현 할 수 있을 때 이 함수를 해석적 함수라고 한다]{.aside}
+$$
+y_1=\sum _{n=0}^{\infty }a_{n}(x-a)^{n+s},\quad a_{0}\ne 0
+$$
+
+이거나 $y_1$ 함수에 $\ln (x-a)$ 를 곱한것과 다른 $y_1$ 꼴의 함수를 더한 아래의 형태이다.
+
+$$
+y=y_1\ln(x-a)+\sum _{n=0}^{\infty }b_{n}(x-a)^{n+r},\quad b_{0}\neq 0.
+$$
+
+:::
+
+

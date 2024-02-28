@@ -85,6 +85,7 @@ website:
         - href: src/numerical_analysis_using_julia/11_ode_initial_value_problem.qmd
         - href: src/numerical_analysis_using_julia/12_ode_boundary_value_problem.qmd
         - href: src/numerical_analysis_using_julia/A01_appendix_01.qmd
+        - href: src/numerical_analysis_using_julia/A02_ode.qmd
     
     - title : "Image processing and Tomography"
       collapse-level: 2

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 들어가며</title>
+<title>Julia &amp; Numerical Anlaysis - 상미분 방정식</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -94,11 +60,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -151,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">들어가며</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/A02_ode.html">상미분 방정식</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -174,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">들어가며</span></a>
   </div>
 </li>
@@ -271,13 +239,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">부록</span></a>
+ <span class="menu-text">수학적 증명</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A02_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">수학적 증명</span></a>
+  <a href="../../src/numerical_analysis_using_julia/A02_ode.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">상미분 방정식</span></a>
   </div>
 </li>
       </ul>
@@ -288,14 +256,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#기본-개념" id="toc-기본-개념" class="nav-link active" data-scroll-target="#기본-개념"><span class="header-section-number">1</span> 기본 개념</a>
+  <ul class="collapse">
+  <li><a href="#homogeneous" id="toc-homogeneous" class="nav-link" data-scroll-target="#homogeneous">Homogeneous</a></li>
+  <li><a href="#일반해와-특수해" id="toc-일반해와-특수해" class="nav-link" data-scroll-target="#일반해와-특수해">일반해와 특수해</a></li>
+  </ul></li>
+  <li><a href="#계수가-상수인-ode-의-경우" id="toc-계수가-상수인-ode-의-경우" class="nav-link" data-scroll-target="#계수가-상수인-ode-의-경우"><span class="header-section-number">2</span> 계수가 상수인 ODE 의 경우</a></li>
+  <li><a href="#차-선형-ode" id="toc-차-선형-ode" class="nav-link" data-scroll-target="#차-선형-ode"><span class="header-section-number">3</span> 2차 선형 ODE</a>
+  <ul class="collapse">
+  <li><a href="#singularity" id="toc-singularity" class="nav-link" data-scroll-target="#singularity">Singularity</a></li>
+  <li><a href="#급수해-frobenius-방법" id="toc-급수해-frobenius-방법" class="nav-link" data-scroll-target="#급수해-frobenius-방법">급수해 (Frobenius 방법)</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#fuchs-theorem" id="toc-fuchs-theorem" class="nav-link" data-scroll-target="#fuchs-theorem">Fuchs’ theorem</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">들어가며</h1>
+<h1 class="title">상미분 방정식</h1>
 </div>
 
 
@@ -310,17 +296,208 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>수치해석은 알고리즘을 중점적으로 다룰 수도 있고, 특정 언어로의 구현을 중점적으로 다룰 수도 있다. 보통 알고리즘을 중심적으로 다루는 경우는 수학적으로 깊이 들어가 내용이 명제와 수식으로 가득 차 있지만 실제 언어로 구현하는데 어려움이 있을 수 있다. 언어로의 구현을 중점적으로 다루게 되면 깊이 없이 피상적으로 코딩만 하게 될 수도 있다.</p>
-<p>알고리즘을 중심으로 설명하는 경우 실제 코드가 아닌 의사 코드(psedo code) 를 사용하는 경우가 많다. Julia 언어는 알고리즘을 직접 코드로 옮기는데 아주 유용하며, 알고리즘을 의사 코드가 아닌 julia 코드로 써도 julia 언어에 대한 기본 지식만 있다면 쉽게 알고리즘을 이해할 수 있는 경우가 많다. 여기서는 의사 코드가 아닌 julia 코드로 알고리즘을 설명한다.</p>
-<p>실제적인 상황에서의 또 하나의 문제는 pseudo 코드와 비슷한 julia 코드가 꼭 효울적인 코드는 아니라는 것이다. 그래서 여기서는 다음의 방침을 정했다.</p>
-<ol type="1">
-<li>알고리즘은 julia 코드로 최대한 읽고 이해하기 쉬운 코드로 제시한다. 이 julia 코드는 자체로서 알고리즘이 원하는 동작을 하는 코드이다.</li>
-<li>이 책에서 많은 경우 앞부분에서 사용했던 알고리즘이나 방법을 뒤에서 사용하는 경우가 많이 있다. 이를 위해 여기서 구현한 것들을 julia 패키지로 만들었고 github 에 올려두었다. <a href="https://github.com/Julia-KAERI/NAJ.jl.git">NAJ.jl</a> 이며 julia 에 설치 할 수 있다.</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> ]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="pp">@v1</span><span class="fl">.10</span>) pkg<span class="op">&gt;</span> add https<span class="op">://</span>github.com<span class="op">/</span>Julia<span class="op">-</span>KAERI<span class="op">/</span>NAJ.jl.git</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="기본-개념" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="기본-개념"><span class="header-section-number">1</span> 기본 개념</h2>
+<ul>
+<li>하나의 독립변수에 대한 미분방정식을 <strong>상미분 방정식 (ordinary differential equation, ODE)</strong> 이라고 하며, 여러 독립변수에 대한 미분방정식을 <strong>편미분 방정식 (partial differential equation, PDE)</strong> 라고 한다.</li>
+<li>함수에 미분을 포함한 연산자 <span class="math inline">\(\mathcal{L}\)</span> 가 함수 <span class="math inline">\(f,\,g\)</span> 와 상수 <span class="math inline">\(a\)</span> 에 대해 <span class="math inline">\(\mathcal{L}(af(x) + g(x)) = a \mathcal{L}(f(x)) + \mathcal{L}(g(x))\)</span> 를 만족하면 <span class="math inline">\(\mathcal{L}\)</span> 을 <strong>선형 연산자(linear operator)</strong> 라고 한다. 이제 여기서는 연산자 <span class="math inline">\(\mathcal{L}\)</span> 이 미분을 포함하는 연산자를 의미하며 미분방정식은 함수 <span class="math inline">\(F(x)\)</span> 에 대해 다음의 꼴로 주어진다.</li>
+</ul>
+<p><span id="eq-diff_eq_basic"><span class="math display">\[
+\mathcal{L}(f(x)) = F(x)
+\tag{1}\]</span></span></p>
+<ul>
+<li>연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 포함하는 최대차 미분이 <span class="math inline">\(n\)</span> 차 미분일 때 <a href="#eq-diff_eq_basic">식&nbsp;1</a> 을 <span class="math inline">\(n\)</span> 차 미분 방정식 이라고 한다.</li>
+<li>homogenouse 는 두가지 의미가 있으며 아래에 설명한다.</li>
+</ul>
+<p><br></p>
+<section id="homogeneous" class="level3">
+<h3 class="anchored" data-anchor-id="homogeneous">Homogeneous</h3>
+<section id="일반적인-함수의-경우" class="level4">
+<h4 class="anchored" data-anchor-id="일반적인-함수의-경우">일반적인 함수의 경우</h4>
+<p><span class="math inline">\(n\)</span> 개의 독립변수를 가진 함수 <span class="math inline">\(f(x_1,\ldots,\,x_n)\)</span> 가 어떤 <span class="math inline">\(k\)</span> 에 대해 <span class="math inline">\(f(ax_1,\ldots,\,ax_k) = a^k f(x_1,\ldots,\,x_k)\)</span> 를 만족할 때 이 함수를 <strong><span class="math inline">\(k\)</span> 차 동차 함수(homogeneous function)</strong> 라고 한다.</p>
+</section>
+<section id="미분방정식의-경우" class="level4">
+<h4 class="anchored" data-anchor-id="미분방정식의-경우">미분방정식의 경우</h4>
+<p>미분 방정식에서 구하고자 하는 함수 <span class="math inline">\(f\)</span> 와 <span class="math inline">\(f\)</span> 의 모든 도함수의 곱의 차수(degree) 가 모든 방정식의 항에서 같을 때 이를 <strong>homogeneous</strong> 라고 한다. 즉 <span class="math inline">\((y')^2 + yy' =0\)</span> 은 homogenous 이며 <span class="math inline">\(y' + y + c=0\)</span> 은 inhomogenouse 이다. 또한 <span class="math inline">\(y'' + yy' = 0\)</span> 도 inhomogeneous 이다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="일반해와-특수해" class="level3">
+<h3 class="anchored" data-anchor-id="일반해와-특수해">일반해와 특수해</h3>
+<p>선형미분방정식이 다음과 같이 주어졌다고 하자.</p>
+<p><span class="math display">\[
+\mathcal{L}(f(x)) = F(x).
+\]</span></p>
+<p>이 때 <span class="math inline">\(\mathcal{L}(f(x))=0\)</span> 를 만족하는 <span class="math inline">\(f(x)\)</span> 를 <strong>일반해(general solution)</strong> 이라고 한다. 선형 미분방정식의</p>
+<p>우리가 어떻게 해서든 <span class="math inline">\(\mathcal{L}(f) = F(x)\)</span> 의 해를 얻었다면 이를 <strong>특수해</strong> 라고 한다. 2차 이상의 미분방정식의 경우 일반해가 여러개 나올 수 있으며, 일반해와 특수해의 합 역시 선형미분 방정식의 해이다. 즉 <span class="math inline">\(f_g(x)\)</span> 가 일반해이고 <span class="math inline">\(f_s(x)\)</span> 가 특수해라면, <span class="math inline">\(f_g(x) + f_s(x)\)</span> 역시 미분방정식의 해이다. 또한 일반해의 선형결합도 일반해이다. 즉 선형 미분방정식의 일반해는 벡터공간을 이룬다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="계수가-상수인-ode-의-경우" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="계수가-상수인-ode-의-경우"><span class="header-section-number">2</span> 계수가 상수인 ODE 의 경우</h2>
+<p>미분방정식이 다음과 같은 꼴로 주어졌다고 하자.</p>
+<p><span id="eq-constant_coefficients_ode"><span class="math display">\[
+\dfrac{d^ny}{dx^n} + a_{n-1} \dfrac{d^{n-1}y}{dx^{n-1}} + \cdots + a_1 \dfrac{dy}{dx} + a_0 y = F(x).
+\tag{2}\]</span></span></p>
+<p>위 미분방정식은 <span class="math inline">\(n\)</span> 차 선형 미분방정식이다. 이 경우 <span class="math inline">\(y=e^{mx}\)</span> 를 놓으면 일반해, 즉 <span class="math inline">\(F(x)=0\)</span> 일 경우의 해를 구할 수 있다.</p>
+<p><span class="math display">\[
+(m^n + a_{n-1}m^{n-1} + \cdots + a_n m + a_0)e^{mx}=0
+\]</span></p>
+<p>이며 이를 만족 하는 <span class="math inline">\(m\)</span> 은 복소수에서 <span class="math inline">\(n\)</span> 개 존재한다.</p>
+<p><br></p>
+</section>
+<section id="차-선형-ode" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="차-선형-ode"><span class="header-section-number">3</span> 2차 선형 ODE</h2>
+<section id="singularity" class="level3">
+<h3 class="anchored" data-anchor-id="singularity">Singularity</h3>
+<p>가장 간단한 다음 꼴의 2차 ODE 를 보자.</p>
+<p><span id="eq-simple_2nd_ode"><span class="math display">\[
+y''  + p(x) y' + q(x) y  = 0
+\tag{3}\]</span></span></p>
+<p>이 식은 모든 항에서 <span class="math inline">\(y\)</span> 와 그 도함수가 1차이므로 homogeneous 하다. <span class="math inline">\(p(x)\)</span> 와 <span class="math inline">\(q(x)\)</span> 가 유한한 값을 가질 때 이 <span class="math inline">\(x\)</span> 를 <strong>ordinary point</strong> 라고 하며 그렇지 않을 때는 <strong>singular point</strong> 라고 한다. singular point 가운데 <span class="math inline">\(\lim_{x\to x_0} |(x-x_0)p(x)|&lt;\infty\)</span>, <span class="math inline">\(\lim_{x\to x_0} |(x-x_0)q(x)|&lt;\infty\)</span> 이면 <strong>regular singularity</strong> 라고 하며 그렇지 않을 때 <strong>irregular singularity</strong> 라고 한다.</p>
+<p><span class="math inline">\(x\to \infty\)</span> 나 <span class="math inline">\(x \to -\infty\)</span> 의 경우에는 <span class="math inline">\(z=1/x\)</span> 로 치환하여 미분방정식을 <span class="math inline">\(z\)</span> 에 대한 미분방정식으로 바꾼다. <span class="math inline">\(w(z) = y(z^{-1})\)</span> 이라면,</p>
+<p><span class="math display">\[
+\begin{aligned}
+y'(x) &amp;= \dfrac{dy}{dz} \dfrac{dz}{dx} = - \dfrac{1}{x}^2 \dfrac{dw}{dz} = -z^2w', \\
+y'' (x) &amp;= \dfrac{dy'}{dz}\dfrac{dz}{dx} = z^4 w'' + 2z^3 w'
+\end{aligned}
+\]</span></p>
+<p>이므로 <a href="#eq-simple_2nd_ode">식&nbsp;3</a> 는 다음과 같이 변형된다.</p>
+<p><span id="eq-modified_simplie_2nd_ode"><span class="math display">\[
+4zw'' + \left[ 2z^3 - z^2 p(1/z) \right] w' + q(z^{-1}) w = 0.
+\tag{4}\]</span></span></p>
+<p><br></p>
+<div id="tbl-2nd_ode_singularity" class="anchored">
+<table class="table">
+<caption>표&nbsp;1: 중요한 2차 선형 ODE 와 singularity</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 45%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">이름</th>
+<th style="text-align: left;">방정식</th>
+<th style="text-align: center;">regular singularity</th>
+<th style="text-align: center;">irregular singularity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Hypergeometric</td>
+<td style="text-align: left;"><span class="math inline">\(x(x-1) y'' + [(1+a+b)x + c]\,y' +aby=0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0, 1 \infty\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Legendre</td>
+<td style="text-align: left;"><span class="math inline">\((1-x^2) y'' -2xy' + l(l+1)y=0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-1, 1, \infty\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Chebyshev</td>
+<td style="text-align: left;"><span class="math inline">\((1-x^2) y'' -xy' + n^2y = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-1, 1, \infty\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Confluent hypoergeometryc</td>
+<td style="text-align: left;"><span class="math inline">\(xy'' + (c-x)y' -ay = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Bessel</td>
+<td style="text-align: left;"><span class="math inline">\(x^2y'' + xy' + (x^2-n^2)y = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Laguerre</td>
+<td style="text-align: left;"><span class="math inline">\(xy'' + (1-x)y' + a y = 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">SHO</td>
+<td style="text-align: left;"><span class="math inline">\(y'' + \omega^2 y' = 0\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Hermite</td>
+<td style="text-align: left;"><span class="math inline">\(y'' -2xy' + 2\alpha y = 0\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+</section>
+<section id="급수해-frobenius-방법" class="level3">
+<h3 class="anchored" data-anchor-id="급수해-frobenius-방법">급수해 (Frobenius 방법)</h3>
+<p><a href="#eq-simple_2nd_ode">식&nbsp;3</a> 꼴로 주어진 2차 선형 homogeneous ODE 를 생각하자. 이 경우 <span class="math inline">\(y\)</span> 를 <span class="math inline">\(x\)</span> 의 급수로 놓고 해를 구하는 것을 Frobenius 방법이라고 한다. 즉,</p>
+<p><span class="math display">\[
+y(x) = \sum_{i=0}^\infty a_i x^{s+i}
+\]</span></p>
+<p>로 놓고 미분방정식에 대입하여 계수 <span class="math inline">\(a_i\)</span> 와 <span class="math inline">\(s\)</span> 를 구한다. 이 때 <span class="math inline">\(a_0 \ne 0\)</span> 이다. (<span class="math inline">\(a_0=0\)</span> 이라면 <span class="math inline">\(a_k\ne 0\)</span> 인 가장 작은 <span class="math inline">\(k\)</span> 값부터 잡을 수 있다.)</p>
+<p><br></p>
+<section id="단순조화진동자의-경우" class="level4">
+<h4 class="anchored" data-anchor-id="단순조화진동자의-경우">단순조화진동자의 경우</h4>
+<p>예를 들어 <span class="math inline">\(y'' + \omega^2 y = 0\)</span> 의 경우,</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\sum_{i=0}^\infty a_i (s+i)(s+i-1)x^{s+i-2} + \omega^2 \sum_{i=0}^\infty a_j x^{s+i} = 0 \\
+\implies &amp; a_0 s(s-1)x^{s-2} + a_1 (s+1)s x^{s-1} + \sum_{i=0}^\infty \left[a_{i+2}(s+i+2)(s+i+1) +\omega^2 a_j\right]x^{s+i} = 0
+\end{aligned}
+\]</span></p>
+<p>이로부터 우리는 세가지 조건을 얻는다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(a_0 s(s-1) =0\)</span>,</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(a_1s(s+1) = 0\)</span>,</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(a_{i+2}(s+i+2)(s+i+1) + \omega^2 a_j = 0\)</span></p>
+<p><span class="math inline">\(a_0\ne 0\)</span> 이므로 (<span class="math inline">\(1\)</span>) 의 조건에 의해 <span class="math inline">\(s(s-1)=0\)</span> 이어야 한다. 이 방정식은 <span class="math inline">\(s\)</span> 를 결정하는 중요한 방정식으로 <strong>indicial equation</strong> 이라고 한다. (<span class="math inline">\(2\)</span>) 의 조건에서 <span class="math inline">\(s=-1\)</span> 일 경우 <span class="math inline">\(a_0 = 0\)</span> 이어야 하므로 조건에 위배된다. 따라서 남은 조건은 <span class="math inline">\(s=0\)</span> 이고 <span class="math inline">\(a_1\)</span> 을 자유로 두거나, <span class="math inline">\(s=1\)</span> 이며 <span class="math inline">\(a_1=0\)</span> 으로 두는 것 밖에 없다. 그리고 (<span class="math inline">\(3\)</span>) 조건에 의해,</p>
+<p><span class="math display">\[
+a_{i+2} = \dfrac{-\omega^2}{(i+1)(i+2)}a_i \implies  a_{2k} = (-1)^n \dfrac{\omega^{2k}}{(2k)!} a_0,\, a_{2k+1} = (-1)^n \dfrac{\omega^{2k}}{(2k+1)!} a_1
+\]</span></p>
+<p>를 만족해야 한다. <span class="math inline">\(s=0\)</span> 일 경우,</p>
+<p><span class="math display">\[
+y(x){\large\mid}_{s=0}= a_0 \left[ \sum_{k=0}^\infty \dfrac{(-1)^k (\omega)^{2k}}{(2k)!} x^{2k} \right] + a_1 \left[ \sum_{k=0}^\infty \dfrac{(-1)^k (\omega)^{2k}}{(2k+1)!} x^{2k+1} \right] = a_0 \cos (\omega x) + \dfrac{a_1}{\omega} \sin (\omega x)
+\]</span></p>
+<p>이다. <span class="math inline">\(s=1\)</span> 인 경우는 같은 방법으로</p>
+<p><span class="math display">\[
+y(x) {\large \mid}_{s=1} =  \dfrac{a_0}{\omega}\sin (\omega x)
+\]</span></p>
+<p>임을 알 수 있다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section"></h3>
+<p><br></p>
+</section>
+<section id="fuchs-theorem" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="fuchs-theorem">Fuchs’ theorem</h3>
+<div id="thm-fuchs" class="theorem page-columns page-full">
+<p><span class="theorem-title"><strong>정리 1 </strong></span>아래와 같은 꼴의 미분방정식을 생각하자.</p>
+<p><span class="math display">\[
+\displaystyle y''+p(x)y'+q(x)y=F(x)
+\]</span></p>
+<div class="page-columns page-full"><p>이 방정식은 <span class="math inline">\(p(x),\, q(x),\, F(x)\)</span> 가 <span class="math inline">\(x=a\)</span> 에서 해석적<span class="math inline">\(^1\)</span> 이거나 <span class="math inline">\(a\)</span> 가 regular singular point 라면 프로베니우스 방법에 의한 해를 가진다. 즉 이 미분방정식의 <span class="math inline">\(x=a\)</span> 근처의 해는 어떤 양수 <span class="math inline">\(s\)</span> 에 대해  <span class="math display">\[
+y_1=\sum _{n=0}^{\infty }a_{n}(x-a)^{n+s},\quad a_{0}\ne 0
+\]</span></p><div class="no-row-height column-margin column-container"><span class=""><span class="math inline">\(^1\)</span> 어떤 함수가 <span class="math inline">\(a\)</span> 근처에서 수렴하는 멱급수로 표현 할 수 있을 때 이 함수를 해석적 함수라고 한다</span></div></div>
+<p>이거나 <span class="math inline">\(y_1\)</span> 함수에 <span class="math inline">\(\ln (x-a)\)</span> 를 곱한것과 다른 <span class="math inline">\(y_1\)</span> 꼴의 함수를 더한 아래의 형태이다.</p>
+<p><span class="math display">\[
+y=y_1\ln(x-a)+\sum _{n=0}^{\infty }b_{n}(x-a)^{n+r},\quad b_{0}\neq 0.
+\]</span></p>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -558,11 +735,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">수학적 증명</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" class="pagination-link">
-        <span class="nav-page-text">수치해석 (Numerical Analysis) 과 알고리즘 (Algorithm)</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
