@@ -1,5 +1,5 @@
 ---
-title: "2장 수학에 관련된 표기법과 명제들"
+title: "수학에 관련된 표기법과 명제들"
 #language: ../_language-ko_custom.yml 
 
 number-sections: true

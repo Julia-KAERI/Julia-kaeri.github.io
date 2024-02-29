@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../src/numerical_analysis_using_julia/A03_pde.html" rel="next">
 <link href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -155,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 수학에 관련된 표기법과 명제들</span></a>
+ <span class="menu-text">수학에 관련된 표기법과 명제들</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -248,6 +249,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">상미분 방정식</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/A03_pde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">편미분 방정식</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -262,16 +269,26 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#기본-개념" id="toc-기본-개념" class="nav-link active" data-scroll-target="#기본-개념"><span class="header-section-number">1</span> 기본 개념</a>
   <ul class="collapse">
-  <li><a href="#homogeneous" id="toc-homogeneous" class="nav-link" data-scroll-target="#homogeneous">Homogeneous</a></li>
-  <li><a href="#일반해와-특수해" id="toc-일반해와-특수해" class="nav-link" data-scroll-target="#일반해와-특수해">일반해와 특수해</a></li>
+  <li><a href="#sec-ode-homogeneous" id="toc-sec-ode-homogeneous" class="nav-link" data-scroll-target="#sec-ode-homogeneous"><span class="header-section-number">1.1</span> Homogeneous</a></li>
+  <li><a href="#lhode-linear-homogeneous-oridinary-differential-equation" id="toc-lhode-linear-homogeneous-oridinary-differential-equation" class="nav-link" data-scroll-target="#lhode-linear-homogeneous-oridinary-differential-equation"><span class="header-section-number">1.2</span> LHODE (Linear homogeneous oridinary differential equation)</a></li>
+  <li><a href="#superposition-principle" id="toc-superposition-principle" class="nav-link" data-scroll-target="#superposition-principle"><span class="header-section-number">1.3</span> Superposition principle</a></li>
   </ul></li>
   <li><a href="#계수가-상수인-ode-의-경우" id="toc-계수가-상수인-ode-의-경우" class="nav-link" data-scroll-target="#계수가-상수인-ode-의-경우"><span class="header-section-number">2</span> 계수가 상수인 ODE 의 경우</a></li>
   <li><a href="#차-선형-ode" id="toc-차-선형-ode" class="nav-link" data-scroll-target="#차-선형-ode"><span class="header-section-number">3</span> 2차 선형 ODE</a>
   <ul class="collapse">
-  <li><a href="#singularity" id="toc-singularity" class="nav-link" data-scroll-target="#singularity">Singularity</a></li>
-  <li><a href="#급수해-frobenius-방법" id="toc-급수해-frobenius-방법" class="nav-link" data-scroll-target="#급수해-frobenius-방법">급수해 (Frobenius 방법)</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  <li><a href="#fuchs-theorem" id="toc-fuchs-theorem" class="nav-link" data-scroll-target="#fuchs-theorem">Fuchs’ theorem</a></li>
+  <li><a href="#sec-ode_sigularity" id="toc-sec-ode_sigularity" class="nav-link" data-scroll-target="#sec-ode_sigularity"><span class="header-section-number">3.1</span> Singularity</a></li>
+  <li><a href="#급수해-frobenius-방법" id="toc-급수해-frobenius-방법" class="nav-link" data-scroll-target="#급수해-frobenius-방법"><span class="header-section-number">3.2</span> 급수해 (Frobenius 방법)</a></li>
+  <li><a href="#x_0-주위로의-멱급수-전개" id="toc-x_0-주위로의-멱급수-전개" class="nav-link" data-scroll-target="#x_0-주위로의-멱급수-전개"><span class="header-section-number">3.3</span> <span class="math inline">\(x_0\)</span> 주위로의 멱급수 전개</a></li>
+  <li><a href="#fuchs-theorem" id="toc-fuchs-theorem" class="nav-link" data-scroll-target="#fuchs-theorem"><span class="header-section-number">3.4</span> Fuchs’ theorem</a></li>
+  </ul></li>
+  <li><a href="#알고-있는-해로부터-해를-더-구하는-법" id="toc-알고-있는-해로부터-해를-더-구하는-법" class="nav-link" data-scroll-target="#알고-있는-해로부터-해를-더-구하는-법"><span class="header-section-number">4</span> 알고 있는 해로부터 해를 더 구하는 법</a>
+  <ul class="collapse">
+  <li><a href="#함수의-벡터공간" id="toc-함수의-벡터공간" class="nav-link" data-scroll-target="#함수의-벡터공간"><span class="header-section-number">4.1</span> 함수의 벡터공간</a></li>
+  </ul></li>
+  <li><a href="#sturm-liouville-theory" id="toc-sturm-liouville-theory" class="nav-link" data-scroll-target="#sturm-liouville-theory"><span class="header-section-number">5</span> Sturm-Liouville theory</a>
+  <ul class="collapse">
+  <li><a href="#hermitian-operator" id="toc-hermitian-operator" class="nav-link" data-scroll-target="#hermitian-operator"><span class="header-section-number">5.1</span> Hermitian operator</a></li>
+  <li><a href="#미분방정식을-hermitian-으로-변경하기" id="toc-미분방정식을-hermitian-으로-변경하기" class="nav-link" data-scroll-target="#미분방정식을-hermitian-으로-변경하기"><span class="header-section-number">5.2</span> 미분방정식을 Hermitian 으로 변경하기</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -299,37 +316,41 @@ ul.task-list li input[type="checkbox"] {
 <section id="기본-개념" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="기본-개념"><span class="header-section-number">1</span> 기본 개념</h2>
 <ul>
-<li>하나의 독립변수에 대한 미분방정식을 <strong>상미분 방정식 (ordinary differential equation, ODE)</strong> 이라고 하며, 여러 독립변수에 대한 미분방정식을 <strong>편미분 방정식 (partial differential equation, PDE)</strong> 라고 한다.</li>
-<li>함수에 미분을 포함한 연산자 <span class="math inline">\(\mathcal{L}\)</span> 가 함수 <span class="math inline">\(f,\,g\)</span> 와 상수 <span class="math inline">\(a\)</span> 에 대해 <span class="math inline">\(\mathcal{L}(af(x) + g(x)) = a \mathcal{L}(f(x)) + \mathcal{L}(g(x))\)</span> 를 만족하면 <span class="math inline">\(\mathcal{L}\)</span> 을 <strong>선형 연산자(linear operator)</strong> 라고 한다. 이제 여기서는 연산자 <span class="math inline">\(\mathcal{L}\)</span> 이 미분을 포함하는 연산자를 의미하며 미분방정식은 함수 <span class="math inline">\(F(x)\)</span> 에 대해 다음의 꼴로 주어진다.</li>
-</ul>
-<p><span id="eq-diff_eq_basic"><span class="math display">\[
+<li><p>하나의 독립변수에 대한 미분방정식을 <strong>상미분 방정식 (ordinary differential equation, ODE)</strong> 이라고 하며, 여러 독립변수에 대한 미분방정식을 <strong>편미분 방정식 (partial differential equation, PDE)</strong> 라고 한다.</p></li>
+<li><p>미분 연산을 포함하는 연산자를 <strong>미분 연산자 (differential operator)</strong> 라고 하고 여기서는 <span class="math inline">\(\mathcal{L}\)</span> 로 쓴다. 미분 연산자<span class="math inline">\(\mathcal{L}\)</span> 가 미분 가능한 함수 <span class="math inline">\(f,\,g\)</span> 와 상수 <span class="math inline">\(a\)</span> 에 대해 <span class="math display">\[
+\mathcal{L}(af(x) + g(x)) = a \mathcal{L}(f(x)) + \mathcal{L}(g(x))
+\]</span> 를 만족하면 <span class="math inline">\(\mathcal{L}\)</span> 을 <strong>선형 연산자(linear operator)</strong> 라고 한다.</p></li>
+<li><p>미분방정식은 미분연산자 <span class="math inline">\(\mathcal{L}\)</span> 과 함수 <span class="math inline">\(F(x)\)</span> 에 대해 다음의 꼴로 주어진다. <span id="eq-diff_eq_basic"><span class="math display">\[
 \mathcal{L}(f(x)) = F(x)
-\tag{1}\]</span></span></p>
-<ul>
-<li>연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 포함하는 최대차 미분이 <span class="math inline">\(n\)</span> 차 미분일 때 <a href="#eq-diff_eq_basic">식&nbsp;1</a> 을 <span class="math inline">\(n\)</span> 차 미분 방정식 이라고 한다.</li>
-<li>homogenouse 는 두가지 의미가 있으며 아래에 설명한다.</li>
+\tag{1}\]</span></span></p></li>
+<li><p>연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 포함하는 최대차 미분이 <span class="math inline">\(n\)</span> 차 미분일 때 <a href="#eq-diff_eq_basic">식&nbsp;1</a> 을 <span class="math inline">\(n\)</span> 차 미분 방정식 이라고 한다.</p></li>
+<li><p>homogenouse 는 두가지 의미가 있으며 아래에 설명한다.</p></li>
 </ul>
 <p><br></p>
-<section id="homogeneous" class="level3">
-<h3 class="anchored" data-anchor-id="homogeneous">Homogeneous</h3>
+<section id="sec-ode-homogeneous" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="sec-ode-homogeneous"><span class="header-section-number">1.1</span> Homogeneous</h3>
 <section id="일반적인-함수의-경우" class="level4">
 <h4 class="anchored" data-anchor-id="일반적인-함수의-경우">일반적인 함수의 경우</h4>
 <p><span class="math inline">\(n\)</span> 개의 독립변수를 가진 함수 <span class="math inline">\(f(x_1,\ldots,\,x_n)\)</span> 가 어떤 <span class="math inline">\(k\)</span> 에 대해 <span class="math inline">\(f(ax_1,\ldots,\,ax_k) = a^k f(x_1,\ldots,\,x_k)\)</span> 를 만족할 때 이 함수를 <strong><span class="math inline">\(k\)</span> 차 동차 함수(homogeneous function)</strong> 라고 한다.</p>
 </section>
 <section id="미분방정식의-경우" class="level4">
 <h4 class="anchored" data-anchor-id="미분방정식의-경우">미분방정식의 경우</h4>
-<p>미분 방정식에서 구하고자 하는 함수 <span class="math inline">\(f\)</span> 와 <span class="math inline">\(f\)</span> 의 모든 도함수의 곱의 차수(degree) 가 모든 방정식의 항에서 같을 때 이를 <strong>homogeneous</strong> 라고 한다. 즉 <span class="math inline">\((y')^2 + yy' =0\)</span> 은 homogenous 이며 <span class="math inline">\(y' + y + c=0\)</span> 은 inhomogenouse 이다. 또한 <span class="math inline">\(y'' + yy' = 0\)</span> 도 inhomogeneous 이다.</p>
+<p>미분 방정식에서 구하고자 하는 함수 <span class="math inline">\(f\)</span> 와 <span class="math inline">\(f\)</span> 의 모든 도함수의 곱의 차수(degree) 가 모든 방정식의 항에서 같을 때 이를 <strong>homogeneous</strong> 라고 한다. 즉 <span class="math inline">\((y')^2 + yy' =0\)</span> 은 homogenous 이며 <span class="math inline">\(y' + y + c=0\)</span> 은 <span class="math inline">\(1\)</span> 차항 <span class="math inline">\(y',\,y\)</span> 와 <span class="math inline">\(0\)</span> 차항 <span class="math inline">\(c\)</span> 때문에 inhomogeneous 이다. 또한 <span class="math inline">\(y'' + yy' = 0\)</span> 도 inhomogeneous 이다.</p>
 <p><br></p>
 </section>
 </section>
-<section id="일반해와-특수해" class="level3">
-<h3 class="anchored" data-anchor-id="일반해와-특수해">일반해와 특수해</h3>
-<p>선형미분방정식이 다음과 같이 주어졌다고 하자.</p>
+<section id="lhode-linear-homogeneous-oridinary-differential-equation" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="lhode-linear-homogeneous-oridinary-differential-equation"><span class="header-section-number">1.2</span> LHODE (Linear homogeneous oridinary differential equation)</h3>
+<p>선형미분방정식이 미분연산자 <span class="math inline">\(\mathcal{L}\)</span> 과 함수 <span class="math inline">\(F\)</span> 에 대해 다음과 같이 주어졌다고 하자.</p>
 <p><span class="math display">\[
 \mathcal{L}(f(x)) = F(x).
 \]</span></p>
-<p>이 때 <span class="math inline">\(\mathcal{L}(f(x))=0\)</span> 를 만족하는 <span class="math inline">\(f(x)\)</span> 를 <strong>일반해(general solution)</strong> 이라고 한다. 선형 미분방정식의</p>
-<p>우리가 어떻게 해서든 <span class="math inline">\(\mathcal{L}(f) = F(x)\)</span> 의 해를 얻었다면 이를 <strong>특수해</strong> 라고 한다. 2차 이상의 미분방정식의 경우 일반해가 여러개 나올 수 있으며, 일반해와 특수해의 합 역시 선형미분 방정식의 해이다. 즉 <span class="math inline">\(f_g(x)\)</span> 가 일반해이고 <span class="math inline">\(f_s(x)\)</span> 가 특수해라면, <span class="math inline">\(f_g(x) + f_s(x)\)</span> 역시 미분방정식의 해이다. 또한 일반해의 선형결합도 일반해이다. 즉 선형 미분방정식의 일반해는 벡터공간을 이룬다.</p>
+<p><span class="math inline">\(\mathcal{L}\)</span> 이 homogeneous 할 경우 <span class="math inline">\(F(x)=0\)</span> 이면 이 미분방정식은 homogeneous 하다. 그리고 많은 경우 선형이고 homogeneous 한 미분방정식을 얻는 것이 매우 중요하다. 그 이유중 하나는 위의 미분방정식의 해 <span class="math inline">\(\psi\)</span> 를 얻었고, homogeneous 한 방정식의 해 <span class="math inline">\(\phi\)</span> 를 얻었다면 <span class="math inline">\(\phi + \psi\)</span> 도 항상 위의 방정식의 해이기 때문이다. 이제 linear homogeneous ordinary differential equation 을 <strong>LHODE</strong> 라고 줄여 쓰기로 하자. 그리고 linear homogeneous ordinary differential operator 를 <strong>LHODO</strong> 라고 줄여 쓰기로 하자.</p>
+<p><br></p>
+</section>
+<section id="superposition-principle" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="superposition-principle"><span class="header-section-number">1.3</span> Superposition principle</h3>
+<p>LHODE <span class="math inline">\(\mathcal{L}(f(x))=0\)</span> 의 해는 보통 여러개이며 그것의 선형결합 역시 해이다. 즉 <span class="math inline">\(\mathcal{L}\psi = 0\)</span>, <span class="math inline">\(\mathcal{L}\phi = 0\)</span> 이면 임의의 <span class="math inline">\(a,\,b\)</span> 에 대해 <span class="math inline">\(\mathcal{L}(a\psi + b \phi) = 0\)</span> 이다. 이것을 <strong>superposition principle</strong> 이라고 한다.</p>
 <p><br></p>
 </section>
 </section>
@@ -345,16 +366,20 @@ ul.task-list li input[type="checkbox"] {
 \]</span></p>
 <p>이며 이를 만족 하는 <span class="math inline">\(m\)</span> 은 복소수에서 <span class="math inline">\(n\)</span> 개 존재한다.</p>
 <p><br></p>
+<div id="exm-ode_sho1" class="theorem example">
+<p><span class="theorem-title"><strong>보기 1 (단순조화진동자) </strong></span>LHODE <span class="math inline">\(y'' + \omega^2 y = 0\)</span> 을 보자. <span class="math inline">\(y=e^{\lambda x}\)</span> 라고 놓으면, <span class="math inline">\(\lambda^2+\omega^2 = 0\)</span> 이어야 하므로 <span class="math inline">\(\lambda = \pm \omega i\)</span> 이다. 임의의 <span class="math inline">\(a,\,b \in \mathbb{C}\)</span> 에 대해 <span class="math inline">\(a e^{i\omega x} + be^{-i\omega x}\)</span> 는 미분방정식의 해이다.</p>
+</div>
+<p><br></p>
 </section>
 <section id="차-선형-ode" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="차-선형-ode"><span class="header-section-number">3</span> 2차 선형 ODE</h2>
-<section id="singularity" class="level3">
-<h3 class="anchored" data-anchor-id="singularity">Singularity</h3>
+<section id="sec-ode_sigularity" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="sec-ode_sigularity"><span class="header-section-number">3.1</span> Singularity</h3>
 <p>가장 간단한 다음 꼴의 2차 ODE 를 보자.</p>
 <p><span id="eq-simple_2nd_ode"><span class="math display">\[
 y''  + p(x) y' + q(x) y  = 0
 \tag{3}\]</span></span></p>
-<p>이 식은 모든 항에서 <span class="math inline">\(y\)</span> 와 그 도함수가 1차이므로 homogeneous 하다. <span class="math inline">\(p(x)\)</span> 와 <span class="math inline">\(q(x)\)</span> 가 유한한 값을 가질 때 이 <span class="math inline">\(x\)</span> 를 <strong>ordinary point</strong> 라고 하며 그렇지 않을 때는 <strong>singular point</strong> 라고 한다. singular point 가운데 <span class="math inline">\(\lim_{x\to x_0} |(x-x_0)p(x)|&lt;\infty\)</span>, <span class="math inline">\(\lim_{x\to x_0} |(x-x_0)q(x)|&lt;\infty\)</span> 이면 <strong>regular singularity</strong> 라고 하며 그렇지 않을 때 <strong>irregular singularity</strong> 라고 한다.</p>
+<p>이 식은 모든 항에서 <span class="math inline">\(y\)</span> 와 그 도함수가 1차이므로 homogeneous 하다. <span class="math inline">\(p(x)\)</span> 와 <span class="math inline">\(q(x)\)</span> 가 유한한 값을 가질 때 이 <span class="math inline">\(x\)</span> 를 <strong>ordinary point</strong> 라고 하며 그렇지 않을 때는 <strong>singular point</strong> 라고 한다. singular point 가운데 <span class="math inline">\(\lim_{x\to x_0} |(x-x_0)p(x)|&lt;\infty\)</span>, <span class="math inline">\(\lim_{x\to x_0} |(x-x_0)q(x)|&lt;\infty\)</span> 이면 <strong>regular singularity</strong> 라고 하며 그렇지 않을 때 <strong>irregular singularity</strong> 혹은 <strong>essential singularity</strong> 라고 한다.</p>
 <p><span class="math inline">\(x\to \infty\)</span> 나 <span class="math inline">\(x \to -\infty\)</span> 의 경우에는 <span class="math inline">\(z=1/x\)</span> 로 치환하여 미분방정식을 <span class="math inline">\(z\)</span> 에 대한 미분방정식으로 바꾼다. <span class="math inline">\(w(z) = y(z^{-1})\)</span> 이라면,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -436,19 +461,23 @@ y'' (x) &amp;= \dfrac{dy'}{dz}\dfrac{dz}{dx} = z^4 w'' + 2z^3 w'
 </tbody>
 </table>
 </div>
+<p>대표적으로 르장드르 함수 <span class="math inline">\((1-x^2) y'' -2xy' + l(l+1)y=0\)</span> 를 보자. 르장드르 함수는</p>
+<p><span class="math display">\[
+y'' - \dfrac{2xy}{1-x^2} y' + \dfrac{l(l+1)}{1-x^2} y = 0
+\]</span></p>
+<p>으로 <span class="math inline">\(x=\pm 1\)</span> 에서 regular singularity 를 가진다.</p>
 <p><br></p>
 </section>
-<section id="급수해-frobenius-방법" class="level3">
-<h3 class="anchored" data-anchor-id="급수해-frobenius-방법">급수해 (Frobenius 방법)</h3>
-<p><a href="#eq-simple_2nd_ode">식&nbsp;3</a> 꼴로 주어진 2차 선형 homogeneous ODE 를 생각하자. 이 경우 <span class="math inline">\(y\)</span> 를 <span class="math inline">\(x\)</span> 의 급수로 놓고 해를 구하는 것을 Frobenius 방법이라고 한다. 즉,</p>
-<p><span class="math display">\[
-y(x) = \sum_{i=0}^\infty a_i x^{s+i}
-\]</span></p>
-<p>로 놓고 미분방정식에 대입하여 계수 <span class="math inline">\(a_i\)</span> 와 <span class="math inline">\(s\)</span> 를 구한다. 이 때 <span class="math inline">\(a_0 \ne 0\)</span> 이다. (<span class="math inline">\(a_0=0\)</span> 이라면 <span class="math inline">\(a_k\ne 0\)</span> 인 가장 작은 <span class="math inline">\(k\)</span> 값부터 잡을 수 있다.)</p>
+<section id="급수해-frobenius-방법" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="급수해-frobenius-방법"><span class="header-section-number">3.2</span> 급수해 (Frobenius 방법)</h3>
+<p><a href="#eq-simple_2nd_ode">식&nbsp;3</a> 꼴로 주어진 2차 LHODE 를 생각하자. 이 경우 <span class="math inline">\(y\)</span> 를 <span class="math inline">\(x\)</span> 의 급수로 놓고 해를 구하는 것을 Frobenius 방법이라고 한다. 즉,</p>
+<p><span id="eq-ode_expansion_about_zero"><span class="math display">\[
+y(x) = \sum_{i=0}^\infty a_i x^{s+i} ,\qquad a_0 \ne 0
+\tag{5}\]</span></span></p>
+<p>로 놓고 미분방정식에 대입하여 계수 <span class="math inline">\(a_i\)</span> 와 <span class="math inline">\(s\)</span> 를 구한다. 이 때 <span class="math inline">\(a_0 \ne 0\)</span> 임에 유의하라.</p>
 <p><br></p>
-<section id="단순조화진동자의-경우" class="level4">
-<h4 class="anchored" data-anchor-id="단순조화진동자의-경우">단순조화진동자의 경우</h4>
-<p>예를 들어 <span class="math inline">\(y'' + \omega^2 y = 0\)</span> 의 경우,</p>
+<div id="exm-ode_frobenius_sho" class="theorem example">
+<p><span class="theorem-title"><strong>보기 2 (단순조화진동자의 경우) </strong></span>예를 들어 <span class="math inline">\(y'' + \omega^2 y = 0\)</span> 의 경우,</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp;\sum_{i=0}^\infty a_i (s+i)(s+i-1)x^{s+i-2} + \omega^2 \sum_{i=0}^\infty a_j x^{s+i} = 0 \\
@@ -472,17 +501,22 @@ y(x){\large\mid}_{s=0}= a_0 \left[ \sum_{k=0}^\infty \dfrac{(-1)^k (\omega)^{2k}
 y(x) {\large \mid}_{s=1} =  \dfrac{a_0}{\omega}\sin (\omega x)
 \]</span></p>
 <p>임을 알 수 있다.</p>
+</div>
 <p><br></p>
 </section>
-</section>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
+<section id="x_0-주위로의-멱급수-전개" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="x_0-주위로의-멱급수-전개"><span class="header-section-number">3.3</span> <span class="math inline">\(x_0\)</span> 주위로의 멱급수 전개</h3>
+<p><a href="#eq-ode_expansion_about_zero">식&nbsp;5</a> 는 <span class="math inline">\(x_0=0\)</span> 근처의 전개이다. 이것을 임의의 <span class="math inline">\(x_0\)</span> 근처에서 다음과 같이 전개하여 미분방정식의 해를 구하는 것도 가능하다.</p>
+<p><span class="math display">\[
+y(x) = \sum_{i=0}^\infty a_i (x-x_0)^{s+i} ,\qquad a_0 \ne 0
+\]</span></p>
+<p><span class="math inline">\(x_0\)</span> 를 <a href="../../src/numerical_analysis_using_julia/A02_ode.html#sec-ode_singularity">regular singularity</a> 로 잡으면 많은 경우 미분방정식의 해를 찾는 데 유용하지만 <a href="../../src/numerical_analysis_using_julia/A02_ode.html#sec-ode_singularity">irregular siglularity</a> 의 경우는 Frobenius 방법으로 해를 구할 수 없다.</p>
 <p><br></p>
 </section>
-<section id="fuchs-theorem" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="fuchs-theorem">Fuchs’ theorem</h3>
+<section id="fuchs-theorem" class="level3 page-columns page-full" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="fuchs-theorem"><span class="header-section-number">3.4</span> Fuchs’ theorem</h3>
 <div id="thm-fuchs" class="theorem page-columns page-full">
-<p><span class="theorem-title"><strong>정리 1 </strong></span>아래와 같은 꼴의 미분방정식을 생각하자.</p>
+<p><span class="theorem-title"><strong>정리 1 (Fuch 의 정리) </strong></span>아래와 같은 꼴의 미분방정식을 생각하자.</p>
 <p><span class="math display">\[
 \displaystyle y''+p(x)y'+q(x)y=F(x)
 \]</span></p>
@@ -494,6 +528,213 @@ y_1=\sum _{n=0}^{\infty }a_{n}(x-a)^{n+s},\quad a_{0}\ne 0
 y=y_1\ln(x-a)+\sum _{n=0}^{\infty }b_{n}(x-a)^{n+r},\quad b_{0}\neq 0.
 \]</span></p>
 </div>
+<p><br></p>
+</section>
+</section>
+<section id="알고-있는-해로부터-해를-더-구하는-법" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="알고-있는-해로부터-해를-더-구하는-법"><span class="header-section-number">4</span> 알고 있는 해로부터 해를 더 구하는 법</h2>
+<p><br></p>
+<section id="함수의-벡터공간" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="함수의-벡터공간"><span class="header-section-number">4.1</span> 함수의 벡터공간</h3>
+<p>구간 <span class="math inline">\(I\)</span> 에서 <span class="math inline">\(n-1\)</span> 번 미분 가능한함수의 집합은 벡터공간 <span class="math inline">\(X\)</span> 을 이루며 따라서 함수에 대한 선형 독립을 정의 할 수 있다. 또한 <span class="math inline">\(X\)</span> 에 적절한 내적을 정하여 내적벡터공간으로 구성하면 함수 사이의 직교성(orthogonality) 도 생각 할 수 있다.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-ode_wronskian" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 1 (Wronskian) </strong></span>어떤 구간 <span class="math inline">\(I\)</span> 에서 정의된 <span class="math inline">\(n-1\)</span> 번 미분 가능한 함수 <span class="math inline">\(\varphi_1,\ldots,\,\varphi_n\)</span> 에 대해 다음 과 같이 정의된 행렬식을 <strong>Wronskian</strong> 이라고 한다.</p>
+<p><span class="math display">\[
+W[\varphi_1,\ldots,\,\varphi_n] = W[\{\varphi_i\}]:= \det \left(\begin{bmatrix} \varphi_1 &amp; \varphi_2 &amp; \cdots &amp;\varphi_n \\ \varphi'_1 &amp; \varphi'_2 &amp; \cdots &amp; \varphi'_n \\ \vdots  &amp; &amp; &amp;\vdots \\ \varphi^{(n-1)}_1 &amp; \varphi^{(n-1)}_2 &amp; \cdots &amp; \varphi^{(n-1)}_n\end{bmatrix}\right)
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="prp-wronskian_1" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 1 </strong></span><a href="#def-ode_wronskian">정의&nbsp;1</a> 의 Wronskian 에 대해 다음이 성립한다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(W[\{\varphi_i\}]\ne 0\)</span> 이면 <span class="math inline">\(\{\varphi_i\}\)</span> 는 선형독립이다.</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(W[\{\varphi_i\}] = 0\)</span> 이면 <span class="math inline">\(\{\varphi_i\}\)</span> 는 선형종속이다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\{\varphi_i\}\)</span> 에 대해</p>
+<p><span class="math display">\[
+a_1 \varphi_1  + \cdots + a_n \varphi_n = 0
+\]</span></p>
+<p>이라고 하자. 그렇다면 <span class="math inline">\(k=1,\ldots,\, n-1\)</span> 에 대해</p>
+<p><span class="math display">\[
+a_1\varphi_1^{(k)} + \cdots + a_n \varphi_n^{(k)} = 0
+\]</span></p>
+<p>을 만족하며 따라서 <span class="math inline">\(\begin{bmatrix} a_1 &amp; \cdots &amp; a_n \end{bmatrix}^T\)</span> 는 다음의 선형방정식의 해이다.</p>
+<p><span class="math display">\[
+\begin{bmatrix} \varphi_1 &amp; \varphi_2 &amp; \cdots &amp;\varphi_n \\ \varphi'_1 &amp; \varphi'_2 &amp; \cdots &amp; \varphi'_n \\ \vdots  &amp; &amp; &amp;\vdots \\ \varphi^{(n-1)}_1 &amp; \varphi^{(n-1)}_2 &amp; \cdots &amp; \varphi^{(n-1)}_n\end{bmatrix} \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}
+\]</span></p>
+<p>즉 <span class="math inline">\(W[\{\varphi_i\}] = 0\)</span> 이면 nontrivial <span class="math inline">\(a_1,\ldots,\,a_n\)</span> 이 존재하며 따라서 <span class="math inline">\(\{\varphi_i\}\)</span> 는 선형 종속이다. <span class="math inline">\(W[\{\varphi_i\}] \ne 0\)</span> 이면 <span class="math inline">\(a_1=\cdots = a_n = 0\)</span> 이므로 <span class="math inline">\(\{\varphi_i\}\)</span> 는 선형 독립이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<div id="exm-ode_dependency_sho" class="theorem example">
+<p><span class="theorem-title"><strong>보기 3 </strong></span><a href="#exm-ode_frobenius_sho">보기&nbsp;2</a> 에서 우리는 <span class="math inline">\(y'' + \omega^2 y = 0\)</span> 의 해 <span class="math inline">\(\sin \omega x,\,\cos\omega x\)</span> 를 구했다. 여기서</p>
+<p><span class="math display">\[
+W[\sin \omega x,\, \cos\omega x] = \det \left(\begin{bmatrix} \cos \omega x &amp; \sin \omega x \\ - \sin \omega x &amp; \cos \omega x\end{bmatrix}\right) = 1
+\]</span></p>
+<p>이므로 두 해는 선형독립임을 안다.</p>
+</div>
+<p><br></p>
+<div id="thm-number_of_solution_of_second_order_linear_ode" class="theorem">
+<p><span class="theorem-title"><strong>정리 2 </strong></span>2차 LHODE 는 최대 두개의 독립적인 해를 가진다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>2차 linear homogeneous ODE</p>
+<p><span id="eq-thm_nsos_1"><span class="math display">\[
+y'' + p(x) y' + q(x) y = 0
+\tag{6}\]</span></span></p>
+<p>를 생각하자. <span class="math inline">\(y_1,\,y_2,\,y_3\)</span> 가 이 방정식의 해라고 하자. 그리고 <span class="math inline">\(W_{ij} = W[y_i, y_j]\)</span> 라고 하면 <span class="math inline">\(W_{ij}= y_i y'_j - y'_i y_j\)</span> 이다. 그렇다면</p>
+<p><span id="eq-thm_nsos_2"><span class="math display">\[
+W'_{ij} = \dfrac{dW_{ij}}{dx} = y'_i y'_j + y_i y''_j - y''_iy_j - y'_i y'_j = y_i y''_j - y''_i y_j
+\tag{7}\]</span></span></p>
+<p>이다. <a href="#eq-thm_nsos_1">식&nbsp;6</a> 로 부터,</p>
+<p><span class="math display">\[
+\dfrac{y''_i}{y_i} + p(x) \dfrac{y'_i}{y_i} = -q(x) = \dfrac{y''_j}{y_j} + p(x) \dfrac{y_j'}{y_j}
+\]</span></p>
+<p>이며 여기에 <span class="math inline">\(y_i y_j\)</span> 를 곱하면</p>
+<p><span id="eq-ode_differential_of_wronskian"><span class="math display">\[
+W'_{ij} = -p(x) W_{ij}
+\tag{8}\]</span></span></p>
+<p>를 얻는다. 이제</p>
+<p><span class="math display">\[
+\begin{aligned}
+W(y_1, y_2, y_3) &amp;= \det\left(\begin{bmatrix} y_1 &amp; y_2 &amp; y_3 \\ y'_1 &amp; y'_2 &amp; y'_3 \\ y''_1 &amp; y''_2 &amp; y''_3 \end{bmatrix}\right) = - y'_1 W_{23}' - y'_2 W'_{31} - y'_3 W'_{12} \\
+&amp;= -p(x) (y_1W_23 + y_2 W_31 + y_3 W_12) = \det\left(\begin{bmatrix} y_1 &amp; y_2 &amp; y_3 \\ y'_1 &amp; y'_2 &amp; y'_3 \\ y'_1 &amp; y'_2 &amp; y'_3 \end{bmatrix}\right) = 0
+\end{aligned}
+\]</span></p>
+<p>이다. 따라서 2차 linear homogeneous ODE 의 선형 독립인 해는 많아야 2개이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<p>이제 <a href="#eq-thm_nsos_1">식&nbsp;6</a> 의 꼴의 미분방정식의 한 해를 알고 있다고 하자. Frobenius 방법으로든, 직관으로 파악했든 하나의 해를 알았다면 이제 두번째 해, 즉 첫번째 해에 대해 선형독립인 나머지 해를 찾을 수 있음을 보이고자 한다. 두 해의 Wronskian <span class="math inline">\(W[y_1,\,y_2] = W\)</span> 은 <span class="math inline">\(x\)</span> 에 대한 함수이다. <a href="#eq-ode_differential_of_wronskian">식&nbsp;8</a> 로부터,</p>
+<p><span class="math display">\[
+\dfrac{d}{dx}W(x) = -p(x) W(x) \implies W(x) = W(a) e^{-\int_{a}^x p(t)\,dt}
+\]</span></p>
+<p>를 얻는다. 또한</p>
+<p><span class="math display">\[
+W(x) = y_1y_2' - y_1'y_2 = y_1^2 \dfrac{d}{dx}\left(\dfrac{y_2}{y_1}\right)
+\]</span></p>
+<p>이므로,</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_2(x) &amp;= y_1(x) \int_b^x \dfrac{W(x')}{[y_1(x')]^2} \, dx' - \dfrac{y_2(b)}{y_1(b)}y_1(x) \\
+&amp;= y_1(x) W(a) \int_b^x \dfrac{\exp \left(-\int_a^{x'} p(t)\, dt\right)}{[y_1(x')]}\, dx'- \dfrac{y_2(b)}{y_1(b)}y_1(x)
+\end{aligned}
+\]</span></p>
+<p>이다. 여기서 <span class="math inline">\(a,\,b\)</span> 는 임의의 상수이다. 그런데 우리는 <span class="math inline">\(y_1\)</span> 과 선형독립인 <span class="math inline">\(y_2\)</span> 를 찾는 것이므로 뒤의 <span class="math inline">\(y_2(b)y_1(x)/y_2(b)\)</span> 는 없어도 무관하다. 따라서,</p>
+<p><span class="math display">\[
+y_2(x) = y_1(x) W(a) \int_b^x \dfrac{\exp \left(-\int_a^{x'} p(t)\, dt\right)}{[y_1(x')]}\, dx'
+\]</span></p>
+<p>만 생각해도 된다.</p>
+<p><br></p>
+<div id="exm-ode-anothor_solution_of_2nd_lhode" class="theorem example">
+<p><span class="theorem-title"><strong>보기 4 (단순조화진동자(SHO) 의 경우) </strong></span>우리는 <span class="math inline">\(y'' + \omega^2 y=0\)</span> 의 한 해가 <span class="math inline">\(\cos \omega x\)</span> 임을 안다. <span class="math inline">\(p(x) = 0\)</span> 이므로 <span class="math inline">\(W(x) = W_0 = \text{const.}\)</span> 이다. 따라서,</p>
+<p><span class="math display">\[
+y_2 (x) = \cos(\omega x) W_0 \int_{0}^x \dfrac{1}{\cos ^2 \omega x'}\, dx' = \dfrac{W_0}{\omega} \cos (\omega x) \tan (\omega x) = \dfrac{W_0}{\omega} \sin (\omega x)
+\]</span></p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="sturm-liouville-theory" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sturm-liouville-theory"><span class="header-section-number">5</span> Sturm-Liouville theory</h2>
+<p>2차 linear homogeneous ode 연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 대해</p>
+<p><span class="math display">\[
+\mathcal{L}\psi (x) = \lambda \psi (x)
+\]</span></p>
+<p>는 미분방정식을 고유값 문제로 바꾸게 된다. 이 경우 <span class="math inline">\(\mathcal{L}\)</span> 은</p>
+<p><span id="eq-ode_2nd_lhode"><span class="math display">\[
+\mathcal{L}\psi (x) = \left[p_0 (x) \dfrac{d}{dx^2} + p_1(x) \dfrac{d}{dx} + p_2(x)\right]\psi(x)
+\tag{9}\]</span></span></p>
+<p>꼴로 주어진다. 특정한 물리적 상황에 대한 미분방정식은, 그 해가 가저야 할 조건이 주어지며 많은 경우 그 해, 혹은 그 해의 도함수가 가져야할 경계조건으로 주어진다. 어떤 이차 미분 방정식이 <span class="math inline">\(x=a,\,b\)</span> 에서 <span class="math inline">\(f(a)=f(b) =0\)</span> 이거나 <span class="math inline">\(f'(a) = f'(b)=0\)</span> 이어야 한다면, 이 조건을 만족하는 미분가능한 함수의 집합 <span class="math inline">\(X\)</span> 는 힐베르트 공간을 이룬다. 즉 우리는 미분방정식을 벡터공간의 입장에서 다룰 수 있다. 만약 적절한 내적(inner product) 가 주어진 상황에서 <span class="math inline">\(\mathcal{L}\)</span> 연산자가 hermitian 이라면 고유값은 항상 실수이며, 전체 벡터공간을 고유벡터의 선형결합으로 표현 할 수 있다.</p>
+<p><br></p>
+<section id="hermitian-operator" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="hermitian-operator"><span class="header-section-number">5.1</span> Hermitian operator</h3>
+<p><a href="#eq-ode_2nd_lhode">식&nbsp;9</a> 형태로 주어진 연산자 <span class="math inline">\(\mathcal{L}\)</span> 에서 <span class="math inline">\(p'_0 (x) = p_1(x)\)</span> 일 경우를 생각하자. 그렇다면,</p>
+<p><span class="math display">\[
+\mathcal{L} \psi (x) = \left[\dfrac{d}{dx} \left(p_0(x) \dfrac{d}{dx}\right) + p_2(x)\right]\psi (x) = [p_0(x) \psi'(x)]' + p_2(x) ] \psi(x)
+\]</span></p>
+<p>이다. 여기서 내적이 <span class="math inline">\(\langle u(x),\, v(x) \rangle = \displaystyle \int_{a}^b v^\ast(x) u(x)\, dx\)</span> 로 정의되었다면,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\langle \mathcal{L}u(x),\, v(x)\rangle &amp;= \int_{a}^b \left(v^\ast ( p_0 u')' + v^\ast p_2 u\right) \, dx \\
+&amp;= {\large \left[ \right.}v^\ast p_0 u' {\large \left.\right]}_a^b +\int_a^b \left( -(v^\ast)' p_0 u' + v^\ast p_2 u\right) \, dx \\
+&amp;= {\large \left[ \right.}v^\ast p_0 u'  - (v^\ast)'p_0 u {\large \left.\right]}_a^b + \int_a^b \left[ (p_0 {v^\ast}')' u + v^\ast p_2 u\right]\, dx\\
+&amp;= {\large \left[ \right.}v^\ast p_0 u'  - (v^\ast)'p_0 u {\large \left.\right]}_a^b + \int_a^b (\mathcal{L}v)^\ast u\, dx \\
+&amp;= {\large \left[ \right.}v^\ast p_0 u'  - (v^\ast)'p_0 u {\large \left.\right]}_a^b + \langle u(x),\, \mathcal{L}v(x)\, \rangle
+\end{aligned}
+\]</span></p>
+<p>이다. 만약 <span class="math inline">\({\large \left[ \right.}v^\ast p_0 u' - (v^\ast)'p_0 u {\large \left.\right]}_a^b = 0\)</span> 인 경계조건을 가지고 있다면,</p>
+<p><span class="math display">\[
+\langle \mathcal{L}u(x),\, v(x)\rangle = \langle u(x),\, \mathcal{L}v(x)\, \rangle
+\]</span></p>
+<p>이며 이것은 벡터공간에서의 에르미트 연산자의 조건이다. 즉 일반적인 내적 벡터공간에서의 에르미트 연산자와는 달리 미분방정식에서의 에르미트 조건은 경계조건을 포함한다. 보통 <span class="math inline">\(u(a)=u(b) = v(a)=v(b) = 0\)</span> 이거나 <span class="math inline">\(u'(a) =u'(b) = v'(a) = v'(b) = 0\)</span> 인 조건을 가지게 되며 전자를 <strong>디리클레 경계조건 (Dirichlet boundary condition)</strong> 이라고 하고 후자를 <strong>노이만 경계 조건 (Neumann boundary condition)</strong> 이라고 한다.</p>
+<p>이제 디리클레 경계조건, 혹은 노이만 경계 조건을 만족하는 <span class="math inline">\(C^2\)</span> 함수의 집합을 <span class="math inline">\(X\)</span> 라고 하면 <span class="math inline">\(X\)</span> 는 벡터공간며 여기에 내적 <span class="math inline">\(\langle u,\,v\rangle = \displaystyle \int_a^b v^\ast(x)u(x)\,dx\)</span> 이 정의되어 있다면 <span class="math inline">\(X\)</span> 는 내적 벡터 공간이 된다. <span class="math inline">\(\mathcal{L}\)</span> 연산자는 에르미트 연산자이므로 <span class="math inline">\(\mathcal{L}\)</span> 의 고유함수로 <span class="math inline">\(X\)</span> 의 기저를 구성 할 수 있다. <span class="math inline">\(\varphi_i,\, \varphi_j\)</span> 가 각각 <span class="math inline">\(\lambda_i,\, \lambda_j\)</span> 를 고유값으로 갖는 고유함수이며 <span class="math inline">\(\lambda_i\neq \lambda_j\)</span> 라면 당연히 <span class="math inline">\(\langle \varphi_i,\,\varphi_j \rangle = 0\)</span> 이다.</p>
+<p><br></p>
+</section>
+<section id="미분방정식을-hermitian-으로-변경하기" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="미분방정식을-hermitian-으로-변경하기"><span class="header-section-number">5.2</span> 미분방정식을 Hermitian 으로 변경하기</h3>
+<p>위에서 설명했듯이 미분연산자가 hermitian 이라면 매우 좋은 성질을 갖게 된다. 만약 자체로는 hermtian 이 아니지만 약간 변형하여 hermitian 으로 만들 수 있다면? 자 <a href="#eq-ode_2nd_lhode">식&nbsp;9</a> 형태의 미분방정식이 hermitian 이 될 조건은 아래의 두가지 이다.</p>
+<p>  (1) <span class="math inline">\(p_0'(x) = p_1(x)\)</span>,</p>
+<p>  (2) 경계조건 <span class="math inline">\({\large \left[ \right.}v^\ast p_0 u' - (v^\ast)'p_0 u {\large \left.\right]}_a^b = 0\)</span> .</p>
+<p>만약 어떤 함수 <span class="math inline">\(w(x)\)</span> 를 곱하여,</p>
+<p><span class="math display">\[
+\mathcal{L}'\psi(x) = w(x) \mathcal{L} \psi(x) = \left[w(x) p_0 (x) \dfrac{d}{dx^2} + w(x) p_1(x) \dfrac{d}{dx} + w(x) p_2(x)\right]\psi(x)
+\]</span></p>
+<p>의 <span class="math inline">\(\mathcal{L}'\)</span> 이 hermitian 이 되려면 <span class="math inline">\((wp_0)' =wp_1\)</span> 이 되어야 한다. <span class="math inline">\((wp_0)' = (wp_0)\dfrac{p_1}{p_0}\)</span> 이므로,</p>
+<p><span id="eq-ode_weighting"><span class="math display">\[
+w(x)p_0(x) = w(a)p_0(a) \exp \left(\int_a^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
+\tag{10}\]</span></span></p>
+<p>이며,</p>
+<p><span class="math display">\[
+w(x) = \dfrac{1}{p_0(x)} \exp \left(\int_a^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
+\]</span></p>
+<p>로 놓을 수 있다. <span class="math inline">\(w(a)p_0(a)\)</span> 는 상수로 미분방정식에 영항을 끼치지 않아서 <span class="math inline">\(1\)</span> 로 놓았다. 실제로는 계산하기 편하도록 어떤 0 이 아닌 상수를 곱하여도 상관 없다. 이제 <span class="math display">\[
+\overline{p}_0 = \exp \left(\int^x \dfrac{p_1(t)}{p_0(t)}\, dt\right),\, \overline{p}_1 = \dfrac{p_1(x)}{p_0(x)}\exp \left(\int^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
+\]</span> 에 대해</p>
+<p><span class="math display">\[
+\mathcal{L}'\psi (x) = \left[\overline{p}_0 (x) \dfrac{d}{dx^2} + \overline{p}_1(x) \dfrac{d}{dx} + w(x)p_2(x)\right]\psi(x)
+\]</span></p>
+<p>의 미분방정식을 얻었다.</p>
+<p>이제 에르미트 조건을 알아보자.</p>
+<p><span id="eq-odd_hermitian_cond_1"><span class="math display">\[
+\begin{aligned}
+\int_a^b v^\ast (x) \mathcal{L}'u(x)\, dx &amp;= \int_a^b v^\ast (x) w(x)\mathcal{L}u(x)\, dx \\
+&amp;=  {\large \left[ \right.} v^\ast \overline{p}_0 u' - (v^\ast)' \overline{p}_0 u {\large \left. \right]}_a^b + \int_a^b (\mathcal{L}'v(x))^\ast u(x)\, dx \\
+&amp;=  {\large \left[ \right.} v^\ast \overline{p}_0 u' - (v^\ast)' \overline{p}_0 u {\large \left. \right]}_a^b + \int_a^b w(x)(\mathcal{L}v(x))^\ast u(x)\, dx
+\end{aligned}
+\tag{11}\]</span></span></p>
+<p>이제 내적을</p>
+<p><span id="eq-odd_innerproduct_with_weight"><span class="math display">\[
+\langle u(x),\, v(x)\rangle = \int_a^b v^\ast (x) u(x) w(x)\, dx
+\tag{12}\]</span></span></p>
+<p>로 정의하자. 이 때 <span class="math inline">\(w(x)\)</span> 를 weighting function 이라고 한다. 그렇다면 <a href="#eq-odd_hermitian_cond_1">식&nbsp;11</a> 은</p>
+<p><span class="math display">\[
+\langle \mathcal{L}u(x),\, v(x)\rangle =  {\large \left[ \right.} v^\ast \overline{p}_0 u' - (v^\ast)' \overline{p}_0 u {\large \left. \right]}_a^b  + \langle u,\, \mathcal{L}v(x)\rangle
+\]</span></p>
+<p>이 된다. 즉 내적의 정의가 변하며 연산자 <span class="math inline">\(\mathcal{L}\)</span> 이 hermitian 이 된다.</p>
+<p><br></p>
+<div id="exm-ode_laruerre_function" class="theorem example">
+<p><span class="theorem-title"><strong>보기 5 (Laguerre function) </strong></span>아래의 미분방정식 연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 대한 고유값 문제 <span class="math inline">\(\mathcal{L}\psi =\lambda \psi\)</span> 를 풀고자 한다.</p>
+<p><span id="eq-ode-laguerre_operator"><span class="math display">\[
+\mathcal{L} = x \dfrac{d^2}{dx^2} + (1-x)\dfrac{d}{dx}.
+\tag{13}\]</span></span></p>
+<p>이 때 <span class="math inline">\(\psi\)</span> 는 <span class="math inline">\(0\le x &lt;\infty\)</span> 에서 nonsingular 하며, <span class="math inline">\(\psi (x\to \infty) = 0\)</span> 이라고 하자. <span class="math inline">\(p'_0\ne p_1\)</span> 이므로 weighting function <span class="math inline">\(w(x)\)</span> 를 <a href="#eq-ode_weighting">식&nbsp;10</a> 으로 계산하면,</p>
+<p><span class="math display">\[
+w(x) = \dfrac{1}{x} \exp \left(\int^x \dfrac{1-t}{t}\,dt\right) = \dfrac{1}{x} e^{\ln x - x} = e^{-x}
+\]</span></p>
+<p>이 미분방정식이 hermitian 이 되려면 경계조건</p>
+<p><span class="math display">\[
+0 = {\large \left[ \right.} v^\ast \overline{p}_0 u' - (v^\ast)' \overline{p}_0 u {\large \left. \right]}_a^b =  {\large \left[ \right.} xe^{-x} (v^\ast  u' - (v^\ast)'  u) {\large \left. \right]}_a^b
+\]</span></p>
+<p>을 만족해야 한다.</p>
+</div>
+<p><br></p>
 
 
 </section>
@@ -740,6 +981,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../src/numerical_analysis_using_julia/A03_pde.html" class="pagination-link">
+        <span class="nav-page-text">편미분 방정식</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
