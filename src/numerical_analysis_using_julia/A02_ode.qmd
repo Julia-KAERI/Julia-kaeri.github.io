@@ -24,7 +24,7 @@ $$
 \mathcal{L}(f(x)) = F(x)
 $$ {#eq-diff_eq_basic}
 
-- 연산자 $\mathcal{L}$ 에 포함하는 최대차 미분이 $n$ 차 미분일 때 @eq-diff_eq_basic 을 $n$ 차 미분 방정식 이라고 한다.
+- 연산자 $\mathcal{L}$ 에 포함하는 최대계의  미분이 $n$ 계 미분일 때 @eq-diff_eq_basic 을 $n$ 계 미분 방정식 이라고 한다.
 - homogenouse 는 두가지 의미가 있으며 아래에 설명한다.
 
 
@@ -34,12 +34,12 @@ $$ {#eq-diff_eq_basic}
 
 #### 일반적인 함수의 경우
 
-$n$ 개의 독립변수를 가진 함수 $f(x_1,\ldots,\,x_n)$ 가 어떤 $k$ 에 대해 $f(ax_1,\ldots,\,ax_k) = a^k f(x_1,\ldots,\,x_k)$ 를 만족할 때 이 함수를 **$k$ 차 동차 함수(homogeneous function)** 라고 한다. 
+$n$ 개의 독립변수를 가진 함수 $f(x_1,\ldots,\,x_n)$ 가 어떤 $k$ 에 대해 $f(ax_1,\ldots,\,ax_k) = a^k f(x_1,\ldots,\,x_k)$ 를 만족할 때 이 함수를 **계수가 $k$ 인 동차 함수(homogeneous function of order $k$)** 라고 한다. 
 
 
 #### 미분방정식의 경우
 
-미분 방정식에서 구하고자 하는 함수 $f$ 와 $f$ 의 모든 도함수의 곱의 차수(degree) 가 모든 방정식의 항에서 같을 때 이를 **homogeneous** 라고 한다. 즉 $(y')^2 + yy' =0$ 은 homogenous 이며 $y' + y + c=0$ 은 $1$ 차항 $y',\,y$ 와 $0$ 차항 $c$ 때문에 inhomogeneous 이다. 또한 $y'' + yy' = 0$ 도 inhomogeneous 이다.
+미분 방정식에서 구하고자 하는 함수 $f$ 와 $f$ 의 모든 도함수의 곱의 계수(degree) 가 모든 방정식의 항에서 같을 때 이를 **제차미분방정식** 혹은 **동차 미분 방정식** 이라고 하며 영어로는 **homogeneous differential equation** 라고 한다. 미분연산자 $\mathcal{L}$ 를 구하고자 하는 함수 ($y$) 와 도함수들 ($y',\, y'',\ldots$) 에 대한 함수로 봤을 때, 즉 $\mathcal{L} = \mathcal{L}(y,\,y',\,y'',\ldots)$ 일 때 $\mathcal{L}$ 이 동차함수이면 제차미분방정식이라고 한다.예를 들면 $(y')^2 + yy' =0$ 은 제차미분방정식이지만 $y' + y + c=0$ 은 $1$ 차항 $y',\,y$ 와 $0$ 차항 $c$ 때문에 제차미분방정식이 아니다. 또한 $y'' + yy' = 0$ 도 역시 제차미분방정식이 아니다. 여기서는 형용사처럼 쓸 경우 homogeneous 하다 라고 쓰겠다.
 
 
 
@@ -53,7 +53,7 @@ $$
 \mathcal{L}(f(x)) = F(x).
 $$
 
-$\mathcal{L}$ 이 homogeneous 할 경우 $F(x)=0$ 이면 이 미분방정식은 homogeneous 하다. 그리고 많은 경우 선형이고 homogeneous 한 미분방정식을 얻는 것이 매우 중요하다. 그 이유중 하나는 위의 미분방정식의 해 $\psi$ 를 얻었고, homogeneous 한 방정식의 해 $\phi$ 를 얻었다면 $\phi + \psi$ 도 항상 위의 방정식의 해이기 때문이다. 이제 linear homogeneous ordinary differential equation 을 **LHODE** 라고 줄여 쓰기로 하자. 그리고 linear homogeneous ordinary differential operator 를 **LHODO** 라고 줄여 쓰기로 하자.
+$\mathcal{L}$ 이 선형일 경우 $F(x)=0$ 이면 이 미분방정식은 homogeneous 하다. 그리고 많은 경우 선형이고 homogeneous 한 미분방정식을 얻는 것이 매우 중요하다. 그 이유중 하나는 위의 미분방정식의 해 $\psi$ 를 얻었고, homogeneous 한 방정식의 해 $\phi$ 를 얻었다면 $\phi + \psi$ 도 항상 위의 방정식의 해이기 때문이다. 이제 linear homogeneous ordinary differential equation 을 **LHODE** 라고 줄여 쓰기로 하자. 그리고 linear homogeneous ordinary differential operator 를 **LHODO** 라고 줄여 쓰기로 하자.
 
 
 </br>
@@ -74,7 +74,7 @@ $$
 \dfrac{d^ny}{dx^n} + a_{n-1} \dfrac{d^{n-1}y}{dx^{n-1}} + \cdots + a_1 \dfrac{dy}{dx} + a_0 y = F(x).
 $$ {#eq-constant_coefficients_ode}
 
-위 미분방정식은 $n$ 차 선형 미분방정식이다. 이 경우 $y=e^{mx}$ 를 놓으면 일반해, 즉 $F(x)=0$ 일 경우의 해를 구할 수 있다. 
+위 미분방정식은 $n$-계 선형 미분방정식이다. 이 경우 $y=e^{mx}$ 를 놓으면 일반해, 즉 $F(x)=0$ 일 경우의 해를 구할 수 있다. 
 
 $$
 (m^n + a_{n-1}m^{n-1} + \cdots + a_n m + a_0)e^{mx}=0
@@ -93,11 +93,11 @@ LHODE $y'' + \omega^2 y = 0$ 을 보자. $y=e^{\lambda x}$ 라고 놓으면, $\l
 
 </br>
 
-## 2차 선형 ODE
+## 2계 선형 ODE
 
 ### Singularity {#sec-ode_sigularity}
 
-가장 간단한 다음 꼴의 2차 ODE 를 보자.
+가장 간단한 다음 꼴의 2계 ODE 를 보자.
 
 $$
 y''  + p(x) y' + q(x) y  = 0
@@ -136,7 +136,7 @@ $$ {#eq-modified_simplie_2nd_ode}
 | SHO | $y'' + \omega^2 y' = 0$ | | $\infty$ |
 | Hermite | $y'' -2xy' + 2\alpha y = 0$ | | $\infty$ |
 
-: 중요한 2차 선형 ODE 와 singularity {#tbl-2nd_ode_singularity}
+: 중요한 2계 선형 ODE 와 singularity {#tbl-2nd_ode_singularity}
 
 
 대표적으로 르장드르 함수 $(1-x^2) y'' -2xy' + l(l+1)y=0$ 를 보자. 르장드르 함수는
@@ -151,7 +151,7 @@ $$
 
 ### 급수해 (Frobenius 방법)
 
-@eq-simple_2nd_ode 꼴로 주어진 2차 LHODE 를 생각하자. 이 경우 $y$ 를 $x$ 의 급수로 놓고 해를 구하는 것을 Frobenius 방법이라고 한다. 즉,
+@eq-simple_2nd_ode 꼴로 주어진 2계 LHODE 를 생각하자. 이 경우 $y$ 를 $x$ 의 급수로 놓고 해를 구하는 것을 Frobenius 방법이라고 한다. 즉,
 
 $$
 y(x) = \sum_{i=0}^\infty a_i x^{s+i} ,\qquad a_0 \ne 0
@@ -230,7 +230,7 @@ $$
 $$
 
 이 방정식은 $p(x),\, q(x),\, F(x)$ 가 $x=a$ 에서 해석적$^1$ 이거나 $a$ 가 regular singular point 라면 프로베니우스 방법에 의한 해를 가진다. 즉 이 미분방정식의 $x=a$ 근처의 해는 어떤 양수 $s$ 에 대해 
-[$^1$ 어떤 함수가 $a$ 근처에서 수렴하는 멱급수로 표현 할 수 있을 때 이 함수를 해석적 함수라고 한다]{.aside}
+[$^1$ 어떤 함수가 $a$ 근처에서 수렴하는 멱급수로 표현 할 수 있을 때 이 함수를 $a$ 에서 해석적 함수라고 하며 전체 구간에서 해석적일 때 해석적 함수라고 한다.]{.aside}
 $$
 y_1=\sum _{n=0}^{\infty }a_{n}(x-a)^{n+s},\quad a_{0}\ne 0
 $$
@@ -323,13 +323,13 @@ $$
 
 ::: {#thm-number_of_solution_of_second_order_linear_ode}
 
-2차 LHODE 는 최대 두개의 독립적인 해를 가진다.
+2계 LHODE 는 최대 두개의 독립적인 해를 가진다.
 
 :::
 
 ::: {.proof}
 
-2차 linear homogeneous ODE 
+2계 LHODE 
 
 $$
 y'' + p(x) y' + q(x) y = 0 
@@ -362,7 +362,7 @@ W(y_1, y_2, y_3) &= \det\left(\begin{bmatrix} y_1 & y_2 & y_3 \\ y'_1 & y'_2 & y
 \end{aligned}
 $$
 
-이다. 따라서 2차 linear homogeneous ODE 의 선형 독립인 해는 많아야 2개이다. $\square$
+이다. 따라서 2계 LHODE 의 선형 독립인 해는 많아야 2개이다. $\square$
 
 :::
 
@@ -416,7 +416,7 @@ $$
 
 ## Sturm-Liouville theory
 
-2차 linear homogeneous ode 연산자 $\mathcal{L}$ 에 대해
+2계 LHODE 연산자 $\mathcal{L}$ 에 대해
 
 $$
 \mathcal{L}\psi (x) = \lambda \psi (x)
@@ -429,7 +429,7 @@ $$
 $$ {#eq-ode_2nd_lhode}
 
 꼴로 주어진다. 
-특정한 물리적 상황에 대한 미분방정식은, 그 해가 가저야 할 조건이 주어지며 많은 경우 그 해, 혹은 그 해의 도함수가 가져야할 경계조건으로 주어진다. 어떤 이차 미분 방정식이 $x=a,\,b$ 에서 $f(a)=f(b) =0$ 이거나 $f'(a) = f'(b)=0$ 이어야 한다면, 이 조건을 만족하는 미분가능한 함수의 집합 $X$ 는 힐베르트 공간을 이룬다. 즉 우리는 미분방정식을 벡터공간의 입장에서 다룰 수 있다. 만약 적절한 내적(inner product) 가 주어진 상황에서 $\mathcal{L}$ 연산자가 hermitian 이라면 고유값은 항상 실수이며, 전체 벡터공간을 고유벡터의 선형결합으로 표현 할 수 있다. 
+특정한 물리적 상황에 대한 미분방정식은, 그 해가 가저야 할 조건이 주어지며 많은 경우 그 해, 혹은 그 해의 도함수가 가져야할 경계조건으로 주어진다. 어떤 이계 미분 방정식이 $x=a,\,b$ 에서 $f(a)=f(b) =0$ 이거나 $f'(a) = f'(b)=0$ 이어야 한다면, 이 조건을 만족하는 미분가능한 함수의 집합 $X$ 는 힐베르트 공간을 이룬다. 즉 우리는 미분방정식을 벡터공간의 입장에서 다룰 수 있다. 만약 적절한 내적(inner product) 가 주어진 상황에서 $\mathcal{L}$ 연산자가 hermitian 이라면 고유값은 항상 실수이며, 전체 벡터공간을 고유벡터의 선형결합으로 표현 할 수 있다. 
 
 </br>
 

@@ -190,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 수학에 관련된 표기법과 명제들</span></a>
+ <span class="menu-text">수학에 관련된 표기법과 명제들</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -271,6 +271,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">수학</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" class="sidebar-item-text sidebar-link">
@@ -281,6 +293,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/A02_ode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/A03_pde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">편미분 방정식</span></a>
   </div>
 </li>
       </ul>
@@ -789,7 +807,7 @@ s''_i(x_{i+1}) &amp;= s''_{i+1}(x_{i+1})
 \tag{8}\]</span></span> 을 만족하도록 보간하는 것을 cubic spline interpolation 이라 한다. <span class="math inline">\([x_i,\,x_{i+1}]\)</span> 구간에서의 삼차함수 <span class="math inline">\(s_i(x)\)</span> 를 <span class="math display">\[
 s_{i}(x) = a_i + b_i x + c_ix^2 + d_i x^3
 \]</span></p>
-<p>이라 하자. <span class="math inline">\(s_i(x)\)</span> 에 대한 일차 도함수와 이차 도함수는</p>
+<p>이라 하자. <span class="math inline">\(s_i(x)\)</span> 에 대한 일계 도함수와 이계 도함수는</p>
 <p><span class="math display">\[
 \begin{aligned}
 s'_i (x) &amp;= b_i + 2c_i x + 3d_i x^2,\\
