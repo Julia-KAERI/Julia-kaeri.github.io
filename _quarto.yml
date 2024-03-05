@@ -87,9 +87,10 @@ website:
       - text : "-----"
       - section : 수학
         contents :
-        - href: src/numerical_analysis_using_julia/A01_appendix_01.qmd
-        - href: src/numerical_analysis_using_julia/A02_ode.qmd
-        - href: src/numerical_analysis_using_julia/A03_pde.qmd
+        - href: src/numerical_analysis_using_julia/A_collection_of_proofs.qmd
+        - href: src/numerical_analysis_using_julia/A_generalized_inverse.qmd
+        - href: src/numerical_analysis_using_julia/A_ode.qmd
+        - href: src/numerical_analysis_using_julia/A_pde.qmd
     
     
     - title : "Image processing and Tomography"
@@ -113,6 +114,7 @@ website:
         - href: src/tools/Asymptote/asymptote.qmd
         
         - href: src/tools/tikz/tikz.qmd
+        - href: src/tools/tikz/tikz_test.qmd
 
         # - text: "해석역학의 기본 개념"
         #   href: src/classical_mechanics/Lanczos/ch01/01_01.qmd

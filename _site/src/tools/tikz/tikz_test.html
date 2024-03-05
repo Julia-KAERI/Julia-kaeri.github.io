@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 유용한 도구들</title>
+<title>Julia &amp; Numerical Anlaysis - tikz test in Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../src/tools/Asymptote/asymptote.html" rel="next">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../src/tools/tikz/tikz.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -71,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Julia &amp; Numerical Anlaysis</span>
     </a>
   </div>
@@ -82,27 +116,27 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/introduction_to_julia/index.html" rel="" target="">
+    <a class="nav-link" href="../../../src/introduction_to_julia/index.html" rel="" target="">
  <span class="menu-text">Julia 프로그래밍 언어</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/numerical_analysis_using_julia/index.html" rel="" target="">
+    <a class="nav-link" href="../../../src/numerical_analysis_using_julia/index.html" rel="" target="">
  <span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html" rel="" target="">
+    <a class="nav-link" href="../../../src/image_processing/index.html" rel="" target="">
  <span class="menu-text">영상 처리와 토모그래피</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/tools/tools.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../../src/tools/tools.html" rel="" target="" aria-current="page">
  <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -117,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/tools/tools.html">유용한 도구들</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/tools/tikz/tikz_test.html">tikz test in Quarto</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -131,25 +165,25 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/tools/tools.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../src/tools/tools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">유용한 도구들</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/tools/Asymptote/asymptote.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/tools/Asymptote/asymptote.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Asymptote</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/tools/tikz/tikz.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/tools/tikz/tikz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tikz in Quarto</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/tools/tikz/tikz_test.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/tools/tikz/tikz_test.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">tikz test in Quarto</span></a>
   </div>
 </li>
@@ -166,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">유용한 도구들</h1>
+<h1 class="title">tikz test in Quarto</h1>
 </div>
 
 
@@ -181,6 +215,52 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="cell" data-layout-align="center">
+<details>
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tikz_first_exam</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "tikz in Quarto 예시"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>\usetikzlibrary{arrows}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>\usetikzlibrary{positioning}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>\usetikzlibrary{calc}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>\usetikzlibrary{arrows}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>\usetikzlibrary{decorations.pathreplacing}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>\begin{tikzpicture}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>\draw[step<span class="ot">=</span><span class="fl">1.0</span>,black,thick] (<span class="sc">-</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">3</span>) <span class="fu">grid</span> (<span class="dv">3</span>,<span class="dv">3</span>);</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>\node <span class="fu">at</span> (<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">2.5</span>) {<span class="sc">$</span>x_{<span class="dv">1</span>}<span class="sc">$</span>};</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>\node <span class="fu">at</span> (<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">1.5</span>) {<span class="sc">$</span>x_{<span class="dv">2</span>}<span class="sc">$</span>};</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>\node <span class="fu">at</span> (<span class="sc">-</span><span class="fl">2.5</span>, <span class="fl">0.5</span>) {<span class="sc">$</span>x_{<span class="dv">3</span>}<span class="sc">$</span>};</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>\node <span class="fu">at</span> (<span class="sc">-</span><span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">0.5</span>) {<span class="sc">$</span>\vdots<span class="sc">$</span>};</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>\node <span class="fu">at</span> (<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">2.5</span>) {<span class="sc">$</span>\cdots<span class="sc">$</span>};</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>\node <span class="fu">at</span> (<span class="fl">2.5</span>, <span class="sc">-</span><span class="fl">2.5</span>) {<span class="sc">$</span>x_N<span class="sc">$</span>};</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>\node <span class="fu">at</span> (<span class="fl">5.5</span>, <span class="fl">2.5</span>) {Detector};</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>\draw[red, thick, <span class="sc">-</span>{stealth}] (<span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span><span class="dv">2</span>) <span class="sc">--</span> (<span class="fl">5.5</span>, <span class="fl">1.5</span>);</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>\begin{scope}[shift<span class="ot">=</span>{(<span class="fl">5.7</span>,<span class="fl">1.55</span>)},rotate<span class="ot">=</span><span class="fl">20.4</span>]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>\draw[blue, very thick] (<span class="sc">-</span><span class="fl">0.5</span>,<span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">--</span> (<span class="fl">0.5</span>,<span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">--</span> (<span class="fl">0.5</span>,<span class="fl">0.5</span>) <span class="sc">--</span> (<span class="sc">-</span><span class="fl">0.5</span>,<span class="fl">0.5</span>); </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>\end{scope}</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>\begin{scope}[shift<span class="ot">=</span>{(<span class="fl">0.3</span>, <span class="fl">0.2</span>)},rotate<span class="ot">=</span><span class="fl">20.4</span>]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>\draw [decorate,decoration<span class="ot">=</span>{brace,amplitude<span class="ot">=</span>5pt,mirror,raise<span class="ot">=</span>4ex}]</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  (<span class="sc">-</span><span class="fl">0.5</span>,<span class="dv">0</span>) <span class="sc">--</span> (<span class="fl">0.5</span>,<span class="dv">0</span>) node[midway,yshift<span class="ot">=</span><span class="sc">-</span>3em, red]{<span class="sc">$</span>w_{ij}<span class="sc">$</span>};</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>\end{scope}</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>\end{tikzpicture}</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-tikz_first_exam" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="tikz_test_files/figure-html/fig-tikz_first_exam-1.png" class="quarto-discovered-preview-image img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">그림&nbsp;1: tikz in Quarto 예시</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p><br></p>
 
 
 
@@ -420,11 +500,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../../src/tools/tikz/tikz.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">tikz in Quarto</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/tools/Asymptote/asymptote.html" class="pagination-link">
-        <span class="nav-page-text">Asymptote</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

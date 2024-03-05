@@ -8,16 +8,7 @@ crossref:
 
 ---
 
-## 설치 및 사전준비
 
-[**tikz**](https://tikz.net) 는 기본적으로 $\LaTeX$ 환경에서 수행되는 시각화 툴이다. Quarto 에서 실행하기 위해서는 [R](https://www.r-project.org) 언어와 몇몇 패키지 설치가 필요하다. Mac 에서는 homebrew 를 이용하여 다음과 같이 설치 할 수 있다. 내친김에 [R studio](https://posit.co/download/rstudio-desktop/) 도 같이 설치한다. 
-
-```sh
-brew install --cask r
-brew install --cask rstudio 
-```
-
-이제 R studio 를 실행하고 메뉴 -> Toos -> Install Packages .. 를 실행한후 메뉴를 따라 `rmakrdown`, `matick`, `pdftools` 패키지를 설치한다. 이제 아래의 코드를 통해 수행한다. 코드를 보고 싶으면 아래의 `[▶ 코드]` 에서 화살표를 누르면 된다.
 
 ```{r, engine = 'tikz'}
 #| label: fig-tikz_first_exam
