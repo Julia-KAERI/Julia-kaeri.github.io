@@ -333,8 +333,6 @@ $$ {#eq-algebraic_equation}
 
 
 
-
-
 ### ART (Algebraic reconstruction technique)
 
 $$
