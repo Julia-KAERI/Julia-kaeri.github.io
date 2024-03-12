@@ -62,7 +62,7 @@ $$
 
 ::: {.proof}
 
-[수학적 증명](A01_appendix_01.qmd#sec-mathematical_proof) 의 [Hölder 부등식](A01_appendix_01.qmd#prp-hoelders_inequality) 를 참고하라.
+[수학적 증명](A_collection_of_proofs.qmd#sec-mathematical_proof) 의 [Hölder 부등식](A_collection_of_proofs.qmd#prp-hoelders_inequality) 를 참고하라.
 
 :::
 

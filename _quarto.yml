@@ -84,6 +84,7 @@ website:
         - href: src/numerical_analysis_using_julia/10_least_square_problem.qmd
         - href: src/numerical_analysis_using_julia/11_ode_initial_value_problem.qmd
         - href: src/numerical_analysis_using_julia/12_ode_boundary_value_problem.qmd
+        - href: src/numerical_analysis_using_julia/13_approximation.qmd
       - text : "-----"
       - section : 수학
         contents :
@@ -114,6 +115,7 @@ website:
         - href: src/tools/Asymptote/asymptote.qmd
         
         - href: src/tools/tikz/tikz.qmd
+        - href: src/tools/tikz/tikz_image.qmd
         - href: src/tools/tikz/tikz_test.qmd
 
         # - text: "해석역학의 기본 개념"

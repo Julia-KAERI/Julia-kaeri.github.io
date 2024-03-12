@@ -1,6 +1,5 @@
 ---
 title: "반복법을 이용한 선형 시스템의 해를 구하기"
-language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 2

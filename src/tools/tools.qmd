@@ -1,6 +1,6 @@
 ---
 title: "유용한 도구들"
-# language: ../_language-ko_custom.yml 
+
 number-sections: true
 number-depth: 2
 crossref:

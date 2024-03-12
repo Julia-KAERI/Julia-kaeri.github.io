@@ -1,6 +1,6 @@
 ---
 title: "흐름 제어"
-language: ../_language-ko_custom.yml  
+
 number-sections: true
 number-depth: 2
 crossref:

@@ -1,6 +1,5 @@
 ---
 title: "설치와 환경 구성"
-language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 2

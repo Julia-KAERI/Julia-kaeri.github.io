@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.290">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -90,13 +96,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "추가 검색결과",
     "search-more-matches-text": "추가 검색결과",
     "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "취소",
-    "search-submit-button-title": "검색"
+    "search-submit-button-title": "검색",
+    "search-label": "Search"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -105,65 +140,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Julia &amp; Numerical Anlaysis</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="검색"></div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/introduction_to_julia/index.html" rel="" target="">
- <span class="menu-text">Julia 프로그래밍 언어</span></a>
+    <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
+<span class="menu-text">Julia 프로그래밍 언어</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
+<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html" rel="" target="">
- <span class="menu-text">영상 처리와 토모그래피</span></a>
+    <a class="nav-link" href="../../src/image_processing/index.html"> 
+<span class="menu-text">영상 처리와 토모그래피</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/tools/tools.html" rel="" target="">
- <span class="menu-text">Tools</span></a>
+    <a class="nav-link" href="../../src/tools/tools.html"> 
+<span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
     <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html">상미분 방정식의 초기값 문제</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html">상미분 방정식의 초기값 문제</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -190,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2장 수학에 관련된 표기법과 명제들</span></a>
+ <span class="menu-text">수학에 관련된 표기법과 명제들</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,14 +308,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Approximation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">수학</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/A_collection_of_proofs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">수학적 증명</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A02_ode.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/A_generalized_inverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">일반화된 역행렬과 의사 역행렬</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/A_ode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/A_pde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">편미분 방정식</span></a>
   </div>
 </li>
       </ul>
@@ -288,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -326,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html">상미분 방정식의 초기값 문제</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">상미분 방정식의 초기값 문제</h1>
 </div>
@@ -341,7 +406,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="미분방정식" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="미분방정식"><span class="header-section-number">1</span> 미분방정식</h2>
@@ -402,7 +469,7 @@ f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
 <p>을 통해 구한다.</p>
 <p><br></p>
 <div id="prp-lipschitz_condtion" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 1 (Lipschitz 조건) </strong></span><span class="math inline">\(t\in I= [a,\,b]\)</span> 와 <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#def-n_cell"><span class="math inline">\(n\)</span>-cell</a> <span class="math inline">\(D\)</span> 의 데카르트곱 <span class="math inline">\(I \times D\)</span> 에서 정의되며 연속인 함수 <span class="math inline">\(f(t, \boldsymbol{x})\)</span> 가</p>
+<p><span class="theorem-title"><strong>명제 1 (Lipschitz 조건)</strong></span> <span class="math inline">\(t\in I= [a,\,b]\)</span> 와 <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#def-n_cell"><span class="math inline">\(n\)</span>-cell</a> <span class="math inline">\(D\)</span> 의 데카르트곱 <span class="math inline">\(I \times D\)</span> 에서 정의되며 연속인 함수 <span class="math inline">\(f(t, \boldsymbol{x})\)</span> 가</p>
 <p><span class="math display">\[
 (t, \boldsymbol{x}_1),\,(t, \boldsymbol{x}_2)\in I \times D \implies \|f(t, \boldsymbol{x}_1) - f(t, \boldsymbol{x}_2) \| \le L\|\boldsymbol{x}_1 - \boldsymbol{x}_2\|
 \]</span></p>
@@ -419,14 +486,14 @@ f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
 </div>
 <div class="callout-body-container">
 <div id="def-convex" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 1 (convex) </strong></span>집합 <span class="math inline">\(D\subset \mathbb{R}\times \mathbb{R}^{n}\)</span> 가 모든 <span class="math inline">\(\lambda \in [0,\,1]\)</span> 와 <span class="math inline">\(\boldsymbol{x}_1,\,\boldsymbol{x}_2\in D\)</span> 에 대해 <span class="math inline">\(\lambda \boldsymbol{x}_1 + (1-\lambda)\boldsymbol{x}_2\in D\)</span> 일 때 <span class="math inline">\(D\)</span> 를 <strong>convex</strong> 라고 한다.</p>
+<p><span class="theorem-title"><strong>정의 1 (convex)</strong></span> 집합 <span class="math inline">\(D\subset \mathbb{R}\times \mathbb{R}^{n}\)</span> 가 모든 <span class="math inline">\(\lambda \in [0,\,1]\)</span> 와 <span class="math inline">\(\boldsymbol{x}_1,\,\boldsymbol{x}_2\in D\)</span> 에 대해 <span class="math inline">\(\lambda \boldsymbol{x}_1 + (1-\lambda)\boldsymbol{x}_2\in D\)</span> 일 때 <span class="math inline">\(D\)</span> 를 <strong>convex</strong> 라고 한다.</p>
 </div>
 </div>
 </div>
 </div>
 <p><br></p>
 <div id="prp-convex" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 2 </strong></span><span class="math inline">\(f(t,\,\boldsymbol{x}):D \subset \mathbb{R}\times \mathbb{R}^{n} \to \mathbb{R}^m\)</span> 이 convex <span class="math inline">\(D\)</span> 에서 정의되어 있으며 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
+<p><span class="theorem-title"><strong>명제 2</strong></span> <span class="math inline">\(f(t,\,\boldsymbol{x}):D \subset  \mathbb{R}\times \mathbb{R}^{n} \to \mathbb{R}^m\)</span> 이 convex <span class="math inline">\(D\)</span> 에서 정의되어 있으며 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
 <p><span class="math display">\[
 \forall (t,\,\boldsymbol{x})\in D,\, \left\|\sum_{i=1}\partial_i f(t, \boldsymbol{x}) \right\| \le L
 \]</span></p>
@@ -434,7 +501,7 @@ f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
 </div>
 <p><br></p>
 <div id="thm-initial_value_problem" class="theorem">
-<p><span class="theorem-title"><strong>정리 1 </strong></span><span class="math inline">\(D=\{(t,\, \boldsymbol{x}) : t\in [a,\,b],\, \boldsymbol{x} \in \mathbb{R}^n\}\)</span> 에서 정의된 함수 <span class="math inline">\(\boldsymbol{f}:D\to \mathbb{R}^n\)</span> 이 <span class="math inline">\(D\)</span> 에서 Lipsschitz 조건을 만족하면 <span class="math inline">\(\boldsymbol{x} = \boldsymbol{f}(t, \boldsymbol{x})\)</span> 의 초기값 문제는 유일한 해를 갖는다.</p>
+<p><span class="theorem-title"><strong>정리 1</strong></span> <span class="math inline">\(D=\{(t,\, \boldsymbol{x}) : t\in [a,\,b],\, \boldsymbol{x} \in \mathbb{R}^n\}\)</span> 에서 정의된 함수 <span class="math inline">\(\boldsymbol{f}:D\to \mathbb{R}^n\)</span> 이 <span class="math inline">\(D\)</span> 에서 Lipsschitz 조건을 만족하면 <span class="math inline">\(\boldsymbol{x} = \boldsymbol{f}(t, \boldsymbol{x})\)</span> 의 초기값 문제는 유일한 해를 갖는다.</p>
 </div>
 <p><br></p>
 </section>
@@ -518,15 +585,15 @@ x_j(t + h) \approx x_j(t) + x_i'(t)h
 <p><span class="math inline">\(f(x,\,y)\)</span> 가 변수 2개에 대한 함수일 때는 위의 함수를 약간 수정하여 구현 할 수 있을 것이다.</p>
 <p>우리는 <span class="math inline">\(y'= e^x,\, y(0)=1\)</span> 일 때, <span class="math inline">\(y=e^x\)</span> 임을 알고 있다. 아래 그림은 위의 <code>ode_euler</code> 함수를 이용하여 미분방정식을 푼 값과, 실제 함수값을 비교해 보았다.</p>
 <p><br></p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><code>LaTeXStrings</code> 는 <span class="math inline">\(\LaTeX\)</span> 의 수식을 사용 할 수 있도록 해 주는 패키지이다.</span></div></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"><code>LaTeXStrings</code> 는 <span class="math inline">\(\LaTeX\)</span> 의 수식을 사용 할 수 있도록 해 주는 패키지이다.</span></div></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LaTeXStrings</span>, <span class="bu">Plots</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tn, xn <span class="op">=</span> <span class="fu">ode_euler</span>((t, x)<span class="fu">-&gt;exp</span>(t), <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">500</span>, <span class="fl">1.0e-2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tn, xn, lw <span class="op">=</span> <span class="fl">2</span>, frame <span class="op">=</span> <span class="op">:</span>box, label <span class="op">=</span> <span class="st">"Euler method"</span>)<span class="co">#, dpi=300)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(tn, <span class="fu">exp</span>.(tn), lw<span class="op">=</span><span class="fl">2</span>, ls <span class="op">=</span> <span class="op">:</span>dash, label <span class="op">=</span> L<span class="st">"f(t) = e^t"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ch10_ode_initial_value_problem//euler_method.png" class="quarto-discovered-preview-image img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">Euler 방법</figcaption><p></p>
+<p><img src="ch10_ode_initial_value_problem//euler_method.png" class="img-fluid figure-img" width="600"></p>
+<figcaption>Euler 방법</figcaption>
 </figure>
 </div>
 <p><br></p>
@@ -555,7 +622,7 @@ x_j(t + h) \approx x_j(t) + x_i'(t)h
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ch10_ode_initial_value_problem//lorentz.png" class="img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">로렌츠 방정식</figcaption><p></p>
+<figcaption>로렌츠 방정식</figcaption>
 </figure>
 </div>
 <p><br></p>
@@ -587,7 +654,7 @@ x'(t) &amp;= y(t)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ch10_ode_initial_value_problem/euler_sho1d.png" class="img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">오일러 방법으로 계산한 1차원 조화진동자</figcaption><p></p>
+<figcaption>오일러 방법으로 계산한 1차원 조화진동자</figcaption>
 </figure>
 </div>
 <p>1차원 조화진동자는 잘 알려져 있다 시피 삼각함수로 그 진폭이 커지면 안되지만 여기서는 커지는데 이것은 오일러 방법이 기본적으로 에러에 취약하기 때문이다. 이로 인해 실제 계산에서는 오일러 방법은 잘 사용되지 않는다.</p>
@@ -708,13 +775,13 @@ t_{i+1}&amp;=t_{i}+h, \\
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ch10_ode_initial_value_problem/lorentz_rk2.png" class="img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">RK2를 이용한 로렌츠 방정식의 궤적</figcaption><p></p>
+<figcaption>RK2를 이용한 로렌츠 방정식의 궤적</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ch10_ode_initial_value_problem//lorentz_rk4.png" class="img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">RK4를 이용한 로렌츠 방정식의 궤적</figcaption><p></p>
+<figcaption>RK4를 이용한 로렌츠 방정식의 궤적</figcaption>
 </figure>
 </div>
 <p><br></p>
@@ -723,7 +790,7 @@ t_{i+1}&amp;=t_{i}+h, \\
 <h2 data-number="6" class="anchored" data-anchor-id="예제-examples"><span class="header-section-number">6</span> 예제 (Examples)</h2>
 <section id="단순-조화-진동자" class="level3">
 <h3 class="anchored" data-anchor-id="단순-조화-진동자">단순 조화 진동자</h3>
-<p><a href="#eq-sho1d">식&nbsp;2</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
+<p><a href="#eq-sho1d" class="quarto-xref">식&nbsp;2</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sho1d</span>(y<span class="op">::</span><span class="dt">Vector{&lt;:Real}</span>, k<span class="op">::</span><span class="dt">Real</span>, x0<span class="op">=</span><span class="fl">0.0</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [y[<span class="fl">2</span>], <span class="fu">-k*</span>(y[<span class="fl">1</span>]<span class="op">-</span>x0)]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
@@ -733,7 +800,7 @@ t_{i+1}&amp;=t_{i}+h, \\
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ch10_ode_initial_value_problem/sho1d_rk.png" class="img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">RK 방법으로 푼 단순조화진동자</figcaption><p></p>
+<figcaption>RK 방법으로 푼 단순조화진동자</figcaption>
 </figure>
 </div>
 <p><br></p>
@@ -765,7 +832,7 @@ x(t) = \exp(-\lambda t) \left[ a \exp \left(\sqrt{-\omega^2} \right)+ b \exp \le
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ch10_ode_initial_value_problem//dho1d_rk.png" class="img-fluid figure-img" width="600"></p>
-<p></p><figcaption class="figure-caption">감쇄조화진동자</figcaption><p></p>
+<figcaption>감쇄조화진동자</figcaption>
 </figure>
 </div>
 <p><br></p>
@@ -799,7 +866,7 @@ x(t) = \exp(-\lambda t) \left[ a \exp \left(\sqrt{-\omega^2} \right)+ b \exp \le
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ch10_ode_initial_value_problem//ode_pendulum.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">진자</figcaption><p></p>
+<figcaption>진자</figcaption>
 </figure>
 </div>
 <p><br></p>
@@ -920,10 +987,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -933,8 +1017,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -946,7 +1039,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -990,6 +1206,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1015,6 +1232,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1076,17 +1319,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="pagination-link">
+      <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="pagination-link" aria-label="최소자승 문제">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">최소자승 문제</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="pagination-link">
+      <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="pagination-link" aria-label="상미분 방정식의 경계값 문제">
         <span class="nav-page-text">상미분 방정식의 경계값 문제</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

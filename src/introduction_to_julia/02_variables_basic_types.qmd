@@ -1,6 +1,5 @@
 ---
 title: "변수와 기본 타입"
-language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 2

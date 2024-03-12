@@ -1,6 +1,5 @@
 ---
 title: "복합 타입"
-language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 2

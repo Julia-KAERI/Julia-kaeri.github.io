@@ -1,6 +1,6 @@
 ---
 title: "들어가며"
-# language: ../_language-ko_custom.yml 
+
 number-sections: true
 number-depth: 2
 crossref:

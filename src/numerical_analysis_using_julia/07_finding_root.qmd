@@ -1,6 +1,6 @@
 ---
 title: "일변수 방정식의 해"
-# language: ../_language-ko_custom.yml 
+
 number-sections: true
 number-depth: 2
 crossref:

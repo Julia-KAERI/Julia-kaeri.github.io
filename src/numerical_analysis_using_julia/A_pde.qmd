@@ -1,6 +1,5 @@
 ---
 title: "편미분 방정식"
-language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 3

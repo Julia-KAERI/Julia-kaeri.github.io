@@ -1,6 +1,5 @@
 ---
 title: "수치해석 입문 : 선형시스템과 다항식"
-language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 2

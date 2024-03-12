@@ -1,6 +1,5 @@
 ---
 title: "수치해석 (Numerical Analysis) 과 알고리즘 (Algorithm)"
-language: ../_language-ko_custom.yml  
 
 number-sections: true
 number-depth: 2

@@ -1,6 +1,5 @@
 ---
 title: "파일시스템과 파일입출력"
-# language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 2

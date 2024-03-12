@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.290">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -90,8 +96,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "추가 검색결과",
     "search-more-matches-text": "추가 검색결과",
     "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "취소",
-    "search-submit-button-title": "검색"
+    "search-submit-button-title": "검색",
+    "search-label": "Search"
   }
 }</script>
 <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
@@ -101,6 +109,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
@@ -108,65 +143,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Julia &amp; Numerical Anlaysis</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="검색"></div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/introduction_to_julia/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Julia 프로그래밍 언어</span></a>
+    <a class="nav-link active" href="../../src/introduction_to_julia/index.html" aria-current="page"> 
+<span class="menu-text">Julia 프로그래밍 언어</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/numerical_analysis_using_julia/index.html" rel="" target="">
- <span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+    <a class="nav-link" href="../../src/numerical_analysis_using_julia/index.html"> 
+<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html" rel="" target="">
- <span class="menu-text">영상 처리와 토모그래피</span></a>
+    <a class="nav-link" href="../../src/image_processing/index.html"> 
+<span class="menu-text">영상 처리와 토모그래피</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/tools/tools.html" rel="" target="">
- <span class="menu-text">Tools</span></a>
+    <a class="nav-link" href="../../src/tools/tools.html"> 
+<span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
     <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/index.html">Julia 언어의 기초</a></li><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/08_type_hierarchy.html">타입의 계층구조와 메서드 디스패치</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/index.html">Julia 언어의 기초</a></li><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/08_type_hierarchy.html">타입의 계층구조와 메서드 디스패치</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -315,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -339,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/index.html">Julia 언어의 기초</a></li><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/08_type_hierarchy.html">타입의 계층구조와 메서드 디스패치</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">타입의 계층구조와 메서드 디스패치</h1>
 </div>
@@ -354,7 +389,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="sec-type_hierarchy" class="level2 page-columns page-full" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="sec-type_hierarchy"><span class="header-section-number">1</span> 타입의 계층구조</h2>
@@ -380,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Julia 의 타입은 <strong>추상적 타입(abstract type)</strong> 과 <strong>구체적 타입(concrete type)</strong> 으로 분류 할 수 있습니다. 구체적 타입은 변수가 지정되어 값을 할당 할 수 있지만 추상적 타입에는 변수를 지정 할 수 없으며, 값도 할당 할 수 없습니다. 억지로 할당할 경우 적당한 구체적 타입으로 변환됩니다. 우리가 지금까지 사용한 <code>UInt8</code>, <code>Int64</code>, <code>Float64</code> 등은 구체적 타입이며 아래의 예에서 <code>AbstractFloat</code> 는 부동소수에 대한 추상적인 타입입니다.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>In [6]: aa=AbstractFloat(0.0);typeof(aa)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Out[6]: Float64</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>어떤 타입이 구체적인 타입인지 추상적인 타입인지는 <code>isabstracttype()</code> 함수나 <code>isconcretetype()</code> 함수로 확인 할 수 있습니다. Julia 에서 모든 타입은 <code>Any</code> 타입에서 뻗어나온 가지와 같은 계층구조를 가지고 있습니다. 예를 들어 julia 에서 제공하는 수 타입은 <a href="#fig-type_hierarchy">그림&nbsp;1</a> 와 같은 계층구조를 가집니다.</p>
+<p>어떤 타입이 구체적인 타입인지 추상적인 타입인지는 <code>isabstracttype()</code> 함수나 <code>isconcretetype()</code> 함수로 확인 할 수 있습니다. Julia 에서 모든 타입은 <code>Any</code> 타입에서 뻗어나온 가지와 같은 계층구조를 가지고 있습니다. 예를 들어 julia 에서 제공하는 수 타입은 <a href="#fig-type_hierarchy" class="quarto-xref">그림&nbsp;1</a> 와 같은 계층구조를 가집니다.</p>
 <p>Julia 에서 추상적 타입은 <code>abstract</code> 키워드를 사용하여 다음과 같이 정의합니다.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract type</span> <span class="dt">Number</span> <span class="kw">end</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract type</span> <span class="dt">Real</span>     <span class="op">&lt;:</span><span class="dt"> Number </span><span class="kw">end</span></span>
@@ -398,11 +435,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> Bool</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> Signed</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a> Unsigned</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>어떤 타입의 상위 타입은 추상적 타입만이 가능하며, 구체적 타입은 어떤 타입의 상위 타입이 될 수 없습니다. 당연히 <code>Any</code> 는 추상적 타입입니다. 그림 <a href="#fig-type_hierarchy">그림&nbsp;1</a> 은 Julia 에서 자체적으로 제공하는 수(number) 에 대한 타입의 계층 구조입니다. 추상적 타입은 좌우 변이 두겹인 사각형, 구체적 타입은 좌우가 둥근 도형으로 표현하였습니다. <code>Irrational</code> 은 <span class="math inline">\(\pi\)</span> 나 <span class="math inline">\(e\)</span> 같은 특별한 무리수를 위한 타입으로 계산 될 때 적당한 타입의 값으로 변환됩니다.</p>
-<div class="cell">
+<p>어떤 타입의 상위 타입은 추상적 타입만이 가능하며, 구체적 타입은 어떤 타입의 상위 타입이 될 수 없습니다. 당연히 <code>Any</code> 는 추상적 타입입니다. 그림 <a href="#fig-type_hierarchy" class="quarto-xref">그림&nbsp;1</a> 은 Julia 에서 자체적으로 제공하는 수(number) 에 대한 타입의 계층 구조입니다. 추상적 타입은 좌우 변이 두겹인 사각형, 구체적 타입은 좌우가 둥근 도형으로 표현하였습니다. <code>Irrational</code> 은 <span class="math inline">\(\pi\)</span> 나 <span class="math inline">\(e\)</span> 같은 특별한 무리수를 위한 타입으로 계산 될 때 적당한 타입의 값으로 변환됩니다.</p>
+<div class="cell" data-layout-align="default">
 <div class="cell-output-display">
-<div id="fig-type_hierarchy" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
+<div id="fig-type_hierarchy" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-type_hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <pre class="mermaid mermaid-js" data-label="fig-type_hierarchy">flowchart TB
     Any[[Any]] --- Number[[Number]]
@@ -420,7 +458,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     Signed --- Int8([Int8]) &amp; Int16([Int16]) &amp; Int32([Int32]) &amp; Int64([Int64])  &amp; Int128([Int128]) &amp; BigInt([BigInt])
 </pre>
 </div>
-<p></p><figcaption class="figure-caption">그림&nbsp;1: Type hierarchy of number</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-type_hierarchy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: Type hierarchy of number
+</figcaption>
 </figure>
 </div>
 </div>
@@ -453,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="원시-타입" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="원시-타입">원시 타입</h3>
-<div class="page-columns page-full"><p><code>Int64</code> 나 <code>Float32</code> 와 같이 값이 저장되는데 사용되는 바이트 수가 결정된 구체적 타입을 <strong>원시 타입(Primitive type)</strong> 이라고 합니다. <code>isprimitivetype()</code> 함수를 통해 특정 타입이 원시 타입인지를 확인할 수 있습니다. Julia 의 모든 기본 타입은 julia 자체 내에서 다음과 같이 정의되었습니다. </p><div class="no-row-height column-margin column-container"><span class="">저의 경우는 Julia 설치 디렉토리의 <code>/share/julia/base/boot.jl</code> 파일에 정의되었습니다.</span></div></div>
+<div class="page-columns page-full"><p><code>Int64</code> 나 <code>Float32</code> 와 같이 값이 저장되는데 사용되는 바이트 수가 결정된 구체적 타입을 <strong>원시 타입(Primitive type)</strong> 이라고 합니다. <code>isprimitivetype()</code> 함수를 통해 특정 타입이 원시 타입인지를 확인할 수 있습니다. Julia 의 모든 기본 타입은 julia 자체 내에서 다음과 같이 정의되었습니다. </p><div class="no-row-height column-margin column-container"><span class="margin-aside">저의 경우는 Julia 설치 디렉토리의 <code>/share/julia/base/boot.jl</code> 파일에 정의되었습니다.</span></div></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">primitive type</span> <span class="dt">Float16</span> <span class="op">&lt;:</span><span class="dt"> AbstractFloat </span><span class="fl">16</span> <span class="kw">end</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">primitive type</span> <span class="dt">Float32</span> <span class="op">&lt;:</span><span class="dt"> AbstractFloat </span><span class="fl">32</span> <span class="kw">end</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">primitive type</span> <span class="dt">Float64</span> <span class="op">&lt;:</span><span class="dt"> AbstractFloat </span><span class="fl">64</span> <span class="kw">end</span></span>
@@ -479,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2" class="anchored" data-anchor-id="sec-method_multiple_dispatch"><span class="header-section-number">2</span> 메서드 다중 디스패치(Multiple dispatch)</h2>
 <section id="함수와-메서드" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="함수와-메서드">함수와 메서드</h3>
-<div class="page-columns page-full"><p>각각의 컴퓨터 프로그래밍 언어나 프로그래밍 패러다임마다 함수와 메서드의 의미와 관계가 조금씩 다릅니다. 보통 프로그래밍에서 함수란 어떤 일련의 동작들을 모아 하나의 기능으로 만든 것을 말합니다. Julia 기본 문서의 <a href="https://docs.julialang.org/en/v1/manual/methods/#Parametric-Methods">Methods</a> 를 보면 Julia 에서 보는 함수와 메서드는 이와는 약간 다릅니다. Julia 에서의 함수는 일종의 기능의 추상화입니다. 예를 들어 두 수를 더하는 함수를 생각해 봅시다. 먼저 원시 타입에 대한 더하기를 생각해보면, 원시 타입이란 특정한 비트의 배열이기 때문에 각 원시 타입마다 내부적으로 더하기를 다르게 구현해야 합니다. 하지만 모두 <code>+</code> 라는 연산자에 대해 정의됩니다. 이렇게 추상적으로 정의된 함수에 대해 각 타입마다 구체적으로 구현된 코드를 julia 에서는 메서드라고 부릅니다. </p><div class="no-row-height column-margin column-container"><span class="">함수와 메서드의 의미와 관계는 언어마다 다르기 때문에 julia 에서 사용되는 용어가 다른 용어에서는 다른 의미 일 수 있습니다.</span></div></div>
+<div class="page-columns page-full"><p>각각의 컴퓨터 프로그래밍 언어나 프로그래밍 패러다임마다 함수와 메서드의 의미와 관계가 조금씩 다릅니다. 보통 프로그래밍에서 함수란 어떤 일련의 동작들을 모아 하나의 기능으로 만든 것을 말합니다. Julia 기본 문서의 <a href="https://docs.julialang.org/en/v1/manual/methods/#Parametric-Methods">Methods</a> 를 보면 Julia 에서 보는 함수와 메서드는 이와는 약간 다릅니다. Julia 에서의 함수는 일종의 기능의 추상화입니다. 예를 들어 두 수를 더하는 함수를 생각해 봅시다. 먼저 원시 타입에 대한 더하기를 생각해보면, 원시 타입이란 특정한 비트의 배열이기 때문에 각 원시 타입마다 내부적으로 더하기를 다르게 구현해야 합니다. 하지만 모두 <code>+</code> 라는 연산자에 대해 정의됩니다. 이렇게 추상적으로 정의된 함수에 대해 각 타입마다 구체적으로 구현된 코드를 julia 에서는 메서드라고 부릅니다. </p><div class="no-row-height column-margin column-container"><span class="margin-aside">함수와 메서드의 의미와 관계는 언어마다 다르기 때문에 julia 에서 사용되는 용어가 다른 용어에서는 다른 의미 일 수 있습니다.</span></div></div>
 <p>다음의 함수 정의를 봅시다.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>In [1]: function myfunc1(a, b)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            return a*b</span>
@@ -494,7 +535,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>In [4]: myfunc1("a", "bc")</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Out[4]: "abc"</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>Julia 는 함수의 정의를 기억했다가 처음 실행할 때 주어진 인자의 타입에 맞추어 컴파일하며 한 번 컴파일된 함수는 그 인자 타입으로 다음번 실행 할 때는 컴파일 없이 빠르게 실행 할 수 있습니다다. </p><div class="no-row-height column-margin column-container"><span class="">이렇게 어떤 소스코드를 실행 전에 컴파일 하는 것이 아니라 실행하는 가운데 컴파일 하는것을 JIT(just-in-time) 컴파일 이라고 합니다</span></div></div>
+<div class="page-columns page-full"><p>Julia 는 함수의 정의를 기억했다가 처음 실행할 때 주어진 인자의 타입에 맞추어 컴파일하며 한 번 컴파일된 함수는 그 인자 타입으로 다음번 실행 할 때는 컴파일 없이 빠르게 실행 할 수 있습니다다. </p><div class="no-row-height column-margin column-container"><span class="margin-aside">이렇게 어떤 소스코드를 실행 전에 컴파일 하는 것이 아니라 실행하는 가운데 컴파일 하는것을 JIT(just-in-time) 컴파일 이라고 합니다</span></div></div>
 <p><code>myfunc1</code> 함수를 선언 할 때 인자의 타입에 대해 제한을 가하지 않았다는 것은 <code>a</code>, <code>b</code> 모두 <code>Any</code> 타입으로 지정되었다는 것입니다. 만약 <code>a</code>, <code>b</code> 모두 정수일 때, 즉 <code>Integer</code> 의 하위타입일 때는 곱하기가 아니라 더하기를 수행하기를 원한다고 해 봅시다.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>In [5]: function myfunc1(a::Integer, b::Integer)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        return a+b</span>
@@ -584,20 +625,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>이것이 작동하는 원리는 쉽습니다. 함수를 호출하면 메서드의 시그너쳐를 확인하여 실제 실행될 메서드를 찾는데 두 인자가 같은 타입일 경우 <code>same_type(x::T, y::T) where {T} = true</code> 메서드가 호출되며, 다른 타입일 경우 <code>same_type(x,y) = false</code> 메서드가 호출됩니다.</p>
 <p><br></p>
 <p>타입 매개변수에 재한을 걸 수 있습니다. 예를 들어 다음을 봅시다.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[10]</span><span class="in">: same</span>_integer_type(x<span class="in">::T</span><span class="op">,</span> y<span class="in">::T</span>) where {T&lt;<span class="in">:Integer</span>} = true</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[10]</span><span class="in">: same</span>_integer_type (generic function with 1 method)</span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[</span><span class="ss">10</span><span class="ex">]</span><span class="in">:</span> same_integer_type<span class="in">(</span>x<span class="in">::T</span><span class="op">,</span> y<span class="in">::T)</span> where {T&lt;<span class="ch">:</span><span class="dv">Integer</span>} = true</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[</span><span class="ss">10</span><span class="ex">]</span><span class="in">:</span> same_integer_type <span class="in">(</span>generic function with 1 method<span class="in">)</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[11]</span><span class="in">: same</span>_integer_type(x<span class="op">,</span> y) = false</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[11]</span><span class="in">: same</span>_integer_type (generic function with 2 methods)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[</span><span class="ss">11</span><span class="ex">]</span><span class="in">:</span> same_integer_type<span class="in">(</span>x<span class="op">,</span> y<span class="in">)</span> = false</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[</span><span class="ss">11</span><span class="ex">]</span><span class="in">:</span> same_integer_type <span class="in">(</span>generic function with 2 methods<span class="in">)</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[12]</span><span class="in">: same</span>_integer_type(3<span class="op">,</span> 4)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[12]</span><span class="in">: true</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[</span><span class="ss">12</span><span class="ex">]</span><span class="in">:</span> same_integer_type<span class="in">(</span>3<span class="op">,</span> 4<span class="in">)</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[</span><span class="ss">12</span><span class="ex">]</span><span class="in">:</span> true</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[13]</span><span class="in">: same</span>_integer_type(UInt8(3)<span class="op">,</span> 4)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[13]</span><span class="in">: false</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[</span><span class="ss">13</span><span class="ex">]</span><span class="in">:</span> same_integer_type<span class="in">(</span>UInt8<span class="in">(</span>3<span class="in">)</span><span class="op">,</span> 4<span class="in">)</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[</span><span class="ss">13</span><span class="ex">]</span><span class="in">:</span> false</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[14]</span><span class="in">: same</span>_integer_type(3<span class="op">,</span> 4<span class="fu">.0</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[14]</span><span class="in">: false</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>In <span class="ex">[</span><span class="ss">14</span><span class="ex">]</span><span class="in">:</span> same_integer_type<span class="in">(</span>3<span class="op">,</span> 4<span class="fu">.0</span><span class="in">)</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>Out<span class="ex">[</span><span class="ss">14</span><span class="ex">]</span><span class="in">:</span> false</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>두 변수 <code>x</code>, <code>y</code> 가 같은 종류의 정수 타입이 아니면 <code>false</code> 를 리턴합니다. 즉 다른 종류의 정수타입에도 <code>false</code> 를 반환합니다.</p>
 <p><br></p>
 <section id="함수-안에서의-타입매개변수" class="level4">
@@ -704,10 +745,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -717,8 +775,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -730,7 +797,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -774,6 +964,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -799,6 +990,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -860,17 +1077,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/introduction_to_julia/07_I_sort.html" class="pagination-link">
+      <a href="../../src/introduction_to_julia/07_I_sort.html" class="pagination-link" aria-label="Interude : 정렬">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interude : 정렬</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/introduction_to_julia/08_I_documentation.html" class="pagination-link">
+      <a href="../../src/introduction_to_julia/08_I_documentation.html" class="pagination-link" aria-label="Interude : 문서화">
         <span class="nav-page-text">Interude : 문서화</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

@@ -1,6 +1,5 @@
 ---
 title: "일반화된 역행렬과 의사 역행렬"
-language: ../_language-ko_custom.yml 
 
 number-sections: true
 number-depth: 3

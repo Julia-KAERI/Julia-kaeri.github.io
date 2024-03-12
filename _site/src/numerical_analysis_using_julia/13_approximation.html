@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.290">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 수학적 증명</title>
+<title>Julia &amp; Numerical Anlaysis - Approximation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/A02_ode.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -46,7 +46,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -55,13 +61,42 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "추가 검색결과",
     "search-more-matches-text": "추가 검색결과",
     "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "취소",
-    "search-submit-button-title": "검색"
+    "search-submit-button-title": "검색",
+    "search-label": "Search"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -70,65 +105,65 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Julia &amp; Numerical Anlaysis</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="검색"></div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/introduction_to_julia/index.html" rel="" target="">
- <span class="menu-text">Julia 프로그래밍 언어</span></a>
+    <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
+<span class="menu-text">Julia 프로그래밍 언어</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
+<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html" rel="" target="">
- <span class="menu-text">영상 처리와 토모그래피</span></a>
+    <a class="nav-link" href="../../src/image_processing/index.html"> 
+<span class="menu-text">영상 처리와 토모그래피</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/tools/tools.html" rel="" target="">
- <span class="menu-text">Tools</span></a>
+    <a class="nav-link" href="../../src/tools/tools.html"> 
+<span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
     <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html">수학</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html">수학적 증명</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/13_approximation.html">Approximation</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -236,6 +271,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Approximation</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -250,19 +291,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A01_appendix_01.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../src/numerical_analysis_using_julia/A_collection_of_proofs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">수학적 증명</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A02_ode.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/A_generalized_inverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">일반화된 역행렬과 의사 역행렬</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/A_ode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A03_pde.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/A_pde.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">편미분 방정식</span></a>
   </div>
 </li>
@@ -271,16 +318,17 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#sec-mathematical_proof" id="toc-sec-mathematical_proof" class="nav-link active" data-scroll-target="#sec-mathematical_proof"><span class="header-section-number">1</span> 수학적 증명</a>
+  <li><a href="#최소-자승법" id="toc-최소-자승법" class="nav-link active" data-scroll-target="#최소-자승법"><span class="header-section-number">1</span> 최소 자승법</a>
   <ul class="collapse">
-  <li><a href="#hölders-inequality-and-minkowski-ineqality" id="toc-hölders-inequality-and-minkowski-ineqality" class="nav-link" data-scroll-target="#hölders-inequality-and-minkowski-ineqality">Hölder’s inequality and Minkowski ineqality</a></li>
+  <li><a href="#선형-최소-자승법" id="toc-선형-최소-자승법" class="nav-link" data-scroll-target="#선형-최소-자승법">선형 최소 자승법</a></li>
+  <li><a href="#다항식-최소-자승법" id="toc-다항식-최소-자승법" class="nav-link" data-scroll-target="#다항식-최소-자승법">다항식 최소 자승법</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,9 +336,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/13_approximation.html">Approximation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">수학적 증명</h1>
+<h1 class="title">Approximation</h1>
 </div>
 
 
@@ -303,82 +351,100 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
 
-<section id="sec-mathematical_proof" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-mathematical_proof"><span class="header-section-number">1</span> 수학적 증명</h2>
-<section id="hölders-inequality-and-minkowski-ineqality" class="level3">
-<h3 class="anchored" data-anchor-id="hölders-inequality-and-minkowski-ineqality">Hölder’s inequality and Minkowski ineqality</h3>
-<div id="prp-young_inequality" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 1 (Young’s Inequality) </strong></span><span class="math inline">\(a\ge 0,\, b\ge 0, p&gt;1,\, q&gt;1\)</span> 이며 <span class="math inline">\(1/p+1/q=1\)</span> 일 때 다음이 성립한다.</p>
-<p><span class="math display">\[
-ab \le \dfrac{a^p}{p} + \dfrac{b^q}{q}.
-\]</span></p>
-<p>등호는 <span class="math inline">\(a^p=b^q\)</span> 일 때 성립한다.</p>
+
+<section id="최소-자승법" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="최소-자승법"><span class="header-section-number">1</span> 최소 자승법</h2>
+<section id="선형-최소-자승법" class="level3">
+<h3 class="anchored" data-anchor-id="선형-최소-자승법">선형 최소 자승법</h3>
+<p>아래 그림과 같이 <span class="math inline">\(\{(x_i,\,y_i) : i = 1,\ldots, N\}\)</span> 가 주어졌을 때 이 데이터에 가장 근접하는 선형 방정식 <span class="math inline">\(y=ax+b\)</span> 를 찾아야 할 때가 있다.</p>
+<div id="fig-linear_lieast_seuare" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linear_lieast_seuare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ch13_approximations/images/fig-linear_approximation-1.png" class="img-fluid figure-img" width="250">
 </div>
-<div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span>우선 <span class="math inline">\(p&gt;1,\,q&gt;1\)</span> 에 대해 다음이 성립한다. <span class="math display">\[
-\int_0^a x^{p-1}\, dx + \int_0^b y^{q-1}\, dy = \dfrac{a^p}{p} + \dfrac{b^q}{q}
-\]</span></p>
-<p><span class="math inline">\(\dfrac{1}{p}+ \dfrac{1}{q}\)</span> 로부터 <span class="math inline">\(p-1 = \dfrac{1}{q-1}\)</span> 임을 안다. 따라서, <span class="math inline">\(y=x^{p-1}\)</span> 이면 <span class="math inline">\(x=y^{q-1}\)</span> 이다. 이제 <span class="math inline">\(\displaystyle \int_0^a x^{p-1}\, dx + \int_0^b y^{q-1}\, dy\)</span> 를 생각하자. 아래 그림을 생각하면, 위의 적분이 <span class="math inline">\(ab\)</span> 보다 항상 크다는 것을 알 수 있다. <span class="math inline">\(\square\)</span></p>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="appendix/young_inequality.png" class="quarto-discovered-preview-image img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Plots for Young’s inequality</figcaption><p></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear_lieast_seuare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 선형 최소 자승법
+</figcaption>
 </figure>
 </div>
+<p>아래와 같은 함수 <span class="math inline">\(E(a,\,b)\)</span> 를 보자. <span class="math display">\[
+E(a, b) = \sum_{i=1}^N \left[ y_i - (ax_i + b)\right]^2
+\]</span></p>
+<p>이 함수는 모든 구간에서 미분가능하다는 매우 좋은 성질을 가지고 있다. 또한 <span class="math inline">\(a,\,b\)</span> 값이 상당히 벗어날 경우 매우 커지며, <span class="math inline">\(y_i\)</span> 가 <span class="math inline">\(ax_i +b\)</span> 와 일치할 경우 <span class="math inline">\(0\)</span> 이 된다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dfrac{\partial E}{\partial a} &amp;= -2\sum_{i=1}^N x_i(y_i - ax_i - b), \\
+\dfrac{\partial E}{\partial b} &amp;= -2\sum_{i=1}^N (y_i - ax_i -b), \\
+\dfrac{\partial^2 E}{\partial a \partial a }&amp; = \sum_{i=1}^N 2{x_i}^2, \\
+\dfrac{\partial^2 E}{\partial a \partial b} &amp;= \sum_{i=1}^N 2x_i, \\
+\dfrac{\partial^2 E}{\partial b \partial b}&amp;= 2N
+\end{aligned}
+\]</span></p>
+<p>이며 이로부터 해세 행렬 (Hassian matrix)</p>
+<p><span class="math display">\[
+\boldsymbol{H} = \begin{bmatrix} \dfrac{\partial^2 E}{\partial a^2 } &amp; \dfrac{\partial^2 E}{\partial a \partial b} \\ \dfrac{\partial^2 E}{\partial a \partial b} &amp; \dfrac{\partial^2 E}{\partial b^2} \end{bmatrix} = \begin{bmatrix} {\displaystyle \sum_{i=1}^N 2{x_i}^2} &amp; {\displaystyle \sum_{i=1}^N 2x_i}, \\ {\displaystyle \sum_{i=1}^N 2x_i} &amp; 2N \end{bmatrix}
+\]</span></p>
+<p>을 얻는다. 위 해세 행렬의 행렬식은</p>
+<p><span class="math display">\[
+D = \det (\boldsymbol{H}) = 4 \left[N\left(\sum_i^N {x_i}^2 \right)- \left(\sum_i^N x_i\right)^2\right]
+\]</span></p>
+<p>이며, 코시-슈바르츠 부등식으로 <span class="math inline">\(D\ge 0\)</span> 이며 <span class="math inline">\(D=0\)</span> 일 때는 <span class="math inline">\(x_1 = \cdots = x_i\)</span> 일 때임을 보일 수 있다. 이것을 제외하면 <span class="math inline">\(D&gt;0\)</span> 이며 <span class="math inline">\(E(a,\,b)\)</span> 는 극소값을 가진다는 것을 안다. 극소값을 가질 때는 <span class="math inline">\(\dfrac{\partial E}{\partial a}= \dfrac{\partial E}{\partial b}=0\)</span> 일 때이므로,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dfrac{\partial E}{\partial a}= 0 &amp;\implies \sum_i x_i y_i - a \left(\sum_i {x_i}^2\right) - b \left(\sum_{i}x_i\right) = 0, \\
+\dfrac{\partial E}{\partial b} = 0 &amp;\implies \sum_i y_i - a\left(\sum_i x_i\right) - b N = 0
+\end{aligned}
+\]</span></p>
+<p>이다. 위 식은 <span class="math inline">\(a,\,b\)</span> 에 대한 연립방정식이며 이것을 풀면 다음과 같다.</p>
+<p><span class="math display">\[
+a = \dfrac{N \left( \displaystyle \sum_{i=1}^N x_i y_i\right) - \left(\displaystyle \sum_{i=1}^N x_i\right) \left( \displaystyle \sum_{i=1}^N y_i\right)}{N \left(\displaystyle \sum_{i=1}^N {x_i}^2\right) - \left(\displaystyle \sum_{i=1}^N x_i\right)^2}, \qquad
+b=  \dfrac{\left( \displaystyle \sum_{i=1}^N {x_i}^2\right)  \left( \displaystyle \sum_{i=1}^N y_i\right) - \left(\displaystyle \sum_{i=1}^N x_iy_i\right) \left( \displaystyle \sum_{i=1}^N x_i\right)}{N \left(\displaystyle \sum_{i=1}^N {x_i}^2\right) - \left(\displaystyle \sum_{i=1}^N x_i\right)^2},
+\]</span></p>
+<p>언뜻 복잡해 보이지만 프로그래밍 입장에서 보면 베열의 합, 베열의 곱의 합, 베열의 제곱의 합, 배열의 합의 제곱에 대한 사칙연산 뿐이며, 쉽게 코딩 할 수 있다.</p>
 <p><br></p>
-<div id="prp-hoelders_inequality" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 2 (Hölder’s inequality and Minkowski ineqality) </strong></span><span class="math inline">\(p\ge 1\)</span> 이며 <span class="math inline">\(1/p+1/q =1\)</span> 일 때 다음이 성립한다. <span class="math display">\[
+</section>
+<section id="다항식-최소-자승법" class="level3">
+<h3 class="anchored" data-anchor-id="다항식-최소-자승법">다항식 최소 자승법</h3>
+<p>데이터 <span class="math inline">\(\{(x_k,\,y_k):k=1,\,N\}\)</span> 과 <span class="math inline">\(n\)</span> 차 다항식</p>
+<p><span class="math display">\[
+p_n (x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0
+\]</span></p>
+<p>에 대해</p>
+<p><span class="math display">\[
+E(a_n,\ldots,\,a_0) = \sum_{k=1}^N \left[ y_k - p_n(x_k)\right]^2
+\]</span></p>
+<p>를 최소로 하는 <span class="math inline">\(a_0,\ldots,\,a_n\)</span> 을 찾는다. 이 경우 <span class="math inline">\(N=n+1\)</span> 이면 다항식을 이용한 보간법이 되어 <span class="math inline">\(E=0\)</span> 이 되도록 하는 <span class="math inline">\(a_0,\ldots,\,a_n\)</span> 이 존재한다는 것을 안다. 보통 최소자승법은 <span class="math inline">\(N&gt;n+1\)</span> 일 경우의 가장 좋은 다항식 <span class="math inline">\(p_n\)</span> 을 찾는 것을 말한다. 여기서도 <span class="math inline">\(n&lt;N-1\)</span> 임을 가정하겠다.</p>
+<p><span class="math display">\[
 \begin{aligned}
-\text{H\"older's inequality} : &amp; \sum_{i=1}^n |u_i v_i| \le \left(\sum_{i=1}^n |u_i|^p\right)^{1/p}\left(\sum_{i=1}^n |v_i|^q\right)^{1/q}, \\
-\text{Mincowski inequality}  : &amp; \left(\sum_{i=1}^n |u_i+v_i|^p\right)^{1/p} \le \left(\sum_{i=1}^n |u_i|^p\right)^{1/p} + \left(\sum_{i=1}^n |v_i|^q\right)^{1/q}.
+E(a_n,\ldots,\,a_0) &amp;= \sum_{k=1}^N {y_k}^2 -2 \sum_{k=1}^N y_k p_n(x_i) + \sum_{k=1}^N (p_n(x_k))^2\\
+&amp;= \sum_{k=1}^N {y_k}^2 - 2 \sum_{k=1}^N \sum_{i=0}^n a_i y_k {x_k}^j + \sum_{k=1}^N \sum_{i,\,j=1}^n a_i a_j {x_k}^{i+j} \\
+&amp;= \sum_{k=1}^N {y_k}^2 - 2\sum_{i=0}^n \left(\sum_{k=1}^N (x_k)^i y_k\right) a_i + \sum_{i, j=0}^n \left(\sum_{k=1}^N {x_k}^{i+j}\right) a_i a_j
 \end{aligned}
 \]</span></p>
-</div>
+<p>이며 <span class="math inline">\(E\)</span> 를 최소로 하는 극값은 <span class="math inline">\(i=0,\ldots,n\)</span> 에 대해</p>
+<p><span id="eq-least_square_for_polynomial"><span class="math display">\[
+\dfrac{\partial E}{\partial a_i}=0 \implies \sum_{k=1}^N \left[ (x_k)^i y_k- \sum_{j=0}^n  (x_k)^{i+j} a_j\right] = 0
+\tag{1}\]</span></span></p>
+<p>를 만족해야 한다. 행렬 <span class="math inline">\(\boldsymbol{X}\)</span> 와 열벡터 <span class="math inline">\(\boldsymbol{b}\)</span> 를 다음과 같이 정의하자. 행렬의 인덱스는 <span class="math inline">\(1\)</span> 부터 시작하지만 위의 <span class="math inline">\(i,\,j = 0,\,1,\ldots\)</span> 이므로 수식이 약간 번잡스러워진다.</p>
+<p><span id="eq-least_square_for_polynomial_linear_equation_matrix-definition"><span class="math display">\[
+X_{ij} = \sum_{k=1}^N {x_k}^{(i-1)+(j-1)},\qquad b_{i} = \sum_{k=1}^N (x_k)^{i-1} y_k
+\tag{2}\]</span></span></p>
+<p>또한 <span class="math inline">\(\boldsymbol{a} = \begin{bmatrix} a_0 &amp; a_1 &amp; \cdots &amp; a_n\end{bmatrix}^T\)</span> 라고 하면 <a href="#eq-least_square_for_polynomial" class="quarto-xref">식&nbsp;1</a> 은 다음과 같은 선형방정식이 된다.</p>
+<p><span id="eq-least_square_for_polynomial_linear_equation"><span class="math display">\[
+\boldsymbol{Xa} = \boldsymbol{b}
+\tag{3}\]</span></span></p>
+<p><br></p>
+<p>::: {.callout-tip appearance=“minimal” icon=“false”}</p>
+<div id="prp-least_square_for_polynomial_linear_equation" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 1</strong></span> <a href="#eq-least_square_for_polynomial_linear_equation" class="quarto-xref">식&nbsp;3</a> 의 <span class="math inline">\(\boldsymbol{X}\)</span> 는 가역행렬이다.</p>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span>우선 횔더 부등식을 보이자. 영의 부등식 <span class="math inline">\(ab &lt; \dfrac{a^p}{p}+ \dfrac{b^q}{q}\)</span> 를 이용한다. <span class="math inline">\(\boldsymbol{u},\,\boldsymbol{v}\in \mathbb{F}^n\)</span> 에 대해 <span class="math inline">\(\displaystyle \|\boldsymbol{u}\|_p = \left(\sum_{i=1}^n |u_i|^p\right)^{1/p},\, \|\boldsymbol{v}\|_q = \left(\sum_{i=1}^n |v_i|^q\right)^{1/q}\)</span> 라 하자. <span class="math inline">\(a_i,\,b_i\)</span> 를 각각</p>
-<p><span class="math display">\[
-a_i = \dfrac{|u_i|}{\|\boldsymbol{u}\|_p},\, \qquad b_i = \dfrac{|v_i|}{\|\boldsymbol{v}\|_q}
-\]</span></p>
-<p>라 하면, 영의 부등식에 의해</p>
-<p><span class="math display">\[
-a_i b_i = \dfrac{|u_iv_i|}{\|\boldsymbol{u}\|_p \|\boldsymbol{v}\|_q} \le \dfrac{|u_i|^p}{p (\|\boldsymbol{u}\|_p)^p} +  \dfrac{|v_i|^p}{q(\|\boldsymbol{v}\|_q)^q}
-\]</span></p>
-<p>이며,</p>
-<p><span class="math display">\[
-\sum_{i=1}^n a_ib_i = \dfrac{\sum_{i=1}^n |u_i v_i|}{\|\boldsymbol{u}\|_p \|\boldsymbol{v}\|_q} \le \dfrac{\sum_{i=1}^n|u_i|^p}{p (\|\boldsymbol{u}\|_p)^p} +  \dfrac{\sum_{i=1}^n |v_i|^p}{q(\|\boldsymbol{v}\|_q)^q}  =  \dfrac{1}{p} + \dfrac{1}{q} = 1
-\]</span></p>
-<p>이므로,</p>
-<p><span class="math display">\[
-\sum_{i=1}^n |u_i v_i| \le \|\boldsymbol{u}\|_p \| \boldsymbol{v}\|_q = \left( \sum_{i=1}^n |u_i|^p)^{1/p} \right)^{1/p} \left( \sum_{i=1}^n |v_i|^q)^{1/q} \right)^{1/q}
-\]</span></p>
-<p>이다.</p>
-<p>이제 민코프스키 부등식을 보이자. <span class="math inline">\(p&gt;1\)</span> 이므로 삼각부등식에 의해 다음이 성립한다.</p>
-<p><span class="math display">\[
-|u_i+v_i|^p = |u_i + v_i| |u_i + v_i|^{p-1} \le (|u_i|+|v_i|)|u_i + v_i|^{p-1} = |u_i||u_i+v_i|^{p-1} + |v_i||u_i+v_i|^{p-1}
-\]</span></p>
-<p>Hölder’s inequality 에 의해,</p>
-<p><span class="math display">\[
-\begin{aligned}
-\sum_{i=1}^n |u_i| |u_i + v_i|^{p-1} &amp;\le \left(\sum_{i=1}^n |u_i|^p\right)^{1/p}\left(\sum_{i=1}^n |u_i+v_i|^{q(p-1)}\right)^{1/q}, \\
-\sum_{i=1}^n |v_i| |u_i + v_i|^{p-1} &amp;\le \left(\sum_{i=1}^n |v_i|^p\right)^{1/p}\left(\sum_{i=1}^n |u_i+v_i|^{q(p-1)}\right)^{1/q},
-\end{aligned}
-\]</span></p>
-<p><span class="math inline">\(1/p + 1/q=1\)</span> 로부터 <span class="math inline">\(q(p-1)=p\)</span> 임을 안다. 따라서,</p>
-<p><span class="math display">\[
-\sum_{i=1}^n (|u_i|+|v_i|) |u_i+v_i|^{p-1} \le \left[\left(\sum_{i=1}^n |u_i|^p\right)^{1/p} + \left(\sum_{i=1}^n |v_i|^p\right)^{1/p}\right]\left(\sum_{i=1}^n |u_i+v_i|^{p}\right)^{1/q}
-\]</span></p>
-<p>이므로,</p>
-<p><span class="math display">\[
-\begin{aligned}
-\left(\sum_{i=1}^n |u_i|^p\right)^{1/p} + \left(\sum_{i=1}^n |v_i|^p\right)^{1/p} &amp;\ge \dfrac{\displaystyle\sum_{i=1}^n (|u_i|+|v_i|) |u_i+v_i|^{p-1}}{\left(\displaystyle \sum_{i=1}^n |u_i+v_i|^{p}\right)^{1/q}} \ge \dfrac{\displaystyle \sum_{i=1}^n |u_i + v_i|^p}{\left(\displaystyle \sum_{i=1}^n |u_i+v_i|^{p}\right)^{1/q}}, \\
-&amp; = \left(\sum_{i=1}^n |u_i + v_i|^p\right)^{1-1/q} = \left(\sum_{i=1}^n |u_i + v_i|^p\right)^{1/p}
-\end{aligned}
-\]</span></p>
-<p>이다. 따라서 민코프스키 부등식이 성립한다.</p>
+<p><span class="proof-title"><em>(증명)</em>. </span><a href="#eq-least_square_for_polynomial_linear_equation_matrix-definition" class="quarto-xref">식&nbsp;2</a> 에 의해 정의된 <span class="math inline">\(X\)</span> 는 <span class="math inline">\((n+1)\times (n+1)\)</span> 대칭행렬이다.</p>
 </div>
+</div>
+<p><a href="#prp-least_square_for_polynomial_linear_equation" class="quarto-xref">명제&nbsp;1</a></p>
 
 
 </section>
@@ -464,10 +530,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -477,8 +560,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -490,7 +582,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -534,6 +749,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -559,6 +775,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -620,14 +862,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="pagination-link" aria-label="상미분 방정식의 경계값 문제">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">상미분 방정식의 경계값 문제</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/A02_ode.html" class="pagination-link">
-        <span class="nav-page-text">상미분 방정식</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
