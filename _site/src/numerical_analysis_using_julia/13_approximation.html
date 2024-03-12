@@ -327,8 +327,8 @@ window.Quarto = {
   <ul>
   <li><a href="#최소-자승법" id="toc-최소-자승법" class="nav-link active" data-scroll-target="#최소-자승법"><span class="header-section-number">1</span> 최소 자승법</a>
   <ul class="collapse">
-  <li><a href="#선형-최소-자승법" id="toc-선형-최소-자승법" class="nav-link" data-scroll-target="#선형-최소-자승법">선형 최소 자승법</a></li>
-  <li><a href="#다항식-최소-자승법" id="toc-다항식-최소-자승법" class="nav-link" data-scroll-target="#다항식-최소-자승법">다항식 최소 자승법</a></li>
+  <li><a href="#선형-최소-자승법" id="toc-선형-최소-자승법" class="nav-link" data-scroll-target="#선형-최소-자승법"><span class="header-section-number">1.1</span> 선형 최소 자승법</a></li>
+  <li><a href="#다항식-최소-자승법" id="toc-다항식-최소-자승법" class="nav-link" data-scroll-target="#다항식-최소-자승법"><span class="header-section-number">1.2</span> 다항식 최소 자승법</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -357,8 +357,8 @@ window.Quarto = {
 
 <section id="최소-자승법" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="최소-자승법"><span class="header-section-number">1</span> 최소 자승법</h2>
-<section id="선형-최소-자승법" class="level3">
-<h3 class="anchored" data-anchor-id="선형-최소-자승법">선형 최소 자승법</h3>
+<section id="선형-최소-자승법" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="선형-최소-자승법"><span class="header-section-number">1.1</span> 선형 최소 자승법</h3>
 <p>아래 그림과 같이 <span class="math inline">\(\{(x_i,\,y_i) : i = 1,\ldots, N\}\)</span> 가 주어졌을 때 이 데이터에 가장 근접하는 선형 방정식 <span class="math inline">\(y=ax+b\)</span> 를 찾아야 할 때가 있다.</p>
 <div id="fig-linear_lieast_seuare" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -406,8 +406,8 @@ b=  \dfrac{\left( \displaystyle \sum_{i=1}^N {x_i}^2\right)  \left( \displaystyl
 <p>언뜻 복잡해 보이지만 프로그래밍 입장에서 보면 베열의 합, 베열의 곱의 합, 베열의 제곱의 합, 배열의 합의 제곱에 대한 사칙연산 뿐이며, 쉽게 코딩 할 수 있다.</p>
 <p><br></p>
 </section>
-<section id="다항식-최소-자승법" class="level3">
-<h3 class="anchored" data-anchor-id="다항식-최소-자승법">다항식 최소 자승법</h3>
+<section id="다항식-최소-자승법" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="다항식-최소-자승법"><span class="header-section-number">1.2</span> 다항식 최소 자승법</h3>
 <p>데이터 <span class="math inline">\(\{(x_k,\,y_k):k=1,\,N\}\)</span> 과 <span class="math inline">\(n\)</span> 차 다항식</p>
 <p><span class="math display">\[
 p_n (x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0
@@ -437,11 +437,19 @@ X_{ij} = \sum_{k=1}^N {x_k}^{(i-1)+(j-1)},\qquad b_{i} = \sum_{k=1}^N (x_k)^{i-1
 \boldsymbol{Xa} = \boldsymbol{b}
 \tag{3}\]</span></span></p>
 <p><br></p>
-<p>::: {.callout-tip appearance=“minimal” icon=“false”}</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <div id="prp-least_square_for_polynomial_linear_equation" class="theorem proposition">
 <p><span class="theorem-title"><strong>명제 1</strong></span> <a href="#eq-least_square_for_polynomial_linear_equation" class="quarto-xref">식&nbsp;3</a> 의 <span class="math inline">\(\boldsymbol{X}\)</span> 는 가역행렬이다.</p>
+</div>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span><a href="#eq-least_square_for_polynomial_linear_equation_matrix-definition" class="quarto-xref">식&nbsp;2</a> 에 의해 정의된 <span class="math inline">\(X\)</span> 는 <span class="math inline">\((n+1)\times (n+1)\)</span> 대칭행렬이다.</p>
+<p><span class="proof-title"><em>(증명)</em>. </span><a href="#eq-least_square_for_polynomial_linear_equation_matrix-definition" class="quarto-xref">식&nbsp;2</a> 에 의해 정의된 <span class="math inline">\(\boldsymbol{X}\)</span> 는 <span class="math inline">\((n+1)\times (n+1)\)</span> 대칭행렬이다. <span class="math inline">\(\boldsymbol{X}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{c}^T\boldsymbol{Xc} = 0\)</span> 인 벡터 <span class="math inline">\(\boldsymbol{c}\)</span> 가 존재한다고 하자.</p>
+</div>
+</div>
 </div>
 </div>
 <p><a href="#prp-least_square_for_polynomial_linear_equation" class="quarto-xref">명제&nbsp;1</a></p>

@@ -2,7 +2,7 @@
 title: "Approximation"
 
 number-sections: true
-number-depth: 2
+number-depth: 3
 crossref:
   chapters: false
 ---
@@ -109,16 +109,18 @@ $$ {#eq-least_square_for_polynomial_linear_equation}
 
 </br>
 
-::: {.callout-tip appearance="minimal" icon="false"}
-
+::: {.callout-tip appearance="minimal"}
 
 ::: {#prp-least_square_for_polynomial_linear_equation}
 @eq-least_square_for_polynomial_linear_equation 의 $\boldsymbol{X}$ 는 가역행렬이다.
 
+:::
+
+
 
 ::: {.proof}
 
-@eq-least_square_for_polynomial_linear_equation_matrix-definition 에 의해 정의된 $X$ 는 $(n+1)\times (n+1)$ 대칭행렬이다. 
+@eq-least_square_for_polynomial_linear_equation_matrix-definition 에 의해 정의된 $\boldsymbol{X}$ 는 $(n+1)\times (n+1)$ 대칭행렬이다. $\boldsymbol{X}$ 에 대해 $\boldsymbol{c}^T\boldsymbol{Xc} = 0$ 인 벡터 $\boldsymbol{c}$ 가 존재한다고 하자. 
 
 :::
 
