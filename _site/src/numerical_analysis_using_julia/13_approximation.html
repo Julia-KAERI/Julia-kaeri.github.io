@@ -408,7 +408,7 @@ b=  \dfrac{\left( \displaystyle \sum_{i=1}^N {x_i}^2\right)  \left( \displaystyl
 </section>
 <section id="다항식-최소-자승법" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="다항식-최소-자승법"><span class="header-section-number">1.2</span> 다항식 최소 자승법</h3>
-<p>데이터 <span class="math inline">\(\{(x_k,\,y_k):k=1,\,N\}\)</span> 과 <span class="math inline">\(n\)</span> 차 다항식</p>
+<p>데이터 <span class="math inline">\(\{(x_k,\,y_k):k=1,\,N\}\)</span> (<span class="math inline">\(x_1&lt;x_2&lt;\cdots &lt; x_N\)</span>) 과 <span class="math inline">\(n\)</span> 차 다항식</p>
 <p><span class="math display">\[
 p_n (x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0
 \]</span></p>
@@ -428,31 +428,30 @@ E(a_n,\ldots,\,a_0) &amp;= \sum_{k=1}^N {y_k}^2 -2 \sum_{k=1}^N y_k p_n(x_i) + \
 <p><span id="eq-least_square_for_polynomial"><span class="math display">\[
 \dfrac{\partial E}{\partial a_i}=0 \implies \sum_{k=1}^N \left[ (x_k)^i y_k- \sum_{j=0}^n  (x_k)^{i+j} a_j\right] = 0
 \tag{1}\]</span></span></p>
-<p>를 만족해야 한다. 행렬 <span class="math inline">\(\boldsymbol{X}\)</span> 와 열벡터 <span class="math inline">\(\boldsymbol{b}\)</span> 를 다음과 같이 정의하자. 행렬의 인덱스는 <span class="math inline">\(1\)</span> 부터 시작하지만 위의 <span class="math inline">\(i,\,j = 0,\,1,\ldots\)</span> 이므로 수식이 약간 번잡스러워진다.</p>
-<p><span id="eq-least_square_for_polynomial_linear_equation_matrix-definition"><span class="math display">\[
-X_{ij} = \sum_{k=1}^N {x_k}^{(i-1)+(j-1)},\qquad b_{i} = \sum_{k=1}^N (x_k)^{i-1} y_k
-\tag{2}\]</span></span></p>
-<p>또한 <span class="math inline">\(\boldsymbol{a} = \begin{bmatrix} a_0 &amp; a_1 &amp; \cdots &amp; a_n\end{bmatrix}^T\)</span> 라고 하면 <a href="#eq-least_square_for_polynomial" class="quarto-xref">식&nbsp;1</a> 은 다음과 같은 선형방정식이 된다.</p>
-<p><span id="eq-least_square_for_polynomial_linear_equation"><span class="math display">\[
-\boldsymbol{Xa} = \boldsymbol{b}
-\tag{3}\]</span></span></p>
+<p>를 만족해야 한다. 이제 행렬 <span class="math inline">\(\boldsymbol{X} \in \mathcal{M}_{N\times (n+1)}(\mathbb{F}),\,\boldsymbol{a} \in\mathcal{M}_{n+1}(\mathbb{F}),\,\boldsymbol{y}\in \mathcal{M}_N(\mathbb{F})\)</span> 를 다음과 같이 정의하자.</p>
+<p><span class="math display">\[
+X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 &amp; \cdots &amp; a_n\end{bmatrix}^T, \qquad \boldsymbol{y} = \begin{bmatrix} y_1 &amp; \cdots &amp; y_N \end{bmatrix}
+\]</span></p>
+<p>그렇다면,</p>
+<p><span class="math display">\[
+(\boldsymbol{X}^T\boldsymbol{X})_{ij} = \sum_{k=1}^N X_{ki}X_{kj} = \sum_{k=1}^N x_{k}^{i+j-2}
+\]</span></p>
+<p>이므로 <a href="#eq-least_square_for_polynomial" class="quarto-xref">식&nbsp;1</a> 는 다음과 같은 선형방정식이 된다.</p>
+<p><span class="math display">\[
+\boldsymbol{X}^T\boldsymbol{Xa} = \boldsymbol{X}^T\boldsymbol{y}
+\]</span></p>
 <p><br></p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div id="exr-nullity_of_X" class="theorem exercise">
+<p><span class="theorem-title"><strong>연습문제 1</strong></span> 위에서 정의된 <span class="math inline">\(\boldsymbol{X}\)</span> 에 대해 다음을 보여라.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\text{nullity} (\boldsymbol{X})=0\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> 는 가역행렬이다.</p>
 </div>
-<div class="callout-body-container">
-<div id="prp-least_square_for_polynomial_linear_equation" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 1</strong></span> <a href="#eq-least_square_for_polynomial_linear_equation" class="quarto-xref">식&nbsp;3</a> 의 <span class="math inline">\(\boldsymbol{X}\)</span> 는 가역행렬이다.</p>
+<div class="proof solution">
+<p><span class="proof-title"><em>(해답)</em>. </span>(<span class="math inline">\(1\)</span>) <span class="math inline">\(\text{nullity} (\boldsymbol{x}) &gt; 0\)</span> 이라면 어떤 nontrivial 한 <span class="math inline">\(\boldsymbol{a}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Xa}=\boldsymbol{0}\)</span> 이어야 한다. 그렇다면, <span class="math inline">\(\sum_{i=0}^n {x_k}^i a_i = 0\)</span> (<span class="math inline">\(i=1,\ldots,\,N\)</span>) 인데 <span class="math inline">\(N&gt;n+1\)</span> 조건에서 <span class="math inline">\(n\)</span> 차 방정식이 <span class="math inline">\(N &gt; n+1\)</span> 개의 근을 갖는다는 이야기이므로 모순이다. 우리는 이미 <span class="math inline">\(x_1 &lt; \cdots &lt; x_N\)</span> 을 가정했다. 따라서 <span class="math inline">\(\boldsymbol{Xa}=\boldsymbol{0}\)</span> 을 만족하는 <span class="math inline">\(\boldsymbol{a}\)</span> 는 <span class="math inline">\(\boldsymbol{0}\)</span> 뿐이다.</p>
+<p>(<span class="math inline">\(2\)</span>) <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> 는 대칭행렬이며 <span class="math inline">\(\text{nullity}(\boldsymbol{X})=0\)</span> 이므로 non-trivial 한 벡터 <span class="math inline">\(\boldsymbol{a}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{a}^T\boldsymbol{X}^T\boldsymbol{Xa} = \|\boldsymbol{Xa}\|^2&gt;0\)</span> 이다. 따라서 <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> 는 가역이다.</p>
 </div>
-<div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span><a href="#eq-least_square_for_polynomial_linear_equation_matrix-definition" class="quarto-xref">식&nbsp;2</a> 에 의해 정의된 <span class="math inline">\(\boldsymbol{X}\)</span> 는 <span class="math inline">\((n+1)\times (n+1)\)</span> 대칭행렬이다. <span class="math inline">\(\boldsymbol{X}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{c}^T\boldsymbol{Xc} = 0\)</span> 인 벡터 <span class="math inline">\(\boldsymbol{c}\)</span> 가 존재한다고 하자.</p>
-</div>
-</div>
-</div>
-</div>
-<p><a href="#prp-least_square_for_polynomial_linear_equation" class="quarto-xref">명제&nbsp;1</a></p>
+<p><br></p>
+<p><a href="#exr-nullity_of_X" class="quarto-xref">연습문제&nbsp;1</a> 에 따라 <span class="math inline">\(\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}\)</span> 로 정해진다.</p>
 
 
 </section>

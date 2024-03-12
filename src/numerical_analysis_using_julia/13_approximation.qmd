@@ -67,7 +67,7 @@ $$
 
 ### 다항식 최소 자승법
 
-데이터 $\{(x_k,\,y_k):k=1,\,N\}$ 과 $n$ 차 다항식
+데이터 $\{(x_k,\,y_k):k=1,\,N\}$ ($x_1<x_2<\cdots < x_N$) 과 $n$ 차 다항식
 
 $$
 p_n (x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0
@@ -95,35 +95,46 @@ $$
 \dfrac{\partial E}{\partial a_i}=0 \implies \sum_{k=1}^N \left[ (x_k)^i y_k- \sum_{j=0}^n  (x_k)^{i+j} a_j\right] = 0
 $$ {#eq-least_square_for_polynomial}
 
-를 만족해야 한다. 행렬 $\boldsymbol{X}$ 와 열벡터 $\boldsymbol{b}$ 를 다음과 같이 정의하자. 행렬의 인덱스는 $1$ 부터 시작하지만 위의 $i,\,j = 0,\,1,\ldots$ 이므로 수식이 약간 번잡스러워진다. 
+를 만족해야 한다. 이제 행렬 $\boldsymbol{X} \in \mathcal{M}_{N\times (n+1)}(\mathbb{F}),\,\boldsymbol{a} \in\mathcal{M}_{n+1}(\mathbb{F}),\,\boldsymbol{y}\in \mathcal{M}_N(\mathbb{F})$ 를 다음과 같이 정의하자.
 
 $$
-X_{ij} = \sum_{k=1}^N {x_k}^{(i-1)+(j-1)},\qquad b_{i} = \sum_{k=1}^N (x_k)^{i-1} y_k
-$$ {#eq-least_square_for_polynomial_linear_equation_matrix-definition}
+X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 & \cdots & a_n\end{bmatrix}^T, \qquad \boldsymbol{y} = \begin{bmatrix} y_1 & \cdots & y_N \end{bmatrix}
+$$
 
-또한 $\boldsymbol{a} = \begin{bmatrix} a_0 & a_1 & \cdots & a_n\end{bmatrix}^T$ 라고 하면 @eq-least_square_for_polynomial 은 다음과 같은 선형방정식이 된다.
+그렇다면,
 
 $$
-\boldsymbol{Xa} = \boldsymbol{b}
-$$ {#eq-least_square_for_polynomial_linear_equation}
+(\boldsymbol{X}^T\boldsymbol{X})_{ij} = \sum_{k=1}^N X_{ki}X_{kj} = \sum_{k=1}^N x_{k}^{i+j-2}
+$$
+
+이므로 @eq-least_square_for_polynomial 는 다음과 같은 선형방정식이 된다.
+
+$$
+\boldsymbol{X}^T\boldsymbol{Xa} = \boldsymbol{X}^T\boldsymbol{y}
+$$
+
 
 </br>
 
-::: {.callout-tip appearance="minimal"}
+::: {#exr-nullity_of_X}
 
-::: {#prp-least_square_for_polynomial_linear_equation}
-@eq-least_square_for_polynomial_linear_equation 의 $\boldsymbol{X}$ 는 가역행렬이다.
+위에서 정의된 $\boldsymbol{X}$ 에 대해 다음을 보여라.
 
-:::
+&emsp; ($1$) $\text{nullity} (\boldsymbol{X})=0$.
 
-
-
-::: {.proof}
-
-@eq-least_square_for_polynomial_linear_equation_matrix-definition 에 의해 정의된 $\boldsymbol{X}$ 는 $(n+1)\times (n+1)$ 대칭행렬이다. $\boldsymbol{X}$ 에 대해 $\boldsymbol{c}^T\boldsymbol{Xc} = 0$ 인 벡터 $\boldsymbol{c}$ 가 존재한다고 하자. 
+&emsp; ($2$) $\boldsymbol{X}^T\boldsymbol{X}$ 는 가역행렬이다.
 
 :::
 
+::: {.solution}
+
+($1$) $\text{nullity} (\boldsymbol{x}) > 0$ 이라면 어떤 nontrivial 한 $\boldsymbol{a}$ 에 대해 $\boldsymbol{Xa}=\boldsymbol{0}$ 이어야 한다. 그렇다면, $\sum_{i=0}^n {x_k}^i a_i = 0$ ($i=1,\ldots,\,N$) 인데 $N>n+1$ 조건에서 $n$ 차 방정식이 $N > n+1$ 개의 근을 갖는다는 이야기이므로 모순이다. 우리는 이미 $x_1 < \cdots < x_N$ 을 가정했다. 따라서 $\boldsymbol{Xa}=\boldsymbol{0}$ 을 만족하는 $\boldsymbol{a}$ 는 $\boldsymbol{0}$ 뿐이다.
+
+($2$) $\boldsymbol{X}^T\boldsymbol{X}$ 는 대칭행렬이며 $\text{nullity}(\boldsymbol{X})=0$ 이므로 non-trivial 한 벡터 $\boldsymbol{a}$ 에 대해 $\boldsymbol{a}^T\boldsymbol{X}^T\boldsymbol{Xa} = \|\boldsymbol{Xa}\|^2>0$ 이다. 따라서 $\boldsymbol{X}^T\boldsymbol{X}$ 는 가역이다.
 :::
 
-@prp-least_square_for_polynomial_linear_equation 
+</br>
+
+@exr-nullity_of_X 에 따라 $\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}$ 로 정해진다. 
+
+
