@@ -328,8 +328,15 @@ window.Quarto = {
   <li><a href="#최소-자승법" id="toc-최소-자승법" class="nav-link active" data-scroll-target="#최소-자승법"><span class="header-section-number">1</span> 최소 자승법</a>
   <ul class="collapse">
   <li><a href="#선형-최소-자승법" id="toc-선형-최소-자승법" class="nav-link" data-scroll-target="#선형-최소-자승법"><span class="header-section-number">1.1</span> 선형 최소 자승법</a></li>
-  <li><a href="#다항식-최소-자승법" id="toc-다항식-최소-자승법" class="nav-link" data-scroll-target="#다항식-최소-자승법"><span class="header-section-number">1.2</span> 다항식 최소 자승법</a></li>
+  <li><a href="#지수함수와-멱함수의-최소자승법" id="toc-지수함수와-멱함수의-최소자승법" class="nav-link" data-scroll-target="#지수함수와-멱함수의-최소자승법"><span class="header-section-number">1.2</span> 지수함수와 멱함수의 최소자승법</a></li>
+  <li><a href="#다항식-최소-자승법" id="toc-다항식-최소-자승법" class="nav-link" data-scroll-target="#다항식-최소-자승법"><span class="header-section-number">1.3</span> 다항식 최소 자승법</a></li>
   </ul></li>
+  <li><a href="#직교-다항식을-이용한-최소자승법" id="toc-직교-다항식을-이용한-최소자승법" class="nav-link" data-scroll-target="#직교-다항식을-이용한-최소자승법"><span class="header-section-number">2</span> 직교 다항식을 이용한 최소자승법</a>
+  <ul class="collapse">
+  <li><a href="#내적벡터공간으로서의-함수의-집합" id="toc-내적벡터공간으로서의-함수의-집합" class="nav-link" data-scroll-target="#내적벡터공간으로서의-함수의-집합"><span class="header-section-number">2.1</span> 내적벡터공간으로서의 함수의 집합</a></li>
+  <li><a href="#르장드르-다항식" id="toc-르장드르-다항식" class="nav-link" data-scroll-target="#르장드르-다항식"><span class="header-section-number">2.2</span> 르장드르 다항식</a></li>
+  </ul></li>
+  <li><a href="#chevyshev-다항식" id="toc-chevyshev-다항식" class="nav-link" data-scroll-target="#chevyshev-다항식"><span class="header-section-number">3</span> Chevyshev 다항식</a></li>
   </ul>
 </nav>
     </div>
@@ -406,8 +413,21 @@ b=  \dfrac{\left( \displaystyle \sum_{i=1}^N {x_i}^2\right)  \left( \displaystyl
 <p>언뜻 복잡해 보이지만 프로그래밍 입장에서 보면 베열의 합, 베열의 곱의 합, 베열의 제곱의 합, 배열의 합의 제곱에 대한 사칙연산 뿐이며, 쉽게 코딩 할 수 있다.</p>
 <p><br></p>
 </section>
-<section id="다항식-최소-자승법" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="다항식-최소-자승법"><span class="header-section-number">1.2</span> 다항식 최소 자승법</h3>
+<section id="지수함수와-멱함수의-최소자승법" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="지수함수와-멱함수의-최소자승법"><span class="header-section-number">1.2</span> 지수함수와 멱함수의 최소자승법</h3>
+<p><span class="math inline">\(y=be^{ax}\)</span> 꼴의 지수함수의 경우 각각 <span class="math inline">\(\ln y = ax + \ln b\)</span> 로 변형시킨 후 <span class="math inline">\(\overline{y}=\ln y,\, \overline{b} = \ln b\)</span> 로 놓으면</p>
+<p><span class="math display">\[
+\overline{y} = ax + \overline{b}
+\]</span></p>
+<p>의 선형방정식이 된다. 따라서 선형방정식의 최소자승법으로 <span class="math inline">\(a\)</span> 와 <span class="math inline">\(\overline{b}\)</span> 를 구할 수 있기 때문에 지수함수에 대해서는 최소자승법을 사용 할 수 있다. <span class="math inline">\(y=dx^c\)</span> 꼴의 멱함수의 경우에는 <span class="math inline">\(\ln y = \ln d + c\ln x\)</span> 이므로 <span class="math inline">\(\overline{y} = \ln y\)</span>, <span class="math inline">\(\overline{x} = \ln x\)</span>, <span class="math inline">\(\overline{d} = \ln d\)</span> 로 놓으면</p>
+<p><span class="math display">\[
+\overline{y} = c \overline{x} + \overline{d}
+\]</span></p>
+<p>를 이용해 역시 최소자승법으로 <span class="math inline">\(c,\, d\)</span> 를 구할 수 있다.</p>
+<p><br></p>
+</section>
+<section id="다항식-최소-자승법" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="다항식-최소-자승법"><span class="header-section-number">1.3</span> 다항식 최소 자승법</h3>
 <p>데이터 <span class="math inline">\(\{(x_k,\,y_k):k=1,\,N\}\)</span> (<span class="math inline">\(x_1&lt;x_2&lt;\cdots &lt; x_N\)</span>) 과 <span class="math inline">\(n\)</span> 차 다항식</p>
 <p><span class="math display">\[
 p_n (x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0
@@ -436,10 +456,10 @@ X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 &amp; \cdots &a
 <p><span class="math display">\[
 (\boldsymbol{X}^T\boldsymbol{X})_{ij} = \sum_{k=1}^N X_{ki}X_{kj} = \sum_{k=1}^N x_{k}^{i+j-2}
 \]</span></p>
-<p>이므로 <a href="#eq-least_square_for_polynomial" class="quarto-xref">식&nbsp;1</a> 는 다음과 같은 선형방정식이 된다.</p>
-<p><span class="math display">\[
+<p>이므로 <a href="#eq-least_square_for_polynomial" class="quarto-xref">식&nbsp;1</a> 는 다음과 같은 선형방정식이 된다. 아래와 같은 형태의 방정식을 <strong>정규 방정식(normal equation)</strong> 이라고 한다.</p>
+<p><span id="eq-normal_equation"><span class="math display">\[
 \boldsymbol{X}^T\boldsymbol{Xa} = \boldsymbol{X}^T\boldsymbol{y}
-\]</span></p>
+\tag{2}\]</span></span></p>
 <p><br></p>
 <div id="exr-nullity_of_X" class="theorem exercise">
 <p><span class="theorem-title"><strong>연습문제 1</strong></span> 위에서 정의된 <span class="math inline">\(\boldsymbol{X}\)</span> 에 대해 다음을 보여라.</p>
@@ -452,9 +472,93 @@ X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 &amp; \cdots &a
 </div>
 <p><br></p>
 <p><a href="#exr-nullity_of_X" class="quarto-xref">연습문제&nbsp;1</a> 에 따라 <span class="math inline">\(\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}\)</span> 로 정해진다.</p>
-
-
+<p><br></p>
 </section>
+</section>
+<section id="직교-다항식을-이용한-최소자승법" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="직교-다항식을-이용한-최소자승법"><span class="header-section-number">2</span> 직교 다항식을 이용한 최소자승법</h2>
+<section id="내적벡터공간으로서의-함수의-집합" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="내적벡터공간으로서의-함수의-집합"><span class="header-section-number">2.1</span> 내적벡터공간으로서의 함수의 집합</h3>
+<ul>
+<li><p>필드 <span class="math inline">\(\mathbb{F}\)</span> 에서 정의된 <span class="math inline">\(x\)</span> 를 변수로 갖는 <span class="math inline">\(n\)</span> 차 이하의 다항식의 집합을 <span class="math inline">\(\mathbb{F}_n [x]\)</span> 라고 하자. 또한 <span class="math inline">\(x\)</span> 를 변수로 하는 다항식 전체의 집합을 <span class="math inline">\(\mathbb{F}[x]\)</span> 라고 하자. 실수에서 정의된 2차 이하의 다항식의 집합은 <span class="math inline">\(\mathbb{R}_2[x]\)</span> 로 쓸 수 있다.</p></li>
+<li><p><span class="math inline">\(C_{[a,\,b]}\)</span> 가 내적벡터공간이기 때문에 선형대수학에의 중요한 개념인 벡터, 선형독립, 기저, 내적, 직교 와 같은 개념을 그대로 쓸 수 있다.</p></li>
+</ul>
+<p><br></p>
+<div id="exr-linearly_independency_of_different_order_polynomials" class="theorem exercise">
+<p><span class="theorem-title"><strong>연습문제 2</strong></span> <span class="math inline">\(p_k(x)\)</span> 가 각각 <span class="math inline">\(k\)</span> 차 다항식일 때 <span class="math inline">\(\{p_1(x),\ldots,\,p_n(x)\}\)</span> 은 선형독립이다.</p>
+</div>
+<div class="proof solution">
+<p><span class="proof-title"><em>(해답)</em>. </span><span class="math inline">\(c_1p_1(x) + \cdots + c_n p_n(x)=0\)</span> 이라고 하자. <span class="math inline">\(n\)</span> 차항은 <span class="math inline">\(p_n(x)\)</span> 밖에 없으므로 <span class="math inline">\(c_n=0\)</span> 이다. <span class="math inline">\(n-1\)</span> 차항은 <span class="math inline">\(p_{n-1}\)</span> 박에 없으므로 <span class="math inline">\(c_{n-1}=0\)</span> 이다. 이것을 반복하면 <span class="math inline">\(c_1= \cdots = c_n=0\)</span> 을 보인다.</p>
+</div>
+<p><br></p>
+<p><span class="math inline">\(C_[a,\,b]\)</span> 에서 내적을 어떤 정해진 함수 <span class="math inline">\(w(x)\)</span> 에 대해 다음과 같이 정의 할 수 있다.</p>
+<p><span class="math display">\[
+\langle \varphi,\, \psi \rangle := \int_{a}^b \varphi(x)\, \psi(x)\, w(x)\, dx
+\]</span></p>
+<p>이 때 <span class="math inline">\(w(x)\)</span> 를 <strong>무게 함수(weight function)</strong> 이라고 하며 (1) 모든 <span class="math inline">\(x\in [a,\,b]\)</span> 에서 <span class="math inline">\(w(x)\ge 0\)</span> 이며 (2) <span class="math inline">\([a,\,b]\)</span> 에 포함되는 모든 <span class="math inline">\([c,\,d]\)</span> 에서 <span class="math inline">\(w([c,\,d]) \ne \{0\}\)</span> 이다. 이렇게 정의된 내적에 대해 <span class="math inline">\(\langle \varphi,\, \psi \rangle = 0\)</span> 이면 <span class="math inline">\(\varphi\)</span> 와 <span class="math inline">\(\psi\)</span> 는 서로 직교한다(be orthoginal)고 한다. <span class="math inline">\(\{\phi_1,\ldots,\,\phi_n\} \subset C_{[a,\,b]}\)</span> 에 대해 <span class="math inline">\(\langle \phi_i,\,\phi_j\rangle = c_i\delta_{ij}\)</span>, <span class="math inline">\(c_{i} &gt; 0\)</span> 이면 <span class="math inline">\(\{\phi_1,\ldots,\,\phi_n\}\)</span> 을 직교하는 함수의 집합이라고 하며, <span class="math inline">\(\langle \phi_i,\,\phi_j\rangle =\delta_{ij}\)</span> 이면 <strong>정규직교집합</strong> 이라고 한다.</p>
+<p><span class="math inline">\(p(x) \in C_{[a,\,b]}\)</span> 가 직교하는 함수의 집합 <span class="math inline">\(\{\phi_1,\ldots,\,\phi_n\}\)</span> 의 선형결합이라고 하자. <span class="math inline">\(p(x) = \sum_{i=1}^n a_n \phi_n (x)\)</span> 이며 여기에 무게함수 <span class="math inline">\(w(x)\)</span> 정의되어 있다면</p>
+<p><span class="math display">\[
+\langle p(x),\, \phi_k(x) \rangle = a_k \langle \phi_k,\, \phi_k \rangle
+\]</span></p>
+<p>이다. <span class="math inline">\(\{\phi_1,\ldots,\,\phi_n\}\)</span> 가 정규직교집합이라면 <span class="math inline">\(c_k=1\)</span> 이므로 <span class="math inline">\(a_k = \langle p(x),\,\phi_k(x)\rangle\)</span> 이다.</p>
+<p><span class="math inline">\(C_{[a,\,b]}\)</span> 이 내적벡터공간이며 내적벡터공간에서의 정규직교벡터-여기서는 직교하는 함수의 집합-을 생각 할 수 있으므로 당연히 이 정규하는 함수의 집합으로부터 정규직교집합을 구성 할 수 있다. 그 방법중 한가지는 그람-슈미트 과정이다. <span class="math inline">\(\{\phi_1,\ldots,\,\phi_n\}\)</span> 이 직교하는 함수의 집합이며 <span class="math inline">\(\|f\|= \sqrt{\langle f,\, f\rangle}\)</span> 라고 할 때,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\psi_1(x) &amp;= \dfrac{\phi_1(x)}{\|\phi_1(x)\|}, \\
+\varphi_k (x) &amp;= \phi_k(x) - \sum_{j=1}^{k-1} \langle \phi_k,\, \psi_j\rangle \psi_k(x),\\
+\psi_k (x) &amp;= \dfrac{\varphi_k(x)}{\|\varphi_k(x)\|}
+\end{aligned}
+\]</span></p>
+<p>라고 정의하면 <span class="math inline">\(\{\psi_1(x),\ldots,\,\psi_k(x)\}\)</span> 는 정규직교집합이다.</p>
+<p><br></p>
+</section>
+<section id="르장드르-다항식" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="르장드르-다항식"><span class="header-section-number">2.2</span> 르장드르 다항식</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-legendre_polynomials" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 1 (르장드르 다항식)</strong></span> 르장드르 다항식 <span class="math inline">\(P_n(x)\)</span> <span class="math inline">\((n=0,\,1,\ldots)\)</span> 는 <span class="math inline">\([-1,\,1]\)</span> 구간에서 다음과 같이 재귀적으로 정의되는 다항식이다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+P_0(x) &amp; = 1, \\
+P_1(x) &amp; = x, \\
+nP_n(x) &amp; = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x)
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p>르장드르 다항식은 르장드르 미분방정식이라고 불리는 2계 제차 미분방정식</p>
+<p><span class="math display">\[
+(1-x^2) y'' -2xy' + n(n+1)y=0
+\]</span></p>
+<p>의 해이며, 무게함수는 <span class="math inline">\(w(x)=1\)</span> 이다. 이 때,</p>
+<p><span class="math display">\[
+\langle P_n(x),\, P_m(x) \rangle = \dfrac{2}{2n+1}\delta_{ij}
+\]</span></p>
+<p>이다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="chevyshev-다항식" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="chevyshev-다항식"><span class="header-section-number">3</span> Chevyshev 다항식</h2>
+<div id="fig-chevyshev_polynomials" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chevyshev_polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ch13_approximations/fig-Chevyshev_polynoimal.png" class="img-fluid figure-img" width="300">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chevyshev_polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: Chevyshev 다항식
+</figcaption>
+</figure>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

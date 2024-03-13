@@ -65,6 +65,24 @@ $$
 
 </br>
 
+### 지수함수와 멱함수의 최소자승법
+
+$y=be^{ax}$ 꼴의 지수함수의 경우 각각 $\ln y = ax + \ln b$ 로 변형시킨 후 $\overline{y}=\ln y,\, \overline{b} = \ln b$ 로 놓으면
+
+$$
+\overline{y} = ax + \overline{b}
+$$
+
+의 선형방정식이 된다. 따라서 선형방정식의 최소자승법으로 $a$ 와 $\overline{b}$ 를 구할 수 있기 때문에 지수함수에 대해서는 최소자승법을 사용 할 수 있다. $y=dx^c$ 꼴의 멱함수의 경우에는 $\ln y = \ln d + c\ln x$ 이므로 $\overline{y} = \ln y$, $\overline{x} = \ln x$, $\overline{d} = \ln d$ 로 놓으면
+
+$$
+\overline{y} = c \overline{x} + \overline{d}
+$$
+
+를 이용해 역시 최소자승법으로 $c,\, d$ 를 구할 수 있다.
+
+</br>
+
 ### 다항식 최소 자승법
 
 데이터 $\{(x_k,\,y_k):k=1,\,N\}$ ($x_1<x_2<\cdots < x_N$) 과 $n$ 차 다항식
@@ -107,11 +125,15 @@ $$
 (\boldsymbol{X}^T\boldsymbol{X})_{ij} = \sum_{k=1}^N X_{ki}X_{kj} = \sum_{k=1}^N x_{k}^{i+j-2}
 $$
 
-이므로 @eq-least_square_for_polynomial 는 다음과 같은 선형방정식이 된다.
+이므로 @eq-least_square_for_polynomial 는 다음과 같은 선형방정식이 된다. 아래와 같은 형태의 방정식을 **정규 방정식(normal equation)** 이라고 한다. 
 
 $$
 \boldsymbol{X}^T\boldsymbol{Xa} = \boldsymbol{X}^T\boldsymbol{y}
-$$
+$$ {#eq-normal_equation}
+
+
+
+
 
 
 </br>
@@ -136,5 +158,112 @@ $$
 </br>
 
 @exr-nullity_of_X 에 따라 $\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}$ 로 정해진다. 
+
+</br>
+
+## 직교 다항식을 이용한 최소자승법
+
+### 내적벡터공간으로서의 함수의 집합
+
+- 필드 $\mathbb{F}$ 에서 정의된 $x$ 를 변수로 갖는 $n$ 차 이하의 다항식의 집합을 $\mathbb{F}_n [x]$ 라고 하자. 또한 $x$ 를 변수로 하는 다항식 전체의 집합을 $\mathbb{F}[x]$ 라고 하자. 실수에서 정의된 2차 이하의 다항식의 집합은 $\mathbb{R}_2[x]$ 로 쓸 수 있다. 
+
+- $C_{[a,\,b]}$ 가 내적벡터공간이기 때문에 선형대수학에의 중요한 개념인 벡터, 선형독립, 기저, 내적, 직교 와 같은 개념을 그대로 쓸 수 있다. 
+
+
+</br>
+
+::: {#exr-linearly_independency_of_different_order_polynomials}
+
+$p_k(x)$ 가 각각 $k$ 차 다항식일 때 $\{p_1(x),\ldots,\,p_n(x)\}$ 은 선형독립이다.
+
+:::
+
+
+::: {.solution}
+
+$c_1p_1(x) + \cdots + c_n p_n(x)=0$ 이라고 하자. $n$ 차항은 $p_n(x)$ 밖에 없으므로 $c_n=0$ 이다. $n-1$ 차항은 $p_{n-1}$ 박에 없으므로 $c_{n-1}=0$ 이다. 이것을 반복하면 $c_1= \cdots = c_n=0$ 을 보인다.
+
+:::
+
+</br>
+
+$C_[a,\,b]$ 에서 내적을 어떤 정해진 함수 $w(x)$ 에 대해 다음과 같이 정의 할 수 있다.
+
+$$
+\langle \varphi,\, \psi \rangle := \int_{a}^b \varphi(x)\, \psi(x)\, w(x)\, dx
+$$
+
+이 때 $w(x)$ 를 **무게 함수(weight function)** 이라고 하며 (1) 모든 $x\in [a,\,b]$ 에서 $w(x)\ge 0$ 이며 (2) $[a,\,b]$ 에 포함되는 모든 $[c,\,d]$ 에서 $w([c,\,d]) \ne \{0\}$ 이다. 이렇게 정의된 내적에 대해 $\langle \varphi,\, \psi \rangle = 0$ 이면 $\varphi$ 와 $\psi$ 는 서로 직교한다(be orthoginal)고 한다. $\{\phi_1,\ldots,\,\phi_n\} \subset C_{[a,\,b]}$ 에 대해 $\langle \phi_i,\,\phi_j\rangle = c_i\delta_{ij}$, $c_{i} > 0$ 이면 $\{\phi_1,\ldots,\,\phi_n\}$ 을 직교하는 함수의 집합이라고 하며, $\langle \phi_i,\,\phi_j\rangle =\delta_{ij}$ 이면 **정규직교집합** 이라고 한다.
+
+
+$p(x) \in C_{[a,\,b]}$ 가 직교하는 함수의 집합 $\{\phi_1,\ldots,\,\phi_n\}$ 의 선형결합이라고 하자. $p(x) = \sum_{i=1}^n a_n \phi_n (x)$ 이며 여기에 무게함수 $w(x)$ 정의되어 있다면
+
+$$
+\langle p(x),\, \phi_k(x) \rangle = a_k \langle \phi_k,\, \phi_k \rangle
+$$
+
+이다. $\{\phi_1,\ldots,\,\phi_n\}$ 가 정규직교집합이라면 $c_k=1$ 이므로 $a_k = \langle p(x),\,\phi_k(x)\rangle$ 이다. 
+
+$C_{[a,\,b]}$ 이 내적벡터공간이며 내적벡터공간에서의 정규직교벡터-여기서는 직교하는 함수의 집합-을 생각 할 수 있으므로 당연히 이 정규하는 함수의 집합으로부터 정규직교집합을 구성 할 수 있다. 그 방법중 한가지는 그람-슈미트 과정이다. $\{\phi_1,\ldots,\,\phi_n\}$ 이 직교하는 함수의 집합이며 $\|f\|= \sqrt{\langle f,\, f\rangle}$ 라고 할 때, 
+
+$$
+\begin{aligned}
+\psi_1(x) &= \dfrac{\phi_1(x)}{\|\phi_1(x)\|}, \\
+\varphi_k (x) &= \phi_k(x) - \sum_{j=1}^{k-1} \langle \phi_k,\, \psi_j\rangle \psi_k(x),\\
+\psi_k (x) &= \dfrac{\varphi_k(x)}{\|\varphi_k(x)\|}
+\end{aligned}
+$$
+
+라고 정의하면 $\{\psi_1(x),\ldots,\,\psi_k(x)\}$ 는 정규직교집합이다.
+
+</br>
+
+### 르장드르 다항식
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-legendre_polynomials}
+#### 르장드르 다항식
+
+르장드르 다항식 $P_n(x)$ $(n=0,\,1,\ldots)$ 는 $[-1,\,1]$ 구간에서 다음과 같이 재귀적으로 정의되는 다항식이다.
+
+$$
+\begin{aligned}
+P_0(x) & = 1, \\
+P_1(x) & = x, \\
+nP_n(x) & = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x)
+\end{aligned}
+$$
+
+:::
+:::
+
+르장드르 다항식은 르장드르 미분방정식이라고 불리는 2계 제차 미분방정식
+
+$$
+(1-x^2) y'' -2xy' + n(n+1)y=0
+$$
+
+의 해이며, 무게함수는 $w(x)=1$ 이다. 이 때, 
+
+$$
+\langle P_n(x),\, P_m(x) \rangle = \dfrac{2}{2n+1}\delta_{ij}
+$$
+
+
+이다. 
+
+</br>
+
+## Chevyshev 다항식
+
+
+![Chevyshev 다항식](ch13_approximations/fig-Chevyshev_polynoimal.png){#fig-chevyshev_polynomials width=300}
+
+
+
+
+
+
 
 
