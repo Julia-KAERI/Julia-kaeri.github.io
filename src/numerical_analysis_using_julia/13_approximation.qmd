@@ -225,6 +225,7 @@ $$
 ::: {#def-legendre_polynomials}
 #### 르장드르 다항식
 
+
 르장드르 다항식 $P_n(x)$ $(n=0,\,1,\ldots)$ 는 $[-1,\,1]$ 구간에서 다음과 같이 재귀적으로 정의되는 다항식이다.
 
 $$
@@ -237,6 +238,9 @@ $$
 
 :::
 :::
+
+
+![르장드르 다항식](ch13_approximations/fig-Legendre_polynoimal.png){#fig-legendre_polynomials width=300}
 
 르장드르 다항식은 르장드르 미분방정식이라고 불리는 2계 제차 미분방정식
 
