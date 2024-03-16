@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.3.302">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,13 +47,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -62,42 +56,13 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "추가 검색결과",
     "search-more-matches-text": "추가 검색결과",
     "search-clear-button-title": "제거",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "취소",
-    "search-submit-button-title": "검색",
-    "search-label": "Search"
+    "search-submit-button-title": "검색"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -106,65 +71,65 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Julia &amp; Numerical Anlaysis</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
+            <div id="quarto-search" class="" title="검색"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
-<span class="menu-text">Julia 프로그래밍 언어</span></a>
+    <a class="nav-link" href="../../src/introduction_to_julia/index.html" rel="" target="">
+ <span class="menu-text">Julia 프로그래밍 언어</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
-<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html"> 
-<span class="menu-text">영상 처리와 토모그래피</span></a>
+    <a class="nav-link" href="../../src/image_processing/index.html" rel="" target="">
+ <span class="menu-text">영상 처리와 토모그래피</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/tools/tools.html"> 
-<span class="menu-text">Tools</span></a>
+    <a class="nav-link" href="../../src/tools/tools.html" rel="" target="">
+ <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools ms-auto">
     <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html">상미분 방정식의 경계값 문제</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html">상미분 방정식의 경계값 문제</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -319,7 +284,7 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -338,7 +303,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html">상미분 방정식의 경계값 문제</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">상미분 방정식의 경계값 문제</h1>
 </div>
@@ -353,9 +318,7 @@ window.Quarto = {
   </div>
   
 
-
 </header>
-
 
 <section id="경계값-문제" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="경계값-문제"><span class="header-section-number">1</span> 경계값 문제</h2>
@@ -367,15 +330,15 @@ window.Quarto = {
 <p>Linear shooting 방법은 경계값 문제를 두개의 초기값 문제로 바꾸어 푼다.</p>
 <p>다음은 잘 알려져 있다.</p>
 <div id="thm-linear_shooting" class="theorem">
-<p><span class="theorem-title"><strong>정리 1</strong></span> 경계값 문제가 <span class="math display">\[
+<p><span class="theorem-title"><strong>정리 1 </strong></span>경계값 문제가 <span class="math display">\[
 x'' = f(t, x, x'),\qquad x(a)=\alpha,\, x(b) = \beta
 \]</span></p>
 <p>로 주어졌으며, <span class="math inline">\(x''\)</span> 함수가 <span class="math inline">\(D\{(t,\,x,\,x') : a\le t \le b,\, x,\, x'\in \mathbb{R}\}\)</span> 에서 연속일 때 <span class="math inline">\(\partial_x f\)</span> 와 <span class="math inline">\(\partial_{x'}f\)</span> 도 <span class="math inline">\(D\)</span> 에서 연속이다. 또한 모든 <span class="math inline">\((t,\,x,\,x')\in D\)</span> 에서 <span class="math inline">\(\partial_x f &gt;0\)</span> 이며 <span class="math inline">\(\partial_{x'}\)</span> 가 유계이면 위의 미분방정식은 유일한 해를 갖는다.</p>
 </div>
 <p><br></p>
-<p>우리가 <span class="math inline">\(x'' = p(t)x' +  q(t)x + r(t)\)</span> 형태의 미분방정식과 <span class="math inline">\(x(a)=\alpha,\, x(b)=\beta\)</span> 의 경계조건을 가진 미분방정식에 관심이 있다고 하자. 이 때 <a href="#thm-linear_shooting" class="quarto-xref">정리&nbsp;1</a> 으로부터 다음을 알 수 있다.</p>
+<p>우리가 <span class="math inline">\(x'' = p(t)x' + q(t)x + r(t)\)</span> 형태의 미분방정식과 <span class="math inline">\(x(a)=\alpha,\, x(b)=\beta\)</span> 의 경계조건을 가진 미분방정식에 관심이 있다고 하자. 이 때 <a href="#thm-linear_shooting">정리&nbsp;1</a> 으로부터 다음을 알 수 있다.</p>
 <div id="cor-linear_shooting" class="theorem corollary">
-<p><span class="theorem-title"><strong>따름정리 1</strong></span> 경계값 문제가</p>
+<p><span class="theorem-title"><strong>따름정리 1 </strong></span>경계값 문제가</p>
 <p><span class="math display">\[
 x'' = p(t)x' +  q(t)x + r(t),\, x(a)=\alpha,\, x(b)=\beta
 \]</span></p>
@@ -417,7 +380,7 @@ x'(t) &amp;= \dfrac{x(t+h)-x(t-h)}{2h} + O(h^2), \\
 x''(t)  &amp;= \dfrac{x(t+h) - 2x(t) + x(t-h)}{h^2} + O(h^2),
 \end{aligned}
 \]</span></p>
-<p>를 <a href="#eq-diffeq_1" class="quarto-xref">식&nbsp;1</a> 에 대입하면,</p>
+<p>를 <a href="#eq-diffeq_1">식&nbsp;1</a> 에 대입하면,</p>
 <p><span class="math display">\[
 \begin{aligned}
 x(t+h) -2x(t) +x(t-h) &amp;= p(t)\left[x(t+h) - x(t-h)\right] \dfrac{h}{2} \\
@@ -435,7 +398,7 @@ t_i &amp;= a+ \dfrac{i}{N+1}(b-a) , \\
 x_i &amp;= x(t_i).
 \end{aligned}
 \]</span></p>
-<p>그렇다면 <a href="#eq-ode_finite_difference" class="quarto-xref">식&nbsp;2</a> 는 다음과 같이 쓸 수 있다. 여기서 <span class="math inline">\(x_0 = \alpha,\, x_{N+1}=\beta\)</span> 이다.</p>
+<p>그렇다면 <a href="#eq-ode_finite_difference">식&nbsp;2</a> 는 다음과 같이 쓸 수 있다. 여기서 <span class="math inline">\(x_0 = \alpha,\, x_{N+1}=\beta\)</span> 이다.</p>
 <p><span class="math display">\[
 \begin{aligned}
 \left[2+h^2q(t_1)\right]x_1 -\left[1- \dfrac{h}{2}p(t_1)\right] x_2 &amp; = -h^2r(t_1) + \left[1+\dfrac{h}{2}p(t_1)\right]\alpha  , \\
@@ -459,7 +422,7 @@ x_i &amp;= x(t_i).
 <p><br></p>
 <section id="양자-포텐셜-우물" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="양자-포텐셜-우물">양자 포텐셜 우물</h3>
-<div class="page-columns page-full"><p>1차원 슈뢰딩거 방정식(Schöringer equation) 에서의 무한 포텐셜 우물은 다음과 같이 주어진다. </p><div class="no-row-height column-margin column-container"><span class="margin-aside">우리는 지금까지 <span class="math inline">\(x\)</span> 를 함수 혹은 종속변수로 사용했지만 아래의 방정식에서는 독립변수이므로 지금까지 우리의 표기법에서의 <span class="math inline">\(t\)</span> 의 역할을 한다는 것에 유의하라.</span></div></div>
+<div class="page-columns page-full"><p>1차원 슈뢰딩거 방정식(Schöringer equation) 에서의 무한 포텐셜 우물은 다음과 같이 주어진다. </p><div class="no-row-height column-margin column-container"><span class="">우리는 지금까지 <span class="math inline">\(x\)</span> 를 함수 혹은 종속변수로 사용했지만 아래의 방정식에서는 독립변수이므로 지금까지 우리의 표기법에서의 <span class="math inline">\(t\)</span> 의 역할을 한다는 것에 유의하라.</span></div></div>
 <p><span class="math display">\[
 -\dfrac{\hbar^2}{2m}\dfrac{d^2\psi(x)}{dx^2} + V(x) \psi(x) = E\psi(x), \qquad V(x) = \left\{\begin{array}{ll}0 \qquad &amp;; x\in [-a, a],  \\ +\infty &amp;; \text{othewise}. \end{array}\right.
 \]</span></p>
@@ -553,27 +516,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -583,17 +529,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -605,130 +542,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -772,7 +586,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -798,32 +611,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -885,18 +672,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="pagination-link" aria-label="상미분 방정식의 초기값 문제">
+      <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">상미분 방정식의 초기값 문제</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="pagination-link" aria-label="Approximation">
+      <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="pagination-link">
         <span class="nav-page-text">Approximation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
