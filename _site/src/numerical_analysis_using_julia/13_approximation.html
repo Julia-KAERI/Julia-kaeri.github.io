@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -101,7 +135,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -335,13 +369,13 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#내적벡터공간으로서의-함수의-집합" id="toc-내적벡터공간으로서의-함수의-집합" class="nav-link" data-scroll-target="#내적벡터공간으로서의-함수의-집합"><span class="header-section-number">2.1</span> 내적벡터공간으로서의 함수의 집합</a></li>
   <li><a href="#르장드르-다항식" id="toc-르장드르-다항식" class="nav-link" data-scroll-target="#르장드르-다항식"><span class="header-section-number">2.2</span> 르장드르 다항식</a></li>
+  <li><a href="#체비쇼프-다항식" id="toc-체비쇼프-다항식" class="nav-link" data-scroll-target="#체비쇼프-다항식"><span class="header-section-number">2.3</span> 체비쇼프 다항식</a></li>
   </ul></li>
-  <li><a href="#chevyshev-다항식" id="toc-chevyshev-다항식" class="nav-link" data-scroll-target="#chevyshev-다항식"><span class="header-section-number">3</span> Chevyshev 다항식</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/13_approximation.html">Approximation</a></li></ol></nav>
 <div class="quarto-title">
@@ -471,17 +505,46 @@ X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 &amp; \cdots &a
 <p>(<span class="math inline">\(2\)</span>) <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> 는 대칭행렬이며 <span class="math inline">\(\text{nullity}(\boldsymbol{X})=0\)</span> 이므로 non-trivial 한 벡터 <span class="math inline">\(\boldsymbol{a}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{a}^T\boldsymbol{X}^T\boldsymbol{Xa} = \|\boldsymbol{Xa}\|^2&gt;0\)</span> 이다. 따라서 <span class="math inline">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> 는 가역이다.</p>
 </div>
 <p><br></p>
-<p><a href="#exr-nullity_of_X" class="quarto-xref">연습문제&nbsp;1</a> 에 따라 <span class="math inline">\(\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}\)</span> 로 정해진다.</p>
+<p><a href="#exr-nullity_of_X" class="quarto-xref">연습문제&nbsp;1</a> 에 따라 <span class="math inline">\(\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}\)</span> 로 정해진다. 이것을 julia 로 구현하면 다음과 같다. <code>x</code>, <code>y</code> 의 베열을 입력하면 다항식의 계수를 order 에 대한 오름차순으로 반환한다. 즉 반환값의 첫번째 성분은 상수이다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">least_square_poly</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    x<span class="op">::</span><span class="dt">AbstractVector{&lt;:Real}</span>, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    y<span class="op">::</span><span class="dt">AbstractVector{&lt;:Real}</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    order<span class="op">::</span><span class="dt">Integer</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@assert</span> <span class="fu">length</span>(x) <span class="op">==</span> <span class="fu">length</span>(y)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@assert</span> order <span class="op">≥</span> <span class="fl">2</span> <span class="op">&amp;&amp;</span> order <span class="op">&lt;</span> <span class="fu">length</span>(x)<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> [(xi)<span class="op">^</span>i for xi <span class="kw">in</span> x, i <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span>order]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="fu">inv</span>(X<span class="op">'*</span>X) <span class="op">*</span>X<span class="op">'</span> <span class="op">*</span> y</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>NAJ.jl</code> 에서는 같은 이름 <code>least_square_poly</code> 함수가 정의되어 있다. 시그너쳐는 같고 반환값은 계수가 아니라 <code>SimplePolynomial</code> 객체이다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">collect</span>(<span class="op">-</span><span class="fl">3</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span><span class="fl">5</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fu">polynomial_from_roots</span>([<span class="op">-</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">4</span>])</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fu">r</span>.(x) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>(x, y, label <span class="op">=</span> <span class="st">"Data"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">least_square_poly</span>(x, y, <span class="fl">3</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(x, <span class="fu">p</span>.(x), label <span class="op">=</span> <span class="st">"LeastSquared Polynoimal"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-least_square_poly" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-least_square_poly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ch13_approximations/least_square_poly.png" class="img-fluid figure-img" width="600">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-least_square_poly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: 다항식을 이용한 최소자승법
+</figcaption>
+</figure>
+</div>
 <p><br></p>
 </section>
 </section>
-<section id="직교-다항식을-이용한-최소자승법" class="level2" data-number="2">
+<section id="직교-다항식을-이용한-최소자승법" class="level2 page-columns page-full" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="직교-다항식을-이용한-최소자승법"><span class="header-section-number">2</span> 직교 다항식을 이용한 최소자승법</h2>
 <section id="내적벡터공간으로서의-함수의-집합" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="내적벡터공간으로서의-함수의-집합"><span class="header-section-number">2.1</span> 내적벡터공간으로서의 함수의 집합</h3>
 <ul>
 <li><p>필드 <span class="math inline">\(\mathbb{F}\)</span> 에서 정의된 <span class="math inline">\(x\)</span> 를 변수로 갖는 <span class="math inline">\(n\)</span> 차 이하의 다항식의 집합을 <span class="math inline">\(\mathbb{F}_n [x]\)</span> 라고 하자. 또한 <span class="math inline">\(x\)</span> 를 변수로 하는 다항식 전체의 집합을 <span class="math inline">\(\mathbb{F}[x]\)</span> 라고 하자. 실수에서 정의된 2차 이하의 다항식의 집합은 <span class="math inline">\(\mathbb{R}_2[x]\)</span> 로 쓸 수 있다.</p></li>
-<li><p><span class="math inline">\(C_{[a,\,b]}\)</span> 가 내적벡터공간이기 때문에 선형대수학에의 중요한 개념인 벡터, 선형독립, 기저, 내적, 직교 와 같은 개념을 그대로 쓸 수 있다.</p></li>
+<li><p><span class="math inline">\([a,\,b]\)</span> 구간에서 연속인 함수의 집합 <span class="math inline">\(C_{[a,\,b]}\)</span> 가 벡터공간이기 때문에 선형대수학에의 중요한 개념인 벡터, 선형독립, 기저와 같은 개념을 그대로 쓸 수 있다.</p></li>
 </ul>
 <p><br></p>
 <div id="exr-linearly_independency_of_different_order_polynomials" class="theorem exercise">
@@ -526,9 +589,10 @@ X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 &amp; \cdots &a
 \begin{aligned}
 P_0(x) &amp; = 1, \\
 P_1(x) &amp; = x, \\
-nP_n(x) &amp; = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x)
+nP_n(x) &amp; = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x).
 \end{aligned}
 \]</span></p>
+<p>르장드르 다항식에 대한 무게함수는 <span class="math inline">\(w(x)=1\)</span> 이다.</p>
 </div>
 </div>
 </div>
@@ -539,7 +603,7 @@ nP_n(x) &amp; = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x)
 <img src="ch13_approximations/fig-Legendre_polynoimal.png" class="img-fluid figure-img" width="300">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-legendre_polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;2: 르장드르 다항식
+그림&nbsp;3: 르장드르 다항식
 </figcaption>
 </figure>
 </div>
@@ -548,27 +612,74 @@ nP_n(x) &amp; = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x)
 (1-x^2) y'' -2xy' + n(n+1)y=0
 \]</span></p>
 <p>의 해이며, 무게함수는 <span class="math inline">\(w(x)=1\)</span> 이다. 이 때,</p>
-<p><span class="math display">\[
-\langle P_n(x),\, P_m(x) \rangle = \dfrac{2}{2n+1}\delta_{ij}
-\]</span></p>
+<p><span id="eq-inner_product_of_legendre_polynomial"><span class="math display">\[
+\langle P_n(x),\, P_m(x) \rangle = \int_{-1}^1 P_n(x)P_m(x)\,dx =  \dfrac{2}{2n+1}\delta_{ij}
+\tag{3}\]</span></span></p>
 <p>이다.</p>
 <p><br></p>
 </section>
-</section>
-<section id="chevyshev-다항식" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="chevyshev-다항식"><span class="header-section-number">3</span> Chevyshev 다항식</h2>
-<div id="fig-chevyshev_polynomials" class="quarto-figure quarto-figure-center quarto-float anchored">
+<section id="체비쇼프-다항식" class="level3 page-columns page-full" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="체비쇼프-다항식"><span class="header-section-number">2.3</span> 체비쇼프 다항식</h3>
+<p>체비쇼프 다항식은 <a href="../../src/numerical_analysis_using_julia/A_ode.html#tbl-2nd_ode_singularity">체비쇼프 미분방정식</a> 의 해로 <span class="math inline">\(T_n(1) = 1,\, T_{n}(-1)= (-1)^n\)</span> 의 경계조건을 만족하는 해이다.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-chevyshev_polynomials" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (체비쇼프 다항식)</strong></span> 1형 체비쇼프 다항식 <span class="math inline">\(T_n(x)\)</span> <span class="math inline">\((n=0,\,1,\ldots)\)</span> 는 <span class="math inline">\([-1,\,1]\)</span> 구간에서 다음과 같이 재귀적으로 정의되는 다항식이다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+T_0(x) &amp; = 1, \\
+T_1(x) &amp; = x, \\
+T_{n}(x) &amp; = 2xT_{n−1}(x) - T_{n-2}(x).
+\end{aligned}
+\]</span></p>
+<p>체비쇼프 다항식의 무게함수는 <span class="math inline">\(w(x) = \dfrac{1}{\sqrt{1-x^2}}\)</span> 이다.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><span class="margin-aside callout-margin-content callout-margin-content-simple">체비쇼프 다항식은 1형과 2형이 있지만 여기서는 1형만 사용한다.</span></div><div id="fig-chevyshev_polynomials" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chevyshev_polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="ch13_approximations/fig-Chevyshev_polynoimal.png" class="img-fluid figure-img" width="300">
+<img src="ch13_approximations/fig-Chevyshev_polynoimal.png" class="img-fluid figure-img" width="350">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chevyshev_polynomials-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;3: Chevyshev 다항식
+그림&nbsp;4: Chevyshev 다항식
 </figcaption>
 </figure>
 </div>
+<p>체비쇼프 다항식의 내적에 대해</p>
+<p><span class="math display">\[
+\langle T_m,\, T_n \rangle = \int_{-1}^1 T_m(x) T_n(x) \dfrac{1}{\sqrt{1-x^2}}\,dx = \left\{\begin{array}{ll} 0, \qquad &amp;m \ne n \\ \dfrac{\pi}{2},  &amp; m = n \neq 0 \\ \pi, &amp; m=n=0 \\ \end{array}\right.
+\]</span></p>
+<p>이 성립한다. 체비쇼프 미분방정식은</p>
+<p><span class="math display">\[
+(1-x)^2 \dfrac{d^2T_n}{dx^2} - xT_n (x) = -n^2 T_n(x)
+\]</span></p>
+<p>인데 여기서 <span class="math inline">\(x=\cos\theta\)</span> 로 놓으면, 위의 미분방정식은</p>
+<p><span class="math display">\[
+\dfrac{d^2T_n}{d\theta^2} + n^2 T_n = 0
+\]</span></p>
+<p>이 된다. 즉 <span class="math inline">\(T_n(\theta) = n\cos\theta\)</span> 이므로</p>
+<p><span id="eq-chevyshov_cos_form"><span class="math display">\[
+T_n (x) = \cos (n \arccos x)
+\tag{4}\]</span></span></p>
+<p>이다.</p>
+<p><a href="#eq-chevyshov_cos_form" class="quarto-xref">식&nbsp;4</a> 으로부터 우리는 <span class="math inline">\(T_n(x) = 0\)</span> 의 해는</p>
+<p><span class="math display">\[
+x_k =  \cos \left(\dfrac{2k\pi+\pi}{2n}\right),\qquad k=0,\,1,\ldots,, n-1
+\]</span></p>
+<p>임을 알 수 있다. 또한</p>
+<p><span class="math display">\[
+\overline{x}_k = \cos \left(\dfrac{k\pi}{n}\right),\qquad k=0,\ldots,\, n
+\]</span></p>
+<p>에 대해 <span class="math inline">\(T_n (\overline{x}_k) = (-1)^k\)</span> 임을 안다.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

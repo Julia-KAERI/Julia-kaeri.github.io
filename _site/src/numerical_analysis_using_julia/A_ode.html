@@ -746,7 +746,7 @@ y_2 (x) = \cos(\omega x) W_0 \int_{0}^x \dfrac{1}{\cos ^2 \omega x'}\, dx' = \df
 </section>
 <section id="미분방정식을-hermitian-으로-변경하기" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="미분방정식을-hermitian-으로-변경하기"><span class="header-section-number">5.2</span> 미분방정식을 Hermitian 으로 변경하기</h3>
-<p>위에서 설명했듯이 미분연산자가 hermitian 이라면 매우 좋은 성질을 갖게 된다. 만약 자체로는 hermtian 이 아니지만 약간 변형하여 hermitian 으로 만들 수 있다면? 자 <a href="#eq-ode_2nd_lhode" class="quarto-xref">식&nbsp;9</a> 형태의 미분방정식이 hermitian 이 될 조건은 아래의 두가지 이다.</p>
+<p>위에서 설명했듯이 미분연산자가 hermitian 이라면 매우 좋은 성질을 갖게 된다. 만약 자체로는 hermtian 이 아니지만 약간 변형하여 hermitian 으로 만들 수 있다면? <a href="#eq-ode_2nd_lhode" class="quarto-xref">식&nbsp;9</a> 형태의 미분방정식이 hermitian 이 될 조건은 아래의 두가지 이다.</p>
 <p>  (1) <span class="math inline">\(p_0'(x) = p_1(x)\)</span>,</p>
 <p>  (2) 경계조건 <span class="math inline">\({\large \left[ \right.}v^\ast p_0 u'  - (v^\ast)'p_0 u {\large \left.\right]}_a^b =  0\)</span> .</p>
 <p>만약 어떤 함수 <span class="math inline">\(w(x)\)</span> 를 곱하여,</p>
@@ -762,10 +762,10 @@ w(x)p_0(x) = w(a)p_0(a) \exp \left(\int_a^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
 w(x) = \dfrac{1}{p_0(x)} \exp \left(\int_a^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
 \]</span></p>
 <p>로 놓을 수 있다. <span class="math inline">\(w(a)p_0(a)\)</span> 는 상수로 미분방정식에 영항을 끼치지 않아서 <span class="math inline">\(1\)</span> 로 놓았다. 실제로는 계산하기 편하도록 어떤 0 이 아닌 상수를 곱하여도 상관 없다. 이제 <span class="math display">\[
-\overline{p}_0 = \exp \left(\int^x \dfrac{p_1(t)}{p_0(t)}\, dt\right),\, \overline{p}_1 = \dfrac{p_1(x)}{p_0(x)}\exp \left(\int^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
+\overline{p}_0 = \exp \left(\int^x \dfrac{p_1(t)}{p_0(t)}\, dt\right),\qquad \overline{p}_1 = \dfrac{p_1(x)}{p_0(x)}\exp \left(\int^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
 \]</span> 에 대해</p>
 <p><span class="math display">\[
-\mathcal{L}'\psi (x) = \left[\overline{p}_0 (x) \dfrac{d}{dx^2} + \overline{p}_1(x) \dfrac{d}{dx} + w(x)p_2(x)\right]\psi(x)
+\mathcal{L}'\psi (x) = \left[\overline{p}_0 (x) \dfrac{d^2}{dx^2} + \overline{p}_1(x) \dfrac{d}{dx} + w(x)p_2(x)\right]\psi(x)
 \]</span></p>
 <p>의 미분방정식을 얻었다.</p>
 <p>이제 에르미트 조건을 알아보자.</p>
@@ -780,14 +780,34 @@ w(x) = \dfrac{1}{p_0(x)} \exp \left(\int_a^x \dfrac{p_1(t)}{p_0(t)}\, dt\right)
 <p><span id="eq-odd_innerproduct_with_weight"><span class="math display">\[
 \langle u(x),\, v(x)\rangle = \int_a^b v^\ast (x) u(x) w(x)\, dx
 \tag{12}\]</span></span></p>
-<p>로 정의하자. 이 때 <span class="math inline">\(w(x)\)</span> 를 weighting function 이라고 한다. 그렇다면 <a href="#eq-odd_hermitian_cond_1" class="quarto-xref">식&nbsp;11</a> 은</p>
+<p>로 정의하자. 이 때 <span class="math inline">\(w(x)\)</span> 를 <strong>무게 함수(weight function)</strong> 이라고 한다. 그렇다면 <a href="#eq-odd_hermitian_cond_1" class="quarto-xref">식&nbsp;11</a> 은</p>
 <p><span class="math display">\[
 \langle \mathcal{L}u(x),\, v(x)\rangle =  {\large \left[ \right.} v^\ast \overline{p}_0 u' - (v^\ast)' \overline{p}_0 u {\large \left. \right]}_a^b  + \langle u,\, \mathcal{L}v(x)\rangle
 \]</span></p>
 <p>이 된다. 즉 내적의 정의가 변하며 연산자 <span class="math inline">\(\mathcal{L}\)</span> 이 hermitian 이 된다.</p>
 <p><br></p>
+<div id="exm-ode_legendre_function" class="theorem example">
+<p><span class="theorem-title"><strong>예제 5 (르장드르 함수 (Legendre function))</strong></span> 르장드르 미분연산자</p>
+<p><span class="math display">\[
+\mathcal{L} = (1-x^2) \dfrac{d^2}{dx^2} -2x\dfrac{d}{dx}
+\]</span></p>
+<p>에 대해 <span class="math inline">\(\mathcal{L}P_l(x) = -l(l+1)P_l(x)\)</span> 를 푸는 것이 <a href="#tbl-2nd_ode_singularity" class="quarto-xref">표&nbsp;1</a> 의 르장드르 미분방정식의 해이다. 자연수 <span class="math inline">\(l\)</span> 에 대한 미분방정식의 해는 <span class="math inline">\(l\)</span> 차 다항식임이 알려저 있다. <span class="math inline">\(\dfrac{d}{dx}(1-x^2)=-2x\)</span> 이므로 무게함수는 <span class="math inline">\(w(x)=1\)</span> 이다.</p>
+</div>
+<p><br></p>
+<div id="exm-ode_chevyshev_function" class="theorem example">
+<p><span class="theorem-title"><strong>예제 6 (체비쇼프 함수 (Legendre function))</strong></span> 체비쇼프 미분연산자</p>
+<p><span class="math display">\[
+\mathcal{L} = (1-x^2) \dfrac{d^2}{dx^2} -x\dfrac{d}{dx}
+\]</span></p>
+<p>에 대해 <span class="math inline">\(\mathcal{L}T_n(x) = -n^2T_n(x)\)</span> 를 푸는 것이 <a href="#tbl-2nd_ode_singularity" class="quarto-xref">표&nbsp;1</a> 의 르장드르 미분방정식의 해이다. 자연수 <span class="math inline">\(n\)</span> 에 대한 미분방정식의 해는 <span class="math inline">\(n\)</span> 차 다항식임이 알려저 있다. <span class="math inline">\(\dfrac{d}{dx}(1-x^2)=-2x\)</span> 이므로 무게함수는</p>
+<p><span class="math display">\[
+w(x) = \dfrac{1}{1-x^2} \exp \left(\int_{-1}^x \dfrac{t}{1-t^2}\, dt \right)= \dfrac{1}{\sqrt{1-x^2}}
+\]</span></p>
+<p>이다.</p>
+</div>
+<p><br></p>
 <div id="exm-ode_laruerre_function" class="theorem example">
-<p><span class="theorem-title"><strong>예제 5 (Laguerre function)</strong></span> 아래의 미분방정식 연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 대한 고유값 문제 <span class="math inline">\(\mathcal{L}\psi =\lambda \psi\)</span> 를 풀고자 한다.</p>
+<p><span class="theorem-title"><strong>예제 7 (라게르 함수(Laguerre function))</strong></span> 아래의 미분방정식 연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 대한 고유값 문제 <span class="math inline">\(\mathcal{L}\psi =\lambda \psi\)</span> 를 풀고자 한다.</p>
 <p><span id="eq-ode-laguerre_operator"><span class="math display">\[
 \mathcal{L} = x \dfrac{d^2}{dx^2} + (1-x)\dfrac{d}{dx}.
 \tag{13}\]</span></span></p>

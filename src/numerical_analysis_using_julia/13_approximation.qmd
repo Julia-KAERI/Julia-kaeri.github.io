@@ -157,17 +157,50 @@ $$ {#eq-normal_equation}
 
 </br>
 
-@exr-nullity_of_X 에 따라 $\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}$ 로 정해진다. 
+@exr-nullity_of_X 에 따라 $\boldsymbol{a} = (\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T\boldsymbol{y}$ 로 정해진다. 이것을 julia 로 구현하면 다음과 같다. `x`, `y` 의 베열을 입력하면 다항식의 계수를 order 에 대한 오름차순으로 반환한다. 즉 반환값의 첫번째 성분은 상수이다.
+
+```julia
+using LinearAlgebra
+
+function least_square_poly(
+    x::AbstractVector{<:Real}, 
+    y::AbstractVector{<:Real}, 
+    order::Integer)
+    @assert length(x) == length(y)
+    @assert order ≥ 2 && order < length(x)-1
+    X = [(xi)^i for xi in x, i in 0:order]
+    a = inv(X'*X) *X' * y
+    return a
+end
+```
+
+`NAJ.jl` 에서는 같은 이름 `least_square_poly` 함수가 정의되어 있다. 시그너쳐는 같고 반환값은 계수가 아니라 `SimplePolynomial` 객체이다. 
+
+```julia
+x = collect(-3:0.1:5)
+r = polynomial_from_roots([-3, 1, 4])
+y = r.(x) 
+scatter(x, y, label = "Data")
+p = least_square_poly(x, y, 3)
+plot!(x, p.(x), label = "LeastSquared Polynoimal")
+```
+
+![다항식을 이용한 최소자승법](ch13_approximations/least_square_poly.png){#fig-least_square_poly width=600}
+
+
 
 </br>
 
 ## 직교 다항식을 이용한 최소자승법
 
+
+
+
 ### 내적벡터공간으로서의 함수의 집합
 
 - 필드 $\mathbb{F}$ 에서 정의된 $x$ 를 변수로 갖는 $n$ 차 이하의 다항식의 집합을 $\mathbb{F}_n [x]$ 라고 하자. 또한 $x$ 를 변수로 하는 다항식 전체의 집합을 $\mathbb{F}[x]$ 라고 하자. 실수에서 정의된 2차 이하의 다항식의 집합은 $\mathbb{R}_2[x]$ 로 쓸 수 있다. 
 
-- $C_{[a,\,b]}$ 가 내적벡터공간이기 때문에 선형대수학에의 중요한 개념인 벡터, 선형독립, 기저, 내적, 직교 와 같은 개념을 그대로 쓸 수 있다. 
+- $[a,\,b]$ 구간에서 연속인 함수의 집합 $C_{[a,\,b]}$ 가 벡터공간이기 때문에 선형대수학에의 중요한 개념인 벡터, 선형독립, 기저와 같은 개념을 그대로 쓸 수 있다. 
 
 
 </br>
@@ -232,10 +265,11 @@ $$
 \begin{aligned}
 P_0(x) & = 1, \\
 P_1(x) & = x, \\
-nP_n(x) & = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x)
+nP_n(x) & = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x).
 \end{aligned}
 $$
 
+르장드르 다항식에 대한 무게함수는 $w(x)=1$ 이다.
 :::
 :::
 
@@ -251,23 +285,79 @@ $$
 의 해이며, 무게함수는 $w(x)=1$ 이다. 이 때, 
 
 $$
-\langle P_n(x),\, P_m(x) \rangle = \dfrac{2}{2n+1}\delta_{ij}
-$$
+\langle P_n(x),\, P_m(x) \rangle = \int_{-1}^1 P_n(x)P_m(x)\,dx =  \dfrac{2}{2n+1}\delta_{ij}
+$$ {#eq-inner_product_of_legendre_polynomial}
 
 
 이다. 
 
 </br>
 
-## Chevyshev 다항식
+### 체비쇼프 다항식
+
+체비쇼프 다항식은 [체비쇼프 미분방정식](A_ode.qmd#tbl-2nd_ode_singularity) 의 해로 $T_n(1) = 1,\, T_{n}(-1)= (-1)^n$ 의 경계조건을 만족하는 해이다.
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-chevyshev_polynomials}
+#### 체비쇼프 다항식
 
 
-![Chevyshev 다항식](ch13_approximations/fig-Chevyshev_polynoimal.png){#fig-chevyshev_polynomials width=300}
 
+1형 체비쇼프 다항식 $T_n(x)$ $(n=0,\,1,\ldots)$ 는 $[-1,\,1]$ 구간에서 다음과 같이 재귀적으로 정의되는 다항식이다.[체비쇼프 다항식은 1형과 2형이 있지만 여기서는 1형만 사용한다.]{.aside}
 
+$$
+\begin{aligned}
+T_0(x) & = 1, \\
+T_1(x) & = x, \\
+T_{n}(x) & = 2xT_{n−1}(x) - T_{n-2}(x).
+\end{aligned}
+$$
 
+체비쇼프 다항식의 무게함수는 $w(x) = \dfrac{1}{\sqrt{1-x^2}}$ 이다. 
 
+:::
+:::
 
+![Chevyshev 다항식](ch13_approximations/fig-Chevyshev_polynoimal.png){#fig-chevyshev_polynomials width=350}
 
+체비쇼프 다항식의 내적에 대해
 
+$$
+\langle T_m,\, T_n \rangle = \int_{-1}^1 T_m(x) T_n(x) \dfrac{1}{\sqrt{1-x^2}}\,dx = \left\{\begin{array}{ll} 0, \qquad &m \ne n \\ \dfrac{\pi}{2},  & m = n \neq 0 \\ \pi, & m=n=0 \\ \end{array}\right.
+$$
+
+이 성립한다. 체비쇼프 미분방정식은
+
+$$
+(1-x)^2 \dfrac{d^2T_n}{dx^2} - xT_n (x) = -n^2 T_n(x)
+$$
+
+인데 여기서 $x=\cos\theta$ 로 놓으면, 위의 미분방정식은
+
+$$
+\dfrac{d^2T_n}{d\theta^2} + n^2 T_n = 0
+$$
+
+이 된다. 즉 $T_n(\theta) = n\cos\theta$ 이므로 
+
+$$
+T_n (x) = \cos (n \arccos x)
+$$ {#eq-chevyshov_cos_form}
+
+이다. 
+
+@eq-chevyshov_cos_form 으로부터 우리는 $T_n(x) = 0$ 의 해는
+
+$$
+x_k =  \cos \left(\dfrac{2k\pi+\pi}{2n}\right),\qquad k=0,\,1,\ldots,, n-1
+$$
+
+임을 알 수 있다. 또한
+
+$$
+\overline{x}_k = \cos \left(\dfrac{k\pi}{n}\right),\qquad k=0,\ldots,\, n
+$$
+
+에 대해 $T_n (\overline{x}_k) = (-1)^k$ 임을 안다. 
 
