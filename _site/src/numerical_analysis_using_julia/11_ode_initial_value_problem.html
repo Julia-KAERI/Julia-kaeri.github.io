@@ -362,18 +362,27 @@ window.Quarto = {
   <ul>
   <li><a href="#미분방정식" id="toc-미분방정식" class="nav-link active" data-scroll-target="#미분방정식"><span class="header-section-number">1</span> 미분방정식</a>
   <ul class="collapse">
+  <li><a href="#상미분방정식과-편미분-방정식" id="toc-상미분방정식과-편미분-방정식" class="nav-link" data-scroll-target="#상미분방정식과-편미분-방정식">상미분방정식과 편미분 방정식</a></li>
+  <li><a href="#상미분-방정식의-기본-표기법" id="toc-상미분-방정식의-기본-표기법" class="nav-link" data-scroll-target="#상미분-방정식의-기본-표기법">상미분 방정식의 기본 표기법</a></li>
   <li><a href="#superposition" id="toc-superposition" class="nav-link" data-scroll-target="#superposition">Superposition</a></li>
   </ul></li>
-  <li><a href="#상미분-방정식과-초기값-문제" id="toc-상미분-방정식과-초기값-문제" class="nav-link" data-scroll-target="#상미분-방정식과-초기값-문제"><span class="header-section-number">2</span> 상미분 방정식과 초기값 문제</a></li>
+  <li><a href="#상미분-방정식과-초기값-문제" id="toc-상미분-방정식과-초기값-문제" class="nav-link" data-scroll-target="#상미분-방정식과-초기값-문제"><span class="header-section-number">2</span> 상미분 방정식과 초기값 문제</a>
+  <ul class="collapse">
+  <li><a href="#일계-선형-미분방정식의-해의-존재성과-유일성" id="toc-일계-선형-미분방정식의-해의-존재성과-유일성" class="nav-link" data-scroll-target="#일계-선형-미분방정식의-해의-존재성과-유일성">일계 선형 미분방정식의 해의 존재성과 유일성</a></li>
+  </ul></li>
   <li><a href="#오일러-방법-newtons-method" id="toc-오일러-방법-newtons-method" class="nav-link" data-scroll-target="#오일러-방법-newtons-method"><span class="header-section-number">3</span> 오일러 방법 (Newton’s method)</a>
   <ul class="collapse">
-  <li><a href="#일변수-일차-미분-방정식" id="toc-일변수-일차-미분-방정식" class="nav-link" data-scroll-target="#일변수-일차-미분-방정식">일변수 일차 미분 방정식</a></li>
+  <li><a href="#전방-오일러-방법과-후방-오일러-방법" id="toc-전방-오일러-방법과-후방-오일러-방법" class="nav-link" data-scroll-target="#전방-오일러-방법과-후방-오일러-방법">전방 오일러 방법과 후방 오일러 방법</a></li>
   <li><a href="#다변수-일차-미분-방정식" id="toc-다변수-일차-미분-방정식" class="nav-link" data-scroll-target="#다변수-일차-미분-방정식">다변수 일차 미분 방정식</a></li>
   <li><a href="#일변수-이차-미분-방정식" id="toc-일변수-이차-미분-방정식" class="nav-link" data-scroll-target="#일변수-이차-미분-방정식">일변수 이차 미분 방정식</a></li>
   <li><a href="#다변수-이차-미분-방정식" id="toc-다변수-이차-미분-방정식" class="nav-link" data-scroll-target="#다변수-이차-미분-방정식">다변수 이차 미분 방정식</a></li>
   </ul></li>
-  <li><a href="#차-룽게-쿠타-방법-rk2" id="toc-차-룽게-쿠타-방법-rk2" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk2"><span class="header-section-number">4</span> 2차 룽게-쿠타 방법 (RK2)</a></li>
-  <li><a href="#차-룽게-쿠타-방법-rk4" id="toc-차-룽게-쿠타-방법-rk4" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk4"><span class="header-section-number">5</span> 4차 룽게-쿠타 방법 (RK4)</a></li>
+  <li><a href="#고차-테일러-방법" id="toc-고차-테일러-방법" class="nav-link" data-scroll-target="#고차-테일러-방법"><span class="header-section-number">4</span> 고차 테일러 방법</a></li>
+  <li><a href="#룽게-쿠타-방법" id="toc-룽게-쿠타-방법" class="nav-link" data-scroll-target="#룽게-쿠타-방법"><span class="header-section-number">5</span> 룽게-쿠타 방법</a>
+  <ul class="collapse">
+  <li><a href="#차-룽게-쿠타-방법-rk2" id="toc-차-룽게-쿠타-방법-rk2" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk2">2차 룽게-쿠타 방법 (RK2)</a></li>
+  <li><a href="#차-룽게-쿠타-방법-rk4" id="toc-차-룽게-쿠타-방법-rk4" class="nav-link" data-scroll-target="#차-룽게-쿠타-방법-rk4">4차 룽게-쿠타 방법 (RK4)</a></li>
+  </ul></li>
   <li><a href="#예제-examples" id="toc-예제-examples" class="nav-link" data-scroll-target="#예제-examples"><span class="header-section-number">6</span> 예제 (Examples)</a>
   <ul class="collapse">
   <li><a href="#단순-조화-진동자" id="toc-단순-조화-진동자" class="nav-link" data-scroll-target="#단순-조화-진동자">단순 조화 진동자</a></li>
@@ -412,28 +421,36 @@ window.Quarto = {
 
 <section id="미분방정식" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="미분방정식"><span class="header-section-number">1</span> 미분방정식</h2>
-<p>벡터공간을 생각하자. 함수 <span class="math inline">\(f(t)\in C^\infty_{\mathbb{R}}\)</span> 에 대한 미분을 <span class="math inline">\(\dfrac{d}{dt}f(t)\)</span> 로 표현하는데 임의의 상수 <span class="math inline">\(a,\,b\)</span> 와 <span class="math inline">\(\phi,\, \psi \in C_{\mathbb{R}}^\infty\)</span> 에 대해</p>
+<section id="상미분방정식과-편미분-방정식" class="level3">
+<h3 class="anchored" data-anchor-id="상미분방정식과-편미분-방정식">상미분방정식과 편미분 방정식</h3>
+<p>일변수 함수에 대한 미분 연산을 포함하는 방정식을 <strong>상미분방정식 (ordinary differential equation)</strong> 이라고 하며 다변수 함수에 대한 미분연산, 즉 편미분 연산을 표함하는 연산을 <strong>편미분 방정식(partial differential equation)</strong> 이라고 한다. 여기서는 상미분방정식에 대해 다루며 편미분 방정식에 대해서는 이후 다루기로 한다.</p>
+<p><br></p>
+</section>
+<section id="상미분-방정식의-기본-표기법" class="level3">
+<h3 class="anchored" data-anchor-id="상미분-방정식의-기본-표기법">상미분 방정식의 기본 표기법</h3>
+<p><span class="math inline">\([a,\,b]\)</span> 구간에서 <span class="math inline">\(n\)</span> 번 미분 가능하며 그 도함수도 연속인 함수의 집합 <span class="math inline">\(C^n_{[a,\,b]}\)</span> 를 생각하자. 또한 <span class="math inline">\(C^n_{[a,\,b]}\)</span> 에서 정의된 다음과 같은 연산자를 생각하자.</p>
 <p><span class="math display">\[
-\dfrac{d}{dt}\left[a\phi (t) + b \psi (t)\right] = a \dfrac{d}{dt}\phi(t) + b \dfrac{d}{dt}\psi(t)
+\mathcal{L}\phi(t) = \left[p_n(t) \dfrac{d^n}{dt^n} + p_{n-1}(t)\dfrac{d^{n-1}}{dt^{n-1}} \cdots + p_1(t)\dfrac{d}{dt} + p_0(t)\right] \phi(t).
 \]</span></p>
-<p>를 만족하기 때문에 <span class="math inline">\(\dfrac{d}{dt}\)</span> 를 <strong>선형연산자 (linear operator)</strong> 라고 할 수 있다. 연산자에 피연산자에 대한 미분이 포함되는 연산자를 <strong>미분 연산자(differential operator)</strong> 라고 하며, <strong>선형 미분 연산자 (linear differential operator)</strong> 는 미분연산자를 포함하는 선형 연산자를 의미한다. 미분연산자에 대한 대표적인 형식으로는</p>
+<p>임의의 상수 <span class="math inline">\(a,\,b\)</span> 와 <span class="math inline">\(\phi,\, \psi \in C_{\mathbb{R}}^\infty\)</span> 에 대해</p>
 <p><span class="math display">\[
-\sum_{k=0}^n p_n(t) \left(\dfrac{d^k}{dt^k}\right)
+\mathcal{L}\left[a\phi (t) + b \psi (t)\right] = a \mathcal{L}\phi(t) + b \mathcal{L}\psi(t)
 \]</span></p>
-<p>와 같은 꼴이 있다.</p>
+<p>를 만족하기 때문에 <span class="math inline">\(\mathcal{L}\)</span> 를 <strong>선형연산자 (linear operator)</strong> 라고 할 수 있다. 연산자에 피연산자에 대한 미분이 포함되는 연산자를 <strong>미분 연산자(differential operator)</strong> 라고 하며, <strong>선형 미분 연산자 (linear differential operator)</strong> 는 미분연산자를 포함하는 선형 연산자를 의미한다.</p>
 <p><br></p>
 <p>미분방정식이 어떤 선형 미분 연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 대해 <span class="math inline">\(\mathcal{L}\phi(t) = 0\)</span> 꼴이 되면 이 미분방정식을 <strong>동차 선형 미분 방정식(homogeneous linear differential equation)</strong> 라고 하며, 그렇지 않으면 <strong>비동차 선형 미분 방정식(inhomogeneous linear differential equation)</strong> 이라고 한다.</p>
 <p>미분방정식에서 최고차 미분항이 <span class="math inline">\(n\)</span> 일 때 <span class="math inline">\(n\)</span> 을 이 미분방정식의 <strong>차수 (order)</strong> 라고 하며, 차수가 <span class="math inline">\(n\)</span> 인 미분방정식을 <span class="math inline">\(n\)</span>-차 미분 방정식이라고 한다. <span class="math inline">\(\dfrac{d^2}{dt^2}x(t) = a\)</span> 는 2차 비동차 선형 미분 방정식이 된다.</p>
 <p><br></p>
+</section>
 <section id="superposition" class="level3">
 <h3 class="anchored" data-anchor-id="superposition">Superposition</h3>
-<p>homogeneous 한 미분방정식의 경우 <span class="math inline">\(\phi(t),\, \psi(t)\)</span> 가 각각 미분방정식의 해라면 임의의 상수 <span class="math inline">\(a,\,b\)</span> 에 대해 <span class="math inline">\(a \phi(t) + b \psi(t)\)</span> 도 그 해가 된다. 이를 <strong>superposition</strong> 이라고 한다.</p>
+<p>동차 선형 미분방정식의 경우 <span class="math inline">\(\phi(t),\, \psi(t)\)</span> 가 각각 미분방정식의 해라면 임의의 상수 <span class="math inline">\(a,\,b\)</span> 에 대해 <span class="math inline">\(a \phi(t) + b \psi(t)\)</span> 도 그 해가 된다. 이를 <strong>superposition</strong> 이라고 한다.</p>
 <p><br></p>
 </section>
 </section>
 <section id="상미분-방정식과-초기값-문제" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="상미분-방정식과-초기값-문제"><span class="header-section-number">2</span> 상미분 방정식과 초기값 문제</h2>
-<p>상미분 방정식(ODE, Ordinary differential equation)은 하나의 독립변수에 대한 미분방정식이다. <span class="math inline">\(f(t)\)</span> 에 대한 미분방정식이 <span class="math inline">\(f\)</span> 에 대해 최대 <span class="math inline">\(n\)</span> 차 미분까지 포함되었을 경우, <span class="math inline">\(n\)</span>-차 상미분 방정식이라 한다. 일반적으로 <span class="math inline">\(n\)</span> 차 미분 방정식은 다음 꼴로 주어진다.</p>
+<p><span class="math inline">\(f(t)\)</span> 에 대한 미분방정식이 <span class="math inline">\(f\)</span> 에 대해 최대 <span class="math inline">\(n\)</span> 차 미분까지 포함되었을 경우, <span class="math inline">\(n\)</span>-차 상미분 방정식이라 한다. 일반적으로 <span class="math inline">\(n\)</span> 차 미분 방정식은 다음 꼴로 주어진다.</p>
 <p><span class="math display">\[
 f^{(n)}(t) = F\left(t, f(t), f'(t), \ldots, f^{(n-1)}(t)\right)
 \]</span></p>
@@ -450,7 +467,7 @@ f(t+h) = f(t) + F(t, f(t)) h + O(h^2)
 <p><span class="math display">\[
 f(t_{i+1}) = f(t_i) + F(t_i, f(t_i))h, \qquad i=0,\,1,\,2,\ldots
 \]</span></p>
-<p>로 풀 수 있다. 이것이 잠시 후 다를 오일러 방법이다. 우리는 앞서 <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#sec-richardson_extrapolation">리차드슨 외삽법</a> 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 <span class="math inline">\(F(t_i, f(t_i))\)</span> 뿐만 아니라 몇몇 <span class="math inline">\(\alpha_j\)</span> 값에 대해 <span class="math inline">\(F(t_i, f(t_i + \alpha_j h))\)</span> 를 선형결합하여</p>
+<p>로 풀 수 있다. 이것이 잠시 후 다룰 오일러 방법이다. 우리는 앞서 <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#sec-richardson_extrapolation">리차드슨 외삽법</a> 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 <span class="math inline">\(F(t_i, f(t_i))\)</span> 뿐만 아니라 몇몇 <span class="math inline">\(\alpha_j\)</span> 값에 대해 <span class="math inline">\(F(t_i, f(t_i + \alpha_j h))\)</span> 를 선형결합하여</p>
 <p><span class="math display">\[
 \begin{aligned}
 f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
@@ -468,15 +485,22 @@ f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
 \]</span></p>
 <p>을 통해 구한다.</p>
 <p><br></p>
-<div id="prp-lipschitz_condtion" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 1 (Lipschitz 조건)</strong></span> <span class="math inline">\(t\in I= [a,\,b]\)</span> 와 <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#def-n_cell"><span class="math inline">\(n\)</span>-cell</a> <span class="math inline">\(D\)</span> 의 데카르트곱 <span class="math inline">\(I \times D\)</span> 에서 정의되며 연속인 함수 <span class="math inline">\(f(t, \boldsymbol{x})\)</span> 가</p>
-<p><span class="math display">\[
-(t, \boldsymbol{x}_1),\,(t, \boldsymbol{x}_2)\in I \times D \implies \|f(t, \boldsymbol{x}_1) - f(t, \boldsymbol{x}_2) \| \le L\|\boldsymbol{x}_1 - \boldsymbol{x}_2\|
+<section id="일계-선형-미분방정식의-해의-존재성과-유일성" class="level3">
+<h3 class="anchored" data-anchor-id="일계-선형-미분방정식의-해의-존재성과-유일성">일계 선형 미분방정식의 해의 존재성과 유일성</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-convex" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 1 (convex)</strong></span> 집합 <span class="math inline">\(D\subset \mathbb{R}^{2}\)</span> 가 모든 <span class="math inline">\((t_1,\,x_1),\, (t_2,\,x_2)\in D\)</span> 에 대해 <span class="math display">\[
+\lambda (t_1,\,x_1) + (1-\lambda)(t_2,\,x_2)\in D
 \]</span></p>
-<p>를 만족할 때 이 함수 <span class="math inline">\(f\)</span> 는 <span class="math inline">\(D\)</span> 에서 <strong>Lipschitz 조건</strong> 을 만족한다 라고 하며 이때의 <span class="math inline">\(L\)</span> 을 <strong>Lipschitz 상수</strong> 라고 한다. Lipschitz 조건을 만족하는 함수는 모든 <span class="math inline">\(t_0 \in [a,\,b]\)</span> 와 <span class="math inline">\(\boldsymbol{x}_0 \in D\)</span> 에 대해 다음을 만족하는 함수 <span class="math inline">\(\boldsymbol{x}:I \to D\)</span> 가 존재한다.</p>
-<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\boldsymbol{x}\)</span> 는 <span class="math inline">\(C^1_{[a,\,b]}\)</span> 급 함수이다.</p>
-<p>  (<span class="math inline">\(2\)</span>) 모든 <span class="math inline">\(t\in I\)</span> 에서 <span class="math inline">\(\boldsymbol{x}'(t) = f(t, \boldsymbol{x}(t))\)</span> 이다.</p>
-<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\boldsymbol{x}(t_0) = \boldsymbol{x}_0\)</span> 이다.</p>
+<p>일 때 <span class="math inline">\(D\)</span> 를 <strong>convex</strong> 라고 한다.</p>
+</div>
+</div>
+</div>
 </div>
 <p><br></p>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -485,31 +509,48 @@ f(t_{i+1}) &amp;= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="def-convex" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 1 (convex)</strong></span> 집합 <span class="math inline">\(D\subset \mathbb{R}\times \mathbb{R}^{n}\)</span> 가 모든 <span class="math inline">\(\lambda \in [0,\,1]\)</span> 와 <span class="math inline">\(\boldsymbol{x}_1,\,\boldsymbol{x}_2\in D\)</span> 에 대해 <span class="math inline">\(\lambda \boldsymbol{x}_1 + (1-\lambda)\boldsymbol{x}_2\in D\)</span> 일 때 <span class="math inline">\(D\)</span> 를 <strong>convex</strong> 라고 한다.</p>
+<div id="def-Lipschitz_condition" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (Lipschitz 조건)</strong></span> <span class="math inline">\(D\subset \mathbb{R}^2\)</span> 에서 연속인 함수 <span class="math inline">\(f(t,x) : D \to \mathbb{R}\)</span> 가 모든 <span class="math inline">\((t,x_1),\, (t,x_2)\in D\)</span> 에 대해 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
+<p><span class="math display">\[
+|f(t, x_1) - f(t, x_2)| \le L|x_1-x_2|
+\]</span></p>
+<p>를 만족할 때 이 함수 <span class="math inline">\(f\)</span> 는 <span class="math inline">\(D\)</span> 에서 <strong>Lipschitz 조건</strong> 을 만족한다 라고 하며 이때의 <span class="math inline">\(L\)</span> 을 <span class="math inline">\(f\)</span> 에 대한 <strong>Lipschitz 상수</strong> 라고 한다.</p>
 </div>
 </div>
 </div>
 </div>
 <p><br></p>
 <div id="prp-convex" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 2</strong></span> <span class="math inline">\(f(t,\,\boldsymbol{x}):D \subset  \mathbb{R}\times \mathbb{R}^{n} \to \mathbb{R}^m\)</span> 이 convex <span class="math inline">\(D\)</span> 에서 정의되어 있으며 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
+<p><span class="theorem-title"><strong>명제 1</strong></span> <span class="math inline">\(f(t,\,x):D \subset  \mathbb{R}^{2} \to \mathbb{R}^m\)</span> 이 convex <span class="math inline">\(D\)</span> 에서 정의되어 있으며 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
 <p><span class="math display">\[
-\forall (t,\,\boldsymbol{x})\in D,\, \left\|\sum_{i=1}\partial_i f(t, \boldsymbol{x}) \right\| \le L
+\forall (t,\,\boldsymbol{x})\in D,\qquad \left|\dfrac{\partial}{\partial x} f(t, x) \right| \le L
 \]</span></p>
-<p>이면 <span class="math inline">\(f\)</span> 는 변수 <span class="math inline">\(\boldsymbol{x}\)</span> 와 Lipschitz 상수 <span class="math inline">\(L\)</span> 에 대해 Lipschitz 조건을 만족한다.</p>
+<p>이면 <span class="math inline">\(f\)</span> 는 변수 <span class="math inline">\(x\)</span> 와 Lipschitz 상수 <span class="math inline">\(L\)</span> 에 대해 Lipschitz 조건을 만족한다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\((t,\,x_1),\, (t,\,x_2)\in D\)</span> 일 때 다변수 함수의 평균값 정리에 의해</p>
+<p><span class="math display">\[
+f(t,\,x_1) - f(t,\,x_2) = (x_1-x_2)\dfrac{\partial }{\partial x}f(t,\,x)
+\]</span></p>
+<p>를 만족하는 <span class="math inline">\(x\in (x_1,\, x_2)\)</span> 가 항상 존재한다. <span class="math inline">\(D\)</span> 가 convex 이므로 <span class="math inline">\((t,\,x)\in D\)</span> 이다. 따라서</p>
+<p><span class="math display">\[
+|f(t,\,x_1) - f(t,\,x_2) | = \left|(x_1-x_2)\dfrac{\partial }{\partial x}f(t,\,x)\right| \le L|x_1-x_2|
+\]</span></p>
+<p>이다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
-<div id="thm-initial_value_problem" class="theorem">
-<p><span class="theorem-title"><strong>정리 1</strong></span> <span class="math inline">\(D=\{(t,\, \boldsymbol{x}) : t\in [a,\,b],\, \boldsymbol{x} \in \mathbb{R}^n\}\)</span> 에서 정의된 함수 <span class="math inline">\(\boldsymbol{f}:D\to \mathbb{R}^n\)</span> 이 <span class="math inline">\(D\)</span> 에서 Lipsschitz 조건을 만족하면 <span class="math inline">\(\boldsymbol{x} = \boldsymbol{f}(t, \boldsymbol{x})\)</span> 의 초기값 문제는 유일한 해를 갖는다.</p>
+<p>아래의 정리는 일계 선형 미분방정식의 초기값 문제의 해의 존재성과 유일성을 말한다. 증명은 꽤나 긴데 여기서는 생략한다. 관심이 있으면 Moris Tenenbaum, Harriy Poland 의 <em>Ordinary Differential Equations</em> 를 참고하라.</p>
+<div id="thm-lipschitz_condtion" class="theorem">
+<p><span class="theorem-title"><strong>정리 1</strong></span> <span class="math inline">\(D = [a,\,b] \times (-\infty,\,\infty)\)</span> 에서 정의된 함수 <span class="math inline">\(f(t,\,x) :D \to \mathbb{R}\)</span> 이 유계이며 <span class="math inline">\((t_0,\, x_0) \in D\)</span> 라고 하자. 이 때 <span class="math inline">\(x'(t) = f(t,\,x)\)</span> 와 <span class="math inline">\(x(t_0)= x_0\)</span> 를 만족하는 <span class="math inline">\(x:[a,,\,b]\to \mathbb{R}\)</span> 이 항상 존재하며 유일하다.</p>
 </div>
 <p><br></p>
 </section>
+</section>
 <section id="오일러-방법-newtons-method" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="오일러-방법-newtons-method"><span class="header-section-number">3</span> 오일러 방법 (Newton’s method)</h2>
-<p>오일러 방법은 초기값이 주어졌을 때 수치해석적으로 미분방정식의 해를 구하는 가장 간단한 방법이다. 가장 간단한 만큼 일반적으로 오차가 크지만 상미분방정식의 초기값 문제를 푸는 여러가지 기법을 익힐 수 있다.</p>
-<section id="일변수-일차-미분-방정식" class="level3">
-<h3 class="anchored" data-anchor-id="일변수-일차-미분-방정식">일변수 일차 미분 방정식</h3>
+<p>오일러 방법은 초기값이 주어졌을 때 수치해석적으로 미분방정식의 해를 구하는 가장 간단한 방법이다. 실제적이고 진지한 계산에 사용하기예는 오차가 너무 크지만 상미분방정식의 초기값 문제를 푸는 여러가지 기법과 개념을 익힐 수 있다.</p>
+<section id="전방-오일러-방법과-후방-오일러-방법" class="level3">
+<h3 class="anchored" data-anchor-id="전방-오일러-방법과-후방-오일러-방법">전방 오일러 방법과 후방 오일러 방법</h3>
 <p>아래와 같은 미분방정식</p>
 <p><span class="math display">\[
 x'(t) = \dfrac{dx}{dt} = f(t, x)
@@ -517,15 +558,26 @@ x'(t) = \dfrac{dx}{dt} = f(t, x)
 <p>와 초기조건 <span class="math inline">\(x(t_0)\)</span> 이 주어졌다고 하자. 테일러 전개에 의해</p>
 <p><span class="math display">\[
 \begin{aligned}
-x(t+h) &amp;= x(t) + x'(t)h + O(h^2) \\
-&amp;= x(t) + f(t, x)h + O(h^2)
+x(t+h) &amp;= x(t) + x'(t)h + O(h^2) =  x(t) + f(t, x)h + O(h^2)
 \end{aligned}
 \]</span></p>
 <p>를 이용하는 방법이다. <span class="math inline">\(i=1,\,2,\ldots,\)</span> 에 대해 <span class="math inline">\(t_i = t_1 + ih\)</span> 로 놓고</p>
+<p><span id="eq-forward_euler_method"><span class="math display">\[
+x(t_{i+1}) =  x(t_i) + f(t_i, x(t_i)) h
+\tag{1}\]</span></span></p>
+<p>로 근사한다. 이 때 <span class="math inline">\(t_i,\,i=0,\,1,\ldots\)</span> 를 <strong>mesh point</strong> 라고 한다. 이렇게 <span class="math inline">\(x(t_{i+1}) = x(t_i)+ f(t_i,\,x_i)h\)</span> 로 근사하는 오일러 방법을 <strong>전방 오일러 방법 (forward Euler method)</strong> 혹은 <strong>양함수적 오일러 방법(explicit Euler method)</strong> 라고 한다. 보통 <strong>오일러 방법(Euler method)</strong> 라고 할 때는 전방 오일러 방법을 의미한다. 이에 반해</p>
 <p><span class="math display">\[
-x(t_{i+1}) =  x(t_i) + f(t_i, x_i) h
+x(t-h) = x(t) - x'(t)h + O(h) = x(t) -  f(t,\,x)h +O(h^2)
 \]</span></p>
-<p>로 근사한다. 이 때 <span class="math inline">\(t_i,\,i=0,\,1,\ldots\)</span> 를 <strong>mesh point</strong> 라고 한다.</p>
+<p>로 놓고 <span class="math inline">\(t_i = t-h,\, t_{i+1}=t\)</span> 라 고 하면,</p>
+<p><span id="eq-backward_euler_method"><span class="math display">\[
+x(t_{i+1}) = x(t_i) + f(t_{i+1},\,x(t_{i+1}))h
+\tag{2}\]</span></span></p>
+<p>을 얻는다. 이를 통해 <span class="math inline">\(x(t)\)</span> 를 얻는 방법을 <strong>후방 오일러 방법(backward Euler method)</strong> 혹은 <strong>음함수적 오일러 방법(implicit Euler method)</strong> 라고 한다. 음함수적이라는 이름이 붙는 이유는 <span class="math inline">\(f(t,\,x)\)</span> 함수가 <span class="math inline">\(x\)</span> 에 의존할 경우 <a href="#eq-backward_euler_method" class="quarto-xref">식&nbsp;2</a> 는 우리가 이미 알고 있는 <span class="math inline">\(t_i\)</span> 와 <span class="math inline">\(x(t_i)=x_i\)</span> 에 대해</p>
+<p><span class="math display">\[
+\overline{x} - x_i + f(t_i, \overline{x})=0
+\]</span></p>
+<p>이라는 음함수 형태의 방정식의 해로서 <span class="math inline">\(x_{i+1}=\overline{x}\)</span> 를 구해야 하기 때문이다. 이 경우에도 <span class="math inline">\(f(t,\,x)= f(t)\)</span> 라면 쉽게 구할 수 있다.</p>
 <p><br></p>
 </section>
 <section id="다변수-일차-미분-방정식" class="level3 page-columns page-full">
@@ -604,7 +656,7 @@ x_j(t + h) \approx x_j(t) + x_i'(t)h
 \dfrac{dy}{dt} &amp; = x(\rho - z)-y, \\
 \dfrac{dz}{dt} &amp;= xy-\beta z.
 \end{aligned}
-\tag{1}\]</span></span></p>
+\tag{3}\]</span></span></p>
 <p><span class="math inline">\(\boldsymbol{x} =\begin{bmatrix} x &amp; y &amp; z\end{bmatrix}^T\)</span> 로 놓고 다변수 오일러 방법을 통해 구해보자. 어떤 조건에서 위의 미분방정식의 해가 나비를 닮았기 때문에 함수 이름을 <code>butterfly3d</code> 로 하였다. <span class="math inline">\(\sigma=10\)</span>, <span class="math inline">\(\rho=28\)</span>, <span class="math inline">\(\beta=8/3\)</span> 일 때,</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">butterfly3d</span>(v, σ<span class="op">::</span><span class="dt">Real</span>, ρ<span class="op">::</span><span class="dt">Real</span>, β<span class="op">::</span><span class="dt">Real</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="fu">σ*</span>(v[<span class="fl">2</span>]<span class="op">-</span>v[<span class="fl">1</span>]), v[<span class="fl">1</span>]<span class="fu">*</span>(ρ <span class="op">-</span> v[<span class="fl">3</span>])<span class="op">-</span>v[<span class="fl">2</span>], v[<span class="fl">1</span>]<span class="op">*</span>v[<span class="fl">2</span>]<span class="op">-</span>β<span class="op">*</span>v[<span class="fl">3</span>]]</span>
@@ -640,7 +692,7 @@ x'(t) &amp;= y(t)
 <p>가장 간단한 1차원 조화진동자 문제를 보자. 미분방정식이</p>
 <p><span id="eq-sho1d"><span class="math display">\[
 \dfrac{d^2 x(t)}{dt^2} = -k\cdot x(t)
-\tag{2}\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>로 주어졌을 때 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 놓으면,</p>
 <p><span class="math display">\[
 \boldsymbol{y}(t+h) = \begin{bmatrix} x(t+h) \\ x'(t+h)\end{bmatrix} = \begin{bmatrix} x(t) + x'(t)h \\ x'(t) -k  x(t) h \end{bmatrix} = \boldsymbol{y}(t) + h\begin{bmatrix} 0 &amp; 1\\ -k &amp; 0\end{bmatrix} \boldsymbol{y}(t)
@@ -673,8 +725,22 @@ x'(t) &amp;= y(t)
 <p><br></p>
 </section>
 </section>
-<section id="차-룽게-쿠타-방법-rk2" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk2"><span class="header-section-number">4</span> 2차 룽게-쿠타 방법 (RK2)</h2>
+<section id="고차-테일러-방법" class="level2 page-columns page-full" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="고차-테일러-방법"><span class="header-section-number">4</span> 고차 테일러 방법</h2>
+<p>미분방정식이 아래와 같이 주어졌다고 하자. <span class="math display">\[
+\dfrac{d}{dt}x(t) = f(t,\,x),\qquad x(t_0) = x_0
+\]</span></p>
+<div class="page-columns page-full"><p>만약 <span class="math inline">\(f(x,\,t)\)</span> 에 대한 <span class="math inline">\(k\)</span> 차 도함수를 구할 수 있다면 <span class="math inline">\(x(t)\)</span> 에 대한 테일러 전개는 다음과 같다. </p><div class="no-row-height column-margin column-container"><span class="margin-aside">두말하면 잔소리지만 <span class="math inline">\(\dfrac{df}{dt} = \dfrac{\partial f}{\partial t} + \dfrac{\partial f}{\partial x}\dfrac{dx}{dt}\)</span> 임에 유의하라.</span></div></div>
+<p><span class="math display">\[
+x(t_{i+1}) = x(t_i) + f(t_i,\, x_i)h + \dfrac{1}{2}\dfrac{df}{dt }(t_i,\,x_i)h^2 + \cdots + \dfrac{1}{(k+1)!}\dfrac{d^k f}{dt^k}(t_i,\,x_i) h^{k+1} + O(h^{k+2}).
+\]</span></p>
+<p>이 방법은 <span class="math inline">\(f(t,\,x)\)</span> 에 대한 <span class="math inline">\(k\)</span> 차 도함수 자체를 쉽게 구할 수 있는 경우에 사용할 수 있다. 참고로 다음에 다룰 룽게-쿠타 방법은 실제 <span class="math inline">\(k\)</span> 차 도함수가 아닌 수치해석적으로 계산한 <span class="math inline">\(k\)</span> 차 도함수의 값을 사용한다.</p>
+<p><br></p>
+</section>
+<section id="룽게-쿠타-방법" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="룽게-쿠타-방법"><span class="header-section-number">5</span> 룽게-쿠타 방법</h2>
+<section id="차-룽게-쿠타-방법-rk2" class="level3">
+<h3 class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk2">2차 룽게-쿠타 방법 (RK2)</h3>
 <p>역시 <span class="math display">\[
 \dfrac{d\boldsymbol{x}}{dt} = \boldsymbol{f}(t, \boldsymbol{x})
 \]</span></p>
@@ -696,7 +762,7 @@ x_j(t+h) &amp; = x_j(t) + \dfrac{dx_j}{dt}h  + \dfrac{1}{2}\dfrac{d^2 x_j}{dt^2}
 \boldsymbol{k}_2 &amp;= \boldsymbol{f}\left( t_i + \dfrac{h}{2},\, \boldsymbol{x}(t_i) + \dfrac{h}{2} \boldsymbol{k}_1\right)
 \end{aligned}
 \]</span></p>
-<p>라 하자. 그렇다면, 야코비안 행렬 <span class="math inline">\(\left(\boldsymbol{J}_\boldsymbol{f}(t_i, \boldsymbol{x}(t_i))\right)_{jk} = \dfrac{\partial f_j}{\partial x_k}(t_i, \boldsymbol{x}(t_i))\)</span> 에 대해</p>
+<p>라 하자. 그렇다면, 야코비 행렬 <span class="math inline">\(\left(\boldsymbol{J}_\boldsymbol{f}(t_i, \boldsymbol{x}(t_i))\right)_{jk} = \dfrac{\partial f_j}{\partial x_k}(t_i, \boldsymbol{x}(t_i))\)</span> 에 대해</p>
 <p><span class="math display">\[
 \begin{aligned}
 \boldsymbol{k}_2 &amp;= \boldsymbol{f}(t_i,\, \boldsymbol{x}(t_i)) +  \dfrac{h}{2} \dfrac{\partial \boldsymbol{f}}{\partial t}(t_i,\, \boldsymbol{x}(t_n)) + \dfrac{h}{2} \boldsymbol{J}_\boldsymbol{f}(t_i, \boldsymbol{x}(t_i)) \boldsymbol{k}_1 \\
@@ -716,8 +782,8 @@ x_j(t+h) &amp; = x_j(t) + \dfrac{dx_j}{dt}h  + \dfrac{1}{2}\dfrac{d^2 x_j}{dt^2}
 <p>을 얻는다. 이것을 2차 룽게-쿠타 방법(RK2)이라 한다.</p>
 <p><br></p>
 </section>
-<section id="차-룽게-쿠타-방법-rk4" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk4"><span class="header-section-number">5</span> 4차 룽게-쿠타 방법 (RK4)</h2>
+<section id="차-룽게-쿠타-방법-rk4" class="level3">
+<h3 class="anchored" data-anchor-id="차-룽게-쿠타-방법-rk4">4차 룽게-쿠타 방법 (RK4)</h3>
 <p>2차 룽게 쿠타 방법은 테일러 전개의 2차항까지 사용하였다. 4차 룽게-쿠타 방법(RK4)은 테일러 전개의 4차항까지 사용한다. <span class="math display">\[
 \boldsymbol{x}(t+h)  = \boldsymbol{x}(x) + \boldsymbol{x}'(x) h + \dfrac{\boldsymbol{x}''(t)}{2} h^2 + \dfrac{\boldsymbol{x}^{(3)}(t)}{6}h^3 + \dfrac{\boldsymbol{x}^{(4)}(t)}{24}h^4 + \cdots
 \]</span></p>
@@ -786,11 +852,12 @@ t_{i+1}&amp;=t_{i}+h, \\
 </div>
 <p><br></p>
 </section>
+</section>
 <section id="예제-examples" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="예제-examples"><span class="header-section-number">6</span> 예제 (Examples)</h2>
 <section id="단순-조화-진동자" class="level3">
 <h3 class="anchored" data-anchor-id="단순-조화-진동자">단순 조화 진동자</h3>
-<p><a href="#eq-sho1d" class="quarto-xref">식&nbsp;2</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
+<p><a href="#eq-sho1d" class="quarto-xref">식&nbsp;4</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sho1d</span>(y<span class="op">::</span><span class="dt">Vector{&lt;:Real}</span>, k<span class="op">::</span><span class="dt">Real</span>, x0<span class="op">=</span><span class="fl">0.0</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [y[<span class="fl">2</span>], <span class="fu">-k*</span>(y[<span class="fl">1</span>]<span class="op">-</span>x0)]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>

@@ -925,8 +925,8 @@ N_{k, m+1} = \dfrac{1}{4^{m} -1} \left[4^{m}N_{k+1, m}  - N_{k, m}\right] + O(h^
 \int_{-1}^1 p(x) \, dx = \sum_{i=1}^n c_i p(x_i).
 \]</span></p>
 </div>
-<p>::: {.proof}</p>
-<p>(<span class="math inline">\(1\)</span>) 우선 <span class="math inline">\(p(x)\)</span> 의 차수가 <span class="math inline">\(n\)</span> 보다 작은 경우를 보자. <span class="math inline">\(p(x)\)</span> 를 <a href="../../src/numerical_analysis_using_julia/05_interpolation.html#sec-interpolation_lagrange">라그랑쥬 다항식</a>에 대해 표현하면</p>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) 우선 <span class="math inline">\(p(x)\)</span> 의 차수가 <span class="math inline">\(n\)</span> 보다 작은 경우를 보자. <span class="math inline">\(p(x)\)</span> 를 <a href="../../src/numerical_analysis_using_julia/05_interpolation.html#sec-interpolation_lagrange">라그랑쥬 다항식</a>에 대해 표현하면</p>
 <p><span class="math display">\[
 p(x) = \sum_{i=1}^n p(x_i)l_i(x) = \sum_{i=1}^n \prod_{j=1,\, j\ne i}^n \dfrac{x-x_j}{x_i-x_j} p(x_i)
 \]</span></p>
@@ -951,8 +951,10 @@ p(x_i) = r(x_i)
 \int_{-1}^1 p(x) = \int_{-1}^1 r(x) = \sum_{i=1}^n\left[\prod_{j=1,j\ne i}^n \int_{-1}^1 \dfrac{x-x_j}{x_i-x_j}\, dx \right] r(x_i) = \sum_{i=1}^n c_i p(x_i)
 \]</span></p>
 <p>이다.</p>
+</div>
 <p>이제 <span class="math inline">\(P_n(x)\)</span> 에 대한 근을 통해 <span class="math inline">\(\displaystyle C_n^i = \left[\prod_{j=1,j\ne i}^n \int_{-1}^1 \dfrac{x-x_j}{x_i-x_j}\, dx \right]\)</span> 를 테이블로 가지고 있다면 우리는 적분을 쉽게 계산 할 수 있다. 아래는 <span class="math inline">\(n=2\)</span> 부터 <span class="math inline">\(n=7\)</span> 까지의 테이블이다.</p>
 <table class="table">
+<caption>르장드르 함수를 이요한 가우스 구적법 {#tbl-gauss_quadrature} <br></caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;">order</th>
@@ -963,138 +965,138 @@ p(x_i) = r(x_i)
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">1.000000000000000</td>
 <td style="text-align: center;">-0.577350269189626</td>
+<td style="text-align: center;">1.000000000000000</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">1.000000000000000</td>
 <td style="text-align: center;">0.577350269189626</td>
+<td style="text-align: center;">1.000000000000000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
+<td style="text-align: center;">0.000000000000000</td>
 <td style="text-align: center;">0.888888888888889</td>
-<td style="text-align: center;">0.000000000000000</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">0.555555555555556</td>
 <td style="text-align: center;">-0.774596669241483</td>
+<td style="text-align: center;">0.555555555555556</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">0.555555555555556</td>
 <td style="text-align: center;">0.774596669241483</td>
+<td style="text-align: center;">0.555555555555556</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">0.652145154862546</td>
 <td style="text-align: center;">-0.339981043584856</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4</td>
 <td style="text-align: center;">0.652145154862546</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
 <td style="text-align: center;">0.339981043584856</td>
+<td style="text-align: center;">0.652145154862546</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">0.347854845137454</td>
 <td style="text-align: center;">-0.861136311594053</td>
+<td style="text-align: center;">0.347854845137454</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">0.347854845137454</td>
 <td style="text-align: center;">0.861136311594053</td>
+<td style="text-align: center;">0.347854845137454</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
+<td style="text-align: center;">0.000000000000000</td>
 <td style="text-align: center;">0.568888888888889</td>
-<td style="text-align: center;">0.000000000000000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">0.478628670499367</td>
 <td style="text-align: center;">-0.538469310105683</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">5</td>
 <td style="text-align: center;">0.478628670499367</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
 <td style="text-align: center;">0.538469310105683</td>
+<td style="text-align: center;">0.478628670499367</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">0.236926885056189</td>
 <td style="text-align: center;">-0.906179845938664</td>
+<td style="text-align: center;">0.236926885056189</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">0.236926885056189</td>
 <td style="text-align: center;">0.906179845938664</td>
+<td style="text-align: center;">0.236926885056189</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">0.360761573048139</td>
 <td style="text-align: center;">0.661209386466264</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
 <td style="text-align: center;">0.360761573048139</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
 <td style="text-align: center;">-0.661209386466264</td>
+<td style="text-align: center;">0.360761573048139</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">0.467913934572691</td>
 <td style="text-align: center;">-0.238619186083197</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
 <td style="text-align: center;">0.467913934572691</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
 <td style="text-align: center;">0.238619186083197</td>
+<td style="text-align: center;">0.467913934572691</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">0.171324492379170</td>
 <td style="text-align: center;">-0.932469514203152</td>
+<td style="text-align: center;">0.171324492379170</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">0.171324492379170</td>
 <td style="text-align: center;">0.932469514203152</td>
+<td style="text-align: center;">0.171324492379170</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">7</td>
-<td style="text-align: center;">0.417959183673469</td>
 <td style="text-align: center;">0.000000000000000</td>
+<td style="text-align: center;">0.417959183673469</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">7</td>
-<td style="text-align: center;">0.381830050505119</td>
 <td style="text-align: center;">0.405845151377397</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
 <td style="text-align: center;">0.381830050505119</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
 <td style="text-align: center;">-0.405845151377397</td>
+<td style="text-align: center;">0.381830050505119</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">7</td>
-<td style="text-align: center;">0.279705391489277</td>
 <td style="text-align: center;">-0.741531185599394</td>
+<td style="text-align: center;">0.279705391489277</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">7</td>
-<td style="text-align: center;">0.279705391489277</td>
 <td style="text-align: center;">0.741531185599394</td>
+<td style="text-align: center;">0.279705391489277</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">7</td>
-<td style="text-align: center;">0.129484966168870</td>
 <td style="text-align: center;">-0.949107912342758</td>
+<td style="text-align: center;">0.129484966168870</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">7</td>
-<td style="text-align: center;">0.129484966168870</td>
 <td style="text-align: center;">0.949107912342758</td>
+<td style="text-align: center;">0.129484966168870</td>
 </tr>
 </tbody>
 </table>
