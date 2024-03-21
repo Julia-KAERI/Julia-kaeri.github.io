@@ -52,62 +52,95 @@ $$
 
 ## 상미분 방정식과 초기값 문제
 
-$f(t)$ 에 대한 미분방정식이 $f$ 에 대해 최대 $n$ 차 미분까지 포함되었을 경우, $n$-차 상미분 방정식이라 한다. 일반적으로 $n$ 차 미분 방정식은 다음 꼴로 주어진다.
+$x(t)$ 에 대한 미분방정식이 $x$ 에 대해 최대 $n$ 계 미분까지 포함되었을 경우, $n$-계 상미분 방정식이라 한다. 일반적으로 $n$ 계 미분 방정식은 다음 꼴로 주어진다.
 
 $$
-f^{(n)}(t) = F\left(t, f(t), f'(t), \ldots, f^{(n-1)}(t)\right)
+x^{(n)}(t) = f\left(t, x(t), x'(t), \ldots, x^{(n-1)}(t)\right)
 $$
 
-이 방정식과 초기값 $f(t_0),\,f^{(1)}(t_0), \ldots, f^{(n-1)}(t_0)$ 을 통해 $f(t)$ 를 알아내는 것을 **초기값 문제 (initial value problem)** 이라고 한다. 
+이 방정식과 초기값 $x(t_0),\,x^{(1)}(t_0), \ldots, x^{(n-1)}(t_0)$ 을 통해 $f(t)$ 를 알아내는 것을 **초기값 문제 (initial value problem)** 이라고 한다. 
 
-가장 간단한 미분방정식이라면 
+</br>
+
+### 1계 미분방정식의 경우 
+
+가장 간단한 1계 미분방정식이라면 
 
 $$
-f'(t) = F(t, f(t))
+x'(t) = f(t, x(t))
 $$
 
 꼴이며 이 미분방정식을
 
 $$
-f(t+h) = f(t) + F(t, f(t)) h + O(h^2)
+x(t+h) = x(t) + f(t, x(t)) h + O(h^2)
 $$
 
 를 이용하여 1차 근사로 풀 수 있다. 즉 $t_i = t_0 +ih$ 라고 할 때, 
 
 $$
-f(t_{i+1}) = f(t_i) + F(t_i, f(t_i))h, \qquad i=0,\,1,\,2,\ldots
+x(t_{i+1}) = x(t_i) + f(t_i, x(t_i))h, \qquad i=0,\,1,\,2,\ldots
 $$
 
-로 풀 수 있다. 이것이 잠시 후 다룰 오일러 방법이다. 우리는 앞서 [리차드슨 외삽법](06_calculus_of_one_variable_function.qmd#sec-richardson_extrapolation) 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 $F(t_i, f(t_i))$ 뿐만 아니라 몇몇 $\alpha_j$ 값에 대해 $F(t_i, f(t_i + \alpha_j h))$ 를 선형결합하여 
+로 풀 수 있다. 이것이 잠시 후 다룰 오일러 방법이다. 우리는 앞서 [리차드슨 외삽법](06_calculus_of_one_variable_function.qmd#sec-richardson_extrapolation) 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 $f(t_i, x(t_i))$ 뿐만 아니라 몇몇 $\alpha_j$ 값에 대해 $f(t_i, x(t_i + \alpha_j h))$ 를 선형결합하여 
 
 $$
 \begin{aligned}
-f(t_{i+1}) &= f(t_i) + \sum_j c_j F(t_i, f(t_i + \alpha_j h))h + O(h^k), \\
-&= f(t_i) + \tilde{F}(t_i, h, f) +O(h^k)
+x(t_{i+1}) &= x(t_i) + \sum_j c_j f(t_i, x(t_i + \alpha_j h))h + O(h^k), \\
+&= x(t_i) + \tilde{f}(t_i, h, x) +O(h^k)
 \end{aligned}
 $$
 
-이며, $k>2$ 이 되도록 할 수 있다. 이 $\tilde{F}(t_n, h, f)$ 를 얻는 방법에는 오일러 방법, 룽게-쿠타 방법 등이 존재한다. 
+을 $k>2$ 에 대해 만족하도록 할 수 있다. 이 $\tilde{f}(t_n, h, f)$ 를 얻는 방법에는 오일러 방법, 룽게-쿠타 방법 등 여러가지가 존재한다. 
 
+</br>
 
-다변수 미분방정식의 경우를 보자. 
+### 1계 상미분 방정식 시스템의 경우
 
-$$
-\boldsymbol{x}^{(n)}(t) = \boldsymbol{F}(t, \boldsymbol{x}(t),\ldots,\boldsymbol{x}^{(n-1)}(t))
-$$
-
-과 초기조건 $\boldsymbol{x}(t_0) ,\ldots,\,\boldsymbol{x}^{(n-1)}(t_0)$ 를 만족하는  $\boldsymbol{x}:[a,\,b] \to \mathbb{R}^m$ 을 구한다고 하자. $\boldsymbol{x} = \begin{bmatrix} x_1(t) & \cdots & x_m(t) \end{bmatrix}^T$ 라 할 때 1변수의 경우와 마찬가지로
+상미분 방정식의 시스템도 존재 할 수 있다. 예를 들어, $n$ 개의 다음과 같은 1계 미분방정식이 존재 할 수 있다.
 
 $$
-\boldsymbol{x}(t_{i+1}) =  \boldsymbol{x}(t_i) +\tilde{\boldsymbol{F}}(t_i, \boldsymbol{h}, \boldsymbol{x}, \ldots, \boldsymbol{x}^{(n-1)}) 
+x_i(t)  = f_i (t,\,x_1(t),\,x_2(t),\ldots,\,x_n(t)),\qquad i=1,\ldots,n
+$$
+
+이 경우 우리는 $\boldsymbol{x}(t) = \begin{bmatrix}x_1(t) & \cdots & x_n(t)\end{bmatrix}^T$ 로 놓고 다음과 같이 표기 할 수 있다.
+
+$$
+\boldsymbol{x}'(t) = \begin{bmatrix} f_1 (t,\,\boldsymbol{x}) \\ \vdots \\ f_n (t,\, \boldsymbol{x}_n)\end{bmatrix} = \boldsymbol{F}(t,\,\boldsymbol{x})
+$$
+
+초기조건 $\boldsymbol{x}(t_0) = \boldsymbol{x}_0$ 를 만족하는  $\boldsymbol{x}:[a,\,b] \to \mathbb{R}^m$ 을 구한다고 하자. $\boldsymbol{x} = \begin{bmatrix} x_1(t) & \cdots & x_m(t) \end{bmatrix}^T$ 라 할 때 1변수의 경우와 마찬가지로
+
+$$
+\boldsymbol{x}(t_{i+1}) =  \boldsymbol{x}(t_i) +\tilde{\boldsymbol{F}}(t_i, h, \boldsymbol{x}, \ldots, \boldsymbol{x}^{(n-1)}) 
 $$
 
 을 통해 구한다. 
 
+</br>
+
+### 다계 상미분 방정식 시스템의 경우
+
+상미분 방정식의 시스템을 이용하여 1계 상미분 방정식 뿐만 아니라 1계 이상의 상미분 방정식에 대해서도 사용 할 수 있다. 예를 들어 $n$ 계 미분방정식
+
+$$
+x^{(n)}(t) = f(t,\,x,\,x',\ldots,\, x^{n-1})
+$$
+
+이 주어졌을 경우, $y_1(t) = x(t),\, y_2 (t) = x'(t) ,\ldots, y_n (t) = x^{(n-1)}(t)$  로 놓고 $\boldsymbol{y}(t) = \begin{bmatrix} y_1(t) & \cdots & y_n(t)\end{bmatrix}^T$ 라 하면 위의 미분 방정식은
+
+$$
+\boldsymbol{y'}(t) = \begin{bmatrix} y'_1(t) \\ \vdots \\ y'_{n-1}(t) \\ y'_n(t)\end{bmatrix} = \begin{bmatrix} y_2(t) \\ \vdots \\ y_{n}(t)  \\ f(t,\, y_1,\ldots,\, y_{n}(t))\end{bmatrix} = \boldsymbol{F}(t,\, \boldsymbol{y})
+$$
+
+가 된다. 다계 상미분 방정식 시스템의 경우도 같은 형태를 가진다는 것을 쉽게 예상 이해 할 수 있을 것이다. 
+
 
 </br>
 
-### 일계 선형 미분방정식의 해의 존재성과 유일성
+## 일계 선형 미분방정식의 해의 존재성과 유일성
+
+이제 일계 선형미분방정식이 해를 가질 수 있는 수학적 조건에 대해 알아보기로 하자.
 
 
 ::: {.callout-note appearance="simple" icon="false"}
