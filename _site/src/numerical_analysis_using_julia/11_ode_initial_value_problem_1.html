@@ -398,9 +398,6 @@ window.Quarto = {
   <li><a href="#감쇄-조화-진동자" id="toc-감쇄-조화-진동자" class="nav-link" data-scroll-target="#감쇄-조화-진동자">감쇄 조화 진동자</a></li>
   <li><a href="#진자pendulum-문제" id="toc-진자pendulum-문제" class="nav-link" data-scroll-target="#진자pendulum-문제">진자(Pendulum) 문제</a></li>
   <li><a href="#체-문제" id="toc-체-문제" class="nav-link" data-scroll-target="#체-문제">2체 문제</a></li>
-  </ul></li>
-  <li><a href="#runge-kutta-fehlberg-방법rkf" id="toc-runge-kutta-fehlberg-방법rkf" class="nav-link" data-scroll-target="#runge-kutta-fehlberg-방법rkf"><span class="header-section-number">8</span> Runge-Kutta-Fehlberg 방법(RKF)</a>
-  <ul class="collapse">
   <li><a href="#마치며" id="toc-마치며" class="nav-link" data-scroll-target="#마치며">마치며</a></li>
   </ul></li>
   </ul>
@@ -467,6 +464,20 @@ x^{(n)}(t) = f\left(t, x(t), x'(t), \ldots, x^{(n-1)}(t)\right)
 <p><br></p>
 <section id="계-미분방정식의-경우" class="level3">
 <h3 class="anchored" data-anchor-id="계-미분방정식의-경우">1계 미분방정식의 경우</h3>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+표기법
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>미분방정식 <span class="math inline">\(x'(t) = f(t,\,x)\)</span> 가 주어졌을 때 이 미분방정식의 해 <span class="math inline">\(x(t)\)</span> 의 <span class="math inline">\(t=t_i\)</span> 에서의 값을 <span class="math inline">\(x(t_i)\)</span> 로 표기한다. 그러나 근사적인 방법으로 풀었을 때 <span class="math inline">\(t_i\)</span> 의 값은 <span class="math inline">\(x_{i}\)</span> 와 같은 형식으로 표기한다.</p>
+</div>
+</div>
+<p><br></p>
 <p>가장 간단한 1계 미분방정식이라면</p>
 <p><span class="math display">\[
 x'(t) = f(t, x(t))
@@ -477,16 +488,16 @@ x(t+h) = x(t) + f(t, x(t)) h + O(h^2)
 \]</span></p>
 <p>를 이용하여 1차 근사로 풀 수 있다. 즉 <span class="math inline">\(t_i = t_0 +ih\)</span> 라고 할 때,</p>
 <p><span class="math display">\[
-x(t_{i+1}) = x(t_i) + f(t_i, x(t_i))h, \qquad i=0,\,1,\,2,\ldots
+x_{i+1} = x_i + f(t_i, x_i)h, \qquad i=0,\,1,\,2,\ldots
 \]</span></p>
 <p>로 풀 수 있다. 이것이 잠시 후 다룰 오일러 방법이다. 우리는 앞서 <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#sec-richardson_extrapolation">리차드슨 외삽법</a> 에서 보았던 것처럼 주변의 복수의 값을 이용하여 정밀도를 높일 수 있다. 즉 <span class="math inline">\(f(t_i, x(t_i))\)</span> 뿐만 아니라 몇몇 <span class="math inline">\(\alpha_j\)</span> 값에 대해 <span class="math inline">\(f(t_i, x(t_i + \alpha_j h))\)</span> 를 선형결합하여</p>
 <p><span class="math display">\[
 \begin{aligned}
 x(t_{i+1}) &amp;= x(t_i) + \sum_j c_j f(t_i, x(t_i + \alpha_j h))h + O(h^k), \\
-&amp;= x(t_i) + \tilde{f}(t_i, h, x) +O(h^k)
+&amp;= x(t_i) + \tilde{f}(t_i, h, f,\, \{\alpha_i\}) +O(h^k)
 \end{aligned}
 \]</span></p>
-<p>을 <span class="math inline">\(k&gt;2\)</span> 에 대해 만족하도록 할 수 있다. 이 <span class="math inline">\(\tilde{f}(t_n, h, f)\)</span> 를 얻는 방법에는 오일러 방법, 룽게-쿠타 방법 등 여러가지가 존재한다.</p>
+<p>을 <span class="math inline">\(k&gt;2\)</span> 에 대해 만족하도록 할 수 있다. 이 <span class="math inline">\(\tilde{f}(t_n, h, f,\, \{\alpha_i\})\)</span> 를 얻는 방법에는 오일러 방법, 룽게-쿠타 방법 등 여러가지가 존재한다.</p>
 <p><br></p>
 </section>
 <section id="계-상미분-방정식-시스템의-경우" class="level3">
@@ -497,11 +508,11 @@ x_i(t)  = f_i (t,\,x_1(t),\,x_2(t),\ldots,\,x_n(t)),\qquad i=1,\ldots,n
 \]</span></p>
 <p>이 경우 우리는 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix}x_1(t) &amp; \cdots &amp; x_n(t)\end{bmatrix}^T\)</span> 로 놓고 다음과 같이 표기 할 수 있다.</p>
 <p><span class="math display">\[
-\boldsymbol{x}'(t) = \begin{bmatrix} f_1 (t,\,\boldsymbol{x}) \\ \vdots \\ f_n (t,\, \boldsymbol{x}_n)\end{bmatrix} = \boldsymbol{F}(t,\,\boldsymbol{x})
+\boldsymbol{x}'(t) = \begin{bmatrix} f_1 (t,\,\boldsymbol{x}) \\ \vdots \\ f_n (t,\, \boldsymbol{x}_n)\end{bmatrix} = \boldsymbol{f}(t,\,\boldsymbol{x})
 \]</span></p>
 <p>초기조건 <span class="math inline">\(\boldsymbol{x}(t_0) = \boldsymbol{x}_0\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}:[a,\,b] \to \mathbb{R}^m\)</span> 을 구한다고 하자. <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix} x_1(t) &amp; \cdots &amp; x_m(t) \end{bmatrix}^T\)</span> 라 할 때 1변수의 경우와 마찬가지로</p>
 <p><span class="math display">\[
-\boldsymbol{x}(t_{i+1}) =  \boldsymbol{x}(t_i) +\tilde{\boldsymbol{F}}(t_i, h, \boldsymbol{x}, \ldots, \boldsymbol{x}^{(n-1)})
+\boldsymbol{x}(t_{i+1}) =  \boldsymbol{x}(t_i) +\tilde{\boldsymbol{f}}(t_i, h, \boldsymbol{x}, \ldots, \boldsymbol{x}^{(n-1)})
 \]</span></p>
 <p>을 통해 구한다.</p>
 <p><br></p>
@@ -514,7 +525,7 @@ x^{(n)}(t) = f(t,\,x,\,x',\ldots,\, x^{n-1})
 \]</span></p>
 <p>이 주어졌을 경우, <span class="math inline">\(y_1(t) = x(t),\, y_2 (t) = x'(t) ,\ldots, y_n (t) = x^{(n-1)}(t)\)</span> 로 놓고 <span class="math inline">\(\boldsymbol{y}(t) = \begin{bmatrix} y_1(t) &amp; \cdots &amp; y_n(t)\end{bmatrix}^T\)</span> 라 하면 위의 미분 방정식은</p>
 <p><span class="math display">\[
-\boldsymbol{y'}(t) = \begin{bmatrix} y'_1(t) \\ \vdots \\ y'_{n-1}(t) \\ y'_n(t)\end{bmatrix} = \begin{bmatrix} y_2(t) \\ \vdots \\ y_{n}(t)  \\ f(t,\, y_1,\ldots,\, y_{n}(t))\end{bmatrix} = \boldsymbol{F}(t,\, \boldsymbol{y})
+\boldsymbol{y'}(t) = \begin{bmatrix} y'_1(t) \\ \vdots \\ y'_{n-1}(t) \\ y'_n(t)\end{bmatrix} = \begin{bmatrix} y_2(t) \\ \vdots \\ y_{n}(t)  \\ f(t,\, y_1,\ldots,\, y_{n}(t))\end{bmatrix} = \boldsymbol{f}(t,\, \boldsymbol{y})
 \]</span></p>
 <p>가 된다. 다계 상미분 방정식 시스템의 경우도 같은 형태를 가진다는 것을 쉽게 예상 이해 할 수 있을 것이다.</p>
 <p><br></p>
@@ -635,15 +646,15 @@ x(t+h) &amp;= x(t) + x'(t)h + O(h^2) =  x(t) + f(t, x)h + O(h^2)
 \]</span></p>
 <p>를 이용하는 방법이다. <span class="math inline">\(i=1,\,2,\ldots,\)</span> 에 대해 <span class="math inline">\(t_i = t_1 + ih\)</span> 로 놓고</p>
 <p><span id="eq-forward_euler_method"><span class="math display">\[
-x(t_{i+1}) =  x(t_i) + f(t_i, x(t_i)) h
+x_{i+1} =  x_i + f(t_i, x_i) h
 \tag{5}\]</span></span></p>
-<p>로 근사한다. 이 때 <span class="math inline">\(t_i,\,i=0,\,1,\ldots\)</span> 를 <strong>mesh point</strong> 라고 한다. 이렇게 <span class="math inline">\(x(t_{i+1}) = x(t_i)+ f(t_i,\,x_i)h\)</span> 로 근사하는 오일러 방법을 <strong>전방 오일러 방법 (forward Euler method)</strong> 혹은 <strong>양함수적 오일러 방법(explicit Euler method)</strong> 라고 한다. 보통 <strong>오일러 방법(Euler method)</strong> 라고 할 때는 전방 오일러 방법을 의미한다. 이에 반해</p>
+<p>로 근사한다. 이 때 <span class="math inline">\(t_i,\,i=0,\,1,\ldots\)</span> 를 <strong>mesh point</strong> 라고 한다. 이렇게 <span class="math inline">\(x_{i+1} =  x_i + f(t_i, x_i) h\)</span> 로 근사하는 오일러 방법을 <strong>전방 오일러 방법 (forward Euler method)</strong> 혹은 <strong>양함수적 오일러 방법(explicit Euler method)</strong> 라고 한다. 보통 <strong>오일러 방법(Euler method)</strong> 라고 할 때는 전방 오일러 방법을 의미한다. 이에 반해</p>
 <p><span class="math display">\[
 x(t-h) = x(t) - x'(t)h + O(h) = x(t) -  f(t,\,x)h +O(h^2)
 \]</span></p>
 <p>로 놓고 <span class="math inline">\(t_i = t-h,\, t_{i+1}=t\)</span> 라 고 하면,</p>
 <p><span id="eq-backward_euler_method"><span class="math display">\[
-x(t_{i+1}) = x(t_i) + f(t_{i+1},\,x(t_{i+1}))h
+x_{i+1} = x_i + f(t_{i+1},\,x_{i+1})h
 \tag{6}\]</span></span></p>
 <p>을 얻는다. 이를 통해 <span class="math inline">\(x(t)\)</span> 를 얻는 방법을 <strong>후방 오일러 방법(backward Euler method)</strong> 혹은 <strong>음함수적 오일러 방법(implicit Euler method)</strong> 라고 한다. 음함수적이라는 이름이 붙는 이유는 <span class="math inline">\(f(t,\,x)\)</span> 함수가 <span class="math inline">\(x\)</span> 에 의존할 경우 <a href="#eq-backward_euler_method" class="quarto-xref">식&nbsp;6</a> 는 우리가 이미 알고 있는 <span class="math inline">\(t_i\)</span> 와 <span class="math inline">\(x(t_i)=x_i\)</span> 에 대해</p>
 <p><span class="math display">\[
@@ -666,12 +677,12 @@ x_j(t + h) = x_j(t) + x_j'(t)h+ \dfrac{x_j''(\xi)}{2}h^2
 <p><span class="math display">\[
 x_j(t + h) \approx x_j(t) + x_i'(t)h
 \]</span></p>
-<p>임을 이용하는 것이 오일러 벙법이다.</p>
+<p>임을 이용하는 것이 오일러 방법이다.</p>
 <p><span class="math inline">\(t_{i+1}=t_i+h\)</span> 일 때,</p>
 <p><span class="math display">\[
-\boldsymbol{x}(t_{i+1}) = \boldsymbol{x} (t_i) + \boldsymbol{f}(t_i, x_1(x_i), \ldots, x_n(t_i))\, h
+\boldsymbol{x}_{i+1} = \boldsymbol{x}_i + \boldsymbol{f}(t_i, \boldsymbol{x}_i) \, h
 \]</span></p>
-<p>를 이용하여 <span class="math inline">\(\boldsymbol{x}(t_{i+1})\)</span> 값을 구한다. 아래와 같이 julia 로 구현 할 수 있다.</p>
+<p>를 이용하여 <span class="math inline">\(\boldsymbol{x}_{i+1}\)</span> 값을 구한다. 아래와 같이 julia 로 구현 할 수 있다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 일변수에 대한 오일러 방법</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ode_euler</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    fp<span class="op">::</span><span class="dt">Function</span>,</span>
@@ -1035,12 +1046,9 @@ m_2\ddot{\boldsymbol{r}}_2  = - \dfrac{Gm_1m_2}{\|\boldsymbol{r}_1-\boldsymbol{r
 <p>이제 두 점입자의 초기 위치와 속도가 주어지면 <span class="math inline">\(\boldsymbol{s}_{i+1} = \boldsymbol{s}_i+ \dfrac{d\boldsymbol{s}}{dt} h\)</span> 를 이용하여 이 문제를 풀 수 있다.</p>
 <p><br></p>
 </section>
-</section>
-<section id="runge-kutta-fehlberg-방법rkf" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="runge-kutta-fehlberg-방법rkf"><span class="header-section-number">8</span> Runge-Kutta-Fehlberg 방법(RKF)</h2>
 <section id="마치며" class="level3">
 <h3 class="anchored" data-anchor-id="마치며">마치며</h3>
-<p>이번 장에서는 상미분 방정식을 푸는 가장 기본적인 방법인 오일러 방법과 2차, 4차 룽게-쿠타 방법을 배웠다. 수치해석이 늘 그렇듯이 간단한 미분방정식은 잘 풀 수 있지만 다양하고 복잡한 문제에서는 더 정확한 방법을 사용해야 한다</p>
+<p>이번 장에서는 상미분 방정식을 푸는 가장 기본적인 방법인 오일러 방법과 2차, 4차 룽게-쿠타 방법을 배웠다. 수치해석이 늘 그렇듯이 간단한 미분방정식은 잘 풀 수 있지만 다양하고 복잡한 문제에서는 더 정확한 방법을 사용해야 한다. 다음장에서는 실제 과학/공학에서 널리 활용되는 좀 더 정교한 방법에 대해 알아보기로 하자.</p>
 
 
 </section>

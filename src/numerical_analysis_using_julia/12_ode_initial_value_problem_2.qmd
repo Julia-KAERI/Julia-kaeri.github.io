@@ -21,7 +21,7 @@ $$
 를 생각하자. 지금까지의 오일러 방법이나 RK2, RK4 에서는 정해진 간격 $h>0$ 에 대해 $t_k = t_0 + kh$ 를 이용하였다. 이 경우
 
 $$
-x_{k+1} = x(t_{k+1}) + \phi (t_k,\,x_k) + O(h^{n+1})
+x_{k+1} = x_k + \phi (t_k,\,x_k) + O(h^{n+1})
 $$
 
 의 꼴로 $x(t)$ 의 경로를 얻었다. 이 때 오차는 방법에 따라 $n$ 값이 정해지는 $ch^{n+1}$ 이었다. 
@@ -31,7 +31,7 @@ $$
 $$
 \begin{aligned}
 t_{k+1} &= t_k + h, \\
-x_{k+1} &= x(t_{k+1}) = x_k + \phi (t_k,\, x_k)
+x_{k+1} &= x_k + \phi (t_k,\, x_k)
 \end{aligned}
 $$
 
@@ -40,7 +40,7 @@ $$
 $$
 \begin{aligned}
 t_{k+1} & = t_k + h_k,\\
-x_{k+1} & = x(t_{k+1}) = x_k + \phi (t_k,\, x_k,\,h_k)
+x_{k+1} & = x_k + \phi (t_k,\, x_k,\,h_k)
 \end{aligned}
 $$
 
@@ -56,5 +56,10 @@ x_{k+1} & = x_k + \phi (t_k,\,x_k,\, h),\\
 \end{aligned}
 $$
 
+라고 하자. 이제 수치해석적인 방법으로 계산한 $x_{k}$ 와 실제 해 $x(t_k)$ 를 구분하기로 하자. $x_{k} \approx \tilde{x}_k \approx x(t_k)$ 라고 가정 할 때 $t_{k+1}$ 에서의 실제 경로 $x(t_{k+1})$ 과의 truncation error $\tau_{k+1}(h)$ 는
+
+$$
+\tau_{k+1}= \vartau
+$$
 
 

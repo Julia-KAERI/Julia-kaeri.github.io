@@ -367,21 +367,21 @@ x'(t) = f(t, x),\qquad x(t_0) = x_0
 \]</span></p>
 <p>를 생각하자. 지금까지의 오일러 방법이나 RK2, RK4 에서는 정해진 간격 <span class="math inline">\(h&gt;0\)</span> 에 대해 <span class="math inline">\(t_k = t_0 + kh\)</span> 를 이용하였다. 이 경우</p>
 <p><span class="math display">\[
-x_{k+1} = x(t_{k+1}) + \phi (t_k,\,x_k) + O(h^{n+1})
+x_{k+1} = x_k + \phi (t_k,\,x_k) + O(h^{n+1})
 \]</span></p>
 <p>의 꼴로 <span class="math inline">\(x(t)\)</span> 의 경로를 얻었다. 이 때 오차는 방법에 따라 <span class="math inline">\(n\)</span> 값이 정해지는 <span class="math inline">\(ch^{n+1}\)</span> 이었다.</p>
 <p>그러나 이제는 간격 <span class="math inline">\(h\)</span> 를 조절하고자 한다. 이렇게 수치해석에서 문제에 주어진 변수가 아닌 문제 해결에 사용되는 값(여기서는 <span class="math inline">\(h\)</span>) 를 문제 해결 도중에 유연하게 변경하는 방법을 <strong>적응형(adaptive)</strong> 라고 한다. Runge-Kutta-Fehlberg 방법이 바로 적응형 수치해석 방법중 하나이다. 즉 지금까지는</p>
 <p><span class="math display">\[
 \begin{aligned}
 t_{k+1} &amp;= t_k + h, \\
-x_{k+1} &amp;= x(t_{k+1}) = x_k + \phi (t_k,\, x_k)
+x_{k+1} &amp;= x_k + \phi (t_k,\, x_k)
 \end{aligned}
 \]</span></p>
 <p>로 문제를 풀어왔다면 이제는</p>
 <p><span class="math display">\[
 \begin{aligned}
 t_{k+1} &amp; = t_k + h_k,\\
-x_{k+1} &amp; = x(t_{k+1}) = x_k + \phi (t_k,\, x_k,\,h_k)
+x_{k+1} &amp; = x_k + \phi (t_k,\, x_k,\,h_k)
 \end{aligned}
 \]</span></p>
 <p>로 문제를 풀게 될 것이다. <span class="math inline">\(h_k\)</span> 를 어떻게 정하는 지가 중요한 전환점이 될 것이다.</p>
@@ -391,6 +391,10 @@ x_{k+1} &amp; = x(t_{k+1}) = x_k + \phi (t_k,\, x_k,\,h_k)
 x_{k+1} &amp; = x_k + \phi (t_k,\,x_k,\, h),\\
 \tilde{x}_{k+1} &amp;= \tilde{x}_k + \tilde{\phi}(t_k,\,\tilde{x}_k,\,h)
 \end{aligned}
+\]</span></p>
+<p>라고 하자. 이제 수치해석적인 방법으로 계산한 <span class="math inline">\(x_{k}\)</span> 와 실제 해 <span class="math inline">\(x(t_k)\)</span> 를 구분하기로 하자. <span class="math inline">\(x_{k} \approx \tilde{x}_k \approx x(t_k)\)</span> 라고 가정 할 때 <span class="math inline">\(t_{k+1}\)</span> 에서의 실제 경로 <span class="math inline">\(x(t_{k+1})\)</span> 과의 truncation error <span class="math inline">\(\tau_{k+1}(h)\)</span> 는</p>
+<p><span class="math display">\[
+\tau_{k+1}= \vartau
 \]</span></p>
 
 
