@@ -243,7 +243,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일변수 다항식의 Julia 구현</span></a>
+ <span class="menu-text">Interude : 일변수 다항식의 Julia 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -255,7 +255,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">보간법의 구현</span></a>
+ <span class="menu-text">Interude : 보간법의 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -296,19 +296,25 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식의 초기값 문제</span></a>
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Approximation</span></a>
   </div>
 </li>
@@ -485,12 +491,15 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="고정점-반복법-fixed-point-iteration">고정점 반복법 (Fixed Point Iteration)</h3>
 <p>함수 <span class="math inline">\(f(x)\)</span> 에 대해 <span class="math inline">\(f(p)=p\)</span> 를 만족하는 점 <span class="math inline">\(p\)</span> 를 <span class="math inline">\(f\)</span> 의 고정점 (fixed point) 라 한다. 고정점 자체가 중요한 경우도 많으며, 방정식의 해를 찾는것과 밀접하게 연관되어 있다. <span class="math inline">\(g(x) = f(x)-x\)</span> 라 놓으면 <span class="math inline">\(f(x)\)</span> 의 고정점을 찾는 것은 <span class="math inline">\(g(x)\)</span> 의 해를 찾는 문제와 같은 문제라는 것을 쉽게 이해 할 수 있을 것이다. 역으로, 함수 <span class="math inline">\(g(x)=0\)</span> 의 해를 찾는 문제는 <span class="math inline">\(f(x) = g(x)  + x\)</span> 의 고정점을 찾는 문제와 동일한 문제이다.</p>
 <p>고정점 반복법이 가능한 이유는 아래의 고정점 정리 때문이다.</p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="thm-fixed_point" class="theorem">
 <p><span class="theorem-title"><strong>정리 1 (고정점 정리)</strong></span> <span class="math inline">\(f\)</span> 가 <span class="math inline">\([a,\,b]\)</span> 구간에서 연속이며 <span class="math inline">\(f([a,\,b])\subset [a,\,b]\)</span> 이면,</p>
 <p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(f(p)=p\)</span> 를 만족하는 고정점 <span class="math inline">\(p\)</span> 가 <span class="math inline">\([a,\,b]\)</span> 구간에 존재한다.</p>
 <p>  (<span class="math inline">\(2\)</span>) 모든 <span class="math inline">\(x,\,y \in [a,\,b]\)</span> 에 대해 <span class="math inline">\(|f(x)-f(y) |\le \lambda |x-y|\)</span> 를 만족하는 <span class="math inline">\(\lambda\in\mathbb{R}\)</span> 이 존재하며, <span class="math inline">\(0&lt;\lambda&lt;1\)</span> 이면 고정점은 유일하다.</p>
 <p>  (<span class="math inline">\(3\)</span>) (<span class="math inline">\(2\)</span>)의 조건을 만족시킬 때, 임의의 <span class="math inline">\(p_1\in [a,\,b]\)</span> 와 <span class="math inline">\(p_{n+1}=f(p_n)\)</span> 으로 정의되는 수열 <span class="math inline">\(\langle p_n\rangle\)</span> 은 수렴한다.</p>
 </div>
+</div>
+<p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) <span class="math inline">\(f(a)=a\)</span> 이거나 <span class="math inline">\(f(b)=b\)</span> 이면 자명하므로 <span class="math inline">\(f(a)\ne a,\, f(b) \ne b\)</span> 인 경우만 생각한다. <span class="math inline">\(g(x)=f(x)-x\)</span> 라 하면 가정에 의해 <span class="math inline">\(g(a)\ne 0,\, g(b) \ne 0\)</span> 이다. 모든 <span class="math inline">\(x\in [a,\,b]\)</span> 에 대해 <span class="math inline">\(a&lt;f(x)&lt;b\)</span> 이므로 <span class="math inline">\(g(a)=f(a)-a&gt;0\)</span> 이며 <span class="math inline">\(g(b)=f(b)-b&lt;0\)</span> 이다. <span class="math inline">\(g(x)\)</span> 역시 <span class="math inline">\([a,\,b]\)</span> 에서 연속이므로 중간값정리에 의해 <span class="math inline">\(g(p)=0\)</span> 인 <span class="math inline">\(p\in(a,\,b)\)</span> 가 존재해야 한다. 즉 <span class="math inline">\(f(p)=p\)</span> 를 만족하는 점 <span class="math inline">\(p\in [a,\,b]\)</span> 가 존재한다.</p>
 <p>(<span class="math inline">\(2\)</span>) 고정점이 두개 이상 존재한다고 가정하고 두개의 임의의 고정점을 <span class="math inline">\(p,\,q\)</span> 라 하자. 그렇다면, <span class="math display">\[
@@ -504,9 +513,12 @@ window.Quarto = {
 <p>이므로 <span class="math inline">\(\displaystyle \lim_{n \to \infty} p_n = p\)</span> 이다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="cor-for_fixex_point_theorem" class="theorem corollary">
 <p><span class="theorem-title"><strong>따름정리 1</strong></span> <span class="math inline">\([a,\,b]\)</span> 구간에서 미분가능한 함수 <span class="math inline">\(f(x)\)</span> 가 <span class="math inline">\(f([a,\,b])\subset [a,\,b]\)</span> 이며, 어떤 양수 <span class="math inline">\(0&lt;\gamma&lt;1\)</span> 에 대해 <span class="math inline">\(x\in [a,\,b] \implies |f'(x)|&lt;\gamma\)</span> 이면, <span class="math inline">\([a,\,b]\)</span> 구간에서 유일한 고정점을 가진다.</p>
 </div>
+</div>
+<p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span>고정점 정리의 (<span class="math inline">\(2\)</span>) 를 생각하자. <span class="math inline">\([a,\,b]\)</span> 구간에서 <span class="math inline">\(f\)</span> 가 미분가능이므로 중간값 정리에 의해 <span class="math inline">\(\dfrac{f(x)-f(y)}{x-y}=f'(c)\)</span> 인 <span class="math inline">\(c\in [a,\,b]\)</span> 가 존재하며, <span class="math inline">\(|f'(x)|&lt;\gamma&lt;1\)</span> 이므로 <span class="math display">\[
 |f(x)-f(y)|=|f'(c)||x-y|&lt;\gamma |x-y|
@@ -626,9 +638,12 @@ f_1(x) = f(p_1) + f'(p_1)(x-p_1)
 <section id="뉴턴-방법의-단점과-수렴" class="level4">
 <h4 class="anchored" data-anchor-id="뉴턴-방법의-단점과-수렴">뉴턴 방법의 단점과 수렴</h4>
 <p>이분법은 두 시작점에서의 함수값의 곱이 음수이면 무조건 하나의 해를 원하는 오차 내에서 찾을 수 있다. 그러나, Newton method 는 해를 찾을 수 없는 경우도 생기는데 가장 대표적인 경우는 위의 과정중에 어떤 <span class="math inline">\(x_k\)</span> 에 에서 <span class="math inline">\(f'(x_k)=0\)</span> 인 경우이다. 또한 시작점이 해와 충분히 가깝지 않을 경우 발산 할 수 있다. 우리는 뉴턴 방법을 통해 무조건 해를 갖는 조건을 보일 수 있다.</p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="thm-convergence_of_newton_method" class="theorem">
 <p><span class="theorem-title"><strong>정리 2 (뉴턴 방법의 수렴정리)</strong></span> <span class="math inline">\(f\in C^2_{[a,\,b]}\)</span> 인 실함수 <span class="math inline">\(f\)</span> 에 대해 <span class="math inline">\(f(p)=0\)</span> 이며 <span class="math inline">\(f'(p)\ne 0\)</span> 이라 하자. 그렇다면 어떤 <span class="math inline">\(\delta&gt;0\)</span> 이 존재하여 <span class="math inline">\(p_1\in [p-\delta,\, p+\delta]\)</span> 이라면 뉴턴 방법을 통해 얻은 수열 <span class="math inline">\(\langle p_n\rangle\)</span> 은 <span class="math inline">\(p\)</span> 로 수렴한다.</p>
 </div>
+</div>
+<p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span>뉴턴 방법에 의해 <span class="math inline">\(p_n\)</span> 이 정해졌을 때 <span class="math inline">\(p_{n+1}\)</span> 은 직선 <span class="math inline">\(f'(p_n) (x-p_n) + f(p_n) = 0\)</span> 의 해이다. 즉,</p>
 <p><span class="math display">\[
@@ -756,6 +771,12 @@ c = b-f(b) \cdot \dfrac{b-a}{f(b)-f(a)}
 <h2 data-number="2" class="anchored" data-anchor-id="오차-해석"><span class="header-section-number">2</span> 오차 해석</h2>
 <section id="수학적-기초" class="level3">
 <h3 class="anchored" data-anchor-id="수학적-기초">수학적 기초</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <div id="def-order_of_convergence" class="theorem definition">
 <p><span class="theorem-title"><strong>정의 1 (수렴 속도 (order of convergence))</strong></span> 수열 <span class="math inline">\(\langle p_n \rangle\)</span> 이 <span class="math inline">\(p\)</span> 로 수렴하며, 모든 <span class="math inline">\(n\)</span> 에 대해 <span class="math inline">\(p_n \ne p_0\)</span> 라고 하자. 이 때</p>
 <p><span class="math display">\[
@@ -763,7 +784,11 @@ c = b-f(b) \cdot \dfrac{b-a}{f(b)-f(a)}
 \]</span></p>
 <p>를 만족하는 양수 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\alpha\ge 1\)</span> 가 존재한다면 <span class="math inline">\(\alpha\)</span> 를 수열 <span class="math inline">\(\langle p_n \rangle\)</span> 의 <strong>수렴 속도</strong> 라고 하고 <span class="math inline">\(\mu\)</span> 를 근사적 <strong>오차 상수(asymptotic error constant)</strong> 라고 한다. 특히 <span class="math inline">\(\alpha=1\)</span> 인 수열은 <span class="math inline">\(\mu&lt;1\)</span> 일 때에만 수렴하며 이 경우 <strong>선형 수렴 수열</strong> 이라고 한다. <span class="math inline">\(\alpha=2\)</span> 인 수열은 <strong>이차 수렴 수열</strong> 이라고 한다.</p>
 </div>
+</div>
+</div>
+</div>
 <p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="thm-linearly_convergent_sequence" class="theorem">
 <p><span class="theorem-title"><strong>정리 3</strong></span> 실함수 <span class="math inline">\(g\in C[a,\,b]\)</span> 가 <span class="math inline">\(g([a,\,b]) \subset [a,\, b]\)</span> 라 하자. <a href="#thm-fixed_point" class="quarto-xref">정리&nbsp;1</a> 에 의해 고정점 <span class="math inline">\(p\in [a,\,b]\)</span> 가 존재한다. 또한 어떤 양수 <span class="math inline">\(\lambda &lt;1\)</span> 가 존재하여 모든 <span class="math inline">\(x\in (a,\,b)\)</span> 에 대해 <span class="math inline">\(|g'(x)|&lt;\lambda\)</span> 라 하자. <span class="math inline">\(g'(p)\ne 0\)</span> 라면 <span class="math inline">\(p_0 \ne p\)</span> 에 대해 수열 <span class="math inline">\(\langle p_n \rangle\)</span> 을</p>
 <p><span class="math display">\[
@@ -771,6 +796,8 @@ p_{n+1} = g(p_{n}),\qquad n=0,\,1,\,2,\ldots
 \]</span></p>
 <p>로 정의하자. 이 때 이 수열은 <span class="math inline">\([a,\,b]\)</span> 의 고정점 <span class="math inline">\(p\)</span> 로 수렴하는 선형 수렴 수열이다.</p>
 </div>
+</div>
+<p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span>평균값 정리에 의해 각각의 <span class="math inline">\(n=1,\,2,\ldots\)</span> 에 대해</p>
 <p><span class="math display">\[

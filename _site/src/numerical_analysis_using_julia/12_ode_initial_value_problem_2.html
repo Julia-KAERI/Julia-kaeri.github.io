@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 들어가며</title>
+<title>Julia &amp; Numerical Anlaysis - 상미분 방정식의 초기값 문제-II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,6 +69,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -159,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">들어가며</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html">상미분 방정식의 초기값 문제-II</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -182,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">들어가며</span></a>
   </div>
 </li>
@@ -272,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
   </div>
 </li>
@@ -332,14 +328,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#runge-kutta-fehlberg-방법rkf" id="toc-runge-kutta-fehlberg-방법rkf" class="nav-link active" data-scroll-target="#runge-kutta-fehlberg-방법rkf"><span class="header-section-number">1</span> Runge-Kutta-Fehlberg 방법(RKF)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">들어가며</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html">상미분 방정식의 초기값 문제-II</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">들어가며</h1>
+<h1 class="title">상미분 방정식의 초기값 문제-II</h1>
 </div>
 
 
@@ -356,17 +358,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>수치해석은 알고리즘을 중점적으로 다룰 수도 있고, 특정 언어로의 구현을 중점적으로 다룰 수도 있다. 보통 알고리즘을 중심적으로 다루는 경우는 수학적으로 깊이 들어가 내용이 명제와 수식으로 가득 차 있지만 실제 언어로 구현하는데 어려움이 있을 수 있다. 언어로의 구현을 중점적으로 다루게 되면 깊이 없이 피상적으로 코딩만 하게 될 수도 있다.</p>
-<p>알고리즘을 중심으로 설명하는 경우 실제 코드가 아닌 의사 코드(psedo code) 를 사용하는 경우가 많다. Julia 언어는 알고리즘을 직접 코드로 옮기는데 아주 유용하며, 알고리즘을 의사 코드가 아닌 julia 코드로 써도 julia 언어에 대한 기본 지식만 있다면 쉽게 알고리즘을 이해할 수 있는 경우가 많다. 여기서는 의사 코드가 아닌 julia 코드로 알고리즘을 설명한다.</p>
-<p>실제적인 상황에서의 또 하나의 문제는 pseudo 코드와 비슷한 julia 코드가 꼭 효울적인 코드는 아니라는 것이다. 그래서 여기서는 다음의 방침을 정했다.</p>
-<ol type="1">
-<li>알고리즘은 julia 코드로 최대한 읽고 이해하기 쉬운 코드로 제시한다. 이 julia 코드는 자체로서 알고리즘이 원하는 동작을 하는 코드이다.</li>
-<li>이 책에서 많은 경우 앞부분에서 사용했던 알고리즘이나 방법을 뒤에서 사용하는 경우가 많이 있다. 이를 위해 여기서 구현한 것들을 julia 패키지로 만들었고 github 에 올려두었다. <a href="https://github.com/Julia-KAERI/NAJ.jl.git">NAJ.jl</a> 이며 julia 에 설치 할 수 있다.</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> ]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="pp">@v1</span><span class="fl">.10</span>) pkg<span class="op">&gt;</span> add https<span class="op">://</span>github.com<span class="op">/</span>Julia<span class="op">-</span>KAERI<span class="op">/</span>NAJ.jl.git</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>지금까지 상미분 방정식의 초기값 문제에 대한 기본적인 지식을 쌓았다. 이제 좀 더 정교한 미분방정식의 수치해석적 풀이법을 알아보고자 한다.</p>
+<section id="runge-kutta-fehlberg-방법rkf" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="runge-kutta-fehlberg-방법rkf"><span class="header-section-number">1</span> Runge-Kutta-Fehlberg 방법(RKF)</h2>
+<p>미분방정식의 초기값 문제</p>
+<p><span class="math display">\[
+x'(t) = f(t, x),\qquad x(t_0) = x_0
+\]</span></p>
+<p>를 생각하자. 지금까지의 오일러 방법이나 RK2, RK4 에서는 정해진 간격 <span class="math inline">\(h&gt;0\)</span> 에 대해 <span class="math inline">\(t_k = t_0 + kh\)</span> 를 이용하였다. 이 경우</p>
+<p><span class="math display">\[
+x_{k+1} = x(t_{k+1}) + \phi (t_k,\,x_k) + O(h^{n+1})
+\]</span></p>
+<p>의 꼴로 <span class="math inline">\(x(t)\)</span> 의 경로를 얻었다. 이 때 오차는 방법에 따라 <span class="math inline">\(n\)</span> 값이 정해지는 <span class="math inline">\(ch^{n+1}\)</span> 이었다.</p>
+<p>그러나 이제는 간격 <span class="math inline">\(h\)</span> 를 조절하고자 한다. 이렇게 수치해석에서 문제에 주어진 변수가 아닌 문제 해결에 사용되는 값(여기서는 <span class="math inline">\(h\)</span>) 를 문제 해결 도중에 유연하게 변경하는 방법을 <strong>적응형(adaptive)</strong> 라고 한다. Runge-Kutta-Fehlberg 방법이 바로 적응형 수치해석 방법중 하나이다. 즉 지금까지는</p>
+<p><span class="math display">\[
+\begin{aligned}
+t_{k+1} &amp;= t_k + h, \\
+x_{k+1} &amp;= x(t_{k+1}) = x_k + \phi (t_k,\, x_k)
+\end{aligned}
+\]</span></p>
+<p>로 문제를 풀어왔다면 이제는</p>
+<p><span class="math display">\[
+\begin{aligned}
+t_{k+1} &amp; = t_k + h_k,\\
+x_{k+1} &amp; = x(t_{k+1}) = x_k + \phi (t_k,\, x_k,\,h_k)
+\end{aligned}
+\]</span></p>
+<p>로 문제를 풀게 될 것이다. <span class="math inline">\(h_k\)</span> 를 어떻게 정하는 지가 중요한 전환점이 될 것이다.</p>
+<p>이제 <span class="math inline">\(t_k,\,x_k\)</span> 와 정해진 <span class="math inline">\(h\)</span> 에 따라 <span class="math inline">\(x_{k+1}\)</span> 을 정하는 함수에 <span class="math inline">\(\phi\)</span> 와 <span class="math inline">\(\tilde{\phi}\)</span> 의 두가지 방법이 있다고 하자. <span class="math inline">\(\phi\)</span> 의 trunction error 는 <span class="math inline">\(O(h^{n+1})\)</span> 이며 <span class="math inline">\(\tilde{\phi}\)</span> 의 truncation error 는 <span class="math inline">\(O(h^{n+2})\)</span> 라고 하자. 각각의 방법을 구분하기 위해,</p>
+<p><span class="math display">\[
+\begin{aligned}
+x_{k+1} &amp; = x_k + \phi (t_k,\,x_k,\, h),\\
+\tilde{x}_{k+1} &amp;= \tilde{x}_k + \tilde{\phi}(t_k,\,\tilde{x}_k,\,h)
+\end{aligned}
+\]</span></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -780,10 +808,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="pagination-link" aria-label="상미분 방정식의 초기값 문제-I">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">상미분 방정식의 초기값 문제-I</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" class="pagination-link" aria-label="수치해석 (Numerical Analysis) 과 알고리즘 (Algorithm)">
-        <span class="nav-page-text">수치해석 (Numerical Analysis) 과 알고리즘 (Algorithm)</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="pagination-link" aria-label="상미분 방정식의 경계값 문제">
+        <span class="nav-page-text">상미분 방정식의 경계값 문제</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

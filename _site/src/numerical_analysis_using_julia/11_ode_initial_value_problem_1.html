@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 상미분 방정식의 초기값 문제</title>
+<title>Julia &amp; Numerical Anlaysis - 상미분 방정식의 초기값 문제-I</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" rel="next">
 <link href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -189,7 +189,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html">상미분 방정식의 초기값 문제</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html">상미분 방정식의 초기값 문제-I</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -243,7 +243,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일변수 다항식의 Julia 구현</span></a>
+ <span class="menu-text">Interude : 일변수 다항식의 Julia 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -255,7 +255,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">보간법의 구현</span></a>
+ <span class="menu-text">Interude : 보간법의 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -296,19 +296,25 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">상미분 방정식의 초기값 문제</span></a>
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Approximation</span></a>
   </div>
 </li>
@@ -372,7 +378,7 @@ window.Quarto = {
   <li><a href="#계-상미분-방정식-시스템의-경우" id="toc-계-상미분-방정식-시스템의-경우" class="nav-link" data-scroll-target="#계-상미분-방정식-시스템의-경우">1계 상미분 방정식 시스템의 경우</a></li>
   <li><a href="#다계-상미분-방정식-시스템의-경우" id="toc-다계-상미분-방정식-시스템의-경우" class="nav-link" data-scroll-target="#다계-상미분-방정식-시스템의-경우">다계 상미분 방정식 시스템의 경우</a></li>
   </ul></li>
-  <li><a href="#일계-선형-미분방정식의-해의-존재성과-유일성" id="toc-일계-선형-미분방정식의-해의-존재성과-유일성" class="nav-link" data-scroll-target="#일계-선형-미분방정식의-해의-존재성과-유일성"><span class="header-section-number">3</span> 일계 선형 미분방정식의 해의 존재성과 유일성</a></li>
+  <li><a href="#상미분-방정식의-해에-대한-수학적-기반" id="toc-상미분-방정식의-해에-대한-수학적-기반" class="nav-link" data-scroll-target="#상미분-방정식의-해에-대한-수학적-기반"><span class="header-section-number">3</span> 상미분 방정식의 해에 대한 수학적 기반</a></li>
   <li><a href="#오일러-방법-newtons-method" id="toc-오일러-방법-newtons-method" class="nav-link" data-scroll-target="#오일러-방법-newtons-method"><span class="header-section-number">4</span> 오일러 방법 (Newton’s method)</a>
   <ul class="collapse">
   <li><a href="#전방-오일러-방법과-후방-오일러-방법" id="toc-전방-오일러-방법과-후방-오일러-방법" class="nav-link" data-scroll-target="#전방-오일러-방법과-후방-오일러-방법">전방 오일러 방법과 후방 오일러 방법</a></li>
@@ -403,9 +409,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html">상미분 방정식의 초기값 문제</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html">상미분 방정식의 초기값 문제-I</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">상미분 방정식의 초기값 문제</h1>
+<h1 class="title">상미분 방정식의 초기값 문제-I</h1>
 </div>
 
 
@@ -514,24 +520,9 @@ x^{(n)}(t) = f(t,\,x,\,x',\ldots,\, x^{n-1})
 <p><br></p>
 </section>
 </section>
-<section id="일계-선형-미분방정식의-해의-존재성과-유일성" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="일계-선형-미분방정식의-해의-존재성과-유일성"><span class="header-section-number">3</span> 일계 선형 미분방정식의 해의 존재성과 유일성</h2>
+<section id="상미분-방정식의-해에-대한-수학적-기반" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="상미분-방정식의-해에-대한-수학적-기반"><span class="header-section-number">3</span> 상미분 방정식의 해에 대한 수학적 기반</h2>
 <p>이제 일계 선형미분방정식이 해를 가질 수 있는 수학적 조건에 대해 알아보기로 하자.</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="def-convex" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 1 (convex)</strong></span> 집합 <span class="math inline">\(D\subset \mathbb{R}^{2}\)</span> 가 모든 <span class="math inline">\((t_1,\,x_1),\, (t_2,\,x_2)\in D\)</span> 에 대해 <span class="math display">\[
-\lambda (t_1,\,x_1) + (1-\lambda)(t_2,\,x_2)\in D
-\]</span></p>
-<p>일 때 <span class="math inline">\(D\)</span> 를 <strong>convex</strong> 라고 한다.</p>
-</div>
-</div>
-</div>
-</div>
 <p><br></p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -540,39 +531,91 @@ x^{(n)}(t) = f(t,\,x,\,x',\ldots,\, x^{n-1})
 </div>
 <div class="callout-body-container">
 <div id="def-Lipschitz_condition" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 2 (Lipschitz 조건)</strong></span> <span class="math inline">\(D\subset \mathbb{R}^2\)</span> 에서 연속인 함수 <span class="math inline">\(f(t,x) : D \to \mathbb{R}\)</span> 가 모든 <span class="math inline">\((t,x_1),\, (t,x_2)\in D\)</span> 에 대해 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
+<p><span class="theorem-title"><strong>정의 1 (Lipschitz 조건)</strong></span> <span class="math inline">\(D = \{ t,\,\boldsymbol{x} : a \le t \le b,\, \boldsymbol{x}\in \mathbb{R}^n\}\)</span> 에서 연속인 함수 <span class="math inline">\(\boldsymbol{f}(t, \boldsymbol{x}) : D \to \mathbb{R}^n\)</span> 가 모든 <span class="math inline">\((t, \boldsymbol{x}_1),\, (t,\boldsymbol{x}_2)\in D\)</span> 에 대해 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
 <p><span class="math display">\[
-|f(t, x_1) - f(t, x_2)| \le L|x_1-x_2|
+\|\boldsymbol{f}(t, \boldsymbol{x}_1) - \boldsymbol{f}(t, \boldsymbol{x}_2)\| \le L\| \boldsymbol{x}_1-\boldsymbol{x}_2\|
 \]</span></p>
-<p>를 만족할 때 이 함수 <span class="math inline">\(f\)</span> 는 <span class="math inline">\(D\)</span> 에서 <strong>Lipschitz 조건</strong> 을 만족한다 라고 하며 이때의 <span class="math inline">\(L\)</span> 을 <span class="math inline">\(f\)</span> 에 대한 <strong>Lipschitz 상수</strong> 라고 한다.</p>
+<p>를 만족할 때 이 함수 <span class="math inline">\(\boldsymbol{f}\)</span> 는 <span class="math inline">\(D\)</span> 에서 <strong>Lipschitz 조건</strong> 을 만족한다 라고 하며 이때의 <span class="math inline">\(L\)</span> 을 <span class="math inline">\(\boldsymbol{f}\)</span> 에 대한 <strong>Lipschitz 상수</strong> 라고 한다.</p>
 </div>
 </div>
 </div>
 </div>
 <p><br></p>
-<div id="prp-convex" class="theorem proposition">
-<p><span class="theorem-title"><strong>명제 1</strong></span> <span class="math inline">\(f(t,\,x):D \subset  \mathbb{R}^{2} \to \mathbb{R}^m\)</span> 이 convex <span class="math inline">\(D\)</span> 에서 정의되어 있으며 어떤 <span class="math inline">\(L&gt;0\)</span> 이 존재하여</p>
-<p><span class="math display">\[
-\forall (t,\,\boldsymbol{x})\in D,\qquad \left|\dfrac{\partial}{\partial x} f(t, x) \right| \le L
-\]</span></p>
-<p>이면 <span class="math inline">\(f\)</span> 는 변수 <span class="math inline">\(x\)</span> 와 Lipschitz 상수 <span class="math inline">\(L\)</span> 에 대해 Lipschitz 조건을 만족한다.</p>
+<p>아래의 정리는 일계 선형 미분방정식의 초기값 문제의 해의 존재성과 유일성을 말한다. 증명은 꽤나 긴데 여기서는 생략한다. 관심이 있으면 Moris Tenenbaum, Harriy Poland 의 <em>Ordinary Differential Equations</em> 나 J. Store, R. Bulirsch 의 <em>Introduction to Numerical Analysis</em> 와 거기에서의 참고목록을 참고하라.</p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+<div id="thm-lipschitz_condtion" class="theorem">
+<p><span class="theorem-title"><strong>정리 1</strong></span> <span class="math inline">\(D = \{ (t,\,\boldsymbol{x}) : a \le t \le b,\, \boldsymbol{x}\in \mathbb{R}^n\}\)</span> 에서 정의된 연속인 함수 <span class="math inline">\(\boldsymbol{f}:D \to \mathbb{R}^n\)</span> 이 Lipshitz 조건을 만족한다면 각각의 <span class="math inline">\((t_0,\, \boldsymbol{x}_0) \in D\)</span> 에 대해 다음을 만족하는 <span class="math inline">\(\boldsymbol{x}:\mathbb{R} \to \mathbb{R}^n\)</span> 이 항상 존재한다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\boldsymbol{x}\in C^1_{[a,\,b]}\)</span>,</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\boldsymbol{x}'(t) = f(t,\, \boldsymbol{x}(t))\)</span>,</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\boldsymbol{x}(t_0) =\boldsymbol{x}_0\)</span>.</p>
 </div>
-<div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\((t,\,x_1),\, (t,\,x_2)\in D\)</span> 일 때 다변수 함수의 평균값 정리에 의해</p>
+</div>
+<p><br></p>
+<p>위의 정리는 <span class="math inline">\(\boldsymbol{f}(t,\,\boldsymbol{x})\)</span> 가 Lipschitz 조건을 만족한다면 어떠한 초기조건에 대해서도 <span class="math inline">\(\boldsymbol{x}'(t) = \boldsymbol{f}(t,\,\boldsymbol{x})\)</span> 를 만족하는 <span class="math inline">\(C^1\)</span> 급의 <span class="math inline">\(\boldsymbol{x}(t)\)</span> 가 항상 존재함을 보장한다.</p>
+<p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+<div id="thm-ode_solution" class="theorem">
+<p><span class="theorem-title"><strong>정리 2</strong></span> <span class="math inline">\(\boldsymbol{f}:D \to \mathbb{R}\)</span> 이 <span class="math inline">\(D\)</span> 에서 연속이며 Lipschitz 상수 <span class="math inline">\(L\)</span> 에 대해 Lipschitz 조건을 만족한다고 하자. 미분방정식 <span class="math inline">\(\boldsymbol{x}' = \boldsymbol{f}(t,\,\boldsymbol{x})\)</span> 에 대해 초기조건이 <span class="math inline">\((t_0,\, \boldsymbol{x}_1)\)</span> 과 <span class="math inline">\((t_0,\, \boldsymbol{x}_2)\)</span> 로 주어졌을 때 각각의 미분방정식의 해를 <span class="math inline">\(\boldsymbol{x}(t;\boldsymbol{x}_1)\)</span>, <span class="math inline">\(\boldsymbol{x}(t,;\boldsymbol{x}_2)\)</span> 라고 하면 다음이 성립한다.</p>
 <p><span class="math display">\[
-f(t,\,x_1) - f(t,\,x_2) = (x_1-x_2)\dfrac{\partial }{\partial x}f(t,\,x)
+\|\boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t; \boldsymbol{x}_2)\| \le e^{L|t-t_0|} \|\boldsymbol{x}_1 -\boldsymbol{x}_2\| .
 \]</span></p>
-<p>를 만족하는 <span class="math inline">\(x\in (x_1,\, x_2)\)</span> 가 항상 존재한다. <span class="math inline">\(D\)</span> 가 convex 이므로 <span class="math inline">\((t,\,x)\in D\)</span> 이다. 따라서</p>
+</div>
+</div>
+<p><br></p>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\boldsymbol{x}' = \boldsymbol{f}(t,\boldsymbol{x})\)</span> 이므로 <span class="math inline">\(\boldsymbol{x}(t) = \boldsymbol{x}_0 + \int_{t_0}^t \boldsymbol{f}(t,\boldsymbol{x})\, dt\)</span> 이다. 따라서 <span class="math display">\[
+\boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2) = \boldsymbol{x}_1 - \boldsymbol{x}_2 + \int_{t_0}^t \left[\boldsymbol{f}(t, \boldsymbol{x}(t,\,\boldsymbol{x}_1)) - \boldsymbol{f}(t, \boldsymbol{x}(t;\boldsymbol{x}_2))\right]\, dt
+\]</span></p>
+<p>이며,</p>
+<p><span id="eq-thm_ode_solution_0"><span class="math display">\[
+\| \boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|  \le \| \boldsymbol{x}_1 - \boldsymbol{x}_2 \| + \int_{t_0}^t \| \boldsymbol{f}(t, \boldsymbol{x}(t,\,\boldsymbol{x}_1)) - \boldsymbol{f}(t, \boldsymbol{x}(t;\boldsymbol{x}_2))\|\, dt
+\tag{1}\]</span></span></p>
+<p>이다. Lipschitz 조건을 이용하면</p>
+<p><span id="eq-thm_ode_solution_1"><span class="math display">\[
+\| \boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|  \le \| \boldsymbol{x}_1 - \boldsymbol{x}_2 \| +  L\int_{t_0}^t \| \boldsymbol{x}(t,\,\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|\, dt
+\tag{2}\]</span></span></p>
+<p>이다. 여기서</p>
 <p><span class="math display">\[
-|f(t,\,x_1) - f(t,\,x_2) | = \left|(x_1-x_2)\dfrac{\partial }{\partial x}f(t,\,x)\right| \le L|x_1-x_2|
+\Phi(t) := \int_{t_0}^t \| \boldsymbol{x}(t,\,\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|\, dt
+\]</span></p>
+<p>라고 하면 <span class="math inline">\(\Phi'(t) =\| \boldsymbol{x}(t,\,\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|\)</span> 이며, <a href="#eq-thm_ode_solution_1" class="quarto-xref">식&nbsp;2</a> 에 따라</p>
+<p><span class="math display">\[
+\Phi'(t) \le \|\boldsymbol{x}_1-\boldsymbol{x}_2\| + L\Phi(t)
+\]</span></p>
+<p>이다. <span class="math inline">\(\Phi(t_0)=0\)</span> 인데 위식을 미분방정식 <span class="math inline">\(\Phi'(t) = \|\boldsymbol{x}_1-\boldsymbol{x}_2\| + L\Phi(t)\)</span> 와 초기조건 <span class="math inline">\(\Phi(t_0)=0\)</span> 에 대해 풀면</p>
+<p><span class="math display">\[
+\Phi(t) = e^{L(t-t_0)} \int_{t_0}^t \left(\Phi'(s) - L \Phi (s)\right) e^{L(s-t_0)}\, ds
+\]</span></p>
+<p>이다 <span class="math inline">\(\Phi(t)\)</span> 의 정의에 의해 <span class="math inline">\(\Phi(t)\ge 0\)</span> 이며, <span class="math inline">\(\|\Phi(s)-L\Phi(s)\| \le \|\boldsymbol{x}_1-\boldsymbol{x}_2\|\)</span> 이므로 <span class="math inline">\(t&gt;t_0\)</span> 에 대해</p>
+<p><span id="eq-thm_ode_solution_2"><span class="math display">\[
+0 \le \Phi(t) \le e^{L(t-t_0)} \|\boldsymbol{x}_1-\boldsymbol{x}_2 \| \int_{t_0}^t e^{L(s-t_0)}\, ds = \dfrac{\|\boldsymbol{x}_1-\boldsymbol{x}_2\|}{L} (e^{L(t-t_0)}-1)
+\tag{3}\]</span></span></p>
+<p>이다. 따라서 <a href="#eq-thm_ode_solution_1" class="quarto-xref">식&nbsp;2</a> 을 생각하면</p>
+<p><span class="math display">\[
+\|\boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t; \boldsymbol{x}_2)\| \le e^{L|t-t_0|} \|\boldsymbol{x}_1-\boldsymbol{x}_2\|
 \]</span></p>
 <p>이다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
-<p>아래의 정리는 일계 선형 미분방정식의 초기값 문제의 해의 존재성과 유일성을 말한다. 증명은 꽤나 긴데 여기서는 생략한다. 관심이 있으면 Moris Tenenbaum, Harriy Poland 의 <em>Ordinary Differential Equations</em> 를 참고하라.</p>
-<div id="thm-lipschitz_condtion" class="theorem">
-<p><span class="theorem-title"><strong>정리 1</strong></span> <span class="math inline">\(D = [a,\,b] \times (-\infty,\,\infty)\)</span> 에서 정의된 함수 <span class="math inline">\(f(t,\,x) :D \to \mathbb{R}\)</span> 이 유계이며 <span class="math inline">\((t_0,\, x_0) \in D\)</span> 라고 하자. 이 때 <span class="math inline">\(x'(t) = f(t,\,x)\)</span> 와 <span class="math inline">\(x(t_0)= x_0\)</span> 를 만족하는 <span class="math inline">\(x:[a,,\,b]\to \mathbb{R}\)</span> 이 항상 존재하며 유일하다.</p>
+<div class="border" style="background-color:#F2F4F4  ;padding:20px;">
+<!-- <div class="border" style="background-color:#F2ECD0  ;padding:20px;"> -->
+<div id="thm-ode-solution_2" class="theorem">
+<p><span class="theorem-title"><strong>정리 3</strong></span> <a href="#thm-ode_solution" class="quarto-xref">정리&nbsp;2</a> 의 조건에 더해 <span class="math inline">\(\boldsymbol{f}\)</span> 의 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 야코비 행렬 <span class="math inline">\(\nabla_\boldsymbol{x}\boldsymbol{f}\)</span> 가 <span class="math inline">\(D\)</span> 에서 존재하며 연속이고 유계라면 즉, 모든 <span class="math inline">\((t,\,\boldsymbol{x})\in D\)</span> 에 대해</p>
+<p><span class="math display">\[
+\|\nabla_{\boldsymbol{x}} \boldsymbol{f}(t,\,\boldsymbol{x})\| \le L
+\]</span></p>
+<p>라면 임의의 초기조건 <span class="math inline">\((t_0,\,\boldsymbol{x}_0)\in D\)</span> 에서의 미분방정식 <span class="math inline">\(\boldsymbol{x}'=\boldsymbol{f}(t,\boldsymbol{x})\)</span> 의 해 <span class="math inline">\(\boldsymbol{x}(t;\boldsymbol{x}_0)\)</span> 는 <span class="math inline">\(D\)</span> 에서 연속이며 미분가능하다. 또한 그 도함수</p>
+<p><span class="math display">\[
+\boldsymbol{Z}(t; \boldsymbol{x}_0) := \nabla_{\boldsymbol{x}_0} \boldsymbol{x}(t; \boldsymbol{x}_0)
+\]</span></p>
+<p>는 아래의 미분방정식의 초기값 문제의 해이다.</p>
+<p><span id="eq-ode_solution_2_1"><span class="math display">\[
+\dfrac{d}{dt}\boldsymbol{Z}(t; \boldsymbol{x}_0) = \nabla_{\boldsymbol{x}_0} \boldsymbol{f}(t, \boldsymbol{x}(t; \boldsymbol{x}_0)) \boldsymbol{z},\qquad \boldsymbol{Z}(t_0,\,\boldsymbol{x}_0) = 1.
+\tag{4}\]</span></span></p>
 </div>
+</div>
+<p><br></p>
+<p><span class="math inline">\(\boldsymbol{Z}(t;\boldsymbol{x}_0)\)</span> 와 <span class="math inline">\(\boldsymbol{Z}'(t;\boldsymbol{x}_0)\)</span> 는 <span class="math inline">\(n \times n\)</span> 행렬임에 유의하라. 따라서 <a href="#eq-ode_solution_2_1" class="quarto-xref">식&nbsp;4</a> 은 <span class="math inline">\(n \times n\)</span> 개의 미분방정식을 표현한다.</p>
 <p><br></p>
 </section>
 <section id="오일러-방법-newtons-method" class="level2 page-columns page-full" data-number="4">
@@ -593,7 +636,7 @@ x(t+h) &amp;= x(t) + x'(t)h + O(h^2) =  x(t) + f(t, x)h + O(h^2)
 <p>를 이용하는 방법이다. <span class="math inline">\(i=1,\,2,\ldots,\)</span> 에 대해 <span class="math inline">\(t_i = t_1 + ih\)</span> 로 놓고</p>
 <p><span id="eq-forward_euler_method"><span class="math display">\[
 x(t_{i+1}) =  x(t_i) + f(t_i, x(t_i)) h
-\tag{1}\]</span></span></p>
+\tag{5}\]</span></span></p>
 <p>로 근사한다. 이 때 <span class="math inline">\(t_i,\,i=0,\,1,\ldots\)</span> 를 <strong>mesh point</strong> 라고 한다. 이렇게 <span class="math inline">\(x(t_{i+1}) = x(t_i)+ f(t_i,\,x_i)h\)</span> 로 근사하는 오일러 방법을 <strong>전방 오일러 방법 (forward Euler method)</strong> 혹은 <strong>양함수적 오일러 방법(explicit Euler method)</strong> 라고 한다. 보통 <strong>오일러 방법(Euler method)</strong> 라고 할 때는 전방 오일러 방법을 의미한다. 이에 반해</p>
 <p><span class="math display">\[
 x(t-h) = x(t) - x'(t)h + O(h) = x(t) -  f(t,\,x)h +O(h^2)
@@ -601,8 +644,8 @@ x(t-h) = x(t) - x'(t)h + O(h) = x(t) -  f(t,\,x)h +O(h^2)
 <p>로 놓고 <span class="math inline">\(t_i = t-h,\, t_{i+1}=t\)</span> 라 고 하면,</p>
 <p><span id="eq-backward_euler_method"><span class="math display">\[
 x(t_{i+1}) = x(t_i) + f(t_{i+1},\,x(t_{i+1}))h
-\tag{2}\]</span></span></p>
-<p>을 얻는다. 이를 통해 <span class="math inline">\(x(t)\)</span> 를 얻는 방법을 <strong>후방 오일러 방법(backward Euler method)</strong> 혹은 <strong>음함수적 오일러 방법(implicit Euler method)</strong> 라고 한다. 음함수적이라는 이름이 붙는 이유는 <span class="math inline">\(f(t,\,x)\)</span> 함수가 <span class="math inline">\(x\)</span> 에 의존할 경우 <a href="#eq-backward_euler_method" class="quarto-xref">식&nbsp;2</a> 는 우리가 이미 알고 있는 <span class="math inline">\(t_i\)</span> 와 <span class="math inline">\(x(t_i)=x_i\)</span> 에 대해</p>
+\tag{6}\]</span></span></p>
+<p>을 얻는다. 이를 통해 <span class="math inline">\(x(t)\)</span> 를 얻는 방법을 <strong>후방 오일러 방법(backward Euler method)</strong> 혹은 <strong>음함수적 오일러 방법(implicit Euler method)</strong> 라고 한다. 음함수적이라는 이름이 붙는 이유는 <span class="math inline">\(f(t,\,x)\)</span> 함수가 <span class="math inline">\(x\)</span> 에 의존할 경우 <a href="#eq-backward_euler_method" class="quarto-xref">식&nbsp;6</a> 는 우리가 이미 알고 있는 <span class="math inline">\(t_i\)</span> 와 <span class="math inline">\(x(t_i)=x_i\)</span> 에 대해</p>
 <p><span class="math display">\[
 \overline{x} - x_i + f(t_i, \overline{x})=0
 \]</span></p>
@@ -685,7 +728,7 @@ x_j(t + h) \approx x_j(t) + x_i'(t)h
 \dfrac{dy}{dt} &amp; = x(\rho - z)-y, \\
 \dfrac{dz}{dt} &amp;= xy-\beta z.
 \end{aligned}
-\tag{3}\]</span></span></p>
+\tag{7}\]</span></span></p>
 <p><span class="math inline">\(\boldsymbol{x} =\begin{bmatrix} x &amp; y &amp; z\end{bmatrix}^T\)</span> 로 놓고 다변수 오일러 방법을 통해 구해보자. 어떤 조건에서 위의 미분방정식의 해가 나비를 닮았기 때문에 함수 이름을 <code>butterfly3d</code> 로 하였다. <span class="math inline">\(\sigma=10\)</span>, <span class="math inline">\(\rho=28\)</span>, <span class="math inline">\(\beta=8/3\)</span> 일 때,</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">butterfly3d</span>(v, σ<span class="op">::</span><span class="dt">Real</span>, ρ<span class="op">::</span><span class="dt">Real</span>, β<span class="op">::</span><span class="dt">Real</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="fu">σ*</span>(v[<span class="fl">2</span>]<span class="op">-</span>v[<span class="fl">1</span>]), v[<span class="fl">1</span>]<span class="fu">*</span>(ρ <span class="op">-</span> v[<span class="fl">3</span>])<span class="op">-</span>v[<span class="fl">2</span>], v[<span class="fl">1</span>]<span class="op">*</span>v[<span class="fl">2</span>]<span class="op">-</span>β<span class="op">*</span>v[<span class="fl">3</span>]]</span>
@@ -721,7 +764,7 @@ x'(t) &amp;= y(t)
 <p>가장 간단한 1차원 조화진동자 문제를 보자. 미분방정식이</p>
 <p><span id="eq-sho1d"><span class="math display">\[
 \dfrac{d^2 x(t)}{dt^2} = -k\cdot x(t)
-\tag{4}\]</span></span></p>
+\tag{8}\]</span></span></p>
 <p>로 주어졌을 때 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 놓으면,</p>
 <p><span class="math display">\[
 \boldsymbol{y}(t+h) = \begin{bmatrix} x(t+h) \\ x'(t+h)\end{bmatrix} = \begin{bmatrix} x(t) + x'(t)h \\ x'(t) -k  x(t) h \end{bmatrix} = \boldsymbol{y}(t) + h\begin{bmatrix} 0 &amp; 1\\ -k &amp; 0\end{bmatrix} \boldsymbol{y}(t)
@@ -886,7 +929,7 @@ t_{i+1}&amp;=t_{i}+h, \\
 <h2 data-number="7" class="anchored" data-anchor-id="예제-examples"><span class="header-section-number">7</span> 예제 (Examples)</h2>
 <section id="단순-조화-진동자" class="level3">
 <h3 class="anchored" data-anchor-id="단순-조화-진동자">단순 조화 진동자</h3>
-<p><a href="#eq-sho1d" class="quarto-xref">식&nbsp;4</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
+<p><a href="#eq-sho1d" class="quarto-xref">식&nbsp;8</a> 로 주어진 단순 조화 진동자 문제를 오일러 방법과 RK2, RK4 로 풀어보자. 오일러 방법에서와 같이 <span class="math inline">\(\boldsymbol{x}(t) = \begin{bmatrix} x(t) \\ x'(t) \end{bmatrix}\)</span> 로 로 놓고 수치해석적으로 풀 수 있다.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sho1d</span>(y<span class="op">::</span><span class="dt">Vector{&lt;:Real}</span>, k<span class="op">::</span><span class="dt">Real</span>, x0<span class="op">=</span><span class="fl">0.0</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [y[<span class="fl">2</span>], <span class="fu">-k*</span>(y[<span class="fl">1</span>]<span class="op">-</span>x0)]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
@@ -1420,8 +1463,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="pagination-link" aria-label="상미분 방정식의 경계값 문제">
-        <span class="nav-page-text">상미분 방정식의 경계값 문제</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="pagination-link" aria-label="상미분 방정식의 초기값 문제-II">
+        <span class="nav-page-text">상미분 방정식의 초기값 문제-II</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

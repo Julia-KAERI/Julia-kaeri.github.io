@@ -13,6 +13,8 @@ crossref:
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
 ::: {#thm-Weierstrass_approximation_theorem}
 
 #### 바이어슈트라스 근사 정리
@@ -25,6 +27,10 @@ $$
 
 인 다항식 $P(x)$ 가 항상 존재한다. 
 :::
+
+</div>
+
+</br>
 
 이 정리에 대한 증명은 해석학(Analysis) 교과서(예를 들면, Terrence Tao의 해석학 교과서 2권) 를 참고하라.
 
@@ -251,6 +257,7 @@ end
 
 ### 다항식을 이용한 보간법의 오차 {#sec-error_for_polynomial_interpolation}
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
 ::: {#prp-roll_theorem_many_x0}
 
@@ -264,6 +271,9 @@ $$
 
 :::
 
+</div>
+
+</br>
 
 ::: {.proof}
 

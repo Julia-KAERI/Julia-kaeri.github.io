@@ -243,7 +243,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일변수 다항식의 Julia 구현</span></a>
+ <span class="menu-text">Interude : 일변수 다항식의 Julia 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -255,7 +255,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">보간법의 구현</span></a>
+ <span class="menu-text">Interude : 보간법의 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -296,19 +296,25 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식의 초기값 문제</span></a>
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Approximation</span></a>
   </div>
 </li>
@@ -919,12 +925,15 @@ N_{k, m+1} = \dfrac{1}{4^{m} -1} \left[4^{m}N_{k+1, m}  - N_{k, m}\right] + O(h^
 <p>  (<span class="math inline">\(5\)</span>) <span class="math inline">\(n\ge 1\)</span> 에 대한 <span class="math inline">\(P_n(x)\)</span> 는 <span class="math inline">\([-1,\,1]\)</span> 구간에서 <span class="math inline">\(n\)</span> 개의 서로 다른 근을 갖는다.</p>
 <p>  (<span class="math inline">\(6\)</span>) 임의의 <span class="math inline">\(n\)</span> 차 다항식은 <span class="math inline">\(P_1(x),\ldots,\,P_n(x)\)</span> 의 선형결합으로 표현 할 수 있다.</p>
 <p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="prp-gaussian_quadrature_1" class="theorem proposition">
 <p><span class="theorem-title"><strong>명제 1</strong></span> <span class="math inline">\(P_n(x)\)</span> 에 대한 <span class="math inline">\(n\)</span> 개의 근을 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 이라고 하고 <span class="math inline">\(c_i = \displaystyle \int_{-1}^1 \prod_{j=1,\, j\ne i}^n \dfrac{x-x_j}{x_i-x_j}\, dx\)</span> 라고 하면 임의의 다항식 <span class="math inline">\(p(x)\)</span> 에 대해 다음이 성립한다.</p>
 <p><span class="math display">\[
 \int_{-1}^1 p(x) \, dx = \sum_{i=1}^n c_i p(x_i).
 \]</span></p>
 </div>
+</div>
+<p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) 우선 <span class="math inline">\(p(x)\)</span> 의 차수가 <span class="math inline">\(n\)</span> 보다 작은 경우를 보자. <span class="math inline">\(p(x)\)</span> 를 <a href="../../src/numerical_analysis_using_julia/05_interpolation.html#sec-interpolation_lagrange">라그랑쥬 다항식</a>에 대해 표현하면</p>
 <p><span class="math display">\[
@@ -1530,8 +1539,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="pagination-link" aria-label="보간법의 구현">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">보간법의 구현</span>
+      <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="pagination-link" aria-label="Interude : 보간법의 구현">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interude : 보간법의 구현</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -1,5 +1,5 @@
 ---
-title: "상미분 방정식의 초기값 문제"
+title: "상미분 방정식의 초기값 문제-I"
 
 number-sections: true
 number-depth: 2
@@ -138,24 +138,9 @@ $$
 
 </br>
 
-## 일계 선형 미분방정식의 해의 존재성과 유일성
+## 상미분 방정식의 해에 대한 수학적 기반
 
-이제 일계 선형미분방정식이 해를 가질 수 있는 수학적 조건에 대해 알아보기로 하자.
-
-
-::: {.callout-note appearance="simple" icon="false"}
-::: {#def-convex}
-
-#### convex
-
-집합 $D\subset \mathbb{R}^{2}$ 가 모든 $(t_1,\,x_1),\, (t_2,\,x_2)\in D$ 에 대해 
-$$
-\lambda (t_1,\,x_1) + (1-\lambda)(t_2,\,x_2)\in D
-$$
-
-일 때 $D$ 를 **convex** 라고 한다.
-:::
-:::
+이제 일계 선형미분방정식이 해를 가질 수 있는 수학적 조건에 대해 알아보기로 하자. 
 
 </br>
 
@@ -164,43 +149,108 @@ $$
 
 #### Lipschitz 조건
 
-$D\subset \mathbb{R}^2$ 에서 연속인 함수 $f(t,x) : D \to \mathbb{R}$ 가 모든 $(t,x_1),\, (t,x_2)\in D$ 에 대해 어떤 $L>0$ 이 존재하여
+$D = \{ t,\,\boldsymbol{x} : a \le t \le b,\, \boldsymbol{x}\in \mathbb{R}^n\}$ 에서 연속인 함수 $\boldsymbol{f}(t, \boldsymbol{x}) : D \to \mathbb{R}^n$ 가 모든 $(t, \boldsymbol{x}_1),\, (t,\boldsymbol{x}_2)\in D$ 에 대해 어떤 $L>0$ 이 존재하여
 
 $$
-|f(t, x_1) - f(t, x_2)| \le L|x_1-x_2|
+\|\boldsymbol{f}(t, \boldsymbol{x}_1) - \boldsymbol{f}(t, \boldsymbol{x}_2)\| \le L\| \boldsymbol{x}_1-\boldsymbol{x}_2\|
 $$
 
-를 만족할 때 이 함수 $f$ 는 $D$ 에서 **Lipschitz 조건** 을 만족한다 라고 하며 이때의 $L$ 을 $f$ 에 대한 **Lipschitz 상수** 라고 한다. 
+를 만족할 때 이 함수 $\boldsymbol{f}$ 는 $D$ 에서 **Lipschitz 조건** 을 만족한다 라고 하며 이때의 $L$ 을 $\boldsymbol{f}$ 에 대한 **Lipschitz 상수** 라고 한다. 
 
 :::
 
 :::
+
 
 </br>
 
+아래의 정리는 일계 선형 미분방정식의 초기값 문제의 해의 존재성과 유일성을 말한다. 증명은 꽤나 긴데 여기서는 생략한다. 관심이 있으면 Moris Tenenbaum, Harriy Poland 의 *Ordinary Differential Equations* 나 J. Store, R. Bulirsch 의 *Introduction to Numerical Analysis* 와 거기에서의 참고목록을 참고하라. 
 
-::: {#prp-convex}
-$f(t,\,x):D \subset  \mathbb{R}^{2} \to \mathbb{R}^m$ 이 convex $D$ 에서 정의되어 있으며 어떤 $L>0$ 이 존재하여
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
-$$
-\forall (t,\,\boldsymbol{x})\in D,\qquad \left|\dfrac{\partial}{\partial x} f(t, x) \right| \le L
-$$
+::: {#thm-lipschitz_condtion}
 
-이면 $f$ 는 변수 $x$ 와 Lipschitz 상수 $L$ 에 대해 Lipschitz 조건을 만족한다.
+$D = \{ (t,\,\boldsymbol{x}) : a \le t \le b,\, \boldsymbol{x}\in \mathbb{R}^n\}$ 에서 정의된 연속인 함수 $\boldsymbol{f}:D \to \mathbb{R}^n$ 이 Lipshitz 조건을 만족한다면 각각의 $(t_0,\, \boldsymbol{x}_0) \in D$ 에 대해 다음을 만족하는 $\boldsymbol{x}:\mathbb{R} \to \mathbb{R}^n$ 이 항상 존재한다.
+
+&emsp; ($1$) $\boldsymbol{x}\in C^1_{[a,\,b]}$,
+
+&emsp; ($2$) $\boldsymbol{x}'(t) = f(t,\, \boldsymbol{x}(t))$, 
+
+&emsp; ($3$) $\boldsymbol{x}(t_0) =\boldsymbol{x}_0$. 
 
 :::
+
+</div>
+
+</br>
+
+위의 정리는 $\boldsymbol{f}(t,\,\boldsymbol{x})$ 가 Lipschitz 조건을 만족한다면 어떠한 초기조건에 대해서도 $\boldsymbol{x}'(t) = \boldsymbol{f}(t,\,\boldsymbol{x})$ 를 만족하는 $C^1$ 급의 $\boldsymbol{x}(t)$ 가 항상 존재함을 보장한다. 
+
+</br>
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
+::: {#thm-ode_solution}
+
+$\boldsymbol{f}:D \to \mathbb{R}$ 이 $D$ 에서 연속이며 Lipschitz 상수 $L$ 에 대해 Lipschitz 조건을 만족한다고 하자. 미분방정식 $\boldsymbol{x}' = \boldsymbol{f}(t,\,\boldsymbol{x})$ 에 대해 초기조건이 $(t_0,\, \boldsymbol{x}_1)$ 과  $(t_0,\, \boldsymbol{x}_2)$ 로 주어졌을 때 각각의 미분방정식의 해를 $\boldsymbol{x}(t;\boldsymbol{x}_1)$, $\boldsymbol{x}(t,;\boldsymbol{x}_2)$ 라고 하면 다음이 성립한다.
+
+$$
+\|\boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t; \boldsymbol{x}_2)\| \le e^{L|t-t_0|} \|\boldsymbol{x}_1 -\boldsymbol{x}_2\| .
+$$
+:::
+
+</div>
+
+</br>
+
 ::: {.proof}
 
-$(t,\,x_1),\, (t,\,x_2)\in D$ 일 때 다변수 함수의 평균값 정리에 의해 
+$\boldsymbol{x}' = \boldsymbol{f}(t,\boldsymbol{x})$ 이므로 $\boldsymbol{x}(t) = \boldsymbol{x}_0 + \int_{t_0}^t \boldsymbol{f}(t,\boldsymbol{x})\, dt$ 이다. 따라서
+$$
+\boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2) = \boldsymbol{x}_1 - \boldsymbol{x}_2 + \int_{t_0}^t \left[\boldsymbol{f}(t, \boldsymbol{x}(t,\,\boldsymbol{x}_1)) - \boldsymbol{f}(t, \boldsymbol{x}(t;\boldsymbol{x}_2))\right]\, dt
+$$
+
+이며,
 
 $$
-f(t,\,x_1) - f(t,\,x_2) = (x_1-x_2)\dfrac{\partial }{\partial x}f(t,\,x)
+\| \boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|  \le \| \boldsymbol{x}_1 - \boldsymbol{x}_2 \| + \int_{t_0}^t \| \boldsymbol{f}(t, \boldsymbol{x}(t,\,\boldsymbol{x}_1)) - \boldsymbol{f}(t, \boldsymbol{x}(t;\boldsymbol{x}_2))\|\, dt
+$$ {#eq-thm_ode_solution_0}
+
+이다. Lipschitz 조건을 이용하면
+
+
+$$
+\| \boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|  \le \| \boldsymbol{x}_1 - \boldsymbol{x}_2 \| +  L\int_{t_0}^t \| \boldsymbol{x}(t,\,\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|\, dt
+$$ {#eq-thm_ode_solution_1}
+
+이다. 여기서
+
+$$
+\Phi(t) := \int_{t_0}^t \| \boldsymbol{x}(t,\,\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|\, dt
 $$
 
-를 만족하는 $x\in (x_1,\, x_2)$ 가 항상 존재한다. $D$ 가 convex 이므로 $(t,\,x)\in D$ 이다. 따라서 
+라고 하면 $\Phi'(t) =\| \boldsymbol{x}(t,\,\boldsymbol{x}_1) - \boldsymbol{x}(t;\boldsymbol{x}_2)\|$ 이며,  @eq-thm_ode_solution_1 에 따라
 
 $$
-|f(t,\,x_1) - f(t,\,x_2) | = \left|(x_1-x_2)\dfrac{\partial }{\partial x}f(t,\,x)\right| \le L|x_1-x_2|
+\Phi'(t) \le \|\boldsymbol{x}_1-\boldsymbol{x}_2\| + L\Phi(t)
+$$
+
+이다. $\Phi(t_0)=0$ 인데 위식을 미분방정식 $\Phi'(t) = \|\boldsymbol{x}_1-\boldsymbol{x}_2\| + L\Phi(t)$ 와 초기조건 $\Phi(t_0)=0$  에 대해 풀면
+
+$$
+\Phi(t) = e^{L(t-t_0)} \int_{t_0}^t \left(\Phi'(s) - L \Phi (s)\right) e^{L(s-t_0)}\, ds
+$$
+
+이다 $\Phi(t)$ 의 정의에 의해 $\Phi(t)\ge 0$ 이며,  $\|\Phi(s)-L\Phi(s)\| \le \|\boldsymbol{x}_1-\boldsymbol{x}_2\|$ 이므로 $t>t_0$ 에 대해
+
+$$
+0 \le \Phi(t) \le e^{L(t-t_0)} \|\boldsymbol{x}_1-\boldsymbol{x}_2 \| \int_{t_0}^t e^{L(s-t_0)}\, ds = \dfrac{\|\boldsymbol{x}_1-\boldsymbol{x}_2\|}{L} (e^{L(t-t_0)}-1)
+$$ {#eq-thm_ode_solution_2}
+
+이다. 따라서 @eq-thm_ode_solution_1 을 생각하면
+
+$$
+\|\boldsymbol{x}(t;\boldsymbol{x}_1) - \boldsymbol{x}(t; \boldsymbol{x}_2)\| \le e^{L|t-t_0|} \|\boldsymbol{x}_1-\boldsymbol{x}_2\|
 $$
 
 이다. $\square$
@@ -209,13 +259,34 @@ $$
 
 </br>
 
-아래의 정리는 일계 선형 미분방정식의 초기값 문제의 해의 존재성과 유일성을 말한다. 증명은 꽤나 긴데 여기서는 생략한다. 관심이 있으면 Moris Tenenbaum, Harriy Poland 의 *Ordinary Differential Equations* 를 참고하라. 
+<div class="border" style="background-color:#F2F4F4  ;padding:20px;">
+<!-- <div class="border" style="background-color:#F2ECD0  ;padding:20px;"> -->
 
-::: {#thm-lipschitz_condtion}
+::: {#thm-ode-solution_2}
 
-$D = [a,\,b] \times (-\infty,\,\infty)$ 에서 정의된 함수 $f(t,\,x) :D \to \mathbb{R}$ 이 유계이며 $(t_0,\, x_0) \in D$ 라고 하자. 이 때 $x'(t) = f(t,\,x)$ 와 $x(t_0)= x_0$ 를 만족하는 $x:[a,,\,b]\to \mathbb{R}$ 이 항상 존재하며 유일하다.
+@thm-ode_solution 의 조건에 더해 $\boldsymbol{f}$ 의 $\boldsymbol{x}$ 에 대한 야코비 행렬 $\nabla_\boldsymbol{x}\boldsymbol{f}$ 가  $D$ 에서 존재하며 연속이고 유계라면 즉, 모든 $(t,\,\boldsymbol{x})\in D$ 에 대해 
+
+$$
+\|\nabla_{\boldsymbol{x}} \boldsymbol{f}(t,\,\boldsymbol{x})\| \le L
+$$
+ 
+라면 임의의 초기조건 $(t_0,\,\boldsymbol{x}_0)\in D$ 에서의 미분방정식 $\boldsymbol{x}'=\boldsymbol{f}(t,\boldsymbol{x})$ 의 해 $\boldsymbol{x}(t;\boldsymbol{x}_0)$ 는 $D$ 에서 연속이며 미분가능하다. 또한 그 도함수
+
+$$
+\boldsymbol{Z}(t; \boldsymbol{x}_0) := \nabla_{\boldsymbol{x}_0} \boldsymbol{x}(t; \boldsymbol{x}_0)
+$$
+
+는 아래의 미분방정식의 초기값 문제의 해이다.
+
+$$
+\dfrac{d}{dt}\boldsymbol{Z}(t; \boldsymbol{x}_0) = \nabla_{\boldsymbol{x}_0} \boldsymbol{f}(t, \boldsymbol{x}(t; \boldsymbol{x}_0)) \boldsymbol{z},\qquad \boldsymbol{Z}(t_0,\,\boldsymbol{x}_0) = 1.
+$$ {#eq-ode_solution_2_1}
 
 :::
+
+</div></br>
+
+$\boldsymbol{Z}(t;\boldsymbol{x}_0)$ 와 $\boldsymbol{Z}'(t;\boldsymbol{x}_0)$ 는 $n \times n$ 행렬임에 유의하라. 따라서 @eq-ode_solution_2_1 은 $n \times n$ 개의 미분방정식을 표현한다.
 
 
 </br>

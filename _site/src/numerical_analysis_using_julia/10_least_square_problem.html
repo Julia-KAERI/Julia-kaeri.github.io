@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" rel="next">
+<link href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" rel="next">
 <link href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -209,7 +209,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일변수 다항식의 Julia 구현</span></a>
+ <span class="menu-text">Interude : 일변수 다항식의 Julia 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -221,7 +221,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">보간법의 구현</span></a>
+ <span class="menu-text">Interude : 보간법의 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -262,19 +262,25 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식의 초기값 문제</span></a>
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Approximation</span></a>
   </div>
 </li>
@@ -371,11 +377,14 @@ window.Quarto = {
 \boldsymbol{H}_{\boldsymbol{v}} = I_n- 2\boldsymbol{v}\boldsymbol{v}^{\ast},\qquad \text{where } \|\boldsymbol{v}\|=1.
 \]</span></p>
 <p><br></p>
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 <div id="prp-perperties_of_householder_matrix" class="theorem proposition">
 <p><span class="theorem-title"><strong>명제 1</strong></span> 위와 같이 정의된 하우스홀더 행렬 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\)</span> 은 다음의 특징을 가진다.</p>
 <p>  (<span class="math inline">\(1\)</span>) 에르미트 행렬이다. 즉 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}=  \boldsymbol{H}_{\boldsymbol{v}}^\ast\)</span>.</p>
 <p>  (<span class="math inline">\(2\)</span>) 유니타리 행렬이다. 즉 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} (\boldsymbol{H}_{\boldsymbol{v}})^\ast = I\)</span>.</p>
 </div>
+</div>
+<p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) <span class="math inline">\(\boldsymbol{v}\)</span> 가 단위벡터일 경우에만 보여도 된다. <span class="math inline">\(\boldsymbol{H} = \boldsymbol{H}_{\boldsymbol{v}}\)</span> 라 하면,</p>
 <p><span class="math display">\[
@@ -948,8 +957,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="pagination-link" aria-label="상미분 방정식의 초기값 문제">
-        <span class="nav-page-text">상미분 방정식의 초기값 문제</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="pagination-link" aria-label="상미분 방정식의 초기값 문제-I">
+        <span class="nav-page-text">상미분 방정식의 초기값 문제-I</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

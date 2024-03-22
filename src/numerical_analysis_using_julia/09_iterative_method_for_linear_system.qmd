@@ -46,6 +46,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#prp-spectral_radius} 
 
 $\boldsymbol{A}\in \mathbb{F}^{n \times n}$ 에 대해 
@@ -55,6 +57,8 @@ $\boldsymbol{A}\in \mathbb{F}^{n \times n}$ 에 대해
 
 &emsp; ($2$) $\rho(\boldsymbol{A})$ 는 모든 자연스러운 노름에 대해  $\|\boldsymbol{A}\|$ 보다 작거나 같다. 
 :::
+
+</div></br>
 
 ::: {.proof}
 ($1$) 증명은 Isacson, Keller 의 *Analysis of numerical method* (1966) 을 참고하라
@@ -85,6 +89,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#prp-convergent_matrix}
 
 정사각 행렬 $\boldsymbol{A}\in \mathbb{F}^{n \times n}$ 에 대해 다음은 동치이다.
@@ -98,6 +104,8 @@ $$
 &emsp; ($3$) $\displaystyle \lim_{k\to \infty} \boldsymbol{A}^k \boldsymbol{x} = \boldsymbol{0}$. 
 
 :::
+
+</div></br>
 
 ::: {.proof}
 증명은 Isacson, Keller 의 *Analysis of numerical method* (1966) 을 참고하라
@@ -121,6 +129,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#lem-iterative_method_1}
 
 행렬 $\boldsymbol{T}\in \mathbb{F}^{n \times n}$ 의 스펙트럼 반경이 $1$ 보다 작다면 $\boldsymbol{I}-\boldsymbol{T}$ 는 가역행렬이며,
@@ -132,6 +142,8 @@ $$
 이다.
 
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -150,6 +162,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#thm-iterative_method}
 
 임의의 $\boldsymbol{x}^{(0)},\, \boldsymbol{c}\in \mathbb{F}^{n}$ 과 행렬 $\boldsymbol{T}\in \mathbb{F}^{n \times n}$ 에 대해 
@@ -161,6 +175,8 @@ $$
 에 의해 생성되는 수열 $\langle \boldsymbol{x}^{k}\rangle$ 이 $\boldsymbol{x}=\boldsymbol{Tx}+\boldsymbol{c}$ 를 만족하는 유일한 $\boldsymbol{x}$ 로 수렴할 필요충분조건은 $\rho(\boldsymbol{T})<1$ 이다.
 
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -194,7 +210,7 @@ $$
 :::
 
 </br>
-
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 ::: {#cor-iterative_method}
 
 임의의 자연스러운 행렬 노름에 대해 $\|\boldsymbol{T}\|<1$ 이면 임의의 벡터 $\boldsymbol{c}$ 에 대해 $\boldsymbol{x}^{(k+1)} = \boldsymbol{Tx}^{(k)}+\boldsymbol{c}$ 에 의해 생성되는 수열 $\langle \boldsymbol{x}^{(k)} \rangle$ 은 초기값 $\boldsymbol{x}^{(0)}$ 에 무관하게 $\boldsymbol{x}=\boldsymbol{Tx} + \boldsymbol{c}$ 를 만족하는 $\boldsymbol{x}$ 로 수렴한다. 또한 다음을 만족한다.
@@ -203,6 +219,8 @@ $$
 
 &emsp; ($2$) $\displaystyle \|\boldsymbol{x}-\boldsymbol{x}^{(k)}\| \le \dfrac{\|\boldsymbol{T}\|^k}{1-\|\boldsymbol{T}\|} \|\boldsymbol{x}^{(1)}-\boldsymbol{x}^{(0)}\|$.
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -422,6 +440,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#thm-kahan}
 #### Kahan 의 정리
 
@@ -434,12 +454,15 @@ $$
 이 성립한다.
 :::
 
+</div></br>
 
 </br>
 
 즉 $0 <\omega <2$ 는 해를 구할 수 있는 필요조건이다.
 
 </br>
+
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 
 ::: {#thm-ostrowski-reich}
 
@@ -449,7 +472,10 @@ $\boldsymbol{A}\in \mathcal{M}_n(\mathbb{R})$ 이 positive definite 이고 $0<\o
 
 :::
 
-</br>
+
+</div></br>
+
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 
 ::: {#thm-positive_definite_tridiagonal}
 
@@ -464,13 +490,15 @@ $$
 :::
 
 
-</br>
+</div></br>
 
 ## 오차 
 
 가역 행렬 $\boldsymbol{A}\in \mathcal{M}_{n\times n}\mathbb{R}$ 에 대해 $\boldsymbol{Ax}=\boldsymbol{b}$ 를 반복법으로 풀 때 우리는 어떤 오차 내의 계산값을 얻게 된다. 이 계산값을 $\overline{\boldsymbol{x}}$ 라고 할 때 $\boldsymbol{r} = \boldsymbol{b}-\boldsymbol{A}\overline{\boldsymbol{x}}$ 를 **오차 벡터(residual vector)** 라고 할 수 있다. 정해진 노름에 대해 $\|\boldsymbol{r}\|$ 이 작다면 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|$ 가 작을 것이라고 예상 할 수 있지만 항상 그런것은 아니다. 
 
 </br>
+
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 
 ::: {#prp-condition_number}
 
@@ -487,6 +515,8 @@ $$
 $$
 
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -542,6 +572,8 @@ $\boldsymbol{A}$ 가 positive definite 이며 내적이 유클리드 내적, 즉
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#prp-congjugate_gradient}
 
 $\boldsymbol{A}\in \mathcal{M}_n (\mathbb{R})$ 가 positive definite 이고 $\boldsymbol{x}_0 \in \mathcal{M}_n(\mathbb{R})$ 일 때 다음은 동치이다.
@@ -551,6 +583,7 @@ $\boldsymbol{A}\in \mathcal{M}_n (\mathbb{R})$ 가 positive definite 이고 $\bo
 &emsp; ($2$) $g(\boldsymbol{x})= \langle \boldsymbol{Ax},\,\boldsymbol{x}\rangle -2 \langle \boldsymbol{b}, \boldsymbol{x}\rangle$ 의 최소값은 $g(\boldsymbol{x}_0)$ 이다.
 :::
 
+</div></br>
 
 ::: {.proof}
 
@@ -646,11 +679,15 @@ end
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#prp-A_orthogonal_vectors_are_linearly_independent}
 
 Positive definite $\boldsymbol{A}$ 에 대해 $\{\boldsymbol{v}^{(1)}, \ldots, \boldsymbol{v}^{(m)}\}$ 가 $\boldsymbol{A}$-직교 벡터일 때 이 벡터들은 선형독립이다.
 
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -670,6 +707,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#thm-A-orthogonal_method}
 
 Positive definite $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 에 대해 $\{\boldsymbol{v}^{(1)}, \ldots,\,\boldsymbol{v}^{(n)}\}$ 이 $\boldsymbol{A}$-직교 벡터라고 하자. 임의의 $\boldsymbol{x}_1\in \mathcal{M}$ 과 $k=1,\ldots,\,n$ 에 대해 
@@ -686,6 +725,8 @@ $$
 
 
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -738,11 +779,15 @@ $$
 
 이제 $\boldsymbol{A}$-직교 벡터를 구하는 방법을 알아볼 차례이다. 다음을 보자.
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#thm-A_orthogonal_vectors_1}
 
 Positive definite $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 에 대해 $\boldsymbol{r}^{(k)}=\boldsymbol{b}-\boldsymbol{Ax}^{(k)}$ 이라 하면 $j=1,\ldots,\,k-1$ 에 대해 $\langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle=0$ 이다.
 
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -771,6 +816,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#thm-A_orthogonal_vectors_2}
 
 아래와 같이 정의된 $\boldsymbol{v}^{(k)}$ $(k\ge 2)$ 는 $j=1,\,\ldots,k-1$ 에 대해 $\langle \boldsymbol{v}^{(k)},\, \boldsymbol{Av}^{(j)}\rangle = 0$ 이다.
@@ -780,6 +827,8 @@ $$
 $$
 
 :::
+
+</div></br>
 
 ::: {.proof}
 

@@ -243,7 +243,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일변수 다항식의 Julia 구현</span></a>
+ <span class="menu-text">Interude : 일변수 다항식의 Julia 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -255,7 +255,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">보간법의 구현</span></a>
+ <span class="menu-text">Interude : 보간법의 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -296,19 +296,25 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식의 초기값 문제</span></a>
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/12_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/13_approximation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Approximation</span></a>
   </div>
 </li>
@@ -409,6 +415,7 @@ window.Quarto = {
 <h2 data-number="1" class="anchored" data-anchor-id="바이어슈트라스-근사정리"><span class="header-section-number">1</span> 바이어슈트라스 근사정리</h2>
 <p>이산적인 데이터 <span class="math inline">\((x_1,\,y_1),\,(x_2,\,y_2),\ldots,\, (x_N,\, y_N)\)</span> 가 주어졌으며 <span class="math inline">\(x_1&lt;x_2&lt;\cdots &lt;x_N\)</span> 으로 정렬되어 있다고 하자. 이 때 주어진 데이터를 바탕으로 임의의 <span class="math inline">\(x\)</span> 값을 추측할 경우, <span class="math inline">\(x_1 \le x \le x_N\)</span> 의 <span class="math inline">\(x\)</span> 값에 대해 추측하는 것을 보간법(interpolation) 이라 하고, <span class="math inline">\(x&lt;x_1\)</span> 이거나 <span class="math inline">\(x &gt;x_N\)</span> 일 경우 추축하는것을 외삽법(extrapolation) 이라 한다. 여기서는 보간법에 대해 다루기로 한다. 기본적으로 여기서 다루는 보간법은 데이터를 다항식으로 근사시키는데, 이 방법은 아래의 바이어스트라스 근사 정리(Weierstrass approximation theorem)로 정당화된다.</p>
 <p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="thm-Weierstrass_approximation_theorem" class="theorem">
 <p><span class="theorem-title"><strong>정리 1 (바이어슈트라스 근사 정리)</strong></span> 함수 <span class="math inline">\(f : X \subset \mathbb{R} \to \mathbb{R}\)</span> 가 <span class="math inline">\([a,\,b] \subset I\)</span> 구간에서 연속일 때, 임의의 <span class="math inline">\(\varepsilon &gt; 0\)</span> 에 대해</p>
 <p><span class="math display">\[
@@ -416,6 +423,8 @@ window.Quarto = {
 \]</span></p>
 <p>인 다항식 <span class="math inline">\(P(x)\)</span> 가 항상 존재한다.</p>
 </div>
+</div>
+<p><br></p>
 <p>이 정리에 대한 증명은 해석학(Analysis) 교과서(예를 들면, Terrence Tao의 해석학 교과서 2권) 를 참고하라.</p>
 <p><br></p>
 </section>
@@ -577,6 +586,7 @@ _{{\Large \boldsymbol{N}}}
 </section>
 <section id="sec-error_for_polynomial_interpolation" class="level3">
 <h3 class="anchored" data-anchor-id="sec-error_for_polynomial_interpolation">다항식을 이용한 보간법의 오차</h3>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="prp-roll_theorem_many_x0" class="theorem proposition">
 <p><span class="theorem-title"><strong>명제 1</strong></span> <span class="math inline">\(f\in C^{n}[a,\,b]\)</span> 이고 <span class="math inline">\(\{x_1,\ldots,\,x_n\}\subset [a,\,b]\)</span> 이며 <span class="math inline">\(i\ne j \implies x_i \ne x_j\)</span> 라고 하자. <span class="math inline">\(P_{n-1}(x)\)</span> 가 <span class="math inline">\(P_{n-1}(x_i) = f(x_i)\)</span> (<span class="math inline">\(i=1,\ldots,\,n\)</span>) 인 <span class="math inline">\(n-1\)</span> 차 다항식이라면</p>
 <p><span class="math display">\[
@@ -584,6 +594,8 @@ f(x) - P_{n-1}(x) = \dfrac{f^{(n)}(\xi)}{n!} \prod_{j=1}^n (x-x_j)
 \]</span></p>
 <p>를 만족하는 <span class="math inline">\(\xi \in [a,\,b]\)</span> 가 존재한다.</p>
 </div>
+</div>
+<p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(F(t)\)</span> 를 다음과 같이 정의하자.</p>
 <p><span class="math display">\[
@@ -1378,13 +1390,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="pagination-link" aria-label="일변수 다항식의 Julia 구현">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">일변수 다항식의 Julia 구현</span>
+      <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="pagination-link" aria-label="Interude : 일변수 다항식의 Julia 구현">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interude : 일변수 다항식의 Julia 구현</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="pagination-link" aria-label="보간법의 구현">
-        <span class="nav-page-text">보간법의 구현</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="pagination-link" aria-label="Interude : 보간법의 구현">
+        <span class="nav-page-text">Interude : 보간법의 구현</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

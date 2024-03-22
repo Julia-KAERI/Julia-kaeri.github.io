@@ -678,6 +678,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
 ::: {#prp-gaussian_quadrature_1}
 
 $P_n(x)$ 에 대한 $n$ 개의 근을 $x_1,\ldots,\,x_n$ 이라고 하고 $c_i = \displaystyle \int_{-1}^1 \prod_{j=1,\, j\ne i}^n \dfrac{x-x_j}{x_i-x_j}\, dx$ 라고 하면 임의의 다항식 $p(x)$ 에 대해 다음이 성립한다.
@@ -687,6 +689,10 @@ $$
 $$
 
 ::: 
+
+</div>
+
+<br>
 
 ::: {.proof}
 

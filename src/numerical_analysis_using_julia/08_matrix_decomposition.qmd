@@ -39,12 +39,15 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
 ::: {#prp-strictly_diagonallly_dominat_matrix_is_invertible}
 
 엄격한 대각 지배 행렬은 가역행렬이다.
 
 :::
-
+</div>
+</br>
 
 ::: {.proof}
 
@@ -80,11 +83,15 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
 ::: {#prp-diagonally_dominant_matrix_and_LU_factorization}
 
 행에 대해 엄격한 대각 지배 행렬은 피보팅 없이 가우스-요르단 소거법을 수행 할 수 있다.
 
 :::
+
+</div> </br>
 
 ::: {.proof}
 
@@ -154,6 +161,8 @@ Positive definite 행렬은 복소수체에서 정의할 수도 있으나 여기
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
 ::: {#prp-positive_definite_matrix_1}
 
 $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 이 positive definite 일 경우 다음이 성립한다.
@@ -170,6 +179,8 @@ $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 이 positive definite �
 
 &emsp; ($6$) 모든 $i\ne j$ 에 대해 $(A_{ij})^2 < A_{ii} A_{jj}$ 이다.
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -218,6 +229,7 @@ $$
 
 이제 정사각 행렬 $\boldsymbol{A}$ 가 positive definite 인 것과 $\boldsymbol{A}$ 의 모든 선행 주 부분행렬의 행렬식이 $0$ 보다 큰 것이 동치임을 보이고자 한다. 이를 위해 몇가지 미리 보여야 할 것이 있다.
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
 ::: {#lem-positive_definite}
 
@@ -228,6 +240,8 @@ $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})$ 이 에르미트행렬�
 &emsp; ($2$) $\boldsymbol{Q}^\ast \boldsymbol{AQ}$ 가 positive definte 이다.
 
 :::
+
+</div></br>
 
 ::: {.proof}
 ($1 \implies 2$) $\boldsymbol{0}$ 벡터가 아닌 $\boldsymbol{v}\in \mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Qv}\ne \boldsymbol{0}$ 이다. $\boldsymbol{A}$ 가 positive definite 이므로, 
@@ -250,6 +264,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#prp-leading_principal_submatrix}
 
 #### 실베스터 판정법 (Sylvester's criterion) 
@@ -259,11 +275,12 @@ $$
 
 &emsp; ($1$) $\boldsymbol{A}$ 의 모든 선행 주 부분 행렬의 행렬식이 양수이다.
 
-&emsp; ($2$) $\boldsymbol{A}$ 는 positive definite 이다. [@prp-leading_principal_submatrix 가 실베스터 판정법이라고 불리우는 것은 임의의 에르미트 행렬이 positive definite 인지 아닌지를 확인하는 방법이기 때문이다.]{.aside}
+&emsp; ($2$) $\boldsymbol{A}$ 는 positive definite 이다. 
 
 :::
 
-
+</div></br>
+[@prp-leading_principal_submatrix 가 실베스터 판정법이라고 불리우는 것은 임의의 에르미트 행렬이 positive definite 인지 아닌지를 확인하는 방법이기 때문이다.]{.aside}
 
 ::: {.proof}
 
@@ -311,11 +328,14 @@ $$
 ## 숄레스키 분해
 
 ### $\boldsymbol{LL}^\ast$ 분해
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 
 ::: {#thm-cholesky_decomposition}
 Positive definite 행렬 $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})$은 어떤 모든 대각성분이 양수인 하삼각행렬 $\boldsymbol{L} \in \mathcal{M}_{n \times n}(\mathbb{F})$ 에 대해 $\boldsymbol{A}= \boldsymbol{LL}^\ast$ 이다.
 
 :::
+
+</div></br>
 
 ::: {.proof}
 수학적 귀납법으로 증명한다. $n=1$ 일 때 경우 $\boldsymbol{A}=\begin{bmatrix}a \end{bmatrix}$ 라면 @prp-positive_definite_matrix_1 의 ($4$) 에 의해 $a>0$ 이므로 $\boldsymbol{L}=\begin{bmatrix} \sqrt{a}\end{bmatrix}$ 이다. $n$ 일때 성립함을 가정하자. $\boldsymbol{A}\in \mathcal{M}_{(n+1)\times (n+1)}(\mathbb{F})$ 에 대해 
@@ -432,9 +452,13 @@ end
 
 ### $\boldsymbol{LDL}^\ast$ 분해
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#prp-decomposition_of_lower_triangular_matrix}
 대각성분이 모두 $0$ 이 아닌 하삼각 행렬 $\boldsymbol{L}$ 은 어떤 대각행렬 $\boldsymbol{\Delta}$ 와 대각성분이 $1$ 인 하삼각 행렬 $\boldsymbol{\Lambda}$ 에 대해 $\boldsymbol{L}=\boldsymbol{\Lambda}\boldsymbol{\Delta}$ 로 분해된다.
 :::
+
+</div></br>
 
 ::: {.proof}
 
@@ -504,6 +528,7 @@ $$ {#eq-householder_transformation_2}
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 
 ::: {#prp-perperties_of_householder_matrix}
 
@@ -513,6 +538,8 @@ $$ {#eq-householder_transformation_2}
 
 &emsp; ($2$) 유니타리 행렬이다. 즉 $\boldsymbol{H}_{\boldsymbol{v}} (\boldsymbol{H}_{\boldsymbol{v}})^\ast = I$.
 :::
+
+</div></br>
 
 ::: {.proof}
 ($1$) $\boldsymbol{v}$ 가 단위벡터일 경우에만 보여도 된다. $\boldsymbol{H} = \boldsymbol{H}_{\boldsymbol{v}}$ 라 하면, 
@@ -539,11 +566,15 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#cor-perperties_of_householder_matrix}
 
 실수성분의 하우스홀더 행렬 $\boldsymbol{H}_{\boldsymbol{v}} \in \mathcal{M}_{n \times n}(\mathbb{R})$ 은 대칭행렬이며 직교행렬이다.
 
 :::
+
+</div></br>
 
 </br>
 
@@ -623,11 +654,15 @@ $$ {#eq-householder_vector}
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
+
 ::: {#thm-qr_decomposition_1}
 
 $\boldsymbol{A}\in \mathcal{M}_{m \times n}(\mathbb{F})$ 일 때 어떤 isometry $\boldsymbol{Q}\in \mathcal{M}_{m \times m}(\mathbb{F})$ 와 상삼각 행렬 $\boldsymbol{R}\in \mathcal{M}_{m \times n}(\mathbb{F})$ 에 대해 $\boldsymbol{A}=\boldsymbol{QR}$ 이다.
 
 :::
+
+</div></br>
 
 ::: {.proof}
 

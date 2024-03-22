@@ -26,6 +26,7 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4;padding:5px;">
 
 ::: {#prp-perperties_of_householder_matrix}
 
@@ -35,8 +36,9 @@ $$
 
 &emsp; ($2$) 유니타리 행렬이다. 즉 $\boldsymbol{H}_{\boldsymbol{v}} (\boldsymbol{H}_{\boldsymbol{v}})^\ast = I$.
 
-
 :::
+
+</div></br>
 
 ::: {.proof}
 ($1$) $\boldsymbol{v}$ 가 단위벡터일 경우에만 보여도 된다. $\boldsymbol{H} = \boldsymbol{H}_{\boldsymbol{v}}$ 라 하면, 
