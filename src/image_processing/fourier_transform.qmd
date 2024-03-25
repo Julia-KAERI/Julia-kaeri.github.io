@@ -444,6 +444,19 @@ idft = v-> _dft(v, true)
 ```
 </br>
 
+참고로 정수 $k,\, N$ 에 대해 $1 = e^{-i2\pi } = e^{-i 2 \pi N(k-1)/N}$ 이므로 
+
+$$
+\begin{aligned}
+F_{-u} &= \dfrac{1}{N} \sum_{k=1}^N f_k \exp \left( \dfrac{i 2 \pi (u +1)(k-1) }{N}\right) \\
+&= \dfrac{1}{N} \sum_{k=1}^N f_k \exp \left( \dfrac{i 2 \pi (u +1)(k-1) }{N}\right) \exp \left( \dfrac{-i 2 \pi N (k-1)}{N} \right) \\
+&= \dfrac{1}{N} \sum_{k=1}^Nf_k \exp \left( \dfrac{i 2 \pi (N-u-1)(k-1)}{N}\right) \\
+&= F_{N-u}
+\end{aligned}
+$$
+
+이다. 이때문에 $u$ 의 범위를 $1\le u \le N$ 로 표현하는 것보다 $N$ 이 홀수일 때는 $-\dfrac{N-1}{2} \le u \le \dfrac{N-1}{2}$ 로, $N$ 이 짝수일 때는 $-\dfrac{N}{2} \le u \le \dfrac{N}{2}-1$ 로 관례적으로 표현한다. 
+
 
 
 ### 2차원 DFT
