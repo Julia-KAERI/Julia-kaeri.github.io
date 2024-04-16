@@ -248,6 +248,81 @@ In [6]: dFloat(-3, -4.2)
 Out[6]: -8+0.7999999999999998
 ```
 
+</br>
+
+## 싱글톤 타입
+
+어떤 타입의 인스턴스가 단 하나만 존재할 수 있을 때 이를 **싱글톤(singleton)** 객체라고 합니다. 예를 들어 `Complex(3.0, 4.0)` 과 `Complex(1.0, 2.0)` 은 모두 `Complex{Float64}` 타입의 서로 다른 인스턴스입니다. 그러나 싱글톤 타입이라면 모든 타입 인스턴스가 같아야 합니다. Julia 에서 싱글톤 타입은 필드가 없는 복합타입입니다. 
+
+```julia
+struct mysingleton end
+```
+
+와 같이 정의합니다. 이 때 모든 `mysingleton` 타입의 인스턴스는 동일합니다.
+
+
+```txt
+In [1]: struct mysingleton end;
+
+In [2]: a, b = mysingleton(), mysingleton();
+
+In [3]: a===b
+Out[3]: true
+```
+
+타입 매개변수를 가지는 싱글턴 타입도 존재합니다. 
+
+```julia
+struct mysingleton1{T} end
+```
+
+와 같이 정의합니다. 이 때 `T` 가 다르면 다른 인스턴스이며, `T` 가 같으면 같은 인스턴스입니다.
+
+```txt
+In [5]: struct mysingleton1{T} end
+
+In [6]: c, d = mysingleton1{Int64}, mysingleton1{Int64}
+Out[6]: (mysingleton1{Int64}, mysingleton1{Int64})
+
+In [7]: c === d
+Out[7]: true
+
+In [8]: c, d = mysingleton1{Int64}, mysingleton1{Float64}
+Out[8]: (mysingleton1{Int64}, mysingleton1{Float64})
+
+In [9]: c === d
+Out[9]: false
+
+In [10]: c == d
+Out[10]: false
+```
+
+</br>
+
+당연히 어떤 추상 타입의 하위 타입으로서의 싱글턴 타입도 정할 수 있습니다.
+
+```julia
+abstract type AbsSingletonType end
+
+struct abstype1 <: AbsSingletonType end
+```
+
+</br>
+
+Julia 에서의 함수는 추상타입 `Function` 의 하위타입인 싱글턴 객체이다. 
+
+```txt
+In [15]: typeof(sin)
+Out[15]: typeof(sin) (singleton type of function sin, subtype of Function)
+```
+
+
+
+
+
+
+
+
 
 
 

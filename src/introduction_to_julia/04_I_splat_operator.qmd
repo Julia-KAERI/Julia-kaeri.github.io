@@ -123,6 +123,19 @@ end
 와 같은 함수는 키워드가 없는 인자들은 `xs` 라는 변수의 튜플로, 키워드로 제시된 인자들은 `vs` 라는 기명 튜플(NamedTuple) 인자로 받습니다.
 
 
+```txt
+In [6]: function ps3(xs...; vs...)
+        return vs
+        end
+Out[6]: ps3 (generic function with 1 method)
+
+In [7]: ps3(color="red", number=4, location="Daejeon")
+Out[7]: pairs(::NamedTuple) with 3 entries:
+  :color    => "red"
+  :number   => 4
+  :location => "Daejeon"
+```
+
 </br>
 
 ## 함수를 실행시킬때 인자에서의 사용법 {#sec-splat_operator_in_function_argument}

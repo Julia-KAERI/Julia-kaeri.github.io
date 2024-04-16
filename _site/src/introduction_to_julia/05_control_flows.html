@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -325,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#for...end" id="toc-for...end" class="nav-link active" data-scroll-target="#for...end"><span class="header-section-number">1</span> <code>for...end</code></a>
+  <li><a href="#for-...-end" id="toc-for-...-end" class="nav-link active" data-scroll-target="#for-...-end"><span class="header-section-number">1</span> <code>for ... end</code></a>
   <ul class="collapse">
   <li><a href="#겹친-for-...-end" id="toc-겹친-for-...-end" class="nav-link" data-scroll-target="#겹친-for-...-end">겹친 <code>for ... end</code></a></li>
   </ul></li>
@@ -361,8 +361,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="for...end" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="for...end"><span class="header-section-number">1</span> <code>for...end</code></h2>
+<section id="for-...-end" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="for-...-end"><span class="header-section-number">1</span> <code>for ... end</code></h2>
 <p>컨테이너를 순회하며 컨테이너에 포함된 아이템 만큼의 어떤 일을 수행하기 위한 구문입니다. 또한 컨테이너의 각 아이템을 이용한 계산과 명령을 수행 할 수 있습니다. 예를 들어 아래는 1 부터 100 까지의 합을 구하는 코드인데 <code>for i ∈ 1:100</code> 은 StepRange 타입인 <code>1:100</code> 의 각 성분들을 순서대로 <code>i</code> 라는 변수로 받아 <code>end</code> 까지의 명령을 수행한다는 의미입니다. 여기서 <code>∈</code> 는 <code>in</code> 으로 대체할 수 있습니다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nsum <span class="op">=</span> <span class="fl">0</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span></span>
@@ -461,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="if-분기문" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="if-분기문"><span class="header-section-number">3</span> <code>if</code> 분기문</h2>
-<p>어떤 조건이 충족되는 지 여부를 따질 때 <code>if ... elseif...end</code> 구문을 사용합니다. 어떤 수 <code>x</code> 에 대해 <code>x&gt;0</code> 이면 <code>1</code> 을 <code>x&lt;0</code> 이면 <code>-1</code> 을, <code>x=0</code> 이면 <code>0</code> 을 리턴하는 함수 <code>msign(x)</code> 를 만들어 봅시다.</p>
+<p>어떤 조건이 충족되는 지 여부를 따질 때 <code>if ... elseif ... end</code> 구문을 사용합니다. 어떤 수 <code>x</code> 에 대해 <code>x&gt;0</code> 이면 <code>1</code> 을 <code>x&lt;0</code> 이면 <code>-1</code> 을, <code>x=0</code> 이면 <code>0</code> 을 리턴하는 함수 <code>msign(x)</code> 를 만들어 봅시다.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">msign</span>(x)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">x&gt;zero</span>(x)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">one</span>(x)</span>

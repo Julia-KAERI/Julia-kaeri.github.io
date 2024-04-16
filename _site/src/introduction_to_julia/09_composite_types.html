@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -363,6 +363,7 @@ window.Quarto = {
   <li><a href="#mutable-and-imutabile-타입" id="toc-mutable-and-imutabile-타입" class="nav-link" data-scroll-target="#mutable-and-imutabile-타입">Mutable and imutabile 타입</a></li>
   </ul></li>
   <li><a href="#sec-parametric_types" id="toc-sec-parametric_types" class="nav-link" data-scroll-target="#sec-parametric_types"><span class="header-section-number">3</span> 타입 매개변수를 갖는 타입 (Parametric types)</a></li>
+  <li><a href="#싱글톤-타입" id="toc-싱글톤-타입" class="nav-link" data-scroll-target="#싱글톤-타입"><span class="header-section-number">4</span> 싱글톤 타입</a></li>
   </ul>
 </nav>
     </div>
@@ -573,6 +574,47 @@ window.Quarto = {
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>In [6]: dFloat(-3, -4.2)</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>Out[6]: -8+0.7999999999999998</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+</section>
+<section id="싱글톤-타입" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="싱글톤-타입"><span class="header-section-number">4</span> 싱글톤 타입</h2>
+<p>어떤 타입의 인스턴스가 단 하나만 존재할 수 있을 때 이를 <strong>싱글톤(singleton)</strong> 객체라고 합니다. 예를 들어 <code>Complex(3.0, 4.0)</code> 과 <code>Complex(1.0, 2.0)</code> 은 모두 <code>Complex{Float64}</code> 타입의 서로 다른 인스턴스입니다. 그러나 싱글톤 타입이라면 모든 타입 인스턴스가 같아야 합니다. Julia 에서 싱글톤 타입은 필드가 없는 복합타입입니다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> mysingleton <span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>와 같이 정의합니다. 이 때 모든 <code>mysingleton</code> 타입의 인스턴스는 동일합니다.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>In [1]: struct mysingleton end;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>In [2]: a, b = mysingleton(), mysingleton();</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>In [3]: a===b</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Out[3]: true</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>타입 매개변수를 가지는 싱글턴 타입도 존재합니다.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> mysingleton1{T} <span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>와 같이 정의합니다. 이 때 <code>T</code> 가 다르면 다른 인스턴스이며, <code>T</code> 가 같으면 같은 인스턴스입니다.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>In [5]: struct mysingleton1{T} end</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>In [6]: c, d = mysingleton1{Int64}, mysingleton1{Int64}</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Out[6]: (mysingleton1{Int64}, mysingleton1{Int64})</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>In [7]: c === d</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>Out[7]: true</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>In [8]: c, d = mysingleton1{Int64}, mysingleton1{Float64}</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>Out[8]: (mysingleton1{Int64}, mysingleton1{Float64})</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>In [9]: c === d</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>Out[9]: false</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>In [10]: c == d</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>Out[10]: false</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>당연히 어떤 추상 타입의 하위 타입으로서의 싱글턴 타입도 정할 수 있습니다.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract type</span> AbsSingletonType <span class="kw">end</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> abstype1 <span class="op">&lt;:</span><span class="dt"> AbsSingletonType </span><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>Julia 에서의 함수는 추상타입 <code>Function</code> 의 하위타입인 싱글턴 객체이다.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>In [15]: typeof(sin)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Out[15]: typeof(sin) (singleton type of function sin, subtype of Function)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
