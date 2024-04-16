@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -103,11 +103,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -337,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/index.html">Julia 언어의 기초</a></li><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/01_julia_language.html">설치와 환경 구성</a></li></ol></nav>
 <div class="quarto-title">
@@ -367,13 +396,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Julia REPL screenshot</figcaption>
 </figure>
 </div>
-<p>위의 화면이 보인다면 julia 가 정상적으로 설치 된 것입니다.</p>
+<p>위의 화면이 보인다면 julia 가 정상적으로 설치 된 것입니다. Julia 언어를 사용하는 방법은 크게 두가지가 있습니다. 하나는 REPL 이라고 불리는 상호작용을 통해 코드의 전체 혹은 일부를 수행하고 결과를 보는 방법이고 다른 하나는 전체 julia 코드를 한번에 수행하는 방법입니다.</p>
 <section id="julia-repl" class="level3">
 <h3 class="anchored" data-anchor-id="julia-repl">Julia REPL</h3>
 <p>위의 스크린샷과 같이 <code>julia&gt;</code> 옆에 무언가를 치면 그대로 입력됩니다. 예를 들어 3+3 을 계산하고 싶으면 <code>3+3</code> 을 치고 엔터키를 누르면 그 결과가 출력됩니다.</p>
 <pre class="none"><code>julia&gt; 3+3
 6</code></pre>
-<p>이렇게 입력을 기다리다가 입력이 되면 읽어서(Read), 그 값을 평가하고(Evaluation), 그 결과를 출력하는(Printing) 것을 계속 반복하게(Loop) 하게 됩니다. 이것을 영어 단어의 첫글자만 따서 REPL 이라고 합니다. julia 언어의 기본적인 상호작용은 터미널에서 REPL 을 수행하는 것입니다. 별도의 다른 프로그램이 필요하지 않고, 간단한 계산을 할 때 가장 빠르다는 장점이 있지만 긴 코드를 짤 때 불편하며, 그래프를 출력하는데 많은 제한이 있습니다. 그래서 보통은 다른 환경에서 julia 를 수행합니다.</p>
+<p>이렇게 입력을 기다리다가 입력이 되면 읽어서(Read), 그 값을 평가하고(Evaluation), 그 결과를 출력하는(Printing) 것을 계속 반복하게(Loop) 하게 됩니다. 이것을 영어 단어의 첫글자만 따서 REPL 이라고 합니다. Julia 언어의 기본적인 상호작용은 터미널에서 REPL 을 수행하는 것입니다. 별도의 다른 프로그램이 필요하지 않고, 간단한 계산을 할 때 가장 빠르다는 장점이 있지만 긴 코드를 짤 때 불편하며, 그래프를 출력하는데 많은 제한이 있습니다. 그래서 보통은 다른 환경에서 julia 를 수행합니다. 대표적으로 <a href="https://jupyter.org">Jupyter notebook/lab</a>이나 <a href="https://code.visualstudio.com">Visual Studio Code</a> 가 있습니다.</p>
 <p><br></p>
 </section>
 <section id="julia-repl-프롬프트-변경" class="level3">
@@ -391,9 +420,9 @@ Out[1]: 8</code></pre>
 <p>저는 짧은 코드를 계속 입력하면서 결과를 확인하는 작업을 많이 할때는 vscode 의 jupyter 환경을 주로 사용하며, 긴 코드를 사용할 때는 vscode 와 Julia 언어 지원을 사용합니다. Jupyter 에 익숙하지 않다면 단순히 julia 지원만을 사용하는 것도 좋은 방법입니다. 여기에서도 줄단위, 블럭단위, 파일단위로 실행시켜 볼 수 있습니다. 그 이외에도 저는 사용해 본 적이 없지만 <a href="https://plutojl.org">Pluto.jl</a> 도 있습니다. 검색창에서 <code>julia 개발 환경</code> 을 검색하면 많은 내용이 나옵니다. 그 중에 여러분의 입맞에 맡는 것을 선택하면 됩니다. 여기에서는 짧은 코드는 Julia REPL 을 바탕으로 설명하겠지만 다른 개발 환경에서도 거의 그대로 결과가 나올 것입니다.</p>
 <p><br></p>
 </section>
-<section id="기본-제공-문서" class="level2" data-number="3">
+<section id="기본-제공-문서" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="기본-제공-문서"><span class="header-section-number">3</span> 기본 제공 문서</h2>
-<p>비록 영어로 되어 있긴 하지만 Julia 에 내장된 기본 도움말은 매우 훌륭합니다. Julia REPL 에서는 <code>julia&gt;</code> 프롬프트에 <code>?</code> 를 치면 <code>help&gt;</code>로 변경되는 것을 볼 수 있을 것입니다. 여기에 함수 이름이라든가, 타입 이름 같은 것을 치면 그에 대한 도움말을 제공합니다. Jupyter 에서는 입력 셀에 <code>?sin</code> 과 같이 <code>?</code> 를 맨 앞에 두고 입력한후 실행하면 문서를 찾아 제공합니다. vscode 에서는 자동적으로 팝업 윈도우로 제공합니다만 2023년 12월 현재로서는 완전하지 않습니다. 이렇게 제공되는 문서는 당신이 사용하는 Julia 와 페키지에 대한 공식 문서이므로, 가장 믿을만하고 우선적으로 참고해야하는 문서가 되겠습니다.</p>
+<div class="page-columns page-full"><p>영어로 되어 있는 Julia 에 포함된 기본 도움말은 매우 훌륭합니다<span class="math inline">\(^\ast\)</span>. Julia REPL 에서는 <code>julia&gt;</code> 프롬프트에 <code>?</code> 를 치면 <code>help&gt;</code>로 변경되는 것을 볼 수 있을 것입니다. 여기에 함수 이름이라든가, 타입 이름 같은 것을 치면 그에 대한 도움말을 제공합니다. Jupyter 에서는 입력 셀에 <code>?sin</code> 과 같이 <code>?</code> 를 맨 앞에 두고 입력한후 실행하면 문서를 찾아 제공합니다. vscode 에서는 자동적으로 팝업 윈도우로 제공합니다만 2023년 12월 현재로서는 완전하지 않습니다. 이렇게 제공되는 문서는 당신이 사용하는 Julia 와 페키지에 대한 공식 문서이므로, 가장 믿을만하고 우선적으로 참고해야하는 문서가 되겠습니다.</p><div class="no-row-height column-margin column-container"><span class="margin-aside"><span class="math inline">\(^\ast\)</span> 이 도움말은 별도로 제공되는 것이 아니라 소스코드에 주석으로 포함되어 있습니다.</span></div></div>
 <p>Julia 언어에 기본적으로 포함되어있는 함수, 모듈들 이외에 많은 모듈을 설치하게 될텐데 그 모듈들도 대부분 똑같은 형식의 도움말을 제공합니다.</p>
 <p><br></p>
 </section>
