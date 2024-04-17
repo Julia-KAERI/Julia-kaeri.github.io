@@ -31,7 +31,7 @@ Complex(x::Real) = Complex(x, zero(x))
 
 - 타입과 같은 이름을 가진 함수를 정의 할 수 있으며, 이 함수는 타입의 변수를 생성하는데 사용됩니다. 이렇게 어떤 타입과 같은 이름을 가지며, 그 타입의 값을 만드는데 사용되는 함수를 **생성자(constructor)** 라고 합니다.
 
-- 첫번째 생성자는 `x` 와 `y` 가 `Real` 타입의 하위 타입일 때 타입을 일치시키기 위한 생성자입니다. `promote(x, y)` 는 `x` 와 `y` 변수의 타입을 두 변수를 공통적으로 표현할 수 있는 타입으로 변환시켜 튜플로 반환합니다. 이렇게 다른 타입의 둘 이상의 값을 같은 타입이 되도록 변환하는 것을 julia 에서는 **promotion** 이라고 합니다. `promote(2, 3.0) == (2.0, 3.0)` 입니다. 그런데 `Complex(promote(2, 3.0))` 은 `Complex(2.0, 3.0)` 이 아니라 `Complex((2.0, 3.0))` 으로 튜플 인자 하나만 주어지며, 따라서 에러가 발생합니다. `Complex(promote(2, 3.0)...)` 는 `promote(2, 3.0)` 의 결과로 주어지는 튜플을 풀어서 함수의 인자로 넣도록 합니다. 즉, `Complex(promote(2, 3.0)...)` 은 결과적으로 `Complex(2.0, 3.0)` 입니다. [함수를 실행시킬때 인자에서의 사용법](04_I_splat_operator.qmd#sec-splat_operator_in_function_argument) 을 참고하시기 바랍니다.
+- 첫번째 생성자는 `x` 와 `y` 가 `Real` 타입의 하위 타입일 때 타입을 일치시키기 위한 생성자입니다. `promote(x, y)` 는 `x` 와 `y` 변수의 타입을 두 변수를 공통적으로 표현할 수 있는 타입으로 변환시켜 튜플로 반환합니다. 이렇게 다른 타입의 둘 이상의 값을 같은 타입이 되도록 변환하는 것을 julia 에서는 **promotion** 이라고 합니다. `promote(2, 3.0) == (2.0, 3.0)` 입니다. 그런데 `Complex(promote(2, 3.0))` 은 `Complex(2.0, 3.0)` 이 아니라 `Complex((2.0, 3.0))` 으로 튜플 인자 하나만 주어지며, 따라서 에러가 발생합니다. `Complex(promote(2, 3.0)...)` 는 `promote(2, 3.0)` 의 결과로 주어지는 튜플을 풀어서 함수의 인자로 넣도록 합니다. 즉, `Complex(promote(2, 3.0)...)` 은 결과적으로 `Complex(2.0, 3.0)` 입니다. [함수를 실행시킬때 인자에서의 사용법](04I_splat_operator.qmd#sec-splat_operator_in_function_argument) 을 참고하시기 바랍니다.
 
 - 두번째 생성자는 인자가 하나만 주어졌을 때 허수부를 인자 `x` 와 같은 타입의 `0` 으로 간주하여 생성하도록 하는 생성자입니다.
 
@@ -192,7 +192,7 @@ Out[7]: mycomplex2{Float64}(2.0, -3.0)
 
 ## 타입 매개변수를 갖는 타입 (Parametric types) {#sec-parametric_types}
 
-우리가 앞서 `Complex` 에 대한 정의를 보았을 때 `Complex{T<:Real}` 로 정의했습니다. 이렇게 특정 타입 매개변수를 갖는 복합 타입을 정의 할 수 있으며, 타입 매개변수는 하나 이상이어도 됩니다. 예를 들어 실수를 정수와 $[0.0, 1.0)$ 사이의 실수로 나누는 `dFloat` 라는 두개의 타입 매개변수를 갖는 복합 타입을 아래와 같이 정의해 봅시다. 외부 생성자를 사용했으며 다음에 알아볼 [보기좋게 출력하는법](09_I_pretty_printing.qmd)을 미리 사용했습니다.
+우리가 앞서 `Complex` 에 대한 정의를 보았을 때 `Complex{T<:Real}` 로 정의했습니다. 이렇게 특정 타입 매개변수를 갖는 복합 타입을 정의 할 수 있으며, 타입 매개변수는 하나 이상이어도 됩니다. 예를 들어 실수를 정수와 $[0.0, 1.0)$ 사이의 실수로 나누는 `dFloat` 라는 두개의 타입 매개변수를 갖는 복합 타입을 아래와 같이 정의해 봅시다. 외부 생성자를 사용했으며 다음에 알아볼 [보기좋게 출력하는법](09I_pretty_printing.qmd)을 미리 사용했습니다.
 
 ```julia
 struct dFloat{N<:Integer, T<:Real} <: Number
@@ -309,12 +309,16 @@ struct abstype1 <: AbsSingletonType end
 
 </br>
 
-Julia 에서의 함수는 추상타입 `Function` 의 하위타입인 싱글턴 객체이다. 
+Julia 에서 싱글턴 타입은 아주 많이 사용됩니다. 우선 아주 많이 사용하는 `nothing` 은 `Nothing` 타입의 싱글턴 객체입니다. 또한 julia 에서의 함수는 추상타입 `Function` 의 하위타입인 싱글턴 객체입니다.
 
 ```txt
 In [15]: typeof(sin)
 Out[15]: typeof(sin) (singleton type of function sin, subtype of Function)
 ```
+
+당신이 당신의 코드 내에서 어떤 유일한 것을 원한다면 그것을 싱글턴 객체로 만들 수 있습니다. 또 하나 중요한것은 싱글턴 객체는 저장공간을 차지하지 않습니다.
+
+
 
 
 

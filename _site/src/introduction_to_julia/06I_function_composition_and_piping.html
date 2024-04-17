@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/introduction_to_julia/09_composite_types.html" rel="next">
-<link href="../../src/introduction_to_julia/08_type_hierarchy.html" rel="prev">
+<link href="../../src/introduction_to_julia/07_module_package.html" rel="next">
+<link href="../../src/introduction_to_julia/06_arrays.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/index.html">Julia 언어의 기초</a></li><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/08_I_documentation.html">Interude : 문서화</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/index.html">Julia 언어의 기초</a></li><li class="breadcrumb-item"><a href="../../src/introduction_to_julia/06I_function_composition_and_piping.html">Interude : 함수의 합성과 전달</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/04_I_splat_operator.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/04I_splat_operator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : <code>...</code> 연산자</span></a>
   </div>
 </li>
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/06_I_function_composition_and_piping.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/06I_function_composition_and_piping.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Interude : 함수의 합성과 전달</span></a>
   </div>
 </li>
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/07_I_sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/07I_sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 정렬</span></a>
   </div>
 </li>
@@ -255,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/08_I_documentation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../src/introduction_to_julia/08I_documentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 문서화</span></a>
   </div>
 </li>
@@ -267,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/09_I_pretty_printing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/09I_pretty_printing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 객체를 보기좋게 출력하기</span></a>
   </div>
 </li>
@@ -275,6 +275,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../src/introduction_to_julia/10_metaprogramming_and_macro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">메타프로그래밍과 매크로</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/introduction_to_julia/10I_exception.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interude : 예외 처리</span></a>
   </div>
 </li>
       </ul>
@@ -325,7 +331,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#interude-문서화" id="toc-interude-문서화" class="nav-link active" data-scroll-target="#interude-문서화">Interude : 문서화</a></li>
+  <li><a href="#interude-함수의-합성과-전달" id="toc-interude-함수의-합성과-전달" class="nav-link active" data-scroll-target="#interude-함수의-합성과-전달">Interude : 함수의 합성과 전달</a>
+  <ul class="collapse">
+  <li><a href="#합성연산자" id="toc-합성연산자" class="nav-link" data-scroll-target="#합성연산자">합성연산자 <code>∘</code></a></li>
+  <li><a href="#전달-연산자" id="toc-전달-연산자" class="nav-link" data-scroll-target="#전달-연산자">전달 연산자 <code>|&gt;</code></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -335,93 +345,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="interude-문서화" class="level1 unnumbered">
-<h1 class="unnumbered">Interude : 문서화</h1>
-<p>함수나 연산자에 대해 알고 싶을 때 도움말은 다음과 같이 사용 할 수 있습니다.</p>
-<ul>
-<li>Julia REPL : <code>?</code> 를 쳐 들어가는 <code>help?</code> 프롬프트에 함수 이름 등을 입력하고 엔터를 누른다.</li>
-<li>Jupyter Notebook/Lab : 입력 셀에 <code>?</code> 이후 함수 이름등을 입력하고 실행시킨다.</li>
-<li>vscode notebook : 입력 셀에 함수 이름 등을 입력하고 마우스 포인터를 위로 이동시킨다.</li>
-</ul>
-<p>여기서 보이는 도움말은 별도의 문서가 있는 것이 아니라 해당 함수나 뒤에 나올 복합타입 등의 위에 세겹 따옴표 <code>"""</code> 를 사용하여 표기합니다. 예를 들어 다음을 <code>doctest01.jl</code> 로 저장해 봅시다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">    bps(a::Number) </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">`a` 에 2를 곱한다.</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st"># Example</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">```julia-repl</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">julia&gt; bps([1 2;3 4])</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">2×2 Matrix{Int64}:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st"> 2  4</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st"> 6  8</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">bps</span>(a<span class="op">::</span><span class="dt">Number</span>) </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span><span class="fl">2</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>julia REPL 이나 jupyter 노트북에서는</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"doctest01.jl"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>를 이용하여 파일을 포함하면 각각의 방법을 통해 <code>bps</code> 에 대한 도움말을 볼 수 있습니다. vscode 에서는 2023년 8월 현재 단순히 <code>include</code> 를 통해 포함시킨 julia 함수에 대한 도움말을 볼 수는 없는 것 같습니다.</p>
-<p>함수 혹은 객체에 대한 도움말을 작성 할 때 julia 언어에서 권고하는 몇가지 방침이 있습니다. 여기에 공식 문서 <a href="https://docs.julialang.org/en/v1/manual/documentation/">Documentations</a> 의 지침을 요약하여 설명합니다. 영어를 기준으로 기술되었기 때문에 한국어와는 잘 안맞을 수도 있습니다.</p>
-<ol type="1">
-<li><a href="https://docs.julialang.org/en/v1/stdlib/Markdown/">Julia 마크다운(markdown)</a> 문법으로 작성합니다.
-<ul>
-<li>Julia 의 마크다운은 일반적인 마크다운과 약간 다릅니다. 예를 들어 일반적인 마크다운에서 문장내 수식이 <code>$\sin x$</code> 형식으로 가능하지만 julia 마크다운에서는 문장 내 수식이 불가능하며 코드블럭을 이용하여 다음과 같이 사용합니다.</li>
-</ul></li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```math</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">f(a) = \frac{1}{2\pi}\int_{0}^{2\pi} (\alpha+R\cos(\theta))d\theta</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li><p>4개의 공백으로 들여쓰기를 한후 함수의 시그너쳐를 표현합니다.</p>
-<ul>
-<li>기본적으로 함수 정의의 시그너쳐를 그대로 쓰지만 시그너쳐가 너무 길 경우 인자의 타입을 생략하는 등의 간략화도 가능합니다.</li>
-<li>기본값이 정해진 선택적 인자는 그 기본값도 표시합니다. <code>func(x, y=1)</code> 과 같이 표현합니다.</li>
-<li>기본값이 없는 선택적 인자는 <code>[ ]</code> 안에 표현합니다. <code>func(x, [y])</code> 나 <code>func(x[, y[, z]])</code> 와 같이 표현합니다. 혹은 각각의 경우에 대해 별도의 문단에서 설명 할 수 있습니다.</li>
-<li>키워드 인자를 받는 함수의 경우 키워드 인자의 갯수가 많으면 <code>func(x; &lt;keyword arguments&gt;)</code> 와 같이 쓰고 뒤에 별도로 셜명합니다.</li>
-</ul></li>
-<li><p>시그너쳐 아랫줄의 설명은 함수가 어떤 기능을 하는지 한 문장으로 짧게 설명하는 것으로 시작합니다. 이 한문장 설명 이후 두번째 문장부터는 필요하다면 상세히 설명합니다.</p>
-<ul>
-<li>첫번째 한문장으로 설명하는 문장은 명령문 혹은 지시문의 형태를 사용하며 함수를 주어로 하는 3인칭을 사용하지 않으며 마침표로 끝납니다.</li>
-<li>함수의 의미를 간단 명료하게 요약하기 힘들 경우, 각각의 분야에 대해 자세하며 전체적으로는 일관된 기술로 대신 할 수 있습니다.</li>
-</ul></li>
-<li><p>반복은 피하십시요.</p>
-<ul>
-<li>예를 들어 첫줄의 함수 시그너쳐 부분에 함수 이름이 있기 때문에 다음에 나오는 한문장 설명이 <code>bps 함수는</code> 으로 시작될 필요가 없습니다. 또한 인자 유형이 시그너쳐에 표현될 경우 굳이 그것을 다시 설명할 필요도 없습니다.</li>
-</ul></li>
-<li><p>꼭 필요할 경우에만 인자들의 목록을 제시합니다.</p>
-<ul>
-<li>간단한 함수의 경우는 인자들의 역할만 기술합니다.</li>
-<li>키워드 인자가 많은 경우와 같이 함수 시그너쳐가 복잡할 경우는 인자들의 목록을 제시하는 것이 오히려 나을 경우가 있습니다.</li>
-</ul></li>
-<li><p>관련된 함수에 대한 정보를 제공합니다.</p>
-<ul>
-<li><code>sin</code> 함수에 대한 도움말에</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>See also <span class="co">[</span><span class="ot">`sind`</span><span class="co">](@ref)</span>, <span class="co">[</span><span class="ot">`sinpi`</span><span class="co">](@ref)</span>, <span class="co">[</span><span class="ot">`sincos`</span><span class="co">](@ref)</span>, <span class="co">[</span><span class="ot">`cis`</span><span class="co">](@ref)</span>, <span class="co">[</span><span class="ot">`asin`</span><span class="co">](@ref)</span>.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>라고 쓰인 것처럼 하면 됩니다.</p></li>
-<li><p><code># Example</code> 절에 예를 들어 줍니다. 마크다운 문법에서 코드블럭은 <code>```jldoctetst</code> 로 시작해서 <code>```</code> 로 끝납니다.</p></li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>"""</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Some nice documentation here.</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu"># Examples</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">```jldoctest</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in">julia&gt; a = [1 2; 3 4]</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="in">2×2 Array{Int64,2}:</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in"> 1  2</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="in"> 3  4</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>"""</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code># Examples</code> 섹션은 패키지가 제대로 설치되었는지 확인할 수 있는 간단한 코드를 넣습니다. 가능하면 julia REPL 에서 실행하는 코드를 넣는것이 좋습니다. 임의의 수를 생성하는 <code>rand</code> 함수 같은 것은 실행할 때 마다 결과가 다를 수 있기 때문에 꼭 필요한 경우가 아니라면 사용하지 않는 것이 좋습니다.</p>
+<section id="interude-함수의-합성과-전달" class="level1 unnumbered">
+<h1 class="unnumbered">Interude : 함수의 합성과 전달</h1>
+<section id="합성연산자" class="level2">
+<h2 class="anchored" data-anchor-id="합성연산자">합성연산자 <code>∘</code></h2>
+<p>함수의 합성은 <code>∘</code> 연산자를 이용하며 <code>\circ</code> + [탭키] 로 입력합니다. 예를 들어</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>In [1]: (sqrt ∘ +)(9, 16)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Out[1]: 5.0</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>를 봅시다. 두개의 인자 9 와 16 을 더한 후 제곱근을 반환하며, 이것은 보통의 수학적인 합성함수의 정의와 일치합니다. 한 함수의 반환값을 다른 함수의 입력값으로 사용 할 때 함수의 합성을 사용하며, 함수의 합성은 다수의 함수에 대해서도 가능합니다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>In [2]: (sin ∘ sqrt ∘ -)(π, π/4)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Out[2]: 0.9993590241845508</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<p>물론 이 원칙이 항상 적용되는 것도 아니며, 많은 유명한 패키지들도 이런 원칙을 다 지키는 것은 아니지만 이런 것들을 따르는 것이 도움이 됩니다.</p>
+<p>합성연산자는 컨테이너에 대한 도트 연산을 수행할 수 없습니다. 합성연산자와 비슷한 기능을 하며 도트 연산도 수행할 수 있는 것이 전달연산자 <code>|&gt;</code> 입니다.</p>
+<p><br></p>
+</section>
+<section id="전달-연산자" class="level2">
+<h2 class="anchored" data-anchor-id="전달-연산자">전달 연산자 <code>|&gt;</code></h2>
+<p><code>|&gt;</code> 는 기본적으로 합수의 합성과 같습니다. <code>In [1]</code> 과 <code>In [2]</code> 를 <code>|&gt;</code> 을 사용한 표현으로 바꾸면 다음과 같습니다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>In [3]: +(9, 16) |&gt; sqrt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Out[3]: 5.0</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>In [4]: -(π, π/4) |&gt; sqrt |&gt; sin</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Out[4]: 0.9993590241845508</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>|&gt;</code> 의 오른쪽의 연산 결과를 <code>|&gt;</code> 왼쪽 함수에 대한 입력으로 사용합니다. <code>In [4]</code> 에서와 같이 <code>|&gt;</code> 연산자를 이어서 사용 할 수도 있습니다.</p>
+<p>앞서 말한 것처럼 <code>.|&gt;</code> 와 같은 도트 연산도 가능합니다.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>In [6]: 0:0.01:π .|&gt; cos |&gt; maximum</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Out[6]: 1.0</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>익명 함수를 사용할 수도 있습니다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>In [2]: -π:0.001:π .|&gt; (x-&gt;x^2 * cos(x)) |&gt; maximum</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Out[2]: 0.5497738913075754</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>여기서 가운데의 <code>(x-&gt;x^2 * cos(x))</code> 에서 가장 바깥의 괄호를 표기하지 않으면 julia 는 연산자의 우선순위 상 <code>-π:0.001:π .|&gt; x-&gt; (x^2 * cos(x)) |&gt; maximum)</code> 로 해석을 하기 때문에 다른 결과가 나옵니다.</p>
+<p><br></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -836,13 +793,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/introduction_to_julia/08_type_hierarchy.html" class="pagination-link" aria-label="타입의 계층구조와 메서드 디스패치">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">타입의 계층구조와 메서드 디스패치</span>
+      <a href="../../src/introduction_to_julia/06_arrays.html" class="pagination-link" aria-label="배열">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">배열</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/introduction_to_julia/09_composite_types.html" class="pagination-link" aria-label="복합 타입">
-        <span class="nav-page-text">복합 타입</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/introduction_to_julia/07_module_package.html" class="pagination-link" aria-label="이름공간, 모듈, 패키지">
+        <span class="nav-page-text">이름공간, 모듈, 패키지</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

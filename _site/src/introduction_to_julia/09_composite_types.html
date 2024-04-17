@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/introduction_to_julia/09_I_pretty_printing.html" rel="next">
-<link href="../../src/introduction_to_julia/08_I_documentation.html" rel="prev">
+<link href="../../src/introduction_to_julia/09I_pretty_printing.html" rel="next">
+<link href="../../src/introduction_to_julia/08I_documentation.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -242,7 +242,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/04_I_splat_operator.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/04I_splat_operator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : <code>...</code> 연산자</span></a>
   </div>
 </li>
@@ -260,7 +260,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/06_I_function_composition_and_piping.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/06I_function_composition_and_piping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 함수의 합성과 전달</span></a>
   </div>
 </li>
@@ -272,7 +272,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/07_I_sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/07I_sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 정렬</span></a>
   </div>
 </li>
@@ -284,7 +284,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/08_I_documentation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/08I_documentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 문서화</span></a>
   </div>
 </li>
@@ -296,7 +296,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/introduction_to_julia/09_I_pretty_printing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/introduction_to_julia/09I_pretty_printing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Interude : 객체를 보기좋게 출력하기</span></a>
   </div>
 </li>
@@ -304,6 +304,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../src/introduction_to_julia/10_metaprogramming_and_macro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">메타프로그래밍과 매크로</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/introduction_to_julia/10I_exception.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interude : 예외 처리</span></a>
   </div>
 </li>
       </ul>
@@ -405,7 +411,7 @@ window.Quarto = {
 <li><p><code>&lt;:Number</code> 를 통해 <code>Complex</code> 객체는 <code>Number</code> 의 하위타입으로 정의됩니다.</p></li>
 <li><p><code>{T&lt;:Real}</code> 은 <code>Complex</code> 의 필드인 <code>re</code> 와 <code>im</code> 의 타입을 제한하기 위한 것입니다. <code>T&lt;:Real</code> 이며 <code>re::T</code>, <code>im::T</code> 이므로 <code>re</code> 와 <code>im</code> 의 두필드 는 <code>Real</code> 의 하위타입을 가지며 동일한 타입을 가집니다. 타입을 제한할 필요가 없을 경우에는 <code>{T&lt;:Real}</code> 과 같은 부분을 제거해도 됩니다. 두 개 이상의 타입이 필요할 경우는 <code>{T1&lt;:Real, T2&lt;:Integer}</code> 와 같이 <code>{ }</code> 안에 <code>,</code> 로 분리하여 나열하면 됩니다.</p></li>
 <li><p>타입과 같은 이름을 가진 함수를 정의 할 수 있으며, 이 함수는 타입의 변수를 생성하는데 사용됩니다. 이렇게 어떤 타입과 같은 이름을 가지며, 그 타입의 값을 만드는데 사용되는 함수를 <strong>생성자(constructor)</strong> 라고 합니다.</p></li>
-<li><p>첫번째 생성자는 <code>x</code> 와 <code>y</code> 가 <code>Real</code> 타입의 하위 타입일 때 타입을 일치시키기 위한 생성자입니다. <code>promote(x, y)</code> 는 <code>x</code> 와 <code>y</code> 변수의 타입을 두 변수를 공통적으로 표현할 수 있는 타입으로 변환시켜 튜플로 반환합니다. 이렇게 다른 타입의 둘 이상의 값을 같은 타입이 되도록 변환하는 것을 julia 에서는 <strong>promotion</strong> 이라고 합니다. <code>promote(2, 3.0) == (2.0, 3.0)</code> 입니다. 그런데 <code>Complex(promote(2, 3.0))</code> 은 <code>Complex(2.0, 3.0)</code> 이 아니라 <code>Complex((2.0, 3.0))</code> 으로 튜플 인자 하나만 주어지며, 따라서 에러가 발생합니다. <code>Complex(promote(2, 3.0)...)</code> 는 <code>promote(2, 3.0)</code> 의 결과로 주어지는 튜플을 풀어서 함수의 인자로 넣도록 합니다. 즉, <code>Complex(promote(2, 3.0)...)</code> 은 결과적으로 <code>Complex(2.0, 3.0)</code> 입니다. <a href="../../src/introduction_to_julia/04_I_splat_operator.html#sec-splat_operator_in_function_argument">함수를 실행시킬때 인자에서의 사용법</a> 을 참고하시기 바랍니다.</p></li>
+<li><p>첫번째 생성자는 <code>x</code> 와 <code>y</code> 가 <code>Real</code> 타입의 하위 타입일 때 타입을 일치시키기 위한 생성자입니다. <code>promote(x, y)</code> 는 <code>x</code> 와 <code>y</code> 변수의 타입을 두 변수를 공통적으로 표현할 수 있는 타입으로 변환시켜 튜플로 반환합니다. 이렇게 다른 타입의 둘 이상의 값을 같은 타입이 되도록 변환하는 것을 julia 에서는 <strong>promotion</strong> 이라고 합니다. <code>promote(2, 3.0) == (2.0, 3.0)</code> 입니다. 그런데 <code>Complex(promote(2, 3.0))</code> 은 <code>Complex(2.0, 3.0)</code> 이 아니라 <code>Complex((2.0, 3.0))</code> 으로 튜플 인자 하나만 주어지며, 따라서 에러가 발생합니다. <code>Complex(promote(2, 3.0)...)</code> 는 <code>promote(2, 3.0)</code> 의 결과로 주어지는 튜플을 풀어서 함수의 인자로 넣도록 합니다. 즉, <code>Complex(promote(2, 3.0)...)</code> 은 결과적으로 <code>Complex(2.0, 3.0)</code> 입니다. <a href="../../src/introduction_to_julia/04I_splat_operator.html#sec-splat_operator_in_function_argument">함수를 실행시킬때 인자에서의 사용법</a> 을 참고하시기 바랍니다.</p></li>
 <li><p>두번째 생성자는 인자가 하나만 주어졌을 때 허수부를 인자 <code>x</code> 와 같은 타입의 <code>0</code> 으로 간주하여 생성하도록 하는 생성자입니다.</p></li>
 </ul>
 <p><code>Complex{T&lt;:Real}</code> 은 다음과 같이 사용 할 수 있습니다.</p>
@@ -527,7 +533,7 @@ window.Quarto = {
 </section>
 <section id="sec-parametric_types" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="sec-parametric_types"><span class="header-section-number">3</span> 타입 매개변수를 갖는 타입 (Parametric types)</h2>
-<p>우리가 앞서 <code>Complex</code> 에 대한 정의를 보았을 때 <code>Complex{T&lt;:Real}</code> 로 정의했습니다. 이렇게 특정 타입 매개변수를 갖는 복합 타입을 정의 할 수 있으며, 타입 매개변수는 하나 이상이어도 됩니다. 예를 들어 실수를 정수와 <span class="math inline">\([0.0, 1.0)\)</span> 사이의 실수로 나누는 <code>dFloat</code> 라는 두개의 타입 매개변수를 갖는 복합 타입을 아래와 같이 정의해 봅시다. 외부 생성자를 사용했으며 다음에 알아볼 <a href="../../src/introduction_to_julia/09_I_pretty_printing.html">보기좋게 출력하는법</a>을 미리 사용했습니다.</p>
+<p>우리가 앞서 <code>Complex</code> 에 대한 정의를 보았을 때 <code>Complex{T&lt;:Real}</code> 로 정의했습니다. 이렇게 특정 타입 매개변수를 갖는 복합 타입을 정의 할 수 있으며, 타입 매개변수는 하나 이상이어도 됩니다. 예를 들어 실수를 정수와 <span class="math inline">\([0.0, 1.0)\)</span> 사이의 실수로 나누는 <code>dFloat</code> 라는 두개의 타입 매개변수를 갖는 복합 타입을 아래와 같이 정의해 봅시다. 외부 생성자를 사용했으며 다음에 알아볼 <a href="../../src/introduction_to_julia/09I_pretty_printing.html">보기좋게 출력하는법</a>을 미리 사용했습니다.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> dFloat{N<span class="op">&lt;:</span><span class="dt">Integer</span>, T<span class="op">&lt;:</span><span class="dt">Real</span>} <span class="op">&lt;:</span><span class="dt"> Number</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    vint<span class="op">::</span><span class="dt">N</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    vfloat<span class="op">::</span><span class="dt">T</span></span>
@@ -612,9 +618,10 @@ window.Quarto = {
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> abstype1 <span class="op">&lt;:</span><span class="dt"> AbsSingletonType </span><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<p>Julia 에서의 함수는 추상타입 <code>Function</code> 의 하위타입인 싱글턴 객체이다.</p>
+<p>Julia 에서 싱글턴 타입은 아주 많이 사용됩니다. 우선 아주 많이 사용하는 <code>nothing</code> 은 <code>Nothing</code> 타입의 싱글턴 객체입니다. 또한 julia 에서의 함수는 추상타입 <code>Function</code> 의 하위타입인 싱글턴 객체입니다.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>In [15]: typeof(sin)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Out[15]: typeof(sin) (singleton type of function sin, subtype of Function)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>당신이 당신의 코드 내에서 어떤 유일한 것을 원한다면 그것을 싱글턴 객체로 만들 수 있습니다. 또 하나 중요한것은 싱글턴 객체는 저장공간을 차지하지 않습니다.</p>
 
 
 </section>
@@ -1031,12 +1038,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/introduction_to_julia/08_I_documentation.html" class="pagination-link" aria-label="Interude : 문서화">
+      <a href="../../src/introduction_to_julia/08I_documentation.html" class="pagination-link" aria-label="Interude : 문서화">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Interude : 문서화</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/introduction_to_julia/09_I_pretty_printing.html" class="pagination-link" aria-label="Interude : 객체를 보기좋게 출력하기">
+      <a href="../../src/introduction_to_julia/09I_pretty_printing.html" class="pagination-link" aria-label="Interude : 객체를 보기좋게 출력하기">
         <span class="nav-page-text">Interude : 객체를 보기좋게 출력하기</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -43,17 +43,18 @@ website:
           - href : src/introduction_to_julia/02_variables_basic_types.qmd
           - href : src/introduction_to_julia/03_functions_and_operators.qmd
           - href : src/introduction_to_julia/04_containers.qmd
-          - href : src/introduction_to_julia/04_I_splat_operator.qmd
+          - href : src/introduction_to_julia/04I_splat_operator.qmd
           - href : src/introduction_to_julia/05_control_flows.qmd
           - href : src/introduction_to_julia/06_arrays.qmd
-          - href : src/introduction_to_julia/06_I_function_composition_and_piping.qmd
+          - href : src/introduction_to_julia/06I_function_composition_and_piping.qmd
           - href : src/introduction_to_julia/07_module_package.qmd
-          - href : src/introduction_to_julia/07_I_sort.qmd
+          - href : src/introduction_to_julia/07I_sort.qmd
           - href : src/introduction_to_julia/08_type_hierarchy.qmd
-          - href : src/introduction_to_julia/08_I_documentation.qmd
+          - href : src/introduction_to_julia/08I_documentation.qmd
           - href : src/introduction_to_julia/09_composite_types.qmd
-          - href : src/introduction_to_julia/09_I_pretty_printing.qmd
+          - href : src/introduction_to_julia/09I_pretty_printing.qmd
           - href : src/introduction_to_julia/10_metaprogramming_and_macro.qmd
+          - href : src/introduction_to_julia/10I_exception.qmd
         
         - text : "-----"
         - section : Julia 언어의 활용
