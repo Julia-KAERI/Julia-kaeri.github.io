@@ -1599,7 +1599,7 @@
     "href": "src/introduction_to_julia/10I_exception.html",
     "title": "Interude : 예외 처리",
     "section": "",
-    "text": "예를 들어 길이가 3인 일차원 벡터의 네번째 성분에 접근할 경우, julia 인터프리터는 BoundsError 를 발생시키고 실행을 종료한다.\nIn [1]: aa=[1,2,3];println(aa[4]);println(\"End\")\nERROR: BoundsError: attempt to access 3-element Vector{Int64} at index [4]\nStacktrace:\n이렇게 줄리아 코드가 실행중일 때 실행을 지속시키지 못할 중대한 조건이 발생할 경우 에러가 발생는데, 에러에 대해 적합한 처리를 수행하여 프로그램을 계속 진행시킬 수도 있고, julia 인터프리터가 발생시키지 못하는 에러를 직접적으로 발생시킬 수도 있다. 이런 것들을 예외 처리(Exception handling) 이라고 한다. Julia 에서 기본적으로 제공하는 에러는 기본 매뉴얼의 Built-in Exceptions 에 나와 있다.\n\n\n\n에러\n설명\n\n\n\n\nArgumentError(msg)\n함수에 유효하지 않은 인자가 입력된경우\n\n\n`BoundsError",
+    "text": "예를 들어 길이가 3인 일차원 벡터의 네번째 성분에 접근할 경우, julia 인터프리터는 BoundsError 를 발생시키고 실행을 종료합니다.\nIn [1]: aa=[1,2,3];println(aa[4]);println(\"End\")\nERROR: BoundsError: attempt to access 3-element Vector{Int64} at index [4]\nStacktrace:\n이렇게 줄리아 코드가 실행중일 때 실행을 지속시키지 못할 중대한 조건이 발생할 경우 에러가 발생는데, 에러에 대해 적합한 처리를 수행하여 프로그램을 계속 진행시킬 수도 있고, julia 인터프리터가 발생시키지 못하는 에러를 직접적으로 발생시킬 수도 있습니다. 이런 것들을 예외 처리(Exception handling) 라고 하며 Julia 에서 기본적으로 제공하는 에러는 기본 매뉴얼의 Built-in Exceptions 에 나와 있습니다. Julia 에서 제공하는 에러 가운데 자주 사용되는 것들을 표 1 에 정리하였습니다.\n\n\n\n표 1: Julia 의 주요 에러\n\n\n\n\n\n\n\n\n\n\n에러\n설명\n예\n\n\n\n\nArgumentError\n함수에 유효하지 않은 인자가 입력된경우\nparse(Int, \"abc\")\n\n\nBoundsError\n인덱스로 접근하는 컨테이너에 범위를 벗어나는 인덱스로 접근했을 때\na=[1, 2];b=a[3]\n\n\nDimensionMismatch\n호출된 객체가 차원에 대한 불일치가 발생할 때\n[1 2;3 4]+[1 2]\n\n\nDivideError\ndiv 함수를 사용하며 정수를 0 으로 나눌 때\ndiv(5, 0)\n\n\nDomainError\n함수의 정의역 집합을 벗어나는 인자를 제시했을 때\nsqrt(-1)\n\n\nKeyError\n사전형 컨테이너에서 존재하지 않는 키로 접근했을 때\nd1=Dict(\"a\"=&gt;1);d1[\"b\"]\n\n\nMethodError\n주어진 인자에 대한 메서드가 존재하지 않을 때\ncos(\"a\")\n\n\nTypeError\ntypeassert 함수를 이용한 타입 주장이 실패하거나 isa 와 같은 julia 고유 함수에 잘못된 타입의 인자가 제시될 때\nisa(3, 4)\n\n\n\n\n\n\n\n\n\n\nthrow 함수를 통해 에러를 발생시킬 수 있습니다. 만약 당신이 물리 시뮬레이션에서 물체의 속력 \\(v\\) 에 대한 어떤 계산을 수행하고 있는데 \\(v\\) 가 빛의 속력 \\(c\\) 보다 커서는 안된다고 해 봅시다. 그렇다면\nmsg = \"speed must not larger than speed of light\"\nv = (v&gt;c) ? throw(DomainError(v, msg)) : next_calc(v)\n와 같이 DomainError 를 에러 메시지(여기서는 msg) 와 함께 발생시킬 수 있습니다.\n표 1 를 포함한 Julia 의 예외는 ( ) 없이 이름만 사용될 경우는 예외 타입의 이름일 뿐이며 실제 예외를 발생시키기 위해서는 DomainError(v, msg) 와 같이 호출되어야 합니다. 인자로는 메시지 뿐만 아니라 에러에 대한 정확한 정보를 제공하기 위해 변수나 함수 이름이 포함되어야 합니다.\n\n\n\n\n예외가 발생하면 실행이 중단되는데, 실행을 중단시키지 않고 어떤 처리를 통해 처리를 계속 진행 시킬 수 있습니다. 이 경우는 try ... catch ... end 구문을 통해 처리 할 수 있습니다. 예를 들어 sqrt() 함수에 인자를 음수로 넣으면 DomainError 가 발생합니다. 아래의 코드를 봅시다.\ntry\n    v = sqrt(x)\ncatch e\n    v= 0\nend\n여기서는 v=sqrt(x) 를 평가한다. 만약 x 가 음수라면 DomainError 가 발생하지만 try 문은 일단 프로그램 정지를 막고 예외가 발생할 경우 catch e 와 end 사이의 코드를 수행하게 됩니다. 즉 v=0 이 됩니다. catch e 에서 e 는 예외 객체입니다. 어쨌든 예외가 발생하면 v=0 을 수행하게 됩니다. 어떤 예외라도 상관 없다면 e 없이 catch 만 사용해도 됩니다. 위의 코드는 아래와 동일한 기능을 합니다.\ntry v=sqrt(x) catch; v=0 end\nJulia 1.8 부터는 예외가 발생 하지 않았을 경우를 처리하는 else 구문이 추가되었으며 예외가 발생 하든 안하든 어떤 일을 수행하는 finally 구문이 존재합니다. 즉\ntry\n    # 예외가 발생할 수도 있는 처리\ncatch e\n    # 예외가 발생했을 경우의 처리\nelse \n    # 예외가 발생하지 않았을 경우의 처리\nfinally\n    # 어쨌든 처리\nend\n형식이 됩니다.\n\n\n\n\n예를 들어 시뮬레이션에서 입자의 속도가 광속을 넘는 경우를 방지하기 위한 OverSpeedOfLightException 가 필요하다고 해 봅시다. 예외는 추상 타입인 Exception 의 하위타입이어야 하며, 속도와 메시지를 표현해주기 위한 필드를 가져야 하기 때문에 다음과 같이 표현 할 수 있습니다.\nstruct OverSpeedOfLightException &lt;: Exception\n    speed::Number\n    msg::String\nend\n다음과 같이 오류를 발생 시킬 수 있습니다.\nIn [2]: throw(OverSpeedOfLightException(10000000, \"speed must be smaller than c\"))\nERROR: OverSpeedOfLightException(10000000, \"speed must be smaller than c\")",
     "crumbs": [
       "Julia 프로그래밍 언어",
       "Julia 언어의 기초",
@@ -2203,6 +2203,66 @@
     "crumbs": [
       "Tools",
       "tikz test"
+    ]
+  },
+  {
+    "objectID": "src/introduction_to_julia/10I_exception.html#julia-에서의-에러",
+    "href": "src/introduction_to_julia/10I_exception.html#julia-에서의-에러",
+    "title": "Interude : 예외 처리",
+    "section": "",
+    "text": "예를 들어 길이가 3인 일차원 벡터의 네번째 성분에 접근할 경우, julia 인터프리터는 BoundsError 를 발생시키고 실행을 종료합니다.\nIn [1]: aa=[1,2,3];println(aa[4]);println(\"End\")\nERROR: BoundsError: attempt to access 3-element Vector{Int64} at index [4]\nStacktrace:\n이렇게 줄리아 코드가 실행중일 때 실행을 지속시키지 못할 중대한 조건이 발생할 경우 에러가 발생는데, 에러에 대해 적합한 처리를 수행하여 프로그램을 계속 진행시킬 수도 있고, julia 인터프리터가 발생시키지 못하는 에러를 직접적으로 발생시킬 수도 있습니다. 이런 것들을 예외 처리(Exception handling) 라고 하며 Julia 에서 기본적으로 제공하는 에러는 기본 매뉴얼의 Built-in Exceptions 에 나와 있습니다. Julia 에서 제공하는 에러 가운데 자주 사용되는 것들을 표 1 에 정리하였습니다.\n\n\n\n표 1: Julia 의 주요 에러\n\n\n\n\n\n\n\n\n\n\n에러\n설명\n예\n\n\n\n\nArgumentError\n함수에 유효하지 않은 인자가 입력된경우\nparse(Int, \"abc\")\n\n\nBoundsError\n인덱스로 접근하는 컨테이너에 범위를 벗어나는 인덱스로 접근했을 때\na=[1, 2];b=a[3]\n\n\nDimensionMismatch\n호출된 객체가 차원에 대한 불일치가 발생할 때\n[1 2;3 4]+[1 2]\n\n\nDivideError\ndiv 함수를 사용하며 정수를 0 으로 나눌 때\ndiv(5, 0)\n\n\nDomainError\n함수의 정의역 집합을 벗어나는 인자를 제시했을 때\nsqrt(-1)\n\n\nKeyError\n사전형 컨테이너에서 존재하지 않는 키로 접근했을 때\nd1=Dict(\"a\"=&gt;1);d1[\"b\"]\n\n\nMethodError\n주어진 인자에 대한 메서드가 존재하지 않을 때\ncos(\"a\")\n\n\nTypeError\ntypeassert 함수를 이용한 타입 주장이 실패하거나 isa 와 같은 julia 고유 함수에 잘못된 타입의 인자가 제시될 때\nisa(3, 4)",
+    "crumbs": [
+      "Julia 프로그래밍 언어",
+      "Julia 언어의 기초",
+      "Interude : 예외 처리"
+    ]
+  },
+  {
+    "objectID": "src/introduction_to_julia/10I_exception.html#throw-를-통한-에러-발생",
+    "href": "src/introduction_to_julia/10I_exception.html#throw-를-통한-에러-발생",
+    "title": "Interude : 예외 처리",
+    "section": "",
+    "text": "throw 함수를 통해 에러를 발생시킬 수 있다. 만약 당신이 물리 시뮬레이션에서 물체의 속력 \\(v\\) 에 대한 어떤 계산을 수행하고 있는데 \\(v\\) 가 빛의 속력 \\(c\\) 보다 커서는 안된다고 하자. 그렇다면\nmsg = \"speed must not larger than speed of light\"\nv = (v&gt;c) ? throw(DomainError(v, msg)) : next_calc(v)\n와 같이 DomainError 를 에러 메시지(여기서는 msg) 와 함께 발생시킬 수 있다.\n표 1 를 포함한 Julia 의 예외는 ( ) 없이 이름만 사용될 경우는 예외 타입의 이름일 뿐이며 실제 예외를 발생시키기 위해서는 DomainError(v, msg) 와 같이 호출되어야 한다.",
+    "crumbs": [
+      "Julia 프로그래밍 언어",
+      "Julia 언어의 기초",
+      "Interude : 예외 처리"
+    ]
+  },
+  {
+    "objectID": "src/introduction_to_julia/10I_exception.html#throw-를-통한-예외-발생",
+    "href": "src/introduction_to_julia/10I_exception.html#throw-를-통한-예외-발생",
+    "title": "Interude : 예외 처리",
+    "section": "",
+    "text": "throw 함수를 통해 에러를 발생시킬 수 있습니다. 만약 당신이 물리 시뮬레이션에서 물체의 속력 \\(v\\) 에 대한 어떤 계산을 수행하고 있는데 \\(v\\) 가 빛의 속력 \\(c\\) 보다 커서는 안된다고 해 봅시다. 그렇다면\nmsg = \"speed must not larger than speed of light\"\nv = (v&gt;c) ? throw(DomainError(v, msg)) : next_calc(v)\n와 같이 DomainError 를 에러 메시지(여기서는 msg) 와 함께 발생시킬 수 있습니다.\n표 1 를 포함한 Julia 의 예외는 ( ) 없이 이름만 사용될 경우는 예외 타입의 이름일 뿐이며 실제 예외를 발생시키기 위해서는 DomainError(v, msg) 와 같이 호출되어야 합니다. 인자로는 메시지 뿐만 아니라 에러에 대한 정확한 정보를 제공하기 위해 변수나 함수 이름이 포함되어야 합니다.",
+    "crumbs": [
+      "Julia 프로그래밍 언어",
+      "Julia 언어의 기초",
+      "Interude : 예외 처리"
+    ]
+  },
+  {
+    "objectID": "src/introduction_to_julia/10I_exception.html#try-...-catch-...-end-를-통한-예외-처리",
+    "href": "src/introduction_to_julia/10I_exception.html#try-...-catch-...-end-를-통한-예외-처리",
+    "title": "Interude : 예외 처리",
+    "section": "",
+    "text": "예외가 발생하면 실행이 중단되는데, 실행을 중단시키지 않고 어떤 처리를 통해 처리를 계속 진행 시킬 수 있습니다. 이 경우는 try ... catch ... end 구문을 통해 처리 할 수 있습니다. 예를 들어 sqrt() 함수에 인자를 음수로 넣으면 DomainError 가 발생합니다. 아래의 코드를 봅시다.\ntry\n    v = sqrt(x)\ncatch e\n    v= 0\nend\n여기서는 v=sqrt(x) 를 평가한다. 만약 x 가 음수라면 DomainError 가 발생하지만 try 문은 일단 프로그램 정지를 막고 예외가 발생할 경우 catch e 와 end 사이의 코드를 수행하게 됩니다. 즉 v=0 이 됩니다. catch e 에서 e 는 예외 객체입니다. 어쨌든 예외가 발생하면 v=0 을 수행하게 됩니다. 어떤 예외라도 상관 없다면 e 없이 catch 만 사용해도 됩니다. 위의 코드는 아래와 동일한 기능을 합니다.\ntry v=sqrt(x) catch; v=0 end\nJulia 1.8 부터는 예외가 발생 하지 않았을 경우를 처리하는 else 구문이 추가되었으며 예외가 발생 하든 안하든 어떤 일을 수행하는 finally 구문이 존재합니다. 즉\ntry\n    # 예외가 발생할 수도 있는 처리\ncatch e\n    # 예외가 발생했을 경우의 처리\nelse \n    # 예외가 발생하지 않았을 경우의 처리\nfinally\n    # 어쨌든 처리\nend\n형식이 됩니다.",
+    "crumbs": [
+      "Julia 프로그래밍 언어",
+      "Julia 언어의 기초",
+      "Interude : 예외 처리"
+    ]
+  },
+  {
+    "objectID": "src/introduction_to_julia/10I_exception.html#사용자-정의-오류",
+    "href": "src/introduction_to_julia/10I_exception.html#사용자-정의-오류",
+    "title": "Interude : 예외 처리",
+    "section": "",
+    "text": "예를 들어 시뮬레이션에서 입자의 속도가 광속을 넘는 경우를 방지하기 위한 OverSpeedOfLightException 가 필요하다고 해 봅시다. 예외는 추상 타입인 Exception 의 하위타입이어야 하며, 속도와 메시지를 표현해주기 위한 필드를 가져야 하기 때문에 다음과 같이 표현 할 수 있습니다.\nstruct OverSpeedOfLightException &lt;: Exception\n    speed::Number\n    msg::String\nend\n다음과 같이 오류를 발생 시킬 수 있습니다.\nIn [2]: throw(OverSpeedOfLightException(10000000, \"speed must be smaller than c\"))\nERROR: OverSpeedOfLightException(10000000, \"speed must be smaller than c\")",
+    "crumbs": [
+      "Julia 프로그래밍 언어",
+      "Julia 언어의 기초",
+      "Interude : 예외 처리"
     ]
   }
 ]
