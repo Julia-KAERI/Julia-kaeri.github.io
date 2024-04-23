@@ -55,6 +55,7 @@ website:
           - href : src/introduction_to_julia/09I_pretty_printing.qmd
           - href : src/introduction_to_julia/10_metaprogramming_and_macro.qmd
           - href : src/introduction_to_julia/10I_exception.qmd
+          - href : src/introduction_to_julia/11_interfaces.qmd
         
         - text : "-----"
         - section : Julia 언어의 활용

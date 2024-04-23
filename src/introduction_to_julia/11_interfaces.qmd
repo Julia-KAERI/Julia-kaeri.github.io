@@ -1,0 +1,67 @@
+---
+title: "인터페이스"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+
+Jula 에서 사용자 정의 타입을 배열이나 사전 혹은 `StepRange` 와 같은 타입으로 사용하려면 몇가지 메서드를 타입에 맞게 정의해야 한다. 컨테이너 타입의 경우에는 다음 메서드에 대해 반드시 정의 해 주어야 한다. 아래에서 `state` 는 컨테이너의 아이템과 1대1 대응되는 어떤 값이다. 배열의 경우는 인덱스이다.
+
+| 메서드 | 설명 |
+|:-----:|:----------------|
+| `iterate(iter)` |	컨테이너의 첫번째 아이템과 상태를 튜플로 반환한다. 빈 컨테이너의 경우는 `nothing` 을 반환한다. |
+| `iterate(iter, state)` | `state` 에 의히 지정되는 아이템의 다음 아이템과 그 `state` 를 튜플로 반환한다. 마지막 값일 경우는 `nothing` 을 반환한다. |
+
+</br>
+
+이 두 메서드만 정의되어 있다면 이 타입은 컨테이너 iteration 가능한 타입이 된다. iterable 타입에 대해 선택적으로 정의 될 수 있는 메서드는 다음과 같다.
+
+| 선택적 메서드 | 기본 정의 | 설명 |
+|:--------:|:---------|:-----------------|
+| `Base.IteratorSize(IterType)` | `Base.HasLength()` | One of `Base.HasLength()`, `Base.HasShape{N}()`, `Base.IsInfinite()`, or `Base.SizeUnknown()` as appropriate |
+| `Base.IteratorEltype(IterType)` | `Base.HasEltype()` | Either `Base.EltypeUnknown()` or `Base.HasEltype()` as appropriate |
+| `eltype(IterType)` | Any | The type of the first entry of the tuple returned by `iterate()` |
+| `length(iter)` | (undefined) | 아이템 갯수 |
+| `size(iter, [dim])` | (undefined) | 각 차원에서의 아이템 갯수 |
+| `Base.isdone(iter[, state])` | `missing` | Fast-path hint for iterator completion. Should be defined for stateful iterators, or else `isempty(iter)` may call `iterate(iter[, state])` and mutate the iterator.|
+
+```julia
+struct LogSpacingArray
+    start::Real
+    stop::Real
+    size::Int64
+    base::Real
+    
+
+    function LogSpacingArray(start::Real, stop::Real, size::Int64, base::Real)
+        println(start, stop, size, base )
+        @assert base > 1
+        @assert size ≥ 1
+        ftype = promote_type(typeof(start), typeof(stop))
+        return new(ftype(start), ftype(stop), size, ftype(base))
+    end
+end
+
+Base.size(p::LogSpacingArray) = (p.size, )
+Base.length(p::LogSpacingArray) = p.size
+Base.iterate(p::LogSpacingArray, state=1) = state > p.size ? nothing : (p[state], state+1)
+
+function Base.getindex(p::LogSpacingArray, i::Int64) 
+    @assert 0 < i ≤ p.size
+    if p.size == 1
+        return p.start
+    else 
+        r = p.start + (p.stop-p.start)/(p.size-1)*(i-1)
+        return (p.base)^r
+    end
+end
+
+function logspace(a, b, n::Integer=10, base::Real=10)
+    return LogSpacingArray(a, b, n, base)
+end
+```
+
+
