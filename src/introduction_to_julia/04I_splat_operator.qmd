@@ -85,7 +85,7 @@ Out[21]: 4-element Vector{Int64}:
 
 ## 함수를 정의할 때의 사용법 {#sec-splat_operator_in_function_definition}
 
-다음을 봅시다.
+정해진 수의 인자를 받는 것이 아니라 다양한 수의 인자를 받는 함수를 **가변 인자 함수 (function of variable number of arguments)** 라고 하며 `...` 연산자를 사용합니다. 다음을 봅시다.
 
 ```txt
 In [6]: function ps(xs...)

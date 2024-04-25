@@ -283,6 +283,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Interude : 예외 처리</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/introduction_to_julia/11_interfaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">인터페이스</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -310,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/applications_of_julia/multithreads.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">다중스레드</span></a>
+ <span class="menu-text">다중스레딩</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -416,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-splat_operator_in_function_definition" class="level2">
 <h2 class="anchored" data-anchor-id="sec-splat_operator_in_function_definition">함수를 정의할 때의 사용법</h2>
-<p>다음을 봅시다.</p>
+<p>정해진 수의 인자를 받는 것이 아니라 다양한 수의 인자를 받는 함수를 <strong>가변 인자 함수 (function of variable number of arguments)</strong> 라고 하며 <code>...</code> 연산자를 사용합니다. 다음을 봅시다.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>In [6]: function ps(xs...)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        println(typeof(xs))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        return xs[1], xs[2]</span>
