@@ -548,7 +548,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>여기서 <code>Vararg{Int, N}</code> 은 <code>Int</code> 타입의 <code>N</code> 개의 튜플의 타입입니다. 즉</p>
+<p><br></p>
+<p>다차원 배열처럼 동작하는 반복자를 만들어 봅시다. Julia 에서 많이 사용되는 패키지 가운데 <a href="https://github.com/JuliaArrays/OffsetArrays.jl"><code>OffsetArrays.jl</code></a> 이 있습니다. <code>OffsetArrays</code> 는 인덱스가 1 이 아닌 임의의 정수부터 시작하는 배열을 만들 수 있습니다. 그것은 <code>Base.getindex</code> 나 <code>Base.setindex!</code> 등을 다시 정의하여 동작하게 합니다. <code>OffsetArrays</code> 는 상당히 진지한, 그러니까 심각한 작업에도 사용할 수 있도록 세심하게 만들어진 타입이지만 우리는 여기어 이와 비슷하게 작동하는, 그리고 교육 목적의 타입을 만들어 봅시다. 이름은 <code>ShiftedIndexedArray</code> 로 합니다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> ShiftedIndexedArray{T, N, AA <span class="op">&lt;:</span><span class="dt"> AbstractArray{T, N}</span>} </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    A<span class="op">::</span><span class="dt">AA</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    offsets<span class="op">::</span><span class="dt">NTuple{N, Int}</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">ShiftedIndexedArray</span><span class="dt">{T, N, AA}</span>(arr<span class="op">::</span><span class="dt">AA</span>, offsets<span class="op">::</span><span class="dt">NTuple{N, Int}</span>) <span class="kw">where</span> {T, N, AA<span class="op">&lt;:</span><span class="dt">AbstractArray{T, N}</span>}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">new</span><span class="dt">{T, N, AA}</span>(arr, offsets)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ShiftedIndexedArray</span>(arr<span class="op">::</span><span class="dt">AA</span>, offsets<span class="op">::</span><span class="dt">NTuple{N, Int}</span>) <span class="kw">where</span> {N, AA<span class="op">&lt;:</span><span class="dt">AbstractArray</span>}</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">ShiftedIndexedArray</span><span class="dt">{eltype(arr), ndims(arr), typeof(arr)}</span>(arr, offsets)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ShiftedIndexedVector{T, AA<span class="op">&lt;:</span><span class="dt"> AbstractVector{T}</span>} <span class="op">=</span> ShiftedIndexedArray{T, <span class="fl">1</span>, AA}</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> ShiftedIndexedMarix{T, AA<span class="op">&lt;:</span><span class="dt">AbstractMatrix{T}</span>} <span class="op">=</span> ShiftedIndexedArray{T, <span class="fl">2</span>, AA}</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="bu">Base</span>.<span class="fu">getindex</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray{T, N, AA}</span>, I<span class="op">...</span>) <span class="kw">where</span> {T, N, AA}</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    oind <span class="op">=</span> <span class="fu">_original_cartesian_index</span>(S, I)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">checkbounds</span>(<span class="dt">Bool</span>, S.A, oind<span class="op">...</span>) </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">getindex</span>(S.A, oind<span class="op">...</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">throw</span>(<span class="fu">BoundsError</span>(S, I<span class="op">...</span>))</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="bu">Base</span>.<span class="fu">getindex</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray{T, N, AA}</span>, i<span class="op">::</span><span class="dt">Int64</span>) <span class="kw">where</span> {T, N, AA}</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    oind <span class="op">=</span> <span class="fu">_original_linear_index</span>(S, i)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">checkbounds</span>(<span class="dt">Bool</span>, S.A, oind)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">getindex</span>(S.A, oind)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="fu">throw</span>(<span class="fu">BoundsError</span>(S, i))</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="bu">Base</span>.<span class="fu">setindex!</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray{T, N, AA}</span>, v, I<span class="op">...</span> ) <span class="kw">where</span> {T, N, AA}</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    oind <span class="op">=</span> <span class="fu">_original_cartesian_index</span>(S, I)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">checkbounds</span>(<span class="dt">Bool</span>, S.A, oind<span class="op">...</span>) <span class="op">==</span> <span class="cn">false</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">throw</span>(<span class="fu">BoundsError</span>(S, I<span class="op">...</span>))</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">setindex!</span>(S.A, v, oind<span class="op">...</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="bu">Base</span>.<span class="fu">setindex!</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray{T, N, AA}</span>, v, i<span class="op">::</span><span class="dt">Int </span>) <span class="kw">where</span> {T, N, AA}</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    oind <span class="op">=</span> <span class="fu">_original_liear_index</span>(S, i)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">checkbounds</span>(<span class="dt">Bool</span>, S.A, oind) <span class="op">==</span> <span class="cn">false</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>        <span class="fu">throw</span>(<span class="fu">BoundsError</span>(S, i))</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">setindex!</span>(S.A, v, oind)</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="bu">Base</span>.<span class="fu">similar</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray</span>) <span class="op">=</span> <span class="fu">ShiftedIndexedArray</span>(<span class="bu">Base</span>.<span class="fu">similar</span>(S.A), S.offsets)</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="bu">Base</span>.<span class="fu">sizeof</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray</span>) <span class="op">=</span> <span class="fu">sizeof</span>(S.A)</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="bu">Base</span>.<span class="fu">iterate</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray</span>, state<span class="op">=</span><span class="fl">1</span>) <span class="op">=</span> <span class="fu">iterate</span>(S.A, state)</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="bu">Base</span>.<span class="fu">IndexStyle</span>(S<span class="op">::</span><span class="dt">ShiftedIndexedArray</span>) <span class="op">=</span> <span class="fu">IndexStyle</span>(S.A)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>ShiftedIndexedArray</code> 는 두개의 필드를 갖습니다. 하나는 배열을 저장하는 <code>.A</code> 필드이고, 하나는 각 축에 대한 시작 인덱스를 지정하는 <code>.offsets</code> 입니다.</p>
 
 
 </section>

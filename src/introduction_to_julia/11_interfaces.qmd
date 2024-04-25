@@ -139,7 +139,73 @@ Out[7]: 1000.0
 | `getindex(A, i::Int)` | 선형 인덱스로의 접근 |
 | `getindex(A, I::Vararg{Int, N})` | 데카르트 인덱스로의 접근 |
 
-여기서 `Vararg{Int, N}` 은 `Int` 타입의 `N` 개의 튜플의 타입입니다. 즉
+
+</br>
+
+다차원 배열처럼 동작하는 반복자를 만들어 봅시다. Julia 에서 많이 사용되는 패키지 가운데 [`OffsetArrays.jl`](https://github.com/JuliaArrays/OffsetArrays.jl) 이 있습니다. `OffsetArrays` 는 인덱스가 1 이 아닌 임의의 정수부터 시작하는 배열을 만들 수 있습니다. 그것은 `Base.getindex` 나 `Base.setindex!` 등을 다시 정의하여 동작하게 합니다. `OffsetArrays` 는 상당히 진지한, 그러니까 심각한 작업에도 사용할 수 있도록 세심하게 만들어진 타입이지만 우리는 여기어 이와 비슷하게 작동하는, 그리고 교육 목적의 타입을 만들어 봅시다. 이름은 `ShiftedIndexedArray` 로 합니다.
+
+```julia
+struct ShiftedIndexedArray{T, N, AA <: AbstractArray{T, N}} 
+    A::AA
+    offsets::NTuple{N, Int}
+    
+    function ShiftedIndexedArray{T, N, AA}(arr::AA, offsets::NTuple{N, Int}) where {T, N, AA<:AbstractArray{T, N}}
+        return new{T, N, AA}(arr, offsets)
+    end
+end
+
+function ShiftedIndexedArray(arr::AA, offsets::NTuple{N, Int}) where {N, AA<:AbstractArray}
+    return ShiftedIndexedArray{eltype(arr), ndims(arr), typeof(arr)}(arr, offsets)
+end
+
+const ShiftedIndexedVector{T, AA<: AbstractVector{T}} = ShiftedIndexedArray{T, 1, AA}
+const ShiftedIndexedMarix{T, AA<:AbstractMatrix{T}} = ShiftedIndexedArray{T, 2, AA}
+
+function Base.getindex(S::ShiftedIndexedArray{T, N, AA}, I...) where {T, N, AA}
+    oind = _original_cartesian_index(S, I)
+    if checkbounds(Bool, S.A, oind...) 
+        return getindex(S.A, oind...)
+    else
+        throw(BoundsError(S, I...))
+    end
+end
+
+function Base.getindex(S::ShiftedIndexedArray{T, N, AA}, i::Int64) where {T, N, AA}
+    oind = _original_linear_index(S, i)
+    if checkbounds(Bool, S.A, oind)
+        return getindex(S.A, oind)
+    else 
+        throw(BoundsError(S, i))
+    end
+end
+
+function Base.setindex!(S::ShiftedIndexedArray{T, N, AA}, v, I... ) where {T, N, AA}
+    oind = _original_cartesian_index(S, I)
+    if checkbounds(Bool, S.A, oind...) == false
+        throw(BoundsError(S, I...))
+    else
+        return setindex!(S.A, v, oind...)
+    end
+end
+
+function Base.setindex!(S::ShiftedIndexedArray{T, N, AA}, v, i::Int ) where {T, N, AA}
+    oind = _original_liear_index(S, i)
+    if checkbounds(Bool, S.A, oind) == false
+        throw(BoundsError(S, i))
+    else
+        return setindex!(S.A, v, oind)
+    end
+end
+
+
+Base.similar(S::ShiftedIndexedArray) = ShiftedIndexedArray(Base.similar(S.A), S.offsets)
+Base.sizeof(S::ShiftedIndexedArray) = sizeof(S.A)
+
+Base.iterate(S::ShiftedIndexedArray, state=1) = iterate(S.A, state)
+Base.IndexStyle(S::ShiftedIndexedArray) = IndexStyle(S.A)
+```
+
+`ShiftedIndexedArray` 는 두개의 필드를 갖습니다. 하나는 배열을 저장하는 `.A` 필드이고, 하나는 각 축에 대한 시작 인덱스를 지정하는 `.offsets` 입니다. 
 
 
 
