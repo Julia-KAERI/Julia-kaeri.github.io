@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -124,19 +124,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
-<span class="menu-text">Julia 프로그래밍 언어</span></a>
+<span class="menu-text">Julia 언어</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
-<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+<span class="menu-text">수치해석</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/image_processing/index.html"> 
-<span class="menu-text">영상 처리와 토모그래피</span></a>
+<span class="menu-text">영상 처리/토모그래피</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/tools/tools.html"> 
 <span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/posts/index.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -438,24 +442,24 @@ window.Quarto = {
 <p>상미분방정식과 같이 선형 편미분 연산자를 <span class="math inline">\(\mathcal{L}\)</span> 이라고 하자. 다음과 같이 주어진 편미분 방정식을 생각하자.</p>
 <p><span id="eq-pde_1st_example"><span class="math display">\[
 \mathcal{L}\varphi = a\dfrac{\partial \varphi}{\partial x} + b \dfrac{\partial \varphi}{\partial y} = 0.
-\tag{1}\]</span></span></p>
+\qquad(1)\]</span></span></p>
 <p>이 경우 <span class="math inline">\(s=ax+by,\, t= bx-ay\)</span> 로 선형 변환을 해 주면,</p>
 <p><span id="eq-pde_1st_example_2"><span class="math display">\[
 \begin{aligned}
 0 &amp;= a\dfrac{\partial \varphi}{\partial x} + b \dfrac{\partial \varphi}{\partial y} = a \left(\dfrac{\partial \varphi}{\partial s}\dfrac{\partial s}{\partial x}+\dfrac{\partial \varphi}{\partial t}\dfrac{\partial t}{\partial x}\right) + b\left(\dfrac{\partial \varphi}{\partial s}\dfrac{\partial s}{\partial y}+\dfrac{\partial \varphi}{\partial t}\dfrac{\partial t}{\partial y}\right) \\
 &amp;= (a^2+b^2)\dfrac{\partial \varphi}{\partial s}
 \end{aligned}
-\tag{2}\]</span></span></p>
+\qquad(2)\]</span></span></p>
 <p>이 되며, 따라서 <span class="math inline">\(\varphi\)</span> 는 <span class="math inline">\(t\)</span> 의 함수이다. 즉, 임의의 <span class="math inline">\(C^1\)</span> 함수 <span class="math inline">\(f\)</span> 에 대해 <span class="math inline">\(\varphi(x,\,y) = f(bx - ay)\)</span> 이며 다른 조건은 더이상 찾을 수 없다. 즉 <a href="#eq-pde_1st_example" class="quarto-xref">식&nbsp;1</a> 에서와 같은 편미분 방정식이 <span class="math inline">\(\dfrac{d\varphi}{ds}=0\)</span> 인 1계 상미분방정식으로 변한다. 이렇게 편미분 방정식을 하나 혹은 그 이상의 상미분 방정식으로 변환하는 것을 <strong>특성곡선법(method of characteristics)</strong> 이라고 하며 변화된 상미분 방정식 <strong>특성 곡선 (characteristic curve)</strong> 혹은 <strong>특성 곡면(characteristic curve)</strong> 라고 한다.</p>
 <p>이제 <a href="#eq-pde_1st_example" class="quarto-xref">식&nbsp;1</a> 을 다시 보자. <span class="math inline">\(\mathbb{R}^2\)</span> 에서 생각하면 <span class="math inline">\(\boldsymbol{a} = (a,\,b)\)</span> 에 대해 <span class="math inline">\(\boldsymbol{a} \cdot \nabla \varphi (x,\,y)=0\)</span> 인 함수 <span class="math inline">\(\varphi (x,\,y)\)</span> 를 찾는 것이다. <span class="math inline">\(\nabla \varphi (x,\,y)\)</span> 는 <span class="math inline">\(x,\,y\)</span> 에서 <span class="math inline">\(\varphi\)</span> 가 최대로 증가하는 벡터를 의미하며 <span class="math inline">\(\boldsymbol{a} \cdot \nabla \varphi = 0\)</span> 이므로 <span class="math inline">\(\boldsymbol{a}\)</span> 는 <span class="math inline">\(\varphi (x, y)=c\)</span> 인 방향을 의미한다. 즉 <span class="math inline">\(t=bx-ay\)</span> 를 상수로 놓으면 <span class="math inline">\(\varphi (x,\,y)\)</span> 도 상수이다. <em>– to be extended–</em></p>
 <p>이제 좀 더 일반적인 경우를 살펴보자. 아래와 같이 선형 미분 연산자 <span class="math inline">\(\mathcal{L}\)</span> 에 대한 inhomogeneouse 미분방정식</p>
 <p><span id="eq-pde_2nd_example"><span class="math display">\[
 \mathcal{L}\varphi = a\dfrac{\partial \varphi}{\partial x} + b \dfrac{\partial \varphi}{\partial y} +q(x,\,y)\varphi = F(x, y)\,.
-\tag{3}\]</span></span></p>
+\qquad(3)\]</span></span></p>
 <p>를 앞에서와 같이 <span class="math inline">\(s=ax+by,\, t=bx-ay\)</span> 로 변수를 변환시키면,</p>
 <p><span id="eq-pde_2nd_example_2"><span class="math display">\[
 (a^2+b^2) \left(\dfrac{\partial \varphi}{\partial s}\right)+ \overline{q}(s, t) \varphi = \overline{F}(s, t)
-\tag{4}\]</span></span></p>
+\qquad(4)\]</span></span></p>
 <p>이다. 여기서 <span class="math inline">\(\overline{q},\,\overline{F}\)</span> 는 <span class="math inline">\(q(x,\,y),\, F(x,\,y)\)</span> 를 <span class="math inline">\(x=\dfrac{as}{a^2+b^2} + \dfrac{bt}{a^2+b^2}\)</span>, <span class="math inline">\(y=\dfrac{bs}{a^2+b^2}s - \dfrac{at}{a^2+b^2}\)</span> 로 변환시킨 함수이다. 이 경우 <a href="#eq-pde_2nd_example_2" class="quarto-xref">식&nbsp;4</a> 는 <span class="math inline">\(\varphi\)</span> 의 <span class="math inline">\(s\)</span> 에 대한 1계 ODE 이며 <span class="math inline">\(t\)</span>-constant function 이 특성곡선이 된다.</p>
 <p><br></p>
 </section>
@@ -516,7 +520,7 @@ u_{xx} +au_t=0
 <h3 data-number="4.1" class="anchored" data-anchor-id="데카르트-좌표계에서"><span class="header-section-number">4.1</span> 데카르트 좌표계에서</h3>
 <p>다음과 같이 주어지는 3차원에서의 헬름홀츠 방정식을 생각하자. <span id="eq-pde-helmholtz_3d"><span class="math display">\[
 \nabla^2 \psi + k^2 \psi = 0.
-\tag{5}\]</span></span></p>
+\qquad(5)\]</span></span></p>
 <p>3차원 <span class="math inline">\((x,\,y,\,z)\)</span> 에서 정의되는 함수 <span class="math inline">\(\psi\)</span> 를 각각 <span class="math inline">\(x,\,y,\,z\)</span> 에 대한 함수의 곱으로 표현하자. 즉,</p>
 <p><span class="math display">\[
 \psi(x,\,y,\,z) = X(x)Y(y)Z(z)
@@ -567,7 +571,7 @@ u_{xx} +au_t=0
 <p><span class="math inline">\((\rho,\, \phi,\, z)\)</span> 를 변수로 하는 실린더 좌표계에서의 핼름홀즈 방정식(<a href="#eq-pde-helmholtz_3d" class="quarto-xref">식&nbsp;5</a>) 은</p>
 <p><span id="eq-helimholtz_3d_cylindrical"><span class="math display">\[
 \dfrac{1}{\rho}\dfrac{\partial }{\partial \rho} \left(\rho\dfrac{\partial \psi}{\partial \rho}\right) + \dfrac{1}{\rho^2}\dfrac{\partial^2 \psi}{\partial \phi^2} + \dfrac{\partial^2 \psi}{\partial z^2} + k^2 \psi = 0
-\tag{6}\]</span></span></p>
+\qquad(6)\]</span></span></p>
 <p>이 된다. 이 경우 <span class="math inline">\(\partial_\rho \partial_\phi\)</span> 같은 변수가 섞인 편미분항이 없기 때문에 변수분리법을 시도해 볼 수 있다.</p>
 <p><span class="math display">\[
 \psi (\rho,\, \phi,\, z) = P(\rho)\Phi (\phi) Z(z)
@@ -582,7 +586,7 @@ u_{xx} +au_t=0
 <p>이며, 좌변은 <span class="math inline">\(z\)</span> 의 함수, 우변은 <span class="math inline">\(\rho,\, \phi\)</span> 의 함수이므로 상수 일 수 밖에 없다. 이 값을 <span class="math inline">\(l^2\)</span> 라고 하면,</p>
 <p><span id="eq-pde_spherical_coord_Z"><span class="math display">\[
 \dfrac{d^2Z}{dz^2}= l^2 Z(z)
-\tag{7}\]</span></span></p>
+\qquad(7)\]</span></span></p>
 <p>이다. 또한</p>
 <p><span class="math display">\[
 \dfrac{1}{\rho P(\rho)} \dfrac{d}{d\rho} \left(\rho \dfrac{dP(\rho)}{d\rho}\right) + \dfrac{1}{\rho^2 \Phi(\phi)} \dfrac{d^2\Phi(\phi)}{d\phi^2} +k^2 = -l^2
@@ -594,11 +598,11 @@ u_{xx} +au_t=0
 <p>이 되며, 역시 <span class="math inline">\(m^2\)</span> 로 놓으면,</p>
 <p><span id="eq-pde_spherical_coord_Phi"><span class="math display">\[
 \dfrac{d^2\Phi}{d\phi^2} = -m^2 \Phi (\phi)
-\tag{8}\]</span></span></p>
+\qquad(8)\]</span></span></p>
 <p>와</p>
 <p><span id="eq-pde_spherical_coord_Rho"><span class="math display">\[
 \rho\dfrac{d}{d\rho} \left(\rho \dfrac{dP(\rho)}{d\rho}\right) + (n^2\rho^2 - m^2) P(\rho) = 0
-\tag{9}\]</span></span></p>
+\qquad(9)\]</span></span></p>
 <p>을 얻는다. 이 때 각에 대한 <a href="#eq-pde_spherical_coord_Phi" class="quarto-xref">식&nbsp;8</a> 의 해인 <span class="math inline">\(\Phi\)</span> 는 <span class="math inline">\(\sin m\phi\)</span> 와 <span class="math inline">\(\cos m\phi\)</span> 의 선형결합이며 <a href="#eq-pde_spherical_coord_Rho" class="quarto-xref">식&nbsp;9</a> 를 만족하는 함수 <span class="math inline">\(P(\rho)\)</span> 는 베셀 함수</p>
 
 

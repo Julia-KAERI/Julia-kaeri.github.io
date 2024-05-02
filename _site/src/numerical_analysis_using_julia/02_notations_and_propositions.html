@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -159,19 +159,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
-<span class="menu-text">Julia 프로그래밍 언어</span></a>
+<span class="menu-text">Julia 언어</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
-<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+<span class="menu-text">수치해석</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/image_processing/index.html"> 
-<span class="menu-text">영상 처리와 토모그래피</span></a>
+<span class="menu-text">영상 처리/토모그래피</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/tools/tools.html"> 
 <span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/posts/index.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -494,11 +498,11 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>정의 6 (선형 결합, 선형 독립, 기저)</strong></span> <span class="math inline">\(\mathbb{F}\)</span>-벡터공간 <span class="math inline">\(V\)</span> 와 <span class="math inline">\(v_1,\ldots,\,v_m\in V\)</span> 에 대해</p>
 <p><span id="eq-linear_combination"><span class="math display">\[
 v = a_1v_1 + \cdots + a_mv_m ,\qquad a_1,\ldots,\,a_m\in \mathbb{F}
-\tag{1}\]</span></span></p>
+\qquad(1)\]</span></span></p>
 <p>일 때 <span class="math inline">\(v\)</span> 는 <span class="math inline">\(\{v_1,\ldots,\,v_m\}\)</span> 의 <strong>선형 결합</strong>이라고 한다. <span class="math inline">\(\text{span}\, (v_1,\ldots,\,v_m)\)</span> 은 <span class="math inline">\(\{v_1,\ldots,\,v_m\}\)</span> 의 선형결합인 모든 벡터의 집합이다. 즉,</p>
 <p><span id="eq-span_of_vectors"><span class="math display">\[
 \text{span}\, (v_1,\ldots,\,v_m) =\{a_1v_1 + \cdots + a_m v_m: a_1,\ldots,\,a_m\in \mathbb{F}\}
-\tag{2}\]</span></span></p>
+\qquad(2)\]</span></span></p>
 <p>이다. <span class="math inline">\(\{v_1,\ldots,\,v_m\}\)</span> 에 대해</p>
 <p><span class="math display">\[
 a_1v_1 + \cdots + a_m v_m = 0_V \implies a_1= \cdots =a_m=0
@@ -575,7 +579,7 @@ a_1v_1 + \cdots + a_m v_m = 0_V \implies a_1= \cdots =a_m=0
 <p><span class="theorem-title"><strong>명제 7</strong></span> <span class="math inline">\(T\in \mathcal{L}(U, V)\)</span> 일 때 <span class="math inline">\(n=\dim (U), m = \dim (V)\)</span> 라고 하자. <span class="math inline">\(\{u_1,\ldots,\,u_n\}\)</span> 이 <span class="math inline">\(U\)</span> 의 기저이고 <span class="math inline">\(\{v_1,\ldots,\,v_m\}\)</span> 이 <span class="math inline">\(V\)</span> 의 기저일 때 선형사상 <span class="math inline">\(T\)</span> 는 <span class="math inline">\(u_i\)</span> 에 대해 항상</p>
 <p><span id="eq-linear_map_for_basis"><span class="math display">\[
 T (u_i) =  A_{1i}v_1 + \cdots + A_{mj}v_m  = \sum_{j=1}^m A_{ji}v_j, \qquad i=1,\ldots, n
-\tag{3}\]</span></span></p>
+\qquad(3)\]</span></span></p>
 <p>꼴이다.</p>
 </div>
 <p><br></p>
@@ -668,7 +672,7 @@ U \cong V \iff \dim(U) = \dim (V).
 <p><span class="theorem-title"><strong>정의 11 (행렬식)</strong></span> 행렬식 <span class="math inline">\(\det :\mathcal{M}_{n \times n}(\mathbb{F}) \to \mathbb{F}\)</span> 은 다음과 같이 정의된 함수이다. </p>
 <p><span id="eq-determinant_of_matrix"><span class="math display">\[
 \det(\boldsymbol{A}) = \sum_{\sigma \in S_n} \text{sgn}(\sigma)\left(\prod_{i=1}^n A_{i\sigma(i)}\right)
-\tag{4}\]</span></span></p>
+\qquad(4)\]</span></span></p>
 </div>
 </div>
 </div>
@@ -754,7 +758,7 @@ U \cong V \iff \dim(U) = \dim (V).
 <p>내적벡터 공간에서 <strong>거리함수(노름, norm)</strong> <span class="math inline">\(\|\, \|:V \to [0, \infty)\)</span> 를</p>
 <p><span id="eq-norm_in_innerproduct_space"><span class="math display">\[
 \|v\|=\sqrt{\langle v, v\rangle}
-\tag{5}\]</span></span></p>
+\qquad(5)\]</span></span></p>
 <p>로 정의 할 수 있다.</p>
 </div>
 </div>
@@ -1244,7 +1248,7 @@ f(c) = \dfrac{1}{b-a}\int_a^b f(x),\,dx
 <p><span class="theorem-title"><strong>정리 1</strong></span> <span class="math inline">\(\boldsymbol{F} : U\subset \mathbb{R}^n \to \mathbb{R}^m\)</span> 가 <span class="math inline">\(\boldsymbol{p}\in U\)</span> 에서 미분가능할 때 임의의 <span class="math inline">\(\boldsymbol{u}\in \mathbb{R}^n-\{\boldsymbol{0}\}\)</span> 에 대해 아래의 극한이 존재한다.</p>
 <p><span id="eq-directional_derivative"><span class="math display">\[
 \lim_{t \to \infty} \dfrac{\boldsymbol{F}(\boldsymbol{p}+t\boldsymbol{u}) - \boldsymbol{F}(\boldsymbol{p})}{t}
-\tag{6}\]</span></span></p>
+\qquad(6)\]</span></span></p>
 </div>
 <p><br></p>
 <div class="callout callout-style-simple callout-note no-icon">

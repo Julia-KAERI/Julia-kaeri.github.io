@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -159,19 +159,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
-<span class="menu-text">Julia 프로그래밍 언어</span></a>
+<span class="menu-text">Julia 언어</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
-<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+<span class="menu-text">수치해석</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/image_processing/index.html"> 
-<span class="menu-text">영상 처리와 토모그래피</span></a>
+<span class="menu-text">영상 처리/토모그래피</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/tools/tools.html"> 
 <span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/posts/index.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -440,7 +444,7 @@ V_{n} (x) = a_0 + a_1 x + \cdots + a_{n-1}x^{n-1}
 <p>이 때 <span class="math inline">\(V_{n} (x_i)= y_i\)</span> 이므로 아래와 같은 선형방정식 <span class="math inline">\(\boldsymbol{Va}=\boldsymbol{y}\)</span> 을 통해 계수 <span class="math inline">\(a_0,\ldots,\,a_{n-1}\)</span> 을 구할 수 있다.</p>
 <p><span id="eq-vandermond_matrix"><span class="math display">\[
 \underbrace{\begin{bmatrix} 1 &amp; x_1 &amp; x_1^2 &amp; \cdots &amp; x_1^{n-1} \\ 1 &amp; x_2 &amp; x_2^2 &amp; \cdots &amp; x_2^{n-1} \\ \vdots &amp; &amp; &amp; &amp; \vdots \\ 1 &amp; x_n &amp; x_n^2 &amp; \cdots &amp; x_n^{n-1}\end{bmatrix}}_{{\Large \boldsymbol{V}}} \underbrace{\begin{bmatrix}a_0 \\ a_1 \\ \vdots \\ a_{n-1}\end{bmatrix}}_{{\Large \boldsymbol{a}}} = \underbrace{ \begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_n\end{bmatrix}}_{{\Large\boldsymbol{y}}}
-\tag{1}\]</span></span></p>
+\qquad(1)\]</span></span></p>
 <p><br></p>
 <div id="exr-determinant_of_valdermond_matrix" class="theorem exercise">
 <p><span class="theorem-title"><strong>연습문제 1</strong></span> 위의 <span class="math inline">\(\boldsymbol{V}\)</span> 와 같이 주어진 발데르몽드 행렬의 행렬식은 다음과 같음이 잘 알려져 있다.</p>
@@ -486,7 +490,7 @@ V_{n} (x) = a_0 + a_1 x + \cdots + a_{n-1}x^{n-1}
 l_k (x) &amp;:= \prod_{i=1,\, i \ne k}^n \dfrac{(x-x_i)}{(x_k-x_i)} \\
 &amp;= \dfrac{(x-x_1)\cdots (x-x_{k-1})(x-x_{k+1})\cdots (x-x_n)}{(x_k-x_1)\cdots (x_k-x_{k-1})(x_k-x_{k+1})\cdots (x_k-x_n)}.
 \end{aligned}
-\tag{2}\]</span></span></p>
+\qquad(2)\]</span></span></p>
 <p>이 다항식은 다음을 만족한다.</p>
 <p><span class="math display">\[
 l_k (x_j) = \delta_{xj} = \left\{ \begin{array}{ll} 1 \qquad &amp; j=k,\\ 0 \qquad &amp;\text{otherwise} \end{array}\right.
@@ -494,7 +498,7 @@ l_k (x_j) = \delta_{xj} = \left\{ \begin{array}{ll} 1 \qquad &amp; j=k,\\ 0 \qqu
 <p>다항식 <span class="math inline">\(L_n(x)\)</span> 를 다음과 같이 정의하자.</p>
 <p><span id="eq-Lagrange_polynomial"><span class="math display">\[
 L_{n}(x) := \sum_{k=1}^n y_k \, l_k(x)
-\tag{3}\]</span></span></p>
+\qquad(3)\]</span></span></p>
 <p>그렇다면 <span class="math inline">\(i=1,\ldots,\,n\)</span> 에 대해 <span class="math inline">\(L_{n}(x_i)=y_i\)</span> 인 것은 쉽게 알 수 있다. 즉 <span class="math inline">\(L_{n} (x)\)</span> 는 주어진 점들을 모두 지나는 다항식이다. 이 다항식 <span class="math inline">\(L_{n}(x)\)</span> 를 라그랑쥬 다항식이라고 한다.</p>
 <section id="코드-1" class="level4">
 <h4 class="anchored" data-anchor-id="코드-1">코드</h4>
@@ -530,10 +534,10 @@ L_{n}(x) := \sum_{k=1}^n y_k \, l_k(x)
 N_{n}(x) &amp; = a_0 + a_1 (x-x_1)+ a_2 (x-x_1)(x-x_2)+ \cdots \\
 &amp; \qquad + a_{n-1}(x-x_1)\cdots (x-x_{n-1})
 \end{aligned}
-\tag{4}\]</span></span></p>
+\qquad(4)\]</span></span></p>
 <p>으로 두고 그 계수 <span class="math inline">\(a_0,\,a_1,\ldots,\,a_{n-1}\)</span> 을 찾는다. 우선 <span class="math inline">\(n_k(x)\)</span> 를 아래와 같이 정의하자. <span id="eq-Newton_basis_polynomial"><span class="math display">\[
 n_k (x) := \left\{ \begin{array}{ll} 1 &amp; \text{if }k=0 \\ \displaystyle \prod_{i=1}^k (x-x_i) &amp;\text{if }k\ne 0\end{array}\right.
-\tag{5}\]</span></span></p>
+\qquad(5)\]</span></span></p>
 <p>이 <span class="math inline">\(n_k(x)\)</span> 를 <strong>뉴턴 기저 다항식</strong> 이라 한다. 뉴턴 다항식 <span class="math inline">\(N_n (x)\)</span> 는 다음과 같다.</p>
 <p><span class="math display">\[
 N_{n}(x) = \sum_{k=0}^{n-1} a_k n_k (x).
@@ -548,7 +552,7 @@ a_k = \dfrac{y_{k+1} - a_1 - a_2(x_{k+1}-x_1) - \cdots - a_{k-1}(x_{k+1}-x_1)\cd
 _{{\Large \boldsymbol{N}}}
 \underbrace{\begin{bmatrix} a_0 \\ a_1 \\ a_2 \\ \vdots \\ a_{n-1}\end{bmatrix}}_{{\Large \boldsymbol{a}}} =
 \underbrace{\begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ \vdots \\y_n \end{bmatrix}}_{{\Large \boldsymbol{y}}}.
-\tag{6}\]</span></span></p>
+\qquad(6)\]</span></span></p>
 <p>뉴턴 보간법을 행렬로 표현하는 <span class="math inline">\(\boldsymbol{N}\)</span> 은 하삼각행렬로 방데르몽드 방법이나, 라그랑쥬 방법에 의한 보간법보다 그 계수를 구하는 것이 빠르고 수치해석적으로 안정적이다.</p>
 <p><br></p>
 <section id="코드-2" class="level4">
@@ -750,7 +754,7 @@ P_{1,\ldots,\,n}(x) = \dfrac{(x-x_1)P_{2,\ldots,n}(x) - (x-x_n)P_{1,\ldots,\,n-1
 <p><span class="math inline">\(x_{i}\le x &lt; x_{i+1}\)</span> 일 때 <span class="math inline">\((x_i,\,y_i)\)</span> 와 <span class="math inline">\((x_{i+1},\, y_{i+1})\)</span> 의 두 점을 지나는 직선 <span class="math inline">\(l_i (x)\)</span> 는 다음과 같다.</p>
 <p><span id="eq-linear_interpolation"><span class="math display">\[
 l_i (x) = \dfrac{y_{i+1}-y_i}{x_{+1}-x_i} (x-x_i) + y_i
-\tag{7}\]</span></span></p>
+\qquad(7)\]</span></span></p>
 <p>이 직선 <span class="math inline">\(l_i(x)\)</span> 값으로 <span class="math inline">\(f(x)\)</span> 값을 추산하는 것을 선형보간법이라 한다. 선형 보간법으로 구한 함수는 연속이지만 일반적으로 미분가능하지 않다.</p>
 <p><br></p>
 </section>
@@ -864,7 +868,7 @@ s_i(x_{i+1}) &amp;= y_{i+1}\\
 s'_i(x_{i+1}) &amp;= s'_{i+1}(x_{i+1}) \\
 s''_i(x_{i+1}) &amp;= s''_{i+1}(x_{i+1})
 \end{aligned}
-\tag{8}\]</span></span> 을 만족하도록 보간하는 것을 cubic spline interpolation 이라 한다. <span class="math inline">\([x_i,\,x_{i+1}]\)</span> 구간에서의 삼차함수 <span class="math inline">\(s_i(x)\)</span> 를 <span class="math display">\[
+\qquad(8)\]</span></span> 을 만족하도록 보간하는 것을 cubic spline interpolation 이라 한다. <span class="math inline">\([x_i,\,x_{i+1}]\)</span> 구간에서의 삼차함수 <span class="math inline">\(s_i(x)\)</span> 를 <span class="math display">\[
 s_{i}(x) = a_i + b_i x + c_ix^2 + d_i x^3
 \]</span></p>
 <p>이라 하자. <span class="math inline">\(s_i(x)\)</span> 에 대한 일계 도함수와 이계 도함수는</p>
@@ -882,7 +886,7 @@ a_i + b_i x_{i+1}+ c_i(x_{i+1})^2+ d_{i} (x_{i+1})^3 = y_{i+1} \\
 b_i + 2c_i (x_{i+1})+ 3d_i (x_{i+1})^2 =b_{i+1} + 2c_{i+1} (x_{i+1})+ 3d_{i+1} (x_{i+1})^2 \\
 2c_i + 6d_ix_{i+1} = 2c_{i+1}+ 6d_{i+1}x_{i+1}
 \end{array}
-\tag{9}\]</span></span></p>
+\qquad(9)\]</span></span></p>
 <p>의 조건을 얻었으며, 이를 통해 <span class="math inline">\(a_i,\,b_i,\,c_i,\,d_i\)</span> 를 구할 수 있다. 위 식에서 아래의 두 식은 <span class="math inline">\(i=1\)</span> 일 때 사용 할 수 없으므로 우리는 추가로 조건을 두어야 한다. 이 때 보통 아래와 같은 2가지의 경계조건 가운데 선택한다.</p>
 <ol type="1">
 <li><p>Free or natural boundary: <span class="math inline">\(s''_1 (x_1) = s''_{n-1} (x_n) = 0\)</span></p></li>

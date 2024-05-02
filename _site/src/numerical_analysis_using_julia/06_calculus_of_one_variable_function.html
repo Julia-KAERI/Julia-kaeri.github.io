@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -159,19 +159,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
-<span class="menu-text">Julia 프로그래밍 언어</span></a>
+<span class="menu-text">Julia 언어</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
-<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+<span class="menu-text">수치해석</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/image_processing/index.html"> 
-<span class="menu-text">영상 처리와 토모그래피</span></a>
+<span class="menu-text">영상 처리/토모그래피</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/tools/tools.html"> 
 <span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/posts/index.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -437,14 +441,14 @@ f'(x_0)=\lim_{h\to 0} \dfrac{f(x_0+h)- f(x_0)}{h}
 f(x-h) &amp;= f(x) - f'(x)h + \dfrac{f''(\xi_1)}{2} h^2,  \\
 f(x+h) &amp;= f(x) + f'(x)h + \dfrac{f''(\xi_2)}{2} h^2.
 \end{aligned}
-\tag{1}\]</span></span></p>
+\qquad(1)\]</span></span></p>
 <p><span class="math inline">\(h&gt;0\)</span> 일 때 전방차분과 후방차분을 이용하여</p>
 <p><span id="eq-difference_taylor_1nd"><span class="math display">\[
 \begin{aligned}
 f'(x) &amp;= \dfrac{f(x+h)-f(x)}{h} + O(h) = \dfrac{\Delta_F f(x)}{h} + O(h) \\
 &amp;= \dfrac{f(x)-f(x-h)}{h} + O(h) = \dfrac{\Delta_B f(x)}{h} + O(h)
 \end{aligned}
-\tag{2}\]</span></span></p>
+\qquad(2)\]</span></span></p>
 <p>로 근사 할 수 있다.</p>
 <p><br></p>
 </section>
@@ -457,7 +461,7 @@ f(x-h) &amp;= f(x) - f'(x)h + \dfrac{f''(x)}{2} h^2 - \dfrac{f^{(3)}(\xi_1)}{6} 
 f(x+h) &amp;= f(x) + f'(x)h + \dfrac{f''(x)}{2} h^2 + \dfrac{f^{(3)}(\xi_2)}{6} h^3, \\
 &amp;= f(x) + f'(x)h + \dfrac{f''(x)}{2} h^2 + \dfrac{f^{(3)}(x)}{6} h^3 + \dfrac{f^{(4)}(\xi'_2)}{24}h^4
 \end{aligned}
-\tag{3}\]</span></span></p>
+\qquad(3)\]</span></span></p>
 <p>를 만족하는 <span class="math inline">\(\xi_1,\,\xi'_1\in (x-h,\, x),\, \xi_2,\,\xi'_2 \in (x,\,x+h)\)</span> 가 존재한다.</p>
 <p>이로부터</p>
 <p><span class="math display">\[
@@ -472,7 +476,7 @@ f(x+h) -2 f(x) + f(x-h) &amp;= f''(x) h^2 + \dfrac{1}{24}\left(f^{(4)}(\xi'_1) +
 f'(x) &amp;= \dfrac{f(x+h)-f(x-h)}{2h} - \dfrac{f^{(3)}(\xi)}{6}h^2 ,\\
 f''(x) &amp;=  \dfrac{f(x+h) - 2f(x) + f(x-h)}{h^2} - \dfrac{f^{(4)}(\xi')}{12}h^2
 \end{aligned}
-\tag{4}\]</span></span></p>
+\qquad(4)\]</span></span></p>
 <p>이 때 수치해석적으로 계산한 미분의 오차는 <span class="math inline">\(h^2\)</span> 에 비례한다. 따라서 <span class="math inline">\(h\)</span> 을 작게 잡을 수록 오차가 작아지며 충분히 작을 때 전방차분이나 후방차분보다 오차가 작을 것을 기대 할 수 있다. 위의 식에 의해 구한 미분의 추정값을 <strong>중앙 차분 (central difference)</strong> 라고 한다. 아래 그림은 함수 <span class="math inline">\(f\)</span> 에 대한 전방 차분, 후방 차분, 중앙 차분값을 그림으로 표현하였다. 실제 미분값은 중앙차분에 의한 값과 거의 같다.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -492,7 +496,7 @@ f(x-2h) &amp;= f(x) - f'(x)(2h) + \dfrac{f''(x)}{2}(2h)^2 - \dfrac{f^{(3)}(x)}{6
 y'_1 &amp;= \dfrac{-y_{3}+4y_{2}-3y_1}{2h} + O(h^2),\\
 y'_n &amp;= \dfrac{3y_{n}-4x_{n-1}+y_{n-2}}{2h} + O(h^2).
 \end{aligned}
-\tag{5}\]</span></span></p>
+\qquad(5)\]</span></span></p>
 <p><br></p>
 </section>
 <section id="roundoff-에러" class="level3">
@@ -520,7 +524,7 @@ f(x+h) &amp;= f(x) + f'(x) \cdot (h) + \dfrac{f''(x)}{2}(h)^2 \\
 f(x+2h) &amp;= f(x) + f'(x) \cdot (2h) + \dfrac{f''(x)}{2}(2h)^2 \\
 &amp;\qquad \qquad + \dfrac{f'''(x)}{6} (2h)^3 + \dfrac{f^{(4)}(x)}{24}(2h)^4 + \dfrac{f^{(5)}(\xi_4)}{120} (2h)^5\,\\
 \end{aligned}
-\tag{6}\]</span></span></p>
+\qquad(6)\]</span></span></p>
 <p>이로부터,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -534,7 +538,7 @@ f(x-2h) -8f(x-h) + 8f(x+h)  - f(x+2h) &amp;= 12 f'(x) h+ O (h^5) \,,\\
 f'(x) &amp; = \dfrac{f(x-2h) -8f(x-h) + 8f(x+h)  - f(x+2h)}{12h} + O(h^5)\,,\\
 f''(x) &amp;= \dfrac{-f(x-2h) + 16f(x-h) -30 f(x) + 16 f(x+h) - f(x+2h)}{12h^2} + O(h^4)
 \end{aligned}
-\tag{7}\]</span></span></p>
+\qquad(7)\]</span></span></p>
 <p>이다.</p>
 <p>다음 그림은 함수 <span class="math inline">\(f(x) = x\sin (x)\)</span> 에 대해 <span class="math inline">\(h\)</span> 를 변화시켜 가면서로 잡고 위에서 설명한 두가지 방법을 이용하여 도함수를 구했을때의 그래프(“3 Points”, “5 Points”) 와 <span class="math inline">\(f'(x) = \sin (x) + x\cos (x)\)</span> 의 그래프 (“Analytical”) 를 같이 그린 것이다. <span class="math inline">\(h=1\times 10^{-1}\)</span> 에서는 첫번째 수치미분보다 두번째 수치미분이 좀 더 실제 값에 가까우며 <span class="math inline">\(1 \times 10^{-2}\)</span> 부터 <span class="math inline">\(1.0 \times 10^{-14}\)</span> 까지는 두 방법 모두 상당히 정확한 값을 보여준다. 그러나 <span class="math inline">\(h\)</span> 값이 <span class="math inline">\(1.0\times 10^{-15}\)</span> 보다 작아지면서부터는 뚜렷하게 오차를 보여준다. 이것은 수치 미분을 구할 때 분모를 <span class="math inline">\(h\)</span> 로 나누게 되는데, 이 값이 작을수록 round-off 에러가 발생하기 때문이다. 따라서 적당한 <span class="math inline">\(h\)</span> 값을 잡는 것이 중요하다.</p>
 <p><br></p>
@@ -643,11 +647,11 @@ f(x) = \tilde{f}(x) + \dfrac{f^{(2)}(\xi_i)}{2}(x-x_{i-1})(x-x_i).\\
 <p>를 얻는다. 사다리꼴 방법에 의한 적분값 <span class="math inline">\(I_T\)</span> 는</p>
 <p><span id="eq-trapzoidal_value"><span class="math display">\[
 I_T[f, a, b, n] = \dfrac{h}{2}\left(f(x_1)+ f(x_n) + \sum_{i=2}^{n-1} f(x_i)\right)
-\tag{8}\]</span></span></p>
+\qquad(8)\]</span></span></p>
 <p>이다. 이제 적분의 오차를 알아보자. <span class="math inline">\(f^{(2)}(x)\)</span> 가 연속이므로 <span class="math inline">\(\displaystyle \dfrac{1}{n-1}\sum_{i=1}^{n-1} f^{(2)}(\xi_i)= f^{(2)}(\xi)\)</span> 를 만족하는 <span class="math inline">\(\xi\in [a,\,b]\)</span> 가 존재하며<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> 따라서 사다리꼴 방법에 의한 적분에 대한 에러 <span class="math inline">\(E_T\)</span> 는</p>
 <p><span id="eq-trapzoidal_error"><span class="math display">\[
 E_T[f, a, b, n] = \dfrac{h^3}{12}(n-1)f^{(2)}(\xi) = \dfrac{h^3}{12}\dfrac{b-a}{h}f^{(2)}(\xi) = \dfrac{(b-a)f^{(2)}(\xi)}{12}h^2 = O(h^2)
-\tag{9}\]</span></span></p>
+\qquad(9)\]</span></span></p>
 <p>이다.</p>
 <p><br></p>
 </section>
@@ -690,7 +694,7 @@ f''(x) =  \dfrac{f(x+h) - 2f(x) + f(x-h)}{h^2} - \dfrac{f^{(4)}(\xi_i')}{36}h^5
 \]</span></p>
 <p>따라서 Simpson 1/3 적분값은 다음과 같다. <span id="eq-simpson_1_3_value"><span class="math display">\[
 \mathcal{I}_{1/3}[f,\,a,\,b,\, 2n+1] = \dfrac{h}{3} \left[f(x_1) + f(x_{2m+1}) + 4\left(\sum_{k=1}^m  f(x_{2k})\right) + 2\left(\sum_{k=1}^{m-1} f(x_{2k+1})\right)\right]
-\tag{10}\]</span></span></p>
+\qquad(10)\]</span></span></p>
 <p><br></p>
 </section>
 <section id="simpson-38-적분" class="level3">
@@ -718,7 +722,7 @@ f(x) = L_4 (x) + \dfrac{f^{(4)}(\xi_i)}{4!}\prod_{j=1}^4(x-x_{j-2})
 <p>를 만족하는 <span class="math inline">\(\xi \in [a,\,b]\)</span> 가 존재한다. 여기서</p>
 <p><span id="eq-simpson_3_8_value"><span class="math display">\[
 \mathcal{I}_{3/8}[f,\,a,\,b,\, 3m+1]=\dfrac{3h}{8} \left[f(x_1) + f(x_{3m+1}) + 3\sum_{i=0}^{m-1} \left(f(x_{3i+2}) +f(x_{3i+3})\right) +  + 2\sum_{i=1}^{m-1} f(x_{3i+1})\right]
-\tag{11}\]</span></span></p>
+\qquad(11)\]</span></span></p>
 <p>는 Simpson 3/8 적분값이며 그 오차는 <span class="math inline">\(- \dfrac{3m}{80}f^{(4)} (\xi) h^5\)</span> 이다.</p>
 <!-- [^2]: 일변수 함수 $f$ 가 닫힌 구간 $[a,\,b]$ 에서 연속이면 최대값과 최소값이 항상 존재한다는 것은 아주 중요한 수학적 사실이다. -->
 <p><br></p>
@@ -790,11 +794,11 @@ f(x) = L_4 (x) + \dfrac{f^{(4)}(\xi_i)}{4!}\prod_{j=1}^4(x-x_{j-2})
 <p>어떤 값 <span class="math inline">\(M\)</span> 을 계산하는데 매개변수 <span class="math inline">\(h\)</span> 에 대해 그 truncation 오차가 <span class="math inline">\(O(h)\)</span> 인 방법을 사용하여 <span class="math inline">\(N_1(h)\)</span> 를 얻었다고 하자. 이 때 우리는</p>
 <p><span id="eq-richardson_1"><span class="math display">\[
 M - N_1(h) = k_1 h + k_2 h^2 + O(h^3)
-\tag{12}\]</span></span></p>
+\qquad(12)\]</span></span></p>
 <p>라고 생각 할 수 있다. 이것을 약간 변형하면,</p>
 <p><span id="eq-richardson_2"><span class="math display">\[
 M-N_1\left(\dfrac{h}{2}\right) = k_1 \dfrac{h}{2} + k_2 \dfrac{h^2}{4} + O(h^3)
-\tag{13}\]</span></span></p>
+\qquad(13)\]</span></span></p>
 <p>이며 <span class="math inline">\(2\times\)</span>(<a href="#eq-richardson_2" class="quarto-xref">식&nbsp;13</a>)<span class="math inline">\(-\)</span>(<a href="#eq-richardson_1" class="quarto-xref">식&nbsp;12</a>) 를 계산하면,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -831,7 +835,7 @@ M - N_m\left(\dfrac{h}{2}\right) &amp; = k_m \left(\dfrac{h}{2}\right)^m + k_{m+
 M &amp;= \dfrac{1}{2^m-1}\left[ 2^m N_m \left(\dfrac{h}{2}\right)-N_m (h)\right] - \dfrac{k_{m+1}}{2(2^m-1)}h^{m+1} + O(h^{m+2}) \\
 &amp;= N_{m+1}(h) + O(h^{m+1})
 \end{aligned}
-\tag{14}\]</span></span></p>
+\qquad(14)\]</span></span></p>
 <p>을 얻는다.</p>
 <p><br></p>
 <section id="sec-richardson_extrapolation_with_even_order_error" class="level4">
@@ -856,7 +860,7 @@ M &amp;= \dfrac{1}{4^{m} -1} \left[4^{m}N_{2m} \left(\dfrac{h}{2}\right) - N_{2m
 <p>를 얻는다. 즉</p>
 <p><span id="eq-richardson_even_order"><span class="math display">\[
 N_{2m+2}(h) =  \dfrac{1}{4^{m} -1} \left[4^{m}N_{2m} \left(\dfrac{h}{2}\right) - N_{2m}(h)\right]
-\tag{15}\]</span></span></p>
+\qquad(15)\]</span></span></p>
 <p>를 얻는다.</p>
 <p><br></p>
 </section>
@@ -880,7 +884,7 @@ N_{2m+2}(h) =  \dfrac{1}{4^{m} -1} \left[4^{m}N_{2m} \left(\dfrac{h}{2}\right) -
 <p><a href="#eq-trapzoidal_value" class="quarto-xref">식&nbsp;8</a> 의 사다리꼴 적분 <span class="math inline">\(I_T[f, a, b, n]\)</span> 에서 <span class="math inline">\(n\)</span> 을 <span class="math inline">\(2^k\)</span> 로 잡았을 때의 적분을 <span class="math inline">\(N_{k, 1}\)</span> 이라고 하자. 즉,</p>
 <p><span id="eq-trapzoidal_value2"><span class="math display">\[
 N_{k, 1} = I_T[f, a, b, 2^k] = \dfrac{h}{2}\left(f(x_1)+ f(x_{2^k}) + \sum_{i=2}^{2^k-1} f(x_i)\right)
-\tag{16}\]</span></span></p>
+\qquad(16)\]</span></span></p>
 <p>이라고 하자. 이 때의 오차는 <span class="math inline">\(O(h^2)\)</span> 이다. <span class="math inline">\(k=1,\ldots, k_M\)</span> 에 대해 <span class="math inline">\(N_{k, 1}\)</span> 을 구할 수 있다. <span class="math inline">\(m\le k_M-1\)</span> 에 대해 <span class="math inline">\(N_{1, m}, \ldots, N_{k_M-m+1, m}\)</span> 의 값을 구하였다고 하자. <a href="#eq-richardson_even_order" class="quarto-xref">식&nbsp;15</a> 를 이용하여, <span class="math inline">\(O(h^{2m+2})\)</span> 의 오차를 갖는 <span class="math inline">\(2^k-1\)</span> 개의 구간을 갖는 적분 <span class="math inline">\(N_{k, m+1}\)</span> 은 <span class="math display">\[
 N_{k, m+1} = \dfrac{1}{4^{m} -1} \left[4^{m}N_{k+1, m}  - N_{k, m}\right] + O(h^{2m+2}), \qquad k = 1, \ldots k_M-m+1
 \]</span></p>
@@ -910,7 +914,7 @@ N_{k, m+1} = \dfrac{1}{4^{m} -1} \left[4^{m}N_{k+1, m}  - N_{k, m}\right] + O(h^
 <p>본격적으로 들어가기 전에 이미 미적분학에서 배웠을 한가지를 확인하고 가자. 우리는 임의의 구간 <span class="math inline">\([a,\,b]\)</span> 에 대한 함수 <span class="math inline">\(f(x)\)</span> 의 적분을 <span class="math inline">\([-1,\,1]\)</span> 구간에 대한 적분으로 바꿀 수 있다. 즉,</p>
 <p><span id="eq-integra_variable_transform"><span class="math display">\[
 \int_{a}^b f(x)\, dx = \int_{-1}^1 f\left(\dfrac{(b-a)t+ (b+a)}{2}\right)\,\left(\dfrac{b-a}{2}\right) dt
-\tag{17}\]</span></span></p>
+\qquad(17)\]</span></span></p>
 <p>이다.</p>
 <section id="르장드르-다항식을-이용한-가우스-구적법" class="level3">
 <h3 class="anchored" data-anchor-id="르장드르-다항식을-이용한-가우스-구적법">르장드르 다항식을 이용한 가우스 구적법</h3>
