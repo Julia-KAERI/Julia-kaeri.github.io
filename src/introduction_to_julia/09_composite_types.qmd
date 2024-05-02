@@ -356,10 +356,140 @@ Out[6]: 7.0f0
 이제 지금까지 했던 것을 가지고 뭔가 좀 고차원적인 일을 해 보자. 정수를 다루는 수학의 분야를 정수론이라고 하며 여기서 모듈러 산술이라는 것을 다룬다. 8 을 5로 나누면 나머지가 3이며 33 도 5로 나누면 나머지가 3이다. 이것을 다음과 같이 표현한다.
 
 $$
-8 \, (\textrm{mod} 5) \equiv 33 \, (\textrm{mod}\, 5)
+8 \equiv 33 \, (\textrm{mod}\, 5)
 $$
 
-$\sin x$ 
+이것은 8 과 33 은 5로 나눈 나머지가 같다는 뜻이다. 두 정수 $a,\,b$ 와 자연수 $n$ 에 대해
+
+$$
+a \equiv b \, (\textrm{mod}\, n)
+$$
+
+은 $a$ 와 $b$ 는 $n$ 으로 나누었을 때의 나머지와 같다는 뜻이다. 또한 재미있는 것은 이 관계를 이용하여 사칙연산을 할 수 있다는 것이다. $a \equiv b \, (\textrm{mod}\, n)$, $c \equiv d\, (\textrm{mod}\, n)$ 일 때 다음이 성립한다.
+
+&emsp; ($1$) $(a+c) \equiv (b+d)\, (\textrm{mod}\, n)$.
+
+&emsp; ($2$) $(a-c) \equiv (b-d)\, (\textrm{mod}\, n)$.
+
+&emsp; ($3$) $ac \equiv bd\, (\textrm{mod}\, n)$.
+
+&emsp; ($4$) $n$ 이 소수이면 $ax \equiv 1\, (\textrm{mod}\, n)$ 인 자연수 $x$ 가 존재한다.
+
+
+
+$n$ 이 소수가 아니더라라도 $a$ 와 $n$ 의 최대공약수가 $1$ 이라면, 즉 $\gcd(a,\, n)=1$ 이면 $ax\equiv 1\, (\textrm{mod}\, n)$ 인 $x$ 가 존재하지만 모든 수에 대해 존재하는 것은 아니다. $n$ 이 소수일 경우에는 $n$ 보다 작은 모든 자연수 $a$ 에 대해 $\gcd (a,n)=1$ 이므로 ($4$) 가 성립한다. 이 때 $x = a^{-1}$ 이라고 하면 $b/a := ba^{-1}$ 로 정의하여 나누기를 정의 할 수 있다. 그렇다면 소수인 $n$ 에 대해 $a^{-1}$ 은 어떻게 계산할까? 그리고 주어진 $a$ 에 대해 $ax \equiv 1 \, (\text{mod}\, n)$ 인 $x$ 는 오직 하나일까? 일단 뒤의 문제부터 답하자면 소수 $n$ 에 대해 $a^{n-1} \equiv 1\, (\text{mod}\, n)$ 이라는 것이 알려져 있다$^1$.[$^1$ 이를 페르마의 소정리(Fermat's little theorem) 이라고 한다.]{.aside} 따라서 $a^{-1} \equiv a^{n-2}\, (\textrm{mod}\, n)$ 이다. 또한 $ax\equiv 1\, (\textrm{mod}\, n),\, ay\equiv 1\, (\textrm{mod}\, n)$ 이면 $n$ 이 소수일 때 $x \equiv y\, (\textrm{mod}\, n)$ 이다. 
+
+이렇게 어떤 수($n$) 에 대한 나머지로 사칙연산을 수행하는 것을 모듈러 산술(modular arithematic) 이라고 한다. $n$ 이 소수가 아니라면 덧셈 뺄셈, 곱셈만 정의되며 나눗셈은 정의 할 수 없지만 $n$ 이 소수라면 모두 정의 할 수 있다. 
+
+이제 이 모듈러 산술에 대한 자료형을 만들자. $n$ 이 소수인 경우와 소수가 아닌 경우를 구분해야 하기 때문에 소수를 판별하는 함수를 작성해야 한다. $n$ 이 매우 큰 수가 아니라면 가장 간단하게 사용할 수 있는 알고리즘은 $2$ 부터 $\sqrt{n}$ 보다 크지 않은 모든 정수에 대해 $n$ 과의 최대공약수가 1 인지를 확인하는 것이다. 
+
+```julia
+const max_modular = 1_000_000_000
+
+function isprime(v::Integer)
+    @assert 1<v<max_modular 
+    result = true
+    for x in 2:floor(Int64, √v)
+        if v % x == 0
+            result = false
+            break
+        end
+    end
+    return result
+end
+```
+
+`max_modular` 는 $n$ 값이 될 수 있는 최대값을 정한다. 너무 큰 수에 대해 계산하는 것을 방지하기 위한 것 말고는 큰 의미가 없다. 괜히 큰 수에 대해 입력하여 시간을 오래 잡아먹는 것을 막기 위해 사용하였다.
+
+이제 최상위의 추상 타입과 $n$ 이 소수일 때, 그리고 소수가 아닐 때를 구별하여 타입을 만들자. 소수일 경우는 나머지를 정의 할 수 있다. 너무 복잡하게 나가지 않기 위해 정수는 `Int64` 타입만을 사용하는 것으로 하자. 
+
+```julia
+abstract type AbstractModular{N} end
+abstract type AbstractPrimeModular{N} <: AbstractModular{N} end
+
+const max_modular = 1_000_000_000
+
+function isprime(v::Integer)
+    @assert 1<v<max_modular 
+    result = true
+    for x in 2:floor(Int64, √v)
+        if v % x == 0
+            result = false
+            break
+        end
+    end
+    return result
+end
+
+struct PrimeMod{N} <: AbstractPrimeModular{N}
+    value::Int64
+    
+    function PrimeMod{N}(x::T) where {N, T<:Integer}
+        @assert N > 1 "Modulos must be larger than 1"
+        @assert isprime(N) "Must be a prime number"
+        r = (x ≥ 0) ? x%N : (x%N)+N 
+        return new{N}(r)
+    end
+end
+
+struct Mod{N} <: AbstractModular{N}
+    val::Int64
+
+    function Mod{N}(x::T) where {N, T<:Integer}
+        @assert N > 1 "Modulos must be larger than 1"
+        r = (x ≥ 0) ? x%N : (x%N)+N 
+        if isprime(N)
+            return PrimeMod{N}(r)
+        else 
+            return new{N}(r)
+        end
+    end
+end
+
+function Base.show(io::IO, x::AbstractModular{N}) where N 
+    println(io, "$(x.value) ($N)")
+end
+
+Base.zero(a::AbstractModular{N}) where N = Mod{N}(0)
+Base.one(a::AbstractModular{N}) where N = Mod{N}(1)
+Base.:-(a::AbstractModular{N}) where N = Mod{N}(-a.value)
+
+function Base.:+(a::AbstractModular{N}, b::AbstractModular{N}) where N 
+    return Mod{N}(a.value+b.value)
+end
+
+function Base.:-(a::AbstractModular{N}, b::AbstractModular{N}) where N 
+    return Mod{N}(a.value-b.value)
+end
+
+function Base.:*(a::AbstractModular{N}, b::AbstractModular{N}) where N 
+    return Mod{N}(a.value*b.value)
+end
+
+
+function Base.:inv(a::AbstractPrimeModular{N}) where N
+    return Mod{N}(a.value^(N-2))
+end
+
+
+function Base.:^(a::AbstractModular{N}, n::Integer) where N
+     return Mod{N}(a.value^n)
+end
+
+function Base.:/(a::AbstractPrimeModular{N}, b::AbstractPrimeModular{N}) where N
+    if b == zero(b)
+        throw(DivideError)
+    end
+    return a*minv(b)
+end
+```
+
+이것은 `NAJ.jl` 에 포함되어 있으며 다음과 같이 사용합니다. 
+
+
+
+
+
 
 
 

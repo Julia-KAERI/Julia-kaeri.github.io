@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -124,19 +124,23 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/introduction_to_julia/index.html"> 
-<span class="menu-text">Julia 프로그래밍 언어</span></a>
+<span class="menu-text">Julia 언어</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/numerical_analysis_using_julia/index.html"> 
-<span class="menu-text">Julia 언어를 이용한 수치해석</span></a>
+<span class="menu-text">수치해석</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../../src/image_processing/index.html" aria-current="page"> 
-<span class="menu-text">영상 처리와 토모그래피</span></a>
+<span class="menu-text">영상 처리/토모그래피</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../src/tools/tools.html"> 
 <span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/posts/index.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -349,16 +353,16 @@ S(x, \theta) =  \int \mathfrak{R}_\theta [f](x, y) \, dy
 <p>이다. 선원에서 <span class="math inline">\(I_0\)</span> 의 빔의 강도를 가진 빔이 <span class="math inline">\(S\)</span> 의 경로를 따라 갔을 때의 빔의 강도는</p>
 <p><span id="eq-beam_intensity"><span class="math display">\[
 I = I_0 \exp \left[-\int_S \mu (x, y)\, ds\right]
-\tag{1}\]</span></span></p>
+\qquad(1)\]</span></span></p>
 <p>가 된다. 중성자나 X-선의 경우 공기중의 선형 감쇠 계수는 매우 작기 때문에 우리가 관심이 있는 영역에서의 경로적분만을 생각하면 된다. 또한 빔이 <span class="math inline">\(x\)</span> 값이 고정된 직선 경로를 따른다면,</p>
 <p><span id="eq-beam_intensity_2"><span class="math display">\[
 I(x) = I_0 \exp \left[-\int_{y_i}^{y_f} \mu (x, y)\, dy\right]
-\tag{2}\]</span></span></p>
+\qquad(2)\]</span></span></p>
 <p>이다. 만약 물질이 없는 경로에서의 측정값이 있다면 <span class="math inline">\(I(x) = I_0\)</span> 가 될 것이다.</p>
 <p>우리가 검출기에서 측정한 값이 <span class="math inline">\(\overline{I}(x)\)</span> 이며 물질이 없는 경로에서의 측정값 <span class="math inline">\(\overline{I_0}\)</span> 을 가지고 있다면,</p>
 <p><span id="eq-beam_intensity_formula"><span class="math display">\[
 -\ln \left(\dfrac{\overline{I}(x)}{\overline{I_0}}\right) = \int_{y_i}^{y_f} \mu (x, y)\, dy
-\tag{3}\]</span></span></p>
+\qquad(3)\]</span></span></p>
 <p>가 될 것이다.</p>
 <p><br></p>
 </section>
@@ -381,7 +385,7 @@ I(x) = I_0 \exp \left[-\int_{y_i}^{y_f} \mu (x, y)\, dy\right]
 <p><br> 이제 라돈 변환을 잠시 다른 모양의 동등한 식으로 바꿔 보자.</p>
 <p><span id="eq-projection_1"><span class="math display">\[
 p_\theta(t) = \int_{-\infty}^{\infty} \mu(x,\,y)\, \delta (x\cos \theta + y \sin \theta -t )\, dx\,dy
-\tag{4}\]</span></span></p>
+\qquad(4)\]</span></span></p>
 <p><br></p>
 </section>
 <section id="fourier-slice-theorem" class="level2" data-number="4">
@@ -404,7 +408,7 @@ f(x, y) = \mathfrak{F}^{-1}[F](x, y) = \iint F(u, v) \, e^{2\pi i (ux +yv)}\, du
 <p>Projection <span class="math inline">\(p_\theta (s)\)</span> 에 대한 1차원 푸리에 변환을 <span class="math inline">\(S_\theta(\omega)\)</span> 라 하면,</p>
 <p><span id="eq-fourier_transform_of_projection"><span class="math display">\[
 S_\theta(\rho) = \int p_\theta(t) \,e^{-2\pi i\rho t}\, dt
-\tag{5}\]</span></span></p>
+\qquad(5)\]</span></span></p>
 <p>이다.</p>
 <p>아래의 그림처럼 <span class="math inline">\(\theta\)</span> 만큼 회전시킨 <span class="math inline">\(t-s\)</span> 좌표계를 생각하자. 그렇다면, <span class="math inline">\((x, y)\)</span> 와 <span class="math inline">\((t, x)\)</span> 의 관계는 아래와 같다.</p>
 <p><span class="math display">\[
@@ -433,11 +437,11 @@ S_\theta (\rho) &amp;= \int p_\theta (t) e^{-2\pi i \rho t}\, dt \\
 &amp;=\int \left[\int f(t, s) \, ds\right] \, e^{-2\pi i \rho t}\, dt \\
 &amp;= \iint f(x, y) e^{-2 \pi i \rho ( x \cos\theta + y\sin \theta) } \, dx\, dy
 \end{aligned}
-\tag{6}\]</span></span></p>
+\qquad(6)\]</span></span></p>
 <p>임을 안다. 여기서 <span class="math inline">\(u = \rho \cos \theta,\, v = \rho \sin \theta\)</span> 라고 하면,</p>
 <p><span id="eq-fourier_transform_of_slice_3"><span class="math display">\[
 S_\theta (\rho) = \iint f(x,  y) e^{-2\pi i (ux + vy)}\, dx\, dy = \mathfrak{F}[f](u, v) = F(\rho \cos \theta, \rho \sin \theta)
-\tag{7}\]</span></span></p>
+\qquad(7)\]</span></span></p>
 <p>이다. 이것이 바로 <strong>Fourier Slice Theorem</strong> 이다. Fourier slice theorem 은 sinogram 으로부터 <span class="math inline">\(f(x, y)\)</span> 를 구할 수 있음을, 즉 역 라돈 변환이 가능함을 보장한다.</p>
 <center>
 <div id="fig-fourier_slice_theorem" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -481,13 +485,13 @@ S_\theta (\rho) = \iint f(x,  y) e^{-2\pi i (ux + vy)}\, dx\, dy = \mathfrak{F}[
 f(x, y) &amp;= \iint F(u, v) e^{2\pi i (ux + yv)}\, du\, dv \\
 &amp;= \int_0^{2\pi}\int_0^{\infty} F(\rho \cos \theta, \rho \sin \theta)\, e^{2\pi i (\rho x \cos \theta + \rho y \sin \theta)} \, \rho\,   d\rho \, d\theta
 \end{aligned}
-\tag{8}\]</span></span></p>
+\qquad(8)\]</span></span></p>
 <p>이며 <span class="math inline">\(\theta\)</span> 에 대한 적분을 <span class="math inline">\([0, \pi)\)</span>, <span class="math inline">\([\pi, 2\pi)\)</span> 구간으로 나누어 생각해 보자.</p>
 <ul>
 <li><p>Projection <span class="math inline">\(p_\theta (t)\)</span> 를 생각해보자. <span class="math inline">\(\theta + \pi\)</span> 만큼 회전시킨 projection 은 <span class="math inline">\(\theta\)</span> 에 대한 projection 과 같은 선상의 적분이며 단지 <span class="math inline">\(t\)</span> 값이 <span class="math inline">\(-t\)</span> 로 바뀔 뿐이다. 따라서 <span class="math inline">\(p_{\theta + \pi} (t) = p_\theta(-t)\)</span> 이다.</p></li>
 <li><p>식 (<span class="math inline">\(6\)</span>) 으로부터, <span class="math inline">\(S_{\theta + \pi}(\rho) = S_\theta (-\rho)\)</span> 임을 안다. 따라서 다음이 성립한다. <span id="eq-filtered_projection_2"><span class="math display">\[
 F(\rho \cos (\theta + \pi), \rho \sin (\theta + \pi)) = F(-\rho \cos \theta, -\rho \sin\theta)
-\tag{9}\]</span></span></p></li>
+\qquad(9)\]</span></span></p></li>
 </ul>
 <p><br></p>
 <p>그렇다면, <span class="math inline">\([\pi, 2\pi)\)</span> 구간에서 <span class="math inline">\(\phi = \theta - \pi\)</span> 로 놓으면, 그리고 중간에 <span class="math inline">\(\rho \to -\rho\)</span> 변환을 사용하면,</p>
@@ -497,22 +501,22 @@ F(\rho \cos (\theta + \pi), \rho \sin (\theta + \pi)) = F(-\rho \cos \theta, -\r
 &amp;=\int_0^\pi \int_0^\infty F(-\rho\cos \phi, -\rho \sin \phi) e^{-2\pi i(\rho x \cos \phi +\rho y \sin\phi)} \, \rho\, d\rho \, d\phi \\
 &amp; = \int_0^\pi \int_{-\infty}^0 F(\rho \cos \phi,  \rho \sin \phi) e^{2\pi i (\rho x \cos \theta + \rho y \sin \theta)} (-\rho)\, d\rho \,d\phi
 \end{aligned}
-\tag{10}\]</span></span></p>
+\qquad(10)\]</span></span></p>
 <p>이다. <a href="#eq-fourier_transform_of_slice_3" class="quarto-xref">식&nbsp;7</a> 과 <a href="#eq-filtered_projection_3" class="quarto-xref">식&nbsp;10</a> 로부터, 그리고 Fourier slice theorem 으로부터,</p>
 <p><span id="eq-filtered_back_projection"><span class="math display">\[
 \begin{aligned}
 f(x, y) &amp;=\int_0^{ \pi} \int_{-\infty}^\infty F(\rho \cos\theta, \rho \sin \theta) e^{2\pi i \rho(x \cos \theta + y \sin \theta)}|\rho| \, d\rho \, d\theta \\
 &amp;= \int_0^\pi \left[ \int_{0}^\infty S_\theta (\rho) |\rho| e^{2\pi i \rho (x\cos \theta + y \sin \theta)}\, d\rho \right] \, d\theta
 \end{aligned}
-\tag{11}\]</span></span></p>
+\qquad(11)\]</span></span></p>
 <p>를 얻는다. 우리는 <span class="math inline">\(t=x \cos \theta + y \sin \theta\)</span> 가 <span class="math inline">\(\theta\)</span> 만큼 회전시켰을때의 projection 이 독립변수임을(혹은 좌표값임을) 알고 있다. 따라서</p>
 <p><span id="eq-fourier_transform_of_slice_4"><span class="math display">\[
 Q_\theta (t) = \int_{0}^\infty S_\theta(\rho) |\rho| e^{2\pi i \rho t} \, d\rho
-\tag{12}\]</span></span></p>
+\qquad(12)\]</span></span></p>
 <p>라고 정의하자. 그렇다면</p>
 <p><span id="eq-fourier_transform_of_slice_5"><span class="math display">\[
 f(x, y) = \int_0 ^\pi  Q_\theta (t = x \cos \theta + y \sin \theta) \,d\theta
-\tag{13}\]</span></span></p>
+\qquad(13)\]</span></span></p>
 <p>가 된다. 이 때의 <span class="math inline">\(Q_\theta (t)\)</span> 를 <strong>filtered projection</strong> 이라고 하며 filtered projection 을 통해 <span class="math inline">\(f(x, y)\)</span> 를 얻는 과정을 <strong>filtered back projection</strong> 이라고 한다. 즉 filtered back projection 은 다음의 과정을 통해 원본 이미지를 reconstructin 한다.</p>
 <p><span class="math display">\[
 p_\theta (t) \longrightarrow S_\theta (\rho) \longrightarrow Q_\theta(t) \longrightarrow f(x, y)
@@ -576,7 +580,7 @@ f(x, y) = C \cdot \left(\sum_\theta Q_\theta (t=x \cos \theta + y \sin \theta)\r
 <p>를 정의 할 수 있다. 또한 <span class="math inline">\(w_{ij}\)</span> 의 index <span class="math inline">\(i\)</span> 도 검출기 픽셀과 slice 회전에 대한 인덱스에 대해 <span class="math inline">\(\mu_j\)</span> 가 <span class="math inline">\(d_j\)</span> 에 기여하는 정도 라고 볼 수 있다. 그렇다면 우리는 아래와 같은 선형방정식을 얻는다.</p>
 <p><span id="eq-algebraic_equation"><span class="math display">\[
 \boldsymbol{\Omega \mu} = \boldsymbol{d}.
-\tag{14}\]</span></span></p>
+\qquad(14)\]</span></span></p>
 <p>즉 reconstruction 문제가 선형방정식 문제가 된다. 이 때 <span class="math inline">\(\omega\)</span> 는 [검출기 픽셀 갯수 <span class="math inline">\(\times\)</span> slice 수] 만큼의 행과 [Recustruct 되는 이미지의 그리드 수] 만큼의 열을 갖는 행렬이다. 보통 이미지의 그리드 수는 검출기 픽셀 수의 제곱이며 검출기 픽셀 수는 수백 ~ 수천이며 , slice 수 역시 수백 ~ 수천 정도 이므로, <span class="math inline">\(\boldsymbol{\Omega}\)</span> 는 수만 <span class="math inline">\(\times\)</span> 수만 에서 수백만 <span class="math inline">\(\times\)</span> 수백만 정도의 크기를 갖는 매우 큰 행렬이다. 물론 대부분의 성분이 <span class="math inline">\(0\)</span> 인 희소행력(spase matrix) 이다.</p>
 <p><a href="#eq-algebraic_equation" class="quarto-xref">식&nbsp;14</a> 을 보자. 이것이 유일한 해를 갖는 경우는 <span class="math inline">\(\boldsymbol{A}\)</span> 가 정사각 행렬이며 <span class="math inline">\(\det (\boldsymbol{A}) \neq 0\)</span> 일 때 뿐이다. 그러나 일반적인 경우에 <span class="math inline">\(\boldsymbol{A}\)</span> 는 정사각 행렬이 아니다. 이 경우 일반화된 역행렬 방법이 사용된다.</p>
 <p><br></p>

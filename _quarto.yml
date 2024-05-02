@@ -17,13 +17,15 @@ website:
       - href: index.qmd
         text: Home
       - href : src/introduction_to_julia/index.qmd
-        text : "Julia 프로그래밍 언어"
+        text : "Julia 언어"
       - href : src/numerical_analysis_using_julia/index.qmd
-        text : "Julia 언어를 이용한 수치해석"
+        text : "수치해석"
       - href :  src/image_processing/index.qmd
-        text : "영상 처리와 토모그래피"
+        text : "영상 처리/토모그래피"
       - href : src/tools/tools.qmd
         text : "Tools"
+      - href : src/posts/index.qmd
+        text : "Posts"
       - about.qmd
     tools:
       - icon: envelope
@@ -122,10 +124,7 @@ website:
         - href: src/tools/tikz/tikz_image.qmd
         - href: src/tools/tikz/tikz_test.qmd
 
-        # - text: "해석역학의 기본 개념"
-        #   href: src/classical_mechanics/Lanczos/ch01/01_01.qmd
-        # - text: "Tutorial: Authoring"
-        #   href: docs/get-started/authoring/
+    
 format:
   html:
     toc: true
@@ -137,6 +136,10 @@ format:
     code-block-background: true
     code-overflow: wrap
     css: styles.css
+    html-math-method:
+      method: mathjax
+      url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML"
+    # html-math-method: mathml
     grid:
       sidebar-width: 250px
       body-width: 900px
