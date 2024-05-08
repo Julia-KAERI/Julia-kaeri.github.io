@@ -108,6 +108,7 @@ website:
           - href: src/image_processing/index.qmd
           - href: src/image_processing/introduction_to_signal_processing.qmd
           - href: src/image_processing/fourier_transform.qmd
+          - href: src/image_processing/wavelet_transform.qmd
     
         - section : 주제별 처리
           contents:

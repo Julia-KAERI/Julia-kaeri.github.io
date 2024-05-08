@@ -69,7 +69,7 @@ $$
 $$
 
 
-수학적으로 푸리에 급수가 의미 있기 위해서는 $\omega = 2\pi/T$ 에 대해 $\{e^{in\omega t} : n\in \mathbb{Z}\}$ 가 $[T/2,\,T/2]$ 구간에서 연속인 모든 복소 함수의 집합에 대해 정규직교기저이어야 한다. 직교성은 보이기 쉽지만 completeness 즉, 
+수학적으로 푸리에 급수가 의미 있기 위해서는 $\omega = 2\pi/T$ 에 대해 $\{e^{in\omega t} : n\in \mathbb{Z}\}$ 가 $[T/2,\,T/2]$ 구간에서 연속인 모든 복소 함수의 집합에 대해 정규직교기저이어야 한다. 직교성은 보이기 쉽지만 completeness 즉, 주기 $T$ 인 모든 함수가 $\{\sin (n\omega t),\, \cos (n \omega t) : n \in \mathbb{Z}\}$ 의 선형결합으로 표현되는 것은 여기의 범위를 벗어난다. 단지 직교성과 completeness 를 알고 넘어가자.
 
 
 

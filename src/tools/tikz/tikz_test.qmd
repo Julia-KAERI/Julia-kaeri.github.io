@@ -53,3 +53,37 @@ crossref:
 \node[right, teal] at (0.2, 0.5) {$P_5(x)$};
 \end{tikzpicture}
 ```
+
+
+```{r, engine = 'tikz'}
+#| label: fig-wavelet_sharp_function_1
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 6
+#| fig-align: center
+#| fig-cap: "Legendre 다항식"
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\begin{tikzpicture}[samples = 100, scale=2]
+
+\draw[-{stealth}] (-1.5, 0) -- (1.5,0) node[right] {$t$};
+\draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$f(t)$};
+
+\draw[color=black, domain=-1:0, variable = \t]   plot ({\t}, {(1+\t)});
+\draw[color=black, domain=0:1, variable = \t]   plot ({\t}, {(1-\t)});
+
+\begin{scope}[xshift=3.5cm] 
+
+\draw[-{stealth}] (-1.5, 0) -- (1.5,0) node[right] {$\omega$};
+\draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$\hat{f}(\omega)$};
+
+\draw[color=black, domain=-5:5, samples=100, variable = \t]   plot ({\t}, { (2 * sin((\t * 180 / pi) /2)/((\t)))^2 });
+\end{scope}
+
+\end{tikzpicture}
+```

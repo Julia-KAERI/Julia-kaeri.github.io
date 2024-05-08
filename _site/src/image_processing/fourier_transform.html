@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/image_processing/tomography.html" rel="next">
+<link href="../../src/image_processing/wavelet_transform.html" rel="next">
 <link href="../../src/image_processing/introduction_to_signal_processing.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -232,6 +232,12 @@ window.Quarto = {
  <span class="menu-text">푸리에 변환</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/wavelet_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">웨이블릿 변환</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -356,7 +362,7 @@ f(t) &amp;= \sum_{n=-\infty}^{\infty} c_n e^{in\omega t}\,,\\
 <p><span class="math display">\[
 \langle \phi,\, \psi \rangle = \int_{-T/2}^{T/2} \psi^\ast(t)\, \phi(t)\, dt
 \]</span></p>
-<p>수학적으로 푸리에 급수가 의미 있기 위해서는 <span class="math inline">\(\omega = 2\pi/T\)</span> 에 대해 <span class="math inline">\(\{e^{in\omega t} : n\in \mathbb{Z}\}\)</span> 가 <span class="math inline">\([T/2,\,T/2]\)</span> 구간에서 연속인 모든 복소 함수의 집합에 대해 정규직교기저이어야 한다. 직교성은 보이기 쉽지만 completeness 즉,</p>
+<p>수학적으로 푸리에 급수가 의미 있기 위해서는 <span class="math inline">\(\omega = 2\pi/T\)</span> 에 대해 <span class="math inline">\(\{e^{in\omega t} : n\in \mathbb{Z}\}\)</span> 가 <span class="math inline">\([T/2,\,T/2]\)</span> 구간에서 연속인 모든 복소 함수의 집합에 대해 정규직교기저이어야 한다. 직교성은 보이기 쉽지만 completeness 즉, 주기 <span class="math inline">\(T\)</span> 인 모든 함수가 <span class="math inline">\(\{\sin (n\omega t),\, \cos (n \omega t) : n \in \mathbb{Z}\}\)</span> 의 선형결합으로 표현되는 것은 여기의 범위를 벗어난다. 단지 직교성과 completeness 를 알고 넘어가자.</p>
 <div id="exm-fourier_exmapsion" class="theorem example">
 <p><span class="theorem-title"><strong>예제 1 (기저함수의 직교성)</strong></span> 임의의 정수 <span class="math inline">\(m,\,n\)</span> 에 대해 다음이 성립함을 보여라.</p>
 <p><span class="math display">\[
@@ -1080,8 +1086,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/image_processing/tomography.html" class="pagination-link" aria-label="토모그래피">
-        <span class="nav-page-text">토모그래피</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/image_processing/wavelet_transform.html" class="pagination-link" aria-label="웨이블릿 변환">
+        <span class="nav-page-text">웨이블릿 변환</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

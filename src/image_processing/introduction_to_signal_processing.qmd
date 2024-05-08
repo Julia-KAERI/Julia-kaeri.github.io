@@ -35,7 +35,7 @@ crossref:
 
 </br>
 
-### 기본적인 신호
+### 기본적인 신호 {#sec-signal_basic_signals}
 
 | 신호 이름 | 신호의 정의 |
 |:----------:|:-------------|
@@ -45,7 +45,7 @@ crossref:
 | $\text{sinc}$ 함수 | $\text{sinc}(x) = \dfrac{\sin (\pi x)}{\pi x}$ |
 | 가우스 함수 | $\text{gauss}(x) = \dfrac{1}{\sqrt{\pi}} e^{-x^2}$ | 
 | 디렉 델타 함수 | $\delta (x)$, @def-dirac_delta_function 참고 |
-
+: 기본적인 신호함수들 {#tbl-signal_basic_signals}
 
 </br>
 

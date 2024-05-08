@@ -1,0 +1,122 @@
+---
+title: "웨이블릿 변환"
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+
+## 수학적 기반
+
+### $L^p$ 공간
+
+
+::: {.callout-note appearance="minimal"}
+
+
+::: {#def-wavelet_Lp_norm}
+#### $L^p$-노름 과 $L^p$ 공간
+
+$f:\mathbb{R} \to \mathbb{C}$ 와 $1\le p < \infty$ 인 $p$ 에 대해 
+
+$$
+\|f\|_p = \left[\int_{-\infty}^\infty |f(t)|^p\, dt\,\right]^{1/p} <\infty
+$$
+
+를 **$L^p$-노름** 이라고 한다. $L^p$ 노름이 정의된 함수의 집합을 **$L^p$-공간** 이라고 하며 $L^p$ 혹은 $L^p(\mathbb{R})$ 로 쓴다.
+
+:::
+
+:::
+
+
+행렬과 벡터의 노름에서처럼 $p=1,\,2,\infty$ 일 때 가장 중요하다. 또한 $L^p$ 노름이 정의되는 함수의 집합은 벡터공간이다. $p=1$ 일 때 $L^1$ 노름이 정의되는 함수들을 *Lebesgue 적분 가능 함수* 라고 한다. 이제 $f\in L^1(\mathbb{R})$ 이라고 하자. $e^{-i\omega t}$ 는 유계인 연속 함수이므로 $e^{-i \omega t}f(t)$ 는 모든 $\omega \in \mathbb{R}$ 에서 *국소적으로 적분 가능한 함수(locally integrable function)* 이다. 이 경우 아래와 같이 $L^1$ 공간에서의 푸리에 변환을 정의 할 수 있다.
+
+
+</br>
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_fourier_transform_in_L1}
+
+#### $L^1(\mathbb{R})$ 에서의 푸리에 변환
+
+$f\in L^1(\mathbb{R})$ 에 대한 푸리에 변환 $\hat{f}(\omega)$ 를 다음과 같이 정의 할 수 있다.
+
+$$
+\hat{f}(\omega)= \mathfrak{F}[f(t)] = \int_{-\infty}^\infty e^{-i\omega t}f(t)\, dt.
+$$ {#eq-wavelet_fourier_transform_L1}
+
+
+:::
+
+:::
+
+</br>
+
+원래 함수 $f(t)$ 는 실함수이더라도 $\hat{f}(\omega)$ 는 실변수 $\omega$ 에 대한 복소함수이다. 복소수를 극좌표계에서 $x+iy=re^{i\theta}$, $r=\sqrt{x^2+y^2}$, $\theta = \arctan(y/x)$ 로 표현하는 것처럼 $R(\omega) = \text{Re}[\hat{f}(\omega)]$ ,$X(\omega)= \text{Im}[\hat{f}(\omega)]$ 에 대해
+
+$$
+\hat{f}(\omega)= R(\omega)+ iX(\omega)= A(\omega) e^{i\theta(\omega)}
+$$
+
+로 표현할 수 있으며 이 때 $A(\omega)=\left|\hat{f}(\omega)\right|$ 를 **amplitude spectrum**, $\theta(\omega)$ 을 **phase spectrum** 이라고 한다.
+
+
+</br>
+
+::: {#exm-wavelet_fourier_transform_of_gaussian}
+
+#### 가우시안 함수의 푸리에 변환
+
+가우시안 함수 $f(t) = e^{-t^2/2\sigma^2}$ 에 대한 푸리에 변환 역시 가우시안이다.
+
+$$
+\begin{aligned}
+\hat{f}(\omega) = \int_{-\infty}^\infty e^{-(i\omega t + t^2/2\sigma^2)}\,dt = \int_{-\infty}^\infty \exp\left(-\dfrac{1}{2\sigma^2}(t+i\sigma^2\omega)^2-\dfrac{\omega^2\sigma^2}{2}\right) = \sqrt{2\pi}\sigma e^{-\sigma^2 \omega^2/2}
+\end{aligned}
+$$
+
+푸리에 변환에 의해 원래 함수의 표준편차 $\sigma$ 가 $1/\sigma$ 로 변화한다.
+
+:::
+
+
+</br>
+
+::: {#exm-wavelet_fourier_transform_of_rectangular_pulse}
+
+#### 직사각 함수의 푸리에 변환
+
+$$
+f(t) = \left\{\begin{array}{ll} 1, \qquad & |t|< a \\ 0&\text{otherwise}\end{array}\right. .
+$$
+
+의 푸리에 변환은 다음과 같다.
+
+$$
+\begin{aligned}
+\hat{f}(\omega) = \int_{-a}^a e^{-i\omega t}\, dt= \left(\dfrac{2}{\omega}\right) \sin (a\omega) = 2a\,  \text{sinc} (a\omega)
+\end{aligned}
+$$
+
+이 때 $\textrm{sinc}(x) := \dfrac{\sin x}{x}$ 로 정의되는 함수이다. [기본적인 신호](introduction_to_signal_processing.qmd#sec-signal_basic_signals) 를 참고하라.
+
+:::
+
+</br>
+
+::: {#exm-wavelet_sharp_function}
+
+[기본적인 신호 함수들](introduction_to_signal_processing.qmd#tbl-signal_basic_signals) 의 Heaviside 계단함수 $\text{step}(x)$ 가 사용된 아래와 같은 함수를 생각하자.
+
+$$
+f(t) = \left(1-\dfrac{|t|}{a}\right) \text{step}\left( 1-\dfrac{|t|}{a}\right)
+$$
+
+
+
+
+
+

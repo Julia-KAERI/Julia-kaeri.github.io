@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Julia_KAERI">
 
-<title>Julia &amp; Numerical Anlaysis - The Notebook</title>
+<title>Julia &amp; Numerical Anlaysis - 웨이블릿 변환</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
+<link href="../../src/image_processing/tomography.html" rel="next">
+<link href="../../src/image_processing/fourier_transform.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
@@ -132,7 +102,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -162,7 +132,7 @@ window.Quarto = {
 <span class="menu-text">수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html"> 
+    <a class="nav-link active" href="../../src/image_processing/index.html" aria-current="page"> 
 <span class="menu-text">영상 처리/토모그래피</span></a>
   </li>  
   <li class="nav-item">
@@ -170,7 +140,7 @@ window.Quarto = {
 <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/posts/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../src/posts/index.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
@@ -184,32 +154,104 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/image_processing/index.html">영상 처리 기초</a></li><li class="breadcrumb-item"><a href="../../src/image_processing/wavelet_transform.html">웨이블릿 변환</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">영상 처리 기초</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">영상 처리와 토모그래피</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/introduction_to_signal_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">디지털 신호처리의 기초</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/fourier_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">푸리에 변환</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/wavelet_transform.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">웨이블릿 변환</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">주제별 처리</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/tomography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">토모그래피</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">분류</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">전체 <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#수학적-기반" id="toc-수학적-기반" class="nav-link active" data-scroll-target="#수학적-기반"><span class="header-section-number">1</span> 수학적 기반</a>
+  <ul class="collapse">
+  <li><a href="#lp-공간" id="toc-lp-공간" class="nav-link" data-scroll-target="#lp-공간"><span class="math inline">\(L^p\)</span> 공간</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/image_processing/index.html">영상 처리 기초</a></li><li class="breadcrumb-item"><a href="../../src/image_processing/wavelet_transform.html">웨이블릿 변환</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">The Notebook</h1>
+<h1 class="title">웨이블릿 변환</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">저자</div>
-    <div class="quarto-title-meta-contents">
-             <p>Julia_KAERI <a href="mailto:julia.kaeri@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-          </div>
-  </div>
     
   
     
@@ -220,42 +262,84 @@ window.Quarto = {
 </header>
 
 
+<section id="수학적-기반" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="수학적-기반"><span class="header-section-number">1</span> 수학적 기반</h2>
+<section id="lp-공간" class="level3">
+<h3 class="anchored" data-anchor-id="lp-공간"><span class="math inline">\(L^p\)</span> 공간</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-wavelet_Lp_norm" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 1 (<span class="math inline">\(L^p\)</span>-노름 과 <span class="math inline">\(L^p\)</span> 공간)</strong></span> <span class="math inline">\(f:\mathbb{R} \to \mathbb{C}\)</span> 와 <span class="math inline">\(1\le p &lt; \infty\)</span> 인 <span class="math inline">\(p\)</span> 에 대해</p>
+<p><span class="math display">\[
+\|f\|_p = \left[\int_{-\infty}^\infty |f(t)|^p\, dt\,\right]^{1/p} &lt;\infty
+\]</span></p>
+<p>를 <strong><span class="math inline">\(L^p\)</span>-노름</strong> 이라고 한다. <span class="math inline">\(L^p\)</span> 노름이 정의된 함수의 집합을 <strong><span class="math inline">\(L^p\)</span>-공간</strong> 이라고 하며 <span class="math inline">\(L^p\)</span> 혹은 <span class="math inline">\(L^p(\mathbb{R})\)</span> 로 쓴다.</p>
+</div>
+</div>
+</div>
+</div>
+<p>행렬과 벡터의 노름에서처럼 <span class="math inline">\(p=1,\,2,\infty\)</span> 일 때 가장 중요하다. 또한 <span class="math inline">\(L^p\)</span> 노름이 정의되는 함수의 집합은 벡터공간이다. <span class="math inline">\(p=1\)</span> 일 때 <span class="math inline">\(L^1\)</span> 노름이 정의되는 함수들을 <em>Lebesgue 적분 가능 함수</em> 라고 한다. 이제 <span class="math inline">\(f\in L^1(\mathbb{R})\)</span> 이라고 하자. <span class="math inline">\(e^{-i\omega t}\)</span> 는 유계인 연속 함수이므로 <span class="math inline">\(e^{-i \omega t}f(t)\)</span> 는 모든 <span class="math inline">\(\omega \in \mathbb{R}\)</span> 에서 <em>국소적으로 적분 가능한 함수(locally integrable function)</em> 이다. 이 경우 아래와 같이 <span class="math inline">\(L^1\)</span> 공간에서의 푸리에 변환을 정의 할 수 있다.</p>
+<p><br></p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-wavelet_fourier_transform_in_L1" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (<span class="math inline">\(L^1(\mathbb{R})\)</span> 에서의 푸리에 변환)</strong></span> <span class="math inline">\(f\in L^1(\mathbb{R})\)</span> 에 대한 푸리에 변환 <span class="math inline">\(\hat{f}(\omega)\)</span> 를 다음과 같이 정의 할 수 있다.</p>
+<p><span id="eq-wavelet_fourier_transform_L1"><span class="math display">\[
+\hat{f}(\omega)= \mathfrak{F}[f(t)] = \int_{-\infty}^\infty e^{-i\omega t}f(t)\, dt.
+\qquad(1)\]</span></span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>원래 함수 <span class="math inline">\(f(t)\)</span> 는 실함수이더라도 <span class="math inline">\(\hat{f}(\omega)\)</span> 는 실변수 <span class="math inline">\(\omega\)</span> 에 대한 복소함수이다. 복소수를 극좌표계에서 <span class="math inline">\(x+iy=re^{i\theta}\)</span>, <span class="math inline">\(r=\sqrt{x^2+y^2}\)</span>, <span class="math inline">\(\theta = \arctan(y/x)\)</span> 로 표현하는 것처럼 <span class="math inline">\(R(\omega) = \text{Re}[\hat{f}(\omega)]\)</span> ,<span class="math inline">\(X(\omega)= \text{Im}[\hat{f}(\omega)]\)</span> 에 대해</p>
+<p><span class="math display">\[
+\hat{f}(\omega)= R(\omega)+ iX(\omega)= A(\omega) e^{i\theta(\omega)}
+\]</span></p>
+<p>로 표현할 수 있으며 이 때 <span class="math inline">\(A(\omega)=\left|\hat{f}(\omega)\right|\)</span> 를 <strong>amplitude spectrum</strong>, <span class="math inline">\(\theta(\omega)\)</span> 을 <strong>phase spectrum</strong> 이라고 한다.</p>
+<p><br></p>
+<div id="exm-wavelet_fourier_transform_of_gaussian" class="theorem example">
+<p><span class="theorem-title"><strong>예제 1 (가우시안 함수의 푸리에 변환)</strong></span> 가우시안 함수 <span class="math inline">\(f(t) = e^{-t^2/2\sigma^2}\)</span> 에 대한 푸리에 변환 역시 가우시안이다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{f}(\omega) = \int_{-\infty}^\infty e^{-(i\omega t + t^2/2\sigma^2)}\,dt = \int_{-\infty}^\infty \exp\left(-\dfrac{1}{2\sigma^2}(t+i\sigma^2\omega)^2-\dfrac{\omega^2\sigma^2}{2}\right) = \sqrt{2\pi}\sigma e^{-\sigma^2 \omega^2/2}
+\end{aligned}
+\]</span></p>
+<p>푸리에 변환에 의해 원래 함수의 표준편차 <span class="math inline">\(\sigma\)</span> 가 <span class="math inline">\(1/\sigma\)</span> 로 변화한다.</p>
+</div>
+<p><br></p>
+<div id="exm-wavelet_fourier_transform_of_rectangular_pulse" class="theorem example">
+<p><span class="theorem-title"><strong>예제 2 (직사각 함수의 푸리에 변환)</strong></span> <span class="math display">\[
+f(t) = \left\{\begin{array}{ll} 1, \qquad &amp; |t|&lt; a \\ 0&amp;\text{otherwise}\end{array}\right. .
+\]</span></p>
+<p>의 푸리에 변환은 다음과 같다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{f}(\omega) = \int_{-a}^a e^{-i\omega t}\, dt= \left(\dfrac{2}{\omega}\right) \sin (a\omega) = 2a\,  \text{sinc} (a\omega)
+\end{aligned}
+\]</span></p>
+<p>이 때 <span class="math inline">\(\textrm{sinc}(x) := \dfrac{\sin x}{x}\)</span> 로 정의되는 함수이다. <a href="../../src/image_processing/introduction_to_signal_processing.html#sec-signal_basic_signals">기본적인 신호</a> 를 참고하라.</p>
+</div>
+<p><br></p>
+<p>::: {#exm-wavelet_sharp_function}</p>
+<p><a href="../../src/image_processing/introduction_to_signal_processing.html#tbl-signal_basic_signals">기본적인 신호 함수들</a> 의 Heaviside 계단함수 <span class="math inline">\(\text{step}(x)\)</span> 가 사용된 아래와 같은 함수를 생각하자.</p>
+<p><span class="math display">\[
+f(t) = \left(1-\dfrac{|t|}{a}\right) \text{step}\left( 1-\dfrac{|t|}{a}\right)
+\]</span></p>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1714627281122" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail">
-<p><a href="../../src/posts/first.html" class="no-external"></a></p><a href="../../src/posts/first.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../../src/posts/first.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../src/posts/first.html" class="no-external">첫번째 글</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../src/posts/first.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="../../src/posts/first.html" class="no-external"></a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../../src/posts/first.html" class="no-external"></a></p><a href="../../src/posts/first.html" class="no-external">
-<div class="listing-author">
-Julia_KAERI
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-일치 없음
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -665,6 +749,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/image_processing/fourier_transform.html" class="pagination-link" aria-label="푸리에 변환">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">푸리에 변환</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/image_processing/tomography.html" class="pagination-link" aria-label="토모그래피">
+        <span class="nav-page-text">토모그래피</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

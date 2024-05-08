@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -198,6 +198,12 @@ window.Quarto = {
  <span class="menu-text">푸리에 변환</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/wavelet_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">웨이블릿 변환</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -232,7 +238,7 @@ window.Quarto = {
   <li><a href="#신호와-신호처리" id="toc-신호와-신호처리" class="nav-link" data-scroll-target="#신호와-신호처리">신호와 신호처리</a></li>
   <li><a href="#샘플링과-양자화" id="toc-샘플링과-양자화" class="nav-link" data-scroll-target="#샘플링과-양자화">샘플링과 양자화</a></li>
   <li><a href="#sampling-theorem" id="toc-sampling-theorem" class="nav-link" data-scroll-target="#sampling-theorem">Sampling theorem</a></li>
-  <li><a href="#기본적인-신호" id="toc-기본적인-신호" class="nav-link" data-scroll-target="#기본적인-신호">기본적인 신호</a></li>
+  <li><a href="#sec-signal_basic_signals" id="toc-sec-signal_basic_signals" class="nav-link" data-scroll-target="#sec-signal_basic_signals">기본적인 신호</a></li>
   <li><a href="#디렉-델타-함수" id="toc-디렉-델타-함수" class="nav-link" data-scroll-target="#디렉-델타-함수">디렉 델타 함수</a></li>
   <li><a href="#샘플링과-델타-함수" id="toc-샘플링과-델타-함수" class="nav-link" data-scroll-target="#샘플링과-델타-함수">샘플링과 델타 함수</a></li>
   <li><a href="#이산-데이터" id="toc-이산-데이터" class="nav-link" data-scroll-target="#이산-데이터">이산 데이터</a></li>
@@ -288,8 +294,14 @@ window.Quarto = {
 <p>아날로그 신호가 band-limited 인 경우, 즉 아날로그 신호의 최대 주파수가 <span class="math inline">\(\nu_M\)</span> 일 경우 샘플링 주파수 <span class="math inline">\(\nu_S\)</span> 가 <span class="math inline">\(\nu_M\)</span> 의 2배보다 크다면 원본 아날로그 신호를 복원 할 수 있다. 이 때 <span class="math inline">\(2\nu_M\)</span> 을 <em>Nyquist frequency</em> 혹은 <em>Nyqueist rate</em> 라고 한다.</p>
 <p><br></p>
 </section>
-<section id="기본적인-신호" class="level3">
-<h3 class="anchored" data-anchor-id="기본적인-신호">기본적인 신호</h3>
+<section id="sec-signal_basic_signals" class="level3">
+<h3 class="anchored" data-anchor-id="sec-signal_basic_signals">기본적인 신호</h3>
+<div id="tbl-signal_basic_signals" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-signal_basic_signals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+표&nbsp;1: 기본적인 신호함수들
+</figcaption>
+<div aria-describedby="tbl-signal_basic_signals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
 <colgroup>
 <col style="width: 46%">
@@ -328,6 +340,9 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p><br></p>
 <center>
 <div class="quarto-figure quarto-figure-center">
