@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -235,7 +235,7 @@ window.Quarto = {
   <ul>
   <li><a href="#수학적-기반" id="toc-수학적-기반" class="nav-link active" data-scroll-target="#수학적-기반"><span class="header-section-number">1</span> 수학적 기반</a>
   <ul class="collapse">
-  <li><a href="#lp-공간" id="toc-lp-공간" class="nav-link" data-scroll-target="#lp-공간"><span class="math inline">\(L^p\)</span> 공간</a></li>
+  <li><a href="#lp-공간" id="toc-lp-공간" class="nav-link" data-scroll-target="#lp-공간"><span class="header-section-number">1.1</span> <span class="math inline">\(L^p\)</span> 공간</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -264,8 +264,8 @@ window.Quarto = {
 
 <section id="수학적-기반" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="수학적-기반"><span class="header-section-number">1</span> 수학적 기반</h2>
-<section id="lp-공간" class="level3">
-<h3 class="anchored" data-anchor-id="lp-공간"><span class="math inline">\(L^p\)</span> 공간</h3>
+<section id="lp-공간" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="lp-공간"><span class="header-section-number">1.1</span> <span class="math inline">\(L^p\)</span> 공간</h3>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -294,7 +294,7 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>정의 2 (<span class="math inline">\(L^1(\mathbb{R})\)</span> 에서의 푸리에 변환)</strong></span> <span class="math inline">\(f\in L^1(\mathbb{R})\)</span> 에 대한 푸리에 변환 <span class="math inline">\(\hat{f}(\omega)\)</span> 를 다음과 같이 정의 할 수 있다.</p>
 <p><span id="eq-wavelet_fourier_transform_L1"><span class="math display">\[
 \hat{f}(\omega)= \mathfrak{F}[f(t)] = \int_{-\infty}^\infty e^{-i\omega t}f(t)\, dt.
-\qquad(1)\]</span></span></p>
+\tag{1}\]</span></span></p>
 </div>
 </div>
 </div>
@@ -341,16 +341,96 @@ f(t) = \left(1-\dfrac{|t|}{a}\right) \text{step}\left( 1-\dfrac{|t|}{a}\right)
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/fig-wavelet_sharp_function_1-1.png" class="img-fluid figure-img"></p>
-<figcaption>푸리에 변환</figcaption>
+<figcaption>함수의 푸리에 변환</figcaption>
 </figure>
 </div>
 </div>
 <p><br></p>
 <div id="exm-wavelet_exponential_1" class="theorem example">
-<p><span class="theorem-title"><strong>예제 4</strong></span> <span class="math inline">\(f(t) = e^{-|a|t}\)</span> 의 푸리에 변환은 다음과 같다.</p>
+<p><span class="theorem-title"><strong>예제 4</strong></span> <span class="math inline">\(f(t) = e^{-a|t|},\, (a&gt;0)\)</span> 의 푸리에 변환은 다음과 같다.</p>
 <p><span class="math display">\[
-\hat{f}(\omega) = \dfrac{2a}{\omega^2 + a^2}
+\begin{aligned}
+\hat{f}(\omega) = \mathfrak{F}\left[ e^{-a|t|} \right] &amp;= \int_{-\infty}^0 e^{(a-i\omega)t}\, dt + \int_0^\infty e^{-(a+i\omega)t}\, dt = \dfrac{2a}{\omega^2+a^2}
+\end{aligned}
 \]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/fig-wavelet_sharp_function_2.png" class="img-fluid figure-img"></p>
+<figcaption><span class="math inline">\(e^{-a|t|}\)</span> 함수의 푸리에 변환</figcaption>
+</figure>
+</div>
+</div>
+<p><br></p>
+<p>다음은 푸리에 변환의 정의에 의헤 쉽게 증명 할 수 있다.</p>
+<div id="prp-wavelet_properties_of_fourier_transform" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 1 (푸리에 변환의 수학적 성질)</strong></span> <span class="math inline">\(f(t),\,g(t)\in L^1(\mathbb{R})\)</span>, <span class="math inline">\(a,\,b\in \mathbb{C}\)</span> 이고 <span class="math inline">\(\hat{f}(\omega) = \mathfrak{F}[f(t)]\)</span>, <span class="math inline">\(\hat{g}(t) = \mathfrak{F}[g(t)]\)</span> 일 때 다음이 성립한다.</p>
+<p>  (<span class="math inline">\(1\)</span>) (<em>Linearity</em>) <span class="math inline">\(\mathfrak{F}[af(t)+bg(t)] = a \mathfrak{F}[f(t)] + b\mathfrak{F}[g(t)]\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) (<em>Shifting</em>) <span class="math inline">\(\mathfrak{F}[f(t-a)] = e^{-ia\omega}\hat{f}(\omega)\)</span>.</p>
+<p>  (<span class="math inline">\(3\)</span>) (<em>Scaling</em>) <span class="math inline">\(\mathfrak{F}[f(at)] =  \dfrac{1}{a}\hat{f}\left(\dfrac{\omega}{a}\right)\)</span>.</p>
+<p>  (<span class="math inline">\(4\)</span>) (<em>Conjugation</em>) <span class="math inline">\(\mathfrak{F}[\overline{f(t)}] = \hat{f}(-\omega)\)</span>.</p>
+<p>  (<span class="math inline">\(5\)</span>) (<em>Modulation</em>) <span class="math inline">\(\mathfrak{F}[e^{ibt}f(t)] = \hat{f}(\omega - b)\)</span>.</p>
+<p>  (<span class="math inline">\(6\)</span>) (<em>Continuity</em>) <span class="math inline">\(\hat{f}(\omega)\)</span> 는 연속이다.</p>
+<p>  (<span class="math inline">\(7\)</span>) (<em>Differentiation</em>) <span class="math inline">\(\dfrac{d^n \hat{f}(\omega)}{d\omega^n} = (-i)^n \mathfrak{F}\left[t^n f(t)\right]\)</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(7\)</span>) 만 수학적 귀납법으로 증명한다. 우선 <span class="math inline">\(n=1\)</span> 경우.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dfrac{d\hat{f}}{d\omega} &amp;= \lim_{h \to 0}\dfrac{\hat{f}(\omega + h) - \hat{f}(\omega)}{h} = \lim_{h \to 0} \int_{-\infty}^\infty f(t) e^{-i\omega t}\left(\dfrac{e^{-iht}-1}{h}\right)\, dt \\
+&amp;= \int_{-\infty}^\infty (-it)f(t)e{-i\omega t}\, dt = -i \mathfrak{F}[tf(t)].
+\end{aligned}
+\]</span></p>
+<p>이제 <span class="math inline">\(n\)</span> 에 대해 성립함을 가정하자.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dfrac{d^{n+1}\hat{f}}{d\omega^{n+1}}&amp;= \dfrac{d}{d\omega}\left((-i)^n\mathfrak{F}[t^nf(t)]\right) = (-i)^n \dfrac{d}{d\omega}\mathfrak{F}[t^n f(t)] = (-i)^{n+1}\mathfrak{F}[t^{n+1}f(t)]
+\end{aligned}
+\]</span></p>
+<p>이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<div id="thm-wavelet_Riemann_Lebesgue_lemma" class="theorem">
+<p><span class="theorem-title"><strong>정리 1 (리반-르벡 따름정리)</strong></span> <span class="math inline">\(f\in L^1(\mathbb{R})\)</span> 일 때</p>
+<p><span class="math display">\[
+\lim_{|\omega|\to \infty} \left|\hat{f}(\omega)\right| = 0
+\]</span></p>
+<p>이다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(e^{-i\omega t} = - e^{-i\omega (t+\pi/\omega)}\)</span> 를 이용하면,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{f}(\omega) &amp; = - \int_{-\infty}^\infty e^{-i\omega (t+\pi/\omega)} f(t) = - \int_{-\infty}^\infty e^{-i \omega x} f\left(x-\dfrac{\pi}{\omega}\right)\, dx \\
+\end{aligned}
+\]</span></p>
+<p>이다. 따라서,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{f}(\omega) &amp;=  \dfrac{1}{2}\left[\int_{-\infty}^\infty e^{-i\omega t} f(t) \, dt - \int_{-\infty}^\infty e^{-i\omega t} f\left(t- \dfrac{\pi}{\omega}\right)\, dt\right] \\[0.5em]
+&amp;= \dfrac{1}{2} \int_{-\infty}^\infty e^{-i\omega t}\left[f(t) - f\left(t-\dfrac{\pi}{\omega}\right)\right]\, dt \\[0.5em]
+\end{aligned}
+\]</span></p>
+<p>이다. 이로부터</p>
+<p><span class="math display">\[
+\lim_{|\omega|\to \infty} \left|\hat{f}(\omega) \right| \le \lim_{|\omega|\to 0}\dfrac{1}{2} \int_{-\infty}^\infty \left| f(t) - f\left (t-\dfrac{\pi}{\omega}\right)\right|\, dt = 0
+\]</span></p>
+<p>임을 안다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<p><span class="math inline">\(C_0 (\mathbb{R})\)</span> 은 <span class="math inline">\(f:\mathbb{R}\to \mathbb{C}\)</span> 함수 가운데 모든 <span class="math inline">\(\mathbb{R}\)</span> 에서 연속이며 <span class="math inline">\(\displaystyle \lim_{|t|\to \infty} f(t) = 0\)</span> 인 함수의 집합이다. <span class="math inline">\(C_0 (\mathbb{R})\)</span> 에 대해 노름을</p>
+<p><span class="math display">\[
+\|f\| := \sup_{t\in \mathbb{R}} |f(t)|
+\]</span></p>
+<p>로 정의 할 수 있으며, 따라서 <span class="math inline">\(C_0 (\mathbb{R})\)</span> 은 노름 공간이다. <a href="#thm-wavelet_Riemann_Lebesgue_lemma" class="quarto-xref">정리&nbsp;1</a> 로부터 푸리에 변환은 <span class="math inline">\(L^1(\mathbb{R})\)</span> 에서 <span class="math inline">\(C_0(\mathbb{R})\)</span> 로의 선형 변환이라는 것을 알 수 있다.</p>
+<div id="thm-wavelet_1" class="theorem">
+<p><span class="theorem-title"><strong>정리 2</strong></span> <span class="math inline">\(f(t)\)</span> 가 <span class="math inline">\(C^1(\mathbb{R})\)</span> 함수이고 <span class="math inline">\(\displaystyle \lim_{|t|\to\infty} f(t) = 0\)</span> 이며 <span class="math inline">\(f,\,f'\in L^1(\mathbb{R})\)</span> 이면</p>
+<p><span id="eq-wavelet_differential_of_fourier_transform"><span class="math display">\[
+\mathfrak{F}[f'(t)] = i\omega \mathfrak{F}[f(t)]
+\tag{2}\]</span></span></p>
+<p>이 성립한다. 또한 <span class="math inline">\(f\in C^n(\mathbb{R})\)</span> 이며 <span class="math inline">\(f,\,f',\ldots,\,f^{(n)}\in L^1(\mathbb{R})\)</span> 이고 <span class="math inline">\(k=1,\ldots,\,n-1\)</span> 에 대해 <span class="math inline">\(\displaystyle \lim_{|t|\to \infty} f^{(k)}(t) = 0\)</span> 이라면 다음이 성립한다.</p>
+<p><span id="eq-wavelet_differential_of_fourier_transform_for_n"><span class="math display">\[
+\mathfrak{F}\left[f^{(n)}(t)\right] = (i\omega)^n \mathfrak{F}[f(t)].
+\tag{3}\]</span></span></p>
 </div>
 
 

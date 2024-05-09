@@ -139,9 +139,9 @@ format:
     code-block-background: true
     code-overflow: wrap
     css: styles.css
-    html-math-method:
-      method: mathjax
-      url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML"
+    # html-math-method:
+    #   method: mathjax
+    #   url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML"
     # html-math-method: mathml
     grid:
       sidebar-width: 250px
