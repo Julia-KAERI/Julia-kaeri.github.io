@@ -9,50 +9,6 @@ crossref:
 ---
 
 
-```{r, engine = 'tikz'}
-#| label: fig-Legendre_polynoimal
-#| code-fold: true
-#| echo: fenced
-#| output: asis
-#| fig-width: 4
-#| fig-align: center
-#| fig-cap: "Legendre 다항식"
-
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows}
-\usetikzlibrary{decorations.pathreplacing}
-
-\begin{tikzpicture}[domain=-1:1, samples = 100, scale=3]
-
-\draw[-{stealth}] (-1.2, 0) -- (1.2,0) node[right] {$x$};
-\draw[-{stealth}] (0,-1.2) -- (0,1.2) node[above] {$y$};
-\node[left, scale=0.8] at (0, 1) {$1$};
-\node[left, scale=0.8] at (0, -1) {$-1$};
-\node[below, scale=0.8] at (-1, 0) {$-1$};
-\node[below, scale=0.8] at (1, 0) {$1$};
-
-\foreach \x in {-5,...,5}
-{
-  \draw[thin] (\x / 5, 0.02) -- (\x /5, -0.02);
-  }
-
-\foreach \y in {-5,...,5}
-{
-  \draw[thin] (0.02 , \y / 5) -- (-0.02 , \y /5);
-  }
-
-\draw[color=black]   plot (\x, 1.5 * \x * \x - 0.5 ) ;
-\node[above, black] at (-0.7, 0.73) {$P_2(x)$};
-\draw[color=blue]   plot (\x, 2.5 * \x * \x * \x - 1.5 * \x);
-\node[above, blue] at (-0.5, 0.4) {$P_3(x)$};
-\draw[color=red]   plot (\x, 35/8 * \x * \x * \x *\x - 30 / 8 * \x *\x + 3/8 );
-\node[red] at (-0.5, -0.5) {$P_4(x)$};
-\draw[color=teal]   plot (\x, 63/8 * \x * \x * \x * \x * \x - 70/8* \x * \x * \x + 15/8 * \x);
-\node[right, teal] at (0.2, 0.5) {$P_5(x)$};
-\end{tikzpicture}
-```
 
 
 ```{r, engine = 'tikz'}
@@ -60,7 +16,7 @@ crossref:
 #| code-fold: true
 #| echo: fenced
 #| output: asis
-#| fig-width: 6
+#| fig-width: 10
 #| fig-align: center
 #| fig-cap: "Legendre 다항식"
 
@@ -74,15 +30,20 @@ crossref:
 \draw[-{stealth}] (-1.5, 0) -- (1.5,0) node[right] {$t$};
 \draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$f(t)$};
 
-\draw[color=black, domain=-1:0, variable = \t]   plot ({\t}, {(1+\t)});
-\draw[color=black, domain=0:1, variable = \t]   plot ({\t}, {(1-\t)});
+\draw[color=black, thick, domain=-1:0, variable = \t]   plot ({\t}, {(1+\t)});
+\draw[color=black, thick, domain=0:1, variable = \t]   plot ({\t}, {(1-\t)});
+\draw[] (-1, 0.05) -- (-1, -0.05 ) node[below] {$-a$};
+\draw[] (1, 0.05) -- (1, -0.05 ) node[below] {$a$};
 
 \begin{scope}[xshift=3.5cm] 
 
 \draw[-{stealth}] (-1.5, 0) -- (1.5,0) node[right] {$\omega$};
 \draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$\hat{f}(\omega)$};
 
-\draw[color=black, domain=-5:5, samples=100, variable = \t]   plot ({\t}, { (2 * sin((\t * 180 / pi) /2)/((\t)))^2 });
+\draw[color=black, thick, domain=-6:6, samples=100, variable = \t]   plot ({\t/5}, { (2 * sin((\t * 180 / pi) /2)/((\t)))^2 });
+\draw[] (-0.2, 0.05) -- (-0.2, -0.05 ) node[below] {$-\frac{1}{a}$};
+\draw[] (0.2, 0.05) -- (0.2, -0.05 ) node[below] {$\frac{1}{a}$};
+
 \end{scope}
 
 \end{tikzpicture}

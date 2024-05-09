@@ -126,7 +126,8 @@ website:
         - href: src/tools/tikz/tikz_image.qmd
         - href: src/tools/tikz/tikz_test.qmd
 
-    
+bibliography: references.bib
+
 format:
   html:
     toc: true

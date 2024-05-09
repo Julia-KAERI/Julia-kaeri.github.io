@@ -115,8 +115,25 @@ $$
 f(t) = \left(1-\dfrac{|t|}{a}\right) \text{step}\left( 1-\dfrac{|t|}{a}\right)
 $$
 
+이 함수의 푸리에 변환은 다음과 같다.
+
+$$
+\hat{f}(\omega)= a \cdot \dfrac{\sin^2 \left(\dfrac{a\omega}{2}\right)}{\left(\dfrac{a\omega}{2}\right)^2}
+$$
 
 
+![푸리에 변환](imgs/fig-wavelet_sharp_function_1-1.png)
+:::
 
+</br>
 
+::: {#exm-wavelet_exponential_1}
+
+$f(t) = e^{-|a|t}$ 의 푸리에 변환은 다음과 같다.
+
+$$
+\hat{f}(\omega) = \dfrac{2a}{\omega^2 + a^2}
+$$
+
+:::
 

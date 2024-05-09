@@ -3,6 +3,7 @@ title: "들어가며"
 
 number-sections: true
 number-depth: 2
+bibliography: ../../references.bib
 crossref:
   chapters: false
 ---
@@ -20,4 +21,6 @@ crossref:
 julia> ]
 (@v1.10) pkg> add https://github.com/Julia-KAERI/NAJ.jl.git
 ```
+
+
 
