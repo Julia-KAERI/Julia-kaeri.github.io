@@ -1,5 +1,5 @@
 ---
-title: "웨이블릿 변환"
+title: "푸리에 변환"
 number-sections: true
 number-depth: 3
 crossref:
@@ -9,7 +9,7 @@ crossref:
 
 ## 수학적 기반
 
-### $L^p$ 공간
+### $L^p$ 공간 과 $L^1$ 공간에서의 푸리에 변환
 
 
 ::: {.callout-note appearance="minimal"}
@@ -101,7 +101,7 @@ $$
 \end{aligned}
 $$
 
-이 때 $\textrm{sinc}(x) := \dfrac{\sin x}{x}$ 로 정의되는 함수이다. [기본적인 신호](introduction_to_signal_processing.qmd#sec-signal_basic_signals) 를 참고하라.
+이 때 $\textrm{sinc}(x) := \dfrac{\sin x}{x}$ 로 정의되는 함수이다. [기본적인 신호](../introduction_to_signal_processing.qmd#sec-signal_basic_signals) 를 참고하라.
 
 :::
 
@@ -109,7 +109,7 @@ $$
 
 ::: {#exm-wavelet_sharp_function}
 
-[기본적인 신호 함수들](introduction_to_signal_processing.qmd#tbl-signal_basic_signals) 의 Heaviside 계단함수 $\text{step}(x)$ 가 사용된 아래와 같은 함수를 생각하자.
+[기본적인 신호 함수들](../introduction_to_signal_processing.qmd#tbl-signal_basic_signals) 의 Heaviside 계단함수 $\text{step}(x)$ 가 사용된 아래와 같은 함수를 생각하자.
 
 $$
 f(t) = \left(1-\dfrac{|t|}{a}\right) \text{step}\left( 1-\dfrac{|t|}{a}\right)
@@ -122,7 +122,7 @@ $$
 $$
 
 
-![함수의 푸리에 변환](imgs/fig-wavelet_sharp_function_1-1.png)
+![함수의 푸리에 변환](images/fig-wavelet_sharp_function_1-1.png)
 :::
 
 </br>
@@ -137,12 +137,14 @@ $$
 \end{aligned}
 $$
 
-![$e^{-a|t|}$ 함수의 푸리에 변환](imgs/fig-wavelet_sharp_function_2.png)
+![$e^{-a|t|}$ 함수의 푸리에 변환](images/fig-wavelet_sharp_function_2.png)
 
 :::
 
 
 <br>
+
+### 푸리에 변환의 수학적 성질
 
 다음은 푸리에 변환의 정의에 의헤 쉽게 증명 할 수 있다.
 
@@ -196,7 +198,7 @@ $$
 
 ::: {#thm-wavelet_Riemann_Lebesgue_lemma}
 
-#### 리반-르벡 따름정리
+#### 리만-르벡 따름정리
 
 $f\in L^1(\mathbb{R})$ 일 때 
 
@@ -246,12 +248,16 @@ $$
 
 로 정의 할 수 있으며, 따라서 $C_0 (\mathbb{R})$ 은 노름 공간이다. @thm-wavelet_Riemann_Lebesgue_lemma 로부터 푸리에 변환은 $L^1(\mathbb{R})$ 에서 $C_0(\mathbb{R})$ 로의 선형 변환이라는 것을 알 수 있다. 
 
+</br>
+
 ::: {#thm-wavelet_1}
+
+#### $n$ 계 도함수의 푸리에 변환
 
 $f(t)$ 가 $C^1(\mathbb{R})$ 함수이고 $\displaystyle \lim_{|t|\to\infty} f(t) = 0$ 이며 $f,\,f'\in L^1(\mathbb{R})$ 이면
 
 $$
-\mathfrak{F}[f'(t)] = i\omega \mathfrak{F}[f(t)]
+\mathfrak{F}[f'(t)] = (i\omega) \mathfrak{F}[f(t)]
 $$ {#eq-wavelet_differential_of_fourier_transform}
 
 이 성립한다. 또한 $f\in C^n(\mathbb{R})$ 이며 $f,\,f',\ldots,\,f^{(n)}\in L^1(\mathbb{R})$ 이고 $k=1,\ldots,\,n-1$ 에 대해 $\displaystyle \lim_{|t|\to \infty} f^{(k)}(t) = 0$ 이라면 다음이 성립한다.
@@ -261,4 +267,63 @@ $$
 $$ {#eq-wavelet_differential_of_fourier_transform_for_n}
 
 
+:::
+
+
+::: {.proof}
+
+푸리에 변환의 정의로부터
+
+$$
+\mathfrak{F}[f'(t)] = \int_{-\infty}^\infty e^{-i\omega t}f'(t)\, dt = \left[e^{-i\omega t} f(t)\right]_{-\infty}^{\infty} +i\omega \int_{\infty}^\infty e^{i\omega t}f(t)\, dt = (i\omega)\mathfrak{F}[f(t)]
+$$
+
+이다. $1,\,2,\ldots,\,(n-1)$-계 도함수에 대해 @eq-wavelet_differential_of_fourier_transform_for_n 이 성립한다고 가정하면
+
+$$
+\begin{aligned}
+\mathfrak{F}[f^{(n)}(t)] &=(i\omega)\mathfrak{F}[f^{(n-1)}(t)] = (i\omega)^n \mathfrak{F}[f(t)]
+\end{aligned}
+$$
+
+이다. $\square$
+:::
+
+</br>
+
+
+곡선의 매끄러운 정도(smoothness) 는 그 곡선이 어떤 $C^n$ 급 함수인지를 의미한다. 만약 $f^{(n)}\in L^1(\mathbb{R})$ 이며 $\displaystyle \lim_{|t|\to\infty}f^{(n)}(t)=0$ 이라면 [리만 르벡 정리](#thm-wavelet_Riemann_Lebesgue_lemma) 에 따라 $\displaystyle \lim_{|\omega|\to\infty} (i\omega)^n \mathfrak{F}[f(t)]=0$ 이다. 즉 $f$ 가 더 매끄러울 수록, 즉 $f\in C^n$ 에서 $n$ 값이 클 수록 $\mathfrak{F}[f(t)]$ 는 $|\omega| \to \infty$ 극한에서 더 빨리 $0$ 으로 수렴한다. 뒤에 나오겠지만 그 역도 마찬가지이다. $f\in C^n(\mathbb{R})$ 은 함수의 전역적 성질이며 $\displaystyle \lim_{|\omega|\to\infty}\mathfrak{F}[f(t)] = 0$ 은 국소적 성질이다. 함수의 전역적 성질이 그 푸리에 변환의 국소적 성질을 규정한다.
+
+</br>
+
+### 합성곱과 푸리에 변환
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_convolution}
+
+#### 합성곱 
+
+$f,\,g\in L^1(\mathbb{R})$ 에 대해 두 함수의 합성곱 $(f \ast g)(t)$ 는 다음과 같이 정읜된다.
+
+$$
+(f \ast g)(t) := \int_{-\infty}^\infty f(t-\tau)\,g(\tau)\, d\tau
+$$ {#eq-wavelet_definition_of_convolution}
+
+:::
+:::
+
+
+</br> 
+
+::: {#prp-wavelet_existence_of_convolution}
+
+@def-wavelet_convolution 에서의 $(f\ast g)\in L^1(\mathbb{R})$ 이다. 
+
+:::
+
+::: {.proof}
+$$
+\int_{-\infty}^\infty \int_{-\infty}^\infty |f(t-\tau)\, g(\tau)| \, d\tau\, dt = \int_{-\infty}^\infty g(\tau)\,d\tau\, \int_{-\infty}^\infty |f(t)|\,dt = \|g\|_1 \|f\|_1
+$$
 :::

@@ -107,8 +107,10 @@ website:
           contents: 
           - href: src/image_processing/index.qmd
           - href: src/image_processing/introduction_to_signal_processing.qmd
-          - href: src/image_processing/fourier_transform.qmd
-          - href: src/image_processing/wavelet_transform.qmd
+          - href: src/image_processing/fourier_transform_for_image_processing.qmd
+        - section : 푸리에 변환과 웨이블릿 변환
+          contents :
+          - href: src/image_processing/wavelet/fourier_transform.qmd
     
         - section : 주제별 처리
           contents:
