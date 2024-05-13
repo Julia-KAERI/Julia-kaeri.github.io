@@ -287,12 +287,17 @@ window.Quarto = {
 <div id="def-wavelet_definition_of_wavelet" class="theorem definition">
 <p><span class="theorem-title"><strong>정의 1 (Wavelet)</strong></span> <span class="math inline">\(\psi\in L^2(\mathbb{R})\)</span> 이 <span class="math inline">\(\hat{\psi}=\mathfrak{F}[\psi]\)</span> 에 대해 다음을 만족할 때 <span class="math inline">\(\psi\)</span> 를 <strong>웨이블릿(wavelet)</strong> 이라고 한다.</p>
 <p><span id="eq-wavelet_condition"><span class="math display">\[
-C_\psi := \int_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|^2}{\omega} \, d\omega &lt; \infty.
+C_\psi := {\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|^2}{\omega} \, d\omega &lt; \infty.
 \tag{1}\]</span></span></p>
 </div>
 </div>
 </div>
 </div>
+<p><a href="#eq-wavelet_condition" class="quarto-xref">식&nbsp;1</a> 을 <em>admissibility condition</em> 이라고 한다. 이로부터 <span class="math inline">\(\displaystyle \lim_{\omega \to 0} \hat{\psi}(\omega) = 0\)</span> 이어야 함을 알 수 있다. <span class="math inline">\(\hat{\psi}\)</span> 가 연속함수라면 <span class="math inline">\(\hat{\psi}(0)=0\)</span> 이어야 하며,</p>
+<p><span class="math display">\[
+0 = \hat{\psi}(0) = \int_{-\infty}^\infty \psi (t)\, dt
+\]</span></p>
+<p>임을 알 수 있다. 즉 <span class="math inline">\(\psi\)</span> 의 평균값은 <span class="math inline">\(0\)</span> 이다.</p>
 
 
 </section>

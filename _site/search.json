@@ -4,7 +4,7 @@
     "href": "src/image_processing/wavelet/wavelet_transform.html",
     "title": "웨이블릿 변환",
     "section": "",
-    "text": "정의 1 (Wavelet) \\(\\psi\\in L^2(\\mathbb{R})\\) 이 \\(\\hat{\\psi}=\\mathfrak{F}[\\psi]\\) 에 대해 다음을 만족할 때 \\(\\psi\\) 를 웨이블릿(wavelet) 이라고 한다.\n\\[\nC_\\psi := \\int_{-\\infty}^\\infty \\dfrac{\\left| \\hat{\\psi}(\\omega)\\right|^2}{\\omega} \\, d\\omega &lt; \\infty.\n\\tag{1}\\]",
+    "text": "정의 1 (Wavelet) \\(\\psi\\in L^2(\\mathbb{R})\\) 이 \\(\\hat{\\psi}=\\mathfrak{F}[\\psi]\\) 에 대해 다음을 만족할 때 \\(\\psi\\) 를 웨이블릿(wavelet) 이라고 한다.\n\\[\nC_\\psi := {\\Large \\int}_{-\\infty}^\\infty \\dfrac{\\left| \\hat{\\psi}(\\omega)\\right|^2}{\\omega} \\, d\\omega &lt; \\infty.\n\\tag{1}\\]\n\n\n\n\n식 1 을 admissibility condition 이라고 한다. 이로부터 \\(\\displaystyle \\lim_{\\omega \\to 0} \\hat{\\psi}(\\omega) = 0\\) 이어야 함을 알 수 있다. \\(\\hat{\\psi}\\) 가 연속함수라면 \\(\\hat{\\psi}(0)=0\\) 이어야 하며,\n\\[\n0 = \\hat{\\psi}(0) = \\int_{-\\infty}^\\infty \\psi (t)\\, dt\n\\]\n임을 알 수 있다. 즉 \\(\\psi\\) 의 평균값은 \\(0\\) 이다.",
     "crumbs": [
       "영상 처리/토모그래피",
       "푸리에 변환과 웨이블릿 변환",
@@ -16,7 +16,7 @@
     "href": "src/image_processing/wavelet/wavelet_transform.html#정의와-기본적인-성질",
     "title": "웨이블릿 변환",
     "section": "",
-    "text": "정의 1 (Wavelet) \\(\\psi\\in L^2(\\mathbb{R})\\) 이 \\(\\hat{\\psi}=\\mathfrak{F}[\\psi]\\) 에 대해 다음을 만족할 때 \\(\\psi\\) 를 웨이블릿(wavelet) 이라고 한다.\n\\[\nC_\\psi := \\int_{-\\infty}^\\infty \\dfrac{\\left| \\hat{\\psi}(\\omega)\\right|^2}{\\omega} \\, d\\omega &lt; \\infty.\n\\tag{1}\\]",
+    "text": "정의 1 (Wavelet) \\(\\psi\\in L^2(\\mathbb{R})\\) 이 \\(\\hat{\\psi}=\\mathfrak{F}[\\psi]\\) 에 대해 다음을 만족할 때 \\(\\psi\\) 를 웨이블릿(wavelet) 이라고 한다.\n\\[\nC_\\psi := {\\Large \\int}_{-\\infty}^\\infty \\dfrac{\\left| \\hat{\\psi}(\\omega)\\right|^2}{\\omega} \\, d\\omega &lt; \\infty.\n\\tag{1}\\]\n\n\n\n\n식 1 을 admissibility condition 이라고 한다. 이로부터 \\(\\displaystyle \\lim_{\\omega \\to 0} \\hat{\\psi}(\\omega) = 0\\) 이어야 함을 알 수 있다. \\(\\hat{\\psi}\\) 가 연속함수라면 \\(\\hat{\\psi}(0)=0\\) 이어야 하며,\n\\[\n0 = \\hat{\\psi}(0) = \\int_{-\\infty}^\\infty \\psi (t)\\, dt\n\\]\n임을 알 수 있다. 즉 \\(\\psi\\) 의 평균값은 \\(0\\) 이다.",
     "crumbs": [
       "영상 처리/토모그래피",
       "푸리에 변환과 웨이블릿 변환",
