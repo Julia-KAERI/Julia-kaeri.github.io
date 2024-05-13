@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -769,10 +769,10 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 \boldsymbol{H}_{\boldsymbol{v}} := I_n- \dfrac{2\boldsymbol{v}\boldsymbol{v}^{\ast}}{\|\boldsymbol{v}\|^2}, \qquad \text{i. e. }\quad
 (\boldsymbol{H}_{\boldsymbol{v}})_{ij} := \delta_{ij} - \dfrac{2 v_i \overline{v_j}}{\|\boldsymbol{v}\|^2}.
 \end{aligned}
-\qquad(1)\]</span></span> 여기서 <span class="math inline">\(\boldsymbol{v}\boldsymbol{v}^{\ast}\)</span> 는 벡터의 내적이 아니라 <span class="math inline">\(n\times 1\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}\)</span> 와 <span class="math inline">\(1 \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}^{\ast}\)</span> 가 곱해진 <span class="math inline">\(n \times n\)</span> 행렬을 의미한다. 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{C}^n\)</span> 에 대해 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \boldsymbol{x}\in \mathbb{C}^n\)</span> 을 <strong>하우스홀더 변환</strong> 이라 한다. <span class="math inline">\(\boldsymbol{v}\)</span> 가 단위벡터일 경우, 즉 <span class="math inline">\(\|\boldsymbol{v}\|=1\)</span> 라면 좀 더 간단하게 쓸 수 있다.</p>
+\tag{1}\]</span></span> 여기서 <span class="math inline">\(\boldsymbol{v}\boldsymbol{v}^{\ast}\)</span> 는 벡터의 내적이 아니라 <span class="math inline">\(n\times 1\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}\)</span> 와 <span class="math inline">\(1 \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{v}^{\ast}\)</span> 가 곱해진 <span class="math inline">\(n \times n\)</span> 행렬을 의미한다. 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{C}^n\)</span> 에 대해 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}} \boldsymbol{x}\in \mathbb{C}^n\)</span> 을 <strong>하우스홀더 변환</strong> 이라 한다. <span class="math inline">\(\boldsymbol{v}\)</span> 가 단위벡터일 경우, 즉 <span class="math inline">\(\|\boldsymbol{v}\|=1\)</span> 라면 좀 더 간단하게 쓸 수 있다.</p>
 <p><span id="eq-householder_transformation_2"><span class="math display">\[
 \boldsymbol{H}_{\boldsymbol{v}} = I_n- 2\boldsymbol{v}\boldsymbol{v}^{\ast},\qquad \text{where } \|\boldsymbol{v}\|=1.
-\qquad(2)\]</span></span></p>
+\tag{2}\]</span></span></p>
 </div>
 </div>
 </div>
@@ -869,7 +869,7 @@ A_{i, j} = L_{i1}\overline{L_{j1}} + \cdots + L_{ii}\overline{L_{ji}}
 <p>이렇게 정해진 <span class="math inline">\(\boldsymbol{v}\)</span> 를 <strong>하우스홀더 벡터(householder vector)</strong> 라고 한다. 이 때 <span class="math inline">\(\boldsymbol{x}\)</span> 의 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대한 하우스홀더 변환 <span class="math inline">\(\boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x}\)</span> 는 다음과 같다. (증명은 연습문제에)</p>
 <p><span id="eq-householder_vector"><span class="math display">\[
 \boldsymbol{H}_{\boldsymbol{v}}\boldsymbol{x} = \boldsymbol{x}-\boldsymbol{v} = \alpha \hat{\boldsymbol{e}}_1.
-\qquad(3)\]</span></span></p>
+\tag{3}\]</span></span></p>
 <p><br></p>
 <p><a href="#eq-householder_transformation_1" class="quarto-xref">식&nbsp;1</a> 에서 보듯이 <span class="math inline">\(\boldsymbol{v}\)</span> 에 스칼라곱을 해도 하우스홀더 변환은 변하지 않는다. 실제로 계산을 위해서는 주어진 <span class="math inline">\(\boldsymbol{v}\)</span> 에 대해 <span class="math inline">\(\overline{\boldsymbol{v}}=\dfrac{1}{v_1}\boldsymbol{v}\)</span> 를 사용하여 변환을 하게되며 <span class="math inline">\(\overline{v}_1=1\)</span> 이 된다.</p>
 <p><br></p>

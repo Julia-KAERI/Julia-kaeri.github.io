@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -491,7 +491,7 @@ E(a_n,\ldots,\,a_0) &amp;= \sum_{k=1}^N {y_k}^2 -2 \sum_{k=1}^N y_k p_n(x_i) + \
 <p>이며 <span class="math inline">\(E\)</span> 를 최소로 하는 극값은 <span class="math inline">\(i=0,\ldots,n\)</span> 에 대해</p>
 <p><span id="eq-least_square_for_polynomial"><span class="math display">\[
 \dfrac{\partial E}{\partial a_i}=0 \implies \sum_{k=1}^N \left[ (x_k)^i y_k- \sum_{j=0}^n  (x_k)^{i+j} a_j\right] = 0
-\qquad(1)\]</span></span></p>
+\tag{1}\]</span></span></p>
 <p>를 만족해야 한다. 이제 행렬 <span class="math inline">\(\boldsymbol{X} \in \mathcal{M}_{N\times (n+1)}(\mathbb{F}),\,\boldsymbol{a} \in\mathcal{M}_{n+1}(\mathbb{F}),\,\boldsymbol{y}\in \mathcal{M}_N(\mathbb{F})\)</span> 를 다음과 같이 정의하자.</p>
 <p><span class="math display">\[
 X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 &amp; \cdots &amp; a_n\end{bmatrix}^T, \qquad \boldsymbol{y} = \begin{bmatrix} y_1 &amp; \cdots &amp; y_N \end{bmatrix}
@@ -503,7 +503,7 @@ X_{ij} = (x_i)^{j-1},\qquad \boldsymbol{a} = \begin{bmatrix} a_0 &amp; \cdots &a
 <p>이므로 <a href="#eq-least_square_for_polynomial" class="quarto-xref">식&nbsp;1</a> 는 다음과 같은 선형방정식이 된다. 아래와 같은 형태의 방정식을 <strong>정규 방정식(normal equation)</strong> 이라고 한다.</p>
 <p><span id="eq-normal_equation"><span class="math display">\[
 \boldsymbol{X}^T\boldsymbol{Xa} = \boldsymbol{X}^T\boldsymbol{y}
-\qquad(2)\]</span></span></p>
+\tag{2}\]</span></span></p>
 <p><br></p>
 <div id="exr-nullity_of_X" class="theorem exercise">
 <p><span class="theorem-title"><strong>연습문제 1</strong></span> 위에서 정의된 <span class="math inline">\(\boldsymbol{X}\)</span> 에 대해 다음을 보여라.</p>
@@ -624,7 +624,7 @@ nP_n(x) &amp; = (2n−1)xP_{n−1}(x)−(n−1)P_{n−2}(x).
 <p>의 해이며, 무게함수는 <span class="math inline">\(w(x)=1\)</span> 이다. 이 때,</p>
 <p><span id="eq-inner_product_of_legendre_polynomial"><span class="math display">\[
 \langle P_n(x),\, P_m(x) \rangle = \int_{-1}^1 P_n(x)P_m(x)\,dx =  \dfrac{2}{2n+1}\delta_{ij}
-\qquad(3)\]</span></span></p>
+\tag{3}\]</span></span></p>
 <p>이다.</p>
 <p><br></p>
 </section>
@@ -676,7 +676,7 @@ T_{n}(x) &amp; = 2xT_{n−1}(x) - T_{n-2}(x).
 <p>이 된다. 즉 <span class="math inline">\(T_n(\theta) = n\cos\theta\)</span> 이므로</p>
 <p><span id="eq-chevyshov_cos_form"><span class="math display">\[
 T_n (x) = \cos (n \arccos x)
-\qquad(4)\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>이다.</p>
 <p><a href="#eq-chevyshov_cos_form" class="quarto-xref">식&nbsp;4</a> 으로부터 우리는 <span class="math inline">\(T_n(x) = 0\)</span> 의 해는</p>
 <p><span class="math display">\[

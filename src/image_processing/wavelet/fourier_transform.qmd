@@ -6,6 +6,13 @@ crossref:
   chapters: false
 ---
 
+::: {.callout-warning appearance="minimal"}
+
+여기의 상당수 내용은 일반적인 학부 2학년 수준의 선형대수학, 해석학 범위를 넘어선 지식을 요구한다. 이런 내용은 증명하지 않고 언급하고 넘어가거나 사용할 수 있다.
+
+:::
+
+</br>
 
 ## 수학적 기반
 
@@ -31,7 +38,7 @@ $$
 :::
 
 
-행렬과 벡터의 노름에서처럼 $p=1,\,2,\infty$ 일 때 가장 중요하다. 또한 $L^p$ 노름이 정의되는 함수의 집합은 벡터공간이다. $p=1$ 일 때 $L^1$ 노름이 정의되는 함수들을 *Lebesgue 적분 가능 함수* 라고 한다. 이제 $f\in L^1(\mathbb{R})$ 이라고 하자. $e^{-i\omega t}$ 는 유계인 연속 함수이므로 $e^{-i \omega t}f(t)$ 는 모든 $\omega \in \mathbb{R}$ 에서 *국소적으로 적분 가능한 함수(locally integrable function)* 이다. 이 경우 아래와 같이 $L^1$ 공간에서의 푸리에 변환을 정의 할 수 있다.
+행렬과 벡터의 노름에서처럼 $p=1,\,2,\infty$ 일 때 가장 중요하다. 또한 $L^p$ 노름이 정의되는 함수의 집합은 벡터공간이다. $p=1$ 일 때 $L^1$ 노름이 정의되는 함수들을 *Lebesgue 적분 가능 함수* 라고 한다. 이제 $f\in L^1(\mathbb{R})$ 이라고 하자. $e^{-i\omega t}$ 는 유계인 연속 함수이므로 $e^{-i \omega t}f(t)$ 는 모든 $\omega \in \mathbb{R}$ 에서 *국소적으로 적분 가능한 함수(locally integrable function)* 이다. 이 경우 아래와 같이 $L^1$ 공간에서의 푸리에 변환을 정의 할 수 있다. $L^\infty(\mathbb{R})$ 는 measure zero 인 집합을 제외하면 유계인 함수의 집합이다. 
 
 
 </br>
@@ -66,6 +73,8 @@ $$
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
 ::: {#exm-wavelet_fourier_transform_of_gaussian}
 
 #### 가우시안 함수의 푸리에 변환
@@ -82,8 +91,11 @@ $$
 
 :::
 
+</div>
 
 </br>
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
 ::: {#exm-wavelet_fourier_transform_of_rectangular_pulse}
 
@@ -101,11 +113,15 @@ $$
 \end{aligned}
 $$
 
-이 때 $\textrm{sinc}(x) := \dfrac{\sin x}{x}$ 로 정의되는 함수이다. [기본적인 신호](../introduction_to_signal_processing.qmd#sec-signal_basic_signals) 를 참고하라.
+이 때 $\textrm{sinc}(x) := \dfrac{\sin x}{x}$ 로 정의되는 함수이다. [기본적인 신호](../introduction_to_signal_processing.qmd#sec-signal_basic_signals) 를 참고하라. 실제로 $\operatorname{sinc}$ 는 $L^1(\mathbb{R})$ 함수가 아니다. 즉 $f\in L^1(\mathbb{R})$ 이더라도 $\hat{f}\not\in L^1(\mathbb{R})$ 일 수 있다. 
 
 :::
 
+</div>
+
 </br>
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
 ::: {#exm-wavelet_sharp_function}
 
@@ -125,7 +141,11 @@ $$
 ![함수의 푸리에 변환](images/fig-wavelet_sharp_function_1-1.png)
 :::
 
+</div>
+
 </br>
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
 ::: {#exm-wavelet_exponential_1}
 
@@ -141,6 +161,7 @@ $$
 
 :::
 
+</div>
 
 <br>
 
@@ -296,7 +317,9 @@ $$
 
 </br>
 
-### 합성곱과 푸리에 변환
+
+
+## 합성곱과 푸리에 변환
 
 ::: {.callout-note appearance="minimal"}
 
@@ -304,7 +327,7 @@ $$
 
 #### 합성곱 
 
-$f,\,g\in L^1(\mathbb{R})$ 에 대해 두 함수의 합성곱 $(f \ast g)(t)$ 는 다음과 같이 정읜된다.
+$f,\,g\in L^1(\mathbb{R})$ 에 대해 두 함수의 합성곱 $(f \ast g)(t)$ 는 다음과 같이 정의된다.
 
 $$
 (f \ast g)(t) := \int_{-\infty}^\infty f(t-\tau)\,g(\tau)\, d\tau
@@ -324,6 +347,419 @@ $$ {#eq-wavelet_definition_of_convolution}
 
 ::: {.proof}
 $$
-\int_{-\infty}^\infty \int_{-\infty}^\infty |f(t-\tau)\, g(\tau)| \, d\tau\, dt                                                                                                                                                                                = \int_{-\infty}^\infty g(\tau)\,d\tau\, \int_{-\infty}^\infty |f(t)|\,dt = \|g\|_1 \|f\|_1
+\int_{-\infty}^\infty \int_{-\infty}^\infty |f(t-\tau)\, g(\tau)| \, d\tau\, dt                                                                                                                                                                                = \int_{-\infty}^\infty g(\tau)\,d\tau\, \int_{-\infty}^\infty |f(t)|\,dt = \|g\|_1 \|f\|_1. \qquad \square
 $$
+:::
+
+</br>
+
+::: {#prp-wavelet-properties_of_convolution}
+
+$f,\,g,\,h \in L^1(\mathbb{R})$ 에 대해 다음이 성립한다.
+
+&emsp; ($1$) $f \ast g= g \ast f$.
+
+&emsp; ($2$) $f\ast (g \ast h)= (f \ast g)\ast h$.
+
+&emsp; ($3$) $f \ast (g + h) = f\ast g + f \ast h$.
+
+:::
+
+::: {.proof}
+
+($1$) $\displaystyle (f\ast g)(t) = \int_{-\infty}^\infty f(t-\tau)g(\tau) \, d\tau \stackrel{s=t-\tau}{=} \int_{-\infty}^\infty f(s)\, g(t-s)\, ds = (g\ast f)(t).$
+
+($2$)  
+
+$$
+\begin{aligned}
+\left[f\ast (g \ast h)\right](t)&= \int_{-\infty}^\infty f(t-\tau) \left[\int_{-\infty}^{\infty} g(\tau - s)\, h (s)\, ds\right]\, d\tau \\
+&=\int_{-\infty}^\infty \left[\int_{-\infty}^\infty f(t-\tau) \,g(\tau-s) \, d\tau \right] h(s)\, ds \\
+&\stackrel{x=\tau-s}{=} \int_{-\infty}^\infty \left[\int_{-\infty}^\infty f((t-s)-x))\, g(x)\, dx\right] h(s)\, ds\\
+&= \int_{-\infty}^\infty (f \ast g)(t-s)\, h(s)\,ds \\
+&= (f \ast g)\ast h (t).
+\end{aligned}
+$$
+
+($3$) trivial. $\square$ 
+
+:::
+
+</br>
+
+아래의 두 명제는 증명 없이 받아들인다.
+
+::: {#prp-wavelet_continuity_of_convolution}
+
+$f\in L^1(\mathbb{R})$ 이고 $g\in L^\infty(\mathbb{R})$ 이면 $f\ast g$ 는 $\mathbb{R}$ 에서 연속이다.
+
+:::
+
+</br>
+
+::: {#prp-wavelet_young_inequality}
+
+양수 $p,\,q,\,s$ 가 $\dfrac{1}{s} = \dfrac{1}{p} + \dfrac{1}{q} -1$ 일 때 다음이 성립한다.
+
+$$
+\|f\ast g\|_s \le \|f\|_p \|g\|_q
+$$
+
+:::
+
+</br>
+
+::: {#thm-wavelet_fourier_transform_of_convolution}
+
+#### Convolution theorem
+
+$f,\,g\in L^1(\mathbb{R})$ 일 때 다음이 성립한다.
+
+$$
+\mathfrak{F}[(f \ast g)(t)] = \mathfrak{F}[f(t)]\mathfrak{F}[g(t)].
+$$
+
+:::
+
+::: {.proof}
+
+$$
+\begin{aligned}
+\mathfrak{F}[(f \ast g)(t)] &= \int_{-\infty}^\infty e^{-i \omega t} \int_{-\infty}^\infty f(t-\tau)\, g(\tau)\, d\tau\, dt \\
+&= \int_{-\infty}^\infty\left[ \int_{-\infty}^\infty e^{-i\omega (t-\tau)} f(t-\tau) \, dt\right] e^{-i \omega \tau}g(\tau)\, d\tau \\
+&= \int_{-\infty}^\infty \mathfrak{F}[f(t)] \, e^{-i \omega \tau} g(\tau)\, d\tau\\
+&= \mathfrak{F}[f(t)]\mathfrak{F}[g(t)].
+\end{aligned}
+$$
+
+:::
+
+위의 정리는 합성곱의 푸리에 변환은 각 함수의 푸리에 변환의 곱과 같다는 의미이다. 
+
+</br>
+
+::: {#cor-wavelent_fourier_transform_of_convolution}
+
+$f,\,g,\,h\in L^1(\mathbb{R})$ 이며 
+
+$$
+h(x) = \int_{-\infty}^\infty g(\omega)\, e^{i\omega x}\, d\omega
+$$
+
+일 때 다음이 성립한다.
+
+$$
+(f\ast h)(x) = \int_{-\infty}^\infty g(\omega)\, \hat{f}(\omega) \, e^{i\omega x}\, d\omega.
+$$
+
+:::
+
+::: {.proof}
+
+$$
+\begin{aligned}
+(f\ast h)(x) &= \int_{-\infty}^\infty f(x-\tau) h(\tau)\, d\tau = \int_{-\infty}^\infty f(x-\tau) \left[\int_{-\infty}^\infty g(\omega)\, e^{i\omega \tau}\, d\omega\right]\, d\tau \\
+&= \int_{-\infty}^\infty g(\omega) \left[\int_{-\infty}^\infty f(x-\tau) e^{i\omega \tau} \, d\tau\right] \, d\omega\\
+&=\int_{-\infty}^\infty g(\omega) \left[\int_{-\infty}^\infty f(x-\tau) e^{-i\omega (x-\tau)} \, d\tau\right] \, e^{i\omega x} d\omega\\
+&= \int_{-\infty}^\infty g(\omega) \hat{f}(\omega) e^{i\omega x}\, d\omega, \qquad \square
+\end{aligned}
+$$
+:::
+
+
+</br>
+
+## 역 푸리에 변환 문제
+
+우리는 $f \in L^1(\mathbb{R})$ 에 대한 푸리에 변환을 알아보았다. 이제 그 역변환, 즉 어떤 frequency domain 에서의 함수 $\hat{f}(\omega)$ 로 부터 원함수 $f(t)$ 를 어떤 조건에서 구할 수 있는지 알아보기로 하자. 
+
+::: {#thm-wavelet_inverse_fourier_transform}
+
+#### 푸리에 역변환
+
+$f\in L^1(\mathbb{R})$ 이고 $\hat{f}=\mathfrak{F}[f(t)]\in L^1(\mathbb{R})$ 일 때 
+
+$$
+\dfrac{1}{2\pi}\int_{-\infty}^\infty \hat{f}(\omega) e^{i\omega t}\, d\omega = f(t)
+$$ {#eq-wavelet_priliminary_inverse_fourier_transform}
+
+이다. 
+
+:::
+
+::: {.proof}
+
+$$
+\begin{aligned}
+\dfrac{1}{2\pi} \int_{-\infty}^\infty \hat{f}(\omega)e^{i\omega t}\, d\omega &= \dfrac{1}{2\pi} \int_{-\infty}^\infty \left[\int_{-\infty}^\infty f(t')e^{-i\omega t'}\, dt'\right] e^{i\omega t}\, d\omega \\
+&= \dfrac{1}{2\pi} \int_{-\infty}^\infty \left[\int_{-\infty}^\infty e^{i\omega (t-t')}\, d\omega\right] \, f(t')\, dt'
+\end{aligned}
+$$
+
+여기서 $\int_\mathbb{R} e^{i\omega t}\, d\omega = 2\pi \delta(t)$ 이므로
+
+$$
+\dfrac{1}{2\pi} \int_{-\infty}^\infty \hat{f}(\omega)e^{i\omega t}\, d\omega = \int_{-\infty}^\infty f'(t) \delta(t-t')\, dt' = f(t)
+$$
+
+이다. $\square$
+
+:::
+
+
+그러나 @exm-wavelet_fourier_transform_of_rectangular_pulse 에서 보았듯이 $f\in L^1(\mathbb{R})$ 이더라도 $f\not\in L^1(\mathbb{R})$ 일 수 있다. 여기에 어떤 함수 $K_\lambda(\omega)$ 를 도입하여 대부분의 $t\in \mathbb{R}$ 에 대해 다음이 성립할 수 있도록 할 수 있음을 보이고자 한다.
+
+$$
+\lim_{\lambda\to \infty} \int_{-\lambda}^\lambda \hat{f}(\omega)K_\lambda (\omega)e^{i\omega t}\, dt = f(t).
+$$
+
+이 때 $K_\lambda(\omega)$ 를 **summability kernel** 이라고 한다.
+
+</br>
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_summability_kernel}
+
+#### Summability kernel
+
+$\mathbb{R}$ 에서의 **summability kernel** 은 아래의 조건을 만족하는 연속함수 $K_\lambda :\mathbb{R} \to \mathbb{C}$ 의 집합 이다.
+
+&emsp; ($1$) $\forall \lambda > 0,\, \displaystyle \int_\mathbb{R} K_\lambda (x)\, dx = 1$.
+
+&emsp; ($2$) $\exists M>0,\forall \lambda >0\,\, \displaystyle \|K_\lambda\|_1=\int_{\mathbb{R}} |K_\lambda(x)|\, dx \le M$.
+
+&emsp; ($3$) $\forall \delta >0,\, \displaystyle \lim_{\lambda \to \infty} \int_{|x|>\delta} |K_\lambda(x)| \, dx = 0$.
+
+:::
+
+:::
+
+
+</br>
+
+::: {#thm-wavelet_approximate_identity_theorem}
+
+$f\in L^{1}(\mathbb{R})$ 이며 $\{K_\lambda\}$ 가 summability kernel 의 집합일 때 다음이 성립한다.
+
+$$
+\lim_{\lambda \to \infty} \|(f\ast K_\lambda)- f\| = 0.
+$$ {#eq-wavelet_approximate_identity}
+
+:::
+
+::: {.proof}
+
+
+$$
+\begin{aligned}
+\left|(f\ast K_\lambda) (t)- f(t)\right| &= \left|\int_{-\infty}^\infty f(t-\tau)\, K_\lambda(\tau)\, d\tau - \int_{-\infty}^\infty K_\lambda(\tau)f(t)\, d\tau\right| & &;\text{정의 ($1$)}\\
+&=\left|\int_{-\infty}^\infty \left(f(t-\tau) - f(t)\right)K_\lambda (\tau)\, d\tau\right| \\
+&\le \int_{-\infty}^\infty |K_\lambda(\tau) |f(t-\tau)-f(t)|\, d\tau
+\end{aligned}
+$$
+
+
+정의 ($2$) 에서 $\|K_\lambda\|_1 \le M$ 이라고 하자. $f\in L^p(\mathbb{R})$ 일 때 $f(t-\tau)- f(t)$ 는 연속이므로 모든 $\varepsilon>0$ 에 대해 어떤 $\delta>0$ 이 존재하여 $|\tau|<\delta$ 이면 $|f(t-\tau)-f(t)|<\dfrac{\varepsilon}{M}$ 이 되도록 할 수 있다. 따라서
+
+$$
+\begin{aligned}
+\|(f\ast K_\lambda) (t) - f(t)\| &= \int_{-\infty}^\infty |(f\ast K_\lambda)(t) - f(t)|\, dt \\
+&\le\int_{-\infty}^\infty dt \int_{-\infty}^\infty |K_\lambda(\tau)| |f(t-\tau) - f(t)|\, d\tau \\
+\end{aligned}
+$$
+
+이 때
+
+$$
+\sigma(\tau) := \int_{-\infty}^\infty |f(t-\tau)-f(t)|\, dt 
+$$
+
+라고 하면, $\sigma(\tau) = C <\infty$ 이다. 
+
+$$
+\begin{aligned}
+\|(f\ast K_\lambda) (t) - f(t)\| & \le \int_{-\infty}^\infty |K_\lambda (\tau)|\sigma(\tau)\, d\tau\\
+&= \int_{|\tau|<\delta} |K_\lambda(\tau)| \sigma(\tau)\, d\tau + \int_{|\tau|> \delta}  |K_\lambda(\tau)| \sigma(\tau)\, d\tau \\
+&\le \varepsilon + C\int_{-\infty}^\infty |K_\lambda (\tau)|d\tau 
+\end{aligned}
+$$
+
+이므로 @eq-wavelet_approximate_identity 이 성립한다. $\square$
+
+:::
+
+</br>
+
+::: {#thm-wavelet_general_modulation}
+
+$\hat{f}=\mathfrak{F}[f(t)],\, \hat{g}=\mathfrak{F}[g(t)]$ 이며 $\hat{f},\, \hat{g}\in L^1(\mathbb{R})$ 일 때 다음이 성립한다.
+
+$$
+\mathfrak{F}[f(t)\,g(t)]= \dfrac{1}{2\pi}\left(\hat{f} \ast \hat{g}\right).
+$$ {#eq-wavelet_general_modulation}
+
+:::
+
+::: {.proof}
+
+$\hat{f},\,\hat{g}\in L^1(\mathbb{R})$ 이므로 역변환이 가능하다. @thm-wavelet_inverse_fourier_transform 을 이용한다.
+
+$$\begin{aligned}
+\mathfrak{F}[f(t)\,g(t)](\omega) &=\int_{-\infty}^\infty e^{-i\omega t} f(t)\, g(t)\, dt= \dfrac{1}{2\pi}\int_{-\infty}^\infty e^{-i \omega t}g(t)\, dt \int_{-\infty}^\infty \hat{f}(\omega') e^{i\omega' t}d\omega' \\
+&= \dfrac{1}{2\pi}\int_{-\infty}^\infty \hat{f}(\omega') \left[\int_{-\infty}^\infty g(t)\,e^{-i(\omega-\omega')t}\, dt\right]\, d\omega' \\
+&= \dfrac{1}{2\pi}\int_{-\infty}^\infty \hat{f}(\omega') \hat{g}(\omega-\omega')\, d\omega' = \dfrac{1}{2\pi} (\hat{f} \ast \hat{g})(\omega),\qquad \square
+\end{aligned}$$
+
+:::
+
+</br>
+
+## $L^2(\mathbb{R})$ 에서의 푸리에 변환
+
+$L^2$ 공간에서의 노름 $\|\cdot\|_2$ 은 다음과 같이 정의된다.
+
+$$
+\|f\|_2 := \left(\int_{-\infty}^\infty |f(t)|^2\, dt\right)^{1/2}
+$$
+
+$f\in L^2(\mathbb{R})$ 일 때 $\left\|\hat{f}\right\|_2 = \sqrt{2\pi}\|f\|_2$ 이다. $\sqrt{2\pi}$ factor 를 안보이게 하기 위해 푸리에 변환을 다음과 같이 재정의 한다.
+
+$$
+\hat{f}(\omega):= \mathfrak{F}[f(t)]=\dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-i\omega t}\, f(t)\, dt
+$$ {#eq-wavelengt_fourier_transform_in_L2}
+
+
+</br>
+
+::: {#thm-wavelet_norm_of_fourier_transfrom_in_L2}
+
+$f\in C_{\mathbb{R}}$ 이며 어떤 유계인 구간 밖에서 $0$ 값을 갖는다고 하자. 그렇다면 $\hat{f}=\mathfrak{F}[f(t)]\in L^2(\mathbb{R})$ 이며
+
+$$
+\|f\|_2 = \left\|\hat{f}\right\|_2
+$$
+
+이다. 
+
+:::
+
+::: {.proof}
+
+일반성을 잃지 않고 $t\not\in [-\pi,\,\pi]$ 일 때 $f(t)=0$ 이라고 할 수 있다. 아래의 $\{\phi_n(t)\}$ 는 $L^2(\mathbb{R})$ 의 정규직교기저이다.
+
+$$
+\left\{\phi_n(t)=\dfrac{1}{\sqrt{2\pi}} e^{int}: n\in \mathbb{Z}\right\}.
+$$
+
+따라서, 
+
+$$
+f(t) = \sum_{n\in \mathbb{Z}}f_n e^{int},\qquad \text{where}\; f_n = \int \overline{\phi_n(t)} f(t)\, dt = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}  ^\infty e^{-int}f(t)\,dt = \hat{f}(n)
+$$
+
+이며,
+
+$$
+{\|f\|_2}^2 = \sum_{n\in \mathbb{Z}} |\hat{f}(n)|^2
+$$
+
+이다. $g(t) = e^{i\mu t}f(t)$ 에 대해 $|g(t)|=|f(t)|$ 이므로 $\|g\|_2 = \|f\|_2$ 이다. 또한 $\displaystyle g(t) = \sum_{n\in \mathbb{Z}}f_n e^{i(n+\mu)t}$ 이므로
+
+$$
+{\|f\|_2}^2 =\sum_{n\in \mathbb{Z}} \left|\hat{f}(n+\mu)\right|^2
+$$
+
+이다. 위 식의 양 변을 $\mu$ 에 대해 $[0,\,1]$ 구간에서 적분하면
+
+$$
+{\|f\|_2}^2 = \sum_{n\in \mathbb{Z}}\int_0^1 \left|\hat{f}(n+\mu)\right|^2 \, d\mu = \int_{-\infty}^\infty \left|\hat{f}(\mu)\right|^2\, d\mu = {\left\|\hat{f}\right\|_2}^2
+$$
+
+이다. $\square$
+
+:::
+
+</br>
+
+@thm-wavelet_norm_of_fourier_transfrom_in_L2 은 $f\in L^2(\mathbb{R}) \iff\hat{f}\in L^2(\mathbb{R})$ 를 의미한다. $f\in L^1(\mathbb{R})$ 일 경우에는 이것이 성립하지 않았음을 생각하라(@exm-wavelet_fourier_transform_of_rectangular_pulse). 
+
+
+
+</br>
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_compact_support}
+
+#### 콤팩트 지지 함수
+
+위상공간 $X$ 에서 정의된 $f:X \to \mathbb{R}$ 에 대해 $S=f^{-1}(\{0\})$ 의 closure $\overline{S}$ 를 $f$ 에 대한 support 라고 하고 $\textrm{supp}(f)$ 라고 쓴다. $\textrm{supp}(f)$ 가 옹골집합(compact set) 일 때 $f$ 를 **콤팩트 지지 함수 (compactly supported function)** 라고 한다.
+
+:::
+
+:::
+
+$\mathbb{R}$ 에서의 옹골집합은 유계인 닫힌 집합과 동치이다. 즉 $\mathbb{R}$ 에서의 콤팩트 지지함수는 support 가 유계인 집합이다. 그렇다면 $f$ 가 $L^2(\mathbb{R})$ 에서의 콤팩트 지지함수라면  @thm-wavelet_norm_of_fourier_transfrom_in_L2 에 따라 푸리에 변환이 존재하며 $\|f\|_2 = \left\|\hat{f}\right\|_2$ 이다. 
+
+또 한가지 사실은 $\mathbb{R}$ 에서 정의된 모든 컴팩트 지지함수의 집합은 $L^2(\mathbb{R})$ 에서 조밀하다는 것이다(이것은 증명하지 않고 받아들이기로 하자). 즉 $f\in L^2(\mathbb{R})$ 라면 임의의 $\varepsilon>0$ 에 대해 $\|f-g\|_2<\varepsilon$ 인 콤팩트 지지함수 $g\in L^2(\mathbb{R})$ 을 찾을 수 있다는 의미이다. 그런 의미에서 푸리에 변환을 다음과 같이 정의 할 수 있다.
+
+
+</br>
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_fourier_transform_in_L2}
+
+#### $L^2(\mathbb{R})$ 에서의 푸리에 변환
+
+$f\in L^2(\mathbb{R})$ 이며 $\{f_n : f_n\in L^2(\mathbb{R})\}$ 을 $\displaystyle \lim_{n \to \infty}f_n = f$ 인 콤팩트 지지함수의 함수열이라고 하자. 이 때 $f$ 의 푸리에 변환은 다음과 같이 정의된다.
+
+$$
+\hat{f} = \lim_{n \to \infty} \mathfrak{F}[f_n]
+$$
+
+:::
+
+:::
+
+$f_n$ 이 콤팩트 지지함수이므로 @thm-wavelet_norm_of_fourier_transfrom_in_L2 에 따라 $\|\hat{f}_n\|_2$ 가 존재하며 그 극한이 $f$ 의 푸리에 변환이다. 그렇다면 이 정의는 우리가 $L^1(\mathbb{R})$ 에서 했던 정의와 동일할까?
+
+
+::: {#thm-wavelet_parseval_identity}
+
+#### Parseval's Identity
+
+$f\in L^2(\mathbb{R})$ 이면 $\|f\|_2 = \left\|\hat{f}\right\|_2$ 이다.
+
+:::
+
+::: {.proof}
+
+
+:::
+
+</br>
+
+::: {#thm-wavelet_fourier_transform_in_L2_2}
+
+$f\in L_2(\mathbb{R})$ 일 때
+
+$$
+\hat{f}(\omega)= \lim_{n \to \infty} \dfrac{1}{\sqrt{2\pi}} \int_{-n}^n e^{-i\omega t}f(t)\, dt
+$$
+
+이다. 
+:::
+
+::: {.proof}
+
+$n\in \mathbb{Z}_+$ 에 대해 $f_n(t)$ 를 아래와 같이 정의한다.
+
+$$
+f_n (t) = \left\{\begin{array}{ll} f(t), \qquad &\text{for }|t|<n, \\ 0&\text{otherwise}.\end{array}\right.
+$$
+
+$\displaystyle \lim_{n \to \infty} \|f-f_n\|_2=0$ 이며, 따라서 $\displaystyle \lim_{n \to \infty}\|\hat{f} - \hat{f}_n\|_2 = 0$ 이다. $\square$
+
 :::

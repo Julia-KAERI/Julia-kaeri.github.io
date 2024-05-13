@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -410,7 +410,7 @@ P_0(x) &amp;= 1, \\
 P_1(x) &amp; = x, \\
 P_{k+1}(x) &amp;= \dfrac{2k+1}{k+1}xP_k(x) - \dfrac{k}{k+1}P_{k-1}(x).
 \end{aligned}
-\qquad(1)\]</span></span></p>
+\tag{1}\]</span></span></p>
 <p>이 때 <span class="math inline">\(\{P_1(x),\ldots,P_k(x)\}\)</span> 는 <span class="math inline">\(\mathbb{R}_k[x]\)</span> 의 직교기저가 된다. <code>NAJ.jl</code> 에서 제공하는 다항식은 다음과 같다.</p>
 <table class="table">
 <thead>

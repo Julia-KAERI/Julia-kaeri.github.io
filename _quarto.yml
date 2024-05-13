@@ -111,6 +111,7 @@ website:
         - section : 푸리에 변환과 웨이블릿 변환
           contents :
           - href: src/image_processing/wavelet/fourier_transform.qmd
+          - href: src/image_processing/wavelet/wavelet_transform.qmd
     
         - section : 주제별 처리
           contents:

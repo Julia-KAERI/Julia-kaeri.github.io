@@ -1,0 +1,25 @@
+---
+title: "웨이블릿 변환"
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+## 정의와 기본적인 성질
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_definition_of_wavelet}
+
+#### Wavelet
+
+$\psi\in L^2(\mathbb{R})$ 이 $\hat{\psi}=\mathfrak{F}[\psi]$ 에 대해 다음을 만족할 때 $\psi$ 를 **웨이블릿(wavelet)** 이라고 한다.
+
+$$
+C_\psi := \int_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|^2}{\omega} \, d\omega < \infty.
+$$ {#eq-wavelet_condition}
+
+:::
+:::
+
