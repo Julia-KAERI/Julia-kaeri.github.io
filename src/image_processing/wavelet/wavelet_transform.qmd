@@ -17,17 +17,110 @@ crossref:
 $\psi\in L^2(\mathbb{R})$ 이 $\hat{\psi}=\mathfrak{F}[\psi]$ 에 대해 다음을 만족할 때 $\psi$ 를 **웨이블릿(wavelet)** 이라고 한다.
 
 $$
-C_\psi := {\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|^2}{\omega} \, d\omega < \infty.
+C_\psi := {\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|^2}{|\omega|} \, d\omega < \infty.
 $$ {#eq-wavelet_condition}
 
 :::
 :::
 
+</br>
 
-@eq-wavelet_condition 을 *admissibility condition* 이라고 한다. 이로부터 $\displaystyle \lim_{\omega \to 0} \hat{\psi}(\omega) = 0$ 이어야 함을 알 수 있다. $\hat{\psi}$ 가 연속함수라면 $\hat{\psi}(0)=0$ 이어야 하며, 
+::: {#prp-wavelet_basic_properties_of_wavelet}
+
+@eq-wavelet_condition 을 *admissibility condition* 이라고 한다. 이 정의로부터 다음을 알 수 있다.
+
+&emsp; ($1$) $\displaystyle \lim_{\omega \to 0} \hat{\psi}(\omega) = 0$. 
+
+&emsp; ($2$) $\hat{\psi}$ 가 연속함수라면 $\hat{\psi}(0)=0$ 이어야 한다.
+
+&emsp; ($3$) $\displaystyle 0 = \hat{\psi}(0) = \int_{-\infty}^\infty \psi (t)\, dt$ 이다. 즉 $\psi$ 의 평균값은 $0$ 이다. 
+
+&emsp; ($4$) $\displaystyle \lim_{|\omega| \to \infty }  \hat{\psi}(\omega) = 0$ 이다.
+
+:::
+
+
+</br>
+
+::: {.callout-note appearance="minimal"}
+::: {#def-wavelet_moment}
+
+#### 웨이블릿의 $k$-차 모멘트
+
+$\psi\in L^2(\mathbb{R})$ 이 웨이블릿일 때 아래와 같이 정의된 $m_k$ 를 $k$-차 모멘트 라고 한다.
 
 $$
-0 = \hat{\psi}(0) = \int_{-\infty}^\infty \psi (t)\, dt
+m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
+$$ {#eq-wavelet_moment}
+
+:::
+:::
+
+</br>
+
+::: {#prp-wavelet_vanishing_moment}
+
+@def-wavelet_moment 에서 $m_k=0$ 인 것의 필요충분조건은 다음과 같다.
+
+$$
+\left[\dfrac{d^k \hat{\psi}(\omega)}{d\omega^k}\right]_{\omega = 0} = 0.
 $$
 
-임을 알 수 있다. 즉 $\psi$ 의 평균값은 $0$ 이다. 
+:::
+
+::: {.proof}
+
+[푸리에 변환의 수학적 성질](fourier_transform.qmd#prp-wavelet_properties_of_fourier_transform) ($7$) 로부터 
+
+$$
+\left[\dfrac{d^k \hat{\psi}(\omega)}{d\omega^k}\right]_{\omega = 0} = (-i)^k \mathfrak{F}\left[t^k \psi(t)\right](\omega = 0) = (-i)^k \int_{-\infty}^\infty t^n \psi(t)\, dt = (-i)^k m_k
+$$ 
+
+이다. $\square$
+
+:::
+
+</br>
+
+웨이블릿은 보통 1차부터 특정 $n$ 차 까지의 모멘트가 $0$ 이다. $m_k=0$ 이 되는 가장 큰 $k$ 값은 웨이블릿의 성질을 파악하는 중요한 값이다. 
+
+</br>
+
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
+::: {#exm-wavelet_Haar_wavelet}
+
+#### Harr 웨이블릿
+
+Haar 웨이블릿은 헝가리의 수학자 Alfred Haar 에 의해 도입된 최초의 웨이블릿으로 아래와 같이 정의된다.
+
+$$
+\psi_H (t) = \left\{\begin{array}{ll} 1, \qquad & 0, \le t < \dfrac{1}{2} \\ -1 & \dfrac{1}{2} \le t < 1 \\ 0, & \text{otherwise}.\end{array}\right.
+$$ {#eq-wavelet_Haar_wavelet}
+
+이로부터 다음을 쉽게 알 수 있다.
+
+$$
+\int_{-\infty}^\infty \psi_H (t)\, dt = 0, \qquad \int_{-\infty}^\infty |\psi_H(t)|^2 = 1.
+$$
+
+웨이블릿의 푸리에 변환 $\mathfrak{F}[\psi_H](\omega)$ 는 다음과 같다.
+
+$$
+\begin{aligned}
+\hat{\psi}_H(\omega) &= \int_{0}^{1/2} e^{-i \omega t} \, dt - \int_{1/2}^1 e^{-i\omega t}\, dt = i e^{-i\omega/2} \dfrac{\sin^2(\omega/4)}{\omega/4}
+\end{aligned}
+$$ {#eq-wavelet_fourier_transform_of_haar_wavelet}
+
+admissibility condition 을 확인해보자.
+
+$$
+{\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}_H(\omega)\right|^2}{|\omega|} \, d\omega = \int_{-\infty}^\infty 16|\omega|^{-3} \left|\sin^4 \left(\dfrac{\omega}{4}\right)\right|\, d\omega \le \int_{-\infty}^\infty \dfrac{16}{|\omega|^3}\, d\omega <\infty
+$$
+
+
+![Haar 웨이블릿과 그 푸리에 변환](images/fig-wavelet_haar_wavelet.png)
+:::
+
+</div>

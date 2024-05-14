@@ -287,17 +287,81 @@ window.Quarto = {
 <div id="def-wavelet_definition_of_wavelet" class="theorem definition">
 <p><span class="theorem-title"><strong>정의 1 (Wavelet)</strong></span> <span class="math inline">\(\psi\in L^2(\mathbb{R})\)</span> 이 <span class="math inline">\(\hat{\psi}=\mathfrak{F}[\psi]\)</span> 에 대해 다음을 만족할 때 <span class="math inline">\(\psi\)</span> 를 <strong>웨이블릿(wavelet)</strong> 이라고 한다.</p>
 <p><span id="eq-wavelet_condition"><span class="math display">\[
-C_\psi := {\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|^2}{\omega} \, d\omega &lt; \infty.
+C_\psi := {\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|^2}{|\omega|} \, d\omega &lt; \infty.
 \tag{1}\]</span></span></p>
 </div>
 </div>
 </div>
 </div>
-<p><a href="#eq-wavelet_condition" class="quarto-xref">식&nbsp;1</a> 을 <em>admissibility condition</em> 이라고 한다. 이로부터 <span class="math inline">\(\displaystyle \lim_{\omega \to 0} \hat{\psi}(\omega) = 0\)</span> 이어야 함을 알 수 있다. <span class="math inline">\(\hat{\psi}\)</span> 가 연속함수라면 <span class="math inline">\(\hat{\psi}(0)=0\)</span> 이어야 하며,</p>
+<p><br></p>
+<div id="prp-wavelet_basic_properties_of_wavelet" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 1</strong></span> <a href="#eq-wavelet_condition" class="quarto-xref">식&nbsp;1</a> 을 <em>admissibility condition</em> 이라고 한다. 이 정의로부터 다음을 알 수 있다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\displaystyle \lim_{\omega \to 0} \hat{\psi}(\omega) = 0\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\hat{\psi}\)</span> 가 연속함수라면 <span class="math inline">\(\hat{\psi}(0)=0\)</span> 이어야 한다.</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\displaystyle 0 = \hat{\psi}(0) = \int_{-\infty}^\infty \psi (t)\, dt\)</span> 이다. 즉 <span class="math inline">\(\psi\)</span> 의 평균값은 <span class="math inline">\(0\)</span> 이다.</p>
+<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(\displaystyle \lim_{|\omega| \to \infty }  \hat{\psi}(\omega) = 0\)</span> 이다.</p>
+</div>
+<p><br></p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-wavelet_moment" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (웨이블릿의 <span class="math inline">\(k\)</span>-차 모멘트)</strong></span> <span class="math inline">\(\psi\in L^2(\mathbb{R})\)</span> 이 웨이블릿일 때 아래와 같이 정의된 <span class="math inline">\(m_k\)</span> 를 <span class="math inline">\(k\)</span>-차 모멘트 라고 한다.</p>
+<p><span id="eq-wavelet_moment"><span class="math display">\[
+m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
+\tag{2}\]</span></span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div id="prp-wavelet_vanishing_moment" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 2</strong></span> <a href="#def-wavelet_moment" class="quarto-xref">정의&nbsp;2</a> 에서 <span class="math inline">\(m_k=0\)</span> 인 것의 필요충분조건은 다음과 같다.</p>
 <p><span class="math display">\[
-0 = \hat{\psi}(0) = \int_{-\infty}^\infty \psi (t)\, dt
+\left[\dfrac{d^k \hat{\psi}(\omega)}{d\omega^k}\right]_{\omega = 0} = 0.
 \]</span></p>
-<p>임을 알 수 있다. 즉 <span class="math inline">\(\psi\)</span> 의 평균값은 <span class="math inline">\(0\)</span> 이다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><a href="../../../src/image_processing/wavelet/fourier_transform.html#prp-wavelet_properties_of_fourier_transform">푸리에 변환의 수학적 성질</a> (<span class="math inline">\(7\)</span>) 로부터</p>
+<p><span class="math display">\[
+\left[\dfrac{d^k \hat{\psi}(\omega)}{d\omega^k}\right]_{\omega = 0} = (-i)^k \mathfrak{F}\left[t^k \psi(t)\right](\omega = 0) = (-i)^k \int_{-\infty}^\infty t^n \psi(t)\, dt = (-i)^k m_k
+\]</span></p>
+<p>이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<p>웨이블릿은 보통 1차부터 특정 <span class="math inline">\(n\)</span> 차 까지의 모멘트가 <span class="math inline">\(0\)</span> 이다. <span class="math inline">\(m_k=0\)</span> 이 되는 가장 큰 <span class="math inline">\(k\)</span> 값은 웨이블릿의 성질을 파악하는 중요한 값이다.</p>
+<p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+<div id="exm-wavelet_Haar_wavelet" class="theorem example">
+<p><span class="theorem-title"><strong>예제 1 (Harr 웨이블릿)</strong></span> Haar 웨이블릿은 헝가리의 수학자 Alfred Haar 에 의해 도입된 최초의 웨이블릿으로 아래와 같이 정의된다.</p>
+<p><span id="eq-wavelet_Haar_wavelet"><span class="math display">\[
+\psi_H (t) = \left\{\begin{array}{ll} 1, \qquad &amp; 0, \le t &lt; \dfrac{1}{2} \\ -1 &amp; \dfrac{1}{2} \le t &lt; 1 \\ 0, &amp; \text{otherwise}.\end{array}\right.
+\tag{3}\]</span></span></p>
+<p>이로부터 다음을 쉽게 알 수 있다.</p>
+<p><span class="math display">\[
+\int_{-\infty}^\infty \psi_H (t)\, dt = 0, \qquad \int_{-\infty}^\infty |\psi_H(t)|^2 = 1.
+\]</span></p>
+<p>웨이블릿의 푸리에 변환 <span class="math inline">\(\mathfrak{F}[\psi_H](\omega)\)</span> 는 다음과 같다.</p>
+<p><span id="eq-wavelet_fourier_transform_of_haar_wavelet"><span class="math display">\[
+\begin{aligned}
+\hat{\psi}_H(\omega) &amp;= \int_{0}^{1/2} e^{-i \omega t} \, dt - \int_{1/2}^1 e^{-i\omega t}\, dt = i e^{-i\omega/2} \dfrac{\sin^2(\omega/4)}{\omega/4}
+\end{aligned}
+\tag{4}\]</span></span></p>
+<p>admissibility condition 을 확인해보자.</p>
+<p><span class="math display">\[
+{\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}_H(\omega)\right|^2}{|\omega|} \, d\omega = \int_{-\infty}^\infty 16|\omega|^{-3} \left|\sin^4 \left(\dfrac{\omega}{4}\right)\right|\, d\omega \le \int_{-\infty}^\infty \dfrac{16}{|\omega|^3}\, d\omega &lt;\infty
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig-wavelet_haar_wavelet.png" class="img-fluid figure-img"></p>
+<figcaption>Haar 웨이블릿과 그 푸리에 변환</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

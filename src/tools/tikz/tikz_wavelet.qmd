@@ -1,0 +1,133 @@
+---
+title: "tikz Wavelet "
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+
+---
+
+
+
+
+```{r, engine = 'tikz'}
+#| label: fig-wavelet_sharp_function_1
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 10
+#| fig-align: center
+#| fig-cap: "Legendre 다항식"
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\begin{tikzpicture}[samples = 100, scale=2]
+
+\draw[-{stealth}] (-1.5, 0) -- (1.5,0) node[right] {$t$};
+\draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$f(t)$};
+
+\draw[color=black, thick, domain=-1:0, variable = \t]   plot ({\t}, {(1+\t)});
+\draw[color=black, thick, domain=0:1, variable = \t]   plot ({\t}, {(1-\t)});
+\draw[] (-1, 0.05) -- (-1, -0.05 ) node[below] {$-a$};
+\draw[] (1, 0.05) -- (1, -0.05 ) node[below] {$a$};
+
+\begin{scope}[xshift=3.5cm] 
+
+\draw[-{stealth}] (-1.5, 0) -- (1.5,0) node[right] {$\omega$};
+\draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$\hat{f}(\omega)$};
+
+\draw[color=black, thick, domain=-6:6, samples=100, variable = \t]   plot ({\t/5}, { (2 * sin((\t * 180 / pi) /2)/((\t)))^2 });
+\draw[] (-0.2, 0.05) -- (-0.2, -0.05 ) node[below] {$-\frac{1}{a}$};
+\draw[] (0.2, 0.05) -- (0.2, -0.05 ) node[below] {$\frac{1}{a}$};
+
+\end{scope}
+
+\end{tikzpicture}
+```
+
+```{r, engine = 'tikz'}
+#| label: fig-wavelet_sharp_function_2
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 10
+#| fig-align: center
+#| fig-cap: "Legendre 다항식"
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\begin{tikzpicture}[samples = 100, scale=2.5]
+
+\draw[-{stealth}] (-1.2, 0) -- (1.22,0) node[right] {$t$};
+\draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$f(t)$};
+
+\draw[color=black, thick, domain=-6:0, variable = \t]   plot ({\t/5}, {exp(\t)});
+\draw[color=black, thick, domain=0:6, variable = \t]   plot ({\t/5}, {exp(-\t)});
+\draw[] (-1, 0.05) -- (-1, -0.05 ) node[below] {$-5a$};
+\draw[] (1, 0.05) -- (1, -0.05 ) node[below] {$5a$};
+\draw[] (-0.05, 1) -- (0.05, 1 ) node[right] {$1$};
+
+\begin{scope}[xshift=2.8cm] 
+
+\draw[-{stealth}] (-1.2, 0) -- (1.2,0) node[right] {$\omega$};
+\draw[-{stealth}] (0,0) -- (0,1.2) node[above] {$\hat{f}(\omega)$};
+
+\draw[color=black, thick, domain=-6:6, samples=100, variable = \t]   plot ({\t/5}, {1/(\t*\t + 1)});
+\draw[] (-0.05, 1) -- (0.05, 1 ) node[right] {$2/a$};
+\draw[] (-0.2, 0.05) -- (-0.2, -0.05 ) node[below] {$-\frac{1}{a}$};
+\draw[] (0.2, 0.05) -- (0.2, -0.05 ) node[below] {$\frac{1}{a}$};
+
+\end{scope}
+
+\end{tikzpicture}
+```
+
+```{r, engine = 'tikz'}
+#| label: fig-wavelet_haar_wavelet
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 10
+#| fig-align: center
+#| fig-cap: "Haar wavelet"
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\begin{tikzpicture}[samples = 100, scale=2.5]
+
+\draw[-{stealth}] (-0.5, 0) -- (1.7,0) node[right] {$t$};
+\draw[-{stealth}] (0,-1.2) -- (0,1.2) node[above] {$\psi_H(t)$};
+
+\draw[very thick] (-0.5, 0) -- (0, 0) -- (0, 1) -- (0.5, 1) -- (0.5, -1) -- (1, -1)-- (1, 0) -- (1.5, 0);
+\node[] at (0, 0) [below left] {$0$};
+\node[] at (0.5, 0) [below left] {$\frac{1}{2}$};
+\node[] at (1, 0) [below left] {$1$};
+\draw[] (0.1, 1) -- (-0.1, 1) node[left] {$1$};
+\node[] at (0, -1) [left] {$-1$};
+
+\begin{scope}[xshift=3.3cm] 
+
+\draw[-{stealth}] (-1.2, -1) -- (1.2,-1) node[right] {$\omega$};
+\draw[-{stealth}] (0,-1.0) -- (0,1.2) node[above] {$|\hat{\psi}_H(\omega)|$};
+
+\draw[color=black, very thick, domain=0.01:40, samples=100, variable = \t]   plot ({\t/40}, {(2*(sin(\t*180/pi/4))*(sin(\t*180/pi/4)) / (\t/4)-1)});
+\draw[color=black, very thick, domain=-40:-0.01, samples=100, variable = \t]   plot ({\t/40}, {(-2*(sin(\t*180/pi/4))*(sin(\t*180/pi/4)) / (\t/4)-1)});
+\draw[] (0.0, -0.96) -- (0.0, -1.04 ) node[below] {$0$};
+\draw[] (0.314, -0.96) -- (0.314, -1.04 ) node[below] {$4\pi$};
+\draw[] (0.628, -0.96) -- (0.628, -1.04 ) node[below] {$8\pi$};
+\draw[] (0.942, -0.96) -- (0.942, -1.04 ) node[below] {$12\pi$};
+
+\end{scope}
+
+\end{tikzpicture}
+```
