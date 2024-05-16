@@ -354,10 +354,87 @@ m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 <p><span class="math display">\[
 {\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}_H(\omega)\right|^2}{|\omega|} \, d\omega = \int_{-\infty}^\infty 16|\omega|^{-3} \left|\sin^4 \left(\dfrac{\omega}{4}\right)\right|\, d\omega \le \int_{-\infty}^\infty \dfrac{16}{|\omega|^3}\, d\omega &lt;\infty
 \]</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/fig-wavelet_haar_wavelet.png" class="img-fluid figure-img"></p>
-<figcaption>Haar 웨이블릿과 그 푸리에 변환</figcaption>
+<div id="fig-wavelet_haar_wavelet" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_haar_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_haar_wavelet.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_haar_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: Haar 웨이블릿과 그 푸리에 변환
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-wavelet_haar_wavelet" class="quarto-xref">그림&nbsp;1</a> 에서 보듯이 Haar wavelet 은 시간 도메인에서 잘 국소화 되어 있지만 진동수 도메인에서는 잘 국소화 되어 있지 않다. 또한 푸리에 변환인 <span class="math inline">\(\hat{\psi}_H(\omega)\)</span> 는 <span class="math inline">\(\omega\)</span> 가 커짐에 따라 <span class="math inline">\(\omega\)</span> 에 빈비례하므로 진동수 도메인에서 컴팩트 지지 함수가 아니다. <span class="math inline">\(\psi(t)\)</span> 가 연속함수가 아니므로 <span class="math inline">\(\omega \to \infty\)</span> 극한에서 충분히 빨리 <span class="math inline">\(0\)</span> 이 되지 않는데 이것으로 인해 Haar 웨이블릿은 실제로 사용하는데 약점이 있지만 일반적인 웨이블릿의 성질을 파악하는데 가장 기초적인 웨이블릿이다.</p>
+</div>
+</div>
+<p><br></p>
+<div id="thm-wavelet_convolution_of_wavelet" class="theorem">
+<p><span class="theorem-title"><strong>정리 1</strong></span> <span class="math inline">\(\psi\)</span> 가 웨이블릿이고 <span class="math inline">\(\phi\)</span> 가 유계인 적분가능 함수라면 <span class="math inline">\(\psi \ast \phi\)</span> 는 웨이블릿이다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>우선 다음을 보자. <span class="math inline">\(f,\,g\in L^2(\mathbb{R})\)</span> 이라면</p>
+<p><span class="math display">\[
+\infty &gt; \int_{-\infty}^\infty |f(t)|^2\, dt
+\]</span></p>
+<p>이므로 <span class="math inline">\(|f|\in L^2(\mathbb{R})\)</span> 이다. 코시-슈바르츠 부등식에 따라</p>
+<p><span class="math display">\[
+\left(\int_{-\infty}^\infty |f(t)g(t)|\, dt\right)^2 \le {\int_{-\infty}^\infty |f(t)|^2\, dt}{\int_{-\infty}^\infty |g(t')|^2\, dt'}
+\]</span></p>
+<p>이다. 다음의 식에는 이것이 사용된다. 다음을 보자.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{-\infty}^\infty \left|(\psi \ast \phi)(t)\right|^2\,  dt &amp;= \int_{-\infty}^\infty \left|\int_{-\infty}^\infty \psi(x-t)\,\phi(x) \, dx\right|^2\, dt \\
+&amp; \le \int_{-\infty}^\infty \left[\int_{-\infty}^\infty \left|\psi(x-t)\right|\,\left|\phi(x)\right| \, dx\right]^2\, dt \\
+&amp;= \int_{-\infty}^\infty \left[\int_{-\infty}^\infty |\psi(x-t) |\, |\phi(x)|^{1/2} |\phi(x)|^{1/2}\, dx\right]^2\, dt \\
+&amp;\le \int_{-\infty}^\infty \left[\int_{-\infty}^\infty |\psi(x-t) |^2\, |\phi(x)| \, dx \int_{-\infty}^\infty |\phi(y)|\, dy\right]\, dt \\
+&amp;=\int_{-\infty}^\infty |\phi(y)|\, dy \int_{-\infty}^\infty \left[\int_{-\infty}^\infty |\psi(x-t) |^2\, |\phi(x)| \, dx \right]\, dt  \\
+&amp;= \left(\int_{-\infty}^\infty |\phi(y)|\, dy \right)^2 \int_{-\infty}^\infty |\psi(t) |^2\, dt &lt;\infty
+\end{aligned}
+\]</span></p>
+<p>따라서 <span class="math inline">\(\psi \ast \phi \in L^2(\mathbb{R})\)</span> 이다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+{\Large \int_{-\infty}^\infty} \dfrac{\left|\mathfrak{F}[\psi \ast \phi](\omega)\right|^2}{|\omega|}\, d\omega &amp;= {\Large \int_{-\infty}^\infty} \dfrac{\left| \hat{\psi}(\omega) \hat{\phi}(\omega) \right|^2 }{\omega} \, d\omega = {\Large \int_{-\infty}^\infty} \dfrac{\left| \hat{\psi}(\omega) \right|^2 }{\omega} \left| \hat{\phi}(\omega)\right|^2\, d\omega  \\
+&amp;\le {\Large \int_{-\infty}^\infty} \dfrac{\left| \hat{\psi}(\omega) \right|^2 }{\omega}  \sup \{\left|\hat{\phi}(\omega)\right|^2\}\, d\omega \le \infty
+\end{aligned}
+\]</span></p>
+<p>이므로 <span class="math inline">\(\psi \ast \phi\)</span> 도 웨이블릿이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<p><a href="#thm-wavelet_convolution_of_wavelet" class="quarto-xref">정리&nbsp;1</a> 은 일단 하나의 웨이블릿이 존재한다면 이로부터 무수히 많은 웨이블릿을 만들 수 있다는 것을 보장한다. 유계인 적분 가능함수 <span class="math inline">\(\phi\)</span> 만 찾고 웨이블릿 <span class="math inline">\(\psi\)</span> 에 대해 <span class="math inline">\(\psi \ast \phi\)</span> 만 해 주면 된다.</p>
+<p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+<div id="exm-wavelet_convolution_of_Haar_wavelet_1" class="theorem example">
+<p><span class="theorem-title"><strong>예제 2</strong></span> <span class="math inline">\(\phi (t)\)</span> 를 다음과 같이 정의하자.</p>
+<p><span class="math display">\[
+\phi(t) = \left\{\begin{array}{ll} 0, \qquad &amp; t&lt;0, \\ 1, &amp; 0 \le t \le 1, \\ 0 \ge 1. \end{array}\right.
+\]</span></p>
+<p>Haar 웨이블릿 <span class="math inline">\(\psi_H\)</span> 와 <span class="math inline">\(\phi\)</span> 의 합성곱 <span class="math inline">\(\psi_H \ast \phi\)</span> 는 아래 그림 <a href="#fig-wavelet_convolution_of_haar_1" class="quarto-xref">그림&nbsp;3</a> 과 같다.</p>
+<div id="fig-wavelet_convolution_of_haar_1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_convolution_of_haar_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_convolution_of_haar.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_convolution_of_haar_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: <span class="math inline">\(\psi_H \ast \phi (t)\)</span> 웨이블릿
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+<div id="exm-wavelet_convolution_of_Haar_wavelet_2" class="theorem example">
+<p><span class="theorem-title"><strong>예제 3</strong></span> <span class="math inline">\(\phi (t) = e^{-t^2}\)</span> 와의 합성곱은</p>
+<p>Haar 웨이블릿 <span class="math inline">\(\psi_H\)</span> 와 <span class="math inline">\(\phi\)</span> 의 합성곱 <span class="math inline">\(\psi_H \ast \phi\)</span> 는 아래 그림 <a href="#fig-wavelet_convolution_of_haar_1" class="quarto-xref">그림&nbsp;3</a> 과 같다.</p>
+<div id="fig-wavelet_convolution_of_haar_1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_convolution_of_haar_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_convolution_of_haar.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_convolution_of_haar_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: <span class="math inline">\(\psi_H \ast \phi (t)\)</span> 웨이블릿
+</figcaption>
 </figure>
 </div>
 </div>
