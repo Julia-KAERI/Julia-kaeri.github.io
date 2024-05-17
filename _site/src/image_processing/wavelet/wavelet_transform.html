@@ -251,6 +251,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#정의와-기본적인-성질" id="toc-정의와-기본적인-성질" class="nav-link active" data-scroll-target="#정의와-기본적인-성질"><span class="header-section-number">1</span> 정의와 기본적인 성질</a></li>
+  <li><a href="#딸-웨이블릿" id="toc-딸-웨이블릿" class="nav-link" data-scroll-target="#딸-웨이블릿"><span class="header-section-number">2</span> 딸 웨이블릿</a></li>
   </ul>
 </nav>
     </div>
@@ -437,6 +438,70 @@ m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 </figcaption>
 </figure>
 </div>
+<div id="fig-wavelet_convolution_of_haar_2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_convolution_of_haar_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wavelet_2.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_convolution_of_haar_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;4: <span class="math inline">\(\mathfrak[F](\psi_H \ast \phi)(t)\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="딸-웨이블릿" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="딸-웨이블릿"><span class="header-section-number">2</span> 딸 웨이블릿</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-wavelet_mother_wavelet" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 3 (Mother wavelet)</strong></span> 우리는 기본이 되는 웨이블릿 <span class="math inline">\(\psi(t)\)</span> 에 대해 아래와 같이 <strong>딸 웨이블릿(daughter wavelet)</strong> <span class="math inline">\(\psi_{a,\,b}(t)\)</span> 를 정의 할 수 있다.</p>
+<p><span id="eq-def_daughter_wavelet"><span class="math display">\[
+\psi_{a,b}(t) = \dfrac{1}{\sqrt{|a|}} \psi \left(\dfrac{t-b}{a}\right), \qquad a,\,b\in \mathbb{R},\, a\ne 0.
+\tag{5}\]</span></span></p>
+<p>여기서 <span class="math inline">\(a\)</span> 를 <em>scaling parameter</em> 라고 하고 <span class="math inline">\(b\)</span> 를 <em>translation parameter</em> 라고 한다. 여기서 <span class="math inline">\(\psi(t) = \psi_{1,\,0}(t)\)</span> 를 <strong>mother wavelet</strong> 이라고 한다.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="prp-wavelet_fourier_transform_of_daughter_wavelet" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 3</strong></span> Mother wavelet <span class="math inline">\(\psi_{1, 0}(t)\)</span> 에 대해 <span class="math inline">\(\hat{\psi}_{0,1}(\omega) = \mathfrak{F}[\psi_{0, 1}](\omega)\)</span> 일 때, 딸 웨이블릿의 푸리에 변환은 다음과 같다.</p>
+<p><span id="eq-wavelet_fourier_transform_of_daughter_wavelet"><span class="math display">\[
+\hat{\psi}_{a,\,b}(\omega)= \mathfrak{F}[\psi_{a,b}](\omega) = \dfrac{a}{\sqrt{|a|}}e^{i\omega b} \hat{\psi}_{1, 0}(a\omega).
+\tag{6}\]</span></span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>푸리에 변환을 직접 해보면 된다.</p>
+</div>
+<p><br></p>
+<p>웨이블릿에 대해 <span class="math inline">\(a,\,b\)</span> 값이 변화하면 어떻게 되는지 아래 그림으로 대략 파악 할 수 있다.</p>
+<div id="fig-daughter_wavelet" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-daughter_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_daughter_wavelet.png" class="img-fluid figure-img" width="700">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-daughter_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;5: Daughter wavlet
+</figcaption>
+</figure>
+</div>
+<p><br></p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+<div id="exm-wavelet_Maxican_hat_wavelet" class="theorem example">
+<p><span class="theorem-title"><strong>예제 4 (멕시코 모자 웨이블릿)</strong></span> 멕시코 모자 웨이블릿은 가우시안 함수 <span class="math inline">\(e^{-t^2/2}\)</span> 의 2차 미분에 <span class="math inline">\(-1\)</span> 을 곱한 함수로 정의된다.</p>
+<p><span id="eq-wavelet_maxican_hat_wavelet"><span class="math display">\[
+\psi_{1,0}(t) := -\left(\dfrac{d^2}{dt^2}e^{-t^2/2}\right) = (1-t^2)\,e^{-t^2/2}.
+\tag{7}\]</span></span></p>
+<p>이에 대한 푸리에 변환은 다음과 같다.</p>
+<p><span id="eq-wavelet_fourier_transformation_of_maxican_hat_wavelet"><span class="math display">\[
+\hat{\psi}_{1, 0}(\omega) = \mathfrak{F}\left[-\dfrac{d^2}{dt^2}e^{-t^2/2}\right] = \omega^2 \mathfrak{F}[e^{-t^2/2}] = \sqrt{2\pi}\omega^2 e^{-\omega^2/2}
+\tag{8}\]</span></span></p>
 </div>
 </div>
 

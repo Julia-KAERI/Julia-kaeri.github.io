@@ -32,13 +32,55 @@ crossref:
 \draw[-{stealth}] (-0.5, 0) -- (2.5,0) node[right] {$t$};
 \draw[-{stealth}] (0,-0.7) -- (0,0.7) node[above] {$(\psi_H \ast \phi)(t)$};
 
-\coor
 \draw[very thick] (-0.5, 0) -- (0, 0) -- (0.5, 0.5) -- (1.5, -0.5) -- (2, 0) -- (2.4, 0);
 \node[] at (0, 0) [below left] {$0$};
 \draw [] (0.5, 0.03) -- (0.5, -0.03) node[below] {$\frac{1}{2}$};
 \draw [] (1, 0.03) -- (1, -0.03) node[below] {$1$};
 \draw [] (1.5, 0.03) -- (1.5, -0.03) node[below] {$\frac{3}{2}$};
 \draw [] (2, 0.03) -- (2, -0.03) node[below] {$2$};
+
+\end{tikzpicture}
+```
+
+```{r, engine = 'tikz'}
+#| label: fig-wavelet_daughter_wavelet_1
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 10
+#| fig-align: center
+#| fig-cap: "Haar wavelet"
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\begin{tikzpicture}[samples = 200, scale=3]
+
+\draw[-{stealth}] (-1, 0) -- (1,0) node[right] {$t$};
+\draw[-{stealth}] (0,-0.2) -- (0,1.2) node[above] {$\psi_{a=1, b=1}(t)$};
+\draw[color=black, very thick, domain=-1:1, samples=100, variable = \t]   plot ({\t}, {exp(-(4*\t)^2) * cos(\t*180/pi*10)});
+
+
+\begin{scope}[xshift=2.3cm] 
+
+\draw[-{stealth}] (-1, 0) -- (1,0) node[right] {$t$};
+\draw[-{stealth}] (0,-0.2) -- (0,1.2) node[above] {$\psi_{a>1, b>0} (t)$};
+
+\draw[color=black, very thick, domain=-1:1, samples=200, variable = \t]   plot ({\t}, {exp(-(8*(\t-0.2))^2) * cos(2*(\t-0.2)*180/pi*10)});
+
+\end{scope}
+
+\begin{scope}[xshift=4.6cm] 
+
+\draw[-{stealth}] (-1, 0) -- (1,0) node[right] {$t$};
+\draw[-{stealth}] (0,-0.2) -- (0,1.2) node[above] {$\psi_{a<1, b>0}(t)$};
+
+\draw[color=black, very thick, domain=-1:1, samples=200, variable = \t]   plot ({\t}, {exp(-(2*(\t-0.2))^2) * cos(0.5*(\t-0.2)*180/pi*10)});
+
+\end{scope}
+
 
 \end{tikzpicture}
 ```

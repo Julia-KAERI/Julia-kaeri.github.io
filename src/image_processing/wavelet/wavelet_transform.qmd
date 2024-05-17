@@ -215,6 +215,80 @@ Haar 웨이블릿 $\psi_H$ 와 $\phi$ 의 합성곱 $\psi_H \ast \phi$ 는 아�
 
 ![$\psi_H \ast \phi (t)$ 웨이블릿](images/fig-wavelet_convolution_of_haar.png){#fig-wavelet_convolution_of_haar_1 width=400}
 
+![$\mathfrak[F](\psi_H \ast \phi)(t)$](wavelet_2.png){#fig-wavelet_convolution_of_haar_2 width=400}
+:::
+
+</div>
+
+</br>
+
+## 딸 웨이블릿
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_mother_wavelet}
+
+#### Mother wavelet 
+
+우리는 기본이 되는 웨이블릿 $\psi(t)$ 에 대해 아래와 같이 **딸 웨이블릿(daughter wavelet)** $\psi_{a,\,b}(t)$ 를 정의 할 수 있다.
+
+$$
+\psi_{a,b}(t) = \dfrac{1}{\sqrt{|a|}} \psi \left(\dfrac{t-b}{a}\right), \qquad a,\,b\in \mathbb{R},\, a\ne 0.
+$$ {#eq-def_daughter_wavelet}
+
+여기서 $a$ 를 *scaling parameter* 라고 하고 $b$ 를 *translation parameter* 라고 한다. 여기서 $\psi(t) = \psi_{1,\,0}(t)$ 를 **mother wavelet** 이라고 한다.
+
+:::
+
+:::
+
+
+::: {#prp-wavelet_fourier_transform_of_daughter_wavelet}
+
+Mother wavelet $\psi_{1, 0}(t)$ 에 대해 $\hat{\psi}_{0,1}(\omega) = \mathfrak{F}[\psi_{0, 1}](\omega)$ 일 때, 딸 웨이블릿의 푸리에 변환은 다음과 같다.
+
+$$
+\hat{\psi}_{a,\,b}(\omega)= \mathfrak{F}[\psi_{a,b}](\omega) = \dfrac{a}{\sqrt{|a|}}e^{i\omega b} \hat{\psi}_{1, 0}(a\omega).
+$$ {#eq-wavelet_fourier_transform_of_daughter_wavelet}
+:::
+
+::: {.proof}
+
+푸리에 변환을 직접 해보면 된다.
+
+:::
+
+
+</br>
+
+
+
+웨이블릿에 대해 $a,\,b$ 값이 변화하면 어떻게 되는지 아래 그림으로 대략 파악 할 수 있다.
+
+![Daughter wavlet](images/fig-wavelet_daughter_wavelet.png){#fig-daughter_wavelet width=700}
+
+
+</br>
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
+::: {#exm-wavelet_Maxican_hat_wavelet}
+
+#### 멕시코 모자 웨이블릿
+
+멕시코 모자 웨이블릿은 가우시안 함수 $e^{-t^2/2}$ 의 2차 미분에 $-1$ 을 곱한 함수로 정의된다.
+
+$$
+\psi_{1,0}(t) := -\left(\dfrac{d^2}{dt^2}e^{-t^2/2}\right) = (1-t^2)\,e^{-t^2/2}.
+$$ {#eq-wavelet_maxican_hat_wavelet}
+
+이에 대한 푸리에 변환은 다음과 같다.
+
+$$
+\hat{\psi}_{1, 0}(\omega) = \mathfrak{F}\left[-\dfrac{d^2}{dt^2}e^{-t^2/2}\right] = \omega^2 \mathfrak{F}[e^{-t^2/2}] = \sqrt{2\pi}\omega^2 e^{-\omega^2/2}
+$$ {#eq-wavelet_fourier_transformation_of_maxican_hat_wavelet}
+
+
 
 :::
 
