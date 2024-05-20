@@ -251,10 +251,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>코드</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-wavelet_convolution_of_haar_1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-wavelet_maxican_wavelet</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 5</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 10</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Haar wavelet"</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -263,27 +263,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{calc}</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[samples = 100, scale=3]</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[samples = 200, scale=3]</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-0.5, 0) -- (2.5,0) node[right] {$t$};</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-0.7) -- (0,0.7) node[above] {$(\psi_H \ast \phi)(t)$};</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[very thick] (-0.5, 0) -- (0, 0) -- (0.5, 0.5) -- (1.5, -0.5) -- (2, 0) -- (2.4, 0);</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">\node[] at (0, 0) [below left] {$0$};</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">\draw [] (0.5, 0.03) -- (0.5, -0.03) node[below] {$\frac{1}{2}$};</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">\draw [] (1, 0.03) -- (1, -0.03) node[below] {$1$};</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">\draw [] (1.5, 0.03) -- (1.5, -0.03) node[below] {$\frac{3}{2}$};</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">\draw [] (2, 0.03) -- (2, -0.03) node[below] {$2$};</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-1.1, 0) -- (1.1,0) node[right] {$t$};</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-0.5) -- (0,1.2) node[above] {$\psi_{1, 0}(t)$};</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black, very thick, domain=-6:6, samples=100, variable = \t]   plot ({\t/6}, {(1-(\t)^2)*exp(-\t*\t/2)});</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">\draw (-0.289, -0.02)-- (-0.289, 0.02) node[above, scale=0.8] {$-\sqrt{3}$};</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">\draw (0.289, -0.02)-- (0.289, 0.02) node[above, scale=0.8] {$\sqrt{3}$};</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{scope}[xshift=2.3cm] </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-1.1, 0) -- (1.1,0) node[right] {$\omega$};</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-0.5) -- (0,1.2) node[above] {$\hat{\psi}_{1, 0} (t)$};</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black, very thick, domain=-7:7, samples=200, variable = \t]   plot ({\t/7}, {\t*\t*exp(-\t*\t/2)});</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">\draw (-0.202, 0.02)-- (-0.202, -0.02) node[below, scale=0.8] {$-\sqrt{2}$};</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">\draw (0.202, 0.02)-- (0.202, -0.02) node[below, scale=0.8] {$\sqrt{2}$};</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">\end{scope}</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-wavelet_convolution_of_haar_1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-wavelet_maxican_wavelet" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wavelet_convolution_of_haar_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="tikz_test_files/figure-html/fig-wavelet_convolution_of_haar_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480">
+<div aria-describedby="fig-wavelet_maxican_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tikz_test_files/figure-html/fig-wavelet_maxican_wavelet-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_convolution_of_haar_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_maxican_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;1: Haar wavelet
 </figcaption>
 </figure>
@@ -293,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>코드</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-wavelet_daughter_wavelet_1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-wavelet_maxican_wavelet_2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 10</span></span>
@@ -305,42 +314,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{calc}</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[samples = 200, scale=3]</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[samples = 200, scale=1.2]</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-1, 0) -- (1,0) node[right] {$t$};</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-0.2) -- (0,1.2) node[above] {$\psi_{a=1, b=1}(t)$};</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black, very thick, domain=-1:1, samples=100, variable = \t]   plot ({\t}, {exp(-(4*\t)^2) * cos(\t*180/pi*10)});</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-6.3, 0) -- (6.3,0) node[right] {$t$};</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-4) -- (0,6) node[above] {$$};</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black, very thick, domain=-6:6, samples=300, variable = \t]   plot ({\t}, {3*(1-(\t)^2)*exp(-\t*\t/2)});</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=red, very thick, domain=-6:6, samples=300, variable = \t]   plot ({\t}, { 3*sqrt(2)/sqrt(3) * (1-((\t+2)/1.5)^2)*exp(-(((\t+2)/1.5)^2)/2)});</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{scope}[xshift=2.3cm] </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=teal, very thick, domain=-6:6, samples=300, variable = \t]   plot ({\t}, { 3*sqrt(4)* (1-((\t-sqrt(2))*4)^2)*exp(-(((\t-sqrt(2))*4)^2)/2)});</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-1, 0) -- (1,0) node[right] {$t$};</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-0.2) -- (0,1.2) node[above] {$\psi_{a&gt;1, b&gt;0} (t)$};</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black, very thick, domain=-1:1, samples=200, variable = \t]   plot ({\t}, {exp(-(8*(\t-0.2))^2) * cos(2*(\t-0.2)*180/pi*10)});</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="in">\end{scope}</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{scope}[xshift=4.6cm] </span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-1, 0) -- (1,0) node[right] {$t$};</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-0.2) -- (0,1.2) node[above] {$\psi_{a&lt;1, b&gt;0}(t)$};</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black, very thick, domain=-1:1, samples=200, variable = \t]   plot ({\t}, {exp(-(2*(\t-0.2))^2) * cos(0.5*(\t-0.2)*180/pi*10)});</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">\end{scope}</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">\node [left] at (-0.1, 3) {$\psi_{1, 0}(\omega)$};</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in">\node [left, red] at (-3, 1) {$\psi_{\frac{3}{2}, -2}(\omega)$};</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="in">\node [right, teal] at (1.5, 4) {$\psi_{\frac{1}{4}, -\sqrt{2}}(\omega)$};</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \x in {1,...,5}</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw (\x, 0.1)-- (\x, -0.1) node[below, scale=0.8] {$\x$};</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw (-\x, 0.1)-- (-\x, -0.1) node[below, scale=0.8] {$-\x$};</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-wavelet_daughter_wavelet_1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-wavelet_maxican_wavelet_2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-wavelet_daughter_wavelet_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="tikz_test_files/figure-html/fig-wavelet_daughter_wavelet_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960">
+<div aria-describedby="fig-wavelet_maxican_wavelet_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tikz_test_files/figure-html/fig-wavelet_maxican_wavelet_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_daughter_wavelet_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_maxican_wavelet_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2: Haar wavelet
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-wavelet_resolution_1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 10</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Haar wavelet"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{positioning}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{calc}</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[samples = 200, scale=1.2]</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-0.5, 0) -- (8,0) node[right] {$t$};</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-0.5) -- (0,4) node[above] {$\omega$};</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \x in {0,...,2}</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw (2*\x +2 , 0.1)-- (2*\x +2, 0.0) node[below, scale=0.8] {$b_\x + a_\x t_m$};</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw (0.1, \x +1)-- (0.0, \x +1) node[left, scale=0.8] {$\omega_m/a_\x$};</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[dashed] (2*\x+2, 0.0) -- (2*\x+2, \x+1) -- (0, \x+1);</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="in">\draw [thick, red] (1, 0.7) -- (3, 0.7) -- (3, 1.3) -- (1, 1.3) -- cycle;</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="in">\node [above, red, scale=0.8] at (2, 1.3) {$2a_0 \sigma_t$};</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="in">\node [right, red, scale=0.8] at (3, 1.0) {$\dfrac{2}{a_0}\sigma_\omega$};</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="in">\draw [thick, blue] (3.5, 1.6) -- (4.5, 1.6) -- (4.5, 2.4) -- (3.5, 2.4) -- cycle;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="in">\node [above, blue, scale=0.8] at (4, 2.4) {$2a_1 \sigma_t$};</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="in">\node [right, blue, scale=0.8] at (4.5, 2.0) {$\dfrac{2}{a_1}\sigma_\omega$};</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in">\draw [thick, teal] (5.8, 2) -- (5.8, 4) -- (6.2, 4) -- (6.2, 2) -- cycle;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="in">\node [above, teal, scale=0.8] at (6, 4) {$2a_2 \sigma_t$};</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="in">\node [right, teal, scale=0.8] at (6.2, 3.0) {$\dfrac{2}{a_2}\sigma_\omega$};</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-wavelet_resolution_1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_resolution_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tikz_test_files/figure-html/fig-wavelet_resolution_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_resolution_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: Haar wavelet
 </figcaption>
 </figure>
 </div>

@@ -252,6 +252,11 @@ window.Quarto = {
   <ul>
   <li><a href="#정의와-기본적인-성질" id="toc-정의와-기본적인-성질" class="nav-link active" data-scroll-target="#정의와-기본적인-성질"><span class="header-section-number">1</span> 정의와 기본적인 성질</a></li>
   <li><a href="#딸-웨이블릿" id="toc-딸-웨이블릿" class="nav-link" data-scroll-target="#딸-웨이블릿"><span class="header-section-number">2</span> 딸 웨이블릿</a></li>
+  <li><a href="#연속-웨이블릿-변환" id="toc-연속-웨이블릿-변환" class="nav-link" data-scroll-target="#연속-웨이블릿-변환"><span class="header-section-number">3</span> 연속 웨이블릿 변환</a>
+  <ul class="collapse">
+  <li><a href="#sec-wavelet_continuous_wavelet_transform" id="toc-sec-wavelet_continuous_wavelet_transform" class="nav-link" data-scroll-target="#sec-wavelet_continuous_wavelet_transform"><span class="header-section-number">3.1</span> 연속 웨이블릿 변환</a></li>
+  <li><a href="#웨이블릿-변환과-분해능" id="toc-웨이블릿-변환과-분해능" class="nav-link" data-scroll-target="#웨이블릿-변환과-분해능"><span class="header-section-number">3.2</span> 웨이블릿 변환과 분해능</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -314,6 +319,7 @@ C_\psi := {\Large \int}_{-\infty}^\infty \dfrac{\left| \hat{\psi}(\omega)\right|
 <p><span id="eq-wavelet_moment"><span class="math display">\[
 m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 \tag{2}\]</span></span></p>
+<p><span class="math inline">\(m_0 = m_1 = \cdots = m_k=0\)</span> 일 때 <span class="math inline">\(\psi\)</span> 는 <strong><span class="math inline">\(k\)</span>-vanishing moment</strong> 를 가진다고 한다.</p>
 </div>
 </div>
 </div>
@@ -502,10 +508,119 @@ m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 <p><span id="eq-wavelet_fourier_transformation_of_maxican_hat_wavelet"><span class="math display">\[
 \hat{\psi}_{1, 0}(\omega) = \mathfrak{F}\left[-\dfrac{d^2}{dt^2}e^{-t^2/2}\right] = \omega^2 \mathfrak{F}[e^{-t^2/2}] = \sqrt{2\pi}\omega^2 e^{-\omega^2/2}
 \tag{8}\]</span></span></p>
+<div id="fig-wavelet_maxican_hat_wavelet_and_its_fourier_transform" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_maxican_hat_wavelet_and_its_fourier_transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_maxican_wavelet.png" class="img-fluid figure-img" width="600">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_maxican_hat_wavelet_and_its_fourier_transform-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;6: 멕시코 모자 웨이블릿 <span class="math inline">\(\psi_{1, 0}\)</span> 과 <span class="math inline">\(\hat{\psi}_{1, 0}\)</span>
+</figcaption>
+</figure>
+</div>
+<div id="fig-wavelet_three_maxican_hat_wavelet" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_three_maxican_hat_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_maxican_wavelet2.png" class="img-fluid figure-img" width="500">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_three_maxican_hat_wavelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7: 멕시코 모자 웨이블릿 <span class="math inline">\(\psi_{1, 0}(t)\)</span>, <span class="math inline">\(\psi_{\frac{3}{2}, -2}(t)\)</span>, <span class="math inline">\(\psi_{\frac{1}{4}, \sqrt{2}}(t)\)</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="연속-웨이블릿-변환" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="연속-웨이블릿-변환"><span class="header-section-number">3</span> 연속 웨이블릿 변환</h2>
+<section id="sec-wavelet_continuous_wavelet_transform" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="sec-wavelet_continuous_wavelet_transform"><span class="header-section-number">3.1</span> 연속 웨이블릿 변환</h3>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-wavelet_continuous_wavelet_transform" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 4 (연속 웨이블릿 변환)</strong></span> 위에블릿 <span class="math inline">\(\psi (t)\)</span> 와 그 딸 웨이블릿 <span class="math inline">\(\psi_{a, b}(t)\)</span> 에 대해</p>
+<p><span id="eq-wavelet_definition_of_wavelet_transformation"><span class="math display">\[
+\mathfrak{W}_\psi[f](a,\,b) := \langle f,\, \psi_{a,b}\rangle = \int_{-\infty}^\infty f(t)\, \overline{\psi_{a,b}(t)}\, dt
+\tag{9}\]</span></span></p>
+<p>를 <span class="math inline">\(f(t)\)</span> 의 웨이블릿 <span class="math inline">\(\psi_{a,b}(t)\)</span> 에 대한 <strong>연속 웨이블릿 변환(continuous wavelet transformation)</strong>이라고 한다.</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>웨이블릿 변환의 커널 <span class="math inline">\(\psi_{a,b}(t)\)</span> 는 푸리에 변환의 커널 <span class="math inline">\(e^{i\omega t}\)</span> 와 같은 역할을 한다. 푸리에 변환처럼 웨이블릿 변환도 선형변환이다. 푸리에 변환은 <span class="math inline">\(\omega\)</span> 에 대한 함수로 주어지지만 웨이블릿 변환은 scaling parameter <span class="math inline">\(a\)</span> 와 translation parameter <span class="math inline">\(b\)</span> 에 대한 함수이다.</p>
+<p><br></p>
+<div id="prp-wavelet_properties_of_transformation_1" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 4</strong></span> Mother 웨이블릿 <span class="math inline">\(\psi(t)\)</span> 가 <a href="#def-wavelet_moment"><span class="math inline">\(k\)</span>-vanishing moment</a> 를 가진다면 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(b\)</span> 근처에서 푸리에 전개 했을 때 <span class="math inline">\(\mathfrak{W}_\psi[f](a,\,b)\)</span> 첫번째 <span class="math inline">\(k\)</span> 개의 항이 <span class="math inline">\(0\)</span> 이다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>웨이블릿 변환에서 <span class="math inline">\(f(t)\)</span> 의 <span class="math inline">\(b\)</span> 근방의 테일려 전개를 통해 다음을 보일 수 있다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{W}_\psi[f](a,\,b) &amp;= \int_{-\infty}^\infty \dfrac{1}{\sqrt{|a|}} \overline{\psi\left(\dfrac{t-b}{a}\right)} \left[\sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{j!} (t-b)^j\right]\, dt \\
+&amp;= \sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{(j!)\sqrt{|a|}} \int_{-\infty}^\infty \overline{\psi \left(\dfrac{t-b}{a}\right)}(t-b)^j\, dt &amp;\qquad &amp;; x:=\dfrac{t-b}{a} \\
+&amp;= \sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{(j!)\sqrt{|a|}} a^{j+1}\int_{-\infty}^\infty \overline{\psi(x)} x^j\, dx\\
+&amp;=\sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{(j!)\sqrt{|a|}} a^{j+1}m_k
+\end{aligned}
+\]</span></p>
+<p>이다. <span class="math inline">\(j=0\)</span> 부터 <span class="math inline">\(j=k\)</span> 까지의 항이 모두 <span class="math inline">\(0\)</span> 이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+</section>
+<section id="웨이블릿-변환과-분해능" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="웨이블릿-변환과-분해능"><span class="header-section-number">3.2</span> 웨이블릿 변환과 분해능</h3>
+<p>웨이블릿 <span class="math inline">\(\psi(t)\)</span> 에 대해 <span class="math inline">\(\displaystyle \int |\psi(t)|^2=1\)</span> 인 경우를 생각하자. 이 때 <span class="math inline">\(|\psi(t)|^2\)</span> 를 <span class="math inline">\(t\)</span> 에 대한 확률분포로 생각 할 수 있으며 <a href="../../../src/image_processing/wavelet/fourier_transform.html#thm-wavelet_norm_of_fourier_transfrom_in_L2"><span class="math inline">\(\|\psi\|_2 = \left\|\hat{\psi}\right\|_2\)</span></a> 이므로 <span class="math inline">\(|\hat{\psi}(\omega)|^2\)</span> 는 <span class="math inline">\(\omega\)</span> 에 대한 확률분포로 생각할 수 있다. (양자역학의 파동함수를 생각하라.)</p>
+<p><span class="math inline">\(t\)</span> 와 <span class="math inline">\(\omega\)</span> 에 대한 평균값 <span class="math inline">\(t_m\)</span> 과 <span class="math inline">\(\omega_m\)</span> 은 각각</p>
+<p><span class="math display">\[
+t_m = \int_{_\infty}^\infty t|\psi(t)|^2\, dt,\qquad \omega_m = \dfrac{1}{2\pi} \int_{0}^\infty \omega \left|\hat{\psi}(\omega)\right|^2\, d\omega
+\]</span></p>
+<p>이며 각각의 표준편차 <span class="math inline">\(\sigma_t,\,\sigma_\omega\)</span> 는 다음으로 부터 구할 수 있다.</p>
+<p><span class="math display">\[
+{\sigma_t}^2 = \int_{-\infty}^\infty (t-t_m)^2 |\psi(t)|^2\, dt,\qquad {\sigma_\omega}^2 = \dfrac{1}{2\pi} \int_{-\infty}^\infty (\omega - \omega_m)^2 \left|\hat{\psi}(\omega)\right|^2\,d\omega
+\]</span></p>
+<p>따라서 연속 웨이블릿 변환 <span class="math inline">\(\mathfrak{W}_\psi[f](a,\,b)\)</span> 는 time window 에서</p>
+<p><span class="math display">\[
+\left[at_m + b - a\sigma_t,\, at_m + b +a\sigma_t\right]
+\]</span></p>
+<p>영역의 정보를 준다고 할 수 있다. 또한</p>
+<p><span class="math display">\[
+\mathfrak{W}_\psi[f](a,\,b) = \langle f,\,\psi_{a,b}\rangle = \langle \hat{f},\, \hat{\psi}_{a,b}\rangle = \dfrac{1}{2\pi} \int_{-\infty}^\infty \left[\sqrt{|a|} \hat{f}(\omega) \overline{\hat{\psi}_{a,b}}\right]\, e^{ib\omega}\, d\omega
+\]</span></p>
+<p>이므로 frequency window 에서는</p>
+<p><span class="math display">\[
+\left[\dfrac{\omega_m}{a} - \dfrac{\sigma_\omega}{a},\, \dfrac{\omega_m}{a} + \dfrac{\sigma_\omega}{a}\right]
+\]</span></p>
+<p>영역의 정보를 준다고 할 수 있다. 즉 <span class="math inline">\(\mathfrak{W}_\psi[f](a,\,b)\)</span> 는 <span class="math inline">\(t-\omega\)</span> 평면에서</p>
+<p><span class="math display">\[
+\left[at_m + b - a\sigma_t,\, at_m + b +a\sigma_t\right] \times \left[\dfrac{\omega_m}{a} - \dfrac{\sigma_\omega}{a},\, \dfrac{\omega_m}{a} + \dfrac{\sigma_\omega}{a}\right]
+\]</span></p>
+<p>영역의 정보를 준다.</p>
+<div id="fig-wavelet_resolution" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_resolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_resolution_1-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_resolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;8: 웨이블렛 변환의 Time-frequency 평면
+</figcaption>
+</figure>
+</div>
+<p><br></p>
+<div id="thm-wavelet_basic_properties" class="theorem">
+<p><span class="theorem-title"><strong>정리 2</strong></span> <span class="math inline">\(\phi,\,\psi\)</span> 가 웨이블릿이며 <span class="math inline">\(f,\,g\in L^2(\mathbb{R}),\, \alpha,\, \beta\in \mathbb{C},\, c\in \mathbb{R}\)</span> 일 때 다음이 성립한다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\mathfrak{W}_\psi [\alpha f +  \beta g](a,\,b) = \alpha\mathfrak{W}_\psi[f](a,\,b) + \beta \mathfrak{W}_\psi [g](a,\,b)\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\mathfrak{W}_\psi[f(t+c)](a,\,b) = \mathfrak{W}_\psi [f] (a,\, b-c)\)</span>.</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(c&gt;0\)</span> 일 때 <span class="math inline">\(\mathfrak{W}_\psi [f(t/c)](a,\,b) = \dfrac{1}{\sqrt{|c|}} \mathfrak{W}_\psi [f] \left(\dfrac{a}{c},\,\dfrac{b}{c}\right)\)</span>.</p>
+<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(a\ne 0\)</span> 일 때 <span class="math inline">\(\mathfrak{W}_\psi [f] (a,\,b)= \overline{\mathfrak{F}_f[\psi] \left(\dfrac{1}{a},\,-\dfrac{b}{a}\right)}\)</span>.</p>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

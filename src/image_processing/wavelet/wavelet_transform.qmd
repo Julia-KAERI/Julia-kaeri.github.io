@@ -53,6 +53,7 @@ $$
 m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 $$ {#eq-wavelet_moment}
 
+$m_0 = m_1 = \cdots = m_k=0$ 일 때 $\psi$ 는 **$k$-vanishing moment** 를 가진다고 한다.
 :::
 :::
 
@@ -288,8 +289,129 @@ $$
 \hat{\psi}_{1, 0}(\omega) = \mathfrak{F}\left[-\dfrac{d^2}{dt^2}e^{-t^2/2}\right] = \omega^2 \mathfrak{F}[e^{-t^2/2}] = \sqrt{2\pi}\omega^2 e^{-\omega^2/2}
 $$ {#eq-wavelet_fourier_transformation_of_maxican_hat_wavelet}
 
+![멕시코 모자 웨이블릿 $\psi_{1, 0}$ 과 $\hat{\psi}_{1, 0}$](images/fig-wavelet_maxican_wavelet.png){#fig-wavelet_maxican_hat_wavelet_and_its_fourier_transform width=600}
 
+
+![멕시코 모자 웨이블릿 $\psi_{1, 0}(t)$, $\psi_{\frac{3}{2}, -2}(t)$, $\psi_{\frac{1}{4}, \sqrt{2}}(t)$](images/fig-wavelet_maxican_wavelet2.png){#fig-wavelet_three_maxican_hat_wavelet width=500}
 
 :::
 
 </div>
+
+</br>
+
+## 연속 웨이블릿 변환
+
+### 연속 웨이블릿 변환 {#sec-wavelet_continuous_wavelet_transform}
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_continuous_wavelet_transform}
+
+#### 연속 웨이블릿 변환
+
+위에블릿 $\psi (t)$ 와 그 딸 웨이블릿 $\psi_{a, b}(t)$ 에 대해 
+
+$$
+\mathfrak{W}_\psi[f](a,\,b) := \langle f,\, \psi_{a,b}\rangle = \int_{-\infty}^\infty f(t)\, \overline{\psi_{a,b}(t)}\, dt
+$$ {#eq-wavelet_definition_of_wavelet_transformation}
+
+를 $f(t)$ 의 웨이블릿 $\psi_{a,b}(t)$ 에 대한 **연속 웨이블릿 변환(continuous wavelet transformation)**이라고 한다.
+
+
+:::
+
+:::
+
+
+</br>
+
+웨이블릿 변환의 커널 $\psi_{a,b}(t)$ 는 푸리에 변환의 커널 $e^{i\omega t}$ 와 같은 역할을 한다. 푸리에 변환처럼 웨이블릿 변환도 선형변환이다. 푸리에 변환은 $\omega$ 에 대한 함수로 주어지지만 웨이블릿 변환은 scaling parameter $a$ 와 translation parameter $b$ 에 대한 함수이다.
+
+</br>
+
+::: {#prp-wavelet_properties_of_transformation_1}
+Mother 웨이블릿 $\psi(t)$ 가 [$k$-vanishing moment](#def-wavelet_moment) 를 가진다면 $f$ 를 $b$ 근처에서 푸리에 전개 했을 때 $\mathfrak{W}_\psi[f](a,\,b)$ 첫번째 $k$ 개의 항이 $0$ 이다.  
+
+:::
+
+::: {.proof}
+
+웨이블릿 변환에서 $f(t)$ 의 $b$ 근방의 테일려 전개를 통해 다음을 보일 수 있다.
+
+$$
+\begin{aligned}
+\mathfrak{W}_\psi[f](a,\,b) &= \int_{-\infty}^\infty \dfrac{1}{\sqrt{|a|}} \overline{\psi\left(\dfrac{t-b}{a}\right)} \left[\sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{j!} (t-b)^j\right]\, dt \\
+&= \sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{(j!)\sqrt{|a|}} \int_{-\infty}^\infty \overline{\psi \left(\dfrac{t-b}{a}\right)}(t-b)^j\, dt &\qquad &; x:=\dfrac{t-b}{a} \\
+&= \sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{(j!)\sqrt{|a|}} a^{j+1}\int_{-\infty}^\infty \overline{\psi(x)} x^j\, dx\\
+&=\sum_{j=0}^\infty \dfrac{f^{(j)}(b)}{(j!)\sqrt{|a|}} a^{j+1}m_k
+\end{aligned}
+$$
+
+이다. $j=0$ 부터 $j=k$ 까지의 항이 모두 $0$ 이다. $\square$
+
+:::
+
+</br>
+
+### 웨이블릿 변환과 분해능
+
+웨이블릿 $\psi(t)$ 에 대해 $\displaystyle \int |\psi(t)|^2=1$ 인 경우를 생각하자. 이 때 $|\psi(t)|^2$ 를 $t$ 에 대한 확률분포로 생각 할 수 있으며 [$\|\psi\|_2 = \left\|\hat{\psi}\right\|_2$](fourier_transform.qmd#thm-wavelet_norm_of_fourier_transfrom_in_L2) 이므로 $|\hat{\psi}(\omega)|^2$ 는 $\omega$ 에 대한 확률분포로 생각할 수 있다. (양자역학의 파동함수를 생각하라.)
+
+$t$ 와 $\omega$ 에 대한 평균값 $t_m$ 과 $\omega_m$ 은 각각
+
+$$
+t_m = \int_{_\infty}^\infty t|\psi(t)|^2\, dt,\qquad \omega_m = \dfrac{1}{2\pi} \int_{0}^\infty \omega \left|\hat{\psi}(\omega)\right|^2\, d\omega
+$$
+
+이며 각각의 표준편차 $\sigma_t,\,\sigma_\omega$ 는 다음으로 부터 구할 수 있다.
+
+$$
+{\sigma_t}^2 = \int_{-\infty}^\infty (t-t_m)^2 |\psi(t)|^2\, dt,\qquad {\sigma_\omega}^2 = \dfrac{1}{2\pi} \int_{-\infty}^\infty (\omega - \omega_m)^2 \left|\hat{\psi}(\omega)\right|^2\,d\omega
+$$
+
+따라서 연속 웨이블릿 변환 $\mathfrak{W}_\psi[f](a,\,b)$  는 time window 에서 
+
+$$
+\left[at_m + b - a\sigma_t,\, at_m + b +a\sigma_t\right]
+$$
+
+영역의 정보를 준다고 할 수 있다. 또한
+
+$$
+\mathfrak{W}_\psi[f](a,\,b) = \langle f,\,\psi_{a,b}\rangle = \langle \hat{f},\, \hat{\psi}_{a,b}\rangle = \dfrac{1}{2\pi} \int_{-\infty}^\infty \left[\sqrt{|a|} \hat{f}(\omega) \overline{\hat{\psi}_{a,b}}\right]\, e^{ib\omega}\, d\omega
+$$
+
+이므로 frequency window 에서는
+
+$$
+\left[\dfrac{\omega_m}{a} - \dfrac{\sigma_\omega}{a},\, \dfrac{\omega_m}{a} + \dfrac{\sigma_\omega}{a}\right]
+$$
+
+영역의 정보를 준다고 할 수 있다. 즉 $\mathfrak{W}_\psi[f](a,\,b)$ 는 $t-\omega$ 평면에서
+
+$$
+\left[at_m + b - a\sigma_t,\, at_m + b +a\sigma_t\right] \times \left[\dfrac{\omega_m}{a} - \dfrac{\sigma_\omega}{a},\, \dfrac{\omega_m}{a} + \dfrac{\sigma_\omega}{a}\right]
+$$
+
+영역의 정보를 준다.
+
+![웨이블렛 변환의 Time-frequency 평면](images/fig-wavelet_resolution_1-1.png){#fig-wavelet_resolution}
+
+
+
+</br>
+
+::: {#thm-wavelet_basic_properties}
+
+$\phi,\,\psi$ 가 웨이블릿이며 $f,\,g\in L^2(\mathbb{R}),\, \alpha,\, \beta\in \mathbb{C},\, c\in \mathbb{R}$ 일 때 다음이 성립한다.
+
+&emsp; ($1$) $\mathfrak{W}_\psi [\alpha f +  \beta g](a,\,b) = \alpha\mathfrak{W}_\psi[f](a,\,b) + \beta \mathfrak{W}_\psi [g](a,\,b)$.
+
+&emsp; ($2$) $\mathfrak{W}_\psi[f(t+c)](a,\,b) = \mathfrak{W}_\psi [f] (a,\, b-c)$.
+
+&emsp; ($3$) $c>0$ 일 때 $\mathfrak{W}_\psi [f(t/c)](a,\,b) = \dfrac{1}{\sqrt{|c|}} \mathfrak{W}_\psi [f] \left(\dfrac{a}{c},\,\dfrac{b}{c}\right)$.
+
+&emsp; ($4$) $a\ne 0$ 일 때 $\mathfrak{W}_\psi [f] (a,\,b)= \overline{\mathfrak{F}_f[\psi] \left(\dfrac{1}{a},\,-\dfrac{b}{a}\right)}$. 
+
+:::
