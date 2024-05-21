@@ -410,8 +410,10 @@ $\phi,\,\psi$ 가 웨이블릿이며 $f,\,g\in L^2(\mathbb{R}),\, \alpha,\, \bet
 
 &emsp; ($2$) $\mathfrak{W}_\psi[f(t+c)](a,\,b) = \mathfrak{W}_\psi [f] (a,\, b-c)$.
 
-&emsp; ($3$) $c>0$ 일 때 $\mathfrak{W}_\psi [f(t/c)](a,\,b) = \dfrac{1}{\sqrt{|c|}} \mathfrak{W}_\psi [f] \left(\dfrac{a}{c},\,\dfrac{b}{c}\right)$.
+&emsp; ($3$) $c>0$ 일 때 $\mathfrak{W}_\psi [f\left(\dfrac{t}{c}\right)](a,\,b) = \dfrac{1}{\sqrt{|c|}} \mathfrak{W}_\psi [f] \left(\dfrac{a}{c},\,\dfrac{b}{c}\right)$.
 
 &emsp; ($4$) $a\ne 0$ 일 때 $\mathfrak{W}_\psi [f] (a,\,b)= \overline{\mathfrak{F}_f[\psi] \left(\dfrac{1}{a},\,-\dfrac{b}{a}\right)}$. 
+
+&emsp; ($5$) 
 
 :::
