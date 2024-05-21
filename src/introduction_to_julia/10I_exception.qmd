@@ -1,4 +1,4 @@
-# Interude : 예외 처리 {.unnumbered}
+# Interlude : 예외 처리 {.unnumbered}
 
 ## Julia 에서의 에러
 

@@ -1,4 +1,4 @@
-# Interude : 베지에 곡선(Bézier curve) {.unnumbered}
+# Interlude : 베지에 곡선(Bézier curve) {.unnumbered}
 
 두 점 $P_1,\,P_2$ 사이에 하나 이상의 제어점(control point) 를 두어 $P_1,\,P_2$ 를 잇는 매끄러운 곡선을 만드는 방법이다. 
 

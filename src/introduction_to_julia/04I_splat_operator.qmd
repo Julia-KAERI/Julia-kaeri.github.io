@@ -1,4 +1,4 @@
-# Interude : `...` 연산자 {.unnumbered}
+# Interlude : `...` 연산자 {.unnumbered}
 
 [... 연산자](04_containers.qmd#sec-splat)  에서 튜플이나 배열의 첫번째 몇개만 취할 때 `...` 연산자를 사용 할 수 있다는 것을 알아보았습니다. Julia 에서 `...` 연산자는 두가지 용법으로 사용됩니다. 
 

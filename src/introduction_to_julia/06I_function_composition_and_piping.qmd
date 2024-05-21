@@ -1,4 +1,4 @@
-# Interude : 함수의 합성과 전달 {.unnumbered}
+# Interlude : 함수의 합성과 전달 {.unnumbered}
 
 ## 합성연산자 `∘`
 

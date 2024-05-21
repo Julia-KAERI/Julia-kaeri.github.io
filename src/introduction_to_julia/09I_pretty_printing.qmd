@@ -1,4 +1,4 @@
-# Interude : 객체를 보기좋게 출력하기 {.unnumbered}
+# Interlude : 객체를 보기좋게 출력하기 {.unnumbered}
 
 복소수를 나타내는 `Complex` 타입은 복합 타입이며 복소수에 대한 출력은 다음과 같습니다.
 
