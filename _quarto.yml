@@ -84,51 +84,51 @@ website:
         - href: src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.qmd
         - href: src/numerical_analysis_using_julia/06I_Bezier.qmd
         - href: src/numerical_analysis_using_julia/07_finding_root.qmd
-        # - href: src/numerical_analysis_using_julia/08_matrix_decomposition.qmd
-        # - href: src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.qmd
-        # - href: src/numerical_analysis_using_julia/10_least_square_problem.qmd
-        # - href: src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.qmd
-        # - href: src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.qmd
-        # - href: src/numerical_analysis_using_julia/13_ode_boundary_value_problem.qmd
-        # - href: src/numerical_analysis_using_julia/14_approximation.qmd
-      # - text : "-----"
-      # - section : 수학
-      #   contents :
-      #   - href: src/numerical_analysis_using_julia/A_collection_of_proofs.qmd
-      #   - href: src/numerical_analysis_using_julia/A_generalized_inverse.qmd
-      #   - href: src/numerical_analysis_using_julia/A_ode.qmd
-      #   - href: src/numerical_analysis_using_julia/A_pde.qmd
+        - href: src/numerical_analysis_using_julia/08_matrix_decomposition.qmd
+        - href: src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.qmd
+        - href: src/numerical_analysis_using_julia/10_least_square_problem.qmd
+        - href: src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.qmd
+        - href: src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.qmd
+        - href: src/numerical_analysis_using_julia/13_ode_boundary_value_problem.qmd
+        - href: src/numerical_analysis_using_julia/14_approximation.qmd
+      - text : "-----"
+      - section : 수학
+        contents :
+        - href: src/numerical_analysis_using_julia/A_collection_of_proofs.qmd
+        - href: src/numerical_analysis_using_julia/A_generalized_inverse.qmd
+        - href: src/numerical_analysis_using_julia/A_ode.qmd
+        - href: src/numerical_analysis_using_julia/A_pde.qmd
     
     
-    # - title : "Image processing and Tomography"
-    #   collapse-level: 2
-    #   contents:
-    #     - section : 영상 처리 기초
-    #       contents: 
-    #       - href: src/image_processing/index.qmd
-    #       - href: src/image_processing/introduction_to_signal_processing.qmd
-    #       - href: src/image_processing/fourier_transform_for_image_processing.qmd
-    #     - section : 푸리에 변환과 웨이블릿 변환
-    #       contents :
-    #       - href: src/image_processing/wavelet/fourier_transform.qmd
-    #       - href: src/image_processing/wavelet/wavelet_transform.qmd
+    - title : "Image processing and Tomography"
+      collapse-level: 2
+      contents:
+        - section : 영상 처리 기초
+          contents: 
+          - href: src/image_processing/index.qmd
+          - href: src/image_processing/introduction_to_signal_processing.qmd
+          - href: src/image_processing/fourier_transform_for_image_processing.qmd
+        - section : 푸리에 변환과 웨이블릿 변환
+          contents :
+          - href: src/image_processing/wavelet/fourier_transform.qmd
+          - href: src/image_processing/wavelet/wavelet_transform.qmd
     
-    #     - section : 주제별 처리
-    #       contents:
-    #       - href: src/image_processing/tomography.qmd
+        - section : 주제별 처리
+          contents:
+          - href: src/image_processing/tomography.qmd
 
-    # - title: "Tools"
-    #   collapse-level: 2
-    #   contents:
-    #     - src/tools/tools.qmd
+    - title: "Tools"
+      collapse-level: 2
+      contents:
+        - src/tools/tools.qmd
         
-    #     - href: src/tools/Asymptote/asymptote.qmd
+        - href: src/tools/Asymptote/asymptote.qmd
         
-    #     - href: src/tools/tikz/tikz.qmd
-    #     - href: src/tools/tikz/tikz_functions.qmd
-    #     - href: src/tools/tikz/tikz_image.qmd
-    #     - href: src/tools/tikz/tikz_wavelet.qmd
-    #     - href: src/tools/tikz/tikz_test.qmd
+        - href: src/tools/tikz/tikz.qmd
+        - href: src/tools/tikz/tikz_functions.qmd
+        - href: src/tools/tikz/tikz_image.qmd
+        - href: src/tools/tikz/tikz_wavelet.qmd
+        - href: src/tools/tikz/tikz_test.qmd
 
 bibliography: references.bib
 
