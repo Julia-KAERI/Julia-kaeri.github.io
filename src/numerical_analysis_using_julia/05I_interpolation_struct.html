@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html">Interude : 보간법의 구현</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html">Interlude : 보간법의 구현</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 일변수 다항식의 Julia 구현</span></a>
+ <span class="menu-text">Interlude : 일변수 다항식의 Julia 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Interude : 보간법의 구현</span></a>
+ <span class="menu-text">Interlude : 보간법의 구현</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interude : 베지에 곡선(Bézier curve)</span></a>
+ <span class="menu-text">Interlude : 베지에 곡선(Bézier curve)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -341,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#interude-보간법의-구현" id="toc-interude-보간법의-구현" class="nav-link active" data-scroll-target="#interude-보간법의-구현">Interude : 보간법의 구현</a></li>
+  <li><a href="#interlude-보간법의-구현" id="toc-interlude-보간법의-구현" class="nav-link active" data-scroll-target="#interlude-보간법의-구현">Interlude : 보간법의 구현</a></li>
   </ul>
 </nav>
     </div>
@@ -351,8 +351,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="interude-보간법의-구현" class="level1 unnumbered">
-<h1 class="unnumbered">Interude : 보간법의 구현</h1>
+<section id="interlude-보간법의-구현" class="level1 unnumbered">
+<h1 class="unnumbered">Interlude : 보간법의 구현</h1>
 <p>우리는 앞의 다항식의 구현에서 복합타입을 함수처럼 사용하였다. 보간법의 경우 원래의 데이터와 보간 방식을 입력하면 어떠한 값에 대해서도 보간된 값을 계산 할 수 있다. 우리는 이것을 역시 복합 타입으로 구현하고자 한다.</p>
 <p>복합 타입의 정의는 다음과 같다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">mutable struct</span> Interpolator1D{T}</span>
