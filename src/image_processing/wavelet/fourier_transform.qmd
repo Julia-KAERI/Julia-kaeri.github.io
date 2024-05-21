@@ -14,7 +14,7 @@ crossref:
 
 </br>
 
-## 수학적 기반
+## $L^1(\mathbb{R})$ 에서의 푸리에 변환
 
 ### $L^p$ 공간 과 $L^1$ 공간에서의 푸리에 변환
 
@@ -870,7 +870,7 @@ $$
 
 </br>
 
-### $L^2(\mathbb{R})$ 에서의 역푸리에 변환
+### $L^2(\mathbb{R})$ 에서의 역푸리에 변환과 일반화된 Parserval's Relation
 
 ::: {#thm-wavelet_inverse_fourier_tranform_in_L2}
 
@@ -893,6 +893,33 @@ f(t) = \overline{\hat{g}(t)} &= \lim_{n \to \infty} \dfrac{1}{2\pi} \overline{\i
 &= \lim_{n \to \infty} \dfrac{1}{2\pi} \int_{-n}^n e^{i\omega t} \overline{g(\omega)}\, d\omega  = \lim_{n \to \infty}\dfrac{1}{2\pi} \int_{-n}^n e^{i\omega t}\, \hat{f}(\omega)\, d\omega. \qquad \square
 \end{aligned}
 $$
+
+
+:::
+
+
+여기서 @eq-wavelet_inverse_fourier_transform_in_L2 를 **푸리에 역변환 (inverse Fourier transform)** 이라고 하고 $\mathfrak{F}^{-1}\left[\hat{f}\right]$ 라고도 쓴다. 푸리에 변환과 역변환을 다음과 같이 정의하면 대칭형이 된다.
+
+$$
+\hat{f}(\omega) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-i\omega t}\, f(t)\, dt,\qquad f(t) = \dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{i\omega t}\, \hat{f}(\omega)\, d\omega. 
+$$
+
+
+</br>
+
+::: {#thm-wavelet_general_Parseval_relation}
+
+#### 일반화된 Parseval's relation
+
+$f,\,g\in L^2(\mathbb{R})$ 일 때 다음이 성립한다.
+
+$$
+\langle f,\,g \rangle = \int_{-\infty}^\infty f(t) \overline{g(t)}\, dt = \int_{-\infty}^\infty \hat{f}(\omega)\overline{\hat{g}(\omega)}\, d\omega = \left\langle \hat{f},\, \hat{g}\right\rangle.
+$$ {#eq-wavelet_generalized_parseval_relation}
+
+:::
+
+::: {.proof}
 
 
 :::
