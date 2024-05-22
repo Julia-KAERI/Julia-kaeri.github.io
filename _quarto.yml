@@ -9,6 +9,8 @@ project:
 
 website:
   title: "Julia & Numerical Anlaysis"
+  site-url: "https://julia-kaeri.github.io/"
+  site-path: "/"
   page-navigation: true
   navbar:
     background: primary
@@ -63,7 +65,7 @@ website:
         - section : Julia 언어의 활용
           contents :
           - href : src/applications_of_julia/fileio.qmd
-          # - href : src/applications_of_julia/leastsquarefit.qmd
+          - href : src/applications_of_julia/leastsquarefit.qmd
           - href : src/applications_of_julia/multithreads.qmd
           - href : src/applications_of_julia/pkg_dev.qmd
           - href : src/applications_of_julia/dataframes.qmd
@@ -86,11 +88,11 @@ website:
         - href: src/numerical_analysis_using_julia/07_finding_root.qmd
         - href: src/numerical_analysis_using_julia/08_matrix_decomposition.qmd
         - href: src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.qmd
-        # - href: src/numerical_analysis_using_julia/10_least_square_problem.qmd
-        # - href: src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.qmd
-        # - href: src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.qmd
-        # - href: src/numerical_analysis_using_julia/13_ode_boundary_value_problem.qmd
-        # - href: src/numerical_analysis_using_julia/14_approximation.qmd
+        - href: src/numerical_analysis_using_julia/10_least_square_problem.qmd
+        - href: src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.qmd
+        - href: src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.qmd
+        - href: src/numerical_analysis_using_julia/13_ode_boundary_value_problem.qmd
+        - href: src/numerical_analysis_using_julia/14_approximation.qmd
       - text : "-----"
       - section : 수학
         contents :
