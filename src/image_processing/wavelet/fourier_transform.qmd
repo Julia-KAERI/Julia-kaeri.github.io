@@ -275,7 +275,7 @@ $$
 이다. 이로부터
 
 $$
-\lim_{|\omega|\to \infty} \left|\hat{f}(\omega) \right| \le \lim_{|\omega|\to 0}\dfrac{1}{2} \int_{-\infty}^\infty \left| f(t) - f\left (t-\dfrac{\pi}{\omega}\right)\right|\, dt = 0
+\lim_{|\omega|\to \infty} \left|\hat{f}(\omega) \right| \le \lim_{|\omega|\to \infty}\dfrac{1}{2} \int_{-\infty}^\infty \left| f(t) - f\left(t-\dfrac{\pi}{\omega}\right)\right|\, dt = 0
 $$
 
 임을 안다. $\square$
@@ -369,8 +369,14 @@ $$ {#eq-wavelet_definition_of_convolution}
 :::
 
 ::: {.proof}
+
+$\|f\ast g\|_1 \le \|g\|_1\|f\|_1$ 임을 보이자. 
 $$
-\int_{-\infty}^\infty \int_{-\infty}^\infty |f(t-\tau)\, g(\tau)| \, d\tau\, dt                                                                                                                                                                                = \int_{-\infty}^\infty g(\tau)\,d\tau\, \int_{-\infty}^\infty |f(t)|\,dt = \|g\|_1 \|f\|_1. \qquad \square
+\begin{aligned}
+\|f\ast g\|_1 = \int_{-\infty}^\infty |(f\ast g)(t)|\, dt & = \int_{-\infty}^\infty \left|\int_{-\infty}^\infty f(t-\tau)\, g(\tau)\, d\tau \right|\, dt \\
+&\le \int_{-\infty}^\infty \int_{-\infty}^\infty |f(t-\tau)\, g(\tau)| \, d\tau\, dt \\
+&= \int_{-\infty}^\infty |g(\tau)|\,d\tau\, \int_{-\infty}^\infty |f(t)|\,dt = \|g\|_1 \|f\|_1. \qquad \square
+\end{aligned}
 $$
 :::
 
@@ -451,7 +457,7 @@ $$
 \mathfrak{F}[(f \ast g)(t)] &= \int_{-\infty}^\infty e^{-i \omega t} \int_{-\infty}^\infty f(t-\tau)\, g(\tau)\, d\tau\, dt \\
 &= \int_{-\infty}^\infty\left[ \int_{-\infty}^\infty e^{-i\omega (t-\tau)} f(t-\tau) \, dt\right] e^{-i \omega \tau}g(\tau)\, d\tau \\
 &= \int_{-\infty}^\infty \mathfrak{F}[f(t)] \, e^{-i \omega \tau} g(\tau)\, d\tau\\
-&= \mathfrak{F}[f(t)]\mathfrak{F}[g(t)].
+&= \mathfrak{F}[f(t)]\mathfrak{F}[g(t)]. \qquad \square
 \end{aligned}
 $$
 
@@ -492,7 +498,7 @@ $$
 
 </br>
 
-## 역 푸리에 변환 문제
+### 역 푸리에 변환 문제 {#sec-inverse_fourier_transform_in_L1}
 
 우리는 $f \in L^1(\mathbb{R})$ 에 대한 푸리에 변환을 알아보았다. 이제 그 역변환, 즉 어떤 frequency domain 에서의 함수 $\hat{f}(\omega)$ 로 부터 원함수 $f(t)$ 를 어떤 조건에서 구할 수 있는지 알아보기로 하자. 
 
@@ -566,7 +572,7 @@ $\mathbb{R}$ 에서의 **summability kernel** 은 아래의 조건을 만족하�
 $f\in L^{1}(\mathbb{R})$ 이며 $\{K_\lambda\}$ 가 summability kernel 의 집합일 때 다음이 성립한다.
 
 $$
-\lim_{\lambda \to \infty} \|(f\ast K_\lambda)- f\| = 0.
+\lim_{\lambda \to \infty} \|(f\ast K_\lambda)- f\|_1 = 0.
 $$ {#eq-wavelet_approximate_identity}
 
 :::
