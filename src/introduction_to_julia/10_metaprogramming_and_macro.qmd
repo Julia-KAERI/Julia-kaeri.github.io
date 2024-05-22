@@ -370,7 +370,7 @@ Members are : Henny, Mark, Tony
 
 </br>
 
-### @assert 매크로
+### `@assert` 매크로
 
 개인적으로 많이 사용하는 매크로입니다. `@assert` 매크로는 인자로 `true` 나 `false` 를 판별하는 표현식과 문자열을 받으며 표현식이 `true` 일 경우는 아무것도 하지 않고 `false` 일 경우는 에러를 내며 프로그램을 정지합니다. `@assert` 매크로는 built-in 이므로 julia 에서 추가 패키지 설치 없이 실행 할 수 있습니다. 
 
@@ -380,7 +380,7 @@ ERROR: AssertionError: 에러 메시지
 ...
 ```
 
-`2==3` 은 거짓이므로 에러를 발생시킵니다. 에러에는 여러 종류가 있으며 여기서는 `AssertionError` 를 발생시켰습니다. 에러를 발생시킬 때는 추가 메시지를 출력 할 수 있는데 @assert 의 두번째 인자가 바로 추가메시지 입니다. `@macroexpand` 를 통해 `@assert` 가 반환하는 표현식을 봅시다.
+`2==3` 은 거짓이므로 에러를 발생시킵니다. 에러에는 여러 종류가 있으며 여기서는 `AssertionError` 를 발생시켰습니다. 에러를 발생시킬 때는 추가 메시지를 출력 할 수 있는데 `@assert` 의 두번째 인자가 바로 추가메시지 입니다. `@macroexpand` 를 통해 `@assert` 가 반환하는 표현식을 봅시다.
 
 ```txt
 In [22]: @macroexpand @assert a==b
