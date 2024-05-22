@@ -313,12 +313,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/applications_of_julia/leastsquarefit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">비선형 최소제곱 피팅</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../src/applications_of_julia/multithreads.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">다중스레딩</span></a>
   </div>
@@ -358,7 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#매크로" id="toc-매크로" class="nav-link" data-scroll-target="#매크로"><span class="header-section-number">2</span> 매크로</a>
   <ul class="collapse">
   <li><a href="#매크로와-함수의-차이" id="toc-매크로와-함수의-차이" class="nav-link" data-scroll-target="#매크로와-함수의-차이">매크로와 함수의 차이</a></li>
-  <li><a href="#assert-매크로" id="toc-assert-매크로" class="nav-link" data-scroll-target="#assert-매크로"><span class="citation" data-cites="assert">(<strong>assert?</strong>)</span> 매크로</a></li>
+  <li><a href="#assert-매크로" id="toc-assert-매크로" class="nav-link" data-scroll-target="#assert-매크로"><code>@assert</code> 매크로</a></li>
   <li><a href="#청결한-매크로" id="toc-청결한-매크로" class="nav-link" data-scroll-target="#청결한-매크로">청결한 매크로</a></li>
   <li><a href="#코드-생성" id="toc-코드-생성" class="nav-link" data-scroll-target="#코드-생성">코드 생성</a></li>
   </ul></li>
@@ -654,12 +648,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="assert-매크로" class="level3">
-<h3 class="anchored" data-anchor-id="assert-매크로"><span class="citation" data-cites="assert">(<a href="#ref-assert" role="doc-biblioref"><strong>assert?</strong></a>)</span> 매크로</h3>
+<h3 class="anchored" data-anchor-id="assert-매크로"><code>@assert</code> 매크로</h3>
 <p>개인적으로 많이 사용하는 매크로입니다. <code>@assert</code> 매크로는 인자로 <code>true</code> 나 <code>false</code> 를 판별하는 표현식과 문자열을 받으며 표현식이 <code>true</code> 일 경우는 아무것도 하지 않고 <code>false</code> 일 경우는 에러를 내며 프로그램을 정지합니다. <code>@assert</code> 매크로는 built-in 이므로 julia 에서 추가 패키지 설치 없이 실행 할 수 있습니다.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>In [1]: @assert 2==3 "에러 메시지"</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ERROR: AssertionError: 에러 메시지</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>2==3</code> 은 거짓이므로 에러를 발생시킵니다. 에러에는 여러 종류가 있으며 여기서는 <code>AssertionError</code> 를 발생시켰습니다. 에러를 발생시킬 때는 추가 메시지를 출력 할 수 있는데 <span class="citation" data-cites="assert">(<a href="#ref-assert" role="doc-biblioref"><strong>assert?</strong></a>)</span> 의 두번째 인자가 바로 추가메시지 입니다. <code>@macroexpand</code> 를 통해 <code>@assert</code> 가 반환하는 표현식을 봅시다.</p>
+<p><code>2==3</code> 은 거짓이므로 에러를 발생시킵니다. 에러에는 여러 종류가 있으며 여기서는 <code>AssertionError</code> 를 발생시켰습니다. 에러를 발생시킬 때는 추가 메시지를 출력 할 수 있는데 <code>@assert</code> 의 두번째 인자가 바로 추가메시지 입니다. <code>@macroexpand</code> 를 통해 <code>@assert</code> 가 반환하는 표현식을 봅시다.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>In [22]: @macroexpand @assert a==b</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Out[22]: :(if a == b</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>      nothing</span>
