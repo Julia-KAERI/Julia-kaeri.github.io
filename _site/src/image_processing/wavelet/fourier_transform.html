@@ -263,6 +263,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#l2mathbbr-에서의-역푸리에-변환과-일반화된-parservals-relation" id="toc-l2mathbbr-에서의-역푸리에-변환과-일반화된-parservals-relation" class="nav-link" data-scroll-target="#l2mathbbr-에서의-역푸리에-변환과-일반화된-parservals-relation"><span class="header-section-number">3.1</span> <span class="math inline">\(L^2(\mathbb{R})\)</span> 에서의 역푸리에 변환과 일반화된 Parserval’s Relation</a></li>
   </ul></li>
+  <li><a href="#이산-푸리에-변환-discrete-fourier-transformation-dft" id="toc-이산-푸리에-변환-discrete-fourier-transformation-dft" class="nav-link" data-scroll-target="#이산-푸리에-변환-discrete-fourier-transformation-dft"><span class="header-section-number">4</span> 이산 푸리에 변환 (Discrete Fourier Transformation, DFT)</a></li>
   </ul>
 </nav>
     </div>
@@ -787,11 +788,15 @@ f(t) = \sum_{n\in \mathbb{Z}}f_n e^{int},\qquad \text{where}\; f_n = \int \overl
 </div>
 </div>
 <p><span class="math inline">\(f_n\)</span> 이 콤팩트 지지함수이므로 <a href="#thm-wavelet_norm_of_fourier_transfrom_in_L2" class="quarto-xref">정리&nbsp;7</a> 에 따라 <span class="math inline">\(\|\hat{f}_n\|_2\)</span> 가 존재하며 그 극한이 <span class="math inline">\(f\)</span> 의 푸리에 변환이다. 그렇다면 이 정의는 우리가 <span class="math inline">\(L^1(\mathbb{R})\)</span> 에서 했던 정의와 동일할까?</p>
+<p><span class="math inline">\(f\in L^1(\mathbb{R}) \cap L^2(\mathbb{R})\)</span></p>
 <div id="thm-wavelet_parseval_identity" class="theorem">
 <p><span class="theorem-title"><strong>정리 8 (Parseval’s Identity)</strong></span> <span class="math inline">\(f\in L^2(\mathbb{R})\)</span> 이면 <span class="math inline">\(\|f\|_2 = \left\|\hat{f}\right\|_2\)</span> 이다.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span></p>
+<p><span class="proof-title"><em>(증명)</em>. </span><a href="#def-wavelet_fourier_transform_in_L2" class="quarto-xref">정의&nbsp;7</a> 과 <a href="#thm-wavelet_norm_of_fourier_transfrom_in_L2" class="quarto-xref">정리&nbsp;7</a> 로부터,</p>
+<p><span class="math display">\[
+\left\| \hat{f}\right\|_2 = \lim_{n \to \infty} \left\|\mathfrak{F}[f_n]\right\|_2 = \lim_{n \to \infty} \|f_n\|_2 = \|f\|_2.\qquad \square
+\]</span></p>
 </div>
 <p><br></p>
 <div id="thm-wavelet_fourier_transform_in_L2_2" class="theorem">
@@ -866,7 +871,7 @@ f_n (t) = \left\{\begin{array}{ll} f(t), \qquad &amp;\text{for }|t|&lt;n, \\ 0&a
 <div id="thm-wavelet_inverse_fourier_tranform_in_L2" class="theorem">
 <p><span class="theorem-title"><strong>정리 11</strong></span> <span class="math inline">\(f\in L^2(\mathbb{R})\)</span> 에 대해</p>
 <p><span id="eq-wavelet_inverse_fourier_transform_in_L2"><span class="math display">\[
-\lim_{n\to \infty}\dfrac{1}{2\pi} \int_{-n}^n e^{i\omega t}\hat{f}(\omega)\, d\omega = f(t)
+\lim_{n\to \infty}\dfrac{1}{\sqrt{2\pi}} \int_{-n}^n e^{i\omega t}\hat{f}(\omega)\, d\omega = f(t)
 \tag{10}\]</span></span></p>
 <p>이다.</p>
 </div>
@@ -874,15 +879,12 @@ f_n (t) = \left\{\begin{array}{ll} f(t), \qquad &amp;\text{for }|t|&lt;n, \\ 0&a
 <p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(f\in L^2(\mathbb{R})\)</span> 이며 <span class="math inline">\(g=\overline{\hat{f}}\)</span> 라고 하자. <a href="#lem-wavelet_change_of_roof" class="quarto-xref">보조정리&nbsp;1</a> 에 의해</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(t) = \overline{\hat{g}(t)} &amp;= \lim_{n \to \infty} \dfrac{1}{2\pi} \overline{\int_{-n}^n e^{-i\omega t}\, g(\omega)\, d\omega} \\
-&amp;= \lim_{n \to \infty} \dfrac{1}{2\pi} \int_{-n}^n e^{i\omega t} \overline{g(\omega)}\, d\omega  = \lim_{n \to \infty}\dfrac{1}{2\pi} \int_{-n}^n e^{i\omega t}\, \hat{f}(\omega)\, d\omega. \qquad \square
+f(t) = \overline{\hat{g}(t)} &amp;= \lim_{n \to \infty} \dfrac{1}{\sqrt{2\pi}} \overline{\int_{-n}^n e^{-i\omega t}\, g(\omega)\, d\omega} \\
+&amp;= \lim_{n \to \infty} \dfrac{1}{\sqrt{2\pi}} \int_{-n}^n e^{i\omega t} \overline{g(\omega)}\, d\omega  = \lim_{n \to \infty}\dfrac{1}{\sqrt{2\pi}} \int_{-n}^n e^{i\omega t}\, \hat{f}(\omega)\, d\omega. \qquad \square
 \end{aligned}
 \]</span></p>
 </div>
-<p>여기서 <a href="#eq-wavelet_inverse_fourier_transform_in_L2" class="quarto-xref">식&nbsp;10</a> 를 <strong>푸리에 역변환 (inverse Fourier transform)</strong> 이라고 하고 <span class="math inline">\(\mathfrak{F}^{-1}\left[\hat{f}\right]\)</span> 라고도 쓴다. 푸리에 변환과 역변환을 다음과 같이 정의하면 대칭형이 된다.</p>
-<p><span class="math display">\[
-\hat{f}(\omega) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-i\omega t}\, f(t)\, dt,\qquad f(t) = \dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{i\omega t}\, \hat{f}(\omega)\, d\omega.
-\]</span></p>
+<p>여기서 <a href="#eq-wavelet_inverse_fourier_transform_in_L2" class="quarto-xref">식&nbsp;10</a> 를 <strong>푸리에 역변환 (inverse Fourier transform)</strong> 이라고 하고 <span class="math inline">\(\mathfrak{F}^{-1}\left[\hat{f}\right]\)</span> 라고도 쓴다.</p>
 <p><br></p>
 <div id="thm-wavelet_general_Parseval_relation" class="theorem">
 <p><span class="theorem-title"><strong>정리 12 (일반화된 Parseval’s relation)</strong></span> <span class="math inline">\(f,\,g\in L^2(\mathbb{R})\)</span> 일 때 다음이 성립한다.</p>
@@ -891,8 +893,72 @@ f(t) = \overline{\hat{g}(t)} &amp;= \lim_{n \to \infty} \dfrac{1}{2\pi} \overlin
 \tag{11}\]</span></span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span></p>
+<p><span class="proof-title"><em>(증명)</em>. </span><a href="#thm-wavelet_parseval_identity" class="quarto-xref">정리&nbsp;8</a> 로부터 <span class="math inline">\(\|f+g\|_2^2 = \left\|\hat{f}+\hat{g}\right\|_2^2\)</span> 임을 안다. 이로부터,</p>
+<p><span class="math display">\[
+\|f\|_2^2 + \|g\|_2^2 + \int \left[\overline{f(t)}\,g(t) + f(t)\,\overline{g(t)}\right]\, dt = \left\|\hat{f}\right\|_2^2 + \left\|\hat{g}\right\|_2^2 + \int \left[\overline{\hat{f}(\omega)}\,\hat{g}(\omega) + \hat{f}(\omega)\, \overline{\hat{g}(\omega)}\right]\, d\omega
+\]</span></p>
+<p>이다. <span class="math inline">\(\|f\|_2=\left\|\hat{f}\right\|_2\)</span>, <span class="math inline">\(\|g\|_2 = \left\|\hat{g}\right\|_2\)</span> 이므로,</p>
+<p><span id="eq-wavelet_general_Parseval_relation_1"><span class="math display">\[
+\int \left[\overline{f(t)}\,g(t) + f(t)\,\overline{g(t)}\right]\, dt = \int \left[\overline{\hat{f}(\omega)}\,\hat{g}(\omega) + \hat{f}(\omega)\, \overline{\hat{g}(\omega)}\right]\, d\omega
+\tag{12}\]</span></span></p>
+<p>이다. <span class="math inline">\(g,\, \hat{g}\)</span> 를 각각 <span class="math inline">\(ig,\, i\hat{g}\)</span> 로 변경시켜도 <a href="#eq-wavelet_general_Parseval_relation_1" class="quarto-xref">식&nbsp;12</a> 이 성립하므로,</p>
+<p><span id="eq-wavelet_general_Parseval_relation_2"><span class="math display">\[
+\int \left[\overline{f(t)}\,g(t) - f(t)\,\overline{g(t)}\right]\, dt = \int \left[\overline{\hat{f}(\omega)}\,\hat{g}(\omega) - \hat{f}(\omega)\, \overline{\hat{g}(\omega)}\right]\, d\omega
+\tag{13}\]</span></span></p>
+<p>이다. <a href="#eq-wavelet_general_Parseval_relation_1" class="quarto-xref">식&nbsp;12</a> 에서 <a href="#eq-wavelet_general_Parseval_relation_1" class="quarto-xref">식&nbsp;12</a> 를 빼면</p>
+<p><span class="math display">\[
+\int f(t)\,\overline{g(t)}\, dt = \int  \hat{f}(\omega)\, \overline{\hat{g}(\omega)}\, d\omega
+\]</span></p>
+<p>를 얻는다. 즉 <span class="math inline">\(\langle f,\,g\rangle = \left\langle \hat{f},\, \hat{g}\right\rangle\)</span> 이다. <span class="math inline">\(\square\)</span></p>
 </div>
+<p><br></p>
+</section>
+</section>
+<section id="이산-푸리에-변환-discrete-fourier-transformation-dft" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="이산-푸리에-변환-discrete-fourier-transformation-dft"><span class="header-section-number">4</span> 이산 푸리에 변환 (Discrete Fourier Transformation, DFT)</h2>
+<p><span class="math inline">\([a,\,b]\)</span> 구간에서 정의된 1차원 공간상의 함수 <span class="math inline">\(f\)</span> 에 대해 구간 내의 <span class="math inline">\(N\)</span> 개의 점을 아래와 같이 잡을 수 있다.</p>
+<p><span class="math display">\[
+t_0=a &lt; t_2 &lt; \cdots &lt; t_{N-1} &lt; t_{N-1} = b.
+\]</span></p>
+<p>계산을 간단하게 하기 위해 동일한 거리를 갖는 <span class="math inline">\(t_k = a + k\dfrac{b-a}{N-1}\)</span> 라고 할 수 있다. <span class="math inline">\(f_k: = f(t_k)\)</span> 라고 하면 수열 <span class="math inline">\(\langle f \rangle = (f_0,\ldots,\, f_{N-1})\)</span> 를 정의 할 수 있다.</p>
+<p>우리는 여기서 한가지 가정을 하게 되는데 <span class="math inline">\(f\)</span> 이 주기 <span class="math inline">\(N\)</span> 을 갖는다는 것이다. 정수 <span class="math inline">\(m\)</span> 에 대해 <span class="math inline">\(f_{k+mN}=f_k\)</span> 이다. 예를 들어 <span class="math inline">\((1, 3, 2, 4)\)</span> 에 대한 이산 푸리에 변환은</p>
+<p><span class="math display">\[
+\ldots , \underline{1, 3, 2 , 4}, 1, 3,2,4, \underline{1, 3, 2,4},\ldots
+\]</span></p>
+<p>에 대한 푸리에 변환이라는 의미이다 (주기적으로 반복되는 것을 잘 보이게 하기 위해 밑줄로 표현하였다).</p>
+<p>::: {.callout-note appearance=“minimal”} ::: {#def-wavelet_dft}</p>
+<section id="이산-푸리에-변환" class="level4">
+<h4 class="anchored" data-anchor-id="이산-푸리에-변환">이산 푸리에 변환</h4>
+<p><span class="math inline">\(\langle f\rangle = (f_0,\ldots,\,f_{N-1})\)</span> 에 대해 아래와 같이 정의된 <span class="math inline">\(\mathfrak{F}[f]:=\langle F\rangle = (F_0,\ldots,\,F_{N-1})\)</span> 을 <span class="math inline">\(\langle f\rangle\)</span> 에 대한 <strong>이산 푸리에 변환(descrete Fourier transform)</strong> 이라고 한다.</p>
+<p><span class="math display">\[
+\langle F_u \rangle := \mathfrak{F}[f]_u=\dfrac{1}{N} \sum_{k=1}^{N} f_k \exp\left(-\dfrac{i2\pi uk }{N}  \right).
+\]</span> {#}</p>
+<p>::: {#thm-wavelet_identity_of_dft}</p>
+<p><span class="math inline">\((f_k)\)</span> 에 대한 DFT 에 ㄷ<span class="math inline">\(f_k\)</span> 는 다음과 같이 표현 할 수 있다.</p>
+<p><span class="math display">\[
+f_k = \mathfrak{F}^{-1}[F]_k = \sum_{u=1}^{N} F_u \exp \left(\dfrac{i2\pi uk}{N}\right)
+\]</span></p>
+<p><br></p>
+<p>이제 푸리에 변환과 역변환을 통해 <span class="math inline">\(f_k\)</span> 를 복원 할 수 있음을 보이자. 증명을 좀 더 깔끔하게 하기 위해 <span class="math inline">\(\sum_{1}^N\)</span> 을 <span class="math inline">\(\sum_{0}^{N-1}\)</span> 로 바꾸었다.</p>
+<p><span class="math display">\[
+\begin{aligned}
+f_{k'} = \mathfrak{F}^{-1}[F]_{k'} &amp;=  \sum_{u=0}^{N-1} F_u \exp \left(\dfrac{i2\pi k'u}{N}  \right) \\
+&amp;= \dfrac{1}{N}\sum_{u=0}^{N-1} \left[\sum_{k=0}^{N-1} f_k \exp \left(\dfrac{-i2\pi k u}{N}  \right)  \right]\exp \left(\dfrac{i2\pi k'u}{N} \right)  \\
+&amp;= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \sum_{u=0}^{N-1} \exp\left( \dfrac{2\pi i (k'-k)u}{N}  \right) \\
+% &amp;= \dfrac{1}{N}\sum_{k=0}^{N-1} f_k \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)}
+\end{aligned}
+\]</span></p>
+<p>우리는 여기서 <span class="math inline">\(k'=k\)</span> 이면 <span class="math inline">\(\sum_{u=0}^{N-1} \exp (\cdots )= N\)</span> 임을 안다. <span class="math inline">\(k'\ne k\)</span> 라면 <span class="math inline">\(|k'-k|\le N-1\)</span> 이므로</p>
+<p><span class="math display">\[
+\sum_{u=0}^{N-1} \exp\left( \dfrac{2\pi i (k'-k)u}{N}  \right) = \dfrac{{1-\exp \left( \dfrac{2\pi i (k'-k) N}{N}\right)}}{1-\exp \left( \dfrac{2\pi i (k'-k)}{N}\right)} = 0
+\]</span></p>
+<p>이며, 이로부터 <span class="math inline">\(\mathfrak{F}^{-1}[F]_{k} = f_k\)</span> 을 얻었다. 즉 DFT 로도 푸리에 변환과 역변환이 똑같이 성립한다.</p>
+<p><br></p>
+<p>우리는 위의 식으로 부터 다음을 알 수 있다.</p>
+<ul>
+<li><p>푸리에 변환으로 얻는 <span class="math inline">\(F_u = \mathfrak{F}[f_k]\)</span> 의 변수 <span class="math inline">\(u\)</span> 는 각진동수(angular frequency) 이다. 따라서 이 신호를 진동수(frequency) 에 대한 신호로 바꾸고 싶다면 변수를 <span class="math inline">\(2\pi u\)</span> 로 변경시켜야 한다.</p></li>
+<li><p>입력되는 신호 <span class="math inline">\(f\)</span> 가 실수 신호더라도 푸리에 변환 신호는 복소수가 된다. 각진동수에 대한 분포를 알고싶다면 <span class="math inline">\(|F_u|\)</span> 를 보아야 한다. Julia 에서는 <code>abs</code> 함수가 복소수에 대한 절대값을 반환한다.</p></li>
+</ul>
 
 
 </section>
