@@ -676,30 +676,27 @@ h(x) = \int_{-\infty}^\infty g(\omega)\, e^{i\omega x}\, d\omega
 &amp;\le \int_{-\infty}^\infty |K_\lambda(\tau) |f(t-\tau)-f(t)|\, d\tau
 \end{aligned}
 \]</span></p>
-<p>정의 (<span class="math inline">\(2\)</span>) 에서 <span class="math inline">\(\|K_\lambda\|_1 \le M\)</span> 이라고 하자. <span class="math inline">\(f\in L^p(\mathbb{R})\)</span> 일 때 <span class="math inline">\(f(t-\tau)- f(t)\)</span> 는 연속이므로 모든 <span class="math inline">\(\varepsilon&gt;0\)</span> 에 대해 어떤 <span class="math inline">\(\delta&gt;0\)</span> 이 존재하여 <span class="math inline">\(|\tau|&lt;\delta\)</span> 이면 <span class="math inline">\(|f(t-\tau)-f(t)|&lt;\dfrac{\varepsilon}{M}\)</span> 이 되도록 할 수 있다. 따라서</p>
+<p>이다. 이로부터</p>
 <p><span class="math display">\[
 \begin{aligned}
-\|(f\ast K_\lambda) (t) - f(t)\| &amp;= \int_{-\infty}^\infty |(f\ast K_\lambda)(t) - f(t)|\, dt \\
+\|(f\ast K_\lambda) (t) - f(t)\|_1 &amp;= \int_{-\infty}^\infty |(f\ast K_\lambda)(t) - f(t)|\, dt \\
 &amp;\le\int_{-\infty}^\infty dt \int_{-\infty}^\infty |K_\lambda(\tau)| |f(t-\tau) - f(t)|\, d\tau \\
+&amp;= \int_{-\infty}^\infty \left[\int_{-\infty}^\infty |f(t-\tau) - f(t)| \, dt\right] \,|K_\lambda(\tau)|\, d\tau \\
+&amp;= \int_{-\infty}^\infty \|f(t-\tau)-f(t)\|_1 \, |K_\lambda (\tau)| \, d\tau
 \end{aligned}
 \]</span></p>
-<p>이 때</p>
-<p><span class="math display">\[
-\sigma(\tau) := \int_{-\infty}^\infty |f(t-\tau)-f(t)|\, dt
-\]</span></p>
-<p>라고 하면, <span class="math inline">\(\sigma(\tau) = C &lt;\infty\)</span> 이다.</p>
+<p>정의 (<span class="math inline">\(2\)</span>) 로부터 <span class="math inline">\(\|K_\lambda\|_1 \le M\)</span> 인 <span class="math inline">\(M&gt;0\)</span> 이 존재함을 안다. <span class="math inline">\(f\in L^1(\mathbb{R})\)</span> 일 때 <span class="math inline">\(\int_{-\infty}^\infty |f(t-\tau)- f(t)|\, dt\)</span> 는 <span class="math inline">\(\tau\)</span> 에 대해 연속이므로 모든 <span class="math inline">\(\varepsilon&gt;0\)</span> 에 대해 어떤 <span class="math inline">\(\delta&gt;0\)</span> 이 존재하여 <span class="math inline">\(|\tau|&lt;\delta\)</span> 이면 <span class="math inline">\(\|f(t-\tau)-f(t)\|_1&lt;\dfrac{\varepsilon}{M}\)</span> 이 되도록 할 수 있다. 또한 <span class="math inline">\(\|f(t-\tau) - f(t)\|_1\)</span> 는 유계이므로 <span class="math inline">\(\|f(t-\tau) - f(t)\|_1&lt;C\)</span> 인 <span class="math inline">\(C&gt;0\)</span> 이 존재한다. 따라서</p>
 <p><span class="math display">\[
 \begin{aligned}
-\|(f\ast K_\lambda) (t) - f(t)\| &amp; \le \int_{-\infty}^\infty |K_\lambda (\tau)|\sigma(\tau)\, d\tau\\
-&amp;= \int_{|\tau|&lt;\delta} |K_\lambda(\tau)| \sigma(\tau)\, d\tau + \int_{|\tau|&gt; \delta}  |K_\lambda(\tau)| \sigma(\tau)\, d\tau \\
-&amp;\le \varepsilon + C\int_{-\infty}^\infty |K_\lambda (\tau)|d\tau
+\lim_{\lambda \to \infty}\|(f\ast K_\lambda) (t) - f(t)\|_1 &amp;\le \lim_{\lambda \to \infty} \left[\left(\int_{-\infty}^{-\delta} + \int_{-\delta}^\delta + \int_{\delta}^\infty \right)\|f(t-\tau)-f(t)\|_1 \, |K_\lambda (\tau)| \, d\tau\right] \\
+&amp;&lt; \lim_{\lambda \to \infty} \left[C\int_{|\tau|&gt;\delta} |K_\lambda(\tau)|\, d\tau+ \int_{|\tau|&lt;\delta} \dfrac{\varepsilon}{M}|K_\lambda (\tau)| \, d\tau \right] &lt;\varepsilon
 \end{aligned}
 \]</span></p>
 <p>이므로 <a href="#eq-wavelet_approximate_identity" class="quarto-xref">식&nbsp;6</a> 이 성립한다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
 <div id="thm-wavelet_general_modulation" class="theorem">
-<p><span class="theorem-title"><strong>정리 6</strong></span> <span class="math inline">\(\hat{f}=\mathfrak{F}[f(t)],\, \hat{g}=\mathfrak{F}[g(t)]\)</span> 이며 <span class="math inline">\(\hat{f},\, \hat{g}\in L^1(\mathbb{R})\)</span> 일 때 다음이 성립한다.</p>
+<p><span class="theorem-title"><strong>정리 6 (General modulation)</strong></span> <span class="math inline">\(\hat{f}=\mathfrak{F}[f(t)],\, \hat{g}=\mathfrak{F}[g(t)]\)</span> 이며 <span class="math inline">\(\hat{f},\, \hat{g}\in L^1(\mathbb{R})\)</span> 일 때 다음이 성립한다.</p>
 <p><span id="eq-wavelet_general_modulation"><span class="math display">\[
 \mathfrak{F}[f(t)\,g(t)]= \dfrac{1}{2\pi}\left(\hat{f} \ast \hat{g}\right).
 \tag{7}\]</span></span></p>
@@ -766,12 +763,12 @@ f(t) = \sum_{n\in \mathbb{Z}}f_n e^{int},\qquad \text{where}\; f_n = \int \overl
 </div>
 <div class="callout-body-container">
 <div id="def-wavelet_compact_support" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 6 (콤팩트 지지 함수)</strong></span> 위상공간 <span class="math inline">\(X\)</span> 에서 정의된 <span class="math inline">\(f:X \to \mathbb{R}\)</span> 에 대해 <span class="math inline">\(S=f^{-1}(\{0\})\)</span> 의 closure <span class="math inline">\(\overline{S}\)</span> 를 <span class="math inline">\(f\)</span> 에 대한 support 라고 하고 <span class="math inline">\(\textrm{supp}(f)\)</span> 라고 쓴다. <span class="math inline">\(\textrm{supp}(f)\)</span> 가 옹골집합(compact set) 일 때 <span class="math inline">\(f\)</span> 를 <strong>콤팩트 지지 함수 (compactly supported function)</strong> 라고 한다.</p>
+<p><span class="theorem-title"><strong>정의 6 (콤팩트 지지 함수)</strong></span> 위상공간 <span class="math inline">\(X\)</span> 에서 정의된 <span class="math inline">\(f:X \to \mathbb{R}\)</span> 에 대해 <span class="math inline">\(S=\{x\in X:  f(x)\ne 0\}\)</span> 의 closure <span class="math inline">\(\overline{S}\)</span> 를 <span class="math inline">\(f\)</span> 에 대한 support 라고 하고 <span class="math inline">\(\textrm{supp}(f)\)</span> 라고 쓴다. <span class="math inline">\(\textrm{supp}(f)\)</span> 가 옹골집합(compact set) 일 때 <span class="math inline">\(f\)</span> 를 <strong>콤팩트 지지 함수 (compactly supported function)</strong> 라고 한다.</p>
 </div>
 </div>
 </div>
 </div>
-<p><span class="math inline">\(\mathbb{R}\)</span> 에서의 옹골집합은 유계인 닫힌 집합과 동치이다. 즉 <span class="math inline">\(\mathbb{R}\)</span> 에서의 콤팩트 지지함수는 support 가 유계인 집합이다. 그렇다면 <span class="math inline">\(f\)</span> 가 <span class="math inline">\(L^2(\mathbb{R})\)</span> 에서의 콤팩트 지지함수라면 <a href="#thm-wavelet_norm_of_fourier_transfrom_in_L2" class="quarto-xref">정리&nbsp;7</a> 에 따라 푸리에 변환이 존재하며 <span class="math inline">\(\|f\|_2 = \left\|\hat{f}\right\|_2\)</span> 이다.</p>
+<p><span class="math inline">\(\mathbb{R}\)</span> 에서의 옹골집합은 유계인 닫힌 집합과 동치이다. 즉 <span class="math inline">\(\mathbb{R}\)</span> 에서의 콤팩트 지지함수는 support 가 유계인 닫힌 집합인 함수이다. 그렇다면 <span class="math inline">\(f\)</span> 가 <span class="math inline">\(L^2(\mathbb{R})\)</span> 에서의 콤팩트 지지함수라면 <a href="#thm-wavelet_norm_of_fourier_transfrom_in_L2" class="quarto-xref">정리&nbsp;7</a> 에 따라 푸리에 변환이 존재하며 <span class="math inline">\(\|f\|_2 = \left\|\hat{f}\right\|_2\)</span> 이다.</p>
 <p>또 한가지 사실은 <span class="math inline">\(\mathbb{R}\)</span> 에서 정의된 모든 컴팩트 지지함수의 집합은 <span class="math inline">\(L^2(\mathbb{R})\)</span> 에서 조밀하다는 것이다(이것은 증명하지 않고 받아들이기로 하자). 즉 <span class="math inline">\(f\in L^2(\mathbb{R})\)</span> 라면 임의의 <span class="math inline">\(\varepsilon&gt;0\)</span> 에 대해 <span class="math inline">\(\|f-g\|_2&lt;\varepsilon\)</span> 인 콤팩트 지지함수 <span class="math inline">\(g\in L^2(\mathbb{R})\)</span> 을 찾을 수 있다는 의미이다. 그런 의미에서 푸리에 변환을 다음과 같이 정의 할 수 있다.</p>
 <p><br></p>
 <div class="callout callout-style-simple callout-note no-icon">

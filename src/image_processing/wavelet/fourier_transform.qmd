@@ -588,31 +588,29 @@ $$
 \end{aligned}
 $$
 
-
-정의 ($2$) 에서 $\|K_\lambda\|_1 \le M$ 이라고 하자. $f\in L^p(\mathbb{R})$ 일 때 $f(t-\tau)- f(t)$ 는 연속이므로 모든 $\varepsilon>0$ 에 대해 어떤 $\delta>0$ 이 존재하여 $|\tau|<\delta$ 이면 $|f(t-\tau)-f(t)|<\dfrac{\varepsilon}{M}$ 이 되도록 할 수 있다. 따라서
+이다. 이로부터 
 
 $$
 \begin{aligned}
-\|(f\ast K_\lambda) (t) - f(t)\| &= \int_{-\infty}^\infty |(f\ast K_\lambda)(t) - f(t)|\, dt \\
+\|(f\ast K_\lambda) (t) - f(t)\|_1 &= \int_{-\infty}^\infty |(f\ast K_\lambda)(t) - f(t)|\, dt \\
 &\le\int_{-\infty}^\infty dt \int_{-\infty}^\infty |K_\lambda(\tau)| |f(t-\tau) - f(t)|\, d\tau \\
+&= \int_{-\infty}^\infty \left[\int_{-\infty}^\infty |f(t-\tau) - f(t)| \, dt\right] \,|K_\lambda(\tau)|\, d\tau \\
+&= \int_{-\infty}^\infty \|f(t-\tau)-f(t)\|_1 \, |K_\lambda (\tau)| \, d\tau
 \end{aligned}
 $$
 
-이 때
 
-$$
-\sigma(\tau) := \int_{-\infty}^\infty |f(t-\tau)-f(t)|\, dt 
-$$
 
-라고 하면, $\sigma(\tau) = C <\infty$ 이다. 
+정의 ($2$) 로부터 $\|K_\lambda\|_1 \le M$ 인 $M>0$ 이 존재함을 안다. $f\in L^1(\mathbb{R})$ 일 때 $\int_{-\infty}^\infty |f(t-\tau)- f(t)|\, dt$  는 $\tau$ 에 대해 연속이므로 모든 $\varepsilon>0$ 에 대해 어떤 $\delta>0$ 이 존재하여 $|\tau|<\delta$ 이면 $\|f(t-\tau)-f(t)\|_1<\dfrac{\varepsilon}{M}$ 이 되도록 할 수 있다. 또한 $\|f(t-\tau) - f(t)\|_1$ 는 유계이므로 $\|f(t-\tau) - f(t)\|_1<C$ 인 $C>0$ 이 존재한다. 따라서
 
 $$
 \begin{aligned}
-\|(f\ast K_\lambda) (t) - f(t)\| & \le \int_{-\infty}^\infty |K_\lambda (\tau)|\sigma(\tau)\, d\tau\\
-&= \int_{|\tau|<\delta} |K_\lambda(\tau)| \sigma(\tau)\, d\tau + \int_{|\tau|> \delta}  |K_\lambda(\tau)| \sigma(\tau)\, d\tau \\
-&\le \varepsilon + C\int_{-\infty}^\infty |K_\lambda (\tau)|d\tau 
+\lim_{\lambda \to \infty}\|(f\ast K_\lambda) (t) - f(t)\|_1 &\le \lim_{\lambda \to \infty} \left[\left(\int_{-\infty}^{-\delta} + \int_{-\delta}^\delta + \int_{\delta}^\infty \right)\|f(t-\tau)-f(t)\|_1 \, |K_\lambda (\tau)| \, d\tau\right] \\
+&< \lim_{\lambda \to \infty} \left[C\int_{|\tau|>\delta} |K_\lambda(\tau)|\, d\tau+ \int_{|\tau|<\delta} \dfrac{\varepsilon}{M}|K_\lambda (\tau)| \, d\tau \right] <\varepsilon
 \end{aligned}
 $$
+
+
 
 이므로 @eq-wavelet_approximate_identity 이 성립한다. $\square$
 
@@ -621,6 +619,8 @@ $$
 </br>
 
 ::: {#thm-wavelet_general_modulation}
+
+#### General modulation
 
 $\hat{f}=\mathfrak{F}[f(t)],\, \hat{g}=\mathfrak{F}[g(t)]$ 이며 $\hat{f},\, \hat{g}\in L^1(\mathbb{R})$ 일 때 다음이 성립한다.
 
@@ -723,13 +723,13 @@ $$
 
 #### 콤팩트 지지 함수
 
-위상공간 $X$ 에서 정의된 $f:X \to \mathbb{R}$ 에 대해 $S=f^{-1}(\{0\})$ 의 closure $\overline{S}$ 를 $f$ 에 대한 support 라고 하고 $\textrm{supp}(f)$ 라고 쓴다. $\textrm{supp}(f)$ 가 옹골집합(compact set) 일 때 $f$ 를 **콤팩트 지지 함수 (compactly supported function)** 라고 한다.
+위상공간 $X$ 에서 정의된 $f:X \to \mathbb{R}$ 에 대해 $S=\{x\in X:  f(x)\ne 0\}$ 의 closure $\overline{S}$ 를 $f$ 에 대한 support 라고 하고 $\textrm{supp}(f)$ 라고 쓴다. $\textrm{supp}(f)$ 가 옹골집합(compact set) 일 때 $f$ 를 **콤팩트 지지 함수 (compactly supported function)** 라고 한다.
 
 :::
 
 :::
 
-$\mathbb{R}$ 에서의 옹골집합은 유계인 닫힌 집합과 동치이다. 즉 $\mathbb{R}$ 에서의 콤팩트 지지함수는 support 가 유계인 집합이다. 그렇다면 $f$ 가 $L^2(\mathbb{R})$ 에서의 콤팩트 지지함수라면  @thm-wavelet_norm_of_fourier_transfrom_in_L2 에 따라 푸리에 변환이 존재하며 $\|f\|_2 = \left\|\hat{f}\right\|_2$ 이다. 
+$\mathbb{R}$ 에서의 옹골집합은 유계인 닫힌 집합과 동치이다. 즉 $\mathbb{R}$ 에서의 콤팩트 지지함수는 support 가 유계인 닫힌 집합인 함수이다. 그렇다면 $f$ 가 $L^2(\mathbb{R})$ 에서의 콤팩트 지지함수라면  @thm-wavelet_norm_of_fourier_transfrom_in_L2 에 따라 푸리에 변환이 존재하며 $\|f\|_2 = \left\|\hat{f}\right\|_2$ 이다. 
 
 또 한가지 사실은 $\mathbb{R}$ 에서 정의된 모든 컴팩트 지지함수의 집합은 $L^2(\mathbb{R})$ 에서 조밀하다는 것이다(이것은 증명하지 않고 받아들이기로 하자). 즉 $f\in L^2(\mathbb{R})$ 라면 임의의 $\varepsilon>0$ 에 대해 $\|f-g\|_2<\varepsilon$ 인 콤팩트 지지함수 $g\in L^2(\mathbb{R})$ 을 찾을 수 있다는 의미이다. 그런 의미에서 푸리에 변환을 다음과 같이 정의 할 수 있다.
 
