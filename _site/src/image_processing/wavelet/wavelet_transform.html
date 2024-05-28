@@ -339,7 +339,11 @@ m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 <p>이다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
-<p>웨이블릿은 보통 1차부터 특정 <span class="math inline">\(n\)</span> 차 까지의 모멘트가 <span class="math inline">\(0\)</span> 이다. <span class="math inline">\(m_k=0\)</span> 이 되는 가장 큰 <span class="math inline">\(k\)</span> 값은 웨이블릿의 성질을 파악하는 중요한 값이다.</p>
+<p>웨이블릿은 보통 1차부터 특정 <span class="math inline">\(n\)</span> 차 까지의 모멘트가 <span class="math inline">\(0\)</span> 이다. <span class="math inline">\(m_k=0\)</span> 이 되는 가장 큰 <span class="math inline">\(k\)</span> 값은 웨이블릿의 성질을 파악하는 중요한 값이다. <span class="math inline">\(K = \min \{ k\in \mathbb{Z}_+: m_k \ne 0\}\)</span> 이라고 하자. <span class="math inline">\(\hat{\psi}\)</span> 를 <span class="math inline">\(\omega=0\)</span> 근처에서 테일러 전개 하면</p>
+<p><span class="math display">\[
+\hat{\psi}(\omega) \approx (-i)^K \dfrac{m_K}{K!} \omega^K + O(\omega^{k+1})
+\]</span></p>
+<p>이다.</p>
 <p><br></p>
 <div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="exm-wavelet_Haar_wavelet" class="theorem example">
@@ -398,11 +402,11 @@ m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 &amp;= \left(\int_{-\infty}^\infty |\phi(y)|\, dy \right)^2 \int_{-\infty}^\infty |\psi(t) |^2\, dt &lt;\infty
 \end{aligned}
 \]</span></p>
-<p>따라서 <span class="math inline">\(\psi \ast \phi \in L^2(\mathbb{R})\)</span> 이다.</p>
+<p>따라서 <span class="math inline">\(\psi \ast \phi \in L^2(\mathbb{R})\)</span> 이다. <span class="math inline">\(\phi\)</span> 가 유계인 적분가능함수이므로 <span class="math inline">\(\left|\hat{\phi}(\omega)\right|&lt;\le M\)</span> 인 양수 <span class="math inline">\(M\)</span> 이 존재한다.</p>
 <p><span class="math display">\[
 \begin{aligned}
 {\Large \int_{-\infty}^\infty} \dfrac{\left|\mathfrak{F}[\psi \ast \phi](\omega)\right|^2}{|\omega|}\, d\omega &amp;= {\Large \int_{-\infty}^\infty} \dfrac{\left| \hat{\psi}(\omega) \hat{\phi}(\omega) \right|^2 }{\omega} \, d\omega = {\Large \int_{-\infty}^\infty} \dfrac{\left| \hat{\psi}(\omega) \right|^2 }{\omega} \left| \hat{\phi}(\omega)\right|^2\, d\omega  \\
-&amp;\le {\Large \int_{-\infty}^\infty} \dfrac{\left| \hat{\psi}(\omega) \right|^2 }{\omega}  \sup \{\left|\hat{\phi}(\omega)\right|^2\}\, d\omega \le \infty
+&amp;\le {\Large \int_{-\infty}^\infty} \dfrac{\left| \hat{\psi}(\omega) \right|^2 }{\omega}  \sup \left\{\left|\hat{\phi}(\omega)\right|^2 \right\}\, d\omega \le \infty
 \end{aligned}
 \]</span></p>
 <p>이므로 <span class="math inline">\(\psi \ast \phi\)</span> 도 웨이블릿이다. <span class="math inline">\(\square\)</span></p>
@@ -555,6 +559,18 @@ m_k := \int_{-\infty}^\infty t^k \psi(t)\, dt.
 <p><br></p>
 <p>웨이블릿 변환의 커널 <span class="math inline">\(\psi_{a,b}(t)\)</span> 는 푸리에 변환의 커널 <span class="math inline">\(e^{i\omega t}\)</span> 와 같은 역할을 한다. 푸리에 변환처럼 웨이블릿 변환도 선형변환이다. 푸리에 변환은 <span class="math inline">\(\omega\)</span> 에 대한 함수로 주어지지만 웨이블릿 변환은 scaling parameter <span class="math inline">\(a\)</span> 와 translation parameter <span class="math inline">\(b\)</span> 에 대한 함수이다.</p>
 <p><br></p>
+<div id="exr-wavelet_fourier_transform_of_daughter_wavelet" class="theorem exercise">
+<p><span class="theorem-title"><strong>연습문제 1</strong></span> Mother 웨이블릿 <span class="math inline">\(\psi(t)\)</span> 에 대한 푸리에 변환을 <span class="math inline">\(\hat{\psi}(\omega)\)</span>, 딸 웨이블릿 <span class="math inline">\(\psi_{a,\,b}(t)\)</span> 에 대한 푸리에 변환을 <span class="math inline">\(\hat{\psi}_{a,\,b}(\omega)\)</span> 라고 할 때 다음이 성립함을 보여라.</p>
+<p><span class="math display">\[
+\hat{\psi}_{a,\,b}(\omega) = \sqrt{|a|} e^{-ib\omega} \hat{\psi}(a\omega)
+\]</span></p>
+</div>
+<div class="proof solution">
+<p><span class="proof-title"><em>(해답)</em>. </span><span id="eq-wavelet_fourier_transform_of_daughter_wavelet"><span class="math display">\[
+\hat{\psi}_{a,\,b}(\omega) = \dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-i\omega t} \psi_{a,\,b}(t)\, dt = \sqrt{|a|} e^{-i\omega b} \hat{\psi}(a\omega)
+\tag{10}\]</span></span></p>
+</div>
+<p><br></p>
 <div id="prp-wavelet_properties_of_transformation_1" class="theorem proposition">
 <p><span class="theorem-title"><strong>명제 4</strong></span> Mother 웨이블릿 <span class="math inline">\(\psi(t)\)</span> 가 <a href="#def-wavelet_moment"><span class="math inline">\(k\)</span>-vanishing moment</a> 를 가진다면 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(b\)</span> 근처에서 푸리에 전개 했을 때 <span class="math inline">\(\mathfrak{W}_\psi[f](a,\,b)\)</span> 첫번째 <span class="math inline">\(k\)</span> 개의 항이 <span class="math inline">\(0\)</span> 이다.</p>
 </div>
@@ -612,12 +628,119 @@ t_m = \int_{_\infty}^\infty t|\psi(t)|^2\, dt,\qquad \omega_m = \dfrac{1}{2\pi} 
 </div>
 <p><br></p>
 <div id="thm-wavelet_basic_properties" class="theorem">
-<p><span class="theorem-title"><strong>정리 2</strong></span> <span class="math inline">\(\phi,\,\psi\)</span> 가 웨이블릿이며 <span class="math inline">\(f,\,g\in L^2(\mathbb{R}),\, \alpha,\, \beta\in \mathbb{C},\, c\in \mathbb{R}\)</span> 일 때 다음이 성립한다.</p>
+<p><span class="theorem-title"><strong>정리 2</strong></span> <span class="math inline">\(\phi,\,\psi\)</span> 가 웨이블릿이며 <span class="math inline">\(f,\,g\in L^2(\mathbb{R}),\, \alpha,\, \beta\in \mathbb{C},\, c\in \mathbb{R}\)</span> 일 때 다음이 성립한다. (see <a href="../../../src/image_processing/wavelet/fourier_transform.html#def-wavelet_operators">연산자들</a>)</p>
 <p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\mathfrak{W}_\psi [\alpha f +  \beta g](a,\,b) = \alpha\mathfrak{W}_\psi[f](a,\,b) + \beta \mathfrak{W}_\psi [g](a,\,b)\)</span>.</p>
-<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\mathfrak{W}_\psi[f(t+c)](a,\,b) = \mathfrak{W}_\psi [f] (a,\, b-c)\)</span>.</p>
-<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(c&gt;0\)</span> 일 때 <span class="math inline">\(\mathfrak{W}_\psi [f\left(\dfrac{t}{c}\right)](a,\,b) = \dfrac{1}{\sqrt{|c|}} \mathfrak{W}_\psi [f] \left(\dfrac{a}{c},\,\dfrac{b}{c}\right)\)</span>.</p>
-<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(a\ne 0\)</span> 일 때 <span class="math inline">\(\mathfrak{W}_\psi [f] (a,\,b)= \overline{\mathfrak{F}_f[\psi] \left(\dfrac{1}{a},\,-\dfrac{b}{a}\right)}\)</span>.</p>
-<p>  (<span class="math inline">\(5\)</span>)</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\mathfrak{W}_\psi[T_cf](a,\,b) = \mathfrak{W}_\psi [f] (a,\, b-c)\)</span>.</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(c&gt;0\)</span> 일 때 <span class="math inline">\(\mathfrak{W}_\psi \left[D_c f\right](a,\,b) = \dfrac{1}{\sqrt{c}}\mathfrak{W}_\psi [f] \left(\dfrac{a}{c},\,\dfrac{b}{c}\right)\)</span>.</p>
+<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(a\ne 0\)</span> 일 때 <span class="math inline">\(\mathfrak{W}_\psi [f] (a,\,b)= \overline{\mathfrak{W}_f[\psi] \left(\dfrac{1}{a},\,-\dfrac{b}{a}\right)}\)</span>.</p>
+<p>  (<span class="math inline">\(5\)</span>) <span class="math inline">\(\mathfrak{W}_{P\psi}[Pf](a,\,b) = \mathfrak{W}_\psi[f] (a,\,-b)\)</span>.</p>
+<p>  (<span class="math inline">\(6\)</span>) <span class="math inline">\(\mathfrak{W}_{\alpha \psi + \beta \phi} [f](a,\,b) = \overline{\alpha} \mathfrak{W}_\psi [f](a,\,b) + \overline{\beta} \mathfrak{W}_\phi[f](a,\,b)\)</span>.</p>
+<p>  (<span class="math inline">\(7\)</span>) <span class="math inline">\(\mathfrak{W}_{T_c \psi}[f] (a,\,b) = \mathfrak{W}_\psi [f](a,\, b+ca)\)</span>.</p>
+<p>  (<span class="math inline">\(8\)</span>) <span class="math inline">\(c&gt;0\)</span> 에 대해 <span class="math inline">\(\mathfrak{W}_{D_c \psi}[f](a,\,b) = \dfrac{1}{\sqrt{c}} \mathfrak{W}_\psi [f](ac,\,b)\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(1\)</span>) 정의에 의해 선형성은 자명하다.</p>
+<p>(<span class="math inline">\(2\)</span>)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{W}_\psi[T_cf](a,\,b) &amp;= \int_{-\infty}^\infty f(t-c) \dfrac{1}{\sqrt{a}}\overline{\psi \left(\dfrac{t-b}{a}\right)}\, dt= \int_{-\infty}^\infty f(x) \dfrac{1}{\sqrt{a}} \overline{\psi \left(\dfrac{x-(b-c)}{a}\right)}\,dx\\[0.5em]
+&amp;= \mathfrak{W}_\psi [f](a,\, b-c).
+\end{aligned}
+\]</span></p>
+<p>(<span class="math inline">\(3\)</span>)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{W}_\psi \left[D_c f\right](a,\,b) &amp;= \int_{-\infty}^\infty \dfrac{1}{\sqrt{|c|}} f\left(\dfrac{t}{c}\right) \dfrac{1}{\sqrt{a}}\overline{\psi \left(\dfrac{t-b}{a}\right)}\, dt \\
+&amp;= \int_{-\infty}^\infty \dfrac{1}{\sqrt{c}} f(x) \dfrac{1}{\sqrt{a}} \overline{\psi \left(\dfrac{x-b/c}{a/c}\right)}\, dt \\
+&amp;=\dfrac{1}{\sqrt{c}} \mathfrak{W}_{\psi}[f](a/c,\, b/c).
+\end{aligned}
+\]</span></p>
+<p>(<span class="math inline">\(4\)</span>)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{W}_\psi [f] (a,\,b) &amp;= \dfrac{1}{\sqrt{a}} \int_{-\infty}^\infty f(t) \overline{\psi\left(\dfrac{t-b}{a}\right)}\, dx \\
+&amp;={\sqrt{a}} \int_{-\infty}^\infty f\left(\dfrac{x+b/a}{1/a}\right) \overline{\psi (x)}\, dx \\
+&amp;={\sqrt{a}} \overline{ \int_{-\infty}^\infty \psi(x) \, \overline{f\left(\dfrac{x+b/a}{1/a}\right)}} \, dx\\
+&amp;= \overline{\mathfrak{W}_{f}[\psi]\left(\dfrac{1}{a},\, -\dfrac{b}{a}\right)}.
+\end{aligned}
+\]</span></p>
+<p>(<span class="math inline">\(5\)</span>) <span class="math inline">\(\displaystyle \mathfrak{W}_{P\psi}[Pf] = \dfrac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(-t) \overline{\psi \left(\dfrac{-t-b}{a}\right)}\, dt = \mathfrak{W}_\psi [f](a,\,-b).\)</span></p>
+<p>(<span class="math inline">\(6\)</span>)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{W}_{\alpha \psi + \beta \phi} [f](a,\,b) &amp;= \dfrac{1}{\sqrt{|a|}}\int_{-\infty}^\infty f(t) \left[\overline{\alpha \psi \left(\dfrac{t-b}{a}\right) + \beta \phi\left(\dfrac{t-b}{a}\right) }\right] \, dt \\
+&amp;= \dfrac{\overline{\alpha}}{\sqrt{|a|}} \int_{-\infty}^\infty f(t)  \overline{\psi \left(\dfrac{t-b}{a}\right)}\, dt + \dfrac{\overline{\beta}}{\sqrt{|a|}} \int_{-\infty}^\infty f(t)  \overline{\phi \left(\dfrac{t-b}{a}\right)}\, dt \\
+&amp;= \overline{\alpha} \mathfrak{W}_\psi [f](a,\,b) + \overline{\beta} \mathfrak{W}_\phi [f](a,\,b).
+\end{aligned}
+\]</span></p>
+<p>(<span class="math inline">\(7\)</span>) <span class="math inline">\(\displaystyle \mathfrak{W}_{T_c \psi}[f] (a,\,b) = \dfrac{1}{\sqrt{|a|}}\int_{\infty}^\infty f(t) \overline{\psi \left(\dfrac{(t-b)}{a}-c\right)}\, dt = \mathfrak{W}_\psi [f](a,\,b+ac)\)</span></p>
+<p>(<span class="math inline">\(8\)</span>) <span class="math inline">\(D_c\psi =  \dfrac{1}{\sqrt{c}} \psi\left(\dfrac{t}{c}\right)\)</span> 이므로,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{W}_{D_c \psi}[f](a,\,b) &amp;= \dfrac{1}{\sqrt{|a|c}} \int_{-\infty}^{\infty}f(t) \overline{\psi \left(\dfrac{1}{c}\dfrac{t-b}{a}\right)}\, dt = \dfrac{1}{\sqrt{|a|c}} \int_{-\infty}^{\infty}f(t) \overline{\psi \left(\dfrac{t-b}{ac}\right)}\, dt \\
+&amp;= \mathfrak{F}_\psi [f](ac,\,b). \qquad \square
+\end{aligned}
+\]</span></p>
+</div>
+<p><br></p>
+<div id="thm-wavelet_parsevals_formular_for_wavelet" class="theorem">
+<p><span class="theorem-title"><strong>정리 3 (Parseval’s formula)</strong></span> <span class="math inline">\(\psi \in L^2(\mathbb{R})\)</span> 이며 <span class="math inline">\(f,\,g\in L^2(\mathbb{R})\)</span> 일 때 다음이 성립한다.</p>
+<p><span id="eq-wavelet_parsevals_of_wavelet_1"><span class="math display">\[
+\langle f,\,g \rangle = \dfrac{1}{C_\psi} \int_{-\infty}^\infty \int_{-\infty}^\infty \,\mathfrak{W}_\psi [f](a,\,b) \overline{ \mathfrak{W}_\psi [g](a,\,b)}\,\dfrac{db\,da}{a^2}.
+\tag{11}\]</span></span></p>
+<p>여기서 <span class="math inline">\(C_\psi\)</span> 는 다음과 같다.</p>
+<p><span id="eq-wavelet_parsevals_of_wavelet_2"><span class="math display">\[
+C_\psi = \displaystyle \int_{-\infty}^\infty \dfrac{\left|\hat{\psi}(\omega)\right|^2}{|\omega|} \, d\omega &lt; \infty
+\tag{12}\]</span></span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><a href="../../../src/image_processing/wavelet/fourier_transform.html#thm-wavelet_general_Parseval_relation">일반화된 Parseval’s relation</a> 과 <a href="#def-wavelet_continuous_wavelet_transform">연속 웨이블릿 변환</a> 의 정의, 그리고 <a href="#exr-wavelet_fourier_transform_of_daughter_wavelet" class="quarto-xref">연습문제&nbsp;1</a> 로부터</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathfrak{W}_\psi [f](a,\,b) &amp;= \langle f,\, \psi_{a,\,b}\rangle = \langle \hat{f},\, \hat{\psi}_{a,\,b}\rangle = \int_{-\infty}^\infty \hat{f}(\omega) \, \sqrt{|a|} e^{ib\omega} \overline{\hat{\psi}(a\omega)}\, d\omega, \\
+\overline{\mathfrak{W}_\psi [g](a,\,b)} &amp;= \int_{-\infty}^\infty \overline{\hat{g}(\mu)} \, \sqrt{|a|} e^{-ib\mu} \hat{\psi}(a\mu)\, d\mu,
+\end{aligned}
+\]</span></p>
+<p><a href="#eq-wavelet_parsevals_of_wavelet_1" class="quarto-xref">식&nbsp;11</a> 의 우변은</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{-\infty}^\infty &amp;\int_{-\infty}^\infty \mathfrak{W}_\psi [f](a,\,b) \,\overline{ \mathfrak{W}_\psi [g](a,\,b)}\,\dfrac{db\,da}{a^2} \\
+&amp;= \int_{-\infty}^\infty \int_{-\infty}^\infty \dfrac{db\,da}{a^2} \int_{-\infty}^\infty \int_{-\infty}^\infty |a|e^{ib(\omega-\mu)} \, \hat{f}(\omega)\,\overline{\hat{g}(\mu)} \overline{\hat{\psi}(a\omega)}\hat{\psi}(a\mu)\, d\mu\, d\omega \\
+\end{aligned}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\int_{-\infty}^\infty e^{ib(\omega - \mu)}\, db = \delta(\omega-\mu)\)</span> 이므로,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{-\infty}^\infty \int_{-\infty}^\infty \mathfrak{W}_\psi [f](a,\,b) \,\overline{ \mathfrak{W}_\psi [g](a,\,b)}\,\dfrac{db\,da}{a^2} &amp;= \int_{-\infty}^\infty \dfrac{da}{|a|} \int_{-\infty}^\infty \hat{f}(\omega)\,\overline{\hat{g}(\omega)} \left|\hat{\psi}(a\omega)\right|^2\, d\omega \\
+&amp;= \int_{-\infty}^\infty \left[\int_{-\infty}^\infty \left|\hat{\psi}(a\omega)\right|^2 \, \dfrac{da}{|a|}\right] \,\hat{f}(\omega)\,\overline{\hat{g}(\omega)}\,d\omega \\
+&amp;= \int_{-\infty}^\infty \left[\int_{-\infty}^\infty \dfrac{\left|\hat{\psi}(x)\right|^2}{|x|}\, dx\right] \,\hat{f}(\omega)\,\overline{\hat{g}(\omega)}\,d\omega \\
+&amp;= C_\psi  \int_{-\infty}^\infty\hat{f}(\omega)\,\overline{\hat{g}(\omega)}\,d\omega\\
+&amp;= C_\psi \langle \hat{f},\, \hat{g}\rangle = C_\psi \langle f,\,g\rangle
+\end{aligned}
+\]</span></p>
+<p>이다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<div id="thm-wavelet_inversion" class="theorem">
+<p><span class="theorem-title"><strong>정리 4</strong></span> <span class="math inline">\(f\in \mathcal{L}^2(\mathbb{R})\)</span> 일 때 아래의 식이 거의 모든 <span class="math inline">\(\mathbb{R}\)</span> 에서 성립한다.</p>
+<p><span id="eq-wavelet_inversion"><span class="math display">\[
+\dfrac{1}{C_\psi} \int_{-\infty}^\infty \int_{-\infty}^\infty \mathfrak{W}_\psi[f](a,\,b) \, \psi_{a,\,b}(t)\,\dfrac{db\,da}{a^2} = f(t).
+\tag{13}\]</span></span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><a href="#thm-wavelet_parsevals_formular_for_wavelet" class="quarto-xref">정리&nbsp;3</a> 로부터 시작한다. <span class="math display">\[
+\begin{aligned}
+C_\psi \langle f,\,g\rangle &amp;=\int_{-\infty}^\infty \int_{-\infty}^\infty \,\mathfrak{W}_\psi [f](a,\,b) \overline{ \mathfrak{W}_\psi [g](a,\,b)}\,\dfrac{db\,da}{a^2} \\
+&amp;= \int_{-\infty}^\infty \int_{-\infty}^\infty \,\mathfrak{W}_\psi [f](a,\,b) \overline{\left[\int_{-\infty}^\infty g(t)\, \overline{\psi_{a,\,b}(t)}\, dt\right]}\,\dfrac{db\,da}{a^2} \\
+&amp;= \int_{-\infty}^\infty \int_{-\infty}^\infty \int_{-\infty}^\infty \mathfrak{W}_\psi [f](a,\,b) \psi_{a,\,b}(t) \,\dfrac{db\,da}{a^2} \, \overline{g(t)}\,dt \\
+&amp;= \left\langle  \int_{-\infty}^\infty \int_{-\infty}^\infty \mathfrak{W}_\psi [f](a,\,b) \psi_{a,\,b}(t) \,\dfrac{db\,da}{a^2},\, g(t)\right\rangle
+\end{aligned}
+\]</span></p>
+<p>이다. <span class="math inline">\(g\)</span> 가 임의의 함수이므로</p>
+<p><span class="math display">\[
+f(t) = \dfrac{1}{C_\psi }\int_{-\infty}^\infty \int_{-\infty}^\infty \mathfrak{W}_\psi [f](a,\,b) \psi_{a,\,b}(t) \,\dfrac{db\,da}{a^2}
+\]</span></p>
+<p>가 거의 모든 곳에서 성립한다. <span class="math inline">\(\square\)</span></p>
 </div>
 
 

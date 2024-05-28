@@ -181,6 +181,8 @@ $$
 
 &emsp; *Dilation* : $D_c f(t) := \dfrac{1}{\sqrt{|c|}}f\left(\dfrac{1}{c}\right)$.
 
+&emsp; *Parity* : $Pf(t) := f(-t)$.
+
 
 :::
 
