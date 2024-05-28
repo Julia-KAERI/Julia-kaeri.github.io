@@ -1040,11 +1040,11 @@ W_{jk} = \dfrac{1}{N} \exp \left(-\dfrac{2 \pi i (j-1)(k-1)}{N}\right)
 </section>
 <section id="고속-푸리에-변환-fft" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="고속-푸리에-변환-fft"><span class="header-section-number">5</span> 고속 푸리에 변환 (FFT)</h2>
-<p>고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 푸리에 변환은 <span class="math inline">\(\mathcal{O}(N^2)\)</span> 의 연산이 필요하지만, FFT를 이용하면 <span class="math inline">\(\mathcal{O}(N \log N)\)</span> 의 연산만으로 가능하다. 기본적인 아이디어는 가우스가 생각했었으나 잊혀졌고 이후 Cooley 와 Tukey 가 1965년도에 고속 푸리에 변환 알고리즘을 발표하였으며 이후 전 세계적으로 광범위하게 사용되었다.</p>
+<p>고속 푸리에 변환(Fast Fourier Transform, FFT)은 DFT 과 그 역변환을 빠르게 수행하는 효율적인 알고리즘이다. 위의 이산 푸리에 변환은 <span class="math inline">\(N^2\)</span> 번의 곱셉과 <span class="math inline">\(N(N-1)\)</span> 번의 덧셈 연산, 즉 대략 <span class="math inline">\(2N^2\)</span> 번의 연산이 필요하지만 FFT를 이용하면 대략 <span class="math inline">\(\mathcal{O}(N \log_2 N)\)</span> 의 연산만으로 가능하다. 기본적인 아이디어는 가우스가 생각했었으나 잊혀졌고 이후 Cooley 와 Tukey 가 1965년도에 고속 푸리에 변환 알고리즘을 발표하였으며 이후 전 세계적으로 광범위하게 사용되었다.</p>
 <p><br></p>
 <section id="기본적인-아이디어" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="기본적인-아이디어"><span class="header-section-number">5.1</span> 기본적인 아이디어</h3>
-<p>우선 <span class="math inline">\(N=2^m\)</span> 일 경우에 대해 생각하자. 그리고 우리는 <span class="math inline">\(f_k\)</span> 의 인덱스 <span class="math inline">\(k\)</span> 를 <span class="math inline">\(1\le k \le N\)</span> 에서 생각했지만 여기서는 <span class="math inline">\(0\le k \le N-1\)</span> 로 생각하자. 이 경우,</p>
+<p>우선 <span class="math inline">\(N=2^n\)</span> 일 경우에 대해 생각하자. 그리고 우리는 <span class="math inline">\(f_k\)</span> 의 인덱스 <span class="math inline">\(k\)</span> 를 <span class="math inline">\(1\le k \le N\)</span> 에서 생각했지만 여기서는 <span class="math inline">\(0\le k \le N-1\)</span> 로 생각하자. 이 경우,</p>
 <p><span class="math display">\[
 \mathfrak{F}[f]_u=\dfrac{1}{N}\sum_{k=0}^{N-1} f_k e^{-2 \pi i ku /N},\qquad u=0,\ldots,N-1
 \]</span> 이다. <span class="math inline">\(f_k,\, k=0,\ldots,\,N-1\)</span> 에 대해 <span class="math inline">\((f_k)\)</span> 의 짝수 인덱스만 모아 수열 <span class="math inline">\((a_k)\)</span> 를 만들고 홀수 인덱스만 모아 수열 <span class="math inline">\((b_k)\)</span> 를 만든다.</p>
@@ -1058,16 +1058,48 @@ b_k &amp;= f_{2k+1}
 <p><span class="math display">\[
 (f_k) = (a_0,\,b_0,\,a_1,\,b_1,\ldots,\, a_{N/2-2},\, b_{N/2-2},\, a_{N/2-1},\, b_{N/2-1})
 \]</span></p>
-<p>이다. <span class="math inline">\(w_N := e^{2\pi i /N},\, M=N/2=2^{m-1}\)</span> 이라 하면 <span class="math inline">\({w_N}^2 = w_M = e^{2\pi i /M} = e^{2\pi i /(N/2)}\)</span> 이며, 이를 이용하여</p>
+<p>이다. <span class="math inline">\(w_N := e^{-2\pi i /N},\, M=N/2=2^{n-1}\)</span> 이라 하면 <span class="math inline">\({w_N}^2 = w_M = e^{-2\pi i /M} = e^{-2\pi i /(N/2)}\)</span> 이며, 이를 이용하여 <span class="math inline">\(\mathfrak{F}_u\)</span> 를 계산하면 아래와 같다.</p>
+<p><span id="eq-fft_1"><span class="math display">\[
+\begin{aligned}
+\mathfrak{F}[f]_u &amp;= \sum_{k=0}^{N-1} f_k e^{-2\pi i uk/N} =  \sum_{k=0}^{N-1}f_k {w_N}^{uk} \\
+&amp;= \sum_{k=0}^{M-1}a_k {w_N}^{2uk} + \sum_{k=0}^{M-1} b_k {w_N}^{(2k+1)u}\\
+&amp;= \sum_{k=0}^{M-1} a_k (w_M)^{uk} + \left({w_N}^u\right) \sum_{k=0}^{M-1} b_k (w_M)^{uk} \\
+\end{aligned}
+\tag{17}\]</span></span></p>
+<p>이다. <span class="math inline">\(M-1\)</span> 개의 점에 대한 <span class="math inline">\((a_k)\)</span> 와 <span class="math inline">\((b_k)\)</span> 의 푸리에 변환 <span class="math inline">\(\mathfrak{F}[a]_u,\, \mathfrak{F}[b]_u\)</span> 를 생각하자. <span class="math inline">\(0 \le u \le M-1\)</span> 일 경우</p>
+<p><span id="eq-fft_2"><span class="math display">\[
+\mathfrak{F}[f]_{u} = \mathfrak{F}[a]_u + ({w_N}^u) \mathfrak{F}[b]_u
+\tag{18}\]</span></span></p>
+<p>이며, <span class="math inline">\(M\le u \le N-1\)</span> 일 경우 <span class="math inline">\(v=u-M\)</span> 으로 놓고 <span class="math inline">\({w_N}^{-M} = (e^{-2\pi i /N})^{-M} = e^{i\pi} = -1\)</span> 과 <span class="math inline">\({w_M}^M=1\)</span> 을 이용하면,</p>
+<p><span id="eq-fft_3"><span class="math display">\[
+\begin{aligned}
+\mathfrak{F}[f]_{M \le u \le N-1} &amp;= \sum_{k=0}^{M-1} a_k (w_M)^{uk} + ({w_N}^u) \sum_{k=0}^{M-1} b_k (w_M)^{uk} \\
+&amp;= \sum_{k=0}^{M-1}a_k (w_M)^{vk} (w_M)^{Mk} + (w_N)^{v}(w_N)^M \sum_{k=0}^{M-1}b_k (w_M)(w_M)^{vk} (w_M)^{Mk} \\
+&amp;= \sum_{k=0}^{M-1} a_k (w_M)^{vk} - ({w_N}^v) \sum_{k=0}^{M-1} b_k (w_M)^{vk} \\
+&amp;= \mathfrak{F}[a]_{u-M} - ({w_N}^{u-M}) \mathfrak{F}[b]_{u-M}
+\end{aligned}
+\tag{19}\]</span></span></p>
+<p>이다. 즉 <span class="math inline">\(1\le u\le M\)</span> 에 대해</p>
+<p><span id="eq-fft_4"><span class="math display">\[
+\begin{aligned}
+\mathfrak{F}[f]_u &amp;= \mathfrak{F}[a]_u + ({w_N}^u) \mathfrak{F}[b]_u, \\
+\mathfrak{F}[f]_{u+M} &amp;= \mathfrak{F}[a]_u - ({w_N}^u) \mathfrak{F}[b]_u,
+\end{aligned}
+\tag{20}\]</span></span></p>
+<p>이다. 우리는 <span class="math inline">\(N=2^n\)</span> 개의 점에 대한 DFT 가 <span class="math inline">\(M=N/2\)</span> 인 두 푸리에 변환의 선형결합과 같다는 것을 알게 되었다. 만약 <span class="math inline">\(N\)</span> 개의 점에 대한 DFT 의 연산 횟수를 <span class="math inline">\(X(N)\)</span> 이라고 하자. <span class="math inline">\(N=2^n\)</span> 일 때 <span class="math inline">\(N/2=2^{n-1}\)</span> 개의 점에 대한 두번의 DFT 와 <span class="math inline">\((w_N^m)\)</span> 과 <span class="math inline">\(\mathfrak{F}[b]_u\)</span> 와의 <span class="math inline">\(N/2\)</span> 번의 곱셈 연산이 필요하므로</p>
 <p><span class="math display">\[
 \begin{aligned}
-\hat{f}_u &amp;= \sum_{k=0}^{N-1} f_k e^{2\pi i uk/N} =  \sum_{k=0}^{N-1}f_k {w_N}^{uk} \\
-&amp;= \sum_{k=0}^{M-1}a_k {w_N}^{2uk} + \sum_{k=0}^{M-1} b_k {w_N}^{(2k+1)u}\\
-&amp;= \sum_{k=0}^{N-1} a_k (w_M)^{uk} + \left({w_N}^u\right) \sum_{k=0}^{M-1} b_k (w_M)^{uk} \\
-&amp;= \mathfrak{F}[a]_u + \left({w_N}^u\right)\mathfrak{F}[b]_u
+X(N=2^n) &amp;= 2X(2^{n-1}) + 2^{n-1} \\
+&amp;= 2(2X(2^{n-2}) + 2^{n-2}) + 2^{n-1}\\
+&amp;\qquad \vdots \\
+&amp;= 2^{n-1} X(2^1) + (n-1)2^{n-1}
 \end{aligned}
 \]</span></p>
-<p>이다.</p>
+<p><span class="math inline">\(N=2\)</span> 일 때 <span class="math inline">\(X(2^1)=X(2)=4\)</span> 이므로</p>
+<p><span class="math display">\[
+X(2^n) = 2^{n+1} + (n-1)2^{n-1} \approx n 2^{n} = 2^n \log_2 (2^n) = N \log_2(N)
+\]</span></p>
+<p>이다. 즉 <span class="math inline">\(N=2^n\)</span> 개의 점에 대해 대략 <span class="math inline">\(N \log_2 (N)\)</span> 번의 연산을 통해 DFT 를 수행 할 수 있다.</p>
 
 
 </section>
