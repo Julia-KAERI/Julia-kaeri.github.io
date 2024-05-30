@@ -603,3 +603,99 @@ $$
 가 거의 모든 곳에서 성립한다. $\square$
 
 :::
+
+</br>
+
+## 이산 웨이블릿 변환
+
+이산 푸리에 변환과 그 역변환은 이산적인 시간 $t$ 와 진동수 $\omega$ 사이의 변환이지만 이산 웨이블릿 변환은 이산적인 $t$ 에 대해, 역시 이산적인 scale parameter $a$ 와 translation parameter $b$ 사이의 변환이다. 이산 웨이블릿 변환을 위해서는 scale paramter 와 관련있는 $0<a_0\ne 1$ 과 translation paramter 와 관련있는 $b_0>0$ 을 우선 정한다. 
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
+::: {#exm-wavelet_dwt_1}
+
+mother wavelet $\psi$ 에 대해 scale parameter 가 $a_0^m$ 이며 translation parametr $nb_0 a_0^m$ 일 때의 딸 웨이블릿은
+
+$$
+\dfrac{1}{\sqrt{|a_0^{m}|}} \psi \left(\dfrac{t-nb_0a_0^m}{a_0^m}\right) = a_0^{-m/2} \psi (a_0^{-m}t - nb_0)
+$$
+
+이다.
+
+:::
+
+</div>
+
+</br>
+
+Mother 웨이블릿 $\psi$ 와 정수 $m,\,n$ 에 대한 딸 웨이블릿의 집합을 아래와 같이 정의한다.
+
+$$
+F_\psi (a,\,b) := \left\{ \psi_{m,\,n}(t) = a_0^{-m/2} \psi \left(a_0^{-m} t - nb_0\right): m,\,n \in \mathbb{Z}\right\}.
+$$ {#eq-wavelet_dwt_family}
+
+</br>
+
+가장 바람직한 것은 $F_\psi (a,\,b)$ 가 $L^2(\mathbb{R})$ 에서 complete 하고 orthogonal 한 것이지만 그것을 보장할 수는 없다. 
+
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-wavelet_frame}
+
+#### 아핀 웨이블릿과 프레임
+
+@eq-wavelet_dwt_family 의 $F_\psi (a,\,b) $ 가 complete 하다면 $\psi$ 를 **아핀 웨이블릿 (affine wavelet)** 이라고 한다. 임의의 $f\in L^2$ 에 대해 어떤 양수 $A_f,\,B_f$ 가 존재하여
+
+$$
+A_f\|f\|_2^2 \le \sum_{m,\,n\in \mathbb{Z}} |\langle f,\,\psi_{m,\,n}\rangle|^2 \le B_f\|f\|_2^2
+$$
+
+일 때 $F_\psi$ 를 **프레임(frame)** 이라고 한다.
+
+:::
+
+:::
+
+
+</br>
+
+::: {#prp-wavelet_and_frame}
+
+$\psi \in L^2(\mathbb{R})$ 가 @def-wavelet_definition_of_wavelet 의 admissiblitity 조건을 만족한다면 $F_\psi$ 는 frame 이다.
+
+:::
+
+::: {.proof}
+
+증명 생략
+
+:::
+
+</br>
+
+
+일반적으로 DWT 에서는 $a_0=2,\,b_0=1$ 을 사용한다. 그렇다면 웨이블릿 $\psi$ 에 대해
+
+$$
+F_\psi = \left\{ \psi_{m,n}:= 2^{-m/2} \psi\left( 2^{-m/2} - n \right) : m,\,n\in \mathbb{Z}\right\}
+$$
+
+를 사용한다. 
+
+
+![Dyadic sampling grid for the DWT](images/fig-wavelet_resolution_2.png){#fig-wavelet_resolution_2 width=700}
+
+</br>
+
+
+## Orthogonal wavelet
+
+
+
+
+
+
+
+
+

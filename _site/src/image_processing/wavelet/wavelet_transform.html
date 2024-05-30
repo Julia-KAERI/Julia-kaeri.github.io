@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../src/image_processing/tomography.html" rel="next">
+<link href="../../../src/image_processing/wavelet/descrete_wavelet_transform.html" rel="next">
 <link href="../../../src/image_processing/wavelet/fourier_transform.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -221,6 +221,12 @@ window.Quarto = {
  <span class="menu-text">웨이블릿 변환</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/image_processing/wavelet/descrete_wavelet_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">이산 웨이블릿 변환</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -257,6 +263,8 @@ window.Quarto = {
   <li><a href="#sec-wavelet_continuous_wavelet_transform" id="toc-sec-wavelet_continuous_wavelet_transform" class="nav-link" data-scroll-target="#sec-wavelet_continuous_wavelet_transform"><span class="header-section-number">3.1</span> 연속 웨이블릿 변환</a></li>
   <li><a href="#웨이블릿-변환과-분해능" id="toc-웨이블릿-변환과-분해능" class="nav-link" data-scroll-target="#웨이블릿-변환과-분해능"><span class="header-section-number">3.2</span> 웨이블릿 변환과 분해능</a></li>
   </ul></li>
+  <li><a href="#이산-웨이블릿-변환" id="toc-이산-웨이블릿-변환" class="nav-link" data-scroll-target="#이산-웨이블릿-변환"><span class="header-section-number">4</span> 이산 웨이블릿 변환</a></li>
+  <li><a href="#orthogonal-wavelet" id="toc-orthogonal-wavelet" class="nav-link" data-scroll-target="#orthogonal-wavelet"><span class="header-section-number">5</span> Orthogonal wavelet</a></li>
   </ul>
 </nav>
     </div>
@@ -742,9 +750,73 @@ f(t) = \dfrac{1}{C_\psi }\int_{-\infty}^\infty \int_{-\infty}^\infty \mathfrak{W
 \]</span></p>
 <p>가 거의 모든 곳에서 성립한다. <span class="math inline">\(\square\)</span></p>
 </div>
-
-
+<p><br></p>
 </section>
+</section>
+<section id="이산-웨이블릿-변환" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="이산-웨이블릿-변환"><span class="header-section-number">4</span> 이산 웨이블릿 변환</h2>
+<p>이산 푸리에 변환과 그 역변환은 이산적인 시간 <span class="math inline">\(t\)</span> 와 진동수 <span class="math inline">\(\omega\)</span> 사이의 변환이지만 이산 웨이블릿 변환은 이산적인 <span class="math inline">\(t\)</span> 에 대해, 역시 이산적인 scale parameter <span class="math inline">\(a\)</span> 와 translation parameter <span class="math inline">\(b\)</span> 사이의 변환이다. 이산 웨이블릿 변환을 위해서는 scale paramter 와 관련있는 <span class="math inline">\(0&lt;a_0\ne 1\)</span> 과 translation paramter 와 관련있는 <span class="math inline">\(b_0&gt;0\)</span> 을 우선 정한다.</p>
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+<div id="exm-wavelet_dwt_1" class="theorem example">
+<p><span class="theorem-title"><strong>예제 5</strong></span> mother wavelet <span class="math inline">\(\psi\)</span> 에 대해 scale parameter 가 <span class="math inline">\(a_0^m\)</span> 이며 translation parametr <span class="math inline">\(nb_0 a_0^m\)</span> 일 때의 딸 웨이블릿은</p>
+<p><span class="math display">\[
+\dfrac{1}{\sqrt{|a_0^{m}|}} \psi \left(\dfrac{t-nb_0a_0^m}{a_0^m}\right) = a_0^{-m/2} \psi (a_0^{-m}t - nb_0)
+\]</span></p>
+<p>이다.</p>
+</div>
+</div>
+<p><br></p>
+<p>Mother 웨이블릿 <span class="math inline">\(\psi\)</span> 와 정수 <span class="math inline">\(m,\,n\)</span> 에 대한 딸 웨이블릿의 집합을 아래와 같이 정의한다.</p>
+<p><span id="eq-wavelet_dwt_family"><span class="math display">\[
+F_\psi (a,\,b) := \left\{ \psi_{m,\,n}(t) = a_0^{-m/2} \psi \left(a_0^{-m} t - nb_0\right): m,\,n \in \mathbb{Z}\right\}.
+\tag{14}\]</span></span></p>
+<p><br></p>
+<p>가장 바람직한 것은 <span class="math inline">\(F_\psi (a,\,b)\)</span> 가 <span class="math inline">\(L^2(\mathbb{R})\)</span> 에서 complete 하고 orthogonal 한 것이지만 그것을 보장할 수는 없다.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-wavelet_frame" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 5 (아핀 웨이블릿과 프레임)</strong></span> <a href="#eq-wavelet_dwt_family" class="quarto-xref">식&nbsp;14</a> 의 $F_(a,,b) $ 가 complete 하다면 <span class="math inline">\(\psi\)</span> 를 <strong>아핀 웨이블릿 (affine wavelet)</strong> 이라고 한다. 임의의 <span class="math inline">\(f\in L^2\)</span> 에 대해 어떤 양수 <span class="math inline">\(A_f,\,B_f\)</span> 가 존재하여</p>
+<p><span class="math display">\[
+A_f\|f\|_2^2 \le \sum_{m,\,n\in \mathbb{Z}} |\langle f,\,\psi_{m,\,n}\rangle|^2 \le B_f\|f\|_2^2
+\]</span></p>
+<p>일 때 <span class="math inline">\(F_\psi\)</span> 를 <strong>프레임(frame)</strong> 이라고 한다.</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div id="prp-wavelet_and_frame" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 5</strong></span> <span class="math inline">\(\psi \in L^2(\mathbb{R})\)</span> 가 <a href="#def-wavelet_definition_of_wavelet" class="quarto-xref">정의&nbsp;1</a> 의 admissiblitity 조건을 만족한다면 <span class="math inline">\(F_\psi\)</span> 는 frame 이다.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>증명 생략</p>
+</div>
+<p><br></p>
+<p>일반적으로 DWT 에서는 <span class="math inline">\(a_0=2,\,b_0=1\)</span> 을 사용한다. 그렇다면 웨이블릿 <span class="math inline">\(\psi\)</span> 에 대해</p>
+<p><span class="math display">\[
+F_\psi = \left\{ \psi_{m,n}:= 2^{-m/2} \psi\left( 2^{-m/2} - n \right) : m,\,n\in \mathbb{Z}\right\}
+\]</span></p>
+<p>를 사용한다.</p>
+<div id="fig-wavelet_resolution_2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wavelet_resolution_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-wavelet_resolution_2.png" class="img-fluid figure-img" width="700">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wavelet_resolution_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;9: Dyadic sampling grid for the DWT
+</figcaption>
+</figure>
+</div>
+<p><br></p>
+</section>
+<section id="orthogonal-wavelet" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="orthogonal-wavelet"><span class="header-section-number">5</span> Orthogonal wavelet</h2>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1164,8 +1236,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/image_processing/tomography.html" class="pagination-link" aria-label="토모그래피">
-        <span class="nav-page-text">토모그래피</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../src/image_processing/wavelet/descrete_wavelet_transform.html" class="pagination-link" aria-label="이산 웨이블릿 변환">
+        <span class="nav-page-text">이산 웨이블릿 변환</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

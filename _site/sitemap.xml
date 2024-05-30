@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_test.html</loc>
-    <lastmod>2024-05-20T10:59:18.503Z</lastmod>
+    <lastmod>2024-05-30T02:01:04.803Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
@@ -102,7 +102,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/image_processing/wavelet/wavelet_transform.html</loc>
-    <lastmod>2024-05-28T09:24:21.414Z</lastmod>
+    <lastmod>2024-05-30T02:32:08.070Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/image_processing/tomography.html</loc>
@@ -246,6 +246,10 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
-    <lastmod>2024-05-20T02:56:49.222Z</lastmod>
+    <lastmod>2024-05-30T01:48:32.070Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/image_processing/wavelet/descrete_wavelet_transform.html</loc>
+    <lastmod>2024-05-30T07:42:33.269Z</lastmod>
   </url>
 </urlset>
