@@ -191,7 +191,7 @@ Shift+Enter 는 입력창을 실행시키고, 가장 마지막 명령어의 실�
 </br>
 
 
-Visual Studio Code 의 노트북은 Jupyter notebook 혹은 그 개선 버젼인 Jupyter-lab 과 유사한 실행 환경입니다. 
+Visual Studio Code 의 노트북은 Jupyter notebook 혹은 그 개선 버젼인 Jupyter-lab 과 유사한 실행 환경입니다. 정확히는 이미 존재하던 jupyter 
 
 
 
