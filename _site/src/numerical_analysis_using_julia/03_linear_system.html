@@ -286,6 +286,42 @@ window.Quarto = {
  <span class="menu-text">행렬의 분해</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">반복법을 이용한 선형 시스템의 해를 구하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">최소자승 문제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Approximation</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -339,7 +375,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#하삼각-행렬에서의-선형방정식의-풀이" id="toc-하삼각-행렬에서의-선형방정식의-풀이" class="nav-link" data-scroll-target="#하삼각-행렬에서의-선형방정식의-풀이">하삼각 행렬에서의 선형방정식의 풀이</a></li>
   <li><a href="#상삼각-행렬의-선형방정식의-풀이" id="toc-상삼각-행렬의-선형방정식의-풀이" class="nav-link" data-scroll-target="#상삼각-행렬의-선형방정식의-풀이">상삼각 행렬의 선형방정식의 풀이</a></li>
-  <li><a href="#코드-분석" id="toc-코드-분석" class="nav-link" data-scroll-target="#코드-분석">코드 분석</a></li>
+  <li><a href="#코드-작성" id="toc-코드-작성" class="nav-link" data-scroll-target="#코드-작성">코드 작성</a></li>
   <li><a href="#계산-복잡도-분석" id="toc-계산-복잡도-분석" class="nav-link" data-scroll-target="#계산-복잡도-분석">계산 복잡도 분석</a></li>
   </ul></li>
   <li><a href="#sec-gauss_jordan_elimination" id="toc-sec-gauss_jordan_elimination" class="nav-link" data-scroll-target="#sec-gauss_jordan_elimination"><span class="header-section-number">3</span> 가우스-요르단 소거법</a>
@@ -389,15 +425,27 @@ window.Quarto = {
 
 
 <p>이번 장에서는 본격적인 수치해석에 들어가기에 앞서 선형 시스템을 코딩을 통해 푸는 방법, 코딩에서 이루어지는 계산의 성능 분석과 다항식에 관한 객체를 만들어본다. 수학적 내용을 코드로 만들어 보고 이를 이용하여 문제를 풀어 보면서 선형대수학과 julia 언어에 대한 지식을 습득하게 된다. 그리고 다항식에 대한 객체는 이후 계속 사용하게 될 것이다.</p>
+<p><br></p>
 <section id="선형-시스템과-선형-방정식" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="선형-시스템과-선형-방정식"><span class="header-section-number">1</span> 선형 시스템과 선형 방정식</h2>
-<p>어떤 시스템이 <span class="math inline">\(n\)</span> 개의 독립변수 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 에 대해 아래와 같은 방정식으로 기술될 때 이 시스템을 선형 시스템이라고 한다. <span class="math display">\[
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-linear_system" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 1 (선형 시스템)</strong></span> 어떤 시스템이 <span class="math inline">\(n\)</span> 개의 독립변수 <span class="math inline">\(x_1,\ldots,\,x_n\)</span> 에 대해 아래와 같은 방정식으로 기술될 때 이 시스템을 선형 시스템이라고 한다. <span class="math display">\[
 \begin{aligned}
 f_1 (x_1,\ldots,\,x_n ) &amp;= A_{11}x_1 + \cdots + A_{1n}x_n \\
 &amp; \vdots \\
 f_m (x_1,\ldots,\,x_n ) &amp;= A_{m1}x_1 + \cdots + A_{mn}x_n \\
 \end{aligned}
 \]</span></p>
+</div>
+</div>
+</div>
+</div>
 <p>이 시스템은 <span class="math inline">\(m \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 와 <span class="math inline">\(n \times 1\)</span> 행렬 <span class="math inline">\(\boldsymbol{x}\)</span> 를 이용해 다음과 같은 식으로 정리 할 수 있다.</p>
 <p><span class="math display">\[
 f_i(\boldsymbol{x})=\boldsymbol{Ax},\qquad \boldsymbol{A} = \begin{bmatrix} A_{11} &amp; \cdots &amp; A_{1n} \\ \vdots &amp; \ddots &amp; \vdots \\ A_{m1} &amp; \cdots &amp;A_{mn} \end{bmatrix},\qquad \boldsymbol{x} = \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix}
@@ -421,17 +469,14 @@ f_i(\boldsymbol{x}_1 + a \boldsymbol{x}_2) = f_i(\boldsymbol{x}_1) + af_i(\bolds
 \]</span></p>
 <p>의 해는 <span class="math inline">\(\begin{bmatrix} x \\ 1-x\end{bmatrix},\, x\in \mathbb{F}\)</span> 인 모든 행렬이다.</p>
 <p><br></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-노트
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>다음부터 소개할 여러가지 방법은 <code>LinearAlgebra</code> 모듈에 그 기능이 거의 포함되어 있기으며 아마 직접 코딩하는 것보다 처리속도가 더 빠를 것이다. 그러나 우리가 배워야 할 것은 모듈과 함수의 사용법 뿐만 아니라, 생각하는 알고리즘을 코드로 만들어 정확하게 구현하는 것이기에 앞으로 나올 여려 방법들을 직접 구현해보고자 한다.</p>
+</div>
 </div>
 </div>
 <p><br></p>
@@ -445,16 +490,14 @@ f_i(\boldsymbol{x}_1 + a \boldsymbol{x}_2) = f_i(\boldsymbol{x}_1) + af_i(\bolds
 <p>에서 <span class="math inline">\(\boldsymbol{U}\)</span> 는 상삼각행렬, <span class="math inline">\(\boldsymbol{L}\)</span> 은 하삼각행렬이다. 두 삼각행렬에 대해 다음이 성립한다.</p>
 <div id="prp-properties_of_triangular_matrix" class="theorem proposition">
 <p><span class="theorem-title"><strong>명제 1</strong></span> 행렬 <span class="math inline">\(\boldsymbol{A} \in\mathcal{M}_{n\times n}(\mathbb{F})\)</span> 가 상삼각 행렬 혹은 하삼각 행렬일 때 다음은 동치이다.</p>
-<ol type="1">
-<li><p><span class="math inline">\(\det (\boldsymbol{A}) = \prod_{i=1}^n A_{ii} \ne 0\)</span></p></li>
-<li><p><span class="math inline">\(\boldsymbol{A}\)</span> 는 가역행렬이다.</p></li>
-<li><p><span class="math inline">\(\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Ax}=\boldsymbol{b}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\)</span> 가 유일하게 정해진다.</p></li>
-</ol>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\det (\boldsymbol{A}) = \prod_{i=1}^n A_{ii} \ne 0\)</span></p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\boldsymbol{A}\)</span> 는 가역행렬이다.</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Ax}=\boldsymbol{b}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\)</span> 가 유일하게 정해진다.</p>
 </div>
 <p><br></p>
 <section id="하삼각-행렬에서의-선형방정식의-풀이" class="level3">
 <h3 class="anchored" data-anchor-id="하삼각-행렬에서의-선형방정식의-풀이">하삼각 행렬에서의 선형방정식의 풀이</h3>
-<p><span class="math inline">\(\boldsymbol{L}\in \mathcal{M}_{n\times n}(\mathbb{F})\)</span> 과 <span class="math inline">\(\boldsymbol{b}\in \mathcal{M}_n(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Lx}=\boldsymbol{b}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})\)</span> 을 구해보자.</p>
+<p><span class="math inline">\(\boldsymbol{L}\in \mathcal{M}_{n\times n}(\mathbb{F})\)</span> 과 <span class="math inline">\(\boldsymbol{b}\in \mathcal{M}_n(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Lx}=\boldsymbol{b}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})\)</span> 을 구해보자. 이 때 <span class="math inline">\(\boldsymbol{L}\)</span> 의 각각의 대각 성분은 <span class="math inline">\(0\)</span> 이 아니라고 하자.</p>
 <p><span class="math display">\[
 \begin{bmatrix} L_{11} &amp; &amp; &amp; \\ L_{21} &amp; L_{22}  &amp; &amp; \\ \vdots &amp; &amp; \ddots &amp; \\ L_{n1} &amp; L_{n2} &amp; \cdots &amp; L_{nn} \end{bmatrix} \begin{bmatrix} x_1\\ x_2 \\ \vdots \\x_n \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
 \]</span></p>
@@ -478,7 +521,7 @@ x_k &amp;= \dfrac{1}{L_{kk}} \left( b_k - \sum_{i=1}^{k-1} L_{ki}x_{i}\right),\,
 </section>
 <section id="상삼각-행렬의-선형방정식의-풀이" class="level3">
 <h3 class="anchored" data-anchor-id="상삼각-행렬의-선형방정식의-풀이">상삼각 행렬의 선형방정식의 풀이</h3>
-<p>상삼각 행렬 <span class="math inline">\(\boldsymbol{U}\in \mathcal{M}_{n\times n}(\mathbb{F})\)</span> 와 <span class="math inline">\(\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Ux}=\boldsymbol{b}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})\)</span> 을 구해보자.</p>
+<p>상삼각 행렬 <span class="math inline">\(\boldsymbol{U}\in \mathcal{M}_{n\times n}(\mathbb{F})\)</span> 와 <span class="math inline">\(\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Ux}=\boldsymbol{b}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})\)</span> 을 구해보자. 역시 <span class="math inline">\(\boldsymbol{U}\)</span> 의 각각의 대각성분은 <span class="math inline">\(0\)</span> 이 아니다.</p>
 <p><span class="math display">\[
 \begin{bmatrix} U_{11} &amp; U_{12} &amp;\cdots &amp; U_{11} \\  &amp; U_{22}  &amp;\cdots  &amp; U_{21} \\  &amp; &amp; \ddots &amp; \vdots\\  &amp; &amp;  &amp; U_{nn} \end{bmatrix} \begin{bmatrix} x_1\\ x_2 \\ \vdots \\x_n \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
 \]</span></p>
@@ -501,10 +544,20 @@ x_k &amp;= \dfrac{1}{U_{kk}} \left( b_k - \sum_{i=k+1}^{n} U_{ki}x_{i}\right),\,
 <p>임을 안다.</p>
 <p><br></p>
 </section>
-<section id="코드-분석" class="level3">
-<h3 class="anchored" data-anchor-id="코드-분석">코드 분석</h3>
+<section id="코드-작성" class="level3">
+<h3 class="anchored" data-anchor-id="코드-작성">코드 작성</h3>
 <p>Julia 의 장점중의 하나는 알고리즘을 코드로 구현 했을 때 코드에서 알고리즘을 명확히 표현할 수 있다는 것이다. 또한 Julia 의 코드 실행 속도가 빠르기 때문에 많은 경우 알고리즘을 그대로 코드화 한 경우라도 상당한 속도를 낸다는 것이다.</p>
-<p>상삼각행렬에 대해서는 <code>Us()</code>, 하삼각행렬에 대해서는 <code>Ls()</code> 함수로 구현하였다.</p>
+<p>상삼각행렬에 대해서는 <code>Us()</code>, 하삼각행렬에 대해서는 <code>Ls()</code> 함수로 선형방정식의 해를 구하는 코드를 작성해보자. 아래의 코드는 가능한 답중의 하나이다.</p>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>이 코드를 포함하여 앞으로 나올 코드에 나오는 부동소수값은 별도로 특별한 언급이 없다면 모두 <code>Float64</code> 타입이며, 정수는 모두 <code>Int64</code> 타입이라고 가정한다. 그렇지 않다면 서로 다른 타입의 값에 대한 연산 문제로 코드가 불필요하게 길어지고 가독성도 해친다.</p>
+</div>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="st">"""</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="st">    Ls(A, b)</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -601,7 +654,7 @@ T(n) = 1 + \sum_{k=2}^n 2k = n^2 + n -1 = O(n^2)
 <p><span class="math display">\[
 \boldsymbol{Ax}=\boldsymbol{b} \iff  \boldsymbol{LAx} = \boldsymbol{Lb}
 \]</span></p>
-<p>가 성립한다. 즉 주어진 <span class="math inline">\(\boldsymbol{A}\)</span> 와 <span class="math inline">\(\boldsymbol{b}\)</span> 에 대해 가역 행렬 <span class="math inline">\(\boldsymbol{L}\)</span> 을 통해 <span class="math inline">\(\boldsymbol{LA}\)</span> 를 매우 간단하게 만든다면 <span class="math inline">\(\boldsymbol{LAx}=\boldsymbol{Lb}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\)</span> 를 쉽게 구할 수 있으며, 이 <span class="math inline">\(\boldsymbol{x}\)</span> 가 우리가 구하고자하는 선형방정식의 해이다.</p>
+<p>가 성립한다. 즉 주어진 <span class="math inline">\(\boldsymbol{A}\)</span> 와 <span class="math inline">\(\boldsymbol{b}\)</span> 에 대해 가역 행렬 <span class="math inline">\(\boldsymbol{L}\)</span> 을 통해 <span class="math inline">\(\boldsymbol{LA}\)</span> 가 매우 간단한 행렬이 된다면 <span class="math inline">\(\boldsymbol{LAx}=\boldsymbol{Lb}\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\)</span> 를 쉽게 구할 수 있으며, 이 <span class="math inline">\(\boldsymbol{x}\)</span> 가 우리가 구하고자하는 선형방정식의 해이다.</p>
 <p><br></p>
 <section id="행-사다리꼴-행렬-행-간소-사다리꼴-행렬과-행-기본-연산" class="level3">
 <h3 class="anchored" data-anchor-id="행-사다리꼴-행렬-행-간소-사다리꼴-행렬과-행-기본-연산">행 사다리꼴 행렬, 행 간소 사다리꼴 행렬과 행 기본 연산</h3>
@@ -682,19 +735,19 @@ c &amp; \text{if } i = k, j = l\,, \\ 0 &amp;\text{oterwise}  \end{array}\right.
 <p><span class="math display">\[
 \boldsymbol{A}=\begin{bmatrix} 1 &amp; 3 &amp; 2 \\ 0 &amp; 2 &amp; 4 \\ 4 &amp; 1 &amp; 3\end{bmatrix}
 \]</span></p>
-<p>일 경우, 첫번째 열벡터가 영벡터가 아니며, 이 열벡터의 첫번째 행이 <span class="math inline">\(0\)</span> 이 아니지만 이 열벡터에 절대값이 가장 큰 <span class="math inline">\(4\)</span> 가 성분으로 존재하므로 첫번째 행과 마지막 행을 교환한다. 이를 <span class="math inline">\(\boldsymbol{A}_{1-1}\)</span> 이라 하자. 이 때 선행 성분은 <span class="math inline">\(4\)</span> 이다. <span class="math display">\[
-\boldsymbol{A}_{1-1}=\begin{bmatrix} \underline{4} &amp; 1 &amp; 3\\ 1 &amp; 3 &amp; 2 \\ 0 &amp; 2 &amp; 4\end{bmatrix}
+<p>일 경우, 첫번째 열벡터가 영벡터가 아니며, 이 열벡터의 첫번째 행이 <span class="math inline">\(0\)</span> 이 아니지만 이 열벡터에 절대값이 가장 큰 <span class="math inline">\(4\)</span> 가 성분으로 존재하므로 첫번째 행과 마지막 행을 교환한다. 이를 <span class="math inline">\(\boldsymbol{A}_{1\_1}\)</span> 이라 하자. 이 때 선행 성분은 <span class="math inline">\(4\)</span> 이다. <span class="math display">\[
+\boldsymbol{A}_{1\_1}=\begin{bmatrix} \underline{4} &amp; 1 &amp; 3\\ 1 &amp; 3 &amp; 2 \\ 0 &amp; 2 &amp; 4\end{bmatrix}
 \]</span></p>
-<p><strong>P<sub>1</sub>-2.</strong> 선행성분으로 첫번째 행벡터를 나누어준다(<span class="math inline">\(\hat{L}_2\)</span> 연산). 이제 첫번째 행의 첫번째 성분은 1이다(선행 1 성분). 여기까지 수행한 행렬을 <span class="math inline">\(\boldsymbol{A}_{1-2}\)</span> 라고 하면 다음과 같다.</p>
+<p><strong>P<sub>1</sub>-2.</strong> 선행성분으로 첫번째 행벡터를 나누어준다(<span class="math inline">\(\hat{L}_2\)</span> 연산). 이제 첫번째 행의 첫번째 성분은 1이다(선행 1 성분). 여기까지 수행한 행렬을 <span class="math inline">\(\boldsymbol{A}_{1\_2}\)</span> 라고 하면 다음과 같다.</p>
 <p><span class="math display">\[
-\boldsymbol{A}_{1-2}=\begin{bmatrix} \underline{1} &amp; 1/4 &amp; 3/4 \\ 1 &amp; 3 &amp; 2 \\ 0 &amp; 2 &amp; 4\end{bmatrix}.
+\boldsymbol{A}_{1\_2}=\begin{bmatrix} \underline{1} &amp; 1/4 &amp; 3/4 \\ 1 &amp; 3 &amp; 2 \\ 0 &amp; 2 &amp; 4\end{bmatrix}.
 \]</span></p>
 <p><strong>P<sub>1</sub>-3.</strong> 첫번째 행벡터의 선행 1 성분의 열 위치를 <span class="math inline">\(l_1\)</span> 이라 하자. <span class="math inline">\(j=2,\ldots,\,m\)</span> 에 대해 <span class="math inline">\(\hat{L}_3 (j, i, -A_{j,l_1})\)</span> 를 적용하면 <span class="math inline">\(l_1\)</span> 열은 첫번째 성분을 제외하면 모두 <span class="math inline">\(0\)</span> 이 된다. 첫번째 행에 대한 마지막 과정이므로 <span class="math inline">\(\boldsymbol{A}_1\)</span> 이라 하면 다음과 같다.</p>
 <p><span class="math display">\[
 \boldsymbol{A}_1=\begin{bmatrix} \underline{1} &amp; 1/4 &amp; 3/4 \\ 0 &amp; 3/4 &amp; 5/4 \\ 0 &amp; 2 &amp; 4\end{bmatrix}.
 \]</span></p>
 <p><br></p>
-<p>이제 행렬 <span class="math inline">\(\boldsymbol{A}_k\)</span> 가 1) <span class="math inline">\(1\)</span> 행부터 <span class="math inline">\(k\)</span> 행까지는 1) 행 간소 사다리꼴 행렬이며, 2) <span class="math inline">\(k\)</span> 행의 선행 1 성분의 위치가 <span class="math inline">\(l_k\)</span> 열일 때 <span class="math inline">\(k\)</span> 행 아래의 모든 행이 1열부터 <span class="math inline">\(l_k\)</span> 열까지 <span class="math inline">\(0\)</span> 이라고 하자. 이에 다음 <strong>P<sub>k-1</sub>-1.</strong>, <strong>P<sub>k-1</sub>-2.</strong>, <strong>P<sub>k-1</sub>-1.</strong> 과정을 수행한다.</p>
+<p>이제 행렬 <span class="math inline">\(\boldsymbol{A}_k\)</span> 가 1) <span class="math inline">\(1\)</span> 행부터 <span class="math inline">\(k\)</span> 행까지는 (<span class="math inline">\(1\)</span>) 행 간소 사다리꼴 행렬이며, (<span class="math inline">\(2\)</span>) <span class="math inline">\(k\)</span> 행의 선행 1 성분의 위치가 <span class="math inline">\(l_k\)</span> 열일 때 <span class="math inline">\(k\)</span> 행 아래의 모든 행이 1열부터 <span class="math inline">\(l_k\)</span> 열까지 <span class="math inline">\(0\)</span> 이라고 하자. 이에 다음 <strong>P<sub>k-1</sub>-1.</strong>, <strong>P<sub>k-1</sub>-2.</strong>, <strong>P<sub>k-1</sub>-1.</strong> 과정을 수행한다.</p>
 <p><strong>P<sub>k+1</sub>-1.</strong> <span class="math inline">\(k+1\)</span> 행부터 <span class="math inline">\(m\)</span> 행까지만 생각한다. 여기서 첫번째 <span class="math inline">\(0\)</span> 벡터가 아닌 열벡터를 찾는다. 당연히 이 열벡터는 <span class="math inline">\(l_k\)</span> 열보다 오른쪽의 열이다. 이것을 <span class="math inline">\(l_{k+1}\)</span> 열이라고 하자. 이 열에서 가장 절대값이 큰 성분의 행과 <span class="math inline">\(k+1\)</span> 행을 교환한다 (<span class="math inline">\(\hat{L}_1\)</span> 연산). 만약 존재하지 않는다면 <span class="math inline">\(k+1\)</span> 행부터 마지막 행 까지의 모든 행벡터가 영벡터이므로 과정을 더 이상 진행시키지 않는다.</p>
 <p><strong>P<sub>k+1</sub>-2.</strong> 교환된 <span class="math inline">\(k+1\)</span> 행을 가장 처음 <span class="math inline">\(0\)</span> 이 아닌 성분으로 나눈다 (<span class="math inline">\(\hat{L}_2\)</span> 연산). 이제 첫번째 행의 첫번째 성분은 1이다.(선행 1 성분)</p>
 <p><strong>P<sub>k+1</sub>-3.</strong> <span class="math inline">\(k+1\)</span> 행이 마지막 행이라면 더 이상 진행하지 않는다. 그렇지 않다면 <span class="math inline">\(j=1, \ldots, \, k, k+2,\ldots,\,m\)</span> 에 대해 <span class="math inline">\(\hat{L}_3 (j, k+1, -A_{j,l_1})\)</span> 를 적용하면 <span class="math inline">\(l_{k+1}\)</span> 열 의 <span class="math inline">\(k+2\)</span> 행 이하는 모두 <span class="math inline">\(0\)</span> 이 된다.</p>
@@ -838,7 +891,7 @@ l_{21}u_{12} + l_{22}u_{22} &amp; = 3,
 </section>
 <section id="lu-분해를-이용한-선형방정식의-풀이-및-행렬식" class="level3">
 <h3 class="anchored" data-anchor-id="lu-분해를-이용한-선형방정식의-풀이-및-행렬식">LU 분해를 이용한 선형방정식의 풀이 및 행렬식</h3>
-<p><span class="math inline">\(\boldsymbol{A}\)</span> 가 LU 분해 가능이고 <span class="math inline">\(\boldsymbol{PA}=\boldsymbol{LU}\)</span> 로 분해되었다고 하자. <span class="math inline">\(\boldsymbol{A}\)</span> 가 가역행렬이 아니라면 분해가 의미가 없으므로 가역행렬일 때만 생각한다. 치환행렬 <span class="math inline">\(\boldsymbol{P}\)</span> 는 가역행렬이므로</p>
+<p><span class="math inline">\(\boldsymbol{A}\)</span> 가 LU 분해 가능이고 <span class="math inline">\(\boldsymbol{PA}=\boldsymbol{LU}\)</span> 로 분해되었다고 하자. <span class="math inline">\(\boldsymbol{A}\)</span> 가 가역행렬이 아니라면 분해가 의미가 없으므로 가역행렬일 때만 생각한다. <span class="math inline">\(\boldsymbol{P}\)</span> 치환행렬의 곱이며 각각의 치환행렬은 가역행렬이므로 <span class="math inline">\(\boldsymbol{P}\)</span> 도 가역행렬이다.</p>
 <p><span class="math display">\[
 \boldsymbol{Ax}=\boldsymbol{b} \iff \boldsymbol{PAx}=\boldsymbol{Pb} \iff \boldsymbol{LUx}=\boldsymbol{Pb}
 \]</span></p>
@@ -942,7 +995,7 @@ T(n) = \sum_{m=2}^{n} 2m(m-1) = \sum_{m=1}^n 2m(m-1)= O\left(\dfrac{2n^3}{3}\rig
 <section id="qr-분해-qr-factorization" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="qr-분해-qr-factorization"><span class="header-section-number">5</span> QR 분해 (QR-Factorization)</h2>
 <p><span class="math inline">\(m \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 을 <span class="math inline">\(m \times m\)</span> 행렬 <span class="math inline">\(\boldsymbol{Q}\)</span> 와 <span class="math inline">\(m\times n\)</span> 상 삼각행렬 <span class="math inline">\(\boldsymbol{R}\)</span> 분해하여 <span class="math inline">\(\boldsymbol{A}=\boldsymbol{QR}\)</span> 로 나타내는 것을 QR 분해라 한다. 이 때 <span class="math inline">\(\boldsymbol{Q}\)</span> 행렬의 각 열벡터는 서로 직교하며, 그 크기가 <span class="math inline">\(1\)</span> 이다. <span class="math inline">\(m=n\)</span> 이면 <span class="math inline">\(\boldsymbol{Q}\)</span> 가 유니터리행렬(unitary matrix) 로 <span class="math inline">\(\boldsymbol{Q}\boldsymbol{Q}^\ast = \boldsymbol{I}\)</span> 가 된다. 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 가 실수체에서 정의되었다면 <span class="math inline">\(\boldsymbol{Q}\)</span> 행렬은 직교행렬로 <span class="math inline">\(\boldsymbol{Q}\boldsymbol{Q}^T = \boldsymbol{I}\)</span> 이다.</p>
-<p>보통 이론적으로 QR 분해를 설명할 때는 그람-슈미트 과정(Gram-Schmidt process)을 사용하지만, 실제 수치해석적으로 구할 때는 Householder reflection 방법을 사용하거나 기븐스 회전(Givens rotation)을 사용한다.</p>
+<p>보통 이론적으로 QR 분해를 설명할 때는 그람-슈미트 과정(Gram-Schmidt process)을 사용하지만, 실제 수치해석적으로 구할 때는 Householder reflection 방법을 사용하거나 기븐스 회전(Givens rotation)을 사용한다. 여기서는 그람-슈미트 과정을 통한 QR 분해를 구현해보기로 한다.</p>
 <p><br></p>
 <section id="정사영-projection" class="level3">
 <h3 class="anchored" data-anchor-id="정사영-projection">정사영 (Projection)</h3>
@@ -1019,7 +1072,7 @@ Q_{ik} := (\hat{\boldsymbol{u}}_k)_i,\qquad R_{kj} := \langle \boldsymbol{A}_{:j
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <p>여기서 <code>norm(A)</code> 는 벡터의 노름을 구하는데 사용되었으며, 정확히는 <code>norm(A, p::Real=2)</code> 의 형태로 벡터, 혹은 행렬의 <span class="math inline">\(p\)</span>-노름을 구하는데 사용되는 함수이다. 앞선 벡터들의 선형결합인 벡터는 영벡터가 되어야 하지만 Roundoff 에러로 인해 0 이 아닌 작은 노름을 가질 수 있으므로, 함수의 <code>normeps</code> 보다 작은 값을 가질 경우 영벡터로 간주한다.</p>
-<p>실제로는 그람-슈미트 방법을 이용한 QR-분해는 잘 사용되지 않는데, round-off 에러가 발생하여 수치해석적으로 불안정하기 때문이다. 보통은 밀집 행렬의 경우 하우스홀더 변환을 통한 방법을 사용한다. 하우스홀더 변환을 통한 QR 분해는 –to be done– 를 참고하라.</p>
+<p>실제로는 그람-슈미트 방법을 이용한 QR-분해는 잘 사용되지 않는데, round-off 에러가 발생하여 수치해석적으로 불안정하기 때문이다. 보통은 밀집 행렬의 경우 하우스홀더 변환을 통한 방법을 사용한다.</p>
 <p><br></p>
 
 

@@ -286,6 +286,42 @@ window.Quarto = {
  <span class="menu-text">행렬의 분해</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">반복법을 이용한 선형 시스템의 해를 구하기</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">최소자승 문제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Approximation</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -334,7 +370,7 @@ window.Quarto = {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#sec-norm_and_condition_number" id="toc-sec-norm_and_condition_number" class="nav-link active" data-scroll-target="#sec-norm_and_condition_number"><span class="header-section-number">1</span> 노름(norm) 과 조건수</a>
+  <li><a href="#sec-norm_of_vector_and_matrix" id="toc-sec-norm_of_vector_and_matrix" class="nav-link active" data-scroll-target="#sec-norm_of_vector_and_matrix"><span class="header-section-number">1</span> 벡터와 행렬의 노름(norm)</a>
   <ul class="collapse">
   <li><a href="#벡터의-노름" id="toc-벡터의-노름" class="nav-link" data-scroll-target="#벡터의-노름">벡터의 노름</a></li>
   <li><a href="#행렬의-노름" id="toc-행렬의-노름" class="nav-link" data-scroll-target="#행렬의-노름">행렬의 노름</a></li>
@@ -374,10 +410,10 @@ window.Quarto = {
 </header>
 
 
-<p>지금까지는 Julia 의 기본적인 벡터와 행렬, 그리고 연산을 이용하여 일반적인 행렬에 대한 가우스 소거법과 LU 분해를 구현하였다. Julia 는 큰 벡터와 행렬을 다루기 위한 <code>SparseArrays</code> 모듈과 행렬 및 벡터 계산을 위한 <code>LinearAlgebra</code> 모듈을 기본으로 제공한다. 또한 다양한 형태의 행렬에 대한 특별한 연산도 제공한다. 이제 이런 기능들을 적극적으로 알아보도록 하자.</p>
+<p>지금까지는 Julia 의 기본적인 벡터와 행렬, 그리고 연산을 이용하여 일반적인 행렬에 대한 가우스 소거법과 LU 분해, QR 분해를 구현하여 보았다. Julia 는 큰 벡터와 행렬을 다루기 위한 <code>SparseArrays</code> 모듈과 행렬 및 벡터 계산을 위한 <code>LinearAlgebra</code> 모듈을 기본으로 제공한다. 또한 다양한 형태의 행렬에 대한 특별한 연산도 제공한다. 이제 이런 기능들을 알아보도록 하자. 그 전에 벡터와 행렬의 크기 혹은 거리를 의미하는 노름을 먼저 알아보기로 하자.</p>
 <p><br></p>
-<section id="sec-norm_and_condition_number" class="level2 page-columns page-full" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-norm_and_condition_number"><span class="header-section-number">1</span> 노름(norm) 과 조건수</h2>
+<section id="sec-norm_of_vector_and_matrix" class="level2 page-columns page-full" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-norm_of_vector_and_matrix"><span class="header-section-number">1</span> 벡터와 행렬의 노름(norm)</h2>
 <section id="벡터의-노름" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="벡터의-노름">벡터의 노름</h3>
 <p>벡터의 노름(norm) 은 벡터의 크기에 대한 척도로서 실수, 혹은 복소수의 절대값과 비슷한 역할을 한다. 보통 <span class="math inline">\(n\)</span> 차원 공간에서 사용하는 피타고라스 정리에 의한 거리도 노름의 일종이다. 벡터공간에서의 노름은 특정한 성질을 만족하는 함수 가운데 선택된다.</p>

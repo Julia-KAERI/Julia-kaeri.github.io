@@ -9,9 +9,16 @@ crossref:
 
 이번 장에서는 본격적인 수치해석에 들어가기에 앞서 선형 시스템을 코딩을 통해 푸는 방법, 코딩에서 이루어지는 계산의 성능 분석과 다항식에 관한 객체를 만들어본다. 수학적 내용을 코드로 만들어 보고 이를 이용하여 문제를 풀어 보면서 선형대수학과 julia 언어에 대한 지식을 습득하게 된다. 그리고 다항식에 대한 객체는 이후 계속 사용하게 될 것이다.
 
+</br>
 
 
 ## 선형 시스템과 선형 방정식
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-linear_system}
+
+#### 선형 시스템
 
 어떤 시스템이 $n$ 개의 독립변수 $x_1,\ldots,\,x_n$ 에 대해 아래와 같은 방정식으로 기술될 때 이 시스템을 선형 시스템이라고 한다.
 $$
@@ -21,6 +28,8 @@ f_1 (x_1,\ldots,\,x_n ) &= A_{11}x_1 + \cdots + A_{1n}x_n \\
 f_m (x_1,\ldots,\,x_n ) &= A_{m1}x_1 + \cdots + A_{mn}x_n \\
 \end{aligned}
 $$
+:::
+:::
 
 이 시스템은 $m \times n$ 행렬 $\boldsymbol{A}$ 와 $n \times 1$ 행렬 $\boldsymbol{x}$ 를 이용해 다음과 같은 식으로 정리 할 수 있다. 
 
@@ -61,7 +70,7 @@ $$
 </br>
 
 
-::: {.callout-note}
+::: {.callout-warning appearance="minimal"}
 다음부터 소개할 여러가지 방법은 `LinearAlgebra` 모듈에 그 기능이 거의 포함되어 있기으며 아마 직접 코딩하는 것보다 처리속도가 더 빠를 것이다. 그러나 우리가 배워야 할 것은 모듈과 함수의 사용법 뿐만 아니라, 생각하는 알고리즘을 코드로 만들어 정확하게 구현하는 것이기에 앞으로 나올 여려 방법들을 직접 구현해보고자 한다.
 :::
 
@@ -85,18 +94,18 @@ $$
 
 행렬 $\boldsymbol{A} \in\mathcal{M}_{n\times n}(\mathbb{F})$ 가 상삼각 행렬 혹은 하삼각 행렬일 때 다음은 동치이다.
 
-1. $\det (\boldsymbol{A}) = \prod_{i=1}^n A_{ii} \ne 0$
+&emsp; ($1$) $\det (\boldsymbol{A}) = \prod_{i=1}^n A_{ii} \ne 0$
 
-2. $\boldsymbol{A}$ 는 가역행렬이다.
+&emsp; ($2$) $\boldsymbol{A}$ 는 가역행렬이다.
 
-3. $\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Ax}=\boldsymbol{b}$ 를 만족하는 $\boldsymbol{x}$ 가 유일하게 정해진다.
+&emsp; ($3$) $\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Ax}=\boldsymbol{b}$ 를 만족하는 $\boldsymbol{x}$ 가 유일하게 정해진다.
 :::
 
 </br>
 
 ### 하삼각 행렬에서의 선형방정식의 풀이
 
-$\boldsymbol{L}\in \mathcal{M}_{n\times n}(\mathbb{F})$ 과 $\boldsymbol{b}\in \mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Lx}=\boldsymbol{b}$ 를 만족하는 $\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})$ 을 구해보자.
+$\boldsymbol{L}\in \mathcal{M}_{n\times n}(\mathbb{F})$ 과 $\boldsymbol{b}\in \mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Lx}=\boldsymbol{b}$ 를 만족하는 $\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})$ 을 구해보자. 이 때 $\boldsymbol{L}$ 의 각각의 대각 성분은 $0$ 이 아니라고 하자.
 
 $$
 \begin{bmatrix} L_{11} & & & \\ L_{21} & L_{22}  & & \\ \vdots & & \ddots & \\ L_{n1} & L_{n2} & \cdots & L_{nn} \end{bmatrix} \begin{bmatrix} x_1\\ x_2 \\ \vdots \\x_n \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
@@ -127,7 +136,7 @@ $$
 
 ### 상삼각 행렬의 선형방정식의 풀이
 
-상삼각 행렬 $\boldsymbol{U}\in \mathcal{M}_{n\times n}(\mathbb{F})$ 와 $\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Ux}=\boldsymbol{b}$ 를 만족하는 $\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})$ 을 구해보자.
+상삼각 행렬 $\boldsymbol{U}\in \mathcal{M}_{n\times n}(\mathbb{F})$ 와 $\boldsymbol{b}\in\mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Ux}=\boldsymbol{b}$ 를 만족하는 $\boldsymbol{x}\in \mathcal{M}_n(\mathbb{F})$ 을 구해보자. 역시 $\boldsymbol{U}$ 의 각각의 대각성분은 $0$ 이 아니다.
 
 $$
 \begin{bmatrix} U_{11} & U_{12} &\cdots & U_{11} \\  & U_{22}  &\cdots  & U_{21} \\  & & \ddots & \vdots\\  & &  & U_{nn} \end{bmatrix} \begin{bmatrix} x_1\\ x_2 \\ \vdots \\x_n \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
@@ -157,12 +166,17 @@ $$
 
 </br>
 
-### 코드 분석
+### 코드 작성
 
 Julia 의 장점중의 하나는 알고리즘을 코드로 구현 했을 때 코드에서 알고리즘을 명확히 표현할 수 있다는 것이다. 또한 Julia 의 코드 실행 속도가 빠르기 때문에 많은 경우 알고리즘을 그대로 코드화 한 경우라도 상당한 속도를 낸다는 것이다. 
 
 
-상삼각행렬에 대해서는 `Us()`, 하삼각행렬에 대해서는 `Ls()` 함수로 구현하였다.
+상삼각행렬에 대해서는 `Us()`, 하삼각행렬에 대해서는 `Ls()` 함수로 선형방정식의 해를 구하는 코드를 작성해보자. 아래의 코드는 가능한 답중의 하나이다.
+
+::: {.callout-warning appearance="minimal"}
+이 코드를 포함하여 앞으로 나올 코드에 나오는 부동소수값은 별도로 특별한 언급이 없다면 모두 `Float64` 타입이며, 정수는 모두 `Int64` 타입이라고 가정한다. 그렇지 않다면 서로 다른 타입의 값에 대한 연산 문제로 코드가 불필요하게 길어지고 가독성도 해친다. 
+:::
+
 
 ```{.julia code-line-numbers="true"}
 """
@@ -299,7 +313,7 @@ $$
 $$
 
 가 성립한다.
-즉 주어진 $\boldsymbol{A}$ 와 $\boldsymbol{b}$ 에 대해 가역 행렬 $\boldsymbol{L}$ 을 통해 $\boldsymbol{LA}$ 를 매우 간단하게 만든다면 $\boldsymbol{LAx}=\boldsymbol{Lb}$ 를 만족하는 $\boldsymbol{x}$ 를 쉽게 구할 수 있으며, 이 $\boldsymbol{x}$ 가 우리가 구하고자하는 선형방정식의 해이다. 
+즉 주어진 $\boldsymbol{A}$ 와 $\boldsymbol{b}$ 에 대해 가역 행렬 $\boldsymbol{L}$ 을 통해 $\boldsymbol{LA}$ 가 매우 간단한 행렬이 된다면 $\boldsymbol{LAx}=\boldsymbol{Lb}$ 를 만족하는 $\boldsymbol{x}$ 를 쉽게 구할 수 있으며, 이 $\boldsymbol{x}$ 가 우리가 구하고자하는 선형방정식의 해이다. 
 
 
 </br>
@@ -411,15 +425,15 @@ $$
 \boldsymbol{A}=\begin{bmatrix} 1 & 3 & 2 \\ 0 & 2 & 4 \\ 4 & 1 & 3\end{bmatrix}
 $$
 
-일 경우, 첫번째 열벡터가 영벡터가 아니며, 이 열벡터의 첫번째 행이 $0$ 이 아니지만 이 열벡터에 절대값이 가장 큰 $4$ 가 성분으로 존재하므로 첫번째 행과 마지막 행을 교환한다. 이를 $\boldsymbol{A}_{1-1}$ 이라 하자. 이 때 선행 성분은 $4$ 이다.
+일 경우, 첫번째 열벡터가 영벡터가 아니며, 이 열벡터의 첫번째 행이 $0$ 이 아니지만 이 열벡터에 절대값이 가장 큰 $4$ 가 성분으로 존재하므로 첫번째 행과 마지막 행을 교환한다. 이를 $\boldsymbol{A}_{1\_1}$ 이라 하자. 이 때 선행 성분은 $4$ 이다.
 $$
-\boldsymbol{A}_{1-1}=\begin{bmatrix} \underline{4} & 1 & 3\\ 1 & 3 & 2 \\ 0 & 2 & 4\end{bmatrix}
+\boldsymbol{A}_{1\_1}=\begin{bmatrix} \underline{4} & 1 & 3\\ 1 & 3 & 2 \\ 0 & 2 & 4\end{bmatrix}
 $$
 
-**P<sub>1</sub>-2.** 선행성분으로 첫번째 행벡터를 나누어준다($\hat{L}_2$ 연산). 이제 첫번째 행의 첫번째 성분은 1이다(선행 1 성분). 여기까지 수행한 행렬을 $\boldsymbol{A}_{1-2}$ 라고 하면 다음과 같다.
+**P<sub>1</sub>-2.** 선행성분으로 첫번째 행벡터를 나누어준다($\hat{L}_2$ 연산). 이제 첫번째 행의 첫번째 성분은 1이다(선행 1 성분). 여기까지 수행한 행렬을 $\boldsymbol{A}_{1\_2}$ 라고 하면 다음과 같다.
 
 $$
-\boldsymbol{A}_{1-2}=\begin{bmatrix} \underline{1} & 1/4 & 3/4 \\ 1 & 3 & 2 \\ 0 & 2 & 4\end{bmatrix}.
+\boldsymbol{A}_{1\_2}=\begin{bmatrix} \underline{1} & 1/4 & 3/4 \\ 1 & 3 & 2 \\ 0 & 2 & 4\end{bmatrix}.
 $$
 
 **P<sub>1</sub>-3.** 첫번째 행벡터의 선행 1 성분의 열 위치를 $l_1$ 이라 하자. $j=2,\ldots,\,m$ 에 대해 $\hat{L}_3 (j, i, -A_{j,l_1})$ 를 적용하면 $l_1$ 열은 첫번째 성분을 제외하면 모두 $0$ 이 된다. 첫번째 행에 대한 마지막 과정이므로 $\boldsymbol{A}_1$ 이라 하면 다음과 같다.
@@ -430,7 +444,7 @@ $$
 
 </br>
 
-이제 행렬 $\boldsymbol{A}_k$ 가 1) $1$ 행부터 $k$ 행까지는 1) 행 간소 사다리꼴 행렬이며, 2) $k$ 행의 선행 1 성분의 위치가 $l_k$ 열일 때 $k$ 행 아래의 모든 행이 1열부터 $l_k$ 열까지 $0$ 이라고 하자. 이에 다음 **P<sub>k-1</sub>-1.**, **P<sub>k-1</sub>-2.**, **P<sub>k-1</sub>-1.** 과정을 수행한다.
+이제 행렬 $\boldsymbol{A}_k$ 가 1) $1$ 행부터 $k$ 행까지는 ($1$) 행 간소 사다리꼴 행렬이며, ($2$) $k$ 행의 선행 1 성분의 위치가 $l_k$ 열일 때 $k$ 행 아래의 모든 행이 1열부터 $l_k$ 열까지 $0$ 이라고 하자. 이에 다음 **P<sub>k-1</sub>-1.**, **P<sub>k-1</sub>-2.**, **P<sub>k-1</sub>-1.** 과정을 수행한다.
 
 **P<sub>k+1</sub>-1.** $k+1$ 행부터 $m$ 행까지만 생각한다. 여기서 첫번째 $0$ 벡터가 아닌 열벡터를 찾는다. 당연히 이 열벡터는 $l_k$ 열보다 오른쪽의 열이다. 이것을 $l_{k+1}$ 열이라고 하자. 이 열에서 가장 절대값이 큰 성분의 행과 $k+1$ 행을 교환한다 ($\hat{L}_1$ 연산). 만약 존재하지 않는다면 $k+1$ 행부터 마지막 행 까지의 모든 행벡터가 영벡터이므로 과정을 더 이상 진행시키지 않는다.
 
@@ -617,7 +631,7 @@ $$
 
 ### LU 분해를 이용한 선형방정식의 풀이 및 행렬식
 
-$\boldsymbol{A}$ 가 LU 분해 가능이고 $\boldsymbol{PA}=\boldsymbol{LU}$ 로 분해되었다고 하자. $\boldsymbol{A}$ 가 가역행렬이 아니라면 분해가 의미가 없으므로 가역행렬일 때만 생각한다. 치환행렬 $\boldsymbol{P}$ 는 가역행렬이므로
+$\boldsymbol{A}$ 가 LU 분해 가능이고 $\boldsymbol{PA}=\boldsymbol{LU}$ 로 분해되었다고 하자. $\boldsymbol{A}$ 가 가역행렬이 아니라면 분해가 의미가 없으므로 가역행렬일 때만 생각한다. $\boldsymbol{P}$ 치환행렬의 곱이며 각각의 치환행렬은 가역행렬이므로 $\boldsymbol{P}$ 도 가역행렬이다.
 
 $$
 \boldsymbol{Ax}=\boldsymbol{b} \iff \boldsymbol{PAx}=\boldsymbol{Pb} \iff \boldsymbol{LUx}=\boldsymbol{Pb}
@@ -742,7 +756,7 @@ $$
 
 $m \times n$ 행렬 $\boldsymbol{A}$ 을 $m \times m$ 행렬 $\boldsymbol{Q}$ 와  $m\times n$ 상 삼각행렬 $\boldsymbol{R}$  분해하여 $\boldsymbol{A}=\boldsymbol{QR}$ 로 나타내는 것을 QR 분해라 한다. 이 때 $\boldsymbol{Q}$ 행렬의 각 열벡터는 서로 직교하며, 그 크기가 $1$ 이다. $m=n$ 이면 $\boldsymbol{Q}$ 가 유니터리행렬(unitary matrix) 로 $\boldsymbol{Q}\boldsymbol{Q}^\ast = \boldsymbol{I}$ 가 된다. 행렬 $\boldsymbol{A}$ 가 실수체에서 정의되었다면 $\boldsymbol{Q}$ 행렬은 직교행렬로 $\boldsymbol{Q}\boldsymbol{Q}^T = \boldsymbol{I}$ 이다.
 
-보통 이론적으로 QR 분해를 설명할 때는 그람-슈미트 과정(Gram-Schmidt process)을 사용하지만, 실제 수치해석적으로 구할 때는 Householder reflection 방법을 사용하거나 기븐스 회전(Givens rotation)을 사용한다. 
+보통 이론적으로 QR 분해를 설명할 때는 그람-슈미트 과정(Gram-Schmidt process)을 사용하지만, 실제 수치해석적으로 구할 때는 Householder reflection 방법을 사용하거나 기븐스 회전(Givens rotation)을 사용한다. 여기서는 그람-슈미트 과정을 통한 QR 분해를 구현해보기로 한다.
 
 </br>
 
@@ -849,7 +863,7 @@ end
 
 여기서 `norm(A)` 는 벡터의 노름을 구하는데 사용되었으며, 정확히는 `norm(A, p::Real=2)` 의 형태로 벡터, 혹은 행렬의 $p$-노름을 구하는데 사용되는 함수이다. 앞선 벡터들의 선형결합인 벡터는 영벡터가 되어야 하지만 Roundoff 에러로 인해 0 이 아닌 작은 노름을 가질 수 있으므로, 함수의 `normeps` 보다 작은 값을 가질 경우 영벡터로 간주한다.
 
-실제로는 그람-슈미트 방법을 이용한 QR-분해는 잘 사용되지 않는데, round-off 에러가 발생하여 수치해석적으로 불안정하기 때문이다. 보통은 밀집 행렬의 경우 하우스홀더 변환을 통한 방법을 사용한다. 하우스홀더 변환을 통한 QR 분해는 --to be done-- 를 참고하라.
+실제로는 그람-슈미트 방법을 이용한 QR-분해는 잘 사용되지 않는데, round-off 에러가 발생하여 수치해석적으로 불안정하기 때문이다. 보통은 밀집 행렬의 경우 하우스홀더 변환을 통한 방법을 사용한다.
 
 </br>
 
