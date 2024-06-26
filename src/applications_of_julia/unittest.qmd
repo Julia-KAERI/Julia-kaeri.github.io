@@ -1,0 +1,92 @@
+---
+title: "유닛테스트 : Test.jl"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+유닛테스트(Unit test) 혹은 단위테스트는 작성한 함수의 실행 결과가 기대했던 것과 일치하는지 여부를 확인하는 것을 말합니다. 이를 위해 `Test.jl` 을 설치합니다.
+
+</br>
+
+## `@test` 매크로를 사용한 유닛테스트
+
+가장 간단한 단위테스트 입니다. 아래와 같은 네가지 방법으로 사용할 수 있습니다.
+
+```julia
+@test ex
+@test f(args...) key=val ...
+@test ex broken=true
+@test ex skip=true
+```
+
+</br>
+
+### `@test ex`
+
+`ex` 는 `true` 혹은 `false` 를 반환하는 표현식이어야 하며 `true` 이면 테스트를 통과한 것으로, `false` 이면 실패한 것으로 간주합니다.
+
+```txt
+In [1]: using Test
+
+In [2]: @test 2+3 == 5
+Out[2]: Test Passed
+
+In [3]: @test 3 == 5
+Test Failed at REPL[3]:1
+  Expression: 3 == 5
+   Evaluated: 3 == 5
+
+ERROR: There was an error during testing
+```
+
+</br>
+
+### `@test f(args...) key=val ...`
+
+`isapprox(a, b; atol=1.0e-10)` 함수는 `norm(b-a)` 가 `atol` 키워드 인자로 주어진 값보다 작으면 `true` 를 아니면 `false` 를 반환합니다. (`isapprox` 함수는 수 뿐만 아니라 배열에 대해서도 사용할 수 있으며 `atol` 이외의 키워드 인자도 입력 할 수 있습니다. Julia 에 포함된 공식 문서를 참고하시기 바랍니다.) 이 함수에 대해 다음과 같이 테스트 할 수 있습니다. 
+
+```txt
+In [2]: @test isapprox(1.0e-7, 0.0, atol=1.0e-5)
+Out[2]: Test Passed
+
+In [3]: @test isapprox(1.0e-7, 0.0) atol=1.0e-5
+Out[3]: Test Passed
+```
+
+`@test` 다음에 함수가 올 때는 키워드 인자를 함수의 `( )` 안에 넣어도 되고 밖에 넣어도 됩니다.
+
+</br>
+
+### `@test ex broken=true`
+
+단위테스트에서는 어떤 표현식이 틀리거나 예외를 발생시키 것으로 함수의 기능을 확인해야 할 때가 있는데 이런 경우에 사용합니다. `broken` 인자는 `true` 이거나 `false` 이어야 합니다. `broken=true` 조건에서는 `ex` 표현식이 `false` 이거나 예외를 발생시킬 때 테스트를 통과한 것으로 간주합니다. `broken=true` 조건이라면 일반적인 `@test ex` 와 같습니다.
+
+```txt
+In [1]: @test [2, 3] + "a"  broken=true
+Out[1]: Test Broken
+  Expression: [2, 3] + "a"
+
+In [2]: @test 3==4 broken=true
+Out[2]: Test Broken
+  Expression: 3 == 4
+
+In [3]: @test 2+3==5 broken=false
+Out[3]: Test Passed
+
+In [4]: @test 2+3==5 broken=true
+Error During Test at REPL[15]:1
+ Unexpected Pass
+ Expression: 2 + 3 == 5
+ Got correct result, please change to @test if no longer broken.
+```
+
+`In [1]` 의 경우 `[2, 3] + "a"` 는 예외를 발생시켜야 하는데 `broken=true` 조건으로 인해 테스트를 통과하게 됩니다. 일반적인 통과가 아니므로 출력 메시지가 `Test Broken` 이 됩니다. `In [2]` 의 경우 `3==4` 는 `false` 이므로 역시 broken test 를 통과합니다. 
+
+`In [3]` 에서 `broken=false` 를 주면 `@test` 와 동일하다는 것을 확인할 수 있습니다.
+
+`In [4]` 에서는 표현식이 `true` 
+
+

@@ -12,7 +12,7 @@ crossref:
 
 </br>
 
-## 벡터와 행렬의 노름(norm) {#sec-norm_of_vector_and_matrix}
+## 벡터와 행렬의 노름과 조건수 {#sec-norm_of_vector_and_matrix}
 
 
 ### 벡터의 노름
@@ -194,17 +194,17 @@ Out[6]: 3-element Vector{Float64}:
 
 행렬의 노름 $\|\cdot \|: \mathcal{M}_{m\times n}(\mathbb{F}) \to \mathbb{R}$ 은 행렬 $\boldsymbol{A},\, \boldsymbol{B}$ 와 스칼라 $\alpha$ 에 대해 다음의 성질을 만족한다.
 
-1. $\|\boldsymbol{A}\| \ge 0$, 
+&emsp; ($1$) $\|\boldsymbol{A}\| \ge 0$, 
 
-2. $\|\boldsymbol{A}\| = 0 \iff \boldsymbol{A} = 0$, 
+&emsp; ($2$) $\|\boldsymbol{A}\| = 0 \iff \boldsymbol{A} = 0$, 
 
-3. $\|\alpha \boldsymbol{A}\| = |\alpha| \|\boldsymbol{A}\|$, 
+&emsp; ($3$) $\|\alpha \boldsymbol{A}\| = |\alpha| \|\boldsymbol{A}\|$, 
 
-4. $\|\boldsymbol{A}+\boldsymbol{B}\| \le \|\boldsymbol{A}\|+\|\boldsymbol{B}\|$.
+&emsp; ($4$) $\|\boldsymbol{A}+\boldsymbol{B}\| \le \|\boldsymbol{A}\|+\|\boldsymbol{B}\|$.
 
 또한 $\boldsymbol{A}\in \mathcal{M}_{m\times n}(\mathbb{F}),\, \boldsymbol{B} \in \mathcal{M}_{n\times p}(\mathbb{F})$ 에 대해 다음이 성립한다.
 
-5. $\|\boldsymbol{AB}\| \le \|\boldsymbol{A}\| \cdot\|\boldsymbol{B}\|$.
+&emsp; ($5$) $\|\boldsymbol{AB}\| \le \|\boldsymbol{A}\| \cdot\|\boldsymbol{B}\|$.
 
 :::
 :::
@@ -386,9 +386,141 @@ Out[9]: 6.557438524302
 
 </br>
 
+### 행렬의 조건수 {#sec-condition_number_of_matrix}
+
+어떤 함수 $f$ 와 이를 구현하여 수치해석적으로 계산하는 함수 $\overline{f}$ 가 있다고 하자. 많은 경우 $f(x)$ 와 $\overline{f}(x)$ 는 차이가 나며 이 차이를 계량하기 위애 보통 아래의 세가지 오차를 사용한다.
+
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-errors}
+
+#### 오차, 절대오차, 상대오차
+
+함수 $f(x)$ 와 그 수치해석적인 구현 $\overline{f}(x)$ 에 대해 아래와 같은 세가지 오차를 정의 할 수 있다.
+
+&emsp; ($1$) **오차(error)** $\delta f(x) := f(x) - \overline{f}(x)$.
+
+&emsp; ($2$) **절대오차(absolute error)**  $|\delta f(x)| := |f(x) - \overline{f}(x)|$.
+
+&emsp; ($3$) **상대오차(relative error)** $\displaystyle \dfrac{|\delta f(x)|}{|f(x)|} = \dfrac{|f(x) - \overline{f}(x)|}{|f(x)|}$.
+
+:::
+
+:::
+
+</br>
+
+위의 세가지 오차는 우리가 구하고자 하는 $f$ 와 우리가 고안한 $\overline{f}$ 사이의 차이에 대해 정량화 한 값이다. 이제 시스템 자체의 안정성에 대해 한번 보기로 하자. 시스템을 기술하는 함수 $f(x)$ 가 있다고 하자. 적당하게 작은 $\delta x$ 애 대해 만약 $f(x_0+\delta x)$ 가 $f(x_0)$ 와 큰 차이가 난다면 이 시스템을 다루는 데는 큰 주의가 필요할 것이다. 이를 **ill-conditioned** 라고 한다. 반대로 $f(x_0 + \delta x)$ 가 $f(x)$ 와 큰 차이가 나지 않는다면 $x_0$ 에 어느 정도 오차가 있더라도 우리가 구하고자 하는 값과 큰 차이가 나지 않을 것이고 우리가 다루기 쉬울 것이다. 이를 **well-conditioned** 라고 한다. 이 성질의 정량화를 위해 함수 $f$ 에 대한 조건수를 아래와 같이 정의한다.
+
+</br>
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-condition_number_of_function}
+
+#### 함수의 조건수
+
+함수 $f:X\subset \mathbb{R}^m \to \mathbb{R}^n$ 와 $x_0 \in X$ 에 대해 아래와 같이 정의된 $\kappa_f (x_0)$ 를 $f$ 의 $x_0 (\ne \boldsymbol{0})$ 에 대한 **조건수 (condition number)** 혹은 **상대적 조건수 (relative condition number)** 라고 한다.
+
+$$
+\kappa_f(x_0) = \lim_{\epsilon \to 0} \sup_{\|\delta x\| < \epsilon} \dfrac{\|f(x_0+\delta x)-f(x_0)\|/\|f(x_0)\|}{\|\delta x\|/\|x_0\|}
+$$
+
+:::
+
+:::
+
+</br>
+
+$\kappa_f(x_0) \ll 1$ 이라면 $\|f(x_0 + \delta x)\|$ 가 $\|f(x_0)\|$ 와의 차이가 매우 작다. 즉 well-conditioned 이다. 반대로 $\kappa_f(x_0) \gg 1$ 이라면 $\|f(x_0+\delta x)\|$ 가 $\|f(x_0)\|$ 와의 차이가 매우 크기때문에 ill-conditioned 이다. 
+
+</br>
+
+다음은 미분의 정의로부터 쉽게 보일 수 있다.
+
+::: {#prp-condition_number_for_differential_function}
+
+$\boldsymbol{f}:\mathbb{R}^m \to \mathbb{R}^n$ 가 미분가능한 함수라면
+
+$$
+\kappa_\boldsymbol{f}(\boldsymbol{x}_0) = \dfrac{\|D\boldsymbol{f}(\boldsymbol{x}_0) \| \cdot \|\boldsymbol{x}_0\|}{\|\boldsymbol{f}(\boldsymbol{x}_0)\|}
+$$
+
+이다.
+
+:::
+
+</br>
+
+가역행렬인 정사각 행렬 $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})$ 을 생각하자. $\boldsymbol{A}$ 는 $\mathbb{R}^n \mapsto \mathbb{R}^n$ 함수이므로 조건수를 생각 할 수 있다. $\boldsymbol{Ax}_0 = \boldsymbol{y}_0$ 라고 하면 $\boldsymbol{x}_0 = \boldsymbol{A}^{-1}\boldsymbol{y}_0$ 이므로, 
+
+$$
+\dfrac{\|\boldsymbol{A}(\boldsymbol{x}_0 + \delta \boldsymbol{x}) - \boldsymbol{Ax}_0\|/\|\boldsymbol{Ax}_0\|}{\|\delta\boldsymbol{ \boldsymbol{x}}\|/\|\boldsymbol{x}_0\|} = \dfrac{\|\boldsymbol{A}\delta \boldsymbol{x}\|}{\|\delta \boldsymbol{x}\|} \dfrac{\|\boldsymbol{x}_0\|}{\|\boldsymbol{Ax}_0\|} =  \dfrac{\|\boldsymbol{A}\delta \boldsymbol{x}\|}{\|\delta \boldsymbol{x}\|} \dfrac{\|\boldsymbol{A}^{-1}\boldsymbol{y}_0\|}{\|\boldsymbol{y}_0\|} \le \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
+$$
+
+이다. 또한 @def-matrix_norm 의 ($5$) 로 부터, 
+
+$$
+\|\boldsymbol{A}\|\cdot\|\boldsymbol{A}^{-1}\| \ge \|\boldsymbol{AA}^{-1}\| = 1
+$$
+
+이 성립한다. 즉 가역행렬의 경우 조건수는 함수에 대한 입력값($\boldsymbol{x}_0$) 과는 상관 없이 행렬과 그 역행렬의 노름의 곱으로 정해진다. 
+
+::: {.callout-note appearance="minimal"}
+
+::: {#def-conditional_number_of_invirtible_matrix}
+
+#### 가역행렬의 조건수
+
+$n \times n$ 가역행렬 $\boldsymbol{A}$ 에 대해 조건수 $\kappa_\boldsymbol{A}$ 는 다음과 같다.
+
+$$
+\kappa_\boldsymbol{A} := \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
+$$
+
+:::
+
+:::
+
+</br>
+
+::: {#prp-condition_number_for_types_of_matrix}
+
+$\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})$ 가 정규행렬이며 $\mathcal{M}_{n}(\mathbb{F})$ 에 대해 $L_2$ 노름이 정의되어 있다고 하자. $\boldsymbol{A}$ 의 고유값의 집합 $\Lambda$ 에 대해 $\lambda_\max := \max \{|\lambda|: \lambda \in \Lambda\}$, $\lambda_\min := \min \{|\lambda| :\lambda \in \Lambda \}$ 일 때 다음이 성립한다.
+
+$$
+\kappa_\boldsymbol{A}= \dfrac{\lambda_{\max}}{\lambda_{\min}}
+$$ 
+
+:::
+
+::: {.proof}
+
+$\boldsymbol{A}$ 가 정규행렬이면 고유벡터로 대각화가 가능하며, 가역이므로 고유값은 모두 $0$ 이 아니다. 이제 $\boldsymbol{A}$ 를 각각의 대각성분이 모두 $0$ 이 아닌 대각행렬로 간주해도 된다. $\boldsymbol{v}\in \mathcal{M}_{n}(\mathbb{F})$ 가 정규화된 벡터라고 하면
+
+$$
+\|\boldsymbol{Av}\|_2  \le |\lambda_\max|
+$$
+
+이다. $\boldsymbol{v}$ 가 $\lambda_\max$ 에 대한 고유벡터일 때 등호가 성립하므로 $\|\boldsymbol{A}\|_2 = \lambda_\max$ 이다. 같은 방법으로 $\|\boldsymbol{A}^{-1}\|_2 = \dfrac{1}{\lambda_\min}$ 임을 보일 수 있다. $\square$
+
+:::
+
+</br>
+
+
+::: {#cor-condition_number_for_types_of_matrix}
+
+$\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})$ 가 에르미트 행렬일 때도 @prp-condition_number_for_types_of_matrix 가 성립한다.
+
+:::
+
+</br>
 
 ## 다양한 행렬들
 
+여기서는 julia 언어에서 다양한 벡터와 행렬을 어떻게 다루는 지를 배운다. 
 
 ### 성긴행렬과 밀집행렬 {#sec-sparse_matrix}
 
@@ -819,8 +951,8 @@ Out[27]: 5×5 Hermitian{Complex{Int64}, Matrix{Complex{Int64}}}:
 | `dot(u, v)` | `u⋅v` 와 같다  |
 | `dot(u, A, v)` | `dot(u, A*v)` 와 같다 | |
 | `cross(u, v)` | `×(u, v)` 와 같다 | 벡터의 외적 |
-| `norm(u, p)` or `norm(A, p)`|벡터의 $L_p$-노름 | [노름과 조건수](#sec-norm_and_condition_number) 참고 |
-| `opnorm(A, p::Real=2)` | 행렬의 $L_p$-노름  | [노름과 조건수](#sec-norm_and_condition_number)  참고|
+| `norm(u, p)` or `norm(A, p)`|벡터의 $L_p$-노름 | [벡터와 행렬의 노름과 조건수](#sec-norm_of_vector_and_matrix) 참고 |
+| `opnorm(A, p::Real=2)` | 행렬의 $L_p$-노름  | [벡터와 행렬의 노름과 조건수](#sec-norm_of_vector_and_matrix)  참고|
 |`normalize(a, p::Real=2)` | 벡터, 행렬의 정규화 | `norm(a, p)==1` 되도록 normalize 한다.|
 | `exp(A)` | exponential of $\boldsymbol{A}$  | $\displaystyle \sum_{k=1}^\infty \dfrac{\boldsymbol{A}^k}{k!}$ |
 

@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/04_matrix_algebra.html</loc>
-    <lastmod>2024-06-21T06:27:02.199Z</lastmod>
+    <lastmod>2024-06-24T23:10:08.317Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/03_linear_system.html</loc>
@@ -251,5 +251,9 @@
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
     <lastmod>2024-05-30T01:48:32.070Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/unittest.html</loc>
+    <lastmod>2024-06-25T00:52:50.726Z</lastmod>
   </url>
 </urlset>

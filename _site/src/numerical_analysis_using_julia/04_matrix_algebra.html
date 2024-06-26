@@ -370,10 +370,11 @@ window.Quarto = {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#sec-norm_of_vector_and_matrix" id="toc-sec-norm_of_vector_and_matrix" class="nav-link active" data-scroll-target="#sec-norm_of_vector_and_matrix"><span class="header-section-number">1</span> 벡터와 행렬의 노름(norm)</a>
+  <li><a href="#sec-norm_of_vector_and_matrix" id="toc-sec-norm_of_vector_and_matrix" class="nav-link active" data-scroll-target="#sec-norm_of_vector_and_matrix"><span class="header-section-number">1</span> 벡터와 행렬의 노름과 조건수</a>
   <ul class="collapse">
   <li><a href="#벡터의-노름" id="toc-벡터의-노름" class="nav-link" data-scroll-target="#벡터의-노름">벡터의 노름</a></li>
   <li><a href="#행렬의-노름" id="toc-행렬의-노름" class="nav-link" data-scroll-target="#행렬의-노름">행렬의 노름</a></li>
+  <li><a href="#sec-condition_number_of_matrix" id="toc-sec-condition_number_of_matrix" class="nav-link" data-scroll-target="#sec-condition_number_of_matrix">행렬의 조건수</a></li>
   </ul></li>
   <li><a href="#다양한-행렬들" id="toc-다양한-행렬들" class="nav-link" data-scroll-target="#다양한-행렬들"><span class="header-section-number">2</span> 다양한 행렬들</a>
   <ul class="collapse">
@@ -413,7 +414,7 @@ window.Quarto = {
 <p>지금까지는 Julia 의 기본적인 벡터와 행렬, 그리고 연산을 이용하여 일반적인 행렬에 대한 가우스 소거법과 LU 분해, QR 분해를 구현하여 보았다. Julia 는 큰 벡터와 행렬을 다루기 위한 <code>SparseArrays</code> 모듈과 행렬 및 벡터 계산을 위한 <code>LinearAlgebra</code> 모듈을 기본으로 제공한다. 또한 다양한 형태의 행렬에 대한 특별한 연산도 제공한다. 이제 이런 기능들을 알아보도록 하자. 그 전에 벡터와 행렬의 크기 혹은 거리를 의미하는 노름을 먼저 알아보기로 하자.</p>
 <p><br></p>
 <section id="sec-norm_of_vector_and_matrix" class="level2 page-columns page-full" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sec-norm_of_vector_and_matrix"><span class="header-section-number">1</span> 벡터와 행렬의 노름(norm)</h2>
+<h2 data-number="1" class="anchored" data-anchor-id="sec-norm_of_vector_and_matrix"><span class="header-section-number">1</span> 벡터와 행렬의 노름과 조건수</h2>
 <section id="벡터의-노름" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="벡터의-노름">벡터의 노름</h3>
 <p>벡터의 노름(norm) 은 벡터의 크기에 대한 척도로서 실수, 혹은 복소수의 절대값과 비슷한 역할을 한다. 보통 <span class="math inline">\(n\)</span> 차원 공간에서 사용하는 피타고라스 정리에 의한 거리도 노름의 일종이다. 벡터공간에서의 노름은 특정한 성질을 만족하는 함수 가운데 선택된다.</p>
@@ -544,16 +545,12 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 <div class="callout-body-container">
 <div id="def-matrix_norm" class="theorem definition">
 <p><span class="theorem-title"><strong>정의 4</strong></span> 행렬의 노름 <span class="math inline">\(\|\cdot \|: \mathcal{M}_{m\times n}(\mathbb{F}) \to \mathbb{R}\)</span> 은 행렬 <span class="math inline">\(\boldsymbol{A},\, \boldsymbol{B}\)</span> 와 스칼라 <span class="math inline">\(\alpha\)</span> 에 대해 다음의 성질을 만족한다.</p>
-<ol type="1">
-<li><p><span class="math inline">\(\|\boldsymbol{A}\| \ge 0\)</span>,</p></li>
-<li><p><span class="math inline">\(\|\boldsymbol{A}\| = 0 \iff \boldsymbol{A} = 0\)</span>,</p></li>
-<li><p><span class="math inline">\(\|\alpha \boldsymbol{A}\| = |\alpha| \|\boldsymbol{A}\|\)</span>,</p></li>
-<li><p><span class="math inline">\(\|\boldsymbol{A}+\boldsymbol{B}\| \le \|\boldsymbol{A}\|+\|\boldsymbol{B}\|\)</span>.</p></li>
-</ol>
+<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\|\boldsymbol{A}\| \ge 0\)</span>,</p>
+<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\|\boldsymbol{A}\| = 0 \iff \boldsymbol{A} = 0\)</span>,</p>
+<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\|\alpha \boldsymbol{A}\| = |\alpha| \|\boldsymbol{A}\|\)</span>,</p>
+<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(\|\boldsymbol{A}+\boldsymbol{B}\| \le \|\boldsymbol{A}\|+\|\boldsymbol{B}\|\)</span>.</p>
 <p>또한 <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{m\times n}(\mathbb{F}),\, \boldsymbol{B} \in \mathcal{M}_{n\times p}(\mathbb{F})\)</span> 에 대해 다음이 성립한다.</p>
-<ol start="5" type="1">
-<li><span class="math inline">\(\|\boldsymbol{AB}\| \le \|\boldsymbol{A}\| \cdot\|\boldsymbol{B}\|\)</span>.</li>
-</ol>
+<p>  (<span class="math inline">\(5\)</span>) <span class="math inline">\(\|\boldsymbol{AB}\| \le \|\boldsymbol{A}\| \cdot\|\boldsymbol{B}\|\)</span>.</p>
 </div>
 </div>
 </div>
@@ -677,9 +674,102 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 <p><br></p>
 </section>
 </section>
+<section id="sec-condition_number_of_matrix" class="level3">
+<h3 class="anchored" data-anchor-id="sec-condition_number_of_matrix">행렬의 조건수</h3>
+<p>어떤 함수 <span class="math inline">\(f\)</span> 와 이를 구현하여 수치해석적으로 계산하는 함수 <span class="math inline">\(\overline{f}\)</span> 가 있다고 하자. 많은 경우 <span class="math inline">\(f(x)\)</span> 와 <span class="math inline">\(\overline{f}(x)\)</span> 는 차이가 나며 이 차이를 계량하기 위애 보통 아래의 세가지 오차를 사용한다.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-errors" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 7 (오차, 절대오차, 상대오차)</strong></span> 함수 <span class="math inline">\(f(x)\)</span> 와 그 수치해석적인 구현 <span class="math inline">\(\overline{f}(x)\)</span> 에 대해 아래와 같은 세가지 오차를 정의 할 수 있다.</p>
+<p>  (<span class="math inline">\(1\)</span>) <strong>오차(error)</strong> <span class="math inline">\(\delta f(x) := f(x) - \overline{f}(x)\)</span>.</p>
+<p>  (<span class="math inline">\(2\)</span>) <strong>절대오차(absolute error)</strong> <span class="math inline">\(|\delta f(x)| := |f(x) - \overline{f}(x)|\)</span>.</p>
+<p>  (<span class="math inline">\(3\)</span>) <strong>상대오차(relative error)</strong> <span class="math inline">\(\displaystyle \dfrac{|\delta f(x)|}{|f(x)|} = \dfrac{|f(x) - \overline{f}(x)|}{|f(x)|}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p>위의 세가지 오차는 우리가 구하고자 하는 <span class="math inline">\(f\)</span> 와 우리가 고안한 <span class="math inline">\(\overline{f}\)</span> 사이의 차이에 대해 정량화 한 값이다. 이제 시스템 자체의 안정성에 대해 한번 보기로 하자. 시스템을 기술하는 함수 <span class="math inline">\(f(x)\)</span> 가 있다고 하자. 적당하게 작은 <span class="math inline">\(\delta x\)</span> 애 대해 만약 <span class="math inline">\(f(x_0+\delta x)\)</span> 가 <span class="math inline">\(f(x_0)\)</span> 와 큰 차이가 난다면 이 시스템을 다루는 데는 큰 주의가 필요할 것이다. 이를 <strong>ill-conditioned</strong> 라고 한다. 반대로 <span class="math inline">\(f(x_0 + \delta x)\)</span> 가 <span class="math inline">\(f(x)\)</span> 와 큰 차이가 나지 않는다면 <span class="math inline">\(x_0\)</span> 에 어느 정도 오차가 있더라도 우리가 구하고자 하는 값과 큰 차이가 나지 않을 것이고 우리가 다루기 쉬울 것이다. 이를 <strong>well-conditioned</strong> 라고 한다. 이 성질의 정량화를 위해 함수 <span class="math inline">\(f\)</span> 에 대한 조건수를 아래와 같이 정의한다.</p>
+<p><br></p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-condition_number_of_function" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 8 (함수의 조건수)</strong></span> 함수 <span class="math inline">\(f:X\subset \mathbb{R}^m \to \mathbb{R}^n\)</span> 와 <span class="math inline">\(x_0 \in X\)</span> 에 대해 아래와 같이 정의된 <span class="math inline">\(\kappa_f (x_0)\)</span> 를 <span class="math inline">\(f\)</span> 의 <span class="math inline">\(x_0 (\ne \boldsymbol{0})\)</span> 에 대한 <strong>조건수 (condition number)</strong> 혹은 <strong>상대적 조건수 (relative condition number)</strong> 라고 한다.</p>
+<p><span class="math display">\[
+\kappa_f(x_0) = \lim_{\epsilon \to 0} \sup_{\|\delta x\| &lt; \epsilon} \dfrac{\|f(x_0+\delta x)-f(x_0)\|/\|f(x_0)\|}{\|\delta x\|/\|x_0\|}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><span class="math inline">\(\kappa_f(x_0) \ll 1\)</span> 이라면 <span class="math inline">\(\|f(x_0 + \delta x)\|\)</span> 가 <span class="math inline">\(\|f(x_0)\|\)</span> 와의 차이가 매우 작다. 즉 well-conditioned 이다. 반대로 <span class="math inline">\(\kappa_f(x_0) \gg 1\)</span> 이라면 <span class="math inline">\(\|f(x_0+\delta x)\|\)</span> 가 <span class="math inline">\(\|f(x_0)\|\)</span> 와의 차이가 매우 크기때문에 ill-conditioned 이다.</p>
+<p><br></p>
+<p>다음은 미분의 정의로부터 쉽게 보일 수 있다.</p>
+<div id="prp-condition_number_for_differential_function" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 6</strong></span> <span class="math inline">\(\boldsymbol{f}:\mathbb{R}^m \to \mathbb{R}^n\)</span> 가 미분가능한 함수라면</p>
+<p><span class="math display">\[
+\kappa_\boldsymbol{f}(\boldsymbol{x}_0) = \dfrac{\|D\boldsymbol{f}(\boldsymbol{x}_0) \| \cdot \|\boldsymbol{x}_0\|}{\|\boldsymbol{f}(\boldsymbol{x}_0)\|}
+\]</span></p>
+<p>이다.</p>
+</div>
+<p><br></p>
+<p>가역행렬인 정사각 행렬 <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})\)</span> 을 생각하자. <span class="math inline">\(\boldsymbol{A}\)</span> 는 <span class="math inline">\(\mathbb{R}^n \mapsto \mathbb{R}^n\)</span> 함수이므로 조건수를 생각 할 수 있다. <span class="math inline">\(\boldsymbol{Ax}_0 = \boldsymbol{y}_0\)</span> 라고 하면 <span class="math inline">\(\boldsymbol{x}_0 = \boldsymbol{A}^{-1}\boldsymbol{y}_0\)</span> 이므로,</p>
+<p><span class="math display">\[
+\dfrac{\|\boldsymbol{A}(\boldsymbol{x}_0 + \delta \boldsymbol{x}) - \boldsymbol{Ax}_0\|/\|\boldsymbol{Ax}_0\|}{\|\delta\boldsymbol{ \boldsymbol{x}}\|/\|\boldsymbol{x}_0\|} = \dfrac{\|\boldsymbol{A}\delta \boldsymbol{x}\|}{\|\delta \boldsymbol{x}\|} \dfrac{\|\boldsymbol{x}_0\|}{\|\boldsymbol{Ax}_0\|} =  \dfrac{\|\boldsymbol{A}\delta \boldsymbol{x}\|}{\|\delta \boldsymbol{x}\|} \dfrac{\|\boldsymbol{A}^{-1}\boldsymbol{y}_0\|}{\|\boldsymbol{y}_0\|} \le \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
+\]</span></p>
+<p>이다. 또한 <a href="#def-matrix_norm" class="quarto-xref">정의&nbsp;4</a> 의 (<span class="math inline">\(5\)</span>) 로 부터,</p>
+<p><span class="math display">\[
+\|\boldsymbol{A}\|\cdot\|\boldsymbol{A}^{-1}\| \ge \|\boldsymbol{AA}^{-1}\| = 1
+\]</span></p>
+<p>이 성립한다. 즉 가역행렬의 경우 조건수는 함수에 대한 입력값(<span class="math inline">\(\boldsymbol{x}_0\)</span>) 과는 상관 없이 행렬과 그 역행렬의 노름의 곱으로 정해진다.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-conditional_number_of_invirtible_matrix" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 9 (가역행렬의 조건수)</strong></span> <span class="math inline">\(n \times n\)</span> 가역행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 에 대해 조건수 <span class="math inline">\(\kappa_\boldsymbol{A}\)</span> 는 다음과 같다.</p>
+<p><span class="math display">\[
+\kappa_\boldsymbol{A} := \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div id="prp-condition_number_for_types_of_matrix" class="theorem proposition">
+<p><span class="theorem-title"><strong>명제 7</strong></span> <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})\)</span> 가 정규행렬이며 <span class="math inline">\(\mathcal{M}_{n}(\mathbb{F})\)</span> 에 대해 <span class="math inline">\(L_2\)</span> 노름이 정의되어 있다고 하자. <span class="math inline">\(\boldsymbol{A}\)</span> 의 고유값의 집합 <span class="math inline">\(\Lambda\)</span> 에 대해 <span class="math inline">\(\lambda_\max := \max \{|\lambda|: \lambda \in \Lambda\}\)</span>, <span class="math inline">\(\lambda_\min := \min \{|\lambda| :\lambda \in \Lambda \}\)</span> 일 때 다음이 성립한다.</p>
+<p><span class="math display">\[
+\kappa_\boldsymbol{A}= \dfrac{\lambda_{\max}}{\lambda_{\min}}
+\]</span></p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\boldsymbol{A}\)</span> 가 정규행렬이면 고유벡터로 대각화가 가능하며, 가역이므로 고유값은 모두 <span class="math inline">\(0\)</span> 이 아니다. 이제 <span class="math inline">\(\boldsymbol{A}\)</span> 를 각각의 대각성분이 모두 <span class="math inline">\(0\)</span> 이 아닌 대각행렬로 간주해도 된다. <span class="math inline">\(\boldsymbol{v}\in \mathcal{M}_{n}(\mathbb{F})\)</span> 가 정규화된 벡터라고 하면</p>
+<p><span class="math display">\[
+\|\boldsymbol{Av}\|_2  \le |\lambda_\max|
+\]</span></p>
+<p>이다. <span class="math inline">\(\boldsymbol{v}\)</span> 가 <span class="math inline">\(\lambda_\max\)</span> 에 대한 고유벡터일 때 등호가 성립하므로 <span class="math inline">\(\|\boldsymbol{A}\|_2 = \lambda_\max\)</span> 이다. 같은 방법으로 <span class="math inline">\(\|\boldsymbol{A}^{-1}\|_2 = \dfrac{1}{\lambda_\min}\)</span> 임을 보일 수 있다. <span class="math inline">\(\square\)</span></p>
+</div>
+<p><br></p>
+<div id="cor-condition_number_for_types_of_matrix" class="theorem corollary">
+<p><span class="theorem-title"><strong>따름정리 2</strong></span> <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})\)</span> 가 에르미트 행렬일 때도 <a href="#prp-condition_number_for_types_of_matrix" class="quarto-xref">명제&nbsp;7</a> 가 성립한다.</p>
+</div>
+<p><br></p>
+</section>
 </section>
 <section id="다양한-행렬들" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="다양한-행렬들"><span class="header-section-number">2</span> 다양한 행렬들</h2>
+<p>여기서는 julia 언어에서 다양한 벡터와 행렬을 어떻게 다루는 지를 배운다.</p>
 <section id="sec-sparse_matrix" class="level3">
 <h3 class="anchored" data-anchor-id="sec-sparse_matrix">성긴행렬과 밀집행렬</h3>
 <p>수학적으로 <strong>성긴행렬</strong>(혹은 <strong>희소행렬</strong>, <strong>sparse matrix</strong>) 은 행렬 성분의 대다수가 0 인 행렬을 의미하며, 반대의 경우를 <strong>밀집 행렬(dense matrix)</strong> 이라고 한다. 우리가 지금까지 다룬 행렬들은 행렬의 모든 성분을 컴퓨터가 저장하였다. 그러나 행렬이 매우 큰 경우, 예를 들면 <code>Float64</code> 타입의 <span class="math inline">\(100K \times 100K\)</span>(<span class="math inline">\(1K=1,000\)</span>) 행렬은 성분을 저장하는 데만 80 Gbytes 의 저장공간을 차지하므로 개인 컴퓨터에서는 처리가 거의 불가능하며, 실제로 많이 다루는 시스템은 이것보다 훨씬 클 수 가 있다. 다행히 우리가 관심있는 시스템 가운데 상당수는 행렬의 대부분의 성분이 <span class="math inline">\(0\)</span> 인데, 이 경우 행렬의 모든 성분을 저장하는 것이 아니라 <span class="math inline">\(0\)</span> 이 아닌 성분만을 그 인덱스와 함께 저장하여 더 작은 저장공간에서 더 빠르게 계산 할 수 있다. 수치해석에서는 이렇게 행렬의 인덱스와 값을 저장하고, 인덱스가 지정되지 않은 행렬을 <span class="math inline">\(0\)</span> 으로 간주하는 행렬을 성긴 행렬이라 하며, 우리가 지금 까지 다뤘던, 인덱스에 따라 순차적으로 성분을 저장하는 행렬을 밀집 행렬 (dense matrix) 이라 한다.</p>
@@ -1156,12 +1246,12 @@ B_{I[i], J[i]}=V[i], \, i=1,\,2,\ldots
 <tr class="even">
 <td style="text-align: center;"><code>norm(u, p)</code> or <code>norm(A, p)</code></td>
 <td style="text-align: center;">벡터의 <span class="math inline">\(L_p\)</span>-노름</td>
-<td style="text-align: left;"><a href="#sec-norm_and_condition_number">노름과 조건수</a> 참고</td>
+<td style="text-align: left;"><a href="#sec-norm_of_vector_and_matrix">벡터와 행렬의 노름과 조건수</a> 참고</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><code>opnorm(A, p::Real=2)</code></td>
 <td style="text-align: center;">행렬의 <span class="math inline">\(L_p\)</span>-노름</td>
-<td style="text-align: left;"><a href="#sec-norm_and_condition_number">노름과 조건수</a> 참고</td>
+<td style="text-align: left;"><a href="#sec-norm_of_vector_and_matrix">벡터와 행렬의 노름과 조건수</a> 참고</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>normalize(a, p::Real=2)</code></td>

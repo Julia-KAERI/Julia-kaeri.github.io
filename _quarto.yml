@@ -69,6 +69,7 @@ website:
           - href : src/applications_of_julia/multithreads.qmd
           - href : src/applications_of_julia/pkg_dev.qmd
           - href : src/applications_of_julia/dataframes.qmd
+          - href : src/applications_of_julia/unittest.qmd
 
     - title : "Numerical Analysis using Julia"
       collapse-level: 2
