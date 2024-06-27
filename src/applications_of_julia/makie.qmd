@@ -1,0 +1,13 @@
+---
+title: "Makie 로 Plotting"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+
+## Julia 언어의 Plotting 패키지
+
+Jupyter 혹은 vscode notebook 을 사용하여 그래프를 그리거나 혹은 julia script 로 그래프를 파일로 저장할 수 있는 패키지는 여러가지가 있으며, 대표적으로 [Plots](https://docs.juliaplots.org/stable/) 와 [Makie$^1$](https://docs.makie.org/v0.21/)[$^1$ Makie.jl 의 공식 홈페이지에 따르면 *Mah-kee* 로 발음한다 하며 어원은 일본의 [마키에(蒔絵, まきえ)](https://en.wikipedia.org/wiki/Maki-e) 이다. ]{.aside}, Python 의 matplotlib 을 그대로 쓰게 해주는 [PyPlot.jl](https://github.com/JuliaPy/PyPlot.jl) 가 있다. 

@@ -65,11 +65,13 @@ website:
         - section : Julia 언어의 활용
           contents :
           - href : src/applications_of_julia/fileio.qmd
+          - href : src/applications_of_julia/makie.qmd
           - href : src/applications_of_julia/leastsquarefit.qmd
           - href : src/applications_of_julia/multithreads.qmd
           - href : src/applications_of_julia/pkg_dev.qmd
           - href : src/applications_of_julia/dataframes.qmd
           - href : src/applications_of_julia/unittest.qmd
+          - href : src/applications
 
     - title : "Numerical Analysis using Julia"
       collapse-level: 2

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 비선형 최소제곱 피팅</title>
+<title>Julia &amp; Numerical Anlaysis - Makie 로 Plotting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/applications_of_julia/multithreads.html" rel="next">
-<link href="../../src/applications_of_julia/makie.html" rel="prev">
+<link href="../../src/applications_of_julia/leastsquarefit.html" rel="next">
+<link href="../../src/applications_of_julia/fileio.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +102,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -159,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/applications_of_julia/fileio.html">Julia 언어의 활용</a></li><li class="breadcrumb-item"><a href="../../src/applications_of_julia/leastsquarefit.html">비선형 최소제곱 피팅</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/applications_of_julia/fileio.html">Julia 언어의 활용</a></li><li class="breadcrumb-item"><a href="../../src/applications_of_julia/makie.html">Makie 로 Plotting</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -308,13 +308,13 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/applications_of_julia/makie.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Plotting with Makie</span></a>
+  <a href="../../src/applications_of_julia/makie.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Makie 로 Plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/applications_of_julia/leastsquarefit.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../src/applications_of_julia/leastsquarefit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">비선형 최소제곱 피팅</span></a>
   </div>
 </li>
@@ -350,14 +350,20 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#julia-언어의-plotting-패키지" id="toc-julia-언어의-plotting-패키지" class="nav-link active" data-scroll-target="#julia-언어의-plotting-패키지"><span class="header-section-number">1</span> Julia 언어의 Plotting 패키지</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/applications_of_julia/fileio.html">Julia 언어의 활용</a></li><li class="breadcrumb-item"><a href="../../src/applications_of_julia/leastsquarefit.html">비선형 최소제곱 피팅</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/applications_of_julia/fileio.html">Julia 언어의 활용</a></li><li class="breadcrumb-item"><a href="../../src/applications_of_julia/makie.html">Makie 로 Plotting</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">비선형 최소제곱 피팅</h1>
+<h1 class="title">Makie 로 Plotting</h1>
 </div>
 
 
@@ -374,9 +380,12 @@ window.Quarto = {
 </header>
 
 
-<p>어떤 실험 결과가 <span class="math inline">\(m\)</span> 개의 독립 변수에 대해 <span class="math inline">\(n\)</span> 차원 벡터로 발생한다고 하자. 이에 대해 모델 함수 <span class="math inline">\(\boldsymbol{F}:\mathbb{R}^m \to \mathbb{R}^n\)</span></p>
+<section id="julia-언어의-plotting-패키지" class="level2 page-columns page-full" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="julia-언어의-plotting-패키지"><span class="header-section-number">1</span> Julia 언어의 Plotting 패키지</h2>
+<div class="page-columns page-full"><p>Jupyter 혹은 vscode notebook 을 사용하여 그래프를 그리거나 혹은 julia script 로 그래프를 파일로 저장할 수 있는 패키지는 여러가지가 있으며, 대표적으로 <a href="https://docs.juliaplots.org/stable/">Plots</a> 와 <a href="https://docs.makie.org/v0.21/">Makie<span class="math inline">\(^1\)</span></a>, Python 의 matplotlib 을 그대로 쓰게 해주는 <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a> 가 있다.</p><div class="no-row-height column-margin column-container"><span class="margin-aside"><span class="math inline">\(^1\)</span> Makie.jl 의 공식 홈페이지에 따르면 <em>Mah-kee</em> 로 발음한다 하며 어원은 일본의 <a href="https://en.wikipedia.org/wiki/Maki-e">마키에(蒔絵, まきえ)</a> 이다.</span></div></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -790,13 +799,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/applications_of_julia/makie.html" class="pagination-link" aria-label="Plotting with Makie">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Plotting with Makie</span>
+      <a href="../../src/applications_of_julia/fileio.html" class="pagination-link" aria-label="파일시스템과 파일입출력">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">파일시스템과 파일입출력</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/applications_of_julia/multithreads.html" class="pagination-link" aria-label="다중스레딩">
-        <span class="nav-page-text">다중스레딩</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/applications_of_julia/leastsquarefit.html" class="pagination-link" aria-label="비선형 최소제곱 피팅">
+        <span class="nav-page-text">비선형 최소제곱 피팅</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -134,7 +134,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/applications_of_julia/dataframes.html</loc>
-    <lastmod>2024-05-08T01:26:57.530Z</lastmod>
+    <lastmod>2024-06-27T04:15:32.685Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/applications_of_julia/leastsquarefit.html</loc>
@@ -254,6 +254,10 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/applications_of_julia/unittest.html</loc>
-    <lastmod>2024-06-25T00:52:50.726Z</lastmod>
+    <lastmod>2024-06-27T02:04:24.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/makie.html</loc>
+    <lastmod>2024-06-27T06:28:49.292Z</lastmod>
   </url>
 </urlset>
