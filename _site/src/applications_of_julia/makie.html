@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -355,6 +389,8 @@ window.Quarto = {
    
   <ul>
   <li><a href="#julia-언어의-plotting-패키지" id="toc-julia-언어의-plotting-패키지" class="nav-link active" data-scroll-target="#julia-언어의-plotting-패키지"><span class="header-section-number">1</span> Julia 언어의 Plotting 패키지</a></li>
+  <li><a href="#backends" id="toc-backends" class="nav-link" data-scroll-target="#backends"><span class="header-section-number">2</span> Backends</a></li>
+  <li><a href="#cairomakie" id="toc-cairomakie" class="nav-link" data-scroll-target="#cairomakie"><span class="header-section-number">3</span> CairoMakie</a></li>
   </ul>
 </nav>
     </div>
@@ -382,7 +418,61 @@ window.Quarto = {
 
 <section id="julia-언어의-plotting-패키지" class="level2 page-columns page-full" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="julia-언어의-plotting-패키지"><span class="header-section-number">1</span> Julia 언어의 Plotting 패키지</h2>
-<div class="page-columns page-full"><p>Jupyter 혹은 vscode notebook 을 사용하여 그래프를 그리거나 혹은 julia script 로 그래프를 파일로 저장할 수 있는 패키지는 여러가지가 있으며, 대표적으로 <a href="https://docs.juliaplots.org/stable/">Plots</a> 와 <a href="https://docs.makie.org/v0.21/">Makie<span class="math inline">\(^1\)</span></a>, Python 의 matplotlib 을 그대로 쓰게 해주는 <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a> 가 있다.</p><div class="no-row-height column-margin column-container"><span class="margin-aside"><span class="math inline">\(^1\)</span> Makie.jl 의 공식 홈페이지에 따르면 <em>Mah-kee</em> 로 발음한다 하며 어원은 일본의 <a href="https://en.wikipedia.org/wiki/Maki-e">마키에(蒔絵, まきえ)</a> 이다.</span></div></div>
+<div class="page-columns page-full"><p>Jupyter 혹은 vscode notebook 을 사용하여 그래프를 그리거나 혹은 julia script 로 그래프를 파일로 저장할 수 있는 패키지는 여러가지가 있으며, 대표적으로 <a href="https://docs.juliaplots.org/stable/">Plots</a> 와 <a href="https://docs.makie.org/v0.21/">Makie<span class="math inline">\(^1\)</span></a>, Python 의 matplotlib 을 그대로 쓰게 해주는 <a href="https://github.com/JuliaPy/PyPlot.jl">PyPlot.jl</a> 가 있다. 여기서는 Makie 를 소개한다.</p><div class="no-row-height column-margin column-container"><span class="margin-aside"><span class="math inline">\(^1\)</span> Makie.jl 의 공식 홈페이지에 따르면 <em>Mah-kee</em> 로 발음한다고 하며 어원은 일본의 <a href="https://en.wikipedia.org/wiki/Maki-e">마키에(蒔絵, まきえ)</a> 이다.</span></div></div>
+<p><br></p>
+</section>
+<section id="backends" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="backends"><span class="header-section-number">2</span> Backends</h2>
+<p>정확히 말하면 Makie 는 프론트엔드로서 플로팅에 대한 여러가지 내부적인 기능을 가지고 있으며, 실제 그래프가 보여지는 것은 백엔드를 통해서이다. 물론 어떤 기능은 특정한 백엔드에서만 가능하다. 2024년 6월 현재 Makie 는 4가지 백엔드가 존재한다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Package</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>GLMakie.jl</code></td>
+<td style="text-align: left;">독립적인 윈도우에서 플로팅되며 GPU-기반의 대화형(interactive) 2D, 3D 플로팅에 사용된다.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>CairoMakie.jl</code></td>
+<td style="text-align: left;"><code>Cairo.jl</code> 기반의 비대화형(non-interactive) 2D, 3D 플로팅에 사용된다.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>WGLMakie.jl</code></td>
+<td style="text-align: left;">WebGL 기반의 대화형 2D, 3D 플로팅에 사용되며 웹브라우저로 플로팅한다.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>RPRMakie.jl</code></td>
+<td style="text-align: left;">실험적인 ray-tracing 패키지</td>
+</tr>
+</tbody>
+</table>
+<p><code>WGLMakie.jl</code> 과 <code>RPRMakie.jl</code> 은 아직은 불안정하므로 <code>CairoMakie.jl</code> 이나 <code>GLMakie.jl</code> 을 사용하는 것을 추천한다. 보통 상호작용이 필요할 때는 <code>GLMakie.jl</code> 을 그렇지 않고 고품질의(publication quality) 의 정적인 플로팅을 원할때는 <code>CairoMakie.jl</code> 을 사용한다.</p>
+<p><br></p>
+</section>
+<section id="cairomakie" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="cairomakie"><span class="header-section-number">3</span> CairoMakie</h2>
+<p>Julia REPL 에서 <code>]add CairoMakie</code> 로 설치한다. <code>Makie.jl</code> 이 설치가 안되었다면 자동으로 설치해준다. Jupyter 환경이나 Pluto 환경에서는 자동적으로 그 환경에서 출력해준다. 가장 간단한 플로팅을 해 보자.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span>(<span class="fl">4</span><span class="op">*</span><span class="cn">π</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(t, <span class="fu">cos</span>.(t))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-makie_plot_1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="test1.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: Makie Plot
+</figcaption>
+</figure>
+</div>
+<p>```julia</p>
 
 
 </section>

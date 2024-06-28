@@ -392,7 +392,7 @@ window.Quarto = {
 <section id="interlude-일변수-다항식의-julia-구현" class="level1 unnumbered">
 <h1 class="unnumbered">Interlude : 일변수 다항식의 Julia 구현</h1>
 <p>수치해석에서는 다항식을 아주 많이 사용한다. 2023년 9월 현재 Julia 언어의 생태계에서는 <a href="https://github.com/JuliaMath/Polynomials.jl"><code>Polynomials.jl</code></a> 이 다항식을 다루는 패키지로 널리 사용되고 있지만 여기에서는 수치해석과 julia 언어에 대한 연습으로 다항식을 표현하는 복합 타입(<code>struct</code> type) 을 만들어보자. 그 이름은 일단 <code>SimplePolynomial</code> 로 하도록 하자. 이것은 앞서 소개했던 <a href="https://github.com/Julia-KAERI/NAJ.jl.git">NAJ.jl</a> 에 포함되어 있다.</p>
-<p>Julia 는 객체 지향 언어가 아니기 때문에 클래스와 클래스의 상속이라는 개념이 존재하지 않으며 대부분 복합 타입이 그 역할을 대신한다. 복합 타입에 대해서는 <a href="../../src/introduction_to_julia/09_composite_types.html">복합 타입</a> 과 공식 매뉴얼의 <a href="https://docs.julialang.org/en/v1/manual/types/">Types</a> 를 참고하라. 복합 타입의 가장 큰 장점중의 하나는 타입 변수를 함수처럼 사용 할 수 있다는 것이다. 만약 우리가 계수로 <code>SimpliePolynomial</code> 복합 타입을 만들었다면, 이 복합 타입 변수를 함수처럼 사용 할 수 있다. 여기서는 그것을 사용한다.</p>
+<p>Julia 는 객체 지향 언어가 아니기 때문에 클래스와 클래스의 상속이라는 개념이 존재하지 않으며 대부분 복합 타입이 그 역할을 대신한다. 복합 타입에 대해서는 <a href="../../src/introduction_to_julia/09_composite_types.html">복합 타입</a> 과 공식 매뉴얼의 <a href="https://docs.julialang.org/en/v1/manual/types/">Types</a> 를 참고하라. 복합 타입의 가장 큰 장점중의 하나는 타입 변수를 함수처럼 사용 할 수 있다는 것이다. 만약 우리가 계수로 <code>SimplePolynomial</code> 복합 타입을 만들었다면, 이 복합 타입 변수를 함수처럼 사용 할 수 있다. 여기서는 그것을 사용한다.</p>
 <p>다항식 함수값의 계산을 위해 julia 는 <code>evalpoly</code> 함수를 제공한다. <code>evalpoly(1.0, [2.0, 3.0])</code> 은 다항식 <span class="math inline">\(p(x)=2.0+3.0x\)</span> 에 대해 <code>p(1.0)</code> 을 계산해준다. 자세한 것은 <code>evalpoly</code> 에 대한 자체 설명을 확인하라. 일변수 다항식을 구현하는 이유는 단순히 다항식의 함수값을 계산하는 것 이외에 다항식의 덧셈, 뺄셈, 곱셈, 미분, 적분과 기타 앞으로 배울 다항식에 관련된 여러 기능이 필요해서이다. <code>evalpoly</code> 는 이것까지 제공하지는 않는다.</p>
 <p><br></p>
 <p>수학적인 의미에서의 다항식은</p>
@@ -453,7 +453,7 @@ P_{k+1}(x) &amp;= \dfrac{2k+1}{k+1}xP_k(x) - \dfrac{k}{k+1}P_{k-1}(x).
 <h2 class="anchored" data-anchor-id="뼈대">뼈대</h2>
 <p>일단 다음의 조건을 만족하도록 뼈대를 만들자.</p>
 <ol type="1">
-<li>계수를 입력하면 그에 맞는 다항식 복합타입 객체가 생성되도록 한다. 예를 들어 <code>SimpliePolynomial([1, 2, 3])</code> 은 <span class="math inline">\(1+2x+3x^3\)</span> 에 해당하는 다항식 객체를 생성하며 <code>LegendrePolynomial([1, 2, 3])</code> 은 <span class="math inline">\(1P_0(x) + 2 P_1 (x) + 3 P_2 (x)\)</span> 의 다항식 객체를 생성한다.</li>
+<li>계수를 입력하면 그에 맞는 다항식 복합타입 객체가 생성되도록 한다. 예를 들어 <code>SimplePolynomial([1, 2, 3])</code> 은 <span class="math inline">\(1+2x+3x^3\)</span> 에 해당하는 다항식 객체를 생성하며 <code>LegendrePolynomial([1, 2, 3])</code> 은 <span class="math inline">\(1P_0(x) + 2 P_1 (x) + 3 P_2 (x)\)</span> 의 다항식 객체를 생성한다.</li>
 <li>계수의 타입을 타입 매개변수로 받는 복합타입으로 한다.</li>
 <li>복합타입을 함수처럼 사용할 수 있도록 한다.</li>
 <li><code>Base.show</code> 함수가 이 다항식 객체를 보기 좋게 출력 할 수 있도록 한다.</li>
