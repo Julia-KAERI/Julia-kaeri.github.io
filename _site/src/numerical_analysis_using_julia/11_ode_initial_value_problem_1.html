@@ -382,7 +382,7 @@ window.Quarto = {
   <li><a href="#계-상미분-방정식-시스템의-경우" id="toc-계-상미분-방정식-시스템의-경우" class="nav-link" data-scroll-target="#계-상미분-방정식-시스템의-경우">1계 상미분 방정식 시스템의 경우</a></li>
   <li><a href="#다계-상미분-방정식-시스템의-경우" id="toc-다계-상미분-방정식-시스템의-경우" class="nav-link" data-scroll-target="#다계-상미분-방정식-시스템의-경우">다계 상미분 방정식 시스템의 경우</a></li>
   </ul></li>
-  <li><a href="#상미분-방정식의-해에-대한-수학적-기반" id="toc-상미분-방정식의-해에-대한-수학적-기반" class="nav-link" data-scroll-target="#상미분-방정식의-해에-대한-수학적-기반"><span class="header-section-number">3</span> 상미분 방정식의 해에 대한 수학적 기반</a></li>
+  <li><a href="#sec-mathematical_foundation_of_ode" id="toc-sec-mathematical_foundation_of_ode" class="nav-link" data-scroll-target="#sec-mathematical_foundation_of_ode"><span class="header-section-number">3</span> 상미분 방정식의 해에 대한 수학적 기반</a></li>
   <li><a href="#오일러-방법-newtons-method" id="toc-오일러-방법-newtons-method" class="nav-link" data-scroll-target="#오일러-방법-newtons-method"><span class="header-section-number">4</span> 오일러 방법 (Newton’s method)</a>
   <ul class="collapse">
   <li><a href="#전방-오일러-방법과-후방-오일러-방법" id="toc-전방-오일러-방법과-후방-오일러-방법" class="nav-link" data-scroll-target="#전방-오일러-방법과-후방-오일러-방법">전방 오일러 방법과 후방 오일러 방법</a></li>
@@ -431,6 +431,16 @@ window.Quarto = {
 
 <section id="미분방정식" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="미분방정식"><span class="header-section-number">1</span> 미분방정식</h2>
+<div class="callout callout-style-simple callout-warning no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><a href="../../src/numerical_analysis_using_julia/A_ode.html">상미분 방정식</a> 을 미리 참고하라.</p>
+</div>
+</div>
+</div>
 <section id="상미분방정식과-편미분-방정식" class="level3">
 <h3 class="anchored" data-anchor-id="상미분방정식과-편미분-방정식">상미분방정식과 편미분 방정식</h3>
 <p>일변수 함수에 대한 미분 연산을 포함하는 방정식을 <strong>상미분방정식 (ordinary differential equation)</strong> 이라고 하며 다변수 함수에 대한 미분연산, 즉 편미분 연산을 표함하는 연산을 <strong>편미분 방정식(partial differential equation)</strong> 이라고 한다. 여기서는 상미분방정식에 대해 다루며 편미분 방정식에 대해서는 이후 다루기로 한다.</p>
@@ -440,7 +450,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="상미분-방정식의-기본-표기법">상미분 방정식의 기본 표기법</h3>
 <p><span class="math inline">\([a,\,b]\)</span> 구간에서 <span class="math inline">\(n\)</span> 번 미분 가능하며 그 도함수도 연속인 함수의 집합 <span class="math inline">\(C^n_{[a,\,b]}\)</span> 를 생각하자. 또한 <span class="math inline">\(C^n_{[a,\,b]}\)</span> 에서 정의된 다음과 같은 연산자를 생각하자.</p>
 <p><span class="math display">\[
-\mathcal{L}\phi(t) = \left[p_n(t) \dfrac{d^n}{dt^n} + p_{n-1}(t)\dfrac{d^{n-1}}{dt^{n-1}} \cdots + p_1(t)\dfrac{d}{dt} + p_0(t)\right] \phi(t).
+\mathcal{L}[\phi(t)] = \left[p_n(t) \dfrac{d^n}{dt^n} + p_{n-1}(t)\dfrac{d^{n-1}}{dt^{n-1}} \cdots + p_1(t)\dfrac{d}{dt} + p_0(t)\right] \phi(t).
 \]</span></p>
 <p>임의의 상수 <span class="math inline">\(a,\,b\)</span> 와 <span class="math inline">\(\phi,\, \psi \in C_{\mathbb{R}}^\infty\)</span> 에 대해</p>
 <p><span class="math display">\[
@@ -535,8 +545,8 @@ x^{(n)}(t) = f(t,\,x,\,x',\ldots,\, x^{n-1})
 <p><br></p>
 </section>
 </section>
-<section id="상미분-방정식의-해에-대한-수학적-기반" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="상미분-방정식의-해에-대한-수학적-기반"><span class="header-section-number">3</span> 상미분 방정식의 해에 대한 수학적 기반</h2>
+<section id="sec-mathematical_foundation_of_ode" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-mathematical_foundation_of_ode"><span class="header-section-number">3</span> 상미분 방정식의 해에 대한 수학적 기반</h2>
 <p>이제 일계 선형미분방정식이 해를 가질 수 있는 수학적 조건에 대해 알아보기로 하자.</p>
 <p><br></p>
 <div class="callout callout-style-simple callout-note no-icon">

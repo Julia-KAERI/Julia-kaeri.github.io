@@ -9,6 +9,12 @@ crossref:
 
 ## 미분방정식
 
+::: {.callout-warning appearance="minimal"}
+
+[상미분 방정식](A_ode.qmd) 을 미리 참고하라.
+
+:::
+
 ### 상미분방정식과 편미분 방정식
 
 일변수 함수에 대한 미분 연산을 포함하는 방정식을 **상미분방정식 (ordinary differential equation)** 이라고 하며 다변수 함수에 대한 미분연산, 즉 편미분 연산을 표함하는 연산을 **편미분 방정식(partial differential equation)** 이라고 한다. 여기서는 상미분방정식에 대해 다루며 편미분 방정식에 대해서는 이후 다루기로 한다. 
@@ -22,7 +28,7 @@ crossref:
 $[a,\,b]$ 구간에서 $n$ 번 미분 가능하며 그 도함수도 연속인 함수의 집합 $C^n_{[a,\,b]}$ 를 생각하자. 또한 $C^n_{[a,\,b]}$ 에서 정의된 다음과 같은 연산자를 생각하자.
 
 $$
-\mathcal{L}\phi(t) = \left[p_n(t) \dfrac{d^n}{dt^n} + p_{n-1}(t)\dfrac{d^{n-1}}{dt^{n-1}} \cdots + p_1(t)\dfrac{d}{dt} + p_0(t)\right] \phi(t).
+\mathcal{L}[\phi(t)] = \left[p_n(t) \dfrac{d^n}{dt^n} + p_{n-1}(t)\dfrac{d^{n-1}}{dt^{n-1}} \cdots + p_1(t)\dfrac{d}{dt} + p_0(t)\right] \phi(t).
 $$
 
 임의의 상수 $a,\,b$ 와 $\phi,\, \psi \in C_{\mathbb{R}}^\infty$ 에 대해
@@ -148,7 +154,7 @@ $$
 
 </br>
 
-## 상미분 방정식의 해에 대한 수학적 기반
+## 상미분 방정식의 해에 대한 수학적 기반 {#sec-mathematical_foundation_of_ode}
 
 이제 일계 선형미분방정식이 해를 가질 수 있는 수학적 조건에 대해 알아보기로 하자. 
 
