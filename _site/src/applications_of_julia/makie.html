@@ -465,14 +465,69 @@ window.Quarto = {
 <div id="fig-makie_plot_1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="test1.png" class="img-fluid figure-img" width="400">
+<img src="makie1.png" class="img-fluid figure-img" width="400">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;1: Makie Plot
+그림&nbsp;1: Makie Plot 1
 </figcaption>
 </figure>
 </div>
-<p>```julia</p>
+<p><code>lines</code> 함수는 위의 그림과 같이 선 그래프를 만든다. 다음을 보자.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span>(<span class="fl">4</span><span class="op">*</span><span class="cn">π</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fig, ax, ls <span class="op">=</span> <span class="fu">lines</span>(t, <span class="fu">cos</span>.(t))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax, t, <span class="fu">sin</span>.(t))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-makie_plot_1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="makie2.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: Makie Plot 2
+</figcaption>
+</figure>
+</div>
+<p><code>fig, ax, ls = lines(t, cos.(t))</code> 에서 <code>fig</code> 는 <code>Figure</code> 타입, <code>ax</code> 는 <code>Axis</code> 타입, <code>ls</code> 는 <code>Lines</code> 타입의 객체이다. <code>Figure</code> 는 우리가 그리고자 하는 전체 그림을 표현한다. <code>Axis</code> 는 우리가 그래프를 그리는 좌표계와 그 좌표계에서 출력되는 선, 도형, 숫자들을 의미한다. <code>Lines</code> 는 우리가 그린 선 그래프의 선을 의미한다. 이 때 <code>Axis</code> 는 <code>Figure</code> 에 포함되어 있으며, <code>Lines</code> 는 <code>Axis</code> 에 포함된다.</p>
+<p><code>lines!(ax, t, sin.(t))</code> 를 보자. 앞서 여러번 설명했듯이 Julia 는 관례적으로 어떤 함수가 변수로 입력되는 인스턴스를 변경한다면 함수 이름 끝에 <code>!</code> 를 붙인다. 이 명령어는 앞의 <code>fig, ax, ls = lines(t, cos.(t))</code> 로 만들어진 <code>ax</code> 객체를 변경하기 때문에 <code>!</code> 를 붙였다. 앞서 만들어진 <code>Axis</code> 인스턴스 <code>ax</code> 에 새로은 선그래프를 추가한다. 마지막줄은 <code>fig</code> 를 출력하라는 의미이다. 마지막줄이 없다면 그림이 만들어지긴 하지만 출력되지는 않는다.</p>
+<p><br></p>
+<p>이제 좀 더 그럴듯한 그림을 그려보자.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LaTeXStrings</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="fl">0.0</span><span class="op">:</span><span class="fl">0.5</span><span class="op">:</span><span class="fl">25.0</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fl">4.0</span> <span class="op">.*</span> <span class="fu">exp</span>.(<span class="op">-</span><span class="fl">0.4</span> <span class="op">.*</span> t) <span class="op">.+</span> (<span class="fu">rand</span>(<span class="fu">length</span>(t)) <span class="op">.-</span> <span class="fl">0.5</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Exponential Decay and Fit"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    xlabel <span class="op">=</span> <span class="st">"Time [Arb. Unit]"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    ylabel <span class="op">=</span> <span class="st">"Value"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ax,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    t,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    data,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="op">:</span>tomato,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> <span class="st">"Measurements"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    ax,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    t,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="fl">4.0</span> <span class="op">.*</span> <span class="fu">exp</span>.(<span class="op">-</span><span class="fl">0.4</span> <span class="op">.*</span> t),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="op">:</span>blue,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    linestyle <span class="op">=</span> <span class="op">:</span>dash,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> L<span class="st">"f(x) = </span><span class="sc">\e</span><span class="st">xp(-0.4 t)"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">axislegend</span>(position <span class="op">=</span> <span class="op">:</span>rt)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-makie_plot_1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="makie3.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-makie_plot_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: Makie Plot 3
+</figcaption>
+</figure>
+</div>
+<p><code>fig = Figure()</code> 는 <code>Figure</code> 객체를 생성하여 <code>fig</code> 변수에 할당한다. <code>ax</code> 는 <code>Axis</code> 인스턴스로 맨 앞의 <code>fig[1, 1]</code> 은 그림에 포함되는 여러 부분 가운데 첫번째라는 의미이다. 각 <code>Axis</code> 마다 <code>title</code>, <code>xlabel</code>, <code>ylabel</code> 등을 지정 할 수 있다. 그 다음의 <code>scatter!</code> 나 <code>lines!</code> 명령어는 Scatter 그래프와 선그래프를 그리라는 명령어이며, <code>axislegend</code> 함수는 각 그래프의 label 과 모양을 표시하라는 의미아다. <code>position=:rt</code> 는 위치를 <code>Axis</code> 의 오른쪽(right) 위(top) 에 표현하라는 의미이다.</p>
 
 
 </section>
