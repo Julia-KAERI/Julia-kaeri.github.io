@@ -9,24 +9,28 @@
     <lastmod>2024-05-30T02:01:04.803Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
-    <lastmod>2024-05-09T00:03:17.614Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_image.html</loc>
+    <lastmod>2024-07-10T05:54:18.925Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/Asymptote/asymptote.html</loc>
-    <lastmod>2024-03-12T07:08:05.696Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz.html</loc>
+    <lastmod>2024-03-05T05:38:10.241Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/posts/first.html</loc>
-    <lastmod>2024-05-02T05:21:21.122Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
+    <lastmod>2024-05-02T05:15:44.582Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_pde.html</loc>
-    <lastmod>2024-07-05T01:19:38.813Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/index.html</loc>
+    <lastmod>2024-05-08T23:48:40.757Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_generalized_inverse.html</loc>
-    <lastmod>2024-03-12T07:05:26.445Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_ode.html</loc>
+    <lastmod>2024-03-19T04:27:10.468Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_collection_of_proofs.html</loc>
+    <lastmod>2024-03-12T07:05:20.379Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/14_approximation.html</loc>
@@ -42,7 +46,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/08_matrix_decomposition.html</loc>
-    <lastmod>2024-07-11T03:54:11.074Z</lastmod>
+    <lastmod>2024-07-11T04:41:02.531Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html</loc>
@@ -117,32 +121,44 @@
     <lastmod>2024-05-10T06:15:08.170Z</lastmod>
   </url>
   <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/random.html</loc>
+    <lastmod>2024-07-09T07:28:54.231Z</lastmod>
+  </url>
+  <url>
     <loc>https://julia-kaeri.github.io/src/applications_of_julia/multithreads.html</loc>
     <lastmod>2024-04-23T01:06:18.213Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/applications_of_julia/fileio.html</loc>
-    <lastmod>2024-05-03T06:01:13.393Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/index.html</loc>
-    <lastmod>2024-02-13T00:16:50.582Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/about.html</loc>
-    <lastmod>2024-02-13T00:16:50.576Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/applications_of_julia/dataframes.html</loc>
-    <lastmod>2024-06-27T04:15:32.685Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/applications_of_julia/leastsquarefit.html</loc>
     <lastmod>2024-03-12T07:01:32.670Z</lastmod>
   </url>
   <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/dataframes.html</loc>
+    <lastmod>2024-06-27T04:15:32.685Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/about.html</loc>
+    <lastmod>2024-02-13T00:16:50.576Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/index.html</loc>
+    <lastmod>2024-02-13T00:16:50.582Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/fileio.html</loc>
+    <lastmod>2024-05-03T06:01:13.393Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/makie.html</loc>
+    <lastmod>2024-07-03T00:42:39.862Z</lastmod>
+  </url>
+  <url>
     <loc>https://julia-kaeri.github.io/src/applications_of_julia/pkg_dev.html</loc>
     <lastmod>2024-02-13T00:16:50.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/unittest.html</loc>
+    <lastmod>2024-06-27T02:04:24.937Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/image_processing/tomography.html</loc>
@@ -214,7 +230,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html</loc>
-    <lastmod>2024-03-22T04:00:13.486Z</lastmod>
+    <lastmod>2024-07-11T06:23:28.937Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html</loc>
@@ -225,55 +241,35 @@
     <lastmod>2024-07-04T10:20:28.410Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_collection_of_proofs.html</loc>
-    <lastmod>2024-03-12T07:05:20.379Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/15_pde_1.html</loc>
+    <lastmod>2024-07-09T09:01:27.187Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_ode.html</loc>
-    <lastmod>2024-03-19T04:27:10.468Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_generalized_inverse.html</loc>
+    <lastmod>2024-03-12T07:05:26.445Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/index.html</loc>
-    <lastmod>2024-05-08T23:48:40.757Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_pde.html</loc>
+    <lastmod>2024-07-05T01:19:38.813Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
-    <lastmod>2024-05-02T05:15:44.582Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/posts/first.html</loc>
+    <lastmod>2024-05-02T05:21:21.122Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz.html</loc>
-    <lastmod>2024-03-05T05:38:10.241Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/Asymptote/asymptote.html</loc>
+    <lastmod>2024-03-12T07:08:05.696Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_image.html</loc>
-    <lastmod>2024-07-10T05:54:18.925Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
-    <lastmod>2024-05-30T01:48:32.070Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/applications_of_julia/unittest.html</loc>
-    <lastmod>2024-06-27T02:04:24.937Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/applications_of_julia/makie.html</loc>
-    <lastmod>2024-07-03T00:42:39.862Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/15_pde.html</loc>
-    <lastmod>2024-07-05T04:15:08.952Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
+    <lastmod>2024-05-09T00:03:17.614Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
     <lastmod>2024-07-05T01:38:11.815Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/15_pde_1.html</loc>
-    <lastmod>2024-07-09T09:01:27.187Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/applications_of_julia/random.html</loc>
-    <lastmod>2024-07-09T07:28:54.231Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
+    <lastmod>2024-05-30T01:48:32.070Z</lastmod>
   </url>
 </urlset>
