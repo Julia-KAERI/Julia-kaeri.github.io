@@ -1,5 +1,5 @@
 ---
-title: "편미분 방정식"
+title: "편미분 방정식의 이론적 배경"
 
 number-sections: true
 number-depth: 3

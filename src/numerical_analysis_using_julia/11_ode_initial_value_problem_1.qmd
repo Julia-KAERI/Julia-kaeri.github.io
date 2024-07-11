@@ -832,6 +832,58 @@ $$
 
 </br>
 
+### `InitialValueOdeProblem`
+
+위의 세가지 방법은 같은 입력값에 대해 계산하는 함수들로 구현되었다. 이것을 하나의 함수로 사용하도록 아래와 같이 구현하였다.
+
+```julia
+ode_initial_methods = Dict(:euler => ode_euler, :rk2 => ode_rk2, :rk4 => ode_rk4)
+
+mutable struct InitialValueOdeProblem
+    diffeq::Function
+    t1::Number
+    Npoints::Integer
+    h::Real
+    initial_value::Vector
+
+    function InitialValueOdeProblem(diffeq::Function, t1::Number, initial_value,  Npoints::Integer, h::Real)
+        @assert Npoints > 3
+        @assert h > 0
+        if isa(initial_value, Real) 
+            initial_value = [initial_value, ]
+        end
+        return new(diffeq, t1, Npoints, h, initial_value)
+    end
+end
+
+function solve(ode::InitialValueOdeProblem, method::Symbol)
+    @assert method ∈ keys(ode_initial_methods)
+    return ode_initial_methods[method](ode.diffeq, ode.t1, ode.initial_value, ode.Npoints, ode.h)
+
+end
+```
+
+이제 진자 문제는 다음과 같이 풀 수 있다.
+
+```julia
+function de_pendulum(y::Vector{<:Real}, g=9.8, l=2)
+    return [y[2], -g/l*sin(y[1])]
+end
+g, l = 9.8, 5.0
+
+pendulum = InitialValueOdeProblem((t, y)->de_pendulum(y, g, l), 0.0, [0.0, 0.04], 20000, 1.0e-2)
+tn1, xn1 = solve(pendulum, :euler)
+tn2, xn2 = solve(pendulum, :rk2)
+tn3, xn3 = solve(pendulum, :rk4)
+
+p1=plot(tn1, (180.0/π).* xn1[1,: ], label = "Euler", xlabel = L"t", ylabel = L"\textbf{Degree}", title = L"\textbf{Pendulum}", lc=:red, dpi=300)#, size=(400, 350))
+plot!(tn2, (180.0/π).* xn2[1,: ], label = "RK2", lc=:green)
+
+plot!(tn3, (180.0/π).* xn3[1,: ], label = "RK4", lc=:blue)#, xlabel = L"t", ylabel = L"\textbf{Amplitude}", title = L"RK4", size=(400, 350))
+```
+
+
+
 
 ### 마치며
 

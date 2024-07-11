@@ -66,6 +66,7 @@ website:
           contents :
           - href : src/applications_of_julia/fileio.qmd
           - href : src/applications_of_julia/makie.qmd
+          - href : src/applications_of_julia/random.qmd
           - href : src/applications_of_julia/leastsquarefit.qmd
           - href : src/applications_of_julia/multithreads.qmd
           - href : src/applications_of_julia/pkg_dev.qmd
@@ -89,6 +90,9 @@ website:
         - href: src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.qmd
         - href: src/numerical_analysis_using_julia/06I_Bezier.qmd
         - href: src/numerical_analysis_using_julia/07_finding_root.qmd
+      - text : "-----"
+      - section : Julia 언어를 이용한 수치해석 2부
+        contents :
         - href: src/numerical_analysis_using_julia/08_matrix_decomposition.qmd
         - href: src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.qmd
         - href: src/numerical_analysis_using_julia/10_least_square_problem.qmd
@@ -96,6 +100,7 @@ website:
         - href: src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.qmd
         - href: src/numerical_analysis_using_julia/13_ode_boundary_value_problem.qmd
         - href: src/numerical_analysis_using_julia/14_approximation.qmd
+        - href: src/numerical_analysis_using_julia/15_pde_1.qmd
       - text : "-----"
       - section : 수학
         contents :
@@ -134,6 +139,7 @@ website:
         - href: src/tools/tikz/tikz_functions.qmd
         - href: src/tools/tikz/tikz_image.qmd
         - href: src/tools/tikz/tikz_wavelet.qmd
+        - href: src/tools/tikz/tikz_pde.qmd
         - href: src/tools/tikz/tikz_test.qmd
 
 bibliography: references.bib

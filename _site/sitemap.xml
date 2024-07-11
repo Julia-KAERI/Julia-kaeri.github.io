@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_pde.html</loc>
-    <lastmod>2024-03-12T07:05:43.709Z</lastmod>
+    <lastmod>2024-07-05T01:19:38.813Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/A_generalized_inverse.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html</loc>
-    <lastmod>2024-03-29T05:29:12.717Z</lastmod>
+    <lastmod>2024-07-05T00:39:33.682Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/10_least_square_problem.html</loc>
@@ -42,15 +42,15 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/08_matrix_decomposition.html</loc>
-    <lastmod>2024-03-22T03:55:39.644Z</lastmod>
+    <lastmod>2024-07-11T03:54:11.074Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html</loc>
-    <lastmod>2024-07-03T05:32:03.434Z</lastmod>
+    <lastmod>2024-07-10T01:36:39.032Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/05_interpolation.html</loc>
-    <lastmod>2024-03-22T03:45:34.257Z</lastmod>
+    <lastmod>2024-07-10T01:31:05.525Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/04_matrix_algebra.html</loc>
@@ -218,7 +218,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html</loc>
-    <lastmod>2024-07-03T07:53:07.245Z</lastmod>
+    <lastmod>2024-07-05T00:56:30.298Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html</loc>
@@ -246,7 +246,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_image.html</loc>
-    <lastmod>2024-03-11T22:58:44.069Z</lastmod>
+    <lastmod>2024-07-10T05:54:18.925Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
@@ -259,5 +259,21 @@
   <url>
     <loc>https://julia-kaeri.github.io/src/applications_of_julia/makie.html</loc>
     <lastmod>2024-07-03T00:42:39.862Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/15_pde.html</loc>
+    <lastmod>2024-07-05T04:15:08.952Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
+    <lastmod>2024-07-05T01:38:11.815Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/numerical_analysis_using_julia/15_pde_1.html</loc>
+    <lastmod>2024-07-09T09:01:27.187Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/applications_of_julia/random.html</loc>
+    <lastmod>2024-07-09T07:28:54.231Z</lastmod>
   </url>
 </urlset>

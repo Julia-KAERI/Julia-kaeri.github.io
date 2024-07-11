@@ -9,6 +9,8 @@ crossref:
 
 선형 대수학에서 행렬 분해는 행렬을 다른 행렬들의 곱으로 분해하는 것을 말한다. 다양한 행렬 분해 방법이 존재하며, 각각은 특정 유형의 문제 해결에 활용된다. 수치 해석에서는 효율적인 행렬 알고리즘을 구현하는 데 다양한 분해 방법을 사용 할 수 있다. 우리는 이미 LU 분해를 하는 방법과 그 유용성을 알아 보았다. 여기서는 다양한 행렬의 분해에 대해 알아보고자 한다. 
 
+</br>
+
 ## 수학적 기초
 
 ### 대각 지배 행렬
@@ -36,6 +38,10 @@ $$
 :::
 :::
 
+</br>
+
+즉 각 행(열)에 대해 대각성분의 절대값이 나머지 그 행(열)의 성분의 절대값의 합보다 크거나 같으면 행(열)에 대한 대각지배행렬이다.
+
 
 </br>
 
@@ -46,6 +52,7 @@ $$
 엄격한 대각 지배 행렬은 가역행렬이다.
 
 :::
+
 </div>
 </br>
 
@@ -53,7 +60,7 @@ $$
 
 행에 대해 엄격한 대각 지배 행렬 $\boldsymbol{A}$ 이 가역행렬이면, $\boldsymbol{A}^T$ 는 열에 대해 엄격한 대각 지배 행렬이며 가역행렬이다. 따라서 행에 대해 엄격한 대각 지배 행렬이 가역행렬임을 보이면 된다. 
 
-$\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})$ 이 행에 대한 엄격한 대각 지배 행렬이라고 하자. $\boldsymbol{A}$ 가 가역행렬이 아니면 $\boldsymbol{Ax}=\boldsymbol{0}$ 을 만족하는 $\boldsymbol{x}\ne \boldsymbol{0}$ 이 존재하지 않으므로 존재한다고 가정하고 모순이 생긴다는 것을 보이자. 이 $\boldsymbol{x}$ 의 성분 가운데 그 절대값이 가장 큰 $|x_k|\ne 0$ 을 찾을 수 있다. $\boldsymbol{Ax}=0$ 이므로, 각각의 $i=1,\ldots,\,n$ 에 대해
+$\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{F})$ 이 행에 대한 엄격한 대각 지배 행렬이라고 하자. 어떤 $\boldsymbol{x}(\ne \boldsymbol{0}) \in \mathcal{M}_n(\mathbb{F})$ 에 대해 $\boldsymbol{Ax}=\boldsymbol{0}$ 이면 $\boldsymbol{A}$ 는 가역행렬이 아니다. 따라서 $\boldsymbol{Ax}=\boldsymbol{0}$ 인 $\boldsymbol{0}$ 벡터가 아닌 $\boldsymbol{x}$ 가 존재한다고 가정하고 모순을 보이면 된다. $\boldsymbol{x}$ 의 성분 가운데 그 절대값이 가장 큰 $|x_k|\ne 0$ 을 찾을 수 있다. $\boldsymbol{Ax}=\boldsymbol{0}$ 이므로, 각각의 $i=1,\ldots,\,n$ 에 대해
 
 $$
 \sum_{j=1}^n A_{ij}x_j=0
@@ -580,7 +587,7 @@ $$
 
 ### 하우스홀더 변환과 하우스홀더 반사
 
-하우스 홀더 변환이 리플렉션(reflection, 반사) 라고 불린다. 수학적으로 $\mathbb{R}^n$ 공간에서 벡터 $\boldsymbol{v}$ 만으로 $\boldsymbol{v}$ 와 수직이며 원점을 지나는 평면이 유일하게 정의될 수 있다. 임의의 벡터 $\boldsymbol{x} \in \mathbb{F}^n$ 에 대해,
+하우스 홀더 행렬은 유니타리 행렬이므로 하우스홀더 변환은 가역변환이다. $\mathbb{R}^n$ 공간에서 벡터 $\boldsymbol{v}$ 만으로 $\boldsymbol{v}$ 와 수직이며 원점을 지나는 평면이 유일하게 정의될 수 있다. 임의의 벡터 $\boldsymbol{x} \in \mathbb{F}^n$ 에 대해,
 
 $$
 \begin{aligned}
@@ -593,28 +600,14 @@ $$
 
 $$
 \begin{aligned}
-\dfrac{1}{2 }(\boldsymbol{x}+\boldsymbol{Hx}) &= \boldsymbol{x} - \langle \boldsymbol{v,\,  x}\rangle \boldsymbol{v} = \boldsymbol{x} - \text{Proj}_{\boldsymbol{v}} \boldsymbol{x} \\
-\boldsymbol{x}-\boldsymbol{Hx} &= 2\langle \boldsymbol{v ,\, x} \rangle  \boldsymbol{v} = 2\, \text{Proj}_{\boldsymbol{v}}\boldsymbol{x}
+\dfrac{1}{2 }(\boldsymbol{x}+\boldsymbol{H_vx}) &= \boldsymbol{x} - \langle \boldsymbol{v,\,  x}\rangle \boldsymbol{v} = \boldsymbol{x} - \text{Proj}_{\boldsymbol{v}} \boldsymbol{x} \\
+\boldsymbol{x}-\boldsymbol{H_vx} &= 2\langle \boldsymbol{v ,\, x} \rangle  \boldsymbol{v} = 2\, \text{Proj}_{\boldsymbol{v}}\boldsymbol{x}
 \end{aligned}
 $$
 
-이다. 즉 $\boldsymbol{x}$ 와 $\boldsymbol{Hx}$ 는 $\boldsymbol{v}$ 에 의해 정의되는 평면에 대해 대칭이다.
+이다. 즉 $\boldsymbol{x}$ 와 $\boldsymbol{Hx}$ 는 $\boldsymbol{v}$ 에 의해 정의되는 평면에 대해 대칭이다. 이런 이유로 하우스홀더 변환을 하우스홀더 반사(Householder reflection) 라고도 한다.
 
-```{r, engine = 'tikz'}
-#| label: fig-householder_1
-#| code-fold: true
-#| output: asis
-#| fig-width: 4
-#| fig-align: center
-#| fig-cap: "Householder 반사"
-\begin{tikzpicture}
-    \draw [black, very thick, ->](0, 0) -- (2, 2)  node[right] {$\boldsymbol{v}$};
-    \draw [red, very thick, ->] (0, 0) -- (-2.646, 1 ) node[left] {$\boldsymbol{H_v x}$};
-    \draw [blue, very thick, ->] (0, 0) -- (-0.646, 3 ) node[left] {$\boldsymbol{x}$};
-    \draw [green, dashed, thick] (1, -1) -- (-2, 2 ) node[left, black] {Plane normal to $\boldsymbol{v}$};
-\end{tikzpicture}
-```
-
+![Householder 반사](fig-householder.png){#fig-householder_reflection width=300}
 
 
 $\boldsymbol{x}$ 를 $\boldsymbol{v}$ 와 평행한 부분과 수직한 부분으로 분리하자. 즉 $\boldsymbol{x}_{\|} = \text{Proj}_{\boldsymbol{v}}\boldsymbol{x}$, $\boldsymbol{x}_{\perp} = \boldsymbol{x}-\text{Proj}_{\boldsymbol{v}}\boldsymbol{x}$ 라 하면, $\boldsymbol{x} = \boldsymbol{x}_{\|} + \boldsymbol{x}_{\perp}$ 이며 $\boldsymbol{x}\cdot \boldsymbol{v} = \boldsymbol{x}_{\|}\cdot \boldsymbol{v}$ 이다.
@@ -625,9 +618,117 @@ $$
 
 이다.
 
-</br>   
 
-### 하우스홀더 변환과 QR 분해
+
+
+
+</br>
+
+### 실벡터 공간에서의 하우스홀더 변환과 QR 분해
+
+$\boldsymbol{x}_1,\ldots,\,\boldsymbol{x}_n\in \mathcal{M}_n(\mathbb{R})$ 에 대해 $\boldsymbol{X}=\begin{bmatrix} \boldsymbol{x}_1 & \cdots &\boldsymbol{x}_n\end{bmatrix}$ 라고 하자. $\mathcal{M}_n(\mathbb{R})$ 에서의 벡터 $\boldsymbol{x}$ 과 표준 기저 $\{\hat{\boldsymbol{e}}_1,\ldots,\,\hat{\boldsymbol{e}}_n\}$ 를 생각하자. 이 때 $\boldsymbol{v}_1$ 을 다음과 같이 정한다.
+
+$$
+\boldsymbol{v}_1 : = \boldsymbol{x}_1-\|\boldsymbol{x}_1\|_2\hat{\boldsymbol{e}}_1
+$$
+
+그리고 $\boldsymbol{Q}_1 = \boldsymbol{H}_{\boldsymbol{v}_1}$ 이라고 하자. $\boldsymbol{Q}_1\boldsymbol{x_1} = \|\boldsymbol{x}_1\|_2 \hat{\boldsymbol{e}}_1$ 이므로, 
+
+$$
+\boldsymbol{Q}_1\boldsymbol{X} = \begin{bmatrix} \|\boldsymbol{x}_1\|_2 & x'_{12} & \cdots & x'_{1n} \\ 0 & x'_{22} & \cdots & x'_{2n}  \\  \vdots  & \vdots & \cdots & \vdots  \\ 0 & x'_{n2} & \cdots & x'_{nn}  \end{bmatrix}
+$$
+
+가 된다. 하우스홀더 행렬의 정의에 의해 $\boldsymbol{v}_1$ 을 $0$ 이 아닌 상수로 나누어 주어도 하우스홀더행렬에는 변화가 없는데 보통 하우스홀더 행렬의 맨 앞 성분을 $1$ 로 만드는 것이 좋다고 한다(@golub2013matrix, pp.235). 여기서 문제가 되는게 만약 $\boldsymbol{x}_1$ 이 첫번째 성분을 제외한 성분이 모두 $0$ 이고 첫번째 성분이 양수라면  $\boldsymbol{v}_1 = \boldsymbol{0}$ 이 되며 이 경우 정규화 할수 없기 때문에 문제가 된다. 즉 코드에 $\boldsymbol{v}/\|\boldsymbol{v}\|_2$ 가 들어가는데 $\|\boldsymbol{v}\|_2=0$ 이므로 $0$ 으로 나누어지는 에러가 발생한다. 이 때는 하우스 홀더 행렬을 $\boldsymbol{I}$, $\boldsymbol{v}_1 = \hat{\boldsymbol{e}}_1$ 으로 놓고 계산하면 원하는 결과를 얻을 수 있다. 
+
+
+이제 $\boldsymbol{x}'_2 = [x'_{22}, \ldots, x'_{n2}]^T$ ($\boldsymbol{Q}_1\boldsymbol{x}_1$ 의 두번째 행의 두번째 열부터 마지막 열까지로 이루어진 벡터) 를 이용하여 앞의 $\boldsymbol{Q}_1$ 과 같은 과정에서 $\boldsymbol{v}_2\in \mathcal{M}_{n-1}(\mathbb{R})$ 을 정하고 $\boldsymbol{Q}^0_2 = \boldsymbol{H}_{\boldsymbol{v}_2}\in \mathcal{M}_{(n-1) \times (n-1)}(\mathbb{R})$ 을 구성하였다면 당연히 $\boldsymbol{Q}^0_2 \boldsymbol{x}'_2$ 는 첫번째 행을 제외한 나머지 행은 $0$ 일 것이다.
+
+$$
+\boldsymbol{Q}_2 = \begin{bmatrix} 1 & \boldsymbol{0}^T \\ \boldsymbol{0} & \boldsymbol{Q}'_2\end{bmatrix}
+$$
+
+라고 정하자. 그렇다면, 
+
+$$
+\boldsymbol{Q}_2\boldsymbol{Q}_1 \boldsymbol{X} = \begin{bmatrix} \|\boldsymbol{x}\|_1 & x'_{12} & x'_{13} & \cdots & x'_{1n} \\ 0 & x''_{22} & x''_{23} & \cdots & 0  \\   0 & 0 & x_{33}'' & \cdots & x''_{22} \\ \vdots  & \vdots & \vdots & \cdots & \vdots  \\ 0 & 0 & x'_{n3}  & \cdots & x'_{nn}  \end{bmatrix}
+$$
+
+
+이제 $\boldsymbol{x}_3' = \begin{bmatrix} x''_{33} & \cdots & x''_{n3}\end{bmatrix}^T \in \mathcal{M}_{n-2}$ 부터 계속 같은 과정을 반복한다면, 
+
+$$
+\boldsymbol{Q}_n \cdots \boldsymbol{Q}_1 \boldsymbol {X} = \boldsymbol{R}
+$$
+
+이 된다. $\boldsymbol{Q}_1,\ldots,\,\boldsymbol{Q}_n$ 은 직교행렬이므로 $\boldsymbol{Q} = (\boldsymbol{Q}_1 \cdots \boldsymbol{Q}_n)^T$ 도 직교행렬이고 따라서
+
+$$
+\boldsymbol{X} = \boldsymbol{Q} \boldsymbol{R}
+$$
+
+이 성립한다. 
+
+
+```julia
+function house(x::Vector{T}) where T<:Real
+    m = length(x)
+    σ = norm(x[2:end])^2
+    v= [1 ; x[2:end]]
+    if σ ≈ zero(σ) && x[1] ≥ 0
+        β = 0
+    elseif σ ≈ 0
+        β = -2
+    else 
+        μ = sqrt(x[1]^2+σ)
+        if x[1] ≤ 0
+            v[1] = x[1] - μ
+        else 
+            v[1] = -σ/(x[1]+μ)
+        end
+        β = 2*v[1]^2 / (σ + v[1]^2)
+        v=v./(v[1])
+    end
+    return β, v
+end
+
+function householder(x::Vector{T}) where T<:Real
+    β, v = house(x)
+    return I - β*v*v'
+end
+
+function qrdecom(mat::Matrix{T}) where T<:Real
+    
+    m, n = size(mat)[1:2]
+    @assert m == n
+    
+    if T<:Integer 
+        A = Float64.(mat[:, :])
+    else 
+        A = mat[:, :]
+    end
+
+    elt = eltype(A)
+    Q = Matrix{elt}(I, n, n)
+    for i in 1:(n)
+        Hm = householder(A[i:end, i])
+        if i == 1 
+            Q=Hm
+            A = Q*A
+        else
+            X= [Matrix{elt}(I, i-1, i-1) zeros(elt, i-1, n-i+1); zeros(elt, i-1, n-i+1)'  Hm] 
+            Q = X* Q
+            A = X*A
+        end
+        
+    end
+    return Q', A
+end
+```
+
+
+</br>
+
+<!-- ### 하우스홀더 변환과 QR 분해
 
 
 $\mathcal{M}_n (\mathbb{F})$ 에서의 벡터 $\boldsymbol{x}$ 과 표준 기저 $\{\hat{\boldsymbol{e}}_1,\ldots,\,\hat{\boldsymbol{e}}_n\}$ 를 생각하자. $\alpha$ 를 $\boldsymbol{x}$ 의 첫번째 성분 $x_1 = re^{i\theta}$ 에 대해 다음과 같이 정의한다.
@@ -765,4 +866,22 @@ $$
 
 이다. 
 
-:::
+::: -->
+
+### 복소벡터공간에서의 QR 분해
+
+</br>
+
+## `LinearAlgebra.jl`
+
+Julia 공식 메뉴얼의 [Matrix Factorization](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#man-linalg-factorizations) 에는 `LinearAlgebra.jl` 에서 지원하는 행렬 분해에 대해 소개하고 있다.
+
+| 분해 종류 | 함수 |
+|:------:|:-----:|
+| 숄레스키 분해 | `cholesky()` |
+| $LDL^T$ 분해 | `ldlt()` |
+| LU 분해 | `lu()`|
+| QR 분해 | `qr()` |
+| 특이값 분해(SVD) | `svd()`|
+
+그 외에도 행렬의 분해와 관련된 사항을 자세하게 적어 놓았으니 행렬의 분해에 관련된 일을 해야한다면 공식 문서를 숙독해야 한다.
