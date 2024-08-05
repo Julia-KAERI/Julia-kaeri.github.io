@@ -362,9 +362,9 @@ $$
 
 ::: {#def-iteration_residual_vector}
 
-#### Residual vector
+#### 오차벡터
 
-$\boldsymbol{A} \in \mathcal{M}_{n \times n}(\mathbb{F})$ 를 이용한 선형방정식 $\boldsymbol{Ax}=\boldsymbol{b}$ 이 주어졌을 때 $\tilde{\boldsymbol{x}}\in \mathcal{M}_{n}(\mathbb{F})$ 에 대한 **residual vector** $\boldsymbol{r}$ 는 다음과 같이 정의된다.
+$\boldsymbol{A} \in \mathcal{M}_{n \times n}(\mathbb{F})$ 를 이용한 선형방정식 $\boldsymbol{Ax}=\boldsymbol{b}$ 이 주어졌을 때 $\tilde{\boldsymbol{x}}\in \mathcal{M}_{n}(\mathbb{F})$ 에 대한 **오차벡터(residual vector)** $\boldsymbol{r}$ 는 다음과 같이 정의된다.
 
 $$
 \boldsymbol{r} : = \boldsymbol{b} - \boldsymbol{A}\tilde{\boldsymbol{x}}
@@ -711,9 +711,9 @@ $$
 
 </div></br>
 
-## 오차 
+## 오차벡터와 조건수
 
-가역 행렬 $\boldsymbol{A}\in \mathcal{M}_{n\times n}(\mathbb{R})$ 에 대해 $\boldsymbol{Ax}=\boldsymbol{b}$ 를 반복법으로 풀 때 우리는 어떤 오차 내의 계산값을 얻게 된다. 이 계산값을 $\overline{\boldsymbol{x}}$ 라고 할 때 $\boldsymbol{r} = \boldsymbol{b}-\boldsymbol{A}\overline{\boldsymbol{x}}$ 를 **오차 벡터(residual vector)** 라고 할 수 있다. 정해진 노름에 대해 $\|\boldsymbol{r}\|$ 이 작다면 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|$ 가 작을 것이라고 예상 할 수 있지만 항상 그런것은 아니다. 
+선형방정식 $\boldsymbol{Ax}=\boldsymbol{b}$ 에 대해 우리가 임시로 구한 해를 $\overline{\boldsymbol{x}}$ 라고 할 때 $\boldsymbol{r} = \boldsymbol{b}-\boldsymbol{A}\overline{\boldsymbol{x}}$ 는 오차벡터(residual vector) 이다(@def-iteration_residual_vector). 우리는 앞서 선형방정식의 오차의 척도로 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|$ 나 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|/\|\boldsymbol{x}\|$ 를 사용하였다. 정해진 행렬 $\boldsymbol{A}$ 의 노름에 대해 $\|\boldsymbol{r}\|$ 이 작다면 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|$ 혹은 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|/\|\boldsymbol{x}\|$ 가 작을 것이라고 예상 할 수 있지만 항상 그런것은 아니다. 
 
 </br>
 
@@ -754,32 +754,11 @@ $$
 
 </br>
 
-::: {.callout-note appearance="simple" icon="false"}
+우리는 앞서 [행렬의 조건수](04_matrix_algebra.qmd#sec-condition_number_of_matrix) 에서 정사각 행렬 $\boldsymbol{A}$ 의 조건수 $\kappa_\boldsymbol{A} := \|\boldsymbol{A}\|\|\boldsymbol{A}^{-1}\|$ 에 대해 알아보았다. 즉 $\boldsymbol{r}\|$ 이 작더라도 $\kappa_{\boldsymbol{A}}$ 가 크다면 절대오차 혹은 상대오차가 클 수 있다는 것을 알 수 있다. 좋은 조건과 나쁜 조건도 여기에 사용 할 수 있다. $\kappa(\boldsymbol{A})\approx 1$ 이면 오차벡터의 작은 차이가 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|$ 의 작은 차이를 의미하기 때문에 $\boldsymbol{A}$ 를 **좋은 조건(well-conditioned)** 이라고 한다. 반대로 $\kappa(\boldsymbol{A}) \gg 1$ 일 경우는 **나쁜 조건 (ill-conditioned)** 라고 한다.
 
-::: {#def-conditional_number_of_invertible_matrix}
-
-#### 조건수
-
-가역행렬 $\boldsymbol{A}$ 와 자연스러운 노름 $\|\cdot \|$ 에 대해 
-
-$$
-\kappa (\boldsymbol{A}) = \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
-$$
-
-를 $\boldsymbol{A}$ 의 노름 $\|\cdot\|$ 에 대한 **조건수 (conditional number)** 라고 한다.
-
-:::
-:::
 
 </br>
 
-
-
-$$
-1 = \|\boldsymbol{I}\|  = \|\boldsymbol{AA}^{-1}\| \le \|\boldsymbol{A} \| \cdot \|\boldsymbol{A}^{-1}\| = \kappa(\boldsymbol{A})
-$$ 
-
-이다. 만약 $\kappa(\boldsymbol{A})\approx 1$ 이면 오차벡터의 작은 차이가 $\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|$ 의 작은 차이를 의미하기 때문에 $\boldsymbol{A}$ 를 **좋은 조건(well-conditioned)** 이라고 한다. 반대로 $\kappa(\boldsymbol{A}) \gg 1$ 일 경우는 **나쁜 조건 (ill-conditioned)** 라고 한다.
 
 
 
@@ -888,7 +867,9 @@ function steepest_iteration(
 end
 ```
 
+</br>
 
+그러나 이 방법은 비선형 시스템이나 최적화 문제에는 많이 사용되지만 선형 시스템에는 많이 사용되지 않는데 이는 수렴속도가 느리기 때문이다. 
 
 </br>
 
@@ -930,17 +911,17 @@ $$
 
 ::: {#thm-A-orthogonal_method}
 
-Positive definite $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 에 대해 $\{\boldsymbol{v}^{(1)}, \ldots,\,\boldsymbol{v}^{(n)}\}$ 이 $\boldsymbol{A}$-직교 벡터라고 하자. 임의의 $\boldsymbol{x}_1\in \mathcal{M}$ 과 $k=1,\ldots,\,n$ 에 대해 
+Positive definite $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 에 대해 $\{\boldsymbol{v}^{(1)}, \ldots,\,\boldsymbol{v}^{(n)}\}$ 이 $\boldsymbol{A}$-직교 벡터라고 하자. 임의의 $\boldsymbol{x}^{(0)}\in \mathcal{M}$ 과 $k=1,\ldots,\,n$ 에 대해 
 
 $$
 \begin{aligned}
-t_k &= \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(k)}, \, \boldsymbol{v}^{(k)}\rangle }{\langle \boldsymbol{Av}^{(k)},\, \boldsymbol{v}^{(k)}\rangle}, \\
-\boldsymbol{x}^{(k+1)} &= \boldsymbol{x}^{(k)} + t_k \boldsymbol{v}^{(k)}
+t_k &= \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(k-1)}, \, \boldsymbol{v}^{(k)}\rangle }{\langle \boldsymbol{Av}^{(k)},\, \boldsymbol{v}^{(k)}\rangle}, \\
+\boldsymbol{x}^{(k)} &= \boldsymbol{x}^{(k-1)} + t_{k} \boldsymbol{v}^{(k)}
 \end{aligned}
 $$
 
 
-라면, $\boldsymbol{Ax}^{(k+1)} = \boldsymbol{b}$ 이다.
+라면, $\boldsymbol{Ax}^{(n)} = \boldsymbol{b}$ 이다.
 
 
 :::
@@ -952,41 +933,45 @@ $$
 주어진 식으로부터
 $$
 \begin{aligned}
-\boldsymbol{Ax}^{(n+1)} &= \boldsymbol{Ax}^{(n)} + t_ n \boldsymbol{Av}^{(n)} \\
-&= \boldsymbol{A}(\boldsymbol{x}^{(n-1)}  + t_{n-1}\boldsymbol{v}^{(n-1)}) + t_n \boldsymbol{Av}^{(n)}\\
+\boldsymbol{Ax}^{(n)} &= \boldsymbol{Ax}^{(n-1)} + t_ n \boldsymbol{Av}^{(n)} \\
+&= \boldsymbol{A}(\boldsymbol{x}^{(n-2)}  + t_{n-1}\boldsymbol{v}^{(n-1)}) + t_n \boldsymbol{Av}^{(n)}\\
 & \qquad \qquad  \vdots \\
-& = \boldsymbol{Ax}^{(1)} + t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)} 
+& = \boldsymbol{Ax}^{(0)} + t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)} 
 \end{aligned}
 $$ {#eq-positive_definite_1}
 
 을 얻는다. 따라서,
 
 $$
-\boldsymbol{Ax}^{(n+1)} - \boldsymbol{b} = (\boldsymbol{Ax}^{(1)} - \boldsymbol{b})+ t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)}
+\boldsymbol{Ax}^{(n)} - \boldsymbol{b} = (\boldsymbol{Ax}^{(0)} - \boldsymbol{b})+ t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)}
 $$
 
-이다. 여기에 $\boldsymbol{v}^{(k)}$ 와의 내적을 구하면
+이다. 여기에 임의의 $k\in \{1,\ldots,\,n\}$ 에 대해 $\boldsymbol{v}^{(k)}$ 와의 내적을 구하면
 
 $$
-\langle \boldsymbol{Ax}^{(n+1)} - \boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{Ax}^{(1)}- \boldsymbol{b}, \, \boldsymbol{v}^{(k)}\rangle + t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle
+\langle \boldsymbol{Ax}^{(n)} - \boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{Ax}^{(0)}- \boldsymbol{b}, \, \boldsymbol{v}^{(k)}\rangle + t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle
 $$
 
 이며 $t_k$ 의 정의로부터 
 
 $$
-t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{b}-\boldsymbol{Ax}^{(k)}, \, \boldsymbol{v}^{(k)}\rangle
+\begin{aligned}
+t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle &= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(k-1)}, \, \boldsymbol{v}^{(k)}\rangle  \\
+&= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(k)}\rangle - \sum_{j=1}^{k-1} t_j \langle \boldsymbol{Av}^{(j)},\, \boldsymbol{v}^{(k)}\rangle \\
+&= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(k)}\rangle
+\end{aligned}
 $$
 
 이므로, 
 
 $$
-\langle \boldsymbol{Ax}^{(n+1)}-\boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{A}(\boldsymbol{x}^{(1)}-\boldsymbol{x}^{(k)})-\boldsymbol{b}, \, \boldsymbol{v}^{(k)}\rangle
+\langle \boldsymbol{Ax}^{(n)}-\boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \boldsymbol{0}
 $$
 
-임을 얻을 수 있다. @eq-positive_definite_1 로부터, $\boldsymbol{Ax}^{(k)}$ 는 $\boldsymbol{Ax}^{(1)}$ 과 $\boldsymbol{Av}^{(1)}, \ldots, \boldsymbol{Av}^{(k-1)}$ 의 선형결합임을 안다. 즉 위식의 우변은 $0$ 이다. 따라서
+임을 얻을 수 있다. 임의의 $k\in \{1,\ldots,\,n\}$ 에 대해 성립하며 $\{\boldsymbol{v}^{(1)},\ldots,\,\boldsymbol{v}^{(n)}\}$ 이 $\mathcal{M}_n(\mathbb{R})$ 의 기저이므로 
 
 $$
-\boldsymbol{Ax}^{(n+1)} = \boldsymbol{b}
+\boldsymbol{Ax}^{(n)} = \boldsymbol{b}
 $$
 
 이다. $\square$ 
@@ -996,13 +981,13 @@ $$
 
 </br>
 
-이제 $\boldsymbol{A}$-직교 벡터를 구하는 방법을 알아볼 차례이다. 다음을 보자.
+이제 $\boldsymbol{A}$-직교 벡터를 구하는 방법을 알아보기 전에 다음을 보자.
 
 <div class="border" style="background-color:#F2F4F4;padding:5px;">
 
 ::: {#thm-A_orthogonal_vectors_1}
 
-Positive definite $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 에 대해 $\boldsymbol{r}^{(k)}=\boldsymbol{b}-\boldsymbol{Ax}^{(k)}$ 이라 하면 $j=1,\ldots,\,k-1$ 에 대해 $\langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle=0$ 이다.
+@thm-A-orthogonal_method 의 조건에서 $\boldsymbol{r}^{(k)}=\boldsymbol{b}-\boldsymbol{Ax}^{(k)}$ 이라 하면 $j=1,\ldots,\,k$ 에 대해 $\langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle=0$ 이다.
 
 :::
 
@@ -1010,26 +995,28 @@ Positive definite $\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})$ 에 �
 
 ::: {.proof}
 
-Induction 으로 증명한다. $k=2$ 에 대해 $\boldsymbol{r}^{(2)} = \boldsymbol{b}-\boldsymbol{Ax}^{(2)}$ 이며 $\boldsymbol{x}^{(2)} =  \boldsymbol{x}^{(1)} +t_1 \boldsymbol{v}^{(1)}$ 이다.  $t_1 = \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)}, \boldsymbol{v}^{(1)}\rangle}{\langle \boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle}$ 이므로, 
+Induction 으로 증명한다. $k=1$ 에 대해 $\boldsymbol{r}^{(1)} = \boldsymbol{b}-\boldsymbol{Ax}^{(1)}$ 이며 $\boldsymbol{x}^{(1)} =  \boldsymbol{x}^{(0)} +t_1 \boldsymbol{v}^{(1)}$ 이다.  $t_1 = \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)}, \boldsymbol{v}^{(1)}\rangle}{\langle \boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle}$ 이므로, 
 
 $$
 \begin{aligned}
-\langle \boldsymbol{r}^{(2)},\boldsymbol{v}^{(1)}\rangle &= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)} - t_1\boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle \\
-&= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)},\boldsymbol{v}^{(1)}\rangle - t_1 \langle \boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle = 0
+\langle \boldsymbol{r}^{(1)},\, \boldsymbol{v}^{(1)} \rangle &=  \langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)},\, \boldsymbol{v}^{(1)} \rangle =\langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(1)}\rangle - t_1 \langle \boldsymbol{Av}^{(1)},\, \boldsymbol{v}^{(1)}\rangle \\
+&= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(1)}\rangle - \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(1)}\rangle =\boldsymbol{0}
 \end{aligned}
 $$
 
-이다. 이제 $k<n$ 에 대해 성립함을 가정하자. $j=1,\ldots,\,k$ 에 대해 다음이 성립함을 보이면 된다.
+이다. 이제 $k$ 보다 작거나 같은 정수에 대해 성립함을 가정한다. 
 
 $$
-\begin{aligned}
-\langle \boldsymbol{r}^{(k+1)}, \boldsymbol{v}^{(j)}\rangle &= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(k+1)},\,\boldsymbol{v}^{(j)}\rangle \\
-&= \langle \boldsymbol{b} - \boldsymbol{Ax}^{(k)} - t_k\boldsymbol{Av}^{(k)},\, \boldsymbol{v}^{(j)}\rangle \\
-&= \langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle - t_k \langle \boldsymbol{Av}^{(k)}, \boldsymbol{v}^{(j)}\rangle
-\end{aligned}
+\boldsymbol{r}^{(k+1)} =  \boldsymbol{b} - \boldsymbol{Ax}^{(k+1)} = \boldsymbol{b} - \boldsymbol{Ax}^{(k)} - t_{k+1}\boldsymbol{Av}^{(k+1)} = \boldsymbol{r}^{(k)} - t_{k+1}\boldsymbol{Av}^{(k+1)}
 $$
 
-이다. $j=<k$ 이면 induction 의 가정에 의해 $\langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle =0$ 이며 $\boldsymbol{A}$-직교 벡터의 정의에 의해 $\langle \boldsymbol{Av}^{(k)}, \boldsymbol{v}^{(j)}\rangle=0$ 이므로 성립한다. $j=k$ 일 때는 $t_k$ 의 정의에 의해 $0$ 이 된다. $\square$
+이므로, $j=1,\ldots,\,k+1$ 에 대해
+
+$$
+\langle \boldsymbol{r}^{(k+1)},\, \boldsymbol{v}^{(j)}\rangle = \langle \boldsymbol{r}^{(k)},\, \boldsymbol{v}^{(j)}\rangle - t_{k+1} \langle \boldsymbol{Av}^{(k+1)},\, \boldsymbol{v}^{(j)}\rangle
+$$
+
+이다. $j\le k$ 라면 $\langle \boldsymbol{r}^{(k)},\, \boldsymbol{v}^{(j)}\rangle$ 은 induction 의 가정에 의해 $0$ 이며 $\langle \boldsymbol{Av}^{(k+1)},\, \boldsymbol{v}^{(j)}\rangle$ 은 $\boldsymbol{A}$-직교조건에 의해 $0$ 이다. $j=k+1$ 이라면 $t_k$ 와 $\boldsymbol{r}^{(k)}$ 의 정의에 의해 $0$ 이다. 따라서 명제가 성립한다. $\square$
 
 :::
 
@@ -1039,27 +1026,49 @@ $$
 
 ::: {#thm-A_orthogonal_vectors_2}
 
-아래와 같이 정의된 $\boldsymbol{v}^{(k)}$ $(k\ge 2)$ 는 $j=1,\,\ldots,k-1$ 에 대해 $\langle \boldsymbol{v}^{(k)},\, \boldsymbol{Av}^{(j)}\rangle = 0$ 이다.
+
+
+임의의 $\boldsymbol{x}^{(0)}$ 에 대해 $\boldsymbol{v}^{(1)}=\boldsymbol{r}^{(0)}= \boldsymbol{b}-\boldsymbol{Ax}^{(0)}$ 로 잡자. 그리고 $\boldsymbol{x}^{(k-1)}$ 와 $\boldsymbol{v}^{(k)}$ 이 주어졌을 때, 
 
 $$
-\boldsymbol{v}^{(k)}=\boldsymbol{r}^{(k)} + s_k \boldsymbol{v}^{(k-1)}, \qquad \text{where } s_k = \dfrac{\langle \boldsymbol{r}^{(k)}, \,\boldsymbol{r}^{(k)} \rangle}{\langle \boldsymbol{r}^{(k-1)}, \,\boldsymbol{r}^{(k-1)} \rangle} 
+\begin{aligned}
+\boldsymbol{x}^{(k)} &= \boldsymbol{x}^{(k-1)} + t_{k} \boldsymbol{v}^{(k)}, \\
+\boldsymbol{v}^{(k+1)} &= \boldsymbol{r}^{(k)} + s_{k}\boldsymbol{v}^{(k)},\qquad s_{k}= -\dfrac{\langle \boldsymbol{v}^{(k)},\, \boldsymbol{Ar}^{(k)}\rangle}{\langle \boldsymbol{v}^{(k)},\, \boldsymbol{Av}^{(k)}\rangle} 
+\end{aligned}
 $$
 
+이라고 하면 $j=1,\ldots,\,k-1$ 에 대해 $\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k)}\rangle = 0$ 이며 $\langle \boldsymbol{r}^{(j)},\, \boldsymbol{r}^{(k)}\rangle = 0$ 이다.
 :::
 
 </div></br>
 
 ::: {.proof}
+Induction 으로 증명한다. 우선 $k=2$ 일 때 증명한다.
+$$
+\begin{aligned}
+\langle \boldsymbol{v}^{(1)},\, \boldsymbol{Av}^{(2)}\rangle &= \langle \boldsymbol{v}^{(1)},\, \boldsymbol{A}(\boldsymbol{r}^{(1)}+s_{2}\boldsymbol{v}^{(1)})\rangle \\
+&= \langle \boldsymbol{v}^{(1)},\, \boldsymbol{Ar}^{(1)}\rangle + s_2 \langle \boldsymbol{v}^{(1)},\, \boldsymbol{\boldsymbol{v}^{(1)}}\rangle = 0
+\end{aligned}
+$$
 
-$k=2$ 일 때 
+이다. 이제 $k$ 보다 작거나 같은 정수에 대해 성립함을 가정한다.
 
 $$
 \begin{aligned}
-\boldsymbol{v}^{(2)} &= \boldsymbol{b}-\boldsymbol{Ax}^{(2)} + s_1 \boldsymbol{v}^{(1)} \\
-&= \boldsymbol{b}-\boldsymbol{A}(\boldsymbol{x}^{(1)}-t_1 \boldsymbol{v}^{(1)})+ s_1 \boldsymbol{v}^{(1)}\\
-&= \boldsymbol{b} - \boldsymbol{Ax}^{(1)} + 
+\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k+1)}\rangle &=\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Ar}^{(k)} \rangle + s_k \langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k)}\rangle 
 \end{aligned}
-$$ 
+$$
+
+$j=k$ 이면 $s_k$ 의 정의에 의해 $0$ 이 된다. $j<k$ 이면 induction 의 가정에 의해 $\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k)}\rangle =0$ 이므로
+
+$$
+\begin{aligned}
+\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k+1)}\rangle &=\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Ar}^{(k)} \rangle = \
+\end{aligned}
+$$
+
 
 
 :::
+
+

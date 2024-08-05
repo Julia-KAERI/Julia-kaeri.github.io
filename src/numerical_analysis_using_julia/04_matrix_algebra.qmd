@@ -185,7 +185,7 @@ Out[6]: 3-element Vector{Float64}:
 
 </br>
 
-### 행렬의 노름
+### 행렬의 노름 {#sec-norm_of_matrix}
 
 행렬의 노름(norm) 역시 행렬의 크기에 대한 척도로서 특정한 성질을 만족하는 함수 가운데 선택된다.
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Julia &amp; Numerical Anlaysis - 들어가며</title>
+<title>Julia &amp; Numerical Anlaysis - 웨이블릿 변환을 이용한 이미지 처리</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" rel="next">
+<link href="../../src/image_processing/wavelet/wavelets_julia.html" rel="next">
+<link href="../../src/image_processing/wavelet/descrete_wavelet_transform.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,6 +69,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -132,11 +128,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Julia 언어</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/numerical_analysis_using_julia/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../src/numerical_analysis_using_julia/index.html"> 
 <span class="menu-text">수치해석</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/image_processing/index.html"> 
+    <a class="nav-link active" href="../../src/image_processing/index.html" aria-current="page"> 
 <span class="menu-text">영상 처리/토모그래피</span></a>
   </li>  
   <li class="nav-item">
@@ -146,10 +142,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="../../src/posts/index.html"> 
 <span class="menu-text">Posts</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://julia-kaeri.github.io/ClassicalMechanics.doc/"> 
-<span class="menu-text">Classical Mechanics</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -167,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">들어가며</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/image_processing/wavelet/fourier_transform.html">푸리에 변환과 웨이블릿 변환</a></li><li class="breadcrumb-item"><a href="../../src/image_processing/wavelet_and_image.html">웨이블릿 변환을 이용한 이미지 처리</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -182,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Julia 언어를 이용한 수치해석 1부</span></a>
+ <span class="menu-text">영상 처리 기초</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -190,77 +182,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">들어가며</span></a>
+  <a href="../../src/image_processing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">영상 처리와 토모그래피</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">수치해석 (Numerical Analysis) 과 알고리즘 (Algorithm)</span></a>
+  <a href="../../src/image_processing/introduction_to_signal_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">디지털 신호처리의 기초</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">수학에 관련된 표기법과 명제들</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/03_linear_system.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">수치해석 입문 : 선형시스템과 다항식</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Julia 에서의 행렬 계산</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/04I_polynomial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interlude : 일변수 다항식의 Julia 구현</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05_interpolation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">다항식을 이용한 1차원 보간법</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/05I_interpolation_struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interlude : 보간법의 구현</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일변수 함수의 미분과 적분</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/06I_Bezier.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Interlude : 베지에 곡선(Bézier curve)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/07_finding_root.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일변수 방정식의 해</span></a>
+  <a href="../../src/image_processing/fourier_transform_for_image_processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">푸리에 변환</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Julia 언어를 이용한 수치해석 2부</span></a>
+ <span class="menu-text">푸리에 변환과 웨이블릿 변환</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -268,59 +211,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/08_matrix_decomposition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">행렬의 분해</span></a>
+  <a href="../../src/image_processing/wavelet/fourier_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">푸리에 변환</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/09_iterative_method_for_linear_system.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">선형방정식과 반복법</span></a>
+  <a href="../../src/image_processing/wavelet/wavelet_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">웨이블릿 변환</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/10_least_square_problem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">최소자승 문제</span></a>
+  <a href="../../src/image_processing/wavelet/descrete_wavelet_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">이산 웨이블릿 변환</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식의 초기값 문제-I</span></a>
+  <a href="../../src/image_processing/wavelet_and_image.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">웨이블릿 변환을 이용한 이미지 처리</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/12_ode_initial_value_problem_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식의 초기값 문제-II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/13_ode_boundary_value_problem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식의 경계값 문제</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/14_approximation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Approximation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/15_pde_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">편미분 방정식</span></a>
+  <a href="../../src/image_processing/wavelet/wavelets_julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wavelets.jl</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">수학</span></a>
+ <span class="menu-text">주제별 처리</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -328,26 +252,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A_collection_of_proofs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">수학적 증명</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A_generalized_inverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">일반화된 역행렬과 의사 역행렬</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">상미분 방정식</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/numerical_analysis_using_julia/A_pde.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">편미분 방정식의 이론적 배경</span></a>
+  <a href="../../src/image_processing/tomography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">토모그래피</span></a>
   </div>
 </li>
       </ul>
@@ -362,16 +268,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#참고자료" id="toc-참고자료" class="nav-link active" data-scroll-target="#참고자료">참고자료</a></li>
+  <li><a href="#행렬-기반-변환" id="toc-행렬-기반-변환" class="nav-link active" data-scroll-target="#행렬-기반-변환"><span class="header-section-number">1</span> 행렬 기반 변환</a>
+  <ul class="collapse">
+  <li><a href="#차원-변환" id="toc-차원-변환" class="nav-link" data-scroll-target="#차원-변환">1차원 변환</a></li>
+  <li><a href="#차원-변환-1" id="toc-차원-변환-1" class="nav-link" data-scroll-target="#차원-변환-1">2차원 변환</a></li>
+  <li><a href="#mathbbcn-에서의-2차원-변환" id="toc-mathbbcn-에서의-2차원-변환" class="nav-link" data-scroll-target="#mathbbcn-에서의-2차원-변환"><span class="math inline">\(\mathbb{C}^n\)</span> 에서의 2차원 변환</a></li>
+  <li><a href="#이중직교성" id="toc-이중직교성" class="nav-link" data-scroll-target="#이중직교성">이중직교성</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a></li>
+  </ul></li>
+  <li><a href="#wavelet-변환" id="toc-wavelet-변환" class="nav-link" data-scroll-target="#wavelet-변환"><span class="header-section-number">2</span> Wavelet 변환</a>
+  <ul class="collapse">
+  <li><a href="#scaling-functions" id="toc-scaling-functions" class="nav-link" data-scroll-target="#scaling-functions">Scaling functions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">Julia 언어를 이용한 수치해석 1부</a></li><li class="breadcrumb-item"><a href="../../src/numerical_analysis_using_julia/index.html">들어가며</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/image_processing/wavelet/fourier_transform.html">푸리에 변환과 웨이블릿 변환</a></li><li class="breadcrumb-item"><a href="../../src/image_processing/wavelet_and_image.html">웨이블릿 변환을 이용한 이미지 처리</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">들어가며</h1>
+<h1 class="title">웨이블릿 변환을 이용한 이미지 처리</h1>
 </div>
 
 
@@ -388,26 +305,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>수치해석은 알고리즘을 중점적으로 다룰 수도 있고, 특정 언어로의 구현을 중점적으로 다룰 수도 있다. 보통 알고리즘을 중심적으로 다루는 경우는 수학적으로 깊이 들어가 내용이 명제와 수식으로 가득 차 있지만 실제 언어로 구현하는데 어려움이 있을 수 있다. 언어로의 구현을 중점적으로 다루게 되면 깊이 없이 피상적으로 코딩만 하게 될 수도 있다.</p>
-<p>알고리즘을 중심으로 설명하는 경우 실제 코드가 아닌 의사 코드(psedo code) 를 사용하는 경우가 많다. Julia 언어는 알고리즘을 직접 코드로 옮기는데 아주 유용하며, 알고리즘을 의사 코드가 아닌 julia 코드로 써도 julia 언어에 대한 기본 지식만 있다면 쉽게 알고리즘을 이해할 수 있는 경우가 많다. 여기서는 의사 코드가 아닌 julia 코드로 알고리즘을 설명한다.</p>
-<p>실제적인 상황에서의 또 하나의 문제는 pseudo 코드와 비슷한 julia 코드가 꼭 효울적인 코드는 아니라는 것이다. 그래서 여기서는 다음의 방침을 정했다.</p>
-<ol type="1">
-<li>알고리즘은 julia 코드로 최대한 읽고 이해하기 쉬운 코드로 제시한다. 이 julia 코드는 자체로서 알고리즘이 원하는 동작을 하는 코드이다.</li>
-<li>이 책에서 많은 경우 앞부분에서 사용했던 알고리즘이나 방법을 뒤에서 사용하는 경우가 많이 있다. 이를 위해 여기서 구현한 것들을 julia 패키지로 만들었고 github 에 올려두었다. <a href="https://github.com/Julia-KAERI/NAJ.jl.git">NAJ.jl</a> 이며 julia 에 설치 할 수 있다.</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> ]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="pp">@v1</span><span class="fl">.10</span>) pkg<span class="op">&gt;</span> add https<span class="op">://</span>github.com<span class="op">/</span>Julia<span class="op">-</span>KAERI<span class="op">/</span>NAJ.jl.git</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<section id="참고자료" class="level3">
-<h3 class="anchored" data-anchor-id="참고자료">참고자료</h3>
-<ol type="1">
-<li><p><a href="https://horizon.kias.re.kr/5881/">계산수학의 태동과 발전</a> : KAIST 수학과 이창옥 교수님의 강연 요약. 수치해석의 다양한 토픽을 역사적, 실제적 맥락에서 다루었다.</p></li>
-<li><p><a href="https://www.iro.umontreal.ca/~mignotte/IFT2425/Disasters.html">Some disasters attributable to bad numerical computing</a> : 캐나다 몬트리올 대학 Max Mignotte 교수님의 개인 사이트. 제목대로 수치해석의 오류로 인한 대형사고 3가지를 다룬다.</p></li>
-<li><p><a href="https://nx006.tistory.com/80">수치해석을 모르면 생기는 사고들</a> : 한국어 자료</p></li>
-<li></li>
-</ol>
+<section id="행렬-기반-변환" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="행렬-기반-변환"><span class="header-section-number">1</span> 행렬 기반 변환</h2>
+<section id="차원-변환" class="level3">
+<h3 class="anchored" data-anchor-id="차원-변환">1차원 변환</h3>
+<p>일차원 데이터 <span class="math inline">\(\boldsymbol{f} = \begin{bmatrix} f_1 &amp; \cdots &amp; f_N\end{bmatrix}^N\)</span> 를 다음과 같이 변환하여 <span class="math inline">\(\boldsymbol{t}=\begin{bmatrix} t_1 &amp; \cdots &amp; t_N\end{bmatrix}^T\)</span> 로 변환한다고 하자.</p>
+<p><span class="math display">\[
+t_u = \sum_{i=1}^N r(u,\,i) f_i
+\]</span></p>
+<p>1차원 푸리에 변환도 위와 같은 형태의 변환이며, 이 때 <span class="math inline">\((u,\,i)\)</span> 성분이 <span class="math inline">\(r(u,\,i)\)</span> 인 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 를 생각 할 수 있으며,</p>
+<p><span class="math display">\[
+\boldsymbol{t}=\boldsymbol{Af}
+\]</span></p>
+<p>이다. 많은 경우 <span class="math inline">\(\boldsymbol{A}\)</span> 가 직교 행렬, 즉 <span class="math inline">\(\boldsymbol{AA}^T=\boldsymbol{I}\)</span> 인데 이 경우 역변환은 다음과 같다.</p>
+<p><span class="math display">\[
+\boldsymbol{f} = \boldsymbol{A}^{-1}\boldsymbol{t} = \boldsymbol{A}^T\boldsymbol{t}
+\]</span></p>
+<p><br></p>
+</section>
+<section id="차원-변환-1" class="level3">
+<h3 class="anchored" data-anchor-id="차원-변환-1">2차원 변환</h3>
+<p>이미지를 이미지로 변환하는 경우 원본 <span class="math inline">\(f[i,\,j]\)</span> 와 변환된 <span class="math inline">\(t[u,\,v]\)</span> 사이에 다음의 관계가 성립한다고 하자.</p>
+<p><span class="math display">\[
+\begin{aligned}
+t[u,\,v] = \sum_{i=1}^N \sum_{j=1}^N r(u, v, i, j)\,  f[i, j], \\
+f[i,\,j] = \sum_{u=1}^N \sum_{v=1}^N s(u, v, i, j) \, t[u, v].
+\end{aligned}
+\]</span></p>
+<p>이 경우 <span class="math inline">\(s(u, v, i, j)\)</span> 는 <span class="math inline">\(r(u, v, i, j)\)</span> 의 역변환이다. <span class="math inline">\(r(u, v, i, j)\)</span> 가 두 1차원 변환의 곱으로 다음과 같이 표현될 수 있을 때 <span class="math inline">\(r\)</span> 을 분리가능하다고 한다.</p>
+<p><span class="math display">\[
+r(u, v, i, j) = r_1(u, i)\, r_2(v, j)
+\]</span></p>
+<p>또한 <span class="math inline">\(r_1=r_2\)</span> 이면 <span class="math inline">\(r\)</span> 을 대칭변환 이라고 한다. <span class="math inline">\(t[u,\,v]=\boldsymbol{T}\)</span>, <span class="math inline">\(r_1[i, u]=\boldsymbol{A}\)</span>, <span class="math inline">\(f[i,\,j]=\boldsymbol{F}\)</span> 라고 표현하면,</p>
+<p><span class="math display">\[
+t[u,\,v] = \sum_{i, j} r_1[u, i] r_1[v, j] f[i, j]
+\]</span></p>
+<p>이므로</p>
+<p><span class="math display">\[
+\boldsymbol{T}=\boldsymbol{AFA}^T
+\]</span></p>
+<p>이다. <span class="math inline">\(\boldsymbol{A}\)</span> 가 직교행렬이라면</p>
+<p><span class="math display">\[
+\boldsymbol{F} = \boldsymbol{A}^T\boldsymbol{TA}
+\]</span></p>
+<p>이다.</p>
+<p><br></p>
+</section>
+<section id="mathbbcn-에서의-2차원-변환" class="level3">
+<h3 class="anchored" data-anchor-id="mathbbcn-에서의-2차원-변환"><span class="math inline">\(\mathbb{C}^n\)</span> 에서의 2차원 변환</h3>
+<p><span class="math inline">\(\boldsymbol{s}_k,\,\boldsymbol{s}_l\in \mathcal{M}_{N}(\mathbb{C})\)</span> 의 내적은</p>
+<p><span class="math display">\[
+\langle \boldsymbol{s}_k,\,\boldsymbol{s}_l\rangle = \overline{\langle \boldsymbol{s}_l,\, \boldsymbol{s}_k\rangle} = \boldsymbol{s}_l^\ast \boldsymbol{s}_k
+\]</span></p>
+<p>이다. 복소벡터공간에서 거리를 보존하는 변환은 유니타리 변환이며 유니타리 변환에 대한 행렬은 유니타리 행렬로 <span class="math inline">\(\boldsymbol{A}^{-1} = \boldsymbol{A}^\ast\)</span> 인 행렬을 의미한다. 따라서 두 정사각 이미지 <span class="math inline">\(\boldsymbol{T}\)</span> 와 <span class="math inline">\(\boldsymbol{F}\)</span> 사이에</p>
+<p><span class="math display">\[
+\boldsymbol{T}= \boldsymbol{AFA}^T
+\]</span></p>
+<p>의 관계가 성립하며 <span class="math inline">\(\boldsymbol{A}\)</span> 가 유니타리라면</p>
+<p><span class="math display">\[
+\boldsymbol{F} = \boldsymbol{A}^{\ast} \boldsymbol{TA}^{\ast T}
+\]</span></p>
+<p>가 성립한다.</p>
+<p><br></p>
+</section>
+<section id="이중직교성" class="level3">
+<h3 class="anchored" data-anchor-id="이중직교성">이중직교성</h3>
+<p>내적벡터공간의 기저 <span class="math inline">\(\{v_1,\, v_2,\ldots\}\)</span> 의 각각의 <span class="math inline">\(v_i\)</span> 에 대해 어떤 <span class="math inline">\(\widetilde{v}_i\)</span> 가 존재하여 <span class="math inline">\(i\ne j\)</span> 이면 <span class="math inline">\(\langle v_i,\, \widetilde{v}_j\rangle = 0\)</span> 일 때 <span class="math inline">\(\{v_1,\,v_2,\ldots\}\)</span> 를 이중직교기저 라고 한다. 만약</p>
+<p><span class="math display">\[
+\langle v_i,\, \widetilde{v}_j\rangle = \delta_{ij}
+\]</span></p>
+<p>이면 이중정규직교기저 라고 한다. <span class="math inline">\(\widetilde{v}_i = v_i,\, i=1,\,2,\ldots\)</span> 이면 우리가 아는 정규직교기저이다.</p>
+<p><br></p>
+</section>
+<section id="correlation" class="level3">
+<h3 class="anchored" data-anchor-id="correlation">Correlation</h3>
+<p>이미 <a href="../../src/image_processing/introduction_to_signal_processing.html#sec-image_convolution_correlation">Convolution 과 Corellation</a> 에서 정의한 correlation 은 복소함수 공간이나 복소벡터공간에서 다음과 같다.</p>
+<p><span class="math display">\[
+(f \otimes g)(x) = \int_{-\infty}^\infty f^\ast (t)\, g(t+x)\, dt
+\]</span></p>
+<p>이로부터</p>
+<p><span class="math display">\[
+(f \otimes g)(0) = \int_{-\infty}^\infty f^\ast (t)\, g(t)\, dt = \langle g,\, f\rangle = \overline{\langle f,\, g\rangle}
+\]</span></p>
+<p>임을 안다. 즉 두 벡터 사이의</p>
+<p><br></p>
+</section>
+</section>
+<section id="wavelet-변환" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="wavelet-변환"><span class="header-section-number">2</span> Wavelet 변환</h2>
+<section id="scaling-functions" class="level3">
+<h3 class="anchored" data-anchor-id="scaling-functions">Scaling functions</h3>
+<p>father scaling function <span class="math inline">\(\varphi(x)\)</span> 에 대해</p>
+<p><span class="math display">\[
+\varphi_{j,\,k} (x) = 2^{j/2} \varphi(2^j x-k)
+\]</span></p>
+<p>를 생각하자. 이 함수는 <span class="math inline">\(\varphi(x)\)</span> 에 대해 <span class="math inline">\(x\)</span> 축으로 <span class="math inline">\(2^j\)</span> 만큼 축소되어 있으며 <span class="math inline">\(k\)</span> 만큼 이동되어 있다. 고정된 <span class="math inline">\(j=j_0\)</span> 에 대해</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -822,10 +818,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../src/image_processing/wavelet/descrete_wavelet_transform.html" class="pagination-link" aria-label="이산 웨이블릿 변환">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">이산 웨이블릿 변환</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/numerical_analysis_using_julia/01_numerical_analysis_and_algorithm.html" class="pagination-link" aria-label="수치해석 (Numerical Analysis) 과 알고리즘 (Algorithm)">
-        <span class="nav-page-text">수치해석 (Numerical Analysis) 과 알고리즘 (Algorithm)</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/image_processing/wavelet/wavelets_julia.html" class="pagination-link" aria-label="Wavelets.jl">
+        <span class="nav-page-text">Wavelets.jl</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

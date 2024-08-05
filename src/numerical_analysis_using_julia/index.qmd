@@ -23,4 +23,16 @@ julia> ]
 ```
 
 
+</br>
+
+### 참고자료
+
+1. [계산수학의 태동과 발전](https://horizon.kias.re.kr/5881/) : KAIST 수학과 이창옥 교수님의 강연 요약. 수치해석의 다양한 토픽을 역사적, 실제적 맥락에서 다루었다. 
+
+2. [Some disasters attributable to bad numerical computing](https://www.iro.umontreal.ca/~mignotte/IFT2425/Disasters.html) : 캐나다 몬트리올 대학 Max Mignotte 교수님의 개인 사이트. 제목대로 수치해석의 오류로 인한 대형사고 3가지를 다룬다.
+
+3. [수치해석을 모르면 생기는 사고들](https://nx006.tistory.com/80) : 한국어 자료
+
+4. 
+
 

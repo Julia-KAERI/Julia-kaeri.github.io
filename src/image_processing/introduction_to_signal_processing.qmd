@@ -193,12 +193,12 @@ $$ {#eq-img_impluse_train}
 
 </br>
 
-## Convolution 과 Correlation
+## Convolution 과 Correlation {#sec-image_convolution_correlation}
 
 @eq-img_sampling 과 같은 형태의 함수는 매우 중요하다. 즉 두 함수 $f,\,g$ 에 대해 $\int f(t) g(x-t) \, dt$ 는 $x$ 에 대한 함수이며 **convolution** 이라 하고 $f \ast g$ 로 표현한다. 이와 유사한 것이 $\int f(t) g(x+t)\, dt$ 로 정의되는 **cross-correlation**  혹은 줄여서 **correlation** 이며 $f\otimes g$ 로 표현한다. 
 
 ::: {.callout-note appearance="simple" icon="false"}
-::: {#def-fourier_series}
+::: {#def-convolution_and_correlation}
 
 #### convolution 과 cross-correlation
 

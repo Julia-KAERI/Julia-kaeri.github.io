@@ -28,6 +28,8 @@ website:
         text : "Tools"
       - href : src/posts/index.qmd
         text : "Posts"
+      - href : https://julia-kaeri.github.io/ClassicalMechanics.doc/
+        text : "Classical Mechanics"
       - about.qmd
     tools:
       - icon: envelope
@@ -123,6 +125,8 @@ website:
           - href: src/image_processing/wavelet/fourier_transform.qmd
           - href: src/image_processing/wavelet/wavelet_transform.qmd
           - href: src/image_processing/wavelet/descrete_wavelet_transform.qmd
+          - href: src/image_processing/wavelet_and_image.qmd
+          - href: src/image_processing/wavelet/wavelets_julia.qmd
     
         - section : 주제별 처리
           contents:

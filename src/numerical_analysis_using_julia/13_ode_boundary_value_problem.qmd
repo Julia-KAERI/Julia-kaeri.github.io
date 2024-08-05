@@ -89,7 +89,7 @@ x_2'' & = p(t)x_2' + q(t)x_2  ,\qquad &x_2(a) = 0,\, x_2'(a) = 1,\\
 \end{aligned}
 $$ {#eq-ode-boundary_1}
 
-[11장 정리 1](11_ode_initial_value_problem_1.qmd#thm-lipschitz_condtion) 로부터 우리는 위의 두 방정식이 유일해를 가진다는 것을 안다. 여기서 $x_2(b)\ne 0$ 이어야 하는데, 만약 $x_2(b) =0$ 이라면 $x_2=0$ 밖에 해가 될수 없기 때문이다(@exr-ode_boundary_1 를 보라). 이제
+[11장 정리 1](11_ode_initial_value_problem_1.qmd#thm-lipschitz_condtion) 로부터 우리는 위의 두 방정식이 유일해를 가진다는 것을 안다. 여기서 $x_2(b)\ne 0$ 이어야 하는데, 만약 $x_2(b) =0$ 이라면 $x_2=0$ 밖에 해가 될수 없기 때문이다(@exr-ode_linear_shooting_1 를 보라). 이제
 
 $$
 x(t) := x_1(t) + \dfrac{\beta - x_1(b)}{x_2(b)} x_2(t)

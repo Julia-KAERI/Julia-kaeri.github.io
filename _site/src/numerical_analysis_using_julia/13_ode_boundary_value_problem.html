@@ -474,7 +474,7 @@ x_1'' &amp; = p(t)x_1' + q(t)x_1 + r(t) ,\qquad &amp;x_1(a) = \alpha,\, x_1'(a) 
 x_2'' &amp; = p(t)x_2' + q(t)x_2  ,\qquad &amp;x_2(a) = 0,\, x_2'(a) = 1,\\
 \end{aligned}
 \tag{1}\]</span></span></p>
-<p><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html#thm-lipschitz_condtion">11장 정리 1</a> 로부터 우리는 위의 두 방정식이 유일해를 가진다는 것을 안다. 여기서 <span class="math inline">\(x_2(b)\ne 0\)</span> 이어야 하는데, 만약 <span class="math inline">\(x_2(b) =0\)</span> 이라면 <span class="math inline">\(x_2=0\)</span> 밖에 해가 될수 없기 때문이다(<strong>?@exr-ode_boundary_1</strong> 를 보라). 이제</p>
+<p><a href="../../src/numerical_analysis_using_julia/11_ode_initial_value_problem_1.html#thm-lipschitz_condtion">11장 정리 1</a> 로부터 우리는 위의 두 방정식이 유일해를 가진다는 것을 안다. 여기서 <span class="math inline">\(x_2(b)\ne 0\)</span> 이어야 하는데, 만약 <span class="math inline">\(x_2(b) =0\)</span> 이라면 <span class="math inline">\(x_2=0\)</span> 밖에 해가 될수 없기 때문이다(<a href="#exr-ode_linear_shooting_1" class="quarto-xref">연습문제&nbsp;1</a> 를 보라). 이제</p>
 <p><span class="math display">\[
 x(t) := x_1(t) + \dfrac{\beta - x_1(b)}{x_2(b)} x_2(t)
 \]</span></p>

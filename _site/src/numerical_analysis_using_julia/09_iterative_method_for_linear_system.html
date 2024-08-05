@@ -400,7 +400,7 @@ window.Quarto = {
   <li><a href="#sec-iteration_gauss_siedel" id="toc-sec-iteration_gauss_siedel" class="nav-link" data-scroll-target="#sec-iteration_gauss_siedel">가우스-자이델 방법</a></li>
   </ul></li>
   <li><a href="#successive-over-relaxation-sor" id="toc-successive-over-relaxation-sor" class="nav-link" data-scroll-target="#successive-over-relaxation-sor"><span class="header-section-number">3</span> Successive Over-Relaxation (SOR)</a></li>
-  <li><a href="#오차" id="toc-오차" class="nav-link" data-scroll-target="#오차"><span class="header-section-number">4</span> 오차</a></li>
+  <li><a href="#오차벡터와-조건수" id="toc-오차벡터와-조건수" class="nav-link" data-scroll-target="#오차벡터와-조건수"><span class="header-section-number">4</span> 오차벡터와 조건수</a></li>
   <li><a href="#the-conjugate-gradient-방법" id="toc-the-conjugate-gradient-방법" class="nav-link" data-scroll-target="#the-conjugate-gradient-방법"><span class="header-section-number">5</span> The Conjugate gradient 방법</a>
   <ul class="collapse">
   <li><a href="#steepest-descent" id="toc-steepest-descent" class="nav-link" data-scroll-target="#steepest-descent">Steepest descent</a></li>
@@ -685,7 +685,7 @@ window.Quarto = {
 </div>
 <div class="callout-body-container">
 <div id="def-iteration_residual_vector" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 3 (Residual vector)</strong></span> <span class="math inline">\(\boldsymbol{A} \in \mathcal{M}_{n \times n}(\mathbb{F})\)</span> 를 이용한 선형방정식 <span class="math inline">\(\boldsymbol{Ax}=\boldsymbol{b}\)</span> 이 주어졌을 때 <span class="math inline">\(\tilde{\boldsymbol{x}}\in \mathcal{M}_{n}(\mathbb{F})\)</span> 에 대한 <strong>residual vector</strong> <span class="math inline">\(\boldsymbol{r}\)</span> 는 다음과 같이 정의된다.</p>
+<p><span class="theorem-title"><strong>정의 3 (오차벡터)</strong></span> <span class="math inline">\(\boldsymbol{A} \in \mathcal{M}_{n \times n}(\mathbb{F})\)</span> 를 이용한 선형방정식 <span class="math inline">\(\boldsymbol{Ax}=\boldsymbol{b}\)</span> 이 주어졌을 때 <span class="math inline">\(\tilde{\boldsymbol{x}}\in \mathcal{M}_{n}(\mathbb{F})\)</span> 에 대한 <strong>오차벡터(residual vector)</strong> <span class="math inline">\(\boldsymbol{r}\)</span> 는 다음과 같이 정의된다.</p>
 <p><span id="eq-iterative_residual_vector"><span class="math display">\[
 \boldsymbol{r} : = \boldsymbol{b} - \boldsymbol{A}\tilde{\boldsymbol{x}}
 \tag{2}\]</span></span></p>
@@ -932,9 +932,9 @@ x^{(k+1)}_i = (1-\omega) x^{(k)}_i + \dfrac{1}{A_{ii}}\left[ \omega b_i - \sum_{
 </div>
 <p><br></p>
 </section>
-<section id="오차" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="오차"><span class="header-section-number">4</span> 오차</h2>
-<p>가역 행렬 <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{n\times n}(\mathbb{R})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{Ax}=\boldsymbol{b}\)</span> 를 반복법으로 풀 때 우리는 어떤 오차 내의 계산값을 얻게 된다. 이 계산값을 <span class="math inline">\(\overline{\boldsymbol{x}}\)</span> 라고 할 때 <span class="math inline">\(\boldsymbol{r} = \boldsymbol{b}-\boldsymbol{A}\overline{\boldsymbol{x}}\)</span> 를 <strong>오차 벡터(residual vector)</strong> 라고 할 수 있다. 정해진 노름에 대해 <span class="math inline">\(\|\boldsymbol{r}\|\)</span> 이 작다면 <span class="math inline">\(\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|\)</span> 가 작을 것이라고 예상 할 수 있지만 항상 그런것은 아니다.</p>
+<section id="오차벡터와-조건수" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="오차벡터와-조건수"><span class="header-section-number">4</span> 오차벡터와 조건수</h2>
+<p>선형방정식 <span class="math inline">\(\boldsymbol{Ax}=\boldsymbol{b}\)</span> 에 대해 우리가 임시로 구한 해를 <span class="math inline">\(\overline{\boldsymbol{x}}\)</span> 라고 할 때 <span class="math inline">\(\boldsymbol{r} = \boldsymbol{b}-\boldsymbol{A}\overline{\boldsymbol{x}}\)</span> 는 오차벡터(residual vector) 이다(<a href="#def-iteration_residual_vector" class="quarto-xref">정의&nbsp;3</a>). 우리는 앞서 선형방정식의 오차의 척도로 <span class="math inline">\(\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|\)</span> 나 <span class="math inline">\(\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|/\|\boldsymbol{x}\|\)</span> 를 사용하였다. 정해진 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 의 노름에 대해 <span class="math inline">\(\|\boldsymbol{r}\|\)</span> 이 작다면 <span class="math inline">\(\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|\)</span> 혹은 <span class="math inline">\(\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|/\|\boldsymbol{x}\|\)</span> 가 작을 것이라고 예상 할 수 있지만 항상 그런것은 아니다.</p>
 <p><br></p>
 <div class="border" style="background-color:#F2F4F4;padding:5px;">
 <div id="prp-condition_number" class="theorem proposition">
@@ -958,27 +958,8 @@ x^{(k+1)}_i = (1-\omega) x^{(k)}_i + \dfrac{1}{A_{ii}}\left[ \omega b_i - \sum_{
 \]</span> 이다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="def-conditional_number_of_invertible_matrix" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 4 (조건수)</strong></span> 가역행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 와 자연스러운 노름 <span class="math inline">\(\|\cdot \|\)</span> 에 대해</p>
-<p><span class="math display">\[
-\kappa (\boldsymbol{A}) = \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
-\]</span></p>
-<p>를 <span class="math inline">\(\boldsymbol{A}\)</span> 의 노름 <span class="math inline">\(\|\cdot\|\)</span> 에 대한 <strong>조건수 (conditional number)</strong> 라고 한다.</p>
-</div>
-</div>
-</div>
-</div>
+<p>우리는 앞서 <a href="../../src/numerical_analysis_using_julia/04_matrix_algebra.html#sec-condition_number_of_matrix">행렬의 조건수</a> 에서 정사각 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 의 조건수 <span class="math inline">\(\kappa_\boldsymbol{A} := \|\boldsymbol{A}\|\|\boldsymbol{A}^{-1}\|\)</span> 에 대해 알아보았다. 즉 <span class="math inline">\(\boldsymbol{r}\|\)</span> 이 작더라도 <span class="math inline">\(\kappa_{\boldsymbol{A}}\)</span> 가 크다면 절대오차 혹은 상대오차가 클 수 있다는 것을 알 수 있다. 좋은 조건과 나쁜 조건도 여기에 사용 할 수 있다. <span class="math inline">\(\kappa(\boldsymbol{A})\approx 1\)</span> 이면 오차벡터의 작은 차이가 <span class="math inline">\(\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|\)</span> 의 작은 차이를 의미하기 때문에 <span class="math inline">\(\boldsymbol{A}\)</span> 를 <strong>좋은 조건(well-conditioned)</strong> 이라고 한다. 반대로 <span class="math inline">\(\kappa(\boldsymbol{A}) \gg 1\)</span> 일 경우는 <strong>나쁜 조건 (ill-conditioned)</strong> 라고 한다.</p>
 <p><br></p>
-<p><span class="math display">\[
-1 = \|\boldsymbol{I}\|  = \|\boldsymbol{AA}^{-1}\| \le \|\boldsymbol{A} \| \cdot \|\boldsymbol{A}^{-1}\| = \kappa(\boldsymbol{A})
-\]</span></p>
-<p>이다. 만약 <span class="math inline">\(\kappa(\boldsymbol{A})\approx 1\)</span> 이면 오차벡터의 작은 차이가 <span class="math inline">\(\|\boldsymbol{x}-\overline{\boldsymbol{x}}\|\)</span> 의 작은 차이를 의미하기 때문에 <span class="math inline">\(\boldsymbol{A}\)</span> 를 <strong>좋은 조건(well-conditioned)</strong> 이라고 한다. 반대로 <span class="math inline">\(\kappa(\boldsymbol{A}) \gg 1\)</span> 일 경우는 <strong>나쁜 조건 (ill-conditioned)</strong> 라고 한다.</p>
 <p><br></p>
 </section>
 <section id="the-conjugate-gradient-방법" class="level2" data-number="5">
@@ -1051,6 +1032,8 @@ t_k = \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(k)}, \, \boldsymbol{v}^{(k
 <span id="cb9-20"><a href="#cb9-20"></a>    <span class="cf">return</span> <span class="cn">nothing</span></span>
 <span id="cb9-21"><a href="#cb9-21"></a><span class="kw">end</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
+<p>그러나 이 방법은 비선형 시스템이나 최적화 문제에는 많이 사용되지만 선형 시스템에는 많이 사용되지 않는데 이는 수렴속도가 느리기 때문이다.</p>
+<p><br></p>
 </section>
 <section id="boldsymbola-직교-조건" class="level3">
 <h3 class="anchored" data-anchor-id="boldsymbola-직교-조건"><span class="math inline">\(\boldsymbol{A}\)</span>-직교 조건</h3>
@@ -1074,91 +1057,109 @@ t_k = \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(k)}, \, \boldsymbol{v}^{(k
 <p><br></p>
 <div class="border" style="background-color:#F2F4F4;padding:5px;">
 <div id="thm-A-orthogonal_method" class="theorem">
-<p><span class="theorem-title"><strong>정리 5</strong></span> Positive definite <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})\)</span> 에 대해 <span class="math inline">\(\{\boldsymbol{v}^{(1)}, \ldots,\,\boldsymbol{v}^{(n)}\}\)</span> 이 <span class="math inline">\(\boldsymbol{A}\)</span>-직교 벡터라고 하자. 임의의 <span class="math inline">\(\boldsymbol{x}_1\in \mathcal{M}\)</span> 과 <span class="math inline">\(k=1,\ldots,\,n\)</span> 에 대해</p>
+<p><span class="theorem-title"><strong>정리 5</strong></span> Positive definite <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})\)</span> 에 대해 <span class="math inline">\(\{\boldsymbol{v}^{(1)}, \ldots,\,\boldsymbol{v}^{(n)}\}\)</span> 이 <span class="math inline">\(\boldsymbol{A}\)</span>-직교 벡터라고 하자. 임의의 <span class="math inline">\(\boldsymbol{x}^{(0)}\in \mathcal{M}\)</span> 과 <span class="math inline">\(k=1,\ldots,\,n\)</span> 에 대해</p>
 <p><span class="math display">\[
 \begin{aligned}
-t_k &amp;= \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(k)}, \, \boldsymbol{v}^{(k)}\rangle }{\langle \boldsymbol{Av}^{(k)},\, \boldsymbol{v}^{(k)}\rangle}, \\
-\boldsymbol{x}^{(k+1)} &amp;= \boldsymbol{x}^{(k)} + t_k \boldsymbol{v}^{(k)}
+t_k &amp;= \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(k-1)}, \, \boldsymbol{v}^{(k)}\rangle }{\langle \boldsymbol{Av}^{(k)},\, \boldsymbol{v}^{(k)}\rangle}, \\
+\boldsymbol{x}^{(k)} &amp;= \boldsymbol{x}^{(k-1)} + t_{k} \boldsymbol{v}^{(k)}
 \end{aligned}
 \]</span></p>
-<p>라면, <span class="math inline">\(\boldsymbol{Ax}^{(k+1)} = \boldsymbol{b}\)</span> 이다.</p>
+<p>라면, <span class="math inline">\(\boldsymbol{Ax}^{(n)} = \boldsymbol{b}\)</span> 이다.</p>
 </div>
 </div>
 <p><br></p>
 <div class="proof">
 <p><span class="proof-title"><em>(증명)</em>. </span>주어진 식으로부터 <span id="eq-positive_definite_1"><span class="math display">\[
 \begin{aligned}
-\boldsymbol{Ax}^{(n+1)} &amp;= \boldsymbol{Ax}^{(n)} + t_ n \boldsymbol{Av}^{(n)} \\
-&amp;= \boldsymbol{A}(\boldsymbol{x}^{(n-1)}  + t_{n-1}\boldsymbol{v}^{(n-1)}) + t_n \boldsymbol{Av}^{(n)}\\
+\boldsymbol{Ax}^{(n)} &amp;= \boldsymbol{Ax}^{(n-1)} + t_ n \boldsymbol{Av}^{(n)} \\
+&amp;= \boldsymbol{A}(\boldsymbol{x}^{(n-2)}  + t_{n-1}\boldsymbol{v}^{(n-1)}) + t_n \boldsymbol{Av}^{(n)}\\
 &amp; \qquad \qquad  \vdots \\
-&amp; = \boldsymbol{Ax}^{(1)} + t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)}
+&amp; = \boldsymbol{Ax}^{(0)} + t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)}
 \end{aligned}
 \tag{5}\]</span></span></p>
 <p>을 얻는다. 따라서,</p>
 <p><span class="math display">\[
-\boldsymbol{Ax}^{(n+1)} - \boldsymbol{b} = (\boldsymbol{Ax}^{(1)} - \boldsymbol{b})+ t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)}
+\boldsymbol{Ax}^{(n)} - \boldsymbol{b} = (\boldsymbol{Ax}^{(0)} - \boldsymbol{b})+ t_1\boldsymbol{Av}^{(1)} + \cdots + t_n \boldsymbol{Av}^{(n)}
 \]</span></p>
-<p>이다. 여기에 <span class="math inline">\(\boldsymbol{v}^{(k)}\)</span> 와의 내적을 구하면</p>
+<p>이다. 여기에 임의의 <span class="math inline">\(k\in \{1,\ldots,\,n\}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{v}^{(k)}\)</span> 와의 내적을 구하면</p>
 <p><span class="math display">\[
-\langle \boldsymbol{Ax}^{(n+1)} - \boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{Ax}^{(1)}- \boldsymbol{b}, \, \boldsymbol{v}^{(k)}\rangle + t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle
+\langle \boldsymbol{Ax}^{(n)} - \boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{Ax}^{(0)}- \boldsymbol{b}, \, \boldsymbol{v}^{(k)}\rangle + t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle
 \]</span></p>
 <p>이며 <span class="math inline">\(t_k\)</span> 의 정의로부터</p>
 <p><span class="math display">\[
-t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{b}-\boldsymbol{Ax}^{(k)}, \, \boldsymbol{v}^{(k)}\rangle
+\begin{aligned}
+t_k \langle \boldsymbol{Av}^{(k)},\, \, \boldsymbol{v}^{(k)}\rangle &amp;= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(k-1)}, \, \boldsymbol{v}^{(k)}\rangle  \\
+&amp;= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(k)}\rangle - \sum_{j=1}^{k-1} t_j \langle \boldsymbol{Av}^{(j)},\, \boldsymbol{v}^{(k)}\rangle \\
+&amp;= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(k)}\rangle
+\end{aligned}
 \]</span></p>
 <p>이므로,</p>
 <p><span class="math display">\[
-\langle \boldsymbol{Ax}^{(n+1)}-\boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \langle \boldsymbol{A}(\boldsymbol{x}^{(1)}-\boldsymbol{x}^{(k)})-\boldsymbol{b}, \, \boldsymbol{v}^{(k)}\rangle
+\langle \boldsymbol{Ax}^{(n)}-\boldsymbol{b},\, \boldsymbol{v}^{(k)}\rangle = \boldsymbol{0}
 \]</span></p>
-<p>임을 얻을 수 있다. <a href="#eq-positive_definite_1" class="quarto-xref">식&nbsp;5</a> 로부터, <span class="math inline">\(\boldsymbol{Ax}^{(k)}\)</span> 는 <span class="math inline">\(\boldsymbol{Ax}^{(1)}\)</span> 과 <span class="math inline">\(\boldsymbol{Av}^{(1)}, \ldots, \boldsymbol{Av}^{(k-1)}\)</span> 의 선형결합임을 안다. 즉 위식의 우변은 <span class="math inline">\(0\)</span> 이다. 따라서</p>
+<p>임을 얻을 수 있다. 임의의 <span class="math inline">\(k\in \{1,\ldots,\,n\}\)</span> 에 대해 성립하며 <span class="math inline">\(\{\boldsymbol{v}^{(1)},\ldots,\,\boldsymbol{v}^{(n)}\}\)</span> 이 <span class="math inline">\(\mathcal{M}_n(\mathbb{R})\)</span> 의 기저이므로</p>
 <p><span class="math display">\[
-\boldsymbol{Ax}^{(n+1)} = \boldsymbol{b}
+\boldsymbol{Ax}^{(n)} = \boldsymbol{b}
 \]</span></p>
 <p>이다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
-<p>이제 <span class="math inline">\(\boldsymbol{A}\)</span>-직교 벡터를 구하는 방법을 알아볼 차례이다. 다음을 보자.</p>
+<p>이제 <span class="math inline">\(\boldsymbol{A}\)</span>-직교 벡터를 구하는 방법을 알아보기 전에 다음을 보자.</p>
 <div class="border" style="background-color:#F2F4F4;padding:5px;">
 <div id="thm-A_orthogonal_vectors_1" class="theorem">
-<p><span class="theorem-title"><strong>정리 6</strong></span> Positive definite <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{n \times n}(\mathbb{R})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{r}^{(k)}=\boldsymbol{b}-\boldsymbol{Ax}^{(k)}\)</span> 이라 하면 <span class="math inline">\(j=1,\ldots,\,k-1\)</span> 에 대해 <span class="math inline">\(\langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle=0\)</span> 이다.</p>
+<p><span class="theorem-title"><strong>정리 6</strong></span> <a href="#thm-A-orthogonal_method" class="quarto-xref">정리&nbsp;5</a> 의 조건에서 <span class="math inline">\(\boldsymbol{r}^{(k)}=\boldsymbol{b}-\boldsymbol{Ax}^{(k)}\)</span> 이라 하면 <span class="math inline">\(j=1,\ldots,\,k\)</span> 에 대해 <span class="math inline">\(\langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle=0\)</span> 이다.</p>
 </div>
 </div>
 <p><br></p>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span>Induction 으로 증명한다. <span class="math inline">\(k=2\)</span> 에 대해 <span class="math inline">\(\boldsymbol{r}^{(2)} = \boldsymbol{b}-\boldsymbol{Ax}^{(2)}\)</span> 이며 <span class="math inline">\(\boldsymbol{x}^{(2)} =  \boldsymbol{x}^{(1)} +t_1 \boldsymbol{v}^{(1)}\)</span> 이다. <span class="math inline">\(t_1 = \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)}, \boldsymbol{v}^{(1)}\rangle}{\langle \boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle}\)</span> 이므로,</p>
+<p><span class="proof-title"><em>(증명)</em>. </span>Induction 으로 증명한다. <span class="math inline">\(k=1\)</span> 에 대해 <span class="math inline">\(\boldsymbol{r}^{(1)} = \boldsymbol{b}-\boldsymbol{Ax}^{(1)}\)</span> 이며 <span class="math inline">\(\boldsymbol{x}^{(1)} =  \boldsymbol{x}^{(0)} +t_1 \boldsymbol{v}^{(1)}\)</span> 이다. <span class="math inline">\(t_1 = \dfrac{\langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)}, \boldsymbol{v}^{(1)}\rangle}{\langle \boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle}\)</span> 이므로,</p>
 <p><span class="math display">\[
 \begin{aligned}
-\langle \boldsymbol{r}^{(2)},\boldsymbol{v}^{(1)}\rangle &amp;= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)} - t_1\boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle \\
-&amp;= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)},\boldsymbol{v}^{(1)}\rangle - t_1 \langle \boldsymbol{Av}^{(1)},\boldsymbol{v}^{(1)}\rangle = 0
+\langle \boldsymbol{r}^{(1)},\, \boldsymbol{v}^{(1)} \rangle &amp;=  \langle \boldsymbol{b}-\boldsymbol{Ax}^{(1)},\, \boldsymbol{v}^{(1)} \rangle =\langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(1)}\rangle - t_1 \langle \boldsymbol{Av}^{(1)},\, \boldsymbol{v}^{(1)}\rangle \\
+&amp;= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(1)}\rangle - \langle \boldsymbol{b}-\boldsymbol{Ax}^{(0)},\, \boldsymbol{v}^{(1)}\rangle =\boldsymbol{0}
 \end{aligned}
 \]</span></p>
-<p>이다. 이제 <span class="math inline">\(k&lt;n\)</span> 에 대해 성립함을 가정하자. <span class="math inline">\(j=1,\ldots,\,k\)</span> 에 대해 다음이 성립함을 보이면 된다.</p>
+<p>이다. 이제 <span class="math inline">\(k\)</span> 보다 작거나 같은 정수에 대해 성립함을 가정한다.</p>
 <p><span class="math display">\[
-\begin{aligned}
-\langle \boldsymbol{r}^{(k+1)}, \boldsymbol{v}^{(j)}\rangle &amp;= \langle \boldsymbol{b}-\boldsymbol{Ax}^{(k+1)},\,\boldsymbol{v}^{(j)}\rangle \\
-&amp;= \langle \boldsymbol{b} - \boldsymbol{Ax}^{(k)} - t_k\boldsymbol{Av}^{(k)},\, \boldsymbol{v}^{(j)}\rangle \\
-&amp;= \langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle - t_k \langle \boldsymbol{Av}^{(k)}, \boldsymbol{v}^{(j)}\rangle
-\end{aligned}
+\boldsymbol{r}^{(k+1)} =  \boldsymbol{b} - \boldsymbol{Ax}^{(k+1)} = \boldsymbol{b} - \boldsymbol{Ax}^{(k)} - t_{k+1}\boldsymbol{Av}^{(k+1)} = \boldsymbol{r}^{(k)} - t_{k+1}\boldsymbol{Av}^{(k+1)}
 \]</span></p>
-<p>이다. <span class="math inline">\(j=&lt;k\)</span> 이면 induction 의 가정에 의해 <span class="math inline">\(\langle \boldsymbol{r}^{(k)}, \boldsymbol{v}^{(j)}\rangle =0\)</span> 이며 <span class="math inline">\(\boldsymbol{A}\)</span>-직교 벡터의 정의에 의해 <span class="math inline">\(\langle \boldsymbol{Av}^{(k)}, \boldsymbol{v}^{(j)}\rangle=0\)</span> 이므로 성립한다. <span class="math inline">\(j=k\)</span> 일 때는 <span class="math inline">\(t_k\)</span> 의 정의에 의해 <span class="math inline">\(0\)</span> 이 된다. <span class="math inline">\(\square\)</span></p>
+<p>이므로, <span class="math inline">\(j=1,\ldots,\,k+1\)</span> 에 대해</p>
+<p><span class="math display">\[
+\langle \boldsymbol{r}^{(k+1)},\, \boldsymbol{v}^{(j)}\rangle = \langle \boldsymbol{r}^{(k)},\, \boldsymbol{v}^{(j)}\rangle - t_{k+1} \langle \boldsymbol{Av}^{(k+1)},\, \boldsymbol{v}^{(j)}\rangle
+\]</span></p>
+<p>이다. <span class="math inline">\(j\le k\)</span> 라면 <span class="math inline">\(\langle \boldsymbol{r}^{(k)},\, \boldsymbol{v}^{(j)}\rangle\)</span> 은 induction 의 가정에 의해 <span class="math inline">\(0\)</span> 이며 <span class="math inline">\(\langle \boldsymbol{Av}^{(k+1)},\, \boldsymbol{v}^{(j)}\rangle\)</span> 은 <span class="math inline">\(\boldsymbol{A}\)</span>-직교조건에 의해 <span class="math inline">\(0\)</span> 이다. <span class="math inline">\(j=k+1\)</span> 이라면 <span class="math inline">\(t_k\)</span> 와 <span class="math inline">\(\boldsymbol{r}^{(k)}\)</span> 의 정의에 의해 <span class="math inline">\(0\)</span> 이다. 따라서 명제가 성립한다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
 <div class="border" style="background-color:#F2F4F4;padding:5px;">
 <div id="thm-A_orthogonal_vectors_2" class="theorem">
-<p><span class="theorem-title"><strong>정리 7</strong></span> 아래와 같이 정의된 <span class="math inline">\(\boldsymbol{v}^{(k)}\)</span> <span class="math inline">\((k\ge 2)\)</span> 는 <span class="math inline">\(j=1,\,\ldots,k-1\)</span> 에 대해 <span class="math inline">\(\langle \boldsymbol{v}^{(k)},\, \boldsymbol{Av}^{(j)}\rangle = 0\)</span> 이다.</p>
+<p><span class="theorem-title"><strong>정리 7</strong></span> 임의의 <span class="math inline">\(\boldsymbol{x}^{(0)}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{v}^{(1)}=\boldsymbol{r}^{(0)}= \boldsymbol{b}-\boldsymbol{Ax}^{(0)}\)</span> 로 잡자. 그리고 <span class="math inline">\(\boldsymbol{x}^{(k-1)}\)</span> 와 <span class="math inline">\(\boldsymbol{v}^{(k)}\)</span> 이 주어졌을 때,</p>
 <p><span class="math display">\[
-\boldsymbol{v}^{(k)}=\boldsymbol{r}^{(k)} + s_k \boldsymbol{v}^{(k-1)}, \qquad \text{where } s_k = \dfrac{\langle \boldsymbol{r}^{(k)}, \,\boldsymbol{r}^{(k)} \rangle}{\langle \boldsymbol{r}^{(k-1)}, \,\boldsymbol{r}^{(k-1)} \rangle}
+\begin{aligned}
+\boldsymbol{x}^{(k)} &amp;= \boldsymbol{x}^{(k-1)} + t_{k} \boldsymbol{v}^{(k)}, \\
+\boldsymbol{v}^{(k+1)} &amp;= \boldsymbol{r}^{(k)} + s_{k}\boldsymbol{v}^{(k)},\qquad s_{k}= -\dfrac{\langle \boldsymbol{v}^{(k)},\, \boldsymbol{Ar}^{(k)}\rangle}{\langle \boldsymbol{v}^{(k)},\, \boldsymbol{Av}^{(k)}\rangle}
+\end{aligned}
 \]</span></p>
+<p>이라고 하면 <span class="math inline">\(j=1,\ldots,\,k-1\)</span> 에 대해 <span class="math inline">\(\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k)}\rangle = 0\)</span> 이며 <span class="math inline">\(\langle \boldsymbol{r}^{(j)},\, \boldsymbol{r}^{(k)}\rangle = 0\)</span> 이다.</p>
 </div>
 </div>
 <p><br></p>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(k=2\)</span> 일 때</p>
+<p><span class="proof-title"><em>(증명)</em>. </span>Induction 으로 증명한다. 우선 <span class="math inline">\(k=2\)</span> 일 때 증명한다. <span class="math display">\[
+\begin{aligned}
+\langle \boldsymbol{v}^{(1)},\, \boldsymbol{Av}^{(2)}\rangle &amp;= \langle \boldsymbol{v}^{(1)},\, \boldsymbol{A}(\boldsymbol{r}^{(1)}+s_{2}\boldsymbol{v}^{(1)})\rangle \\
+&amp;= \langle \boldsymbol{v}^{(1)},\, \boldsymbol{Ar}^{(1)}\rangle + s_2 \langle \boldsymbol{v}^{(1)},\, \boldsymbol{\boldsymbol{v}^{(1)}}\rangle = 0
+\end{aligned}
+\]</span></p>
+<p>이다. 이제 <span class="math inline">\(k\)</span> 보다 작거나 같은 정수에 대해 성립함을 가정한다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-\boldsymbol{v}^{(2)} &amp;= \boldsymbol{b}-\boldsymbol{Ax}^{(2)} + s_1 \boldsymbol{v}^{(1)} \\
-&amp;= \boldsymbol{b}-\boldsymbol{A}(\boldsymbol{x}^{(1)}-t_1 \boldsymbol{v}^{(1)})+ s_1 \boldsymbol{v}^{(1)}\\
-&amp;= \boldsymbol{b} - \boldsymbol{Ax}^{(1)} +
+\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k+1)}\rangle &amp;=\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Ar}^{(k)} \rangle + s_k \langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k)}\rangle
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(j=k\)</span> 이면 <span class="math inline">\(s_k\)</span> 의 정의에 의해 <span class="math inline">\(0\)</span> 이 된다. <span class="math inline">\(j&lt;k\)</span> 이면 induction 의 가정에 의해 <span class="math inline">\(\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k)}\rangle =0\)</span> 이므로</p>
+<p><span class="math display">\[
+\begin{aligned}
+\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Av}^{(k+1)}\rangle &amp;=\langle \boldsymbol{v}^{(j)},\, \boldsymbol{Ar}^{(k)} \rangle = \
 \end{aligned}
 \]</span></p>
 </div>

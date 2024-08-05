@@ -227,6 +227,18 @@ window.Quarto = {
  <span class="menu-text">이산 웨이블릿 변환</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/wavelet_and_image.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">웨이블릿 변환을 이용한 이미지 처리</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/image_processing/wavelet/wavelets_julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wavelets.jl</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -266,7 +278,7 @@ window.Quarto = {
   <li><a href="#샘플링과-델타-함수" id="toc-샘플링과-델타-함수" class="nav-link" data-scroll-target="#샘플링과-델타-함수">샘플링과 델타 함수</a></li>
   <li><a href="#이산-데이터" id="toc-이산-데이터" class="nav-link" data-scroll-target="#이산-데이터">이산 데이터</a></li>
   </ul></li>
-  <li><a href="#convolution-과-correlation" id="toc-convolution-과-correlation" class="nav-link" data-scroll-target="#convolution-과-correlation"><span class="header-section-number">2</span> Convolution 과 Correlation</a>
+  <li><a href="#sec-image_convolution_correlation" id="toc-sec-image_convolution_correlation" class="nav-link" data-scroll-target="#sec-image_convolution_correlation"><span class="header-section-number">2</span> Convolution 과 Correlation</a>
   <ul class="collapse">
   <li><a href="#기본적인-성질" id="toc-기본적인-성질" class="nav-link" data-scroll-target="#기본적인-성질">기본적인 성질</a></li>
   </ul></li>
@@ -468,8 +480,8 @@ d(x) = \int_{-\infty}^\infty e^{ikx}dk &amp;= \int_{-\infty}^0 e^{ikx}\, dk + \i
 <p><br></p>
 </section>
 </section>
-<section id="convolution-과-correlation" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="convolution-과-correlation"><span class="header-section-number">2</span> Convolution 과 Correlation</h2>
+<section id="sec-image_convolution_correlation" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-image_convolution_correlation"><span class="header-section-number">2</span> Convolution 과 Correlation</h2>
 <p><a href="#eq-img_sampling" class="quarto-xref">식&nbsp;1</a> 과 같은 형태의 함수는 매우 중요하다. 즉 두 함수 <span class="math inline">\(f,\,g\)</span> 에 대해 <span class="math inline">\(\int f(t) g(x-t) \, dt\)</span> 는 <span class="math inline">\(x\)</span> 에 대한 함수이며 <strong>convolution</strong> 이라 하고 <span class="math inline">\(f \ast g\)</span> 로 표현한다. 이와 유사한 것이 <span class="math inline">\(\int f(t) g(x+t)\, dt\)</span> 로 정의되는 <strong>cross-correlation</strong> 혹은 줄여서 <strong>correlation</strong> 이며 <span class="math inline">\(f\otimes g\)</span> 로 표현한다.</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -477,7 +489,7 @@ d(x) = \int_{-\infty}^\infty e^{ikx}dk &amp;= \int_{-\infty}^0 e^{ikx}\, dk + \i
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div id="def-fourier_series" class="theorem definition">
+<div id="def-convolution_and_correlation" class="theorem definition">
 <p><span class="theorem-title"><strong>정의 2 (convolution 과 cross-correlation)</strong></span> 연속 함수 <span class="math inline">\(f,\,g\)</span> 에 대해 <strong>convolution</strong> <span class="math inline">\(f \ast g\)</span> 와 <strong>cross-correlation</strong> <span class="math inline">\(f \otimes g\)</span> 는 다음과 같이 정의된다.</p>
 <p>  (<span class="math inline">\(1\)</span>) 1 차원 <span class="math display">\[
 \begin{aligned}
