@@ -178,6 +178,10 @@ window.Quarto = {
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="https://julia-kaeri.github.io/ClassicalMechanics.doc/"> 
+<span class="menu-text">Classical Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -435,25 +439,7 @@ window.Quarto = {
 <h2 data-number="1" class="anchored" data-anchor-id="sec-norm_of_vector_and_matrix"><span class="header-section-number">1</span> 벡터와 행렬의 노름과 조건수</h2>
 <section id="벡터의-노름" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="벡터의-노름">벡터의 노름</h3>
-<p>벡터의 노름(norm) 은 벡터의 크기에 대한 척도로서 실수, 혹은 복소수의 절대값과 비슷한 역할을 한다. 보통 <span class="math inline">\(n\)</span> 차원 공간에서 사용하는 피타고라스 정리에 의한 거리도 노름의 일종이다. 벡터공간에서의 노름은 특정한 성질을 만족하는 함수 가운데 선택된다.</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div id="def-norm_of_vector" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 1 (벡터공간의 노름)</strong></span> <span class="math inline">\(\mathbb{F}\)</span>-벡터공간 <span class="math inline">\(V\)</span> 에서 정의된 함수 <span class="math inline">\(\|\cdot\| : V \to \mathbb{R}\)</span> 가 <span class="math inline">\(\boldsymbol{v},\,\boldsymbol{u}\in V\)</span> 와 <span class="math inline">\(\alpha \in \mathbb{F}\)</span> 에 대해 다음을 만족할 때 이 함수는 벡터공간의 노름이 될 수 있다.</p>
-<p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\|\boldsymbol{v}\| \ge 0\)</span>,</p>
-<p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\|\boldsymbol{v}\| = 0 \iff \boldsymbol{v}=\boldsymbol{0}\)</span>,</p>
-<p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\|\alpha \boldsymbol{v} \| = |\alpha| \|\boldsymbol{v}\|\)</span>,</p>
-<p>  (<span class="math inline">\(4\)</span>) <span class="math inline">\(\|\boldsymbol{u}+\boldsymbol{v}\| \le \|\boldsymbol{u}\| + \|\boldsymbol{v}\|\)</span>.</p>
-<p>노름은 거리함수라고도 불리며 노름이 주어진 공간을 노름 벡터 공간 (normed vector space) 라고 한다.</p>
-</div>
-</div>
-</div>
-</div>
-<p>우리는 앞서 <a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#def-innerproduct_space">내적과 노름</a> 에서 노름을 다루었다. 내적벡터공간에서는 내적에 의해 자연스럽게 노름을 정의할 수 있지만 노름 자체는 집합에 부여되는 성질이며 내적과 관계 없이 노름을 정의할 수도 있다. 즉 어떤 집합에 위의 노름이 정의되면 노름공간이라고 한다. <br></p>
+<p><a href="../../src/numerical_analysis_using_julia/02_notations_and_propositions.html#def-innerproduct_space">벡터의 노름(norm)</a> 은 벡터의 크기에 대한 척도로서 실수, 혹은 복소수의 절대값과 비슷한 역할을 한다. 보통 <span class="math inline">\(n\)</span> 차원 유클리드 공간에서 사용하는 거리도 노름의 일종이다. 벡터공간에서의 노름은 특정한 성질을 만족하는 함수 가운데 선택된다. 내적벡터공간에서는 내적에 의해 자연스럽게 노름을 정의할 수 있지만 노름 자체는 집합에 부여되는 성질이며 내적과 관계 없이 노름을 정의할 수도 있다. 즉 어떤 집합에 위의 노름이 정의되면 노름공간이라고 한다. <br></p>
 <p>벡터의 노름에 대한 성질을 알기 위해 다음 부등식을 알 필요가 있다.</p>
 <div id="prp-norm_inequality" class="theorem proposition">
 <p><span class="theorem-title"><strong>명제 1 (횔더부등식(Hölder’s inequality) 과 민코프스키 부등식(Minkowski’s ineqality))</strong></span> <span class="math inline">\(p\ge 1\)</span> 이며 <span class="math inline">\(1/p+1/q =1\)</span> 일 때 다음이 성립한다. <span class="math display">\[
@@ -474,7 +460,7 @@ window.Quarto = {
 </div>
 <div class="callout-body-container">
 <div id="def-p_morm" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 2 (<span class="math inline">\(L_p\)</span>-노름 과 <span class="math inline">\(\infty\)</span>-노름)</strong></span> <span class="math inline">\(p&gt;1\)</span> 에 대해 아래와 같이 정의된 <span class="math inline">\(\| \cdot \|_p : \mathcal{M}_n(\mathbb{F}) \to [0, \infty)\)</span> 는 노름이며 이 노름을 <span class="math inline">\(L_p\)</span>-노름 이라고 한다.</p>
+<p><span class="theorem-title"><strong>정의 1 (<span class="math inline">\(L_p\)</span>-노름 과 <span class="math inline">\(\infty\)</span>-노름)</strong></span> <span class="math inline">\(p&gt;1\)</span> 에 대해 아래와 같이 정의된 <span class="math inline">\(\| \cdot \|_p : \mathcal{M}_n(\mathbb{F}) \to [0, \infty)\)</span> 는 노름이며 이 노름을 <span class="math inline">\(L_p\)</span>-노름 이라고 한다.</p>
 <p><span class="math display">\[
 \|\boldsymbol{v}\|_p := \left( \sum_{i=1} |v_i|^p \right)^{1/p}.
 \]</span></p>
@@ -483,7 +469,7 @@ window.Quarto = {
 </div>
 </div>
 <p><br></p>
-<p><span class="math inline">\(p=1,\,2,\,\infty\)</span> 인 경우가 많이 사용된다. <span class="math inline">\(p=1\)</span> 인 경우는 맨해튼 노름(Manhattan norm) 혹은 taxicab norm 이라고 하며,</p>
+<p><span class="math inline">\(p&gt;1\)</span> 인 실수에 대해 사용할 수 있으며 보통 <span class="math inline">\(p=1,\,2,\,\infty\)</span> 인 경우를 많이 사용한다. <span class="math inline">\(p=1\)</span> 인 경우는 맨해튼 노름(Manhattan norm) 혹은 taxicab norm 이라고 하며,</p>
 <p><span class="math display">\[
 \|\boldsymbol{v}\|_1 = \sum_i |v_i|
 \]</span></p>
@@ -509,7 +495,7 @@ window.Quarto = {
 </div>
 <div class="callout-body-container">
 <div id="def-equivalence_of_norm" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 3 (노름의 동등함)</strong></span> 벡터공간 <span class="math inline">\(V\)</span> 에 두개의 노름 <span class="math inline">\(\|\cdot \|_\alpha\)</span> 와 <span class="math inline">\(\|\cdot \|_\beta\)</span> 가 정의되었을 때, 모든 <span class="math inline">\(\boldsymbol{v}\in V\)</span> 에 대해 어떤 상수 <span class="math inline">\(c_1,\,c_2\)</span> 가 존재하여</p>
+<p><span class="theorem-title"><strong>정의 2 (노름의 동등함)</strong></span> 벡터공간 <span class="math inline">\(V\)</span> 에 두개의 노름 <span class="math inline">\(\|\cdot \|_\alpha\)</span> 와 <span class="math inline">\(\|\cdot \|_\beta\)</span> 가 정의되었을 때, 모든 <span class="math inline">\(\boldsymbol{v}\in V\)</span> 에 대해 어떤 상수 <span class="math inline">\(c_1,\,c_2\)</span> 가 존재하여</p>
 <p><span class="math display">\[
 c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol{v}\|_\alpha
 \]</span></p>
@@ -562,7 +548,7 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 </div>
 <div class="callout-body-container">
 <div id="def-matrix_norm" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 4</strong></span> 행렬의 노름 <span class="math inline">\(\|\cdot \|: \mathcal{M}_{m\times n}(\mathbb{F}) \to \mathbb{R}\)</span> 은 행렬 <span class="math inline">\(\boldsymbol{A},\, \boldsymbol{B}\)</span> 와 스칼라 <span class="math inline">\(\alpha\)</span> 에 대해 다음의 성질을 만족한다.</p>
+<p><span class="theorem-title"><strong>정의 3</strong></span> 행렬의 노름 <span class="math inline">\(\|\cdot \|: \mathcal{M}_{m\times n}(\mathbb{F}) \to \mathbb{R}\)</span> 은 행렬 <span class="math inline">\(\boldsymbol{A},\, \boldsymbol{B}\)</span> 와 스칼라 <span class="math inline">\(\alpha\)</span> 에 대해 다음의 성질을 만족한다.</p>
 <p>  (<span class="math inline">\(1\)</span>) <span class="math inline">\(\|\boldsymbol{A}\| \ge 0\)</span>,</p>
 <p>  (<span class="math inline">\(2\)</span>) <span class="math inline">\(\|\boldsymbol{A}\| = 0 \iff \boldsymbol{A} = 0\)</span>,</p>
 <p>  (<span class="math inline">\(3\)</span>) <span class="math inline">\(\|\alpha \boldsymbol{A}\| = |\alpha| \|\boldsymbol{A}\|\)</span>,</p>
@@ -587,21 +573,21 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 </div>
 <div class="callout-body-container">
 <div id="def-frobenius_norm" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 5 (프로베니우스 노름)</strong></span> <span class="math inline">\(m \times n\)</span> 행렬에 대한 프로베니우스 노름(Frobenius norm) 은 다음과 같이 정의된다. <span class="math display">\[
+<p><span class="theorem-title"><strong>정의 4 (프로베니우스 노름)</strong></span> <span class="math inline">\(m \times n\)</span> 행렬에 대한 프로베니우스 노름(Frobenius norm) 은 다음과 같이 정의된다. <span class="math display">\[
 \|\boldsymbol{A}\|_F := \left(\sum_{i=1}^m \sum_{j=1}^n |A_{ij}|^2\right)^{1/2} = \sqrt{\text{tr}(\boldsymbol{AA}^\dagger)}
 \]</span></p>
 </div>
 </div>
 </div>
 </div>
-<div id="exm-frobenius_norm" class="theorem example">
-<p><span class="theorem-title"><strong>예제 1</strong></span> 프로베니우스 노름이 행렬의 노름의 정의에 나열된 5가지의 성질을 만족한다는 것을 보여라.</p>
+<div id="exr-frobenius_norm" class="theorem exercise">
+<p><span class="theorem-title"><strong>연습문제 1</strong></span> 프로베니우스 노름이 행렬의 노름의 정의에 나열된 5가지의 성질을 만족한다는 것을 보여라.</p>
 </div>
 <p><br></p>
 </section>
 <section id="sec-natural_norm" class="level4">
 <h4 class="anchored" data-anchor-id="sec-natural_norm">자연스러운 노름</h4>
-<p>행렬은 벡터공간에서 정의된 선형 함수로서의 의미가 더 중요하기 때문에, 벡터가 연산되었을 때 그 크기가 어떻게 되는지가 더 중요한 경우가 많다. 이런 의미에서 행렬의 노름을 벡터와의 연산에 대해 정의할 수 있는데 이렇게 정의된 행렬의 노름은 <strong>유도된 행렬 노름 (induced matrix norm)</strong>, <strong>자연스러운 행렬 노름(natural matrix norm)</strong> 혹은 <strong>종속된 노름(subordinate norm)</strong> 이라고 하며 정사각 행렬의 경우는 <strong>연산자 노름(operator norm)</strong> 이라고도 한다. <u>앞으로 행렬의 노름을 이야기할 때는 별다른 언급이 없다면 자연스러운 노름을 의미한다.</u></p>
+<p>행렬은 벡터공간에서 정의된 선형 함수로서의 의미가 중요하기 때문에, 벡터가 연산되었을 때 그 크기가 어떻게 되는지에 관심이 있는 경우가 많다. 이런 의미에서 행렬의 노름을 벡터와의 연산에 대해 정의할 수 있는데 이렇게 정의된 행렬의 노름은 <strong>유도된 행렬 노름 (induced matrix norm)</strong>, <strong>자연스러운 행렬 노름(natural matrix norm)</strong> 혹은 <strong>종속된 노름(subordinate norm)</strong> 이라고 하며 정사각 행렬의 경우는 <strong>연산자 노름(operator norm)</strong> 이라고도 한다. <u>앞으로 행렬의 노름을 이야기할 때는 별다른 언급이 없다면 자연스러운 노름을 의미한다.</u></p>
 <p><br></p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -610,7 +596,7 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 </div>
 <div class="callout-body-container">
 <div id="def-operator_norm" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 6 (행렬의 노름)</strong></span> <span class="math inline">\(\mathcal{M}_n(\mathbb{F})\)</span> 에서의 노름이 <span class="math inline">\(\|\cdot \|_\alpha\)</span>, <span class="math inline">\(\mathcal{M}_m(\mathbb{F})\)</span> 에서의 노름이 <span class="math inline">\(\| \cdot \|_\beta\)</span> 로 정의되었다고 하자. <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{m \times n}(\mathbb{F})\)</span> 에 대한 연산자 노름은 다음과 같이 정의된다.</p>
+<p><span class="theorem-title"><strong>정의 5 (행렬의 노름)</strong></span> <span class="math inline">\(\mathcal{M}_n(\mathbb{F})\)</span> 에서의 노름이 <span class="math inline">\(\|\cdot \|_\alpha\)</span>, <span class="math inline">\(\mathcal{M}_m(\mathbb{F})\)</span> 에서의 노름이 <span class="math inline">\(\| \cdot \|_\beta\)</span> 로 정의되었다고 하자. <span class="math inline">\(\boldsymbol{A}\in \mathcal{M}_{m \times n}(\mathbb{F})\)</span> 에 대한 연산자 노름은 다음과 같이 정의된다.</p>
 <p><span class="math display">\[
 \|\boldsymbol{A}\|_{\alpha,\,\beta} := \sup \{\|\boldsymbol{Av}\|_\beta : \|\boldsymbol{v}\|_\alpha=1\} = \sup_{\|\boldsymbol{v}\|_\alpha = 1} \|\boldsymbol{Av}\|_\beta
 \]</span></p>
@@ -702,7 +688,7 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 </div>
 <div class="callout-body-container">
 <div id="def-errors" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 7 (오차, 절대오차, 상대오차)</strong></span> 함수 <span class="math inline">\(f(x)\)</span> 와 그 수치해석적인 구현 <span class="math inline">\(\overline{f}(x)\)</span> 에 대해 아래와 같은 세가지 오차를 정의 할 수 있다.</p>
+<p><span class="theorem-title"><strong>정의 6 (오차, 절대오차, 상대오차)</strong></span> 함수 <span class="math inline">\(f(x)\)</span> 와 그 수치해석적인 구현 <span class="math inline">\(\overline{f}(x)\)</span> 에 대해 아래와 같은 세가지 오차를 정의 할 수 있다.</p>
 <p>  (<span class="math inline">\(1\)</span>) <strong>오차(error)</strong> <span class="math inline">\(\delta f(x) := f(x) - \overline{f}(x)\)</span>.</p>
 <p>  (<span class="math inline">\(2\)</span>) <strong>절대오차(absolute error)</strong> <span class="math inline">\(|\delta f(x)| := |f(x) - \overline{f}(x)|\)</span>.</p>
 <p>  (<span class="math inline">\(3\)</span>) <strong>상대오차(relative error)</strong> <span class="math inline">\(\displaystyle \dfrac{|\delta f(x)|}{|f(x)|} = \dfrac{|f(x) - \overline{f}(x)|}{|f(x)|}\)</span>.</p>
@@ -720,7 +706,7 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 </div>
 <div class="callout-body-container">
 <div id="def-condition_number_of_function" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 8 (함수의 조건수)</strong></span> 함수 <span class="math inline">\(f:X\subset \mathbb{R}^m \to \mathbb{R}^n\)</span> 와 <span class="math inline">\(x_0 \in X\)</span> 에 대해 아래와 같이 정의된 <span class="math inline">\(\kappa_f (x_0)\)</span> 를 <span class="math inline">\(f\)</span> 의 <span class="math inline">\(x_0 (\ne \boldsymbol{0})\)</span> 에 대한 <strong>조건수 (condition number)</strong> 혹은 <strong>상대적 조건수 (relative condition number)</strong> 라고 한다.</p>
+<p><span class="theorem-title"><strong>정의 7 (함수의 조건수)</strong></span> 함수 <span class="math inline">\(f:X\subset \mathbb{R}^m \to \mathbb{R}^n\)</span> 와 <span class="math inline">\(x_0 \in X\)</span> 에 대해 아래와 같이 정의된 <span class="math inline">\(\kappa_f (x_0)\)</span> 를 <span class="math inline">\(f\)</span> 의 <span class="math inline">\(x_0 (\ne \boldsymbol{0})\)</span> 에 대한 <strong>조건수 (condition number)</strong> 혹은 <strong>상대적 조건수 (relative condition number)</strong> 라고 한다.</p>
 <p><span class="math display">\[
 \kappa_f(x_0) = \lim_{\epsilon \to 0} \sup_{\|\delta x\| &lt; \epsilon} \dfrac{\|f(x_0+\delta x)-f(x_0)\|/\|f(x_0)\|}{\|\delta x\|/\|x_0\|}
 \]</span></p>
@@ -744,7 +730,7 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 <p><span class="math display">\[
 \dfrac{\|\boldsymbol{A}(\boldsymbol{x}_0 + \delta \boldsymbol{x}) - \boldsymbol{Ax}_0\|/\|\boldsymbol{Ax}_0\|}{\|\delta\boldsymbol{ \boldsymbol{x}}\|/\|\boldsymbol{x}_0\|} = \dfrac{\|\boldsymbol{A}\delta \boldsymbol{x}\|}{\|\delta \boldsymbol{x}\|} \dfrac{\|\boldsymbol{x}_0\|}{\|\boldsymbol{Ax}_0\|} =  \dfrac{\|\boldsymbol{A}\delta \boldsymbol{x}\|}{\|\delta \boldsymbol{x}\|} \dfrac{\|\boldsymbol{A}^{-1}\boldsymbol{y}_0\|}{\|\boldsymbol{y}_0\|} \le \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
 \]</span></p>
-<p>이다. 또한 <a href="#def-matrix_norm" class="quarto-xref">정의&nbsp;4</a> 의 (<span class="math inline">\(5\)</span>) 로 부터,</p>
+<p>이다. 또한 <a href="#def-matrix_norm" class="quarto-xref">정의&nbsp;3</a> 의 (<span class="math inline">\(5\)</span>) 로 부터,</p>
 <p><span class="math display">\[
 \|\boldsymbol{A}\|\cdot\|\boldsymbol{A}^{-1}\| \ge \|\boldsymbol{AA}^{-1}\| = 1
 \]</span></p>
@@ -756,7 +742,7 @@ c_1 \|\boldsymbol{v}\|_\alpha \le \|\boldsymbol{v}\|_\beta \le c_2 \|\boldsymbol
 </div>
 <div class="callout-body-container">
 <div id="def-conditional_number_of_invirtible_matrix" class="theorem definition">
-<p><span class="theorem-title"><strong>정의 9 (가역행렬의 조건수)</strong></span> <span class="math inline">\(n \times n\)</span> 가역행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 에 대해 조건수 <span class="math inline">\(\kappa_\boldsymbol{A}\)</span> 는 다음과 같다.</p>
+<p><span class="theorem-title"><strong>정의 8 (가역행렬의 조건수)</strong></span> <span class="math inline">\(n \times n\)</span> 가역행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 에 대해 조건수 <span class="math inline">\(\kappa_\boldsymbol{A}\)</span> 는 다음과 같다.</p>
 <p><span class="math display">\[
 \kappa_\boldsymbol{A} := \|\boldsymbol{A}\| \cdot \|\boldsymbol{A}^{-1}\|
 \]</span></p>

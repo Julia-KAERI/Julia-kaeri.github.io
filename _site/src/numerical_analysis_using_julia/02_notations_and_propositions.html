@@ -178,6 +178,10 @@ window.Quarto = {
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="https://julia-kaeri.github.io/ClassicalMechanics.doc/"> 
+<span class="menu-text">Classical Mechanics</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -418,7 +422,7 @@ window.Quarto = {
 </header>
 
 
-<p>수치해석을 위해서는 기본적으로 미적분학과 선형대수학에 관련된 지식이 필요하다. 이 장은 문서에 걸쳐 사용될 표기법과 명제들을 점검하기 위한 것이다. 수학적 명제들은 학부 1-2 학년 수준의 미적분학과 선형대수학에 포함되는 내용이며 증명은 제시하지 않는다.</p>
+<p>수치해석을 위해서는 기본적으로 미적분학과 선형대수학에 관련된 지식이 필요하다. 이 장은 문서에 걸쳐 사용될 표기법과 명제들을 점검하기 위한 것이다. 수학적 명제들은 학부 1-2 학년 수준의 미적분학과 선형대수학에 포함되는 내용이며 증명은 제시하지 Z않는다.</p>
 <p><br></p>
 <section id="sec-basic_notations" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="sec-basic_notations"><span class="header-section-number">1</span> 기본적인 개념과 표기법</h2>
@@ -1312,10 +1316,10 @@ f(c) = \dfrac{1}{b-a}\int_a^b f(x),\,dx
 <div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>e_3 <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float64}</span>(I, <span class="fl">5</span>, <span class="fl">5</span>)[<span class="op">:</span>,<span class="fl">3</span>]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>(M-6)</strong> <span class="math inline">\(m\times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 와 <span class="math inline">\(m \times k\)</span> 행렬 <span class="math inline">\(\boldsymbol{B}\)</span> 에 대해(두 행렬의 행의 갯수가 같음에 주의하라)) <span class="math inline">\([\boldsymbol{A}\; \boldsymbol{B}]\)</span> 는 <span class="math inline">\(\boldsymbol{A}\)</span> 행렬 옆에 <span class="math inline">\(\boldsymbol{B}\)</span> 행렬을 두는 <span class="math inline">\(m \times (n+k)\)</span> 행렬을 의미한다. <span class="math inline">\(m\times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 와 <span class="math inline">\(l \times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{C}\)</span> 에 대해 (두 행렬의 열의 갯수가 동일함에 유의하라) <span class="math inline">\([\boldsymbol{A} \,; \boldsymbol{C}]\)</span> 는 <span class="math inline">\(\boldsymbol{A}\)</span> 행렬 아래에 <span class="math inline">\(\boldsymbol{C}\)</span> 행렬을 두는 <span class="math inline">\((m+l)\times n\)</span> 행렬이다. 아마 <span class="math inline">\(\begin{bmatrix} \boldsymbol{A} \\ \boldsymbol{C} \end{bmatrix}\)</span> 와 동일하다고 하면 이해하기 쉬울 것이다. <code>;</code> 기호는 julia 에서 열바뀜을 나타내므로 julia 와 어느정도 유사성이 있다 하겠다. 여기에 <span class="math inline">\(l\times k\)</span> 행렬 <span class="math inline">\(\boldsymbol{D}\)</span> 에 대해 <span class="math inline">\(\begin{bmatrix} \boldsymbol{A} &amp; \boldsymbol{B} \\ \boldsymbol{C} &amp; \boldsymbol{D} \end{bmatrix}\)</span> 가 의미하는 것은 여러분이 쉽게 유추 할 수 있을 것이다.</p>
 <p><strong>(J-6)</strong> Julia 에서는 다음과 같이 사용 할 수 있다.</p>
-<pre class="text"><code>julia&gt; A = [1 3;2 4];B=[3 2; 4 3];[A B]
-2×4 Matrix{Int64}:
- 1  3  3  2
- 2  4  4  3</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>In [26]: A = [1 3;2 4];B=[3 2; 4 3];[A B]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Out[26]: 2×4 Matrix{Int64}:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> 1  3  3  2</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> 2  4  4  3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>(M-7)</strong> <span class="math inline">\(m\times n\)</span> 행렬 <span class="math inline">\(\boldsymbol{A}\)</span> 와 <span class="math inline">\(m \times k\)</span> 행렬 <span class="math inline">\(\boldsymbol{B}\)</span> 혹은 <span class="math inline">\(m\)</span> 차원 벡터 <span class="math inline">\(\boldsymbol{b}\)</span> 에 대해 <span class="math inline">\([\boldsymbol{A} \mid \boldsymbol{B}]\)</span> 혹은 <span class="math inline">\([\boldsymbol{A} \mid \boldsymbol{b}]\)</span> 는 행렬에 대한 연산을 동시에 적용하기 위한 개념이다. 연산 <span class="math inline">\(\hat{L}[\boldsymbol{A} \mid \boldsymbol{B}] = [\hat{L}\boldsymbol{A} \mid \hat{L}\boldsymbol{B}]\)</span> 를 의미한다.</p>
 <p><br></p>
 

@@ -2,7 +2,7 @@
 
 수치해석에서는 다항식을 아주 많이 사용한다. 2023년 9월 현재 Julia 언어의 생태계에서는 [`Polynomials.jl`](https://github.com/JuliaMath/Polynomials.jl) 이 다항식을 다루는 패키지로 널리 사용되고 있지만 여기에서는 수치해석과 julia 언어에 대한 연습으로 다항식을 표현하는 복합 타입(`struct` type) 을 만들어보자. 그 이름은 일단 `SimplePolynomial` 로 하도록 하자. 이것은 앞서 소개했던 [NAJ.jl](https://github.com/Julia-KAERI/NAJ.jl.git) 에 포함되어 있다.
 
-Julia 는 객체 지향 언어가 아니기 때문에 클래스와 클래스의 상속이라는 개념이 존재하지 않으며 대부분 복합 타입이 그 역할을 대신한다. 복합 타입에 대해서는 [복합 타입](../introduction_to_julia/09_composite_types.qmd) 과 공식 매뉴얼의 [Types](https://docs.julialang.org/en/v1/manual/types/) 를 참고하라. 복합 타입의 가장 큰 장점중의 하나는 타입 변수를 함수처럼 사용 할 수 있다는 것이다. 만약 우리가 계수로 `SimplePolynomial` 복합 타입을 만들었다면, 이 복합 타입 변수를 함수처럼 사용 할 수 있다. 여기서는 그것을 사용한다.
+Julia 는 객체 지향 언어가 아니기 때문에 클래스와 클래스의 상속이라는 개념이 존재하지 않으며 대부분 복합 타입이 그 역할을 대신한다. 복합 타입에 대해서는 [복합 타입](../introduction_to_julia/09_composite_types.qmd) 과 공식 매뉴얼의 [Types](https://docs.julialang.org/en/v1/manual/types/) 를 참고하라. 복합 타입의 가장 큰 장점중의 하나는 타입 변수를 함수처럼 사용 할 수 있다는 것이다. 만약 우리가 계수로 `SimplePolynomial` 복합 타입을 만들었다면, 이 복합 타입 변수를 함수처럼 사용 할 수 있다. 여기서는 다항식에 대한 복합타입을 정의한 후 이 복합타입을 함수로서 사용하도록 하겠다.
 
 다항식 함수값의 계산을 위해 julia 는 `evalpoly` 함수를 제공한다. `evalpoly(1.0, [2.0, 3.0])` 은 다항식 $p(x)=2.0+3.0x$ 에 대해 `p(1.0)` 을 계산해준다. 자세한 것은 `evalpoly` 에 대한 자체 설명을 확인하라. 일변수 다항식을 구현하는 이유는 단순히 다항식의 함수값을 계산하는 것 이외에 다항식의 덧셈, 뺄셈, 곱셈, 미분, 적분과 기타 앞으로 배울 다항식에 관련된 여러 기능이 필요해서이다. `evalpoly` 는 이것까지 제공하지는 않는다.
 
@@ -30,7 +30,7 @@ P_{k+1}(x) &= \dfrac{2k+1}{k+1}xP_k(x) - \dfrac{k}{k+1}P_{k-1}(x).
 \end{aligned}
 $$ {#eq-recursive_definition_of_legendre_polynomial}
 
-이 때 $\{P_1(x),\ldots,P_k(x)\}$ 는 $\mathbb{R}_k[x]$ 의 직교기저가 된다. `NAJ.jl` 에서 제공하는 다항식은 다음과 같다.
+이 때 $\{P_1(x),\ldots,P_k(x)\}$ 는 $\mathbb{R}_k[x]$ 의 직교기저가 된다. 마찬가지로 아래의 `NAJ.jl` 에서 제공하는 다항식은 다음과 같다.
 
 | 기저 함수 이름 | `NAJ.jl` 에서의 타입 | 다항식 |
 |:------------:|:---------------------:|:---------------------:|
@@ -39,7 +39,7 @@ $$ {#eq-recursive_definition_of_legendre_polynomial}
 | 체비세프 다항식 | `ChevyshevPolynomial` | $T_k(x)$ |
 | 에르미트 다항식 | `HermitePolynomial` | $H_k(x)$ |
 | 라게르 다항식 | `LaguerrePolynomial` | $L_k(x)$ |
-
+:`NAJ.jl` 에 포함된 다항식의 기저함수 {#tbl-Polynomials_jl_basis}
 
 
 </br>
@@ -54,7 +54,7 @@ $$ {#eq-recursive_definition_of_legendre_polynomial}
 4. `Base.show` 함수가 이 다항식 객체를 보기 좋게 출력 할 수 있도록 한다.
 
 
-위의 다항식 객체들은 immutable 한 복합타입으로 구현되었다. 즉 멤버인 `coeffs` 는 변경 될 수 없다. 다항식 객체의 계수를 정하여 생성 할 수 있는데 `LegendrePolynomial([1, 2, 3])` 는 정수 타입의 계수를 갖는 객체가 생성되며 `LegendrePolynomial{Float64}([1, 2, 3])` 는 계수가 `Float64` 로 변형되어 저장된다. 물론 정수 타입의 계수라도 일반적인 실함수 처럼 사용 할 수 있다. 다음의 예를 보라.
+위의 다항식 객체들은 immutable 한 복합타입으로 구현되었다. 다항식 객체의 계수를 정하여 생성 할 수 있는데 `LegendrePolynomial([1, 2, 3])` 는 정수 타입의 계수를 갖는 객체가 생성되며 `LegendrePolynomial{Float64}([1, 2, 3])` 는 계수가 `Float64` 로 변형되어 저장된다. 물론 정수 타입의 계수라도 일반적인 실함수 처럼 사용 할 수 있다. 다음의 예를 보라.
 
 
 ```julia
@@ -91,8 +91,6 @@ degree(p::AbstractBasisPolynomial) = order(p)
 ## `SimplePolynomial`
 
 일반적인 다항식을 구현한 `SimplePolynomial` 에 대해 알아보자.
-
-</br>
 
 Julia 에서는 많은 타입에 `zero` 와 `one` 함수가 구현되어 있다. `zero(p)` 는 `p` 타입의 덧셈에한 항등원을 반환하며, `one(p)` 는 `p` 와 같은 타입의 곱셈에 대한 항등원을 반환한다. 다항식의 `zero` 와 `one` 을 다음과 같이 구현한다.
 
