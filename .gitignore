@@ -1,4 +1,4 @@
-/.quarto/
-/.site/
+.quarto/
+_site/
 *.log
 .DS_Store
