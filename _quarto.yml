@@ -8,7 +8,7 @@ project:
 
 
 website:
-  title: "Julia & Numerical Anlaysis"
+  title: "Julia_KAERI"
   site-url: "https://julia-kaeri.github.io/"
   site-path: "/"
   page-navigation: true
@@ -18,18 +18,18 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href : src/introduction_to_julia/index.qmd
-        text : "Julia 언어"
-      - href : src/numerical_analysis_using_julia/index.qmd
-        text : "수치해석"
+      # - href : https://julia-kaeri.github.io/IntroductionToJulia/
+      #   text : "Julia 언어"
+      # - href : https://julia-kaeri.github.io/IntroductionToJulia/
+      #   text : "수치해석"
       - href :  src/image_processing/index.qmd
         text : "영상 처리/토모그래피"
       - href : src/tools/tools.qmd
         text : "Tools"
       - href : src/posts/index.qmd
         text : "Posts"
-      - href : https://julia-kaeri.github.io/ClassicalMechanics.doc/
-        text : "Classical Mechanics"
+      # - href : https://julia-kaeri.github.io/ClassicalMechanics.doc/
+      #   text : "Classical Mechanics"
       - about.qmd
     tools:
       - icon: envelope
