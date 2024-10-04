@@ -5,12 +5,12 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Julia_KAERI</title>
+<title>Science &amp; Programming</title>
 <link>https://julia-kaeri.github.io/src/posts/</link>
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.554</generator>
-<lastBuildDate>Wed, 02 Oct 2024 08:06:47 GMT</lastBuildDate>
+<lastBuildDate>Fri, 04 Oct 2024 08:07:44 GMT</lastBuildDate>
 <item>
   <title>첫번째 글</title>
   <dc:creator>Julia_KAERI</dc:creator>
@@ -25,7 +25,7 @@
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/first.html</guid>
-  <pubDate>Wed, 02 Oct 2024 08:06:47 GMT</pubDate>
+  <pubDate>Fri, 04 Oct 2024 08:07:44 GMT</pubDate>
 </item>
 </channel>
 </rss>
