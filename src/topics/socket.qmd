@@ -1,0 +1,124 @@
+---
+title: "TCP/UDP 통신"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+## 소켓 통신
+
+현재의 많은 장비들은 소켓 통신을 사용하여 데이터와 정보를 주고받는다. 예전의 장비들은 RS232 나 RS485 같은 직렬 통신이나 다른 다양한 통신 방법을 사용하는 경우가 많았지만 최근의 장비들은 소켓 통신을 통해 데이터를 정송하는 경우가 많다. 여기서는 소켓 통신에 대해 짧게 알아보고 실제 구현해 보기로 하자.
+
+</br>
+
+### 소켓
+
+소켓은 같은 컴퓨터의 프로세스 사이에서, 혹은 서로 다른 컴퓨터(혹은 장비)의 프로세스 사이에서 통신을 수행할 때의 종단점 (end point)이다. 같은 컴퓨터의 프로세스 사이의 소켓에는 [unix domain socket](https://en.wikipedia.org/wiki/Unix_domain_socket) 이 있으며 다른 컴퓨터 프로세스 사이에서의 통신에는 Datagram socket 과 Streaming socket 이 있다. 각각의 네트워크 하드웨어는 사양과 내부 명령어가 다르지만 운영체제 수준에서 이를 추상화하여 서로 통신할 수 있도록 한 것이 소켓이다. 여기서는 서로 다른 컴퓨터의 프로세스간 통신에 대해서만 다루기로 한다.
+
+</br>
+
+### 스트림 소켓
+
+전화와 같이 믿을 수 있는 양방향 통신을 제공한다. 즉 데이터를 주고받는 소켓의 양쪽이 성립된 상태에서 한쪽(서버)에서 다른 한쪽(클라이언트)으로의 연결을 초기화하고, 연결이 생성된 후에는 어느 쪽에서든 다른 쪽으로 통신할 수 있다. 데이터를 송신하고 나서 이 데이터가 실제로 도착했는지도 즉각 확인할 수 있다. 보통 전송 제어 프로토콜(Transmission Control Protocol, TCP)이라 불리는 표준 통신 프로토콜을 사용하며 이 외에도 SCTP(Stream Control Transmission Protocol) 나 DCCP (Datagram Congestion Control Protocol) 가 사용되지만 여기서는 다루지 않기로 한다. 컴퓨터 네트워크에서 데이터는 보통 패킷이라는 단위로 전송되는데, TCP는 패킷이 오류 없이 순서대로 도착하도록 설계되었다. 웹서버, 메일서버, 각 클라이언트 애플리케이션 모두는 TCP와 스트림 소켓을 사용한다.
+
+</br>
+
+### 데이터그램 소켓 
+
+데이터그램 소켓의 연결은 단방향이고 신뢰할 수 없다. IP 와 포트번호를 특정하여 보내지만 수신을 확인하지 않는다. 또한 데이터가 순서대로 전송된다고 보장할 수도 없다. 사용자 데이터그램 프로토콜(UDP :: User Datagram Protocol)이라는 표준 프로토콜을 사용한다. TCP 에 비해 단순하고 간단하며 부하가 적고 빠른 방법이다. 패킷 손실이 허용되기도 하며 네트워크 게임이나 음악/동영상 스트리밍에서 자주 쓰인다. UDP 를 통해 신뢰성 있는 데이터 통신을 하고 싶다면 직접 패킷을 통해 구현해야 한다.
+
+
+
+</br>
+
+### 서버와 클라이언트
+
+접속을 기다리는 것이 서버(server), 기다리는 서버에 접근하는 것이 클라이언트(client) 이다. 
+
+</br>
+
+## TCP 통신
+
+### TCP 서버
+
+```python
+# TCP 서버 프로그램 
+import socket, time
+
+host, port = 'localhost', 3333 
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+# server socket에 ip와 port를 붙여줌(바인드)
+server_socket.bind((host, port))
+
+# 클라이언트 접속 준비 완료
+server_socket.listen()
+
+print('TCP 서버 시작')
+
+# accept(): 클라이언트 접속 기다리며 대기
+# 클라이언트가 접속하면 서버-클라이언트 1:1 통신이 가능한 작은 소켓(client_soc)을 만들어서 반환
+# 접속한 클라이언트의 주소(addr) 역시 반환
+client_soc, addr = server_socket.accept()
+
+# 접속된 클라이언트의 ip 와 port 번호를 출력
+print('연결된 client (IP, port):', addr)
+
+# 접속 유지 변수
+connection_retained = True
+
+while connection_retained :
+    
+    data = client_soc.recv(1024)
+    msg = data.decode() # 읽은 데이터 디코딩
+    print('받은 메시지 :', msg)
+    client_soc.sendall((msg+"#").encode(encoding='utf-8')) # 에코메세지 클라이언트로 보냄
+    # 클라이언트로부터 받은 메시지가 "-1" 이면 접속을 종료시킨다.
+    if msg == "-1":
+        connection_retained = False
+        print("to be closed")
+    
+        client_soc.close()
+    
+    time.sleep(1)
+    
+server_socket.close() # 사용했던 서버 소켓을 닫아줌 
+```
+
+</br>
+
+### TCP 클라이언트
+
+```python
+# TCP 클라이언트 프로그램
+import socket
+
+server_ip, server_port = 'localhost', 3333        
+
+socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socket.connect((server_ip, server_port))
+socket.settimeout(0.1)
+# 연결 유지 변수
+connection_retained = True
+
+while connection_retained :
+    msg = input('msg:') # 서버로 보낼 msg 입력
+    
+    if msg == "-1":
+        connection_retained = False
+    socket.sendall(msg.encode(encoding='utf-8'))
+
+    # 서버가 에코로 되돌려 보낸 메시지를 클라이언트가 받음
+    data = socket.recv(1024)
+    msg = data.decode() # 읽은 데이터 디코딩
+    print('서버로부터 받은 메시지 :', msg)
+socket.close()
+```
+
+
+

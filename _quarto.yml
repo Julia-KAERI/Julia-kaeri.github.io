@@ -24,6 +24,8 @@ website:
       #   text : "수치해석"
       # - href :  src/image_processing/index.qmd
       #   text : "영상 처리/토모그래피"
+      - href : src/topics/qmd
+        text : 주제별
       - href : src/tools/tools.qmd
         text : "Tools"
       - href : src/posts/index.qmd
@@ -37,6 +39,12 @@ website:
 
 
   sidebar:
+    - title : "Introduction to Julia"
+      style : "docked"
+      type : "dark"
+      collapse-level : 2
+      contents :
+        - href: src/topics/socket.qmd
     # - title : "Introduction to Julia"
     #   style : "docked"
     #   type : "dark"
