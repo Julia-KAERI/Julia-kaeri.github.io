@@ -1,9 +1,8 @@
 ---
-title: "Topics"
+title: "GPU & CUDA"
 
 number-sections: true
 number-depth: 2
 crossref:
   chapters: false
 ---
-

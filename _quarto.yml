@@ -24,10 +24,12 @@ website:
       #   text : "수치해석"
       # - href :  src/image_processing/index.qmd
       #   text : "영상 처리/토모그래피"
-      - href : src/topics/qmd
-        text : 주제별
+      - href : src/topics/topics.qmd
+        text : "주제별"
       - href : src/tools/tools.qmd
         text : "Tools"
+      - href : src/gpu/gpu.qmd
+        text : "GPU & CUDA"
       - href : src/posts/index.qmd
         text : "Posts"
       # - href : https://julia-kaeri.github.io/ClassicalMechanics.doc/
@@ -39,13 +41,19 @@ website:
 
 
   sidebar:
-    - title : "Introduction to Julia"
-      style : "docked"
-      type : "dark"
+    - title : "주제별"
+      # style : "docked"
+      # type : "dark"
       collapse-level : 2
       contents :
+        - src/topics/topics.qmd
         - href: src/topics/socket.qmd
-
+    - title : "GPU & CUDA"
+      collapse-level: 2
+      contents : 
+        - src/gpu/gpu.qmd
+        - text : "------"
+        - src/gpu/cuda_jl_performance_tips.qmd
     - title: "Tools"
       collapse-level: 2
       contents:

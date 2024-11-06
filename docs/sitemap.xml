@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/topics.html</loc>
-    <lastmod>2024-11-06T05:40:42.858Z</lastmod>
+    <lastmod>2024-11-06T06:07:56.923Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
@@ -55,5 +55,13 @@
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
     <lastmod>2024-11-06T05:48:51.499Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
+    <lastmod>2024-11-06T07:57:32.104Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda_jl_performance_tips.html</loc>
+    <lastmod>2024-11-06T08:49:18.244Z</lastmod>
   </url>
 </urlset>

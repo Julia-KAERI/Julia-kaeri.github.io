@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Science &amp; Programming - TCP/UDP 통신</title>
+<title>Science &amp; Programming - Topics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,6 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../src/topics/socket.html" rel="next">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -105,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -127,7 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/topics/qmd"> 
+    <a class="nav-link active" href="../../src/topics/topics.html" aria-current="page"> 
 <span class="menu-text">주제별</span></a>
   </li>  
   <li class="nav-item">
@@ -149,37 +116,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/topics/topics.html">Topics</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/topics/topics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Topics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/topics/socket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TCP/UDP 통신</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">목차</h2>
-   
-  <ul>
-  <li><a href="#소켓-통신" id="toc-소켓-통신" class="nav-link active" data-scroll-target="#소켓-통신"><span class="header-section-number">1</span> 소켓 통신</a>
-  <ul class="collapse">
-  <li><a href="#소켓" id="toc-소켓" class="nav-link" data-scroll-target="#소켓">소켓</a></li>
-  <li><a href="#스트림-소켓" id="toc-스트림-소켓" class="nav-link" data-scroll-target="#스트림-소켓">스트림 소켓</a></li>
-  <li><a href="#데이터그램-소켓" id="toc-데이터그램-소켓" class="nav-link" data-scroll-target="#데이터그램-소켓">데이터그램 소켓</a></li>
-  <li><a href="#서버와-클라이언트" id="toc-서버와-클라이언트" class="nav-link" data-scroll-target="#서버와-클라이언트">서버와 클라이언트</a></li>
-  </ul></li>
-  <li><a href="#tcp-와-udp-를-이용한-간단한-에코-서버와-클라이언트의-저차원-구현" id="toc-tcp-와-udp-를-이용한-간단한-에코-서버와-클라이언트의-저차원-구현" class="nav-link" data-scroll-target="#tcp-와-udp-를-이용한-간단한-에코-서버와-클라이언트의-저차원-구현"><span class="header-section-number">2</span> TCP 와 UDP 를 이용한 간단한 에코 서버와 클라이언트의 저차원 구현</a>
-  <ul class="collapse">
-  <li><a href="#tcp-통신" id="toc-tcp-통신" class="nav-link" data-scroll-target="#tcp-통신">TCP 통신</a></li>
-  <li><a href="#udp-통신" id="toc-udp-통신" class="nav-link" data-scroll-target="#udp-통신">UDP 통신</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TCP/UDP 통신</h1>
+<h1 class="title">Topics</h1>
 </div>
 
 
@@ -196,238 +175,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="소켓-통신" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="소켓-통신"><span class="header-section-number">1</span> 소켓 통신</h2>
-<p>현재의 많은 장비들은 소켓 통신을 사용하여 데이터와 정보를 주고받는다. 예전의 장비들은 RS232 나 RS485 같은 직렬 통신이나 다른 다양한 통신 방법을 사용하는 경우가 많았지만 최근의 장비들은 소켓 통신을 통해 데이터를 전송하는 경우가 많다. 여기서는 소켓 통신에 대해 짧게 알아보고 실제 구현해 보기로 하자.</p>
-<p><br></p>
-<section id="소켓" class="level3">
-<h3 class="anchored" data-anchor-id="소켓">소켓</h3>
-<p>소켓은 같은 컴퓨터의 프로세스 사이에서, 혹은 서로 다른 컴퓨터(혹은 장비)의 프로세스 사이에서 통신을 수행할 때의 종단점 (end point)이다. 같은 컴퓨터의 프로세스 사이의 소켓에는 <a href="https://en.wikipedia.org/wiki/Unix_domain_socket">unix domain socket</a> 이 있으며 다른 컴퓨터 프로세스 사이에서의 통신에는 Datagram socket 과 Streaming socket 이 있다. 각각의 네트워크 하드웨어는 사양과 내부 명령어가 다르지만 운영체제 수준에서 이를 추상화하여 서로 통신할 수 있도록 한 것이 소켓이다. 여기서는 서로 다른 컴퓨터의 프로세스간 통신에 대해서만 다루기로 한다.</p>
-<p><br></p>
-</section>
-<section id="스트림-소켓" class="level3">
-<h3 class="anchored" data-anchor-id="스트림-소켓">스트림 소켓</h3>
-<p>전화와 같이 믿을 수 있는 양방향 통신을 제공한다. 즉 데이터를 주고받는 소켓의 양쪽이 성립된 상태에서 한쪽(서버)에서 다른 한쪽(클라이언트)으로의 연결을 초기화하고, 연결이 생성된 후에는 어느 쪽에서든 다른 쪽으로 통신할 수 있다. 데이터를 송신하고 나서 이 데이터가 실제로 도착했는지도 즉각 확인할 수 있다. 보통 전송 제어 프로토콜(Transmission Control Protocol, TCP)이라 불리는 표준 통신 프로토콜을 사용하며 이 외에도 SCTP(Stream Control Transmission Protocol) 나 DCCP (Datagram Congestion Control Protocol) 가 사용되지만 여기서는 다루지 않기로 한다. 컴퓨터 네트워크에서 데이터는 보통 패킷이라는 단위로 전송되는데, TCP는 패킷이 오류 없이 순서대로 도착하도록 설계되었다. 웹서버, 메일서버, 각 클라이언트 애플리케이션 모두는 TCP와 스트림 소켓을 사용한다.</p>
-<p><br></p>
-</section>
-<section id="데이터그램-소켓" class="level3">
-<h3 class="anchored" data-anchor-id="데이터그램-소켓">데이터그램 소켓</h3>
-<p>데이터그램 소켓의 연결은 단방향이고 신뢰할 수 없다. IP 와 포트번호를 특정하여 보내지만 수신을 확인하지 않는다. 또한 데이터가 순서대로 전송된다고 보장할 수도 없다. 사용자 데이터그램 프로토콜(User Datagram Protocol, UDP)이라는 표준 프로토콜을 사용한다. TCP 에 비해 단순하고 간단하며 부하가 적고 빠른 방법이다. 패킷 손실이 허용되기도 하며 네트워크 게임이나 음악/동영상 스트리밍에서 자주 쓰인다. UDP 를 통해 신뢰성 있는 데이터 통신을 하고 싶다면 직접 패킷을 통해 구현해야 한다.</p>
-<p><br></p>
-</section>
-<section id="서버와-클라이언트" class="level3">
-<h3 class="anchored" data-anchor-id="서버와-클라이언트">서버와 클라이언트</h3>
-<p>여기서는 접속을 기다리는 것이 서버(server), 기다리는 서버에 접근하는 것이 클라이언트(client) 라고 한다.</p>
-<p><br></p>
-</section>
-</section>
-<section id="tcp-와-udp-를-이용한-간단한-에코-서버와-클라이언트의-저차원-구현" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="tcp-와-udp-를-이용한-간단한-에코-서버와-클라이언트의-저차원-구현"><span class="header-section-number">2</span> TCP 와 UDP 를 이용한 간단한 에코 서버와 클라이언트의 저차원 구현</h2>
-<p>여기서는 Python 으로 간단한 서버와 클라이언트를 구현한다. 가장 기본적인 저차원 구현은 C 언어를 이용한 구현이지만 여기서는 이 C 구현과 가장 비슷하며 저차원 구현을 체험해 볼 수 있는 Python 구현을 통해 TCP 와 UDP 통신을 알아보기로 하자.</p>
-<section id="tcp-통신" class="level3">
-<h3 class="anchored" data-anchor-id="tcp-통신">TCP 통신</h3>
-<p>서버가 대기하고 클라이언트와의 접속이 성립하면 클라이언트는 사용자로부터의 입력을 서버에게 보낸다. 서버는 클라이언트로부터 받은 메시지를 출력하고 그 메시지 끝에 <code>#</code> 을 붙여 클라이언트에게 보낸다. 클라이언트는 <code>#</code> 이 붙은 메시지를 받고 출력한다. 사용자로부터 <code>-1</code> 을 받으면 서버는 역시 <code>#</code> 이 붙은 메시지 <code>-1#</code> 을 클리이언트로 보내고 종료하며, 클라이언트 역시 종료한다.</p>
-<p>Python 으로 구현하지만 여기서의 방식은 소켓 통신의 기본적인 즉 low-level 방식으로 거의 모든 언어에서 기본적으로 지원한다. 물론 실제로는 이 방식보다는 이 방식을 좀 더 쓰기 편하게 만든 방식을 쓸 수도 있지만 기본 동작을 일단 확인하기 위해 low-level 방식으로 구현해보자.</p>
-<p>소켓 통신을 위해서는 <code>socket</code> 모듈을 임포트 해야 하고 소켓 객체를 구현해야 한다. 서버에는 두개의 소켓이 필요하다. 하나는 접속을 받아들이고 연결을 위한 역할을 수행하는 소켓(이하 <strong>연결 소켓</strong>)이며 다른 하나는 클라이언트와 데이터를 주고받기 위한 소캣(이하 <strong>서버 소켓</strong>)이다. 클라이언트는 데이터를 주고받는 소켓(이하 <strong>클라이언트 소켓</strong>) 하나만 있으면 된다. 연결 소켓, 서버소켓, 클라이언트 소켓은 편의상 지은 이름이며 다른 곳에서는 다른 이름으로 사용될 수 있다.</p>
-<section id="tcp-서버" class="level4">
-<h4 class="anchored" data-anchor-id="tcp-서버">TCP 서버</h4>
-<p>일단 서버쪽에서 연결 소켓을 성립시켜야 한다. 연결 소켓을 위해서는 서버 IP 와 포트 번호가 필요하다. IP 는 <code>"123.123.123.12"</code> 형식의 문자열이며 포트 번호는 0 부터 65535 번까지의 정수이다. IP 와 포트번호는 <a href="http://www.iana.org">Internet Assigned Numbers Authority (IANA)</a> 에서 관리하는데 포트 번호중의 일부는 특별한 용도로 지정되어 있다. 자세한 것은 <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">List of TCP and UDP port numbers</a> 를 참고하라. 보통 49152 에서 65535 번호는 자유롭게 사용 할 수 있다.</p>
-<p><br></p>
-<p>연결 소켓은 IP 와 포트번호, 그리고 프로토콜로 구성된다. 우선</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>을 통해 소캣 모듈을 사용할 수 있도록 한다. 이후 아래와 같이 소켓 인스턴스를 만들고 프로토콜과 옵션을 정한다.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>server_socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="dv">1</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>socket.socket</code> 의 첫번째 인자로는 다음이 사용될 수 있다.</p>
-<ul>
-<li><p><code>socket.AF_INET</code> 은 IPv4 즉 4 개의 8비트 정수로 지정된 IP 번호를 사용한는 것을 의미한다. 보퉁 많이 사용하는 <code>123.123.123.12</code> 형식이다.</p></li>
-<li><p><code>socket.AF_INET6</code> 는 IPv6 주소체계를 사용한다는 것을 의미하며 16비트 정수 4개를 사용한다.</p></li>
-<li><p><code>socket.AF_UNIX</code> 는 네트웍 통신이 아닌 프로세스간의 통신에 대해 사용한다.</p></li>
-</ul>
-<p><code>socket.socket</code> 의 두번째 인자로는 다음이 사용될 수 있다.</p>
-<ul>
-<li><p><code>socket.SOCK_STREAM</code> 은 TCP 통신 규약을 사용한다는 것을 의미한다.</p></li>
-<li><p><code>socket.SOCK_DGRAM</code> 은 UDP 통신 규약을 사용한다는 것을 의미한다.</p></li>
-</ul>
-<p><br></p>
-<p><code>socket.setsockopt</code> 함수는 소켓의 옵션을 지정한다. 첫번째 인자는 프로토콜 레벨이며 두번째 인자는 프로토콜 레벨에서의 옵션 이름, 세번째 인자부터는 앞의 두 인자에 따른 설정값 등이 온다. 자세한 내용은 <a href="https://www.ibm.com/docs/ko/aix/7.3?topic=s-setsockopt-subroutine">setsockopt 서브루틴</a> 을 참고하라. 여기서 <code>socket.SO_REUSEADDR</code> 옵션의 옵션값을 <code>1</code> 로 설정하면 클라이언트 소켓을 닫은 후 같은 IP 와 포트번호로 연결할 수 있다.</p>
-<p><br></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>server_socket.bind((host, port))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>server_socket.listen(<span class="dv">0</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>client_soc, addr <span class="op">=</span> server_socket.accept()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>bind((host, port))</code> 는 연결 소켓에 IP 번호(<code>host</code>) 와 포트(<code>port</code>) 를 지정한다. 이제 <code>listen()</code> 을 통해 클라이언트로부터 접속 요청 대기를 시작한다. <code>listen</code> 함수는 최대 대기 큐의 갯수를 인자로 받을 수 있며, 인자가 없을 경우 자동으로 할당된다.</p>
-<p><code>accept()</code> 함수는 연결을 시도한 클라이언트와 통신 할 수 있는 소켓(<code>client_soc</code>), 즉 서버 소켓과 연결된 클라이언트의 <code>(IP 주소, 포트)</code> 튜플을 반환한다. 이 서버 소켓을 통해 클라이언트와 통신한다. 이제 서버의 코드를 보자.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TCP 서버 프로그램 </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket, time</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>host, port <span class="op">=</span> <span class="st">'localhost'</span>, <span class="dv">43333</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>server_socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="dv">1</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>server_socket.bind((host, port))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>server_socket.listen()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'TCP 서버 시작'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>client_soc, addr <span class="op">=</span> server_socket.accept()</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'연결된 client (IP, port):'</span>, addr)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 접속 유지 변수</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>connection_retained <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> connection_retained :</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> client_soc.recv(<span class="dv">1024</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ConnectionResetError</span>:</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'ConnectionResetError'</span>)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        connection_retained <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:    </span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> data.decode() <span class="co"># 읽은 데이터 디코딩</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'받은 메시지 :'</span>, msg)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        client_soc.sendall((msg<span class="op">+</span><span class="st">"#"</span>).encode(encoding<span class="op">=</span><span class="st">'utf-8'</span>)) <span class="co"># 에코메세지 클라이언트로 보냄</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 클라이언트로부터 받은 메시지가 "-1" 이면 접속을 종료시킨다.</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> msg <span class="op">==</span> <span class="st">"-1"</span>:</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>            connection_retained <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"to be closed"</span>)        </span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>            client_soc.close()</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.2</span>)</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>server_socket.close() <span class="co"># 사용했던 서버 소켓을 닫아줌 </span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>앞서 말했듯이 클라이언트로부터 <code>-1</code> 메시지를 받기 전까지는 계속 클라이언트와 통신해야 한다. 이를 위해 일단 <code>connection_retianed = True</code> 로 두고 이 변수값이 <code>True</code> 인 상황에서는 계속 주고 받도록 한다. 그러나 클라이언트로부터 <code>-1</code> 을 받으면 <code>connection_refused = False</code> 가 되며 <code>while</code> 루프를 벗어나고 소켓이 종료되고 (<code>server_socket.close()</code>) 프로그램도 종료한다.</p>
-<p><br></p>
-</section>
-<section id="tcp-클라이언트" class="level4">
-<h4 class="anchored" data-anchor-id="tcp-클라이언트">TCP 클라이언트</h4>
-<p>클라이언트는 서버보다 간단한다.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>server_ip, server_port <span class="op">=</span> <span class="st">'localhost'</span>, <span class="dv">43333</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>서버에 접속하기 위해서는 서버의 IP 와 포트 번호를 알야야 한다(<code>server_ip</code>, <code>server_port</code>). TCP 통신이므로 소켓은 server 의 연결소켓과 같이 설정한다. 이제 연결을 시도한다</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>socket.<span class="ex">connect</span>((server_ip, server_port))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>서버와 마찬가지로 연결 유지를 확인하기 위한 변수 <code>connetion_retained</code> 가 존재한다. 코드는 아래와 같다.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TCP 클라이언트 프로그램</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket, time</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>server_ip, server_port <span class="op">=</span> <span class="st">'localhost'</span>, <span class="dv">43333</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>socket.<span class="ex">connect</span>((server_ip, server_port))</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>socket.settimeout(<span class="fl">0.1</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 연결 유지 변수</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>connection_retained <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> connection_retained :</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="bu">input</span>(<span class="st">'msg:'</span>) <span class="co"># 서버로 보낼 msg 입력</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> msg <span class="op">==</span> <span class="st">"-1"</span>:</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        connection_retained <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    socket.sendall(msg.encode(encoding<span class="op">=</span><span class="st">'utf-8'</span>))</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 서버가 에코로 되돌려 보낸 메시지를 클라이언트가 받음</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> socket.recv(<span class="dv">1024</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">TimeoutError</span>:</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'TimeoutError'</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> data.decode() <span class="co"># 읽은 데이터 디코딩</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'서버로부터 받은 메시지 :'</span>, msg)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>socket.close()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>socket.recv(1024)</code> 는 서버로부터 최대 <code>1024</code> 바이트를 는다는 의미이다. 그러나 이 함수 실행 후 지정된 시간동안 응답이 없을 경우 <code>TimeoutError</code> 가 발생하며 소캣이 종료된다. 응답대기시간은 <code>socket.settimeout()</code> 함수를 통해 지정하며 인자로 초 단위의 시간을 입력한다. 인자가 없으면 무한정 기다린다.</p>
-<p>여기서는 응답 대기 시간이 길더라도 문제가 없지만 예를 들어 여러 서버로부터 데이터를 받는 경우를 생각해보자. 여기서 응답을 대기한다면 다른 작업을 수행 할 수가 없으며, 이를 위해 응답 대기시간을 짧게 잡고 다른 작업을 수행한 후 다시 메시지를 기다리는 것이 좋다.</p>
-<p><br></p>
-</section>
-</section>
-<section id="udp-통신" class="level3">
-<h3 class="anchored" data-anchor-id="udp-통신">UDP 통신</h3>
-<p>UDP 통신과 TCP 통신의 차이는 다음과 같다.</p>
-<ul>
-<li><p>소켓 타입이 <code>socket.SOCK_STREAM</code> 이 아닌 <code>socket.SOCK_DGRAM</code> 이다.</p></li>
-<li><p>연결 소켓이 없으며 서버소켓이 직접 <code>bind</code> 된다.</p></li>
-<li><p>TCP 에서는 <code>recv</code>, <code>send</code> 를 통해 데이터를 주고받지만 UDP 에서는 <code>recvfrom</code>, <code>sendto</code> 함수를 사용한다. 앞서 사용한 <code>sendall</code> 함수는 기본 함수인 <code>send</code> 를 python socket 모듈에서 확장한 것이다.</p></li>
-<li><p><code>recvfrom</code> 함수를 통해 데이터와 데이터를 보낸 주소를 얻으며, 이 주소가 원하는 주소가 않을 경우 무시한다.</p></li>
-<li><p><code>sendto</code> 함수의 인자로는 데이터와 데이터를 받을 IP, 포트번호의 튜플을 전달한다.</p></li>
-</ul>
-<p><br></p>
-<p>소스코드를 보라.</p>
-<p><br></p>
-<section id="udp-서버" class="level4">
-<h4 class="anchored" data-anchor-id="udp-서버">UDP 서버</h4>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UDP 서버 프로그램</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket, time</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>host, port <span class="op">=</span> <span class="st">'localhost'</span>, <span class="dv">43333</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>server_socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>server_socket.bind((host, port))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># server_socket.listen()</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'UDP 서버 시작'</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#client_soc, addr = server_socket.accept()</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>addr <span class="op">=</span> (<span class="va">None</span>, <span class="va">None</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'연결된 client (IP, port):'</span>, addr)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 접속 유지 변수</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>connection_retained <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> connection_retained :</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        data, addr <span class="op">=</span> server_socket.recvfrom(<span class="dv">1024</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ConnectionResetError</span>:</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'ConnectionResetError'</span>)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        connection_retained <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:    </span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> data.decode() <span class="co"># 읽은 데이터 디코딩</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(addr, <span class="st">'받은 메시지 :'</span>, msg)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        server_socket.sendto((msg<span class="op">+</span><span class="st">"#"</span>).encode(encoding<span class="op">=</span><span class="st">'utf-8'</span>), addr) <span class="co"># 에코메세지 클라이언트로 보냄</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 클라이언트로부터 받은 메시지가 "-1" 이면 접속을 종료시킨다.</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> msg <span class="op">==</span> <span class="st">"-1"</span>:</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>            connection_retained <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"to be closed"</span>)        </span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>            <span class="co"># client_soc.close()</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.2</span>)</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>server_socket.close() <span class="co"># 사용했던 서버 소켓을 닫아줌 </span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-</section>
-<section id="udp-클라이언트" class="level4">
-<h4 class="anchored" data-anchor-id="udp-클라이언트">UDP 클라이언트</h4>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UDP 클라이언트 프로그램</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket, time</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>server_addr <span class="op">=</span> (<span class="st">'localhost'</span>, <span class="dv">43333</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>socket <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># socket.connect((server_ip, server_port))</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>socket.settimeout(<span class="fl">0.1</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 연결 유지 변수</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>connection_retained <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> connection_retained :</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    msg <span class="op">=</span> <span class="bu">input</span>(<span class="st">'msg:'</span>) <span class="co"># 서버로 보낼 msg 입력</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> msg <span class="op">==</span> <span class="st">"-1"</span>:</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        connection_retained <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    socket.sendto(msg.encode(encoding<span class="op">=</span><span class="st">'utf-8'</span>),server_addr)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 서버가 에코로 되돌려 보낸 메시지를 클라이언트가 받음</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        data, addr <span class="op">=</span> socket.recvfrom(<span class="dv">1024</span>)</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">TimeoutError</span>:</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'TimeoutError'</span>)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        msg <span class="op">=</span> data.decode() <span class="co"># 읽은 데이터 디코딩</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'서버로부터 받은 메시지 :'</span>, msg)</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>socket.close()</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -839,6 +588,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/topics/socket.html" class="pagination-link" aria-label="TCP/UDP 통신">
+        <span class="nav-page-text">TCP/UDP 통신</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
