@@ -10,7 +10,7 @@
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.554</generator>
-<lastBuildDate>Fri, 04 Oct 2024 08:07:44 GMT</lastBuildDate>
+<lastBuildDate>Wed, 06 Nov 2024 05:49:00 GMT</lastBuildDate>
 <item>
   <title>첫번째 글</title>
   <dc:creator>Julia_KAERI</dc:creator>
@@ -25,7 +25,7 @@
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/first.html</guid>
-  <pubDate>Fri, 04 Oct 2024 08:07:44 GMT</pubDate>
+  <pubDate>Wed, 06 Nov 2024 05:49:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
