@@ -1,0 +1,378 @@
+---
+title: "CUDA.jl 배열 처리"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+필요한 패키지는 다음과 같다.
+
+```julia
+using LinearAlgebra, SparseArrays, FFTW, BenchmarkTools, Test
+using CUDA, CUDA.CUSPARSE, CUDA.CUFFT
+```
+
+</br>
+
+## `CuArray` 타입
+
+### 기본 연산
+
+`CUDA.jl` 의 기본적인 타입은 `CuArray` 타입으로 `Array` 타입과 많은 부분에서 비슷하다. 우선 CPU 에서 만든 배열을 GPU 의 `CuArray` 타입으로 전환시켜 보자.
+
+```julia
+carr0 = CuArray(rand(Float32, 128, 128))
+```
+
+결과는 다음과 같다. CPU 에서 128 x 128 랜덤 배열을 만든 후 GPU 에서의 `CuArray` 타입으로 변환시켰다. 아래로의 많은 줄이 생략되었다.
+
+```txt
+128×128 CuArray{Float32, 2, CUDA.DeviceMemory}:
+ 0.614408   0.545875   0.716857   …  0.25018    0.304857   0.99422
+ 0.432157   0.148661   0.060947      0.0701835  0.15738    0.26359
+```
+
+</br>
+
+기본적인 사용법도 눈여겨보라.
+
+```julia
+carr1 = CuArray{Float32}(undef,  1024)
+carr2 = fill!(copy(carr1), 0f0)
+@test carr2 == CUDA.zeros(Float32, 1024)
+```
+
+</br>
+ 
+`CuArray` 에 많은 배열 연산을 수행 할 수 있다.
+
+```julia
+carr3 = carr1.^2 + carr2.^2
+carr4 = map(cos, carr1)
+carr5 = reduce(+, carr1)
+```
+
+</br>
+
+`Array` 와 같이 논리 연산을 통해 성분을 선택 할 수 있다.
+
+```julia
+c1 = CuArray([1,2,3,4,5])
+c2 = c1[[true, false, false, true, true]]
+```
+```txt
+3-element CuArray{Int64, 1, CUDA.DeviceMemory}:
+ 1
+ 4
+ 5
+```
+
+</br>
+
+이 외의 중요한 연산을 수행해보자. 모두 `Array` 에서와 같이 작동한다.
+
+```julia
+findall(isodd, c1)
+findfirst(isodd, c1)
+findmin(c1)
+```
+
+</br>
+
+`reshape`, `view` 와 같은 것도 `Array` 와 똑같이 동작한다.
+
+```julia
+c2 = CuArray{Int32}(collect(1:6))
+c3 = reshape(c2, 2, 3)
+c4 = view(c2, 2:4)
+```
+
+</br>
+
+### 스칼라 인덱싱
+
+다음은 `Array` 에서와 달리 경고를 발생시킨다.
+
+```julia
+a = CuArray([1])
+a[1]+=1
+```
+
+```txt
+┌ Warning: Performing scalar indexing on task Task (runnable, started) @0x000075014b772400.
+│ Invocation of getindex resulted in scalar indexing of a GPU array.
+│ This is typically caused by calling an iterating implementation of a method.
+│ Such implementations *do not* execute on the GPU, but very slowly on the CPU,
+│ and therefore should be avoided.
+│ 
+│ If you want to allow scalar iteration, use `allowscalar` or `@allowscalar`
+│ to enable scalar iteration globally or for the operations in question.
+└ @ GPUArraysCore ~/.julia/packages/GPUArraysCore/GMsgk/src/GPUArraysCore.jl:149
+```
+
+배열의 개별 원소에 인덱스를 이용하여 접근하는 것을 스칼라 인덱싱이라고 한다. `Array` 에서의 경우는 아무 문제가 없지만 `CuArray` 의 경우는 위의 경고 메시지에서 나오듯이 큰 성능 하락을 불러일으킬 수 있다. Julia REPL 이나 jupyter 와 같은 상호작용 세션에서는 한번 경고를 발생시키고 수행하며, 이후에는 경고도 없이 수행하지만 실행 프로그램 상에서라면 에러를 발생시킨다. 아래의 코드를 파일로 저장하고 실행시켜보라.
+
+
+```julia
+#! /usr/bin/env julia
+using CUDA
+
+a = CuArray([1])
+a[1]=3
+```
+
+아래와 같은 에러메시지가 출력된다.
+
+```txt
+ERROR: LoadError: Scalar indexing is disallowed.
+Invocation of setindex! resulted in scalar indexing of a GPU array.
+...
+```
+
+스칼라 인덱싱을 허용하려면 `@arrowscalar` 매크롤르 사용한다.
+
+```julia
+CUDA.@allowscalar a[1] += 1
+```
+
+</br>
+
+## 고급 기능
+
+### 난수 발생
+
+CUDA 에서 제공하는 난수발생기를 사용 할 수 있다.
+
+```julia
+CUDA.randn(Float64, 2, 1)
+```
+
+CUDA 는 난수발생 모듈인 `CURAND` 를 포함하며 `CURAND` 는 lognormal 분포나 푸아송 분포에 대한 난수발생을 제공한다.
+
+```julia
+CUDA.rand_logn(Float32, 1, 5; mean=2, stddev=20)
+CUDA.rand_poisson(UInt32, 1, 10; lambda=100)
+```
+
+</br>
+
+### 선형 대수
+
+`CUDA` 에는 자체 선형 대수 모듈인 `CUBLAS` 가 포함되어 있고 관련 함수들이 Julia 의 표준 선형 대수 모듈인 `LinearAlgebra` 에 포함되어 있다. 즉 `LinearAlgebra` 모듈을 통해 `CuArray` 에 대한 선형 대수 계산을 GPU 에서 수행 할 수 있다.
+
+```julia
+C1= CuArray{Float32}([5 -1; -1 4]);
+lu(C1)
+```
+```txt
+LU{Float32, CuArray{Float32, 2, CUDA.DeviceMemory}, CuArray{Int32, 1, CUDA.DeviceMemory}}
+L factor:
+2×2 CuArray{Float32, 2, CUDA.DeviceMemory}:
+  1.0  0.0
+ -0.2  1.0
+U factor:
+2×2 CuArray{Float32, 2, CUDA.DeviceMemory}:
+ 5.0  -1.0
+ 0.0   3.8
+```
+
+</br>
+CUBLAS에 존재하지만 (아직) `LinearAlgebra` 표준 라이브러리의 고수준 constructs 에 포함되지 않은 연산은 `CUBLAS` 서브모듈로 직접 접근 할 수 있다. 많은 연산이(예: `cublasDdot`) 더 상위 수준의 wrapper (예: `dot`) 를 사용할 수 있으므로 C 래퍼를 직접 호출할 필요가 없다.
+
+```julia
+c1 = CuArray{Float32}([1, 2])
+CUBLAS.dot(2, c1, c1)
+```
+```txt
+5.0f0
+```
+
+</br>
+
+### Solver
+
+선형 시스템의 해를 구하는 LAPACK 유사 기능은 CUDA 에 포함된 `CUSOLVER` 에 포함되어 있으며 LinearAlgebra 표준 라이브러리의 메서드를 통해서 접근 할 수 있다.
+
+```julia
+A = CUDA.rand(3, 3)
+A = A * A'
+cholesky(A)
+```
+```txt
+Cholesky{Float32, CuArray{Float32, 2, CUDA.DeviceMemory}}
+U factor:
+3×3 UpperTriangular{Float32, CuArray{Float32, 2, CUDA.DeviceMemory}}:
+ 0.685254  0.386212  0.527034
+  ⋅        0.977934  0.542067
+  ⋅         ⋅        0.182822
+```
+
+</br>
+
+```julia
+A = CUDA.rand(3, 3)
+b = CUDA.rand(3)
+x=A\b
+```
+```txt
+3-element CuArray{Float32, 1, CUDA.DeviceMemory}:
+  1.9668096
+  4.2866626
+ -1.7602696
+```
+
+```julia
+A*x-b
+```
+```txt
+3-element CuArray{Float32, 1, CUDA.DeviceMemory}:
+  2.9802322f-8
+ -2.2351742f-8
+ -2.7939677f-9
+```
+
+</br>
+
+### 희소 행렬
+
+`CUDA` 에 포함된 `CUSPARSE` 라이브러리를 통해 희소행렬을 다룰 수 있다. `CUSPARSE` 에서 희소행렬은 주로 `CuSparseArray` 객체를 사용하며 이 객체의 기능은 `SparseArrays` 패키지를 통해서도 접근 할 수 있다.
+
+```julia
+sp1=sprand(10, 0.2)
+csp1 = CuSparseVector(sp1)
+```
+```txt
+10-element CuSparseVector{Float64, Int32} with 2 stored entries:
+sparsevec(Int32[1, 2], [0.12468759985600719, 0.5027074361089312], 10)
+```
+
+</br>
+
+### FFT
+
+CUDA 에는 고속 이산 푸리에 변환(FFT) 를 수행하는 `CUFFT` 가 포함되어 있으며 `CUFFT` 서브모듈로 접근한다. 사용법은 다음 절의 [벤치마크](#sec-cuda_jl_benchmark) 를 참고하라.
+
+
+
+
+</br>
+
+### 벤치마크 {#sec-cuda_jl_benchmark}
+
+2차원 푸리에 변환에 대한 수행 시간을 확인해 보자.
+
+```julia
+d1 = rand(Float32, 2048, 2048);
+c1 = CuArray(d1);
+```
+
+```julia
+@benchmark fft(d1)
+```
+
+```txt
+BenchmarkTools.Trial: 26 samples with 1 evaluation.
+ Range (min … max):  115.318 ms … 233.668 ms  ┊ GC (min … max): 0.00% … 1.47%
+ Time  (median):     187.126 ms               ┊ GC (median):    1.84%
+ Time  (mean ± σ):   195.700 ms ±  36.154 ms  ┊ GC (mean ± σ):  1.59% ± 0.57%
+```
+
+</br>
+
+```julia
+@benchmark CUDA.@sync fft($c1)
+```
+
+```txt
+BenchmarkTools.Trial: 6485 samples with 1 evaluation.
+ Range (min … max):  433.504 μs …  11.076 ms  ┊ GC (min … max): 0.00% … 18.69%
+ Time  (median):     741.453 μs               ┊ GC (median):    0.00%
+ Time  (mean ± σ):   765.796 μs ± 767.649 μs  ┊ GC (mean ± σ):  1.96% ±  1.84%
+```
+
+</br>
+
+
+## 메모리 관리
+
+다음을 보자
+
+```julia
+a1 = [1.0, 2.0, 3.0]
+ca1 = CuArray{Float32}(a1)
+```
+
+`a1` 은 메모리상의 배열로, `a1` 에 대한 처리는 CPU 가 담당한다. 우리는 관례를 따라 앞으로 CPU 와 메인 메모리를 합쳐 **host** 라고 부르기로 하자. `ca1 = CuArray{Float32}(a1)` 은 `a1` 의 배열을 `Float32` 로 바꾸어 GPU 의 메모리로 옮긴다. GPU 와 GPU 의 메모리 등을 합쳐 **device** 라고 부르자. 굳이 `Float32` 타입으로 바꾸는 이유는 GPU 에서는 `Float32` 형식의 부동소수 연산이 `Float64` 보다 훨씬 빠르기 때문이다. `Float64` 타입이 무조건 필요한 경우가 아니라면 보통 `Float32` 를 사용한다. 이렇게 host 에서 device 로 데이터를 옮기는 것을 upload, device 에서 host 로 옮기는 것을 download 라고 하자.
+
+</br>
+
+### 타입 보존 upload
+
+```julia
+harr = Diagonal([1.0,2,3])
+```
+
+여기서 `harr` 은 host 의 `Float64` 타입 희소행렬이다. 이것을 GPU 로 업로드 할 때 
+
+```julia
+CuArray(harr)
+```
+
+라고 하면 `CuArray{Float64}` 타입 배열이 된다. `Float32` 타입으로 바꾸기 위해
+
+```julia
+CuArray{Float64}(harr)
+```
+
+라고 해도 되고 `CUDA.jl` 의 `cu` 함수를 이용해도 된다.
+
+```julia
+cu(harr)
+```
+
+</br>
+
+### 통합 메모리
+
+`CuArray` 생성자와 `cu` 함수는 기본적으로 GPU에서만 액세스할 수 있는 장치 메모리를 할당한다. CPU 와 GPU 모두 접근할 수 있는 통합 메모리(Unified memory) 가 있으며 장치 드라이버가 데이터의 이동을 관장한다. 즉 필요에 따리 CPU 와 GPU 메모리에 존재하며 전송된다. 1 차원 배열에 대한 통합메모리는 다음과 같이 사용 할 수 있다. 아래에서 `carr1`, `carr2`, `carr3` 는 모두 같다.
+
+```julia
+arr1 = [1, 2, 3]
+carr1 = CuArray{Float32, 1, CUDA.UnifiedMemory}(arr1)
+carr2 = CuVector{Float32, CUDA.UnifiedMemory}(arr1)
+carr3 = cu(arr1; unified=true)
+```
+
+2차원 베열에 대한 통합메모리는 다음과 같이 사용 할 수 있다. 역시 `cmat1`, `cmat2`, `cmat3` 는 모두 같다.
+
+```julia
+mat1 = [1 2; 3 4]
+cmat1 = CuMatrix{Float32, CUDA.UnifiedMemory}(mat1)
+cmat2 = CuArray{Float32, 2, CUDA.UnifiedMemory}(mat1)
+cmat3 = cu(mat1, unified=true)
+```
+
+이렇게 하면 CPU 코드를 실행하거나 AbstractArray 로의 폴백(fallback)을 트리거하는 것에 대해 걱정할 필요 없이 애플리케이션의 일부를 점진적으로 포팅할 수 있으므로 코드를 GPU로 포팅하는 것이 상당히 쉬워질 수 있다. 그러나 통합 메모리는 GPU 메모리에서 페이지 인 혹은 페이지 아웃 을 해야 하며 비동기적으로 할당할 수 없으므로 이에 대한 비용이 발생할 수 있다. 이 비용을 줄이기 위해 `CUDA.jl` 은 커널에 전달할 때 통합 메모리를 prefetch 한다.
+
+최신 시스템(오픈소스 NVIDIA 드라이버가 있는 CUDA 12.2)에서는 `CuArray` 생성자나 `cu` 함수를 사용하여 통합 메모리를 명시적으로 할당하지 않고도 GPU에서 CPU 메모리에 액세스하여 그 반대의 작업도 가능하다.
+
+```julia
+julia> cpu = [1,2];
+
+julia> gpu = unsafe_wrap(CuArray, cpu)
+2-element CuArray{Int64, 1, CUDA.UnifiedMemory}:
+ 1
+ 2
+
+julia> gpu .+= 1;
+
+julia> cpu
+2-element Vector{Int64}:
+ 2
+ 3
+```
+
+현재 CUDA.jl은 여전히 ​​장치 메모리를 할당하는 것을 기본으로 하지만, 이는 향후 변경될 수 있습니다. 기본 동작을 변경하려면 default_memory 기본 설정을 device 대신 unified 또는 host로 설정할 수 있습니다.
+

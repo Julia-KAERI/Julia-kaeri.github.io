@@ -52,8 +52,12 @@ website:
       collapse-level: 2
       contents : 
         - src/gpu/gpu.qmd
-        - text : "------"
-        - src/gpu/cuda_jl_performance_tips.qmd
+        - section : "CUDA.jl"
+          contents :
+          - src/gpu/cuda_jl_array_programming.qmd
+          - src/gpu/cuda_jl_kernel_programming.qmd
+          - src/gpu/cuda_jl_performance_tips.qmd
+          
     - title: "Tools"
       collapse-level: 2
       contents:
