@@ -30,11 +30,11 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
-    <lastmod>2024-11-12T08:05:34.710Z</lastmod>
+    <lastmod>2024-11-13T11:49:12.006Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/02_programming_model.html</loc>
-    <lastmod>2024-11-13T10:38:46.181Z</lastmod>
+    <lastmod>2024-11-13T10:55:26.295Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_performance_tips.html</loc>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/03_programming_interface.html</loc>
-    <lastmod>2024-11-13T01:48:48.571Z</lastmod>
+    <lastmod>2024-11-13T11:37:23.794Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/05_performance_guideline.html</loc>
