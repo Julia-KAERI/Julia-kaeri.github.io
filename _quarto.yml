@@ -52,11 +52,16 @@ website:
       collapse-level: 2
       contents : 
         - src/gpu/gpu.qmd
+        - section : "CUDA"
+          contents :
+          - src/gpu/cuda/01_introduction.qmd
+          - src/gpu/cuda/02_programming_model.qmd
+          - src/gpu/cuda/03_programming_interface.qmd
         - section : "CUDA.jl"
           contents :
-          - src/gpu/cuda_jl_array_programming.qmd
-          - src/gpu/cuda_jl_kernel_programming.qmd
-          - src/gpu/cuda_jl_performance_tips.qmd
+          - src/gpu/cuda.jl/cuda_jl_array_programming.qmd
+          - src/gpu/cuda.jl/cuda_jl_kernel_programming.qmd
+          - src/gpu/cuda.jl/cuda_jl_performance_tips.qmd
           
     - title: "Tools"
       collapse-level: 2
@@ -79,7 +84,8 @@ format:
     toc: true
     theme:
       light: [cosmo, theme.scss]
-    fontsize: 0.80em
+    fontsize: 0.85em
+    code-fold: true
     code-copy: true
     code-block-bg: true
     code-block-background: true

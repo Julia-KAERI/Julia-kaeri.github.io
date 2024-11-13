@@ -1,0 +1,177 @@
+---
+title: "Introduction"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+</br>
+
+::: {.callout-caution icon="false"}
+
+#### 기본 용어
+
+- Throughput : 단위 시간 당 instruction 처리 갯수.
+ 
+- memory bandwidth : 데이터 운반 능력을 의미하는 것으로 한 번의 클럭 신호를 통해서 처리할 수 있는 용량. 메모리 클럭 X 메모리 버스 폭으로 계산
+
+- 문맥(context) : 프로세스 실행과 관련한 정보들 (레지스터 상태, 메모리 스택 등) 의 집합
+
+
+
+:::
+
+</br>
+
+## GPU 및 병렬 처리
+
+병렬 처리 시스템은 그 아키텍쳐와 메모리 공유 상테에 따라 분류 할 수 있다.
+
+### 병렬 처리 하드웨어 아키텍쳐 {#sec-cuda_parallel_architecture}
+
+
+플린(M. J. Flynn) 은 병렬 처리 하드웨어를 두가지 기준으로 네가지로 분류하였다.
+
+&emsp;($1$) 한 셋의 데이터 흐름에 대해 수행하는 명령어(instruction) 의 개수 : 1 혹은 1 이상 (>1)
+
+&emsp;($2$) 하나의 명령에 의해 수행되는 데이터의 흐름의  수 : 1 혹은 1 이상 (>1)
+
+| 아키텍쳐 | 설명 | ($1$) 기준 | ($2$) 기준 |
+|:----:|:------------------:|:----:|:----:|
+| SISD  | Single instruction stream,single data stream | 1 | 1 |
+| SIMD | Single instruction stream, multiple data stream | 1 | >1 |
+| MISD | Multiple instruction stream, single data stream | >1 | 1 |
+| MIMD | Multiple instruction stream multiple data stream | >1 | >1 |
+ 
+
+MISD 구조는 아직 실현되지 않았으며 병렬컴퓨팅에서 사용되는 구조는 SIMD 와 MIMD(멀티코어 CPU) 이다.
+
+</br>
+
+#### MIMD
+
+명령어와 데이터가 1-1 로 매칭되는 SISD 가 하나의 칩 안에 들어있는 구조가 널리 사용된다. 각각의 코어가 자신만의 제어 유닛과 문맥을 가지고 독립적으로 프로세스를 수해 여러개의 코어가 하나의 프로세서 칩 안에 존재한다. 또한 하나의 컴퓨터에 여러개의 프로세서 칩이 있을 경우 멀티코어 멀티 프로세서라고 한다.
+
+</br>
+
+#### SIMD
+
+동일한 명령어를 여러 데이터에 대해 수행한다. 데이터 배열의 각 성분에 동일한 연산을 수항한다는 의미에서 벡터 프로세서, 혹은 배열 프로세서라고도 혼다. 대표적으로 GPU 가 있다. 일부 CPU 는 내부적으로 SIMD 유닛을 가지고 있는데 CPU 사양에서 이야기하는 MMX, SSE, AVX, Neon 등이 이러한 SIMD 유닛을 의미한다.
+
+</br>
+
+ALU(arithmetic logic unit, 산술 논리 유닛) 는 하나의 연산 유닛 혹은 코어를 의미한다. 하나의 제어 유닛이 여러개의 ALU를 제어하는 경우가 SIMD 의 대표적인 경우이고, ALU 와 제어 유닛이 결합된 세트가 여러개일 때가 MIMD 의 대표적인 경우이다. 
+
+</br>
+
+### 공유 메모리와 분산 메모리 {#sec-cuda_shared_memory_and_distributed_memory}
+
+- 여러 ALU 가 메모리 공간을 공유하는 시스템을 공유 메모리 시스템이라고 하며, 각 ALU 가 각각의 메모리 공간을 갖고 ALU 간 통신이 필요한 경우 명시적인 통신을 하는 시스템을 분산 메모리 시스템이라고 한다. 
+  
+- 공유 메모리 시스템의 경우 여러 ALU 가 하나의 메모리 공간에 접근하기 때문에 각각의 작업이 간섭을 일으 킬 수 있다. 이 경우 각각의 ALU 의 작업 순서를 맞추는 것을 동기화(synchoronization) 이라고 한다.
+
+- GPU 도 공유 메모리 시스템을 사용한다.
+
+</br>
+
+### SIMT {#sec-cuda_simt}
+
+GPU 는 SISD 아키텍쳐와 공유 메모리 시스템을 사용하지만 일반적으로 SIMT(Single instruction multiple threads) 구조로 정의된다. 
+
+- 한 스레드 그룹 내의 스레드들은 하나의 제어 유닛으로 제어된다.
+
+- 각 스레드는 자신만의 제어 문맥을 가진다. 
+
+- 스레드 그룹 내 스레드 들 사이의 분기가 허용된다. 
+
+
+
+</br>
+
+## GPU 사용의 이점
+
+### CPU 와 GPU 의 목적
+
+
+|  | CPU | GPU |
+|:----:|:----------------:|:----------------:|
+| 지향 | 각 코어의 성능 향상 | 병렬 처리 성능 향상 |
+| 코어 수 | 1 ~ 수십개 | 수백 ~ 수천개 |
+| 개별 코어의 성능 | 높다 | 낮다 |
+| 구조 | SISD, MIMD | SIMT |
+| 공간 분배 | 캐시 및 제어 유닛에 많이 | 연산 유닛에 많이  |
+| 메모리 크기 | 수 GB 이상 | 수 GB 이상 |
+| 메모리 접근 | 접근 지연 시간 최적화 | 메모리 대역폭 최대화 |
+
+:CPU 와 GPU 의 비교 {#tbl-cuda_cpu_and_gpu_comparision}
+
+</br>
+
+이것을 정리하면 다음과 같다.
+
+| 장치 | 기본 목적 |
+|:---:| :--------------|
+| CPU | 스레드를 최대한 빠르게 처리. 최대 수십개의 스레드를 병렬적으로 처리 할 수 있음. |
+| GPU | 수천개의 스레드를 를 병렬적으로 최대한 빠르게. 단일 스레드는 느리더라도 throughput 을 최대한으로 |
+
+</br>
+
+- CPU 에 비해 상대적으로 캐싱과 흐름 제어보다 데이터 처리에 더 많은 트랜지스터를 사용한다.
+
+- 아래 그림은 CPU 와 GPU 칩의 resource 분배를 보여준다. (source : [CUDA C Programming guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/) )
+
+</br>
+
+
+![The GPU Devotes More Transistors to Data Processing](https://docs.nvidia.com/cuda/cuda-c-programming-guide/_images/gpu-devotes-more-transistors-to-data-processing.png){#fig-cuda-gpu}
+
+
+</br>
+
+데이터 처리에 더 많은 트랜지스터를 할당하면 예를 들어 부동 소수점 계산의 병렬 계산처리에 유용하다. GPU는 긴 메모리 액세스 대기 시간을 피하기 위해 대용량 데이터 캐시와 복잡한 흐름 제어에 의존하는 대신 계산을 통해 메모리 액세스 대기 시간을 숨길 수 있다. 대용량 데이터 케시와 복잡한 흐름제어 둘 다 트랜지스터 측면에서 비용이 많이 든다.
+
+</br>
+
+일반적으로 애플리케이션은 병렬적인 부분과 순차적인 부분이 혼합되어 있으므로 시스템은 전반적인 성능을 극대화하기 위해 GPU와 CPU를 혼합하여 설계된다. 높은 수준의 병렬성을 갖춘 애플리케이션은 GPU의 이러한 대규모 병렬적 특성을 활용하여 CPU보다 더 높은 성능을 달성할 수 있다.
+
+</br>
+
+## CUDA®: A General-Purpose Parallel Computing Platform and Programming Model
+
+- CUDA : 범용 병렬 컴퓨팅 플랫폼이자 NVIDIA GPU의 병렬 컴퓨팅 엔진을 활용하는 프로그래밍 모델
+
+</br>
+
+![GPU Computing Applications. CUDA is designed to support various languages and application programming interfaces.](
+https://docs.nvidia.com/cuda/cuda-c-programming-guide/_images/gpu-computing-applications.png){#fig-cuda-application width=900}
+
+
+</br>
+
+## 확장가능한 프로그래밍 모델
+
+- Multicore(CPU) 와 Manycore(GPU) 의 등장으로 처리 장치의 주류가 병렬 시스템이 되었으며, 3D 그래픽 응용 프로그램이 병렬성을 투명하게 확장하여 코어 수가 매우 다양한 많은 코어 GPU로 확장되는 것처럼 이런 병렬성을 투명하게 확장하여 증가하는 프로세서 코어 수를 활용하는 애플리케이션 소프트웨어를 개발하는 것이 목표가 되었다.
+
+- CUDA 병렬 프로그래밍 모델은 C 와 같은 표준 프로그래밍 언어에 익숙한 프로그래머에게 낮은 학습 곡선을 유지하면서 이러한 과제를 극복하도록 설계되었다.
+
+- 핵심에는 스레드 그룹, 공유 메모리, 배리어 동기화의 계층 구조라는 세 가지 핵심 추상화가 있으며, 이는 단순히 최소한의 언어 확장 세트로 프로그래머에게 주어진다.
+
+- 이러한 추상화는 거친 데이터 병렬성과 작업 병렬성 내에 포개어진 미세한 데이터 병렬성과 스레드 병렬성을 제공한다. 이는 프로그래머가 문제를 스레드 블록으로 독립적으로 병렬로 해결할 수 있는 거친 하위 문제로 분할하고, 각 하위 문제를 블록 내의 모든 스레드가 협력하여 병렬로 해결할 수 있는 더 미세한 부분으로 분할하도록 안내한다.
+
+- 이 분해는 각 하위 문제를 해결할 때 스레드가 협력할 수 있도록 하여 언어 표현력을 보존하고 동시에 자동 확장성을 가능하게 한다. 실제로 각 스레드 블록은 GPU 내의 사용 가능한 모든 멀티프로세서에서 어떤 순서로든 동시에 또는 순차적으로 예약될(scheduled) 수 있으므로 컴파일된 CUDA 프로그램은 @fig-cuda_scalability 에서 설명한 대로 멀티프로세서의 갯수가 몇개든 실행할 수 있으며 런타임 시스템만 물리적인 멀티프로세서 수를 알면 된다.
+
+- 이 확장 가능한 프로그래밍 모델을 사용하면 GPU 아키텍처가 멀티프로세서 수와 메모리 파티션을 간단히 확장하여 광범위한 시장 범위에 걸쳐 확장할 수 있다. 고성능 매니아용 GeForce GPU와 전문가용 Quadro 및 Tesla 컴퓨팅 제품부터 다양한 저렴한 주류 GeForce GPU까지 다양합니다(모든 CUDA 지원 GPU 목록은 [CUDA 지원 GPU](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#cuda-enabled-gpus) 참조).
+
+</br>
+
+::: {.callout-note}
+
+GPU는 스트리밍 멀티프로세서(streaming multiprocessor, SM) 배열을 중심으로 구축됩니다(자세한 내용은 [하드웨어 구현](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#hardware-implementation) 참조). 멀티스레드 프로그램은 서로 독립적으로 실행되는 스레드 블록으로 분할되므로 멀티프로세서가 더 많은 GPU가 멀티프로세서가 적은 GPU보다 자동으로 프로그램을 더 짧은 시간 내에 실행합니다.
+:::
+
+
+</br>
+
+![Automatic Scalability](https://docs.nvidia.com/cuda/cuda-c-programming-guide/_images/automatic-scalability.png){#fig-cuda_scalability width=400}

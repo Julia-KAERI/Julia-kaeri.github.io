@@ -29,24 +29,44 @@
     <lastmod>2024-11-06T07:57:32.104Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda_jl_kernel_programming.html</loc>
-    <lastmod>2024-11-07T12:42:12.144Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
+    <lastmod>2024-11-12T08:05:34.710Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/index.html</loc>
-    <lastmod>2024-10-04T08:07:19.175Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/02_programming_model.html</loc>
+    <lastmod>2024-11-13T10:38:46.181Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_performance_tips.html</loc>
+    <lastmod>2024-11-07T00:20:07.254Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_array_programming.html</loc>
+    <lastmod>2024-11-07T08:20:19.509Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/about.html</loc>
     <lastmod>2024-10-07T04:30:10.697Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda_jl_array_programming.html</loc>
-    <lastmod>2024-11-07T08:20:19.509Z</lastmod>
+    <loc>https://julia-kaeri.github.io/index.html</loc>
+    <lastmod>2024-10-04T08:07:19.175Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda_jl_performance_tips.html</loc>
-    <lastmod>2024-11-07T00:20:07.254Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_kernel_programming.html</loc>
+    <lastmod>2024-11-12T04:25:17.794Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/01_introduction.html</loc>
+    <lastmod>2024-11-13T08:11:40.918Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/03_programming_interface.html</loc>
+    <lastmod>2024-11-13T01:48:48.571Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/05_performance_guideline.html</loc>
+    <lastmod>2024-11-13T08:11:52.448Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/posts/first.html</loc>

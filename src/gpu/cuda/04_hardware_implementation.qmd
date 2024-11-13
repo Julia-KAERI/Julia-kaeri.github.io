@@ -1,0 +1,8 @@
+---
+title: "Hardware Implementation"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
