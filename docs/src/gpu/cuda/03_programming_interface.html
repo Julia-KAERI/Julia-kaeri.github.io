@@ -374,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>compute capability 8.0 및 8.6이 있는 장치의 경우 런타임에 바이너리 코드로 컴파일되는 PTX 코드.</li>
 </ul>
 <p><br></p>
-<p><code>x.cu</code> 는 예를 들어, 워프 감소 연산을 사용하는 최적화된 코드 경로를 가질 수 있으며, 이는 compute capability 8.0 이상의 장치에서만 지원된다. <code>__CUDA_ARCH__</code> 매크로는 compute capability 에 따라 다양한 코드 경로를 구분하는 데 사용할 수 있다. 이는 장치 코드에 대해서만 정의됩니다. 예를 들어 <code>-arch=compute_80</code> 으로 컴파일할 때 <code>__CUDA_ARCH__</code> 는 <code>800</code> 과 같다.</p>
+<p><code>x.cu</code> 는 예를 들어, 워프 감소 연산을 사용하는 최적화된 코드 경로를 가질 수 있으며, 이는 compute capability 8.0 이상의 장치에서만 지원된다. <code>__CUDA_ARCH__</code> 매크로는 compute capability 에 따라 다양한 코드 경로를 구분하는 데 사용할 수 있다. 이는 장치 코드에 대해서만 정의된다. 예를 들어 <code>-arch=compute_80</code> 으로 컴파일할 때 <code>__CUDA_ARCH__</code> 는 <code>800</code> 과 같다.</p>
 <p><code>x.cu</code> 가 <code>sm_90a</code> 또는 <code>compute_90a</code> 를 사용하여 <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/#feature-availability">아키텍처 조건부 기능</a> 예제에 대해 컴파일된 경우, 코드는 compute capability 9.0이 있는 장치에서만 실행할 수 있다.</p>
 <p>드라이버 API를 사용하는 애플리케이션은 코드를 컴파일하여 파일을 분리하고 런타임에 가장 적합한 파일을 명시적으로 로드하여 실행해야 한다.</p>
 <p>Volta 아키텍처는 GPU에서 스레드가 예약되는 방식을 변경하는 독립 스레드 스케줄링을 도입합니다. 이전 아키텍처에서 <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/#simt-architecture">SIMT 스케줄링</a> 의 특정 동작에 의존하는 코드의 경우 독립 스레드 스케줄링은 참여 스레드 세트를 변경하여 잘못된 결과를 초래할 수 있다. <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/#independent-thread-scheduling-7-x">Independent Thread Scheduling</a> 에서 자세히 설명한 시정 조치를 구현하는 동안 마이그레이션을 지원하기 위해 Volta 개발자는 컴파일러 옵션 조합 <code>-arch=compute_60  -code=sm_70</code>을 사용하여 Pascal의 스레드 스케줄링을 선택할 수 있습니다.</p>
