@@ -377,3 +377,156 @@ Hello World!
 </br>
 
 ## 협력 그룹 {#sec-cudajl_cooperative_groups}
+
+협력 그룹(cooperative groups)을 사용하면 특정 스레드 구성에 얽매이지 않고, 스레드를 더 동적으로 분할하고 스레드 그룹 간에 통신할 수 있는 병렬 커널을 작성할 수 있습니다. 이 기능은 CUDA.jl에서 비교적 새롭게 도입된 것이며, 아직 협력 그룹 프로그래밍 모델의 모든 측면을 지원하지는 않습니다.
+
+본질적으로, 스레드 인덱스를 수동으로 계산하고 이를 사용하여 계산을 구분하는 대신, 이제 커널 기능은 자신이 속한 그룹을 조회하고, 해당 그룹의 크기, rank 등을 조회할 수 있습니다:
+
+```julia
+julia> function reverse_kernel(d::CuDeviceArray{T}) where {T}
+           block = CG.this_thread_block()
+
+           n = length(d)
+           t = CG.thread_rank(block)
+           tr = n-t+1
+
+           s = @inbounds CuDynamicSharedArray(T, n)
+           @inbounds s[t] = d[t]
+           CG.sync(block)
+           @inbounds d[t] = s[tr]
+
+           return
+       end
+
+julia> a = cu([1,2,3])
+3-element CuArray{Int64, 1, CUDA.DeviceMemory}:
+ 1
+ 2
+ 3
+
+julia> @cuda threads=length(a) shmem=sizeof(a) reverse_kernel(a)
+
+julia> a
+3-element CuArray{Int64, 1, CUDA.DeviceMemory}:
+ 3
+ 2
+ 1
+```
+
+</br>
+
+아래와 같은 암묵적 그룹이 지원됩니다.
+
+- 스레드 블럭 : `CG.this_thread_block()`
+
+- 그리드 그룹 : `CG.this_grid()`
+
+- 워프 : `CG.coalesced_threads()`
+
+이런 지원은 클러스터나 multi-grid implicit groups, 그리고 모든 명시적인 (tiled, patitioned) 그룹에는 해당하지 않습니다.
+
+스레드 블록은 모든 장치와 모든 커널에서 지원됩니다. Grid 그룹(`CG.this_grid()`) 은 전체 그리드를 동기화하는 데 사용할 수 있는데, 이는 일반적으로 불가능하지만 추가적인 주의가 필요합니다. 커널은 `@cuda cooperative=true` 를 사용하여 협력 모드로 실행되어야 하며, 이는 compute capability 6.0 이상인 장치에서만 지원됩니다. 또한 협력 커널은 장치의 SM(Streaming Multiprocessor) 수만큼의 블록만 실행할 수 있습니다.
+
+</br>
+
+### 인덱싱 {#sec-cudajl_indexing}
+
+모든 종류의 스레드 그룹은 다음의 인덱스 연산을 지원합니다.
+
+- `thread_rank` : 그룹 내에서 현재 스레드의 랭크를 반환합니다.
+
+- `num_thread` : 그룹의 스레드 개수를 반환합니다.
+
+추가로 일부 그룹 유형은 추가적인 인덱스 연산을 지원합니다.
+
+- 스레드 블럭 : `group_index`, `thread_index`, `dim_threads`
+
+- 그리드 그룹 : `block_rank`, `num_blocks`, `block_index`
+
+- coalesced group : `meta_group_rank`, `meta_group_size`
+
+자세한 것은 각 함수의 docstring 을 참조하세요.
+
+</br>
+
+### 동기화 {#sec-cudajl_synchronization}
+
+그룹 객체는 그룹 내 스레드를 동기화하기 위해 `CG.sync` 연산을 지원합니다.
+
+추가적으로, 스레드 및 그리드 그룹은 더 세분화된 동기화를 위해 `CG.barrier_arrive` 와 `CG.barrier_wait` 을 사용하는 배리어(barrier)를 지원합니다. `barrier_arrive` 를 호출하면 토큰이 반환되며, 이 토큰을 `barrier_wait` 에 전달하여 동기화를 수행해야 합니다.
+
+
+</br>
+
+### 집합 연산 {#sec-cudajl_collective_operations}
+
+특정 집합 연산(즉, 여러 스레드가 수행해야 하는 연산)은 협력 그룹을 사용할 때 더 편리한 API를 제공합니다. 예를 들어, 셔플 셰플링(shuffle) 내재 함수는 일반적으로 스레드 마스크가 필요하지만, 이를 그룹 객체로 대체할 수 있습니다:
+
+```julia
+function reverse_kernel(d)
+    cta = CG.this_thread_block()
+    I = CG.thread_rank(cta)
+
+    warp = CG.coalesced_threads()
+    i = CG.thread_rank(warp)
+    j = CG.num_threads(warp) - i + 1
+
+    d[I] = CG.shfl(warp, d[I], j)
+
+    return
+end
+```
+</br>
+
+아래와 같은 집합 연산이 지원됩니다.
+
+- shuffle: `shfl`, `shfl_down`, `shfl_up`
+
+- voting: `vote_any`, `vote_all`, `vote_ballot`
+
+</br>
+
+### 데이터 전송 {#sec-cudajl_data_transfer}
+
+스레드 블록과 병합된(coalesced) 그룹에서는 비동기 메모리 복사를 수행하기 위해 `CG.memcpy_async` 함수가 제공됩니다. 현재는 장치에서 공유 메모리로의 복사만 가속화되며, compute capability 8.0 이상인 장치에서만 지원됩니다. 그러나 구현은 우아하게 강등(degrade)되어 동기화 복사로 대체됩니다:
+
+
+```julia
+julia> function memcpy_kernel(input::AbstractArray{T}, output::AbstractArray{T},
+                              elements_per_copy) where {T}
+           tb = CG.this_thread_block()
+
+           local_smem = CuDynamicSharedArray(T, elements_per_copy)
+           bytes_per_copy = sizeof(local_smem)
+
+           i = 1
+           while i <= length(input)
+               # this copy can sometimes be accelerated
+               CG.memcpy_async(tb, pointer(local_smem), pointer(input, i), bytes_per_copy)
+               CG.wait(tb)
+
+               # do something with the data here
+
+               # this copy is always a simple element-wise operation
+               CG.memcpy_async(tb, pointer(output, i), pointer(local_smem), bytes_per_copy)
+               CG.wait(tb)
+
+               i += elements_per_copy
+           end
+       end
+
+julia> a = cu([1, 2, 3, 4]);
+julia> b = similar(a);
+julia> nb = 2;
+
+julia> @cuda shmem=sizeof(eltype(a))*nb memcpy_kernel(a, b, nb)
+
+julia> b
+4-element CuArray{Int64, 1, CUDA.DeviceMemory}:
+ 1
+ 2
+ 3
+ 4
+```
+
+위의 예제는 복사가 완료될 때까지 기다린 후 계속 진행하지만, `CG.wait_prior` 함수를 사용하여 여러 복사를 동시에 진행할 수도 있습니다. 이 함수는 마지막 N개의 복사를 제외한 모든 복사가 완료될 때까지 기다립니다.
