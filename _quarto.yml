@@ -67,16 +67,21 @@ website:
       collapse-level: 2
       contents:
         - src/tools/tools.qmd
-        
-        - href: src/tools/Asymptote/asymptote.qmd
-        
-        - href: src/tools/tikz/tikz.qmd
-        - href: src/tools/tikz/tikz_functions.qmd
-        - href: src/tools/tikz/tikz_image.qmd
-        - href: src/tools/tikz/tikz_wavelet.qmd
-        - href: src/tools/tikz/tikz_pde.qmd
-        - href: src/tools/tikz/tikz_test.qmd
-
+        - section : "Plotting"
+          contents :
+          - href: src/tools/Asymptote/asymptote.qmd
+          - href: src/tools/tikz/tikz.qmd
+          - href: src/tools/tikz/tikz_functions.qmd
+          - href: src/tools/tikz/tikz_image.qmd
+          - href: src/tools/tikz/tikz_wavelet.qmd
+          - href: src/tools/tikz/tikz_pde.qmd
+          - href: src/tools/tikz/tikz_test.qmd
+        - section : "C/C++ 관련"
+          contents :
+          - href : src/tools/Cpp/vcpkg.qmd
+        - section : "Unix/Linux 관련"
+          contents : 
+          - href : src/tools/unixLinux/git.qmd
 bibliography: references.bib
 
 format:

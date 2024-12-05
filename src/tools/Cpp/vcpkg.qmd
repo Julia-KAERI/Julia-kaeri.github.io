@@ -1,0 +1,18 @@
+---
+title: "vcpkg"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+</br>
+
+## 소개
+
+- Microsoft가 오픈소스로 제공하는 C++용 패키지 관리자. 
+
+- 원조의 설명서 : [vcpkg 설명서](https://learn.microsoft.com/ko-kr/vcpkg/)
+
+- 
