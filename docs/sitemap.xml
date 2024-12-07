@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/topics.html</loc>
-    <lastmod>2024-11-06T06:07:56.923Z</lastmod>
+    <lastmod>2024-11-08T00:08:10.772Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
-    <lastmod>2024-03-12T07:08:10.291Z</lastmod>
+    <lastmod>2024-05-23T04:51:05.418Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_test.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
-    <lastmod>2024-05-02T05:15:44.582Z</lastmod>
+    <lastmod>2024-05-23T04:51:05.417Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
@@ -30,19 +30,19 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
-    <lastmod>2024-11-13T11:49:12.006Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.329Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/02_programming_model.html</loc>
-    <lastmod>2024-11-13T10:55:26.295Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.329Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_performance_tips.html</loc>
-    <lastmod>2024-11-07T00:20:07.254Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.329Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_array_programming.html</loc>
-    <lastmod>2024-11-07T08:20:19.509Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.328Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/about.html</loc>
@@ -54,19 +54,19 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_kernel_programming.html</loc>
-    <lastmod>2024-12-05T09:00:11.154Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.328Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/01_introduction.html</loc>
-    <lastmod>2024-11-13T08:11:40.918Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.329Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/03_programming_interface.html</loc>
-    <lastmod>2024-11-15T10:45:46.997Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.329Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/05_performance_guideline.html</loc>
-    <lastmod>2024-11-13T08:11:52.448Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.329Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/posts/first.html</loc>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
-    <lastmod>2024-11-06T05:48:51.499Z</lastmod>
+    <lastmod>2024-12-07T04:15:03.822Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/unixLinux/trivials.html</loc>
@@ -98,10 +98,10 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/unixLinux/git.html</loc>
-    <lastmod>2024-12-05T09:09:55.539Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.330Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
-    <lastmod>2024-12-05T10:23:37.576Z</lastmod>
+    <lastmod>2024-12-07T04:14:58.330Z</lastmod>
   </url>
 </urlset>
