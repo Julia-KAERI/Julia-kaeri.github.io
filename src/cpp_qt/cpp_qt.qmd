@@ -1,0 +1,23 @@
+---
+title: "C++ and Qt"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+
+## Qt and Tools
+
+- [Qt](https://www.qt.io)
+- [Qt Creator](https://www.qt.io/product/development-tools)
+- [qmake](https://doc.qt.io/qt-6/qmake-manual.html)
+
+</br>
+
+## C++
+
+- [vcpkg](https://vcpkg.io/en/)
+- [eigen3](https://eigen.tuxfamily.org/)
+- 

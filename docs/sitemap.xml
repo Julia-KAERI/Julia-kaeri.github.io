@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
-    <lastmod>2024-11-06T07:57:32.104Z</lastmod>
+    <lastmod>2024-11-08T00:08:10.772Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
@@ -46,11 +46,11 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/about.html</loc>
-    <lastmod>2024-10-07T04:30:10.697Z</lastmod>
+    <lastmod>2024-10-14T10:51:16.724Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/index.html</loc>
-    <lastmod>2024-10-04T08:07:19.175Z</lastmod>
+    <lastmod>2024-10-06T05:23:06.300Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_kernel_programming.html</loc>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
-    <lastmod>2024-12-08T05:02:00.435Z</lastmod>
+    <lastmod>2024-12-08T05:04:24.007Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/unixLinux/trivials.html</loc>
@@ -103,5 +103,9 @@
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
     <lastmod>2024-12-07T04:14:58.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/cpp_qt/cpp_qt.html</loc>
+    <lastmod>2024-12-08T05:19:47.331Z</lastmod>
   </url>
 </urlset>

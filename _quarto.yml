@@ -26,10 +26,13 @@ website:
       #   text : "영상 처리/토모그래피"
       - href : src/topics/topics.qmd
         text : "주제별"
-      - href : src/tools/tools.qmd
-        text : "Tools"
       - href : src/gpu/gpu.qmd
         text : "GPU & CUDA"
+      - href : src/cpp_qt/cpp_qt.qmd
+        text : "C++ and Qt"
+      - href : src/tools/tools.qmd
+        text : "Tools"
+
       - href : src/posts/index.qmd
         text : "Posts"
       # - href : https://julia-kaeri.github.io/ClassicalMechanics.doc/
