@@ -644,20 +644,20 @@
     "href": "src/cpp_qt/cpp_qt.html",
     "title": "C++ and Qt",
     "section": "",
-    "text": "Qt\nQt Creator\nqmake"
+    "text": "vcpkg : C++ 패키지 관리 툴\neigen3 : C++ 선형 대수 패키지"
   },
   {
     "objectID": "src/cpp_qt/cpp_qt.html#qt-and-tools",
     "href": "src/cpp_qt/cpp_qt.html#qt-and-tools",
     "title": "C++ and Qt",
-    "section": "",
-    "text": "Qt\nQt Creator\nqmake"
+    "section": "2 Qt and Tools",
+    "text": "2 Qt and Tools\n\nQt : 멀티플랫폼 프레임웍\nQt Creator : Qt 개발도구\nqmake : Qt 전용 빌드 관리 시스템\nQCustomPlot : Qt 전용 Plotting tool"
   },
   {
     "objectID": "src/cpp_qt/cpp_qt.html#c",
     "href": "src/cpp_qt/cpp_qt.html#c",
     "title": "C++ and Qt",
-    "section": "2 C++",
-    "text": "2 C++\n\nvcpkg\neigen3"
+    "section": "1 C++",
+    "text": "1 C++\n\nvcpkg : C++ 패키지 관리 툴\neigen3 : C++ 선형 대수 패키지"
   }
 ]

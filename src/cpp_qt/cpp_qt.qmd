@@ -7,17 +7,26 @@ crossref:
   chapters: false
 ---
 
-
-## Qt and Tools
-
-- [Qt](https://www.qt.io)
-- [Qt Creator](https://www.qt.io/product/development-tools)
-- [qmake](https://doc.qt.io/qt-6/qmake-manual.html)
-
 </br>
 
 ## C++
 
-- [vcpkg](https://vcpkg.io/en/)
-- [eigen3](https://eigen.tuxfamily.org/)
-- 
+- [vcpkg](https://vcpkg.io/en/) : C++ 패키지 관리 툴
+  
+- [eigen3](https://eigen.tuxfamily.org/) : C++ 선형 대수 패키지
+  
+
+</br>
+
+## Qt and Tools
+
+- [Qt](https://www.qt.io) : 멀티플랫폼 프레임웍
+  
+- [Qt Creator](https://www.qt.io/product/development-tools) : Qt 개발도구
+
+- [qmake](https://doc.qt.io/qt-6/qmake-manual.html) : Qt 전용 빌드 관리 시스템 
+
+- [QCustomPlot](https://www.qcustomplot.com/index.php/introduction) : Qt 전용 Plotting tool
+
+</br>
+
