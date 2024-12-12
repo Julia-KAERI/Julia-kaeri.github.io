@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Julia_KAERI">
 
-<title>Science &amp; Programming - The Notebook</title>
+<title>Science &amp; Programming - 엔디언과 바이트</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
+<link href="../../src/topics/socket.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,70 +67,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
-<link rel="alternate" type="application/rss+xml" title="Science &amp; Programming" href="index.xml" data-external="1"></head>
+</head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,7 +94,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/topics/socket.html"> 
+    <a class="nav-link active" href="../../src/topics/socket.html" aria-current="page"> 
 <span class="menu-text">주제별</span></a>
   </li>  
   <li class="nav-item">
@@ -170,7 +110,7 @@ window.Quarto = {
 <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../src/posts/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../src/posts/index.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
@@ -184,32 +124,62 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/topics/endians.html">엔디언과 바이트</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/topics/socket.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TCP/UDP 통신</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/topics/endians.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">엔디언과 바이트</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">분류</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">전체 <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#sec-topics_endian" id="toc-sec-topics_endian" class="nav-link active" data-scroll-target="#sec-topics_endian"><span class="header-section-number">1</span> 엔디언</a></li>
+  <li><a href="#sec-topics_byte_data" id="toc-sec-topics_byte_data" class="nav-link" data-scroll-target="#sec-topics_byte_data"><span class="header-section-number">2</span> 바이트 데이터</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">The Notebook</h1>
+<h1 class="title">엔디언과 바이트</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">저자</div>
-    <div class="quarto-title-meta-contents">
-             <p>Julia_KAERI <a href="mailto:julia.kaeri@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-          </div>
-  </div>
     
   
     
@@ -220,42 +190,29 @@ window.Quarto = {
 </header>
 
 
+<p><br></p>
+<section id="sec-topics_endian" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-topics_endian"><span class="header-section-number">1</span> 엔디언</h2>
+<p>컴퓨터의 모든 데이터와 명령어들은 내부적으로 모두 2진수로 처리되며 각 2진 처리 단위를 비트(bit) 라고 하며, 명령어와 데이터의 단위는 8개의 비트가 모인 바이트(Byte) 이다. 즉 1 Byte = 8 bits 이다. 1 Byte 는 2<sup>8</sup>=256 개의 서로 다른 정보를 표현 할 수 있다.</p>
+<p>C/C++ 의 <code>char</code> 나 <code>unsigned char</code> Julia 의 <code>UInt8</code>, <code>Int8</code>, 그리고 Python 의 numpy 의 dtype 인 <code>np.uint8</code> 이나 <code>np.int8</code> 같은 경우는 8 비트 그러니까 1 바이트 단위로 데이터를 저장한다. 그러나 이 타입은 많아야 256 개의 서로 다른 것 이상을 표현 할 수 없기 때문에 여러 바이트의 자료형이 필요하다. 예를 들어 C/C++ 의 부동소수 타입인 <code>float</code> 같은 경우는 CPU 에 따라 다르지만 4 바이트 혹은 8 바이트 의 자료형이며 마찬가지로 Julia 의 <code>Float32</code> 나 numpy 의 <code>np.float32</code> 같은 경우는 4 바이트, 그러니까 32 비트 데이터 타입이다.</p>
+<p>엔디언은 여러 바이트로 이루어진 데이터를 어떤 순서로 나열하느냐에 대한 것이다. 컴퓨터의 역사에서 두가지 방법이 있었다. 예를 들어 2 바이트 부호 없는 정수 타입의 <code>24577</code> 을 이진수로 16자리까지 표현하면 <code>01100000 00000001</code> 이다. 바이트를 구분하기 위해 중간에 공백을 두었다. 컴퓨터 메모리상에 이렇게 저장하는 방식을 리틀 엔디언(little endian) 이라고 한다. 바이트 내의 비트 순서는 그대로 두면서 바이트 순서만 바뀌는 것, 즉 2바이트 부호 없는 정수 타입의 <code>24577</code> 을 <code>00000001 01100000</code> 로 표현하는 방식을 빅 엔디언(big endian) 이라고 한다. 이것은 2바이트 보다 큰 바이트에도 그대로 적용되는데 리틀 엔디언이 우리가 일반적으로 쓰는 2진수 표현과 동등하다면 빅 엔디언은 역시 바이트 순서가 역전된 방식 (바이트 내의 비트 순서는 리틀 엔디언과 동일하다) 이다.</p>
+<p>이게 단순히 역사적 문제이면 좋겠는데, 어떤 컴퓨터는 내부적으로 빅엔디언을, 어떤 컴퓨터는 리틀엔디언을 사용하며 이 두 컴퓨터가 통신할 때 각자의 엔디언에 맞추어 변환하지 않는다면 당연히 오류가 발생한다. 네트워크 전송에는 보통 빅 엔디언을 사용하여 데이터를 전송하지만 항상 그런것도 아니다.</p>
+<ul>
+<li><p>예를 들어 필자의 컴퓨터는 리틀 엔디언을 사용하지만 데이터를 네트워크 전송할 때는 빅 엔디언으로 전송하는 것이 좋다. 특별한 약속이 없다면 받는 쪽도 당연히 빅 엔디언으로 받는 것으로 알 것이기 때문이다.</p></li>
+<li><p>한 데이터 내의 바이트 배치만 거꾸로 되는 것이지 데이터 자체의 순서가 바뀌는 것은 아니다. 예를 들어 1바이트 문자열 <code>ABCD</code> 는 <code>ABCD</code> 로 보내면 된다.</p></li>
+</ul>
+<p><br></p>
+<p>워낙 오래되고, 중요한 사항이기 때문에 각 컴파일러, 인터프리터 들은 엔디언 변환 함수를 제공한다.</p>
+<p><br></p>
+</section>
+<section id="sec-topics_byte_data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-topics_byte_data"><span class="header-section-number">2</span> 바이트 데이터</h2>
+<p>C/C++, Julia, Python(아마도 <code>numpy</code>) 는 1 바이트, 2바이트, 4바이트, 8바이트, 16 바이트의 정수형 데이터 타입을 제공한다. 그런데 3 바이트나 6바이트 데이터를 다뤄야 할 경우가 존재한다. 보통 대량의 데이터를 고속으로 전송하고 처리해야 하는데, 데이터가 표현해야 하는 값의 개수가 2<sup>16</sup> = 65,536 보다는 크고 2<sup>32</sup>=4,294,967,296 보다는 작을 경우 2바이트는 부족하고 4바이트는 남는다.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1734003120331" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail">
-<p><a href="../../src/posts/first.html" class="no-external"></a></p><a href="../../src/posts/first.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="../../src/posts/first.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../src/posts/first.html" class="no-external">첫번째 글</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../src/posts/first.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="../../src/posts/first.html" class="no-external"></a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="../../src/posts/first.html" class="no-external"></a></p><a href="../../src/posts/first.html" class="no-external">
-<div class="listing-author">
-Julia_KAERI
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-일치 없음
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -665,6 +622,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/topics/socket.html" class="pagination-link" aria-label="TCP/UDP 통신">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TCP/UDP 통신</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

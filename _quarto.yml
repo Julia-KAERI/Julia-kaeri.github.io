@@ -24,7 +24,7 @@ website:
       #   text : "수치해석"
       # - href :  src/image_processing/index.qmd
       #   text : "영상 처리/토모그래피"
-      - href : src/topics/topics.qmd
+      - href : src/topics/socket.qmd
         text : "주제별"
       - href : src/gpu/gpu.qmd
         text : "GPU & CUDA"
@@ -49,8 +49,9 @@ website:
       # type : "dark"
       collapse-level : 2
       contents :
-        - src/topics/topics.qmd
+        # - src/topics/topics.qmd
         - href: src/topics/socket.qmd
+        - href: src/topics/endians.qmd
     - title : "GPU & CUDA"
       collapse-level: 2
       contents : 

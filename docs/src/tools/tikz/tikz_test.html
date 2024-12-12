@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../src/tools/Cpp/vcpkg.html" rel="next">
 <link href="../../../src/tools/tikz/tikz_pde.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -128,16 +129,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../src/topics/topics.html"> 
+    <a class="nav-link" href="../../../src/topics/socket.html"> 
 <span class="menu-text">주제별</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../../../src/tools/tools.html" aria-current="page"> 
-<span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../src/gpu/gpu.html"> 
 <span class="menu-text">GPU &amp; CUDA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../src/cpp_qt/cpp_qt.html"> 
+<span class="menu-text">C++ and Qt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../src/tools/tools.html" aria-current="page"> 
+<span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../src/posts/index.html"> 
@@ -159,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/tools/tikz/tikz_test.html">tikz test</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/tools/Asymptote/asymptote.html">Plotting</a></li><li class="breadcrumb-item"><a href="../../../src/tools/tikz/tikz_test.html">tikz test</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -177,48 +182,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">유용한 도구들</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Plotting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/tools/Asymptote/asymptote.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Asymptote</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/tools/tikz/tikz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tikz in Quarto</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/tools/tikz/tikz_functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tikz function plots in Quarto</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/tools/tikz/tikz_image.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tikz code for image in Quarto</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/tools/tikz/tikz_wavelet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tikz Wavelet</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/tools/tikz/tikz_pde.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tikz in PDE</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/tools/tikz/tikz_test.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">tikz test</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">C/C++ 관련</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/tools/Cpp/vcpkg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">vcpkg</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Unix/Linux 관련</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/tools/unixLinux/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Git 관련</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -230,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/tools/Asymptote/asymptote.html">Plotting</a></li><li class="breadcrumb-item"><a href="../../../src/tools/tikz/tikz_test.html">tikz test</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">tikz test</h1>
 </div>
@@ -740,6 +790,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../../src/tools/Cpp/vcpkg.html" class="pagination-link" aria-label="vcpkg">
+        <span class="nav-page-text">vcpkg</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
