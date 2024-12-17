@@ -24,12 +24,15 @@ website:
       #   text : "수치해석"
       # - href :  src/image_processing/index.qmd
       #   text : "영상 처리/토모그래피"
-      - href : src/topics/socket.qmd
-        text : "주제별"
+
       - href : src/gpu/gpu.qmd
         text : "GPU & CUDA"
       - href : src/cpp_qt/cpp_qt.qmd
-        text : "C++ and Qt"
+        text : "C++ & Qt"
+      - href : src/ML/ml.qmd
+        text : "AI & ML"
+      - href : src/topics/socket.qmd
+        text : "주제별"
       - href : src/tools/tools.qmd
         text : "Tools"
 
@@ -44,14 +47,7 @@ website:
 
 
   sidebar:
-    - title : "주제별"
-      # style : "docked"
-      # type : "dark"
-      collapse-level : 2
-      contents :
-        # - src/topics/topics.qmd
-        - href: src/topics/socket.qmd
-        - href: src/topics/endians.qmd
+
     - title : "GPU & CUDA"
       collapse-level: 2
       contents : 
@@ -66,7 +62,21 @@ website:
           - src/gpu/cuda.jl/cuda_jl_array_programming.qmd
           - src/gpu/cuda.jl/cuda_jl_kernel_programming.qmd
           - src/gpu/cuda.jl/cuda_jl_performance_tips.qmd
-          
+    - title : "AI & ML"
+      collapse-level: 2
+      contents :
+        - src/ML/ml.qmd
+        - section : "PyTorch"
+          contents :
+            - src/ML/pytorch/intro.qmd
+    - title : "주제별"
+      # style : "docked"
+      # type : "dark"
+      collapse-level : 2
+      contents :
+        # - src/topics/topics.qmd
+        - href: src/topics/socket.qmd
+        - href: src/topics/endians.qmd      
     - title: "Tools"
       collapse-level: 2
       contents:

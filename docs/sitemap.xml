@@ -5,6 +5,10 @@
     <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
   <url>
+    <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
+    <lastmod>2024-12-16T23:16:05.041Z</lastmod>
+  </url>
+  <url>
     <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
     <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
@@ -21,60 +25,68 @@
     <lastmod>2024-12-12T11:32:00.333Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
-    <lastmod>2024-12-12T11:32:00.331Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
-    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
-    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/02_programming_model.html</loc>
-    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_performance_tips.html</loc>
-    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_array_programming.html</loc>
-    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/about.html</loc>
-    <lastmod>2024-10-14T10:51:16.724Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/index.html</loc>
-    <lastmod>2024-12-12T11:32:00.326Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_kernel_programming.html</loc>
-    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/01_introduction.html</loc>
-    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/03_programming_interface.html</loc>
-    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/05_performance_guideline.html</loc>
-    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/Asymptote/asymptote.html</loc>
+    <lastmod>2024-12-12T11:32:00.332Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/posts/first.html</loc>
     <lastmod>2024-12-12T11:32:00.331Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/Asymptote/asymptote.html</loc>
-    <lastmod>2024-12-12T11:32:00.332Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/05_performance_guideline.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/03_programming_interface.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/01_introduction.html</loc>
+    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_kernel_programming.html</loc>
+    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/cpp_qt/cpp_qt.html</loc>
+    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/about.html</loc>
+    <lastmod>2024-12-12T11:32:00.234Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/index.html</loc>
+    <lastmod>2024-12-12T11:32:00.326Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_array_programming.html</loc>
+    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_performance_tips.html</loc>
+    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/02_programming_model.html</loc>
+    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
+    <lastmod>2024-12-12T11:32:00.331Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
+    <lastmod>2024-12-12T11:32:00.333Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
@@ -89,27 +101,23 @@
     <lastmod>2024-12-12T11:32:00.334Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
-    <lastmod>2024-12-12T11:32:00.335Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/tools/unixLinux/trivials.html</loc>
-    <lastmod>2024-12-05T09:05:40.376Z</lastmod>
-  </url>
-  <url>
     <loc>https://julia-kaeri.github.io/src/tools/unixLinux/git.html</loc>
     <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
-    <lastmod>2024-12-12T11:32:00.333Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
+    <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/cpp_qt/cpp_qt.html</loc>
-    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/ML/ml.html</loc>
+    <lastmod>2024-12-16T23:24:31.505Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
-    <lastmod>2024-12-12T11:34:04.084Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/ML/pytorch/intro.html</loc>
+    <lastmod>2024-12-17T04:59:58.566Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/latexmacros.html</loc>
+    <lastmod>2024-12-16T23:37:44.992Z</lastmod>
   </url>
 </urlset>
