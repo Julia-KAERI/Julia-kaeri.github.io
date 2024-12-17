@@ -69,6 +69,7 @@ website:
         - section : "PyTorch"
           contents :
             - src/ML/pytorch/intro.qmd
+            - src/ML/pytorch/tensor.qmd
     - title : "주제별"
       # style : "docked"
       # type : "dark"

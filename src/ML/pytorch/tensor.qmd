@@ -1,0 +1,40 @@
+---
+title: "텐서"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+{{< include ../../../latexmacros.qmd >}}
+
+<br>
+
+여기서는 pytorch 의 tensor 에 대해 좀 더 깊이 알아보도록 하자.
+
+## 텐서에 대해 알아야 할 것들
+
+### `View` 와 `tensor.contiguous()`
+
+- 참고자료 : [tensor view](https://pytorch.org/docs/stable/tensor_view.html#tensor-view-doc)
+
+예를 들어 텐서의 축 순서를 바꾸는 `tensor.transpose()` 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 `View` 라고 한다. 한 텐서가 다른 텐서의 `View` 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.
+
+이렇게 텐서의 내용을 복사 변경하지 않고 `View` 를 지원하는 메서드는 `tensor.transpose()`, `tensor.expand()`, `tensor.diagonal()` 등 다수가 있다. 기본적으로 `tensor[1:-1:2, 2:]` 와 같은 슬라이싱도 `View` 이다. 
+
+`tensor.is_contiguous()` 메서드는 텐서가 `View` 인지 아닌지를 반환하며 `tensor.contiguous()` 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.
+
+```{.python filename="In"}
+t0 = torch.tensor([1,2,3,4,5.0])
+t1 = t0[1:-1:2]
+print(t1.is_contiguous())
+t1=t1.contiguous() 
+print(t1.is_contiguous())
+```
+```{.txt filename="Out"}
+False
+True
+```
+
+

@@ -114,10 +114,14 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/pytorch/intro.html</loc>
-    <lastmod>2024-12-17T04:59:58.566Z</lastmod>
+    <lastmod>2024-12-17T11:34:29.277Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/latexmacros.html</loc>
     <lastmod>2024-12-16T23:37:44.992Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/pytorch/tensor.html</loc>
+    <lastmod>2024-12-17T11:29:31.829Z</lastmod>
   </url>
 </urlset>

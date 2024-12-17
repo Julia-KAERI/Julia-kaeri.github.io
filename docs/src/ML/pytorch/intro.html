@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../src/ML/pytorch/tensor.html" rel="next">
 <link href="../../../src/ML/ml.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -229,6 +230,12 @@ window.Quarto = {
  <span class="menu-text">소개</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/pytorch/tensor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">텐서</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -247,7 +254,16 @@ window.Quarto = {
   <li><a href="#sec-pytorch_custom_dataset_and_dataloader" id="toc-sec-pytorch_custom_dataset_and_dataloader" class="nav-link" data-scroll-target="#sec-pytorch_custom_dataset_and_dataloader"><span class="header-section-number">1.2</span> 사용자 정의 데이터셋과 데이터 로더</a></li>
   <li><a href="#sec-pytorch_cuda_check" id="toc-sec-pytorch_cuda_check" class="nav-link" data-scroll-target="#sec-pytorch_cuda_check"><span class="header-section-number">1.3</span> CUDA</a></li>
   </ul></li>
-  <li><a href="#텐서" id="toc-텐서" class="nav-link" data-scroll-target="#텐서"><span class="header-section-number">2</span> 텐서</a></li>
+  <li><a href="#텐서" id="toc-텐서" class="nav-link" data-scroll-target="#텐서"><span class="header-section-number">2</span> 텐서</a>
+  <ul class="collapse">
+  <li><a href="#초기화" id="toc-초기화" class="nav-link" data-scroll-target="#초기화"><span class="header-section-number">2.1</span> 초기화</a></li>
+  <li><a href="#텐서-타입" id="toc-텐서-타입" class="nav-link" data-scroll-target="#텐서-타입"><span class="header-section-number">2.2</span> 텐서 타입</a></li>
+  <li><a href="#tensor-를-생성할-때의-파라미터들" id="toc-tensor-를-생성할-때의-파라미터들" class="nav-link" data-scroll-target="#tensor-를-생성할-때의-파라미터들"><span class="header-section-number">2.3</span> <code>tensor</code> 를 생성할 때의 파라미터들</a></li>
+  <li><a href="#로-끝나는-메서드" id="toc-로-끝나는-메서드" class="nav-link" data-scroll-target="#로-끝나는-메서드"><span class="header-section-number">2.4</span> <code>_</code> 로 끝나는 메서드</a></li>
+  <li><a href="#view-와-tensor.contiguous" id="toc-view-와-tensor.contiguous" class="nav-link" data-scroll-target="#view-와-tensor.contiguous"><span class="header-section-number">2.5</span> <code>View</code> 와 <code>tensor.contiguous()</code></a></li>
+  <li><a href="#텐서를-복사하는-세가지-방법" id="toc-텐서를-복사하는-세가지-방법" class="nav-link" data-scroll-target="#텐서를-복사하는-세가지-방법"><span class="header-section-number">2.6</span> 텐서를 복사하는 세가지 방법</a></li>
+  <li><a href="#tensor-class-reference" id="toc-tensor-class-reference" class="nav-link" data-scroll-target="#tensor-class-reference"><span class="header-section-number">2.7</span> Tensor class reference</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -600,9 +616,272 @@ window.Quarto = {
 <section id="텐서" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="텐서"><span class="header-section-number">2</span> 텐서</h2>
 <p><code>numpy.array</code> 와 같이 <code>torch.tensor</code> 는 pytorch 에서 데이터를 다루는데 사용되는 객체이다. 많은 경우 <code>numpy</code> (혹은 <code>np</code>) 를 <code>torch</code>, <code>array</code> 를 <code>tensor</code> 로 바꾸면 numpy 와 거의 같게 동작한다. <a href="https://github.com/wkentaro/pytorch-for-numpy-users">pytorch-for-numpy-users</a> 를 참고하라.</p>
-<p>numpy 의 array 는 cpu 에서 동작하지만 torch 의 tensor 는 cpu 에서 동작할 수도 있고 cuda 에서 동작할 수도 있다.</p>
+<p>numpy 의 array 는 cpu 에서 동작하지만 앞서 보였듯이 torch 의 tensor 는 cpu 에서 동작할 수도 있고 cuda 에서 동작할 수도 있다. 이후로 특별한 언급이 없다면 <code>array</code> 는 <code>np.array</code> 이며 <code>tensor</code> 는 <code>torch.tensor</code> 이다.</p>
+<p><br></p>
+<section id="초기화" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="초기화"><span class="header-section-number">2.1</span> 초기화</h3>
+<p>numpy 의 array 로부터 tensor 를 초기화 할 수 있다.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>In</strong></pre>
+</div>
+<div class="sourceCode" id="cb26" data-filename="In"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nparr1 <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>thtns1 <span class="op">=</span> torch.from_numpy(nparr1)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>thtns2 <span class="op">=</span> thtns1.to(<span class="st">"cuda:0"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>nparr1[<span class="dv">0</span>]<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nparr1)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(thtns1)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(thtns2)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-----"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>thtns1[<span class="dv">1</span>]<span class="op">=-</span><span class="dv">2</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nparr1)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(thtns1)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(thtns2)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Out</strong></pre>
+</div>
+<div class="sourceCode" id="cb27" data-filename="Out"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>[-1  2  3  4]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tensor([-1,  2,  3,  4])</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>tensor([1, 2, 3, 4], device='cuda:0')</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>-----</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>[-1 -2  3  4]</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>tensor([-1, -2,  3,  4])</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>tensor([1, 2, 3, 4], device='cuda:0')</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>nparr</code> 을 <code>[1, 2, 3, 4]</code> 로 초기화 하였고 이를 이용하여 cpu tensor <code>thtns1</code> 을 초기화하고 다시 이를 <code>tensor.to()</code> 함수를 사용하여 cuda tensor <code>thtns2</code> 로 초기화 하였다. <code>torch.from_numpy</code> 로 초기화 할 경우 tensor 와 array 는 동기화되어 하나를 변경하면 나머지 하나도 변화하지만 cuda tensor 인 <code>thtns2</code> 는 어떤 경우에도 변경되지 않는다.</p>
+<p><br></p>
+<p>이제 거꾸로 cuda tensor 에서 cpu tensor, 그리고 np.array 로 가보자. <code>tensor.cpu()</code> 는 cuda tensor 로부터 cpu tensor 를 생성하며 <code>tensor.numpy()</code> 함수는 <code>np.array</code> 배열을 만든다. 역시 마찬가지로 이렇게 생성된 array 의 성분을 바꾸면 cpu tensor 는 같이 바뀌지만 cuda tensor 는 변경되지 않는다.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>In</strong></pre>
+</div>
+<div class="sourceCode" id="cb28" data-filename="In"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ts1 <span class="op">=</span> torch.tensor([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>], device<span class="op">=</span><span class="st">"cuda:0"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ts2 <span class="op">=</span> ts1.cpu()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ar2 <span class="op">=</span> ts2.numpy()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>ar2[<span class="op">-</span><span class="dv">1</span>]<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ts1)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ts2)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ar2)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Out</strong></pre>
+</div>
+<div class="sourceCode" id="cb29" data-filename="Out"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tensor([1, 2, 3, 4], device='cuda:0')</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tensor([1, 2, 3, 0])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[1 2 3 0]</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="텐서-타입" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="텐서-타입"><span class="header-section-number">2.2</span> 텐서 타입</h3>
+<p>텐서 타입은 텐서 성분의 타입과 텐서가 저장된 위치(cpu or cuda) 에 따라 결정된다. 성분의 타입이 <code>dtype</code> 이며 이에 따른 <code>cpu</code> 와 <code>gpu</code> 에서의 타입은 아래와 같다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 27%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">성분의 타입</th>
+<th style="text-align: center;"><code>dtype</code></th>
+<th style="text-align: center;">CPU tensor 타입</th>
+<th style="text-align: center;">GPU tensor 타입</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">32-bit 부동소수</td>
+<td style="text-align: center;"><code>torch.float32</code>, <code>torch.float</code></td>
+<td style="text-align: center;"><code>torch.FloatTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.FloatTensor</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">64-bit 부동소수</td>
+<td style="text-align: center;"><code>torch.float64</code>, <code>torch.double</code></td>
+<td style="text-align: center;"><code>torch.DoubleTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.DoubleTensor</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">16-bit 부동소수</td>
+<td style="text-align: center;"><code>torch.float16</code>, <code>torch.half</code></td>
+<td style="text-align: center;"><code>torch.HalfTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.HalfTensor</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8-bit 부호 없는 정수</td>
+<td style="text-align: center;"><code>torch.uint8</code></td>
+<td style="text-align: center;"><code>torch.ByteTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.ByteTensor</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8-bit 정수</td>
+<td style="text-align: center;"><code>torch.int8</code></td>
+<td style="text-align: center;"><code>torch.CharTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.CharTensor</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">16-bit 정수</td>
+<td style="text-align: center;"><code>torch.int16</code> or <code>torch.short</code></td>
+<td style="text-align: center;"><code>torch.ShortTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.ShortTensor</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">32-bit 정수</td>
+<td style="text-align: center;"><code>torch.int32</code> or <code>torch.int</code></td>
+<td style="text-align: center;"><code>torch.IntTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.IntTensor</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">64-bit integer</td>
+<td style="text-align: center;"><code>torch.int64</code> or <code>torch.long</code></td>
+<td style="text-align: center;"><code>torch.LongTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.LongTensor</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Boolean</td>
+<td style="text-align: center;"><code>torch.bool</code></td>
+<td style="text-align: center;"><code>torch.BoolTensor</code></td>
+<td style="text-align: center;"><code>torch.cuda.BoolTensor</code></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>array 혹은 tensor 의 dtype 은 생성시 지정할 수도 있고 변경할 수도 있다. numpy 의 <code>astype()</code> 메서드는 사용할 수 없고 <code>torch.as_tensor()</code> 함수를 아래와 같이 사용 할 수 있다.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>In</strong></pre>
+</div>
+<div class="sourceCode" id="cb30" data-filename="In"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> torch.tensor([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], dtype<span class="op">=</span>torch.float16)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x1.dtype)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> torch.as_tensor(x1, dtype <span class="op">=</span> torch.float32)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x2.dtype)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Out</strong></pre>
+</div>
+<div class="sourceCode" id="cb31" data-filename="Out"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>torch.float16</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>torch.float32</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+기본 타입
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>np.array([1.0, 2.0])</code> 의 <code>dtype</code> 은 <code>np.float64</code> 이지만 <code>torch.tensor([1.0, 2.0])</code> 의 <code>dtype</code> 은 cpu, cuda 모두 <code>torch.float32</code> 이다. 특별히 명시적으로 dtype 을 변환시키지 않고 array 와 tensor 사이의 변환은 dtype 을 유지한다.</p>
+<p>성분이 정수일 경우 array 와 tensor 모두 기본적인 dtype 은 <code>int64</code> 이다.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="tensor-를-생성할-때의-파라미터들" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="tensor-를-생성할-때의-파라미터들"><span class="header-section-number">2.3</span> <code>tensor</code> 를 생성할 때의 파라미터들</h3>
+<ul>
+<li><code>data</code> : 텐서를 생성할 때 텐서의 성분이 되는 list, array 등의 데이터</li>
+<li><code>dtype</code> : 텐서 성분 타입</li>
+<li><code>device</code> : <code>cpu</code>, <code>cuda</code>, ‘cuda:0’ 등</li>
+<li><code>requires_grad</code> : <code>True</code>, <code>False</code> 중 하나의 값을 가지며 <code>torch.autograd</code> 에 의한 텐서의 gradient 추적할지 여부가 결정된다.</li>
+<li><code>pin_memory</code> : <code>device=cpu</code> 일 경우만 가능. CPU 에서 CUDA 로의 전송이 빠르다.</li>
+</ul>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>In</strong></pre>
+</div>
+<div class="sourceCode" id="cb32" data-filename="In"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ts1 <span class="op">=</span> torch.tensor(data <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>], dtype <span class="op">=</span> torch.float32, device<span class="op">=</span><span class="st">"cpu"</span>, requires_grad<span class="op">=</span><span class="va">True</span>, pin_memory<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ts1)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Out</strong></pre>
+</div>
+<div class="sourceCode" id="cb33" data-filename="Out"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tensor([1., 2., 2., 3.], requires_grad=True)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="로-끝나는-메서드" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="로-끝나는-메서드"><span class="header-section-number">2.4</span> <code>_</code> 로 끝나는 메서드</h3>
+<p>다음 코드를 보자.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>In</strong></pre>
+</div>
+<div class="sourceCode" id="cb34" data-filename="In"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">1.0</span>, <span class="fl">2.0</span>])</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> p1.<span class="bu">abs</span>()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>q1 <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">1.0</span>, <span class="fl">2.0</span>])</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>q1.abs_()</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p1 = "</span>, p1)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"p2 = "</span>, p2)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"q1 = "</span>, q1)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Out</strong></pre>
+</div>
+<pre class="text" data-filename="Out"><code>p1 =  tensor([-1.,  2.])
+p2 =  tensor([1., 2.])
+q1 =  tensor([1., 2.])</code></pre>
+</div>
+<p><code>p1.abs()</code> 는 <code>p1</code> 의 각 성분의 절대값으로 이루어진 텐서를 반환하지만 <code>p1</code> 을 바꾸지는 않는다. 그러나 <code>q1.abs_()</code> 는 <code>q1</code> 의 각 성분을 원래 성분의 절대값으로 바꾼다. Pytorch 에서 다른 것이 다 같고 맨 끝에 <code>_</code> 가 붙지 않은 메서드와 붙은 메서드 가 있다면 <code>_</code> 가 붙은 메서드는 결과값을 새로운 tensor 로 반환하는 것이 아니라 원래의 텐서를 변경한다. 이것을 In place 연산이라고 한다. <code>_</code> 가 마지막에 붙지 않은 메서드는 연산 결과를 새로운 텐서로 반환한다.</p>
+<p><br></p>
+</section>
+<section id="view-와-tensor.contiguous" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="view-와-tensor.contiguous"><span class="header-section-number">2.5</span> <code>View</code> 와 <code>tensor.contiguous()</code></h3>
+<ul>
+<li>참고자료 : <a href="https://pytorch.org/docs/stable/tensor_view.html#tensor-view-doc">tensor view</a></li>
+</ul>
+<p>예를 들어 텐서의 축 순서를 바꾸는 <code>tensor.transpose()</code> 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 <code>View</code> 라고 한다. 한 텐서가 다른 텐서의 <code>View</code> 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.</p>
+<p>이렇게 텐서의 내용을 복사 변경하지 않고 <code>View</code> 를 지원하는 메서드는 <code>tensor.transpose()</code>, <code>tensor.expand()</code>, <code>tensor.diagonal()</code> 등 다수가 있다. 기본적으로 <code>tensor[1:-1:2, 2:]</code> 와 같은 슬라이싱도 <code>View</code> 이다.</p>
+<p><code>tensor.is_contiguous()</code> 메서드는 텐서가 <code>View</code> 인지 아닌지를 반환하며 <code>tensor.contiguous()</code> 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>In</strong></pre>
+</div>
+<div class="sourceCode" id="cb36" data-filename="In"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> torch.tensor([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="fl">5.0</span>])</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> t0[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>:<span class="dv">2</span>]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t1.is_contiguous())</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>t1<span class="op">=</span>t1.contiguous() </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(t1.is_contiguous())</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Out</strong></pre>
+</div>
+<div class="sourceCode" id="cb37" data-filename="Out"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>False</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>True</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="텐서를-복사하는-세가지-방법" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="텐서를-복사하는-세가지-방법"><span class="header-section-number">2.6</span> 텐서를 복사하는 세가지 방법</h3>
+<p>Tensor <code>p0</code> 에 대해</p>
+<ul>
+<li><code>p1 = p0.detatch()</code> : <code>p1</code> 는 <code>p0</code> 와 데이터를 공유하며 둘중 하나의 성분을 바꿔도 나머지에 반영되지만 <code>p1.requires_grad</code> 는 <code>False</code> 이다.</li>
+<li><code>p2 = p0.clone()</code> : 내용을 복사하여 하나를 변경해도 다른 하나에 반영되지 않는다.</li>
+<li><code>p3 = p0.data</code> : 사용하지 말것. <a href="https://github.com/pytorch/pytorch/releases/tag/v0.4.0">pytorch 0.4.0 reliase note</a> 의 <em>What about .data</em> 섹션 참고.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="tensor-class-reference" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="tensor-class-reference"><span class="header-section-number">2.7</span> Tensor class reference</h3>
+<ul>
+<li><a href="https://pytorch.org/docs/stable/tensors.html#tensor-class-reference">Tensor class reference</a></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1022,6 +1301,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../../src/ML/pytorch/tensor.html" class="pagination-link" aria-label="텐서">
+        <span class="nav-page-text">텐서</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

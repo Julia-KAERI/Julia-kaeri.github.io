@@ -1,9 +1,0 @@
----
-title: "Topics"
-
-number-sections: true
-number-depth: 2
-crossref:
-  chapters: false
----
-

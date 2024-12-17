@@ -299,6 +299,196 @@ d=torch.tensor([[1,2], [3,4]], device="cuda:0")
 
 ## 텐서
 
-`numpy.array` 와 같이 `torch.tensor` 는 pytorch 에서 데이터를 다루는데 사용되는 객체이다. 많은 경우 `numpy` (혹은 `np`) 를 `torch`, `array` 를 `tensor` 로 바꾸면 numpy 와 거의 같게 동작한다. [pytorch-for-numpy-users](https://github.com/wkentaro/pytorch-for-numpy-users) 를 참고하라.
+`numpy.array` 와 같이 `torch.tensor` 는 pytorch 에서 데이터를 다루는데 사용되는 객체이다. 많은 경우 `numpy` (혹은 `np`) 를 `torch`, `array` 를 `tensor` 로 바꾸면 numpy 와 거의 같게 동작한다. [pytorch-for-numpy-users](https://github.com/wkentaro/pytorch-for-numpy-users) 를 참고하라. 
 
-numpy 의 array 는 cpu 에서 동작하지만 torch 의 tensor 는 cpu 에서 동작할 수도 있고 cuda 에서 동작할 수도 있다. 
+numpy 의 array 는 cpu 에서 동작하지만 앞서 보였듯이 torch 의 tensor 는 cpu 에서 동작할 수도 있고 cuda 에서 동작할 수도 있다. 이후로 특별한 언급이 없다면 `array` 는 `np.array` 이며 `tensor` 는 `torch.tensor` 이다.
+
+</br>
+
+### 초기화
+
+numpy 의 array 로부터 tensor 를 초기화 할 수 있다.
+
+```{.python filename="In"}
+nparr1 = np.array([1,2,3,4])
+thtns1 = torch.from_numpy(nparr1)
+thtns2 = thtns1.to("cuda:0")
+
+nparr1[0]=-1
+print(nparr1)
+print(thtns1)
+print(thtns2)
+print("-----")
+thtns1[1]=-2
+print(nparr1)
+print(thtns1)
+print(thtns2)
+```
+
+```{.txt filename="Out"}
+[-1  2  3  4]
+tensor([-1,  2,  3,  4])
+tensor([1, 2, 3, 4], device='cuda:0')
+-----
+[-1 -2  3  4]
+tensor([-1, -2,  3,  4])
+tensor([1, 2, 3, 4], device='cuda:0')
+```
+
+`nparr` 을 `[1, 2, 3, 4]` 로 초기화 하였고 이를 이용하여 cpu tensor `thtns1` 을 초기화하고 다시 이를 `tensor.to()` 함수를 사용하여 cuda tensor `thtns2` 로 초기화 하였다. `torch.from_numpy` 로 초기화 할 경우 tensor 와 array 는 동기화되어 하나를 변경하면 나머지 하나도 변화하지만 cuda tensor 인 `thtns2` 는 어떤 경우에도 변경되지 않는다.
+
+</br>
+
+이제 거꾸로 cuda tensor 에서 cpu tensor, 그리고 np.array 로 가보자. `tensor.cpu()` 는 cuda tensor 로부터 cpu tensor 를 생성하며 `tensor.numpy()` 함수는 `np.array` 배열을 만든다. 역시 마찬가지로 이렇게 생성된 array 의 성분을 바꾸면 cpu tensor 는 같이 바뀌지만 cuda tensor 는 변경되지 않는다.
+
+```{.python filename="In"}
+ts1 = torch.tensor([1,2,3,4], device="cuda:0")
+ts2 = ts1.cpu()
+ar2 = ts2.numpy()
+
+ar2[-1]=0
+print(ts1)
+print(ts2)
+print(ar2)
+```
+
+```{.txt filename="Out"}
+tensor([1, 2, 3, 4], device='cuda:0')
+tensor([1, 2, 3, 0])
+[1 2 3 0]
+```
+
+</br>
+
+### 텐서 타입
+
+텐서 타입은 텐서 성분의 타입과 텐서가 저장된 위치(cpu or cuda) 에 따라 결정된다. 성분의 타입이 `dtype` 이며 이에 따른 `cpu` 와 `gpu` 에서의 타입은 아래와 같다. 
+
+| 성분의 타입	 | `dtype` | CPU tensor 타입 | GPU tensor 타입 |
+|:-------:|:----------:|:---------:|:---------:|
+| 32-bit 부동소수 | `torch.float32`, `torch.float` | `torch.FloatTensor` | `torch.cuda.FloatTensor` |
+| 64-bit 부동소수 | `torch.float64`, `torch.double` |	`torch.DoubleTensor` | `torch.cuda.DoubleTensor` |
+| 16-bit 부동소수 |	`torch.float16`, `torch.half` | `torch.HalfTensor` | `torch.cuda.HalfTensor` |
+| 8-bit 부호 없는 정수 | `torch.uint8` | `torch.ByteTensor` | `torch.cuda.ByteTensor`|
+| 8-bit 정수 | `torch.int8` | `torch.CharTensor` | `torch.cuda.CharTensor`|
+| 16-bit 정수 | `torch.int16`  or `torch.short` | `torch.ShortTensor` | `torch.cuda.ShortTensor`|
+| 32-bit 정수 | `torch.int32` or `torch.int` | `torch.IntTensor` | `torch.cuda.IntTensor`|
+| 64-bit integer | `torch.int64` or `torch.long` | `torch.LongTensor` | `torch.cuda.LongTensor`|
+| Boolean | `torch.bool` | `torch.BoolTensor` | `torch.cuda.BoolTensor`|
+
+
+
+</br>
+
+array 혹은 tensor 의 dtype 은 생성시 지정할 수도 있고 변경할 수도 있다. numpy 의 `astype()` 메서드는 사용할 수 없고 `torch.as_tensor()` 함수를 아래와 같이 사용 할 수 있다.
+
+```{.python filename="In"}
+x1 = torch.tensor([1,2,3], dtype=torch.float16)
+print(x1.dtype)
+x2 = torch.as_tensor(x1, dtype = torch.float32)
+print(x2.dtype)
+```
+
+```{.txt filename="Out"}
+torch.float16
+torch.float32
+```
+
+</br>
+
+::: {.callout-important icon="false"}
+
+#### 기본 타입
+
+`np.array([1.0, 2.0])` 의 `dtype` 은 `np.float64` 이지만 `torch.tensor([1.0, 2.0])` 의 `dtype` 은 cpu, cuda 모두 `torch.float32` 이다. 특별히 명시적으로 dtype 을 변환시키지 않고 array 와 tensor 사이의 변환은 dtype 을 유지한다. 
+
+성분이 정수일 경우 array 와 tensor 모두 기본적인 dtype 은 `int64` 이다.
+
+:::
+
+</br>
+
+### `tensor` 를 생성할 때의 파라미터들
+
+- `data` : 텐서를 생성할 때 텐서의 성분이 되는 list, array 등의 데이터
+- `dtype` : 텐서 성분 타입
+- `device` : `cpu`, `cuda`, 'cuda:0' 등
+- `requires_grad` : `True`, `False` 중 하나의 값을 가지며 `torch.autograd` 에 의한 텐서의 gradient 추적할지 여부가 결정된다. 
+- `pin_memory` : `device=cpu` 일 경우만 가능. CPU 에서 CUDA 로의 전송이 빠르다.
+
+
+```{.python filename="In"}
+ts1 = torch.tensor(data = [1, 2, 2, 3], dtype = torch.float32, device="cpu", requires_grad=True, pin_memory=True)
+print(ts1)
+```
+```{.txt filename="Out"}
+tensor([1., 2., 2., 3.], requires_grad=True)
+```
+
+</br>
+
+### `_` 로 끝나는 메서드
+
+다음 코드를 보자.
+
+```{.python filename="In"}
+p1 = torch.tensor([-1.0, 2.0])
+p2 = p1.abs()
+q1 = torch.tensor([-1.0, 2.0])
+q1.abs_()
+print("p1 = ", p1)
+print("p2 = ", p2)
+print("q1 = ", q1)
+```
+```{.text filename="Out"}
+p1 =  tensor([-1.,  2.])
+p2 =  tensor([1., 2.])
+q1 =  tensor([1., 2.])
+```
+
+
+`p1.abs()` 는 `p1` 의 각 성분의 절대값으로 이루어진 텐서를 반환하지만 `p1` 을 바꾸지는 않는다. 그러나 `q1.abs_()` 는 `q1` 의 각 성분을 원래 성분의 절대값으로 바꾼다. Pytorch 에서 다른 것이 다 같고 맨 끝에 `_` 가 붙지 않은 메서드와 붙은 메서드 가 있다면 `_` 가 붙은 메서드는 결과값을 새로운 tensor 로 반환하는 것이 아니라 원래의 텐서를 변경한다. 이것을 In place 연산이라고 한다. `_` 가 마지막에 붙지 않은 메서드는 연산 결과를 새로운 텐서로 반환한다.
+
+</br>
+
+### `View` 와 `tensor.contiguous()`
+
+- 참고자료 : [tensor view](https://pytorch.org/docs/stable/tensor_view.html#tensor-view-doc)
+
+예를 들어 텐서의 축 순서를 바꾸는 `tensor.transpose()` 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 `View` 라고 한다. 한 텐서가 다른 텐서의 `View` 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.
+
+이렇게 텐서의 내용을 복사 변경하지 않고 `View` 를 지원하는 메서드는 `tensor.transpose()`, `tensor.expand()`, `tensor.diagonal()` 등 다수가 있다. 기본적으로 `tensor[1:-1:2, 2:]` 와 같은 슬라이싱도 `View` 이다. 
+
+`tensor.is_contiguous()` 메서드는 텐서가 `View` 인지 아닌지를 반환하며 `tensor.contiguous()` 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.
+
+```{.python filename="In"}
+t0 = torch.tensor([1,2,3,4,5.0])
+t1 = t0[1:-1:2]
+print(t1.is_contiguous())
+t1=t1.contiguous() 
+print(t1.is_contiguous())
+```
+```{.txt filename="Out"}
+False
+True
+```
+
+</br>
+
+### 텐서를 복사하는 세가지 방법
+
+Tensor `p0` 에 대해 
+
+- `p1 = p0.detatch()` : `p1` 는 `p0` 와 데이터를 공유하며 둘중 하나의 성분을 바꿔도 나머지에 반영되지만 `p1.requires_grad` 는 `False` 이다. 
+- `p2 = p0.clone()` : 내용을 복사하여 하나를 변경해도 다른 하나에 반영되지 않는다.
+- `p3 = p0.data` : 사용하지 말것. [pytorch 0.4.0 reliase note](https://github.com/pytorch/pytorch/releases/tag/v0.4.0) 의 *What about .data* 섹션 참고.
+
+
+</br>
+
+### Tensor class reference
+
+- [Tensor class reference](https://pytorch.org/docs/stable/tensors.html#tensor-class-reference)
+
+
+

@@ -695,7 +695,7 @@
     "href": "src/ML/pytorch/intro.html#텐서",
     "title": "소개",
     "section": "2 텐서",
-    "text": "2 텐서\nnumpy.array 와 같이 torch.tensor 는 pytorch 에서 데이터를 다루는데 사용되는 객체이다. 많은 경우 numpy (혹은 np) 를 torch, array 를 tensor 로 바꾸면 numpy 와 거의 같게 동작한다. pytorch-for-numpy-users 를 참고하라.\nnumpy 의 array 는 cpu 에서 동작하지만 torch 의 tensor 는 cpu 에서 동작할 수도 있고 cuda 에서 동작할 수도 있다.",
+    "text": "2 텐서\nnumpy.array 와 같이 torch.tensor 는 pytorch 에서 데이터를 다루는데 사용되는 객체이다. 많은 경우 numpy (혹은 np) 를 torch, array 를 tensor 로 바꾸면 numpy 와 거의 같게 동작한다. pytorch-for-numpy-users 를 참고하라.\nnumpy 의 array 는 cpu 에서 동작하지만 앞서 보였듯이 torch 의 tensor 는 cpu 에서 동작할 수도 있고 cuda 에서 동작할 수도 있다. 이후로 특별한 언급이 없다면 array 는 np.array 이며 tensor 는 torch.tensor 이다.\n\n\n2.1 초기화\nnumpy 의 array 로부터 tensor 를 초기화 할 수 있다.\n\n\nIn\n\nnparr1 = np.array([1,2,3,4])\nthtns1 = torch.from_numpy(nparr1)\nthtns2 = thtns1.to(\"cuda:0\")\n\nnparr1[0]=-1\nprint(nparr1)\nprint(thtns1)\nprint(thtns2)\nprint(\"-----\")\nthtns1[1]=-2\nprint(nparr1)\nprint(thtns1)\nprint(thtns2)\n\n\n\nOut\n\n[-1  2  3  4]\ntensor([-1,  2,  3,  4])\ntensor([1, 2, 3, 4], device='cuda:0')\n-----\n[-1 -2  3  4]\ntensor([-1, -2,  3,  4])\ntensor([1, 2, 3, 4], device='cuda:0')\n\nnparr 을 [1, 2, 3, 4] 로 초기화 하였고 이를 이용하여 cpu tensor thtns1 을 초기화하고 다시 이를 tensor.to() 함수를 사용하여 cuda tensor thtns2 로 초기화 하였다. torch.from_numpy 로 초기화 할 경우 tensor 와 array 는 동기화되어 하나를 변경하면 나머지 하나도 변화하지만 cuda tensor 인 thtns2 는 어떤 경우에도 변경되지 않는다.\n\n이제 거꾸로 cuda tensor 에서 cpu tensor, 그리고 np.array 로 가보자. tensor.cpu() 는 cuda tensor 로부터 cpu tensor 를 생성하며 tensor.numpy() 함수는 np.array 배열을 만든다. 역시 마찬가지로 이렇게 생성된 array 의 성분을 바꾸면 cpu tensor 는 같이 바뀌지만 cuda tensor 는 변경되지 않는다.\n\n\nIn\n\nts1 = torch.tensor([1,2,3,4], device=\"cuda:0\")\nts2 = ts1.cpu()\nar2 = ts2.numpy()\n\nar2[-1]=0\nprint(ts1)\nprint(ts2)\nprint(ar2)\n\n\n\nOut\n\ntensor([1, 2, 3, 4], device='cuda:0')\ntensor([1, 2, 3, 0])\n[1 2 3 0]\n\n\n\n\n2.2 텐서 타입\n텐서 타입은 텐서 성분의 타입과 텐서가 저장된 위치(cpu or cuda) 에 따라 결정된다. 성분의 타입이 dtype 이며 이에 따른 cpu 와 gpu 에서의 타입은 아래와 같다.\n\n\n\n\n\n\n\n\n\n성분의 타입\ndtype\nCPU tensor 타입\nGPU tensor 타입\n\n\n\n\n32-bit 부동소수\ntorch.float32, torch.float\ntorch.FloatTensor\ntorch.cuda.FloatTensor\n\n\n64-bit 부동소수\ntorch.float64, torch.double\ntorch.DoubleTensor\ntorch.cuda.DoubleTensor\n\n\n16-bit 부동소수\ntorch.float16, torch.half\ntorch.HalfTensor\ntorch.cuda.HalfTensor\n\n\n8-bit 부호 없는 정수\ntorch.uint8\ntorch.ByteTensor\ntorch.cuda.ByteTensor\n\n\n8-bit 정수\ntorch.int8\ntorch.CharTensor\ntorch.cuda.CharTensor\n\n\n16-bit 정수\ntorch.int16 or torch.short\ntorch.ShortTensor\ntorch.cuda.ShortTensor\n\n\n32-bit 정수\ntorch.int32 or torch.int\ntorch.IntTensor\ntorch.cuda.IntTensor\n\n\n64-bit integer\ntorch.int64 or torch.long\ntorch.LongTensor\ntorch.cuda.LongTensor\n\n\nBoolean\ntorch.bool\ntorch.BoolTensor\ntorch.cuda.BoolTensor\n\n\n\n\narray 혹은 tensor 의 dtype 은 생성시 지정할 수도 있고 변경할 수도 있다. numpy 의 astype() 메서드는 사용할 수 없고 torch.as_tensor() 함수를 아래와 같이 사용 할 수 있다.\n\n\nIn\n\nx1 = torch.tensor([1,2,3], dtype=torch.float16)\nprint(x1.dtype)\nx2 = torch.as_tensor(x1, dtype = torch.float32)\nprint(x2.dtype)\n\n\n\nOut\n\ntorch.float16\ntorch.float32\n\n\n\n\n\n\n\n\n기본 타입\n\n\n\nnp.array([1.0, 2.0]) 의 dtype 은 np.float64 이지만 torch.tensor([1.0, 2.0]) 의 dtype 은 cpu, cuda 모두 torch.float32 이다. 특별히 명시적으로 dtype 을 변환시키지 않고 array 와 tensor 사이의 변환은 dtype 을 유지한다.\n성분이 정수일 경우 array 와 tensor 모두 기본적인 dtype 은 int64 이다.\n\n\n\n\n\n2.3 tensor 를 생성할 때의 파라미터들\n\ndata : 텐서를 생성할 때 텐서의 성분이 되는 list, array 등의 데이터\ndtype : 텐서 성분 타입\ndevice : cpu, cuda, ‘cuda:0’ 등\nrequires_grad : True, False 중 하나의 값을 가지며 torch.autograd 에 의한 텐서의 gradient 추적할지 여부가 결정된다.\npin_memory : device=cpu 일 경우만 가능. CPU 에서 CUDA 로의 전송이 빠르다.\n\n\n\nIn\n\nts1 = torch.tensor(data = [1, 2, 2, 3], dtype = torch.float32, device=\"cpu\", requires_grad=True, pin_memory=True)\nprint(ts1)\n\n\n\nOut\n\ntensor([1., 2., 2., 3.], requires_grad=True)\n\n\n\n\n2.4 _ 로 끝나는 메서드\n다음 코드를 보자.\n\n\nIn\n\np1 = torch.tensor([-1.0, 2.0])\np2 = p1.abs()\nq1 = torch.tensor([-1.0, 2.0])\nq1.abs_()\nprint(\"p1 = \", p1)\nprint(\"p2 = \", p2)\nprint(\"q1 = \", q1)\n\n\n\nOut\n\np1 =  tensor([-1.,  2.])\np2 =  tensor([1., 2.])\nq1 =  tensor([1., 2.])\n\np1.abs() 는 p1 의 각 성분의 절대값으로 이루어진 텐서를 반환하지만 p1 을 바꾸지는 않는다. 그러나 q1.abs_() 는 q1 의 각 성분을 원래 성분의 절대값으로 바꾼다. Pytorch 에서 다른 것이 다 같고 맨 끝에 _ 가 붙지 않은 메서드와 붙은 메서드 가 있다면 _ 가 붙은 메서드는 결과값을 새로운 tensor 로 반환하는 것이 아니라 원래의 텐서를 변경한다. 이것을 In place 연산이라고 한다. _ 가 마지막에 붙지 않은 메서드는 연산 결과를 새로운 텐서로 반환한다.\n\n\n\n2.5 View 와 tensor.contiguous()\n\n참고자료 : tensor view\n\n예를 들어 텐서의 축 순서를 바꾸는 tensor.transpose() 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 View 라고 한다. 한 텐서가 다른 텐서의 View 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.\n이렇게 텐서의 내용을 복사 변경하지 않고 View 를 지원하는 메서드는 tensor.transpose(), tensor.expand(), tensor.diagonal() 등 다수가 있다. 기본적으로 tensor[1:-1:2, 2:] 와 같은 슬라이싱도 View 이다.\ntensor.is_contiguous() 메서드는 텐서가 View 인지 아닌지를 반환하며 tensor.contiguous() 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.\n\n\nIn\n\nt0 = torch.tensor([1,2,3,4,5.0])\nt1 = t0[1:-1:2]\nprint(t1.is_contiguous())\nt1=t1.contiguous() \nprint(t1.is_contiguous())\n\n\n\nOut\n\nFalse\nTrue\n\n\n\n\n2.6 텐서를 복사하는 세가지 방법\nTensor p0 에 대해\n\np1 = p0.detatch() : p1 는 p0 와 데이터를 공유하며 둘중 하나의 성분을 바꿔도 나머지에 반영되지만 p1.requires_grad 는 False 이다.\np2 = p0.clone() : 내용을 복사하여 하나를 변경해도 다른 하나에 반영되지 않는다.\np3 = p0.data : 사용하지 말것. pytorch 0.4.0 reliase note 의 What about .data 섹션 참고.\n\n\n\n\n2.7 Tensor class reference\n\nTensor class reference",
     "crumbs": [
       "AI & ML",
       "PyTorch",
@@ -712,6 +712,42 @@
       "AI & ML",
       "PyTorch",
       "소개"
+    ]
+  },
+  {
+    "objectID": "src/ML/pytorch/tensor.html",
+    "href": "src/ML/pytorch/tensor.html",
+    "title": "텐서",
+    "section": "",
+    "text": "% %\n%\n\\[\n\\DeclarePairedDelimiters{\\set}{\\{}{\\}}\n\\DeclareMathOperator*{\\argmax}{argmax}\n\\]\n여기서는 pytorch 의 tensor 에 대해 좀 더 깊이 알아보도록 하자.",
+    "crumbs": [
+      "AI & ML",
+      "PyTorch",
+      "텐서"
+    ]
+  },
+  {
+    "objectID": "src/ML/pytorch/tensor.html#텐서에-대해-알아야-할-것들",
+    "href": "src/ML/pytorch/tensor.html#텐서에-대해-알아야-할-것들",
+    "title": "텐서",
+    "section": "1 텐서에 대해 알아야 할 것들",
+    "text": "1 텐서에 대해 알아야 할 것들\n\n1.1 View 와 tensor.contiguous()\n\n참고자료 : tensor view\n\n예를 들어 텐서의 축 순서를 바꾸는 tensor.transpose() 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 View 라고 한다. 한 텐서가 다른 텐서의 View 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.\n이렇게 텐서의 내용을 복사 변경하지 않고 View 를 지원하는 메서드는 tensor.transpose(), tensor.expand(), tensor.diagonal() 등 다수가 있다. 기본적으로 tensor[1:-1:2, 2:] 와 같은 슬라이싱도 View 이다.\ntensor.is_contiguous() 메서드는 텐서가 View 인지 아닌지를 반환하며 tensor.contiguous() 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.\n\n\nIn\n\nt0 = torch.tensor([1,2,3,4,5.0])\nt1 = t0[1:-1:2]\nprint(t1.is_contiguous())\nt1=t1.contiguous()\nprint(t1.is_contiguous())\n\n\n\nOut\n\nFalse\nTrue",
+    "crumbs": [
+      "AI & ML",
+      "PyTorch",
+      "텐서"
+    ]
+  },
+  {
+    "objectID": "src/ML/pytorch/tensor.html#텐서에-대해-먼저-알아야-할-것들",
+    "href": "src/ML/pytorch/tensor.html#텐서에-대해-먼저-알아야-할-것들",
+    "title": "텐서",
+    "section": "1 텐서에 대해 먼저 알아야 할 것들",
+    "text": "1 텐서에 대해 먼저 알아야 할 것들\n\n1.1 View 와 tensor.contiguous()\n\n참고자료 : tensor view\n\n예를 들어 텐서의 축 순서를 바꾸는 tensor.transpose() 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 View 라고 한다. 한 텐서가 다른 텐서의 View 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.\n이렇게 텐서의 내용을 복사 변경하지 않고 View 를 지원하는 메서드는 tensor.transpose(), tensor.expand(), tensor.diagonal() 등 다수가 있다. 기본적으로 tensor[1:-1:2, 2:] 와 같은 슬라이싱도 View 이다.\ntensor.is_contiguous() 메서드는 텐서가 View 인지 아닌지를 반환하며 tensor.contiguous() 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.\n\n\nIn\n\nt0 = torch.tensor([1,2,3,4,5.0])\nt1 = t0[1:-1:2]\nprint(t1.is_contiguous())\nt1=t1.contiguous() \nprint(t1.is_contiguous())\n\n\n\nOut\n\nFalse\nTrue",
+    "crumbs": [
+      "AI & ML",
+      "PyTorch",
+      "텐서"
     ]
   }
 ]
