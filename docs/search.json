@@ -629,8 +629,8 @@
     "objectID": "src/topics/socket.html#소켓-통신",
     "href": "src/topics/socket.html#소켓-통신",
     "title": "TCP/UDP 통신",
-    "section": "",
-    "text": "현재의 많은 장비들은 소켓 통신을 사용하여 데이터와 정보를 주고받는다. 예전의 장비들은 RS232 나 RS485 같은 직렬 통신이나 다른 다양한 통신 방법을 사용하는 경우가 많았지만 최근의 장비들은 소켓 통신을 통해 데이터를 전송하는 경우가 많다. 여기서는 소켓 통신에 대해 짧게 알아보고 실제 구현해 보기로 하자.\n\n\n\n소켓은 같은 컴퓨터의 프로세스 사이에서, 혹은 서로 다른 컴퓨터(혹은 장비)의 프로세스 사이에서 통신을 수행할 때의 종단점 (end point)이다. 같은 컴퓨터의 프로세스 사이의 소켓에는 unix domain socket 이 있으며 다른 컴퓨터 프로세스 사이에서의 통신에는 Datagram socket 과 Streaming socket 이 있다. 각각의 네트워크 하드웨어는 사양과 내부 명령어가 다르지만 운영체제 수준에서 이를 추상화하여 서로 통신할 수 있도록 한 것이 소켓이다. 여기서는 서로 다른 컴퓨터의 프로세스간 통신에 대해서만 다루기로 한다.\n\n\n\n\n전화와 같이 믿을 수 있는 양방향 통신을 제공한다. 즉 데이터를 주고받는 소켓의 양쪽이 성립된 상태에서 한쪽(서버)에서 다른 한쪽(클라이언트)으로의 연결을 초기화하고, 연결이 생성된 후에는 어느 쪽에서든 다른 쪽으로 통신할 수 있다. 데이터를 송신하고 나서 이 데이터가 실제로 도착했는지도 즉각 확인할 수 있다. 보통 전송 제어 프로토콜(Transmission Control Protocol, TCP)이라 불리는 표준 통신 프로토콜을 사용하며 이 외에도 SCTP(Stream Control Transmission Protocol) 나 DCCP (Datagram Congestion Control Protocol) 가 사용되지만 여기서는 다루지 않기로 한다. 컴퓨터 네트워크에서 데이터는 보통 패킷이라는 단위로 전송되는데, TCP는 패킷이 오류 없이 순서대로 도착하도록 설계되었다. 웹서버, 메일서버, 각 클라이언트 애플리케이션 모두는 TCP와 스트림 소켓을 사용한다.\n\n\n\n\n데이터그램 소켓의 연결은 단방향이고 신뢰할 수 없다. IP 와 포트번호를 특정하여 보내지만 수신을 확인하지 않는다. 또한 데이터가 순서대로 전송된다고 보장할 수도 없다. 사용자 데이터그램 프로토콜(User Datagram Protocol, UDP)이라는 표준 프로토콜을 사용한다. TCP 에 비해 단순하고 간단하며 부하가 적고 빠른 방법이다. 패킷 손실이 허용되기도 하며 네트워크 게임이나 음악/동영상 스트리밍에서 자주 쓰인다. UDP 를 통해 신뢰성 있는 데이터 통신을 하고 싶다면 직접 패킷을 통해 구현해야 한다.\n\n\n\n\n여기서는 접속을 기다리는 것이 서버(server), 기다리는 서버에 접근하는 것이 클라이언트(client) 라고 한다.",
+    "section": "1 소켓 통신",
+    "text": "1 소켓 통신\n현재의 많은 장비들은 소켓 통신을 사용하여 데이터와 정보를 주고받는다. 예전의 장비들은 RS232 나 RS485 같은 직렬 통신이나 다른 다양한 통신 방법을 사용하는 경우가 많았지만 최근의 장비들은 소켓 통신을 통해 데이터를 전송하는 경우가 많다. 여기서는 소켓 통신에 대해 짧게 알아보고 실제 구현해 보기로 하자.\n\n\n소켓\n소켓은 같은 컴퓨터의 프로세스 사이에서, 혹은 서로 다른 컴퓨터(혹은 장비)의 프로세스 사이에서 통신을 수행할 때의 종단점 (end point)이다. 같은 컴퓨터의 프로세스 사이의 소켓에는 unix domain socket 이 있으며 다른 컴퓨터 프로세스 사이에서의 통신에는 Datagram socket 과 Streaming socket 이 있다. 각각의 네트워크 하드웨어는 사양과 내부 명령어가 다르지만 운영체제 수준에서 이를 추상화하여 서로 통신할 수 있도록 한 것이 소켓이다. 여기서는 서로 다른 컴퓨터의 프로세스간 통신에 대해서만 다루기로 한다.\n\n\n\n스트림 소켓\n전화와 같이 믿을 수 있는 양방향 통신을 제공한다. 즉 데이터를 주고받는 소켓의 양쪽이 성립된 상태에서 한쪽(서버)에서 다른 한쪽(클라이언트)으로의 연결을 초기화하고, 연결이 생성된 후에는 어느 쪽에서든 다른 쪽으로 통신할 수 있다. 데이터를 송신하고 나서 이 데이터가 실제로 도착했는지도 즉각 확인할 수 있다. 보통 전송 제어 프로토콜(Transmission Control Protocol, TCP)이라 불리는 표준 통신 프로토콜을 사용하며 이 외에도 SCTP(Stream Control Transmission Protocol) 나 DCCP (Datagram Congestion Control Protocol) 가 사용되지만 여기서는 다루지 않기로 한다. 컴퓨터 네트워크에서 데이터는 보통 패킷이라는 단위로 전송되는데, TCP는 패킷이 오류 없이 순서대로 도착하도록 설계되었다. 웹서버, 메일서버, 각 클라이언트 애플리케이션 모두는 TCP와 스트림 소켓을 사용한다.\n\n\n\n데이터그램 소켓\n데이터그램 소켓의 연결은 단방향이고 신뢰할 수 없다. IP 와 포트번호를 특정하여 보내지만 수신을 확인하지 않는다. 또한 데이터가 순서대로 전송된다고 보장할 수도 없다. 사용자 데이터그램 프로토콜(User Datagram Protocol, UDP)이라는 표준 프로토콜을 사용한다. TCP 에 비해 단순하고 간단하며 부하가 적고 빠른 방법이다. 패킷 손실이 허용되기도 하며 네트워크 게임이나 음악/동영상 스트리밍에서 자주 쓰인다. UDP 를 통해 신뢰성 있는 데이터 통신을 하고 싶다면 직접 패킷을 통해 구현해야 한다.\n\n\n\n서버와 클라이언트\n여기서는 접속을 기다리는 것이 서버(server), 기다리는 서버에 접근하는 것이 클라이언트(client) 라고 한다.",
     "crumbs": [
       "주제별",
       "TCP/UDP 통신"
@@ -731,7 +731,7 @@
     "href": "src/ML/pytorch/tensor.html#텐서에-대해-알아야-할-것들",
     "title": "텐서",
     "section": "1 텐서에 대해 알아야 할 것들",
-    "text": "1 텐서에 대해 알아야 할 것들\n\n1.1 View 와 tensor.contiguous()\n\n참고자료 : tensor view\n\n예를 들어 텐서의 축 순서를 바꾸는 tensor.transpose() 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 View 라고 한다. 한 텐서가 다른 텐서의 View 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.\n이렇게 텐서의 내용을 복사 변경하지 않고 View 를 지원하는 메서드는 tensor.transpose(), tensor.expand(), tensor.diagonal() 등 다수가 있다. 기본적으로 tensor[1:-1:2, 2:] 와 같은 슬라이싱도 View 이다.\ntensor.is_contiguous() 메서드는 텐서가 View 인지 아닌지를 반환하며 tensor.contiguous() 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.\n\n\nIn\n\nt0 = torch.tensor([1,2,3,4,5.0])\nt1 = t0[1:-1:2]\nprint(t1.is_contiguous())\nt1=t1.contiguous()\nprint(t1.is_contiguous())\n\n\n\nOut\n\nFalse\nTrue",
+    "text": "1 텐서에 대해 알아야 할 것들\n\n1.1 View 와 tensor.contiguous()\n\n참고자료 : tensor view\n\n예를 들어 텐서의 축 순서를 바꾸는 tensor.transpose() 는 원래의 텐서의 데이터로부터 새로운 데이터를 생성하지 않고 원본 텐서에 데이터를 참조하면서 그것이 보여지거나 연산되는 방식을 바꾼다. 이렇게 원본 텐서를 참조하면서 모양, 기능, 출력 등만 바뀌는 것을 View 라고 한다. 한 텐서가 다른 텐서의 View 라면 둘 중 하나의 성분을 바꾸면 나머지 하나도 당연히 같이 바뀌게 된다.\n이렇게 텐서의 내용을 복사 변경하지 않고 View 를 지원하는 메서드는 tensor.transpose(), tensor.expand(), tensor.diagonal() 등 다수가 있다. 기본적으로 tensor[1:-1:2, 2:] 와 같은 슬라이싱도 View 이다.\ntensor.is_contiguous() 메서드는 텐서가 View 인지 아닌지를 반환하며 tensor.contiguous() 메서드는 원본 텐서의 데이터로부터 원하는 모양과 기능을 가진 새로운 데이터셋을 가진 텐서를 만든다.\n\n\nIn\n\nt0 = torch.tensor([1,2,3,4,5.0])\nt1 = t0[1:-1:2]\nprint(t1.is_contiguous())\nt1=t1.contiguous() \nprint(t1.is_contiguous())\n\n\n\nOut\n\nFalse\nTrue",
     "crumbs": [
       "AI & ML",
       "PyTorch",
@@ -748,6 +748,30 @@
       "AI & ML",
       "PyTorch",
       "텐서"
+    ]
+  },
+  {
+    "objectID": "src/ML/theory/optimization.html",
+    "href": "src/ML/theory/optimization.html",
+    "title": "최적화",
+    "section": "",
+    "text": "% %\n%\n\\[\n\\DeclarePairedDelimiters{\\set}{\\{}{\\}}\n\\DeclareMathOperator*{\\argmax}{argmax}\n\\]",
+    "crumbs": [
+      "AI & ML",
+      "이론",
+      "최적화"
+    ]
+  },
+  {
+    "objectID": "src/ML/theory/optimization.html#참고자료",
+    "href": "src/ML/theory/optimization.html#참고자료",
+    "title": "최적화",
+    "section": "1 참고자료",
+    "text": "1 참고자료\n\n기계공학을 위한 머신 러닝 youtube 와 머신 러닝 강의자료",
+    "crumbs": [
+      "AI & ML",
+      "이론",
+      "최적화"
     ]
   }
 ]

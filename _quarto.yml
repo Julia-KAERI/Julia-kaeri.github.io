@@ -66,6 +66,9 @@ website:
       collapse-level: 2
       contents :
         - src/ML/ml.qmd
+        - section : "이론"
+          contents :
+            - src/ML/theory/optimization.qmd
         - section : "PyTorch"
           contents :
             - src/ML/pytorch/intro.qmd

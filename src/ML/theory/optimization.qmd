@@ -1,0 +1,16 @@
+---
+title: "최적화"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+{{< include ../../../latexmacros.qmd >}}
+
+</br>
+
+## 참고자료 
+
+- [기계공학을 위한 머신 러닝 youtube](https://www.youtube.com/watch?v=QJSSWNIAPlw&list=PLGMtjo8jDX9ACghcCLack0uCqHPWJaC14&index=17) 와 [머신 러닝 강의자료](https://iailab.kaist.ac.kr/teaching/machine-learning)
