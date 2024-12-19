@@ -1,8 +1,0 @@
----
-title: "AI & ML"
-
-number-sections: true
-number-depth: 2
-crossref:
-  chapters: false
----

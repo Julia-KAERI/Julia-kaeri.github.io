@@ -2,7 +2,7 @@
 title: "최적화"
 
 number-sections: true
-number-depth: 2
+number-depth: 3
 crossref:
   chapters: false
 ---
@@ -11,6 +11,142 @@ crossref:
 
 </br>
 
-## 참고자료 
+### 참고자료 {.unnumbered}
 
 - [기계공학을 위한 머신 러닝 youtube](https://www.youtube.com/watch?v=QJSSWNIAPlw&list=PLGMtjo8jDX9ACghcCLack0uCqHPWJaC14&index=17) 와 [머신 러닝 강의자료](https://iailab.kaist.ac.kr/teaching/machine-learning)
+
+
+
+## 최적화
+
+### 최적화의 기본 요소
+
+- 3가지 기본 요소
+  1. 변수 (Decesion variable or unknown) $\bf{x}\in \mathcal{M}_n(\R)$
+  2. 목적함수 (objective function) $f:\mathcal{M}_n(\R) \to \R$
+  3. 제약 조건 (Constraint) $g_i:\mathcal{M}_n(\R) \to \R$, $i=1,\ldots,\,m$ 에 대해 $g_i(\bf{x})\le 0$ and/or $h_j:\mathcal{M}_n(\R) \to \R,\, j=1,\ldots,\,k$ 에 대해 $h_j(\bf{x})=0$
+
+</br>
+
+- 과정
+  1. 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.
+  2. 모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.
+
+</br>
+
+### 최적화의 수학 모델
+
+- 제약조건을 만족하는 $\mathcal{C}\subset \mathcal{M}_n(\R)$ 를 *feasible region* 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
+$$
+\mathcal{C} = \{\bf{x}\in \mathcal{M}_n(\R) : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m,\, h_j(\bf{x})=0,\,j=1,\ldots,\,k\}.
+$$
+
+- $\displaystyle \bf{x}^\ast = \arg \min_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는다. 이 $\bf{x}^\ast$ 를 최적해 (optimal solution) 이라고 한다.
+
+</br>
+
+- $g_i,\,h_j$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
+
+</br>
+
+### Convex optimization
+
+::: {.callout-tip appearance="minimal"}
+**convex function**
+
+$f:\mathcal{M}_n(\R)\to\R$ 이 다음을 만족하면 convect function 이라 한다.
+$$
+\forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in \mathcal{M}_n(\R) \implies f(\theta \bf{x}+(1-\theta)\bf{y}) \le \theta f(\bf{x}) + (1-\theta)f(\bf{y})
+$$
+
+**convex set**
+
+$A\subset\mathcal{M}_n(\R)$ 이 다음을 만족하면 convex set 이라 한다.
+
+$$
+\forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in A \implies \theta \bf{x}+(1-\theta)\bf{y}\in A
+$$
+:::
+
+</br>
+
+
+- 목적함수가 convex function 이고 feasible region 이 convex set 인 경우의 최적화를 **convex optimization** 이라고 한다.
+- Convex optimization 의 모든 국소적 해는 전역적 해이다.
+- `CVX` (Matlab), `CVXPY` (Python)
+
+</br>
+
+### Convex optimizaiton 문제 
+
+- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 찾는 문제이다.
+
+</br>
+
+## 간단한 경우의 해
+
+### 직접법
+
+- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 직접 구한다.
+
+</br>
+
+이제 몇가지 형태의 convex 함수인 목적함수에 대한 그래디언트 $\nabla_{\bf{x}}f(\bf{x})$ 와 헤시안 행렬 $\bf{H}_f$ 를 구해보자.
+
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
+::: {#exm-optimizatin_object_function_affine}
+
+#### Affine 형태의 목적함수
+
+$f(\bf{x}) = \bf{a}^T\bf{x} + \bf{b}$ 인 경우 
+
+$$
+\nabla_\bf{x}f(\bf{x})=\bf{a}^T,\qquad \bf{H}_f = \bf{0}.
+$$
+
+:::
+
+</div>
+
+</br><div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
+::: {#exm-optimizatin_object_function_quadratic}
+
+#### Quadratic 형태의 목적함수
+
+대칭행렬 $\bf{P}$ 에 대해 $f(\bf{x}) = \bf{x}^T\bf{Px} + \bf{b}^T\bf{x}+c$ 인 경우 
+
+$$
+\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{P},\qquad \bf{H}_f = 2\bf{P}
+$$
+:::
+</div>
+
+</br><div class="border" style="background-color:#F2F4F4  ;padding:5px;">
+
+::: {#exm-optimizatin_object_function_Square}
+
+#### 제곱 형태의 목적함수
+
+대칭행렬 $\bf{P}$ 에 대해 $f(\bf{x}) = \|\bf{Ax}-\bf{b}\|^2$ 인 경우 
+
+$$
+f(\bf{x})= \bf{x}^T\bf{A}^T\bf{Ax} - \bf{x}^T\bf{A}^T\bf{b}-\bf{b}^T\bf{Ax}+\bf{b}^T\bf{b}
+$$
+
+이므로 
+
+$$
+\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{A}^T\bf{A} -2\bf{b}^T\bf{A},\qquad \bf{H}_f = 2\bf{A}^T\bf{A}
+$$
+:::
+</div>
+
+</br>
+
+### 반복법
+
+- Gradient descent : $\bf{x}_{k+1} = \bf{x}_k -\alpha_k \nabla_\bf{x} f(\bf{x}_k)$. $\alpha_k$ 는 내부적으로 정해지는 scalar.
+
+

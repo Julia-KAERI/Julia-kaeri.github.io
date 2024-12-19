@@ -1,0 +1,82 @@
+---
+title: "선형 회귀"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+{{< include ../../../latexmacros.qmd >}}
+
+</br>
+
+
+## 1변수 선형 회귀
+
+- 데이터 $x_1,\ldots,\,x_n$, $y_1,\ldots,\,y_n$
+- 독립 변수 $x$ 와 파라미터 $\bf{\theta}=\{\theta_0,\,\theta_1\}$ 에 대한 목적 함수 $f(x;\,\bf{\theta}) = \theta_0 +\theta_1 x$
+
+가 주어졌다고 하자. 이 때
+
+$$
+\bf{\theta}^\ast = \arg \min \|y_i - f(x_i;\bf{\theta})\|_p^2
+$$ {#eq-regresion_1var_regression_base_1}
+
+를 찾는 것을 선형 회귀라고 한다. 여기서 $p$ 는 벡터의 $L_p$ 노름에서의 $p$ 값으로 $1,\,2,\,\infty$ 가 주로 사용되며 첨자가 없을 경우 관례적으로 $p=2$ 이다.. 정해진 $\bf{\theta}$ 에 대해 $\hat{y}_i = f(x_i;\bf{\theta}) =\theta_0 + \theta_1x_i$ 라고 하면 @eq-regresion_1var_regression_base_1 는 다음과 같다.
+
+$$
+\bf{\theta}^\ast = \arg \min \|y_i - \hat{y}_i\|_p^2.
+$${#eq-regresion_1var_regression_base_2}
+
+이제 행렬 $\bf{\Phi}$ 를 다음과 같이 정의하자.
+
+$$
+\bf{\Phi} := \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ \vdots & \\ 1 & x_n\end{bmatrix}
+$$
+
+그리고 
+
+$$
+\begin{aligned}
+\bf{\theta}&=\begin{bmatrix} \theta_0 & \theta_1 \end{bmatrix}^T, \\
+\bf{x} &= \begin{bmatrix} x_1 & \cdots & x_n\end{bmatrix}^T, \\
+\bf{y} &= \begin{bmatrix} y_1 & \cdots & y_n\end{bmatrix}^T
+\end{aligned}
+$$
+
+라고 하면
+
+$$
+\theta^\ast = \begin{bmatrix} \theta_1^\ast \\ \theta_2^\ast\end{bmatrix} = \arg \min_{\bf{\theta}} \|\bf{y} - \bf{\Phi \theta}\|_p^2 
+$$
+
+이다. $L_2$ 노름의 경우 
+
+$$
+E(\bf{\theta}) := \|\bf{y}-\bf{\Phi\theta}\|^2 = (\bf{y}-\bf{\Phi\theta})^T(\bf{y}-\bf{\Phi\theta})
+$$
+
+이다. $E(\bf{\theta})$ 를 최소로 하는 $\bf{\theta}^\ast$ 는 우선 $\nabla_{\bf{\theta}}E(\bf{\theta}^\ast) = \bf{0}$ 이어야 하므로,
+
+$$
+\begin{aligned}
+\nabla_\bf{\theta}E(\bf{\theta}) &= -2\bf{y}^T\bf{\Phi}-\left(\bf{\theta}^\ast\right)^T(\bf{\Phi}^T\bf{\Phi}) = \bf{0}
+\end{aligned}
+$$
+
+이다. 이로부터
+
+$$
+\bf{\theta}^\ast = \left(\bf{\Phi}^T\bf{\Phi}\right)^{-1}\bf{\Phi}^T \bf{y}
+$$
+
+를 얻는다.
+
+
+
+
+
+
+
+

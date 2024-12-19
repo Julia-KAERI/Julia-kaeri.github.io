@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Science &amp; Programming - Topics</title>
+<title>선형 회귀 – Science &amp; Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../src/ML/pytorch/intro.html" rel="next">
+<link href="../../../src/ML/theory/optimization.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,80 +69,184 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Science &amp; Programming</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/gpu/gpu.html"> 
+    <a class="nav-link" href="../../../src/gpu/gpu.html"> 
 <span class="menu-text">GPU &amp; CUDA</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/cpp_qt/cpp_qt.html"> 
+    <a class="nav-link" href="../../../src/cpp_qt/cpp_qt.html"> 
 <span class="menu-text">C++ &amp; Qt</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/ML/ml.qmd"> 
+    <a class="nav-link active" href="../../../src/ML/ml.html" aria-current="page"> 
 <span class="menu-text">AI &amp; ML</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/topics/socket.html"> 
+    <a class="nav-link" href="../../../src/topics/socket.html"> 
 <span class="menu-text">주제별</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/tools/tools.html"> 
+    <a class="nav-link" href="../../../src/tools/tools.html"> 
 <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../src/posts/index.html"> 
+    <a class="nav-link" href="../../../src/posts/index.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
     <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/optimization.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/regression.html">선형 회귀</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/ml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI &amp; ML</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">이론</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">최적화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">선형 회귀</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">PyTorch</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/pytorch/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">소개</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/pytorch/tensor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">텐서</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#변수-선형-회귀" id="toc-변수-선형-회귀" class="nav-link active" data-scroll-target="#변수-선형-회귀"><span class="header-section-number">1</span> 1변수 선형 회귀</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/optimization.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/regression.html">선형 회귀</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Topics</h1>
+<h1 class="title">선형 회귀</h1>
 </div>
 
 
@@ -157,8 +263,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="hidden">
+<p>% %</p>
+%
+<p><span class="math display">\[
+\DeclarePairedDelimiters{\set}{\{}{\}}
+\DeclareMathOperator*{\argmax}{argmax}
+\]</span></p>
+</div>
+<p><br></p>
+<section id="변수-선형-회귀" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="변수-선형-회귀"><span class="header-section-number">1</span> 1변수 선형 회귀</h2>
+<ul>
+<li>데이터 <span class="math inline">\(x_1,\ldots,\,x_n\)</span>, <span class="math inline">\(y_1,\ldots,\,y_n\)</span></li>
+<li>독립 변수 <span class="math inline">\(x\)</span> 와 파라미터 <span class="math inline">\(\boldsymbol{\theta}=\{\theta_0,\,\theta_1\}\)</span> 에 대한 목적 함수 <span class="math inline">\(f(x;\,\boldsymbol{\theta}) = \theta_0 +\theta_1 x\)</span></li>
+</ul>
+<p>가 주어졌다고 하자. 이 때</p>
+<p><span id="eq-regresion_1var_regression_base_1"><span class="math display">\[
+\boldsymbol{\theta}^\ast = \arg \min \|y_i - f(x_i;\boldsymbol{\theta})\|_p^2
+\tag{1}\]</span></span></p>
+<p>를 찾는 것을 선형 회귀라고 한다. 여기서 <span class="math inline">\(p\)</span> 는 벡터의 <span class="math inline">\(L_p\)</span> 노름에서의 <span class="math inline">\(p\)</span> 값으로 <span class="math inline">\(1,\,2,\,\infty\)</span> 가 주로 사용되며 첨자가 없을 경우 관례적으로 <span class="math inline">\(p=2\)</span> 이다.. 정해진 <span class="math inline">\(\boldsymbol{\theta}\)</span> 에 대해 <span class="math inline">\(\hat{y}_i = f(x_i;\boldsymbol{\theta}) =\theta_0 + \theta_1x_i\)</span> 라고 하면 <a href="#eq-regresion_1var_regression_base_1" class="quarto-xref">식&nbsp;1</a> 는 다음과 같다.</p>
+<p><span id="eq-regresion_1var_regression_base_2"><span class="math display">\[
+\boldsymbol{\theta}^\ast = \arg \min \|y_i - \hat{y}_i\|_p^2.
+\tag{2}\]</span></span></p>
+<p>이제 행렬 <span class="math inline">\(\boldsymbol{\Phi}\)</span> 를 다음과 같이 정의하자.</p>
+<p><span class="math display">\[
+\boldsymbol{\Phi} := \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \\ 1 &amp; x_n\end{bmatrix}
+\]</span></p>
+<p>그리고</p>
+<p><span class="math display">\[
+\begin{aligned}
+\boldsymbol{\theta}&amp;=\begin{bmatrix} \theta_0 &amp; \theta_1 \end{bmatrix}^T, \\
+\boldsymbol{x} &amp;= \begin{bmatrix} x_1 &amp; \cdots &amp; x_n\end{bmatrix}^T, \\
+\boldsymbol{y} &amp;= \begin{bmatrix} y_1 &amp; \cdots &amp; y_n\end{bmatrix}^T
+\end{aligned}
+\]</span></p>
+<p>라고 하면</p>
+<p><span class="math display">\[
+\theta^\ast = \begin{bmatrix} \theta_1^\ast \\ \theta_2^\ast\end{bmatrix} = \arg \min_{\boldsymbol{\theta}} \|\boldsymbol{y} - \boldsymbol{\Phi \theta}\|_p^2
+\]</span></p>
+<p>이다. <span class="math inline">\(L_2\)</span> 노름의 경우</p>
+<p><span class="math display">\[
+E(\boldsymbol{\theta}) := \|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|^2 = (\boldsymbol{y}-\boldsymbol{\Phi\theta})^T(\boldsymbol{y}-\boldsymbol{\Phi\theta})
+\]</span></p>
+<p>이다. <span class="math inline">\(E(\boldsymbol{\theta})\)</span> 를 최소로 하는 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 는 우선 <span class="math inline">\(\nabla_{\boldsymbol{\theta}}E(\boldsymbol{\theta}^\ast) = \boldsymbol{0}\)</span> 이어야 하므로,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla_\boldsymbol{\theta}E(\boldsymbol{\theta}) &amp;= -2\boldsymbol{y}^T\boldsymbol{\Phi}-\left(\boldsymbol{\theta}^\ast\right)^T(\boldsymbol{\Phi}^T\boldsymbol{\Phi}) = \boldsymbol{0}
+\end{aligned}
+\]</span></p>
+<p>이다. 이로부터</p>
+<p><span class="math display">\[
+\boldsymbol{\theta}^\ast = \left(\boldsymbol{\Phi}^T\boldsymbol{\Phi}\right)^{-1}\boldsymbol{\Phi}^T \boldsymbol{y}
+\]</span></p>
+<p>를 얻는다.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -196,18 +357,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -239,7 +389,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/julia-kaeri\.github\.io\/");
@@ -247,7 +419,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -570,6 +742,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../src/ML/theory/optimization.html" class="pagination-link" aria-label="최적화">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">최적화</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../src/ML/pytorch/intro.html" class="pagination-link" aria-label="소개">
+        <span class="nav-page-text">소개</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
