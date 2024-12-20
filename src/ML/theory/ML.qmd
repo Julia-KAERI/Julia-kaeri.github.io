@@ -1,0 +1,17 @@
+---
+title: "기계 학습"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+{{< include ../../../latexmacros.qmd >}}
+
+</br>
+
+### References
+
+::: {#refs}
+:::

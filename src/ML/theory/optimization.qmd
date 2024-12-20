@@ -13,9 +13,11 @@ crossref:
 
 ### 참고자료 {.unnumbered}
 
-- [기계공학을 위한 머신 러닝 youtube](https://www.youtube.com/watch?v=QJSSWNIAPlw&list=PLGMtjo8jDX9ACghcCLack0uCqHPWJaC14&index=17) 와 [머신 러닝 강의자료](https://iailab.kaist.ac.kr/teaching/machine-learning)
+- [기계공학을 위한 머신 러닝 youtube](https://www.youtube.com/watch?v=QJSSWNIAPlw&list=PLGMtjo8jDX9ACghcCLack0uCqHPWJaC14&index=17) 와 [머신 러닝 강의자료](https://iailab.kaist.ac.kr/teaching/machine-learning) @iAI_Kaist
 
+- @Bishop2006
 
+</br>
 
 ## 최적화
 

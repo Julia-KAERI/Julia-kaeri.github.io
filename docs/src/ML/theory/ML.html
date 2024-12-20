@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Science &amp; Programming - 선형 회귀</title>
+<title>Science &amp; Programming - 기계 학습</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +49,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../src/ML/pytorch/intro.html" rel="next">
-<link href="../../../src/ML/theory/optimization.html" rel="prev">
+<link href="../../../src/ML/theory/optimization.html" rel="next">
+<link href="../../../src/ML/ml.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -163,7 +182,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/regression.html">선형 회귀</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">기계 학습</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -192,7 +211,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/ML/theory/ML.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/ML/theory/ML.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">기계 학습</span></a>
   </div>
 </li>
@@ -204,7 +223,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/ML/theory/regression.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../src/ML/theory/regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">선형 회귀</span></a>
   </div>
 </li>
@@ -243,17 +262,16 @@ window.Quarto = {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#선형-회귀" id="toc-선형-회귀" class="nav-link active" data-scroll-target="#선형-회귀"><span class="header-section-number">1</span> 선형 회귀</a></li>
-  <li><a href="#차원-선형-회귀" id="toc-차원-선형-회귀" class="nav-link" data-scroll-target="#차원-선형-회귀"><span class="header-section-number">2</span> 1차원 선형 회귀</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references"><span class="header-section-number">0.1</span> References</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/regression.html">선형 회귀</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">기계 학습</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">선형 회귀</h1>
+<h1 class="title">기계 학습</h1>
 </div>
 
 
@@ -279,81 +297,11 @@ window.Quarto = {
 \]</span></p>
 </div>
 <p><br></p>
-<section id="선형-회귀" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="선형-회귀"><span class="header-section-number">1</span> 선형 회귀</h2>
-<p><span class="math inline">\(n\)</span> 차원 벡터 입력변수 <span class="math inline">\(\boldsymbol{x}_1,\ldots,\,\boldsymbol{x}_m \in \mathcal{M}_n(\mathbb{R})\)</span> 에 대한 값 <span class="math inline">\(y_1,\,\ldots,\,y_m\)</span> 을 가장 잘 기술하는 함수</p>
-<p><span class="math display">\[
-f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &amp; \theta_n\end{bmatrix}^T\boldsymbol{x} + \theta_0
-\]</span></p>
-<p>를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 <span class="math inline">\((\boldsymbol{x})_i \in \mathcal{M}_n(\mathbb{R})\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 <span class="math inline">\((\boldsymbol{x}_i)_j\)</span> 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.</p>
-<p><span class="math display">\[
-\boldsymbol{\Phi}:= \begin{bmatrix} 1 &amp; (\boldsymbol{x}_1)_1 &amp; \cdots &amp; (\boldsymbol{x}_1)_n \\ 1 &amp; (\boldsymbol{x}_2)_1 &amp; \cdots &amp; (\boldsymbol{x}_2)_n \\ \vdots &amp; &amp; &amp; \vdots \\ 1 &amp; (\boldsymbol{x}_m)_1 &amp; \cdots &amp; (\boldsymbol{x}_m)_n  \end{bmatrix}, \qquad \boldsymbol{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \boldsymbol{y} := \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}
-\]</span></p>
-<p>이 때 <span class="math inline">\(\boldsymbol{\Phi}\)</span> 를 <strong>설계 행렬(design matrix)</strong> 이라고 한다. 그리고</p>
-<p><span class="math display">\[
-\boldsymbol{e}:=\boldsymbol{y}-\boldsymbol{\Phi \theta}
-\]</span></p>
-<p>라고 하면 <span class="math inline">\(\boldsymbol{e}\in \mathcal{M}_m(\mathbb{R})\)</span> 의 <span class="math inline">\(i\)</span> 번째 성분 <span class="math inline">\(e_i = y_i - f(\boldsymbol{x}_i;\boldsymbol{\theta})\)</span> 이다. 결국 선형 회귀 문제는 벡터 <span class="math inline">\(\boldsymbol{e}\)</span> 의 크기, 즉 노름을 최소화 하는 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 찾는 문제로 바뀌며 다음과 같이 기술 될 수 있다.</p>
-<p><span id="eq-linear_regression_master_equation"><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg\min \left\|\boldsymbol{y}- \boldsymbol{\Phi \theta}\right\|
-\tag{1}\]</span></span></p>
-<p>많은 경우 노름은 유클리드 노름, 즉 <span class="math inline">\(L_2\)</span> 노름을 말하지만 <span class="math inline">\(L_1\)</span> 혹은 <span class="math inline">\(L_\infty\)</span> 노름도 사용 될 수 있다. <span class="math inline">\(L_p\)</span> 노름을 사용했을 경우 <a href="#eq-linear_regression_master_equation" class="quarto-xref">식&nbsp;1</a> 는 다음과 같이 표기된다.</p>
-<p><span id="eq-linear_regression_master_equation_with_p"><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg\min \left\|\boldsymbol{y}- \boldsymbol{\Phi \theta}\right\|_p
-\tag{2}\]</span></span></p>
-<p>벡터 <span class="math inline">\(\boldsymbol{v}\in \mathcal{M}_k\)</span> 의 <span class="math inline">\(L_p\)</span> 노름 <span class="math inline">\(\|\boldsymbol{v}\|_p\)</span> 는 다음과 같이 정의된다.</p>
-<p><span class="math display">\[
-\|\boldsymbol{v}\|_p := \left(\sum_{i=1}^k |v_i|^p\right)^{1/p}
-\]</span></p>
-<p>즉 <span class="math inline">\(\|\boldsymbol{v}\|_1 = \sum |v_i|\)</span> 이며 <span class="math inline">\(\|\boldsymbol{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}\)</span> 는 유클리드 노름이다. <span class="math inline">\(L_\infty\)</span> 는 <span class="math inline">\(p\to \infty\)</span> 극한으로 정의되며 <span class="math inline">\(\|\boldsymbol{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|\)</span> 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 <span class="math inline">\(L_\infty\)</span> 노름이 가장 큰 영향을 받으며 <span class="math inline">\(\|\boldsymbol{v}\|_1\)</span> 노름이 가장 영향을 적게 받는다. 일반적으로 <span class="math inline">\(L_2\)</span> 노름을 가장 많이 사용하며 튀는 데이터가 있을 경우 <span class="math inline">\(L_1\)</span> 노름을 사용하기도 한다. <span class="math inline">\(L_2\)</span> 노름의 경우</p>
-<p><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg \min \|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2 = \arg \min\|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2^2
-\]</span></p>
-<p>이며 <span class="math inline">\(\arg \min\|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2^2\)</span> 가 <span class="math inline">\(\sqrt{\cdots}\)</span> 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.</p>
-<p><br></p>
-</section>
-<section id="차원-선형-회귀" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="차원-선형-회귀"><span class="header-section-number">2</span> 1차원 선형 회귀</h2>
-<p>선형 회귀 문제에서 <span class="math inline">\(\boldsymbol{x}_i \in \mathbb{R}\)</span> 일 경우 1차원 선형 회귀라고 한다. 이 때 선형 회귀문제는</p>
-<p><span id="eq-regresion_1var_regression_base_1"><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg \min \|y_i - f(x_i;\boldsymbol{\theta})\|_p
-\tag{3}\]</span></span></p>
-<p>인 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 찾는 문제이다. 여기서 <span class="math inline">\(p\)</span> 는 벡터의 <span class="math inline">\(L_p\)</span> 노름에서의 <span class="math inline">\(p\)</span> 값으로 <span class="math inline">\(1,\,2,\,\infty\)</span> 가 주로 사용되며 첨자가 없을 경우 관례적으로 <span class="math inline">\(p=2\)</span> 이다.. 정해진 <span class="math inline">\(\boldsymbol{\theta}\)</span> 에 대해 <span class="math inline">\(\hat{y}_i = f(x_i;\boldsymbol{\theta}) =\theta_0 + \theta_1x_i\)</span> 라고 하면 <a href="#eq-regresion_1var_regression_base_1" class="quarto-xref">식&nbsp;3</a> 는 다음과 같다.</p>
-<p><span id="eq-regresion_1var_regression_base_2"><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg \min \|y_i - \hat{y}_i\|_p.
-\tag{4}\]</span></span></p>
-<p>가장 널리 사용되는 <span class="math inline">\(L_2\)</span> 노름의 경우 <span class="math inline">\(\|y_i - \hat{y}_i\|_2 = \sqrt{\sum (y_i - \hat{y}_i)^2}\)</span></p>
-<p>이제 행렬 <span class="math inline">\(\boldsymbol{\Phi}\)</span> 를 다음과 같이 정의하자.</p>
-<p><span class="math display">\[
-\boldsymbol{\Phi} := \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \\ 1 &amp; x_n\end{bmatrix}
-\]</span></p>
-<p>그리고</p>
-<p><span class="math display">\[
-\begin{aligned}
-\boldsymbol{\theta}&amp;=\begin{bmatrix} \theta_0 &amp; \theta_1 \end{bmatrix}^T, \\
-\boldsymbol{x} &amp;= \begin{bmatrix} x_1 &amp; \cdots &amp; x_n\end{bmatrix}^T, \\
-\boldsymbol{y} &amp;= \begin{bmatrix} y_1 &amp; \cdots &amp; y_n\end{bmatrix}^T
-\end{aligned}
-\]</span></p>
-<p>라고 하면</p>
-<p><span class="math display">\[
-\theta^\ast = \begin{bmatrix} \theta_1^\ast \\ \theta_2^\ast\end{bmatrix} = \arg \min_{\boldsymbol{\theta}} \|\boldsymbol{y} - \boldsymbol{\Phi \theta}\|_p^2
-\]</span></p>
-<p>이다. <span class="math inline">\(L_2\)</span> 노름의 경우</p>
-<p><span class="math display">\[
-E(\boldsymbol{\theta}) := \|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|^2 = (\boldsymbol{y}-\boldsymbol{\Phi\theta})^T(\boldsymbol{y}-\boldsymbol{\Phi\theta})
-\]</span></p>
-<p>이다. <span class="math inline">\(E(\boldsymbol{\theta})\)</span> 를 최소로 하는 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 는 우선 <span class="math inline">\(\nabla_{\boldsymbol{\theta}}E(\boldsymbol{\theta}^\ast) = \boldsymbol{0}\)</span> 이어야 하므로,</p>
-<p><span class="math display">\[
-\begin{aligned}
-\nabla_\boldsymbol{\theta}E(\boldsymbol{\theta}) &amp;= -2\boldsymbol{y}^T\boldsymbol{\Phi}-\left(\boldsymbol{\theta}^\ast\right)^T(\boldsymbol{\Phi}^T\boldsymbol{\Phi}) = \boldsymbol{0}
-\end{aligned}
-\]</span></p>
-<p>이다. 이로부터</p>
-<p><span class="math display">\[
-\boldsymbol{\theta}^\ast = \left(\boldsymbol{\Phi}^T\boldsymbol{\Phi}\right)^{-1}\boldsymbol{\Phi}^T \boldsymbol{y}
-\]</span></p>
-<p>를 얻는다.</p>
+<section id="references" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="references"><span class="header-section-number">0.1</span> References</h3>
+<div id="refs" role="list">
+
+</div>
 
 
 </section>
@@ -770,13 +718,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../src/ML/theory/optimization.html" class="pagination-link" aria-label="최적화">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">최적화</span>
+      <a href="../../../src/ML/ml.html" class="pagination-link" aria-label="AI &amp; ML">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">AI &amp; ML</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/ML/pytorch/intro.html" class="pagination-link" aria-label="소개">
-        <span class="nav-page-text">소개</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../src/ML/theory/optimization.html" class="pagination-link" aria-label="최적화">
+        <span class="nav-page-text">최적화</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

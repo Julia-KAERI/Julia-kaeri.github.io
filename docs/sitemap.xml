@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/regression.html</loc>
-    <lastmod>2024-12-19T23:42:53.883Z</lastmod>
+    <lastmod>2024-12-20T06:19:25.584Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/pytorch/tensor.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
-    <lastmod>2024-12-18T14:46:44.724Z</lastmod>
+    <lastmod>2024-12-20T01:33:20.950Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/unixLinux/git.html</loc>
@@ -114,7 +114,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/optimization.html</loc>
-    <lastmod>2024-12-19T10:53:55.621Z</lastmod>
+    <lastmod>2024-12-20T04:44:55.210Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
@@ -127,5 +127,9 @@
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
     <lastmod>2024-12-18T01:56:48.368Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/ML.html</loc>
+    <lastmod>2024-12-20T04:42:08.695Z</lastmod>
   </url>
 </urlset>

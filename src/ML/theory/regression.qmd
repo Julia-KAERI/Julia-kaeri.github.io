@@ -12,22 +12,73 @@ crossref:
 </br>
 
 
-## 1변수 선형 회귀
+## 선형 회귀
 
-- 데이터 $x_1,\ldots,\,x_n$, $y_1,\ldots,\,y_n$
-- 독립 변수 $x$ 와 파라미터 $\bf{\theta}=\{\theta_0,\,\theta_1\}$ 에 대한 목적 함수 $f(x;\,\bf{\theta}) = \theta_0 +\theta_1 x$
-
-가 주어졌다고 하자. 이 때
+$n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \mathcal{M}_n(\R)$ 에 대한 값 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
 
 $$
-\bf{\theta}^\ast = \arg \min \|y_i - f(x_i;\bf{\theta})\|_p^2
+f(\bf{x};\bf{\theta})= \begin{bmatrix} \theta_1 & \cdots & \theta_n\end{bmatrix}^T\bf{x} + \theta_0
+$$
+
+를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 $(\bf{x})_i \in \mathcal{M}_n(\R)$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
+
+$$
+\bf{\Phi}:= \begin{bmatrix} 1 & (\bf{x}_1)_1 & \cdots & (\bf{x}_1)_n \\ 1 & (\bf{x}_2)_1 & \cdots & (\bf{x}_2)_n \\ \vdots & & & \vdots \\ 1 & (\bf{x}_m)_1 & \cdots & (\bf{x}_m)_n  \end{bmatrix}, \qquad \bf{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \bf{y} := \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}
+$$
+
+이 때 $\bf{\Phi}$ 를 **설계 행렬(design matrix)** 이라고 한다. 그리고
+
+$$
+\bf{e}:=\bf{y}-\bf{\Phi \theta}
+$$
+
+라고 하면 $\bf{e}\in \mathcal{M}_m(\R)$ 의 $i$ 번째 성분 $e_i = y_i - f(\bf{x}_i;\bf{\theta})$ 이다. 결국 선형 회귀 문제는 벡터 $\bf{e}$ 의 크기, 즉 노름을 최소화 하는 $\bf{\theta}^\ast$ 를 찾는 문제로 바뀌며 다음과 같이 기술 될 수 있다.
+
+$$
+\bf{\theta}^\ast = \arg\min \left\|\bf{y}- \bf{\Phi \theta}\right\|
+$$ {#eq-linear_regression_master_equation}
+
+
+많은 경우 노름은 유클리드 노름, 즉 $L_2$ 노름을 말하지만 $L_1$ 혹은 $L_\infty$ 노름도 사용 될 수 있다. $L_p$ 노름을 사용했을 경우 @eq-linear_regression_master_equation 는 다음과 같이 표기된다.
+
+$$
+\bf{\theta}^\ast = \arg\min \left\|\bf{y}- \bf{\Phi \theta}\right\|_p
+$$ {#eq-linear_regression_master_equation_with_p}
+
+벡터 $\bf{v}\in \mathcal{M}_k$ 의 $L_p$ 노름 $\|\bf{v}\|_p$ 는 다음과 같이 정의된다.
+
+$$
+\|\bf{v}\|_p := \left(\sum_{i=1}^k |v_i|^p\right)^{1/p}
+$$
+
+즉 $\|\bf{v}\|_1 = \sum |v_i|$ 이며 $\|\bf{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}$ 는 유클리드 노름이다. $L_\infty$ 는 $p\to \infty$ 극한으로 정의되며 $\|\bf{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|$ 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 $L_\infty$ 노름이 가장 큰 영향을 받으며 $\|\bf{v}\|_1$ 노름이 가장 영향을 적게 받는다. 일반적으로 $L_2$ 노름을 가장 많이 사용하며 튀는 데이터가 있을 경우 $L_1$ 노름을 사용하기도 한다. $L_2$ 노름의 경우
+
+$$
+\bf{\theta}^\ast = \arg \min \|\bf{y}-\bf{\Phi\theta}\|_2 = \arg \min\|\bf{y}-\bf{\Phi\theta}\|_2^2
+$$
+
+이며 $\arg \min\|\bf{y}-\bf{\Phi\theta}\|_2^2$ 가 $\sqrt{\cdots}$ 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.
+
+</br>
+
+
+## 1차원 선형 회귀
+
+선형 회귀 문제에서 $\bf{x}_i \in \R$ 일 경우 1차원 선형 회귀라고 한다. 이 때 선형 회귀문제는
+
+$$
+\bf{\theta}^\ast = \arg \min \|y_i - f(x_i;\bf{\theta})\|_p
 $$ {#eq-regresion_1var_regression_base_1}
 
-를 찾는 것을 선형 회귀라고 한다. 여기서 $p$ 는 벡터의 $L_p$ 노름에서의 $p$ 값으로 $1,\,2,\,\infty$ 가 주로 사용되며 첨자가 없을 경우 관례적으로 $p=2$ 이다.. 정해진 $\bf{\theta}$ 에 대해 $\hat{y}_i = f(x_i;\bf{\theta}) =\theta_0 + \theta_1x_i$ 라고 하면 @eq-regresion_1var_regression_base_1 는 다음과 같다.
+인 $\bf{\theta}^\ast$ 를 찾는 문제이다. 여기서 $p$ 는 벡터의 $L_p$ 노름에서의 $p$ 값으로 $1,\,2,\,\infty$ 가 주로 사용되며 첨자가 없을 경우 관례적으로 $p=2$ 이다.. 정해진 $\bf{\theta}$ 에 대해 $\hat{y}_i = f(x_i;\bf{\theta}) =\theta_0 + \theta_1x_i$ 라고 하면 @eq-regresion_1var_regression_base_1 는 다음과 같다.
 
 $$
-\bf{\theta}^\ast = \arg \min \|y_i - \hat{y}_i\|_p^2.
+\bf{\theta}^\ast = \arg \min \|y_i - \hat{y}_i\|_p.
 $${#eq-regresion_1var_regression_base_2}
+
+가장 널리 사용되는 $L_2$ 노름의 경우 $\|y_i - \hat{y}_i\|_2 = \sqrt{\sum (y_i - \hat{y}_i)^2}$
+
+
 
 이제 행렬 $\bf{\Phi}$ 를 다음과 같이 정의하자.
 

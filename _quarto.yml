@@ -68,6 +68,7 @@ website:
         - src/ML/ml.qmd
         - section : "이론"
           contents :
+            - src/ML/theory/ML.qmd
             - src/ML/theory/optimization.qmd
             - src/ML/theory/regression.qmd
         - section : "PyTorch"
