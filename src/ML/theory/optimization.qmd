@@ -23,35 +23,49 @@ crossref:
 
 ### 최적화의 기본 요소
 
-- 3가지 기본 요소
-  1. 변수 (Decesion variable or unknown) $\bf{x}\in \mathcal{M}_n(\R)$
-  2. 목적함수 (objective function) $f:\mathcal{M}_n(\R) \to \R$
-  3. 제약 조건 (Constraint) $g_i:\mathcal{M}_n(\R) \to \R$, $i=1,\ldots,\,m$ 에 대해 $g_i(\bf{x})\le 0$ and/or $h_j:\mathcal{M}_n(\R) \to \R,\, j=1,\ldots,\,k$ 에 대해 $h_j(\bf{x})=0$
+</br>
+
+**3가지 기본 요소**
+
+1. 변수 (Decesion variable or unknown) $\bf{x}\in \mathcal{M}_n(\R)$
+2. 목적함수 (objective function) $f:\mathcal{M}_n(\R) \to \R$
+3. 제약 조건 (Constraint) $g_i:\mathcal{M}_n(\R) \to \R$, $i=1,\ldots,\,m$ 에 대해 $g_i(\bf{x})\le 0$ and/or $h_j:\mathcal{M}_n(\R) \to \R,\, j=1,\ldots,\,k$ 에 대해 $h_j(\bf{x})=0$
 
 </br>
 
-- 과정
-  1. 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.
-  2. 모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.
+**과정**
+
+1. 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.
+2. 모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.
 
 </br>
 
 ### 최적화의 수학 모델
 
+**수학적 표준 모델**
+
 - 제약조건을 만족하는 $\mathcal{C}\subset \mathcal{M}_n(\R)$ 를 *feasible region* 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
 $$
-\mathcal{C} = \{\bf{x}\in \mathcal{M}_n(\R) : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m,\, h_j(\bf{x})=0,\,j=1,\ldots,\,k\}.
+\mathcal{C} = \{\bf{x}\in \mathcal{M}_n(\R) : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m\}.
 $$
 
 - $\displaystyle \bf{x}^\ast = \arg \min_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는다. 이 $\bf{x}^\ast$ 를 최적해 (optimal solution) 이라고 한다.
 
-</br>
-
 - $g_i,\,h_j$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
 
 </br>
+**등가 변환**
 
-### Convex optimization
+- 우리가 구하고자 하는 문제가 $f(\bf{x})$ 를 최소화 하는 것이 아닌 최대로 하는 $\bf{x}$ 를 찾는 문제라면 $-f(\bf{x})$ 를 최소화 하는 문제이다.
+
+- constraint 가 $g_i(\bf{x}) \ge 0$ 이라면 $-g_i(\bf{x})\le 0$ 으로 바꿀 수 있다. $g_i (\bf{x})=0$ 이라면 $g_i(\bf{x}) \le 0$ 와 $-g_i(\bf{x})\le 0$ 을 동시에 만족하는 조건으로 바꿀 수 있다.
+
+- 즉 수학적 표준 모델은 상당히 표면적으로 보이는 것보다 훨씬 넓은 범위의 문제를 포괄한다.
+
+
+</br>
+
+### 볼록 최적화 (Convex optimization)
 
 ::: {.callout-tip appearance="minimal"}
 **convex function**
@@ -72,24 +86,41 @@ $$
 
 </br>
 
-
 - 목적함수가 convex function 이고 feasible region 이 convex set 인 경우의 최적화를 **convex optimization** 이라고 한다.
 - Convex optimization 의 모든 국소적 해는 전역적 해이다.
 - `CVX` (Matlab), `CVXPY` (Python)
 
 </br>
 
-### Convex optimizaiton 문제 
+## Unconstrained convex optimizaiton 문제 
 
 - $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 찾는 문제이다.
 
+$$
+\nabla_\bf{x} f = \begin{bmatrix} \dfrac{\partial f}{\partial x_1} & \cdots & \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+$$ {#eq-optimization_gradient}
+
 </br>
 
-## 간단한 경우의 해
+### Gradient
+
+$\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n \end{bmatrix}^T \in \mathcal{M}_n(\R)$, $\bf{a} \in \mathcal{M}_n(\R)$, $\bf{A}=\mathcal{M}_{m \times n}(\R)$ 일 때 $\bf{x}$ 에 대한 스칼라 함수의 gradient 는 다음과 같다.
+
+$$
+\begin{aligned}
+\nabla_\bf{x} (\bf{a}^T\bf{x}) &= \bf{a}^T\\[0.3em]
+\nabla_\bf{x} (\bf{x}^T\bf{a}) &= \bf{a}^T\\[0.3em]
+\nabla_\bf{x} (\bf{x}^T\bf{x}) &= 2\bf{x}^T\\[0.3em]
+\nabla_{\bf{x}} (\bf{x}^T\bf{Ax}) &= \bf{x}^T(\bf{A}^T +\bf{A})
+\end{aligned}
+$$ {#eq-optimzation_gradient_of_vector}
+
+
+</br>
 
 ### 직접법
 
-- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 직접 구한다.
+- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}^T$ 인 $\bf{x}^\ast$ 를 직접 구한다.
 
 </br>
 
@@ -107,6 +138,8 @@ $$
 \nabla_\bf{x}f(\bf{x})=\bf{a}^T,\qquad \bf{H}_f = \bf{0}.
 $$
 
+이다. 따라서 $\bf{a}^T=\bf{0}^T$ 인 특별한 경우가 아니면 최소값이 존재하지 않는다.
+
 :::
 
 </div>
@@ -120,8 +153,10 @@ $$
 대칭행렬 $\bf{P}$ 에 대해 $f(\bf{x}) = \bf{x}^T\bf{Px} + \bf{b}^T\bf{x}+c$ 인 경우 
 
 $$
-\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{P},\qquad \bf{H}_f = 2\bf{P}
+\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{P} + \bf{b}^T,\qquad \bf{H}_f = 2\bf{P}
 $$
+
+이다. 
 :::
 </div>
 
@@ -137,11 +172,14 @@ $$
 f(\bf{x})= \bf{x}^T\bf{A}^T\bf{Ax} - \bf{x}^T\bf{A}^T\bf{b}-\bf{b}^T\bf{Ax}+\bf{b}^T\bf{b}
 $$
 
-이므로 
+이므로 gradient 와 헤시안 행렬은 다음과 같다.
 
 $$
-\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{A}^T\bf{A} -2\bf{b}^T\bf{A},\qquad \bf{H}_f = 2\bf{A}^T\bf{A}
+\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{A}^T\bf{A} -2\bf{b}^T\bf{A},\qquad \bf{H}_f = 2\bf{A}^T\bf{A}.
 $$
+
+이 때 $\bf{x}^\ast = (\bf{A}^T\bf{A})^{-1}\bf{A}^T\bf{b}$ 이어야 한다. 이 때 $(\bf{A}^T\bf{A})^{-1}\bf{A}^T$ 는 잘 알려진 무어-펜로즈 좌측 유사역행렬(left pseudoinverse matrix) 이다.
+
 :::
 </div>
 
@@ -149,6 +187,6 @@ $$
 
 ### 반복법
 
-- Gradient descent : $\bf{x}_{k+1} = \bf{x}_k -\alpha_k \nabla_\bf{x} f(\bf{x}_k)$. $\alpha_k$ 는 내부적으로 정해지는 scalar.
+- Gradient descent : $\bf{x}_{k+1} = \bf{x}_k -\alpha_k \nabla_\bf{x} f(\bf{x}_k)$. $\alpha_k$ 는 내부적으로 정해지는 양의 scalar.
 
 

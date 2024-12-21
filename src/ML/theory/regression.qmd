@@ -12,7 +12,9 @@ crossref:
 </br>
 
 
-## 선형 회귀
+## 선형회귀
+
+### 선형회귀와 설계행렬 {#sec-regression_design_matrix}
 
 $n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \mathcal{M}_n(\R)$ 에 대한 값 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
 
@@ -20,7 +22,7 @@ $$
 f(\bf{x};\bf{\theta})= \begin{bmatrix} \theta_1 & \cdots & \theta_n\end{bmatrix}^T\bf{x} + \theta_0
 $$
 
-를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 $(\bf{x})_i \in \mathcal{M}_n(\R)$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
+를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 $\bf{x}_i \in \mathcal{M}_n(\R)$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
 
 $$
 \bf{\Phi}:= \begin{bmatrix} 1 & (\bf{x}_1)_1 & \cdots & (\bf{x}_1)_n \\ 1 & (\bf{x}_2)_1 & \cdots & (\bf{x}_2)_n \\ \vdots & & & \vdots \\ 1 & (\bf{x}_m)_1 & \cdots & (\bf{x}_m)_n  \end{bmatrix}, \qquad \bf{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \bf{y} := \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}
@@ -45,7 +47,7 @@ $$
 \bf{\theta}^\ast = \arg\min \left\|\bf{y}- \bf{\Phi \theta}\right\|_p
 $$ {#eq-linear_regression_master_equation_with_p}
 
-벡터 $\bf{v}\in \mathcal{M}_k$ 의 $L_p$ 노름 $\|\bf{v}\|_p$ 는 다음과 같이 정의된다.
+벡터 $\bf{v}\in \mathcal{M}_k(\R)$ 의 $L_p$ 노름 $\|\bf{v}\|_p$ 는 다음과 같이 정의된다.
 
 $$
 \|\bf{v}\|_p := \left(\sum_{i=1}^k |v_i|^p\right)^{1/p}
@@ -55,60 +57,21 @@ $$
 
 $$
 \bf{\theta}^\ast = \arg \min \|\bf{y}-\bf{\Phi\theta}\|_2 = \arg \min\|\bf{y}-\bf{\Phi\theta}\|_2^2
-$$
+$$ {#eq-linear_regression_master_equation_with_L2}
 
 이며 $\arg \min\|\bf{y}-\bf{\Phi\theta}\|_2^2$ 가 $\sqrt{\cdots}$ 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.
  
 </br>
 
+### 최소제곱합 {#sec-regression_least_square_sum}
 
-## 1차원 선형 회귀
-
-선형 회귀 문제에서 $\bf{x}_i \in \R$ 일 경우 1차원 선형 회귀라고 한다. 이 때 선형 회귀문제는
-
-$$
-\bf{\theta}^\ast = \arg \min \|y_i - f(x_i;\bf{\theta})\|_p
-$$ {#eq-regresion_1var_regression_base_1}
-
-인 $\bf{\theta}^\ast$ 를 찾는 문제이다. 여기서 $p$ 는 벡터의 $L_p$ 노름에서의 $p$ 값으로 $1,\,2,\,\infty$ 가 주로 사용되며 첨자가 없을 경우 관례적으로 $p=2$ 이다.. 정해진 $\bf{\theta}$ 에 대해 $\hat{y}_i = f(x_i;\bf{\theta}) =\theta_0 + \theta_1x_i$ 라고 하면 @eq-regresion_1var_regression_base_1 는 다음과 같다.
+@eq-linear_regression_master_equation_with_L2 은 보통 데이터와 모델값의 오차에 대한 제곱합 오차 함수 $E(\bf{\theta})$ 이다. 
 
 $$
-\bf{\theta}^\ast = \arg \min \|y_i - \hat{y}_i\|_p.
-$${#eq-regresion_1var_regression_base_2}
-
-가장 널리 사용되는 $L_2$ 노름의 경우 $\|y_i - \hat{y}_i\|_2 = \sqrt{\sum (y_i - \hat{y}_i)^2}$
-
-
-
-이제 행렬 $\bf{\Phi}$ 를 다음과 같이 정의하자.
-
-$$
-\bf{\Phi} := \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ \vdots & \\ 1 & x_n\end{bmatrix}
+E(\bf{\theta})=\sum_{i=1}^m (y_i - f(\bf{x}_i;\bf{\theta}))^2 = \|\bf{y}-\bf{\Phi \theta}\|_2^2.
 $$
 
-그리고 
-
-$$
-\begin{aligned}
-\bf{\theta}&=\begin{bmatrix} \theta_0 & \theta_1 \end{bmatrix}^T, \\
-\bf{x} &= \begin{bmatrix} x_1 & \cdots & x_n\end{bmatrix}^T, \\
-\bf{y} &= \begin{bmatrix} y_1 & \cdots & y_n\end{bmatrix}^T
-\end{aligned}
-$$
-
-라고 하면
-
-$$
-\theta^\ast = \begin{bmatrix} \theta_1^\ast \\ \theta_2^\ast\end{bmatrix} = \arg \min_{\bf{\theta}} \|\bf{y} - \bf{\Phi \theta}\|_p^2 
-$$
-
-이다. $L_2$ 노름의 경우 
-
-$$
-E(\bf{\theta}) := \|\bf{y}-\bf{\Phi\theta}\|^2 = (\bf{y}-\bf{\Phi\theta})^T(\bf{y}-\bf{\Phi\theta})
-$$
-
-이다. $E(\bf{\theta})$ 를 최소로 하는 $\bf{\theta}^\ast$ 는 우선 $\nabla_{\bf{\theta}}E(\bf{\theta}^\ast) = \bf{0}$ 이어야 하므로,
+이 때 $E(\bf{\theta})$ 가 미분가능하다면 $E(\bf{\theta})$ 를 최소로 하는 $\bf{\theta}^\ast$ 에 대해 $\nabla_\bf{\theta} E(\bf{\theta}^\ast)=\bf{0}$ 이어야 한다. 
 
 $$
 \begin{aligned}
@@ -116,13 +79,84 @@ $$
 \end{aligned}
 $$
 
-이다. 이로부터
+이로부터
 
 $$
 \bf{\theta}^\ast = \left(\bf{\Phi}^T\bf{\Phi}\right)^{-1}\bf{\Phi}^T \bf{y}
-$$
+$$ {#eq-linear_regression_solution_L2_norm}
 
 를 얻는다.
+
+</br>
+
+
+## 다양한 선형 회귀
+
+### 1차원 선형 회귀 {#sec-regression_1d_linear}
+
+1차원 선형회귀에서 설계행렬 $\bf{\Phi}$ 는 다음과 같다.
+
+$$
+\bf{\Phi} = \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ \vdots & \\ 1 & x_n\end{bmatrix}.
+$$
+
+그리고 
+
+$$
+\begin{aligned}
+\bf{\theta}=\begin{bmatrix} \theta_0 \\ \theta_1 \end{bmatrix}, 
+\qquad \bf{x} = \begin{bmatrix} x_1 \\ \vdots \\ x_n\end{bmatrix}, \qquad
+\bf{y} = \begin{bmatrix} y_1 \\ \vdots \\ y_n\end{bmatrix}
+\end{aligned}
+$$
+
+에 대해
+
+$$
+\theta^\ast = \begin{bmatrix} \theta_1^\ast \\ \theta_2^\ast\end{bmatrix} = \arg \min_{\bf{\theta}} \|\bf{y} - \bf{\Phi \theta}\|^2 
+$$
+
+이다. $L_2$ 노름의 경우 $\bf{\theta}^\ast$ 는 @eq-linear_regression_solution_L2_norm 로 부터 다음과 같다는 것을 안다.
+
+$$
+\bf{\theta}^\ast = \left(\bf{\Phi}^T\bf{\Phi}\right)^{-1}\bf{\Phi}^T \bf{y}.
+$$
+
+</br>
+
+### 다항 회귀 {#sec-regression_polynomial_regression}
+
+1 차원 변수 $x$ 에 대한 다항식 $f(x;\bf{\theta}) = \theta_0 + \theta_1 x + \cdots + \theta_m x^m$ 로 데이터를 설명한다고 하자. 우리는 $\R$ 에서 정의된 $\{1,\,x,\,x^2,\ldots,\,x^m\}$ 이 선형독립임을 안다. 즉 다항회귀를 다차원 선형회귀로 간주 할 수 있다. 그렇다면 설계행렬 $\bf{\Phi}$ 는 다음과 같다.
+
+$$
+\bf{\Phi} = \begin{bmatrix} 1 & x_1 & x_1^2 & \cdots & x_1^m \\ 1 & x_2 & x_2^2 & \cdots & x_2^m \\ \vdots & & & &\vdots \\ 1 & x_n & x_n^2 & \cdots & x_n^m\end{bmatrix}.
+$$
+
+$L_2$ 노름에 대해서라면 역시 $\bf{\theta}^\ast = \left(\bf{\Phi}^T\bf{\Phi}\right)^{-1}\bf{\Phi}^T \bf{y}$ 를 구하면 된다.
+
+</br>
+
+아래 코드와 그림은 데이터를 3차 다항식으로 회귀시킨다.
+
+
+```julia
+using LinearAlgebra, CairoMakie,
+
+xs = 1:0.5:10
+f(x, p) = p[1]  + p[2] * x^1 +p[3] * x^2 + p[4] * x^3
+p0 = [-9.0, 11.8, -3.0, 0.2]
+f(x) = f(x, p0)
+ys = f.(xs) .+ 1.0*(rand(length(xs)) .- 0.5);
+Φ = [x^k for x in xs, k in 0:3]
+θ = inv(Φ'*Φ) * Φ' * ys
+f1(x) = f(x, θ)
+```
+
+![다항 회귀](notebooks/polyreg.png){#fig-regression_polyreg width=400}
+
+</br>
+
+### 비선형 회귀 {#sec-regression_nonlinear_regression}
 
 
 
