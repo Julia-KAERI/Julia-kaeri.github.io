@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../src/ML/pytorch/intro.html" rel="next">
+<link href="../../../src/ML/theory/classification.html" rel="next">
 <link href="../../../src/ML/theory/optimization.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -242,6 +242,12 @@ window.Quarto = {
  <span class="menu-text">선형 회귀</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">퍼셈트론과 분류</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -280,13 +286,19 @@ window.Quarto = {
   <li><a href="#선형회귀" id="toc-선형회귀" class="nav-link active" data-scroll-target="#선형회귀"><span class="header-section-number">1</span> 선형회귀</a>
   <ul class="collapse">
   <li><a href="#sec-regression_design_matrix" id="toc-sec-regression_design_matrix" class="nav-link" data-scroll-target="#sec-regression_design_matrix"><span class="header-section-number">1.1</span> 선형회귀와 설계행렬</a></li>
-  <li><a href="#sec-regression_least_square_sum" id="toc-sec-regression_least_square_sum" class="nav-link" data-scroll-target="#sec-regression_least_square_sum"><span class="header-section-number">1.2</span> 최소제곱합</a></li>
+  <li><a href="#sec-regression_training_and_prediction" id="toc-sec-regression_training_and_prediction" class="nav-link" data-scroll-target="#sec-regression_training_and_prediction"><span class="header-section-number">1.2</span> 학습/훈련과 예측</a></li>
+  <li><a href="#sec-regression_least_square_sum" id="toc-sec-regression_least_square_sum" class="nav-link" data-scroll-target="#sec-regression_least_square_sum"><span class="header-section-number">1.3</span> 최소제곱합</a></li>
   </ul></li>
   <li><a href="#다양한-선형-회귀" id="toc-다양한-선형-회귀" class="nav-link" data-scroll-target="#다양한-선형-회귀"><span class="header-section-number">2</span> 다양한 선형 회귀</a>
   <ul class="collapse">
   <li><a href="#sec-regression_1d_linear" id="toc-sec-regression_1d_linear" class="nav-link" data-scroll-target="#sec-regression_1d_linear"><span class="header-section-number">2.1</span> 1차원 선형 회귀</a></li>
   <li><a href="#sec-regression_polynomial_regression" id="toc-sec-regression_polynomial_regression" class="nav-link" data-scroll-target="#sec-regression_polynomial_regression"><span class="header-section-number">2.2</span> 다항 회귀</a></li>
   <li><a href="#sec-regression_nonlinear_regression" id="toc-sec-regression_nonlinear_regression" class="nav-link" data-scroll-target="#sec-regression_nonlinear_regression"><span class="header-section-number">2.3</span> 비선형 회귀</a></li>
+  </ul></li>
+  <li><a href="#정규화" id="toc-정규화" class="nav-link" data-scroll-target="#정규화"><span class="header-section-number">3</span> 정규화</a>
+  <ul class="collapse">
+  <li><a href="#sec-regression_overfitting" id="toc-sec-regression_overfitting" class="nav-link" data-scroll-target="#sec-regression_overfitting"><span class="header-section-number">3.1</span> Overfitting</a></li>
+  <li><a href="#reguralization" id="toc-reguralization" class="nav-link" data-scroll-target="#reguralization"><span class="header-section-number">3.2</span> Reguralization</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -328,7 +340,7 @@ window.Quarto = {
 <h3 data-number="1.1" class="anchored" data-anchor-id="sec-regression_design_matrix"><span class="header-section-number">1.1</span> 선형회귀와 설계행렬</h3>
 <p><span class="math inline">\(n\)</span> 차원 벡터 입력변수 <span class="math inline">\(\boldsymbol{x}_1,\ldots,\,\boldsymbol{x}_m \in \mathcal{M}_n(\mathbb{R})\)</span> 에 대한 값 <span class="math inline">\(y_1,\,\ldots,\,y_m\)</span> 을 가장 잘 기술하는 함수</p>
 <p><span class="math display">\[
-f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &amp; \theta_n\end{bmatrix}^T\boldsymbol{x} + \theta_0
+f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &amp; \theta_n\end{bmatrix}\boldsymbol{x} + \theta_0 = \begin{bmatrix}\theta_0 &amp; \theta_1 &amp; \cdots &amp; \theta_m\end{bmatrix} \begin{bmatrix} 1 \\ \boldsymbol{x}\end{bmatrix}
 \]</span></p>
 <p>를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 <span class="math inline">\(\boldsymbol{x}_i \in \mathcal{M}_n(\mathbb{R})\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 <span class="math inline">\((\boldsymbol{x}_i)_j\)</span> 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.</p>
 <p><span class="math display">\[
@@ -340,11 +352,11 @@ f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &am
 \]</span></p>
 <p>라고 하면 <span class="math inline">\(\boldsymbol{e}\in \mathcal{M}_m(\mathbb{R})\)</span> 의 <span class="math inline">\(i\)</span> 번째 성분 <span class="math inline">\(e_i = y_i - f(\boldsymbol{x}_i;\boldsymbol{\theta})\)</span> 이다. 결국 선형 회귀 문제는 벡터 <span class="math inline">\(\boldsymbol{e}\)</span> 의 크기, 즉 노름을 최소화 하는 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 찾는 문제로 바뀌며 다음과 같이 기술 될 수 있다.</p>
 <p><span id="eq-linear_regression_master_equation"><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg\min \left\|\boldsymbol{y}- \boldsymbol{\Phi \theta}\right\|
+\boldsymbol{\theta}^\ast = \arg\min_\boldsymbol{\theta} \left\|\boldsymbol{y}- \boldsymbol{\Phi \theta}\right\|
 \tag{1}\]</span></span></p>
-<p>많은 경우 노름은 유클리드 노름, 즉 <span class="math inline">\(L_2\)</span> 노름을 말하지만 <span class="math inline">\(L_1\)</span> 혹은 <span class="math inline">\(L_\infty\)</span> 노름도 사용 될 수 있다. <span class="math inline">\(L_p\)</span> 노름을 사용했을 경우 <a href="#eq-linear_regression_master_equation" class="quarto-xref">식&nbsp;1</a> 는 다음과 같이 표기된다.</p>
+<p>노름 가운데 유클리드 노름, 즉 <span class="math inline">\(L_2\)</span> 노름 혹은 <span class="math inline">\(L_1\)</span> 노름을 사용한다. <span class="math inline">\(L_p\)</span> 노름을 사용했을 경우 <a href="#eq-linear_regression_master_equation" class="quarto-xref">식&nbsp;1</a> 는 다음과 같이 표기된다.</p>
 <p><span id="eq-linear_regression_master_equation_with_p"><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg\min \left\|\boldsymbol{y}- \boldsymbol{\Phi \theta}\right\|_p
+\boldsymbol{\theta}^\ast = \arg\min_\boldsymbol{\theta} \left\|\boldsymbol{y}- \boldsymbol{\Phi \theta}\right\|_p
 \tag{2}\]</span></span></p>
 <p>벡터 <span class="math inline">\(\boldsymbol{v}\in \mathcal{M}_k(\mathbb{R})\)</span> 의 <span class="math inline">\(L_p\)</span> 노름 <span class="math inline">\(\|\boldsymbol{v}\|_p\)</span> 는 다음과 같이 정의된다.</p>
 <p><span class="math display">\[
@@ -352,13 +364,22 @@ f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &am
 \]</span></p>
 <p>즉 <span class="math inline">\(\|\boldsymbol{v}\|_1 = \sum |v_i|\)</span> 이며 <span class="math inline">\(\|\boldsymbol{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}\)</span> 는 유클리드 노름이다. <span class="math inline">\(L_\infty\)</span> 는 <span class="math inline">\(p\to \infty\)</span> 극한으로 정의되며 <span class="math inline">\(\|\boldsymbol{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|\)</span> 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 <span class="math inline">\(L_\infty\)</span> 노름이 가장 큰 영향을 받으며 <span class="math inline">\(\|\boldsymbol{v}\|_1\)</span> 노름이 가장 영향을 적게 받는다. 일반적으로 <span class="math inline">\(L_2\)</span> 노름을 가장 많이 사용하며 튀는 데이터가 있을 경우 <span class="math inline">\(L_1\)</span> 노름을 사용하기도 한다. <span class="math inline">\(L_2\)</span> 노름의 경우</p>
 <p><span id="eq-linear_regression_master_equation_with_L2"><span class="math display">\[
-\boldsymbol{\theta}^\ast = \arg \min \|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2 = \arg \min\|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2^2
+\boldsymbol{\theta}^\ast = \arg \min_\boldsymbol{\theta} \|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2^2
 \tag{3}\]</span></span></p>
-<p>이며 <span class="math inline">\(\arg \min\|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2^2\)</span> 가 <span class="math inline">\(\sqrt{\cdots}\)</span> 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.</p>
+<p>이며 <span class="math inline">\(\arg \min_\boldsymbol{\theta}\|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2^2\)</span> 가 <span class="math inline">\(\sqrt{\cdots}\)</span> 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.</p>
 <p><br></p>
 </section>
-<section id="sec-regression_least_square_sum" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="sec-regression_least_square_sum"><span class="header-section-number">1.2</span> 최소제곱합</h3>
+<section id="sec-regression_training_and_prediction" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="sec-regression_training_and_prediction"><span class="header-section-number">1.2</span> 학습/훈련과 예측</h3>
+<p>우리가 이미 획득한 입력 벡터의 집합 <span class="math inline">\(\{\boldsymbol{x}_i\}\)</span> 와 레이블(label) <span class="math inline">\(\{y_i = y_i(\boldsymbol{x}_i)\}\)</span> 로 이루어진 데이터 <span class="math inline">\(\{(\boldsymbol{x}_i,\, y_i):i=1,\ldots,\,m\}\)</span>, 그리고 데이터를 잘 설명할것이라고 기대되는 함수 <span class="math inline">\(f(\boldsymbol{x},\,\boldsymbol{\theta})\)</span> 에 대해 <a href="#eq-linear_regression_master_equation" class="quarto-xref">식&nbsp;1</a> 의 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 얻는 것을 훈련 혹은 학습 이라고 한다. 이 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}\)</span> 의 상황에서 <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta}^\ast)\)</span> 의 값을 얻을것이라고 기대한다. 즉 우리는 주어진 데이터를 학습시켜 미지의 상황을 예측 할 수 있다. 이것은 비단 선형 회귀 뿐만 아니라 모든 통계학적 처리 및 기계학습의 과정에 공통된다.</p>
+<p>여기서 우리가 고려해야 할 상황이 있다. 이것은 항상 명심해야 한다.</p>
+<p>  Q1. 데이터는 편항되거나 오염되거나 부실하지 않은가?</p>
+<p>  Q2. <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta})\)</span> 의 선택은 합리적인가?</p>
+<p>  Q3. <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 얻는 과정은 정확한가?</p>
+<p><br></p>
+</section>
+<section id="sec-regression_least_square_sum" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="sec-regression_least_square_sum"><span class="header-section-number">1.3</span> 최소제곱합</h3>
 <p><a href="#eq-linear_regression_master_equation_with_L2" class="quarto-xref">식&nbsp;3</a> 은 보통 데이터와 모델값의 오차에 대한 제곱합 오차 함수 <span class="math inline">\(E(\boldsymbol{\theta})\)</span> 이다.</p>
 <p><span class="math display">\[
 E(\boldsymbol{\theta})=\sum_{i=1}^m (y_i - f(\boldsymbol{x}_i;\boldsymbol{\theta}))^2 = \|\boldsymbol{y}-\boldsymbol{\Phi \theta}\|_2^2.
@@ -366,7 +387,7 @@ E(\boldsymbol{\theta})=\sum_{i=1}^m (y_i - f(\boldsymbol{x}_i;\boldsymbol{\theta
 <p>이 때 <span class="math inline">\(E(\boldsymbol{\theta})\)</span> 가 미분가능하다면 <span class="math inline">\(E(\boldsymbol{\theta})\)</span> 를 최소로 하는 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 에 대해 <span class="math inline">\(\nabla_\boldsymbol{\theta} E(\boldsymbol{\theta}^\ast)=\boldsymbol{0}\)</span> 이어야 한다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-\nabla_\boldsymbol{\theta}E(\boldsymbol{\theta}) &amp;= -2\boldsymbol{y}^T\boldsymbol{\Phi}-\left(\boldsymbol{\theta}^\ast\right)^T(\boldsymbol{\Phi}^T\boldsymbol{\Phi}) = \boldsymbol{0}
+\nabla_\boldsymbol{\theta}E(\boldsymbol{\theta}) &amp;= -2\boldsymbol{\Phi}^T \boldsymbol{y}-2\boldsymbol{\Phi}^T\boldsymbol{\Phi}\boldsymbol{\theta}^\ast = \boldsymbol{0}
 \end{aligned}
 \]</span></p>
 <p>이로부터</p>
@@ -436,6 +457,92 @@ E(\boldsymbol{\theta})=\sum_{i=1}^m (y_i - f(\boldsymbol{x}_i;\boldsymbol{\theta
 </section>
 <section id="sec-regression_nonlinear_regression" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="sec-regression_nonlinear_regression"><span class="header-section-number">2.3</span> 비선형 회귀</h3>
+<p>다항회귀에서 예를 보였지만 우리가 맞추기를 원하는 함수가 굳이 선형함수가 아니어도 선형회귀를 쓸 수 있다. 실계수 다항식의 집합 <span class="math inline">\(\mathbb{R}[x]\)</span> 은 벡터공간이며 여기에서 <span class="math inline">\(\{1,\,x,\,x^2,\ldots,\,x^m\}\)</span> 이 선형독립인것, 따라서 기저가 될 수 있다는 것을 알고 있다. 마찬가지로 선형 독립인 함수의 집합을 기저로 사용 할 수 있다.</p>
+<p>선형 독립인 기저함수를 <span class="math inline">\(\{\phi_1,\ldots,\,\phi_m\}\)</span> 라고 하고 데이터 <span class="math inline">\(\{\boldsymbol{x}_i\},\, \{y_i\}\)</span> 를 아래의 <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta})\)</span> 로 회귀시키고자 한다고 하자.</p>
+<p><span class="math display">\[
+f(\boldsymbol{x};\boldsymbol{\theta}) = \theta_0 + \theta_1\phi_1(\boldsymbol{x}) + \cdots + \theta_m \phi_m (\boldsymbol{x})
+\]</span></p>
+<p>그렇다면 설계 행렬 <span class="math inline">\(\boldsymbol{\Phi}\)</span> 는</p>
+<p><span class="math display">\[
+\boldsymbol{\Phi} = \begin{bmatrix} 1 &amp; \phi_1(\boldsymbol{x}_1) &amp; \cdots &amp; \phi_m(\boldsymbol{x}_1) \\1 &amp; \phi_1(\boldsymbol{x}_2) &amp; \cdots &amp; \phi_2(\boldsymbol{x}_2) \\ \vdots &amp; &amp; &amp; \vdots \\ 1 &amp; \phi_m(\boldsymbol{x}_1) &amp; \cdots &amp; \phi_m(\boldsymbol{x}_1) \end{bmatrix}
+\]</span></p>
+<p>와 같고 역시 <span class="math inline">\(L_2\)</span> 노름에 대해서라면 <span class="math inline">\(\boldsymbol{\theta}^\ast = \left(\boldsymbol{\Phi}^T\boldsymbol{\Phi}\right)^{-1}\boldsymbol{\Phi}^T \boldsymbol{y}\)</span> 를 구한다.</p>
+<p>비선형 회귀에 사용되는 기저함수로는</p>
+<div id="tbl-regression_basis_functions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regression_basis_functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+표&nbsp;1: 비선형 회귀에 사용되는 기저 함수
+</figcaption>
+<div aria-describedby="tbl-regression_basis_functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 25%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">이름</th>
+<th style="text-align: center;">정의</th>
+<th style="text-align: center;">특징</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">다항 함수</td>
+<td style="text-align: center;"><span class="math inline">\(\phi_j (x) = x^{j}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">가우시안 기저 함수</td>
+<td style="text-align: center;"><span class="math inline">\(\phi_j (\boldsymbol{x}) = \exp \left[- \dfrac{\|\boldsymbol{x}-\boldsymbol{\mu}_j\|^2}{2\sigma^2}\right]\)</span></td>
+<td style="text-align: center;">소위 radial basis function(RBF)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">시그모이드 함수</td>
+<td style="text-align: center;"><span class="math inline">\(\phi_j(x) = \dfrac{1}{1+\exp (-(x-\mu_j)/\sigma)}\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="정규화" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="정규화"><span class="header-section-number">3</span> 정규화</h2>
+<section id="sec-regression_overfitting" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="sec-regression_overfitting"><span class="header-section-number">3.1</span> Overfitting</h3>
+<p>주어진 데이터 에 대한 2차, 4차, 5차, 9차 다항식에 대한 다항회귀의 결과는 아래와 같다.</p>
+<div id="fig-regression_overfit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression_overfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="notebooks/overfit.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression_overfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: 다항회귀
+</figcaption>
+</figure>
+</div>
+<p>데이터 자체가 그다지 규칙적이지 않다. 총 9개의 데이터가 있으며 우리는 주어진 데이터의 결과와 일치하는 다항식이 8차 이상에 서 존재한다는 것을 안다. 그러나 이렇게 얻은 8차 이상의 다항식이 주어진 변수 <span class="math inline">\(\{x_i\}\)</span> 이외의 점에서 제대로 된 예측값을 내는것은 다른 문제이다. 예를 들어 위에서 얻은 8차 다항식에 의하면 <span class="math inline">\(x=2\)</span> 에서의 예측값이 71.8 정도인데 실제 데이터가 -20 에서 20 사이에 존재한다는 것을 고려해보면 매우 튀는 결과이다.</p>
+<p>물론 이 데이터가 어떤 데이터냐에 따라 맞는 결과, 혹은 정답에 가까운 결과일 수도 있다. 문제는 실제로 이 데이터가 실제로 어떤 시스템에 대한 데이터냐이며, 만약 우리가 다루는 시스템에서 허용하지 않거나 아주 희박한 확률로 가능한 결과라면 여기서 얻은 8차 다항식은 시스템을 제대로 설명하는 모델이라고 할 수 없다.</p>
+<p>이렇게 주어진 데이터에는 잘 맞지만 이 데이터가 기술하는 시스템과는 동떨어진 모델을 만들어 내는 것을 <strong>과적합(overfitting)</strong> 이라고 한다. 과적합은 모델에서 결정해야 하는 매개변수의 갯수가 필요 이상으로 많아서, 즉 모델의 자유도가 지나치게 커서 발생한다.</p>
+<p>이것을 해결하기 위해 우선 생각할 수 있는 것은 매개변수의 갯수가 적은 모델을 선택하는 것이다. 또 하나의 방법은 매개변수의 절대값이 지나치게 커지는 것을 막는 것이다. 이 방법중 가장 유용한 방법이 다음에 소개할 <strong>정규화(reguralization)</strong> 이다.</p>
+<p><br></p>
+</section>
+<section id="reguralization" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="reguralization"><span class="header-section-number">3.2</span> Reguralization</h3>
+<p>우리는 매개변수의 최적값 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를</p>
+<p><span class="math display">\[
+\boldsymbol{\theta}^\ast = \arg \min_{\boldsymbol{\theta}} \|\boldsymbol{y}-\boldsymbol{\Phi \theta}\|_2^2
+\]</span></p>
+<p>로 정했다. 만약 적당햔 양수 <span class="math inline">\(\lambda&gt;0\)</span> 에 대해</p>
+<p><span id="eq-regression_regulaization"><span class="math display">\[
+\boldsymbol{\theta}^\ast =   \arg \min_\boldsymbol{\theta} \left(\|\boldsymbol{y}-\boldsymbol{\Phi \theta}\|_2^2 + \lambda \|\boldsymbol{\theta}\| \right)
+\tag{5}\]</span></span></p>
+<p>로 정하는 것이다. <a href="#eq-regression_regulaization" class="quarto-xref">식&nbsp;5</a> 의 <span class="math inline">\(\lambda \|\boldsymbol{\theta}\|\)</span> 는 <span class="math inline">\(\|\boldsymbol{\theta}\|\)</span> 값이 큰 경우에서 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 가 결정되는 것을 방해한다. 뒤의 <span class="math inline">\(\lambda \|\boldsymbol{\theta}\|\)</span> 의 노름은 <span class="math inline">\(L_1\)</span> 혹은 <span class="math inline">\(L_2\)</span> 가운데 선택하며 앞의 <span class="math inline">\(\|\boldsymbol{y}-\boldsymbol{\Phi \theta}\|\)</span> 의 노름과 같을 필요는 없다. <span class="math inline">\(L_2\)</span> 노름의 경우를 <strong>Ridge regression</strong> 이라고 하고 <span class="math inline">\(L_1\)</span> 노름의 경우는 <strong>LASSO</strong> (least absolute shrinkage and selection operator) 라고 한다.</p>
 
 
 </section>
@@ -869,8 +976,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/ML/pytorch/intro.html" class="pagination-link" aria-label="소개">
-        <span class="nav-page-text">소개</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../src/ML/theory/classification.html" class="pagination-link" aria-label="퍼셈트론과 분류">
+        <span class="nav-page-text">퍼셈트론과 분류</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

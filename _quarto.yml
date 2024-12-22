@@ -71,6 +71,7 @@ website:
             - src/ML/theory/ML.qmd
             - src/ML/theory/optimization.qmd
             - src/ML/theory/regression.qmd
+            - src/ML/theory/classification.qmd
         - section : "PyTorch"
           contents :
             - src/ML/pytorch/intro.qmd

@@ -19,7 +19,7 @@ crossref:
 $n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \mathcal{M}_n(\R)$ 에 대한 값 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
 
 $$
-f(\bf{x};\bf{\theta})= \begin{bmatrix} \theta_1 & \cdots & \theta_n\end{bmatrix}^T\bf{x} + \theta_0
+f(\bf{x};\bf{\theta})= \begin{bmatrix} \theta_1 & \cdots & \theta_n\end{bmatrix}\bf{x} + \theta_0 = \begin{bmatrix}\theta_0 & \theta_1 & \cdots & \theta_m\end{bmatrix} \begin{bmatrix} 1 \\ \bf{x}\end{bmatrix}
 $$
 
 를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 $\bf{x}_i \in \mathcal{M}_n(\R)$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
@@ -37,14 +37,14 @@ $$
 라고 하면 $\bf{e}\in \mathcal{M}_m(\R)$ 의 $i$ 번째 성분 $e_i = y_i - f(\bf{x}_i;\bf{\theta})$ 이다. 결국 선형 회귀 문제는 벡터 $\bf{e}$ 의 크기, 즉 노름을 최소화 하는 $\bf{\theta}^\ast$ 를 찾는 문제로 바뀌며 다음과 같이 기술 될 수 있다.
 
 $$
-\bf{\theta}^\ast = \arg\min \left\|\bf{y}- \bf{\Phi \theta}\right\|
+\bf{\theta}^\ast = \arg\min_\bf{\theta} \left\|\bf{y}- \bf{\Phi \theta}\right\|
 $$ {#eq-linear_regression_master_equation}
 
 
-많은 경우 노름은 유클리드 노름, 즉 $L_2$ 노름을 말하지만 $L_1$ 혹은 $L_\infty$ 노름도 사용 될 수 있다. $L_p$ 노름을 사용했을 경우 @eq-linear_regression_master_equation 는 다음과 같이 표기된다.
+노름 가운데 유클리드 노름, 즉 $L_2$ 노름 혹은 $L_1$ 노름을 사용한다. $L_p$ 노름을 사용했을 경우 @eq-linear_regression_master_equation 는 다음과 같이 표기된다.
 
 $$
-\bf{\theta}^\ast = \arg\min \left\|\bf{y}- \bf{\Phi \theta}\right\|_p
+\bf{\theta}^\ast = \arg\min_\bf{\theta} \left\|\bf{y}- \bf{\Phi \theta}\right\|_p
 $$ {#eq-linear_regression_master_equation_with_p}
 
 벡터 $\bf{v}\in \mathcal{M}_k(\R)$ 의 $L_p$ 노름 $\|\bf{v}\|_p$ 는 다음과 같이 정의된다.
@@ -56,11 +56,28 @@ $$
 즉 $\|\bf{v}\|_1 = \sum |v_i|$ 이며 $\|\bf{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}$ 는 유클리드 노름이다. $L_\infty$ 는 $p\to \infty$ 극한으로 정의되며 $\|\bf{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|$ 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 $L_\infty$ 노름이 가장 큰 영향을 받으며 $\|\bf{v}\|_1$ 노름이 가장 영향을 적게 받는다. 일반적으로 $L_2$ 노름을 가장 많이 사용하며 튀는 데이터가 있을 경우 $L_1$ 노름을 사용하기도 한다. $L_2$ 노름의 경우
 
 $$
-\bf{\theta}^\ast = \arg \min \|\bf{y}-\bf{\Phi\theta}\|_2 = \arg \min\|\bf{y}-\bf{\Phi\theta}\|_2^2
+\bf{\theta}^\ast = \arg \min_\bf{\theta} \|\bf{y}-\bf{\Phi\theta}\|_2^2
 $$ {#eq-linear_regression_master_equation_with_L2}
 
-이며 $\arg \min\|\bf{y}-\bf{\Phi\theta}\|_2^2$ 가 $\sqrt{\cdots}$ 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.
+이며 $\arg \min_\bf{\theta}\|\bf{y}-\bf{\Phi\theta}\|_2^2$ 가 $\sqrt{\cdots}$ 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.
  
+</br>
+
+### 학습/훈련과 예측{#sec-regression_training_and_prediction}
+
+우리가 이미 획득한 입력 벡터의 집합 $\{\bf{x}_i\}$ 와 레이블(label) $\{y_i = y_i(\bf{x}_i)\}$ 로 이루어진 데이터 $\{(\bf{x}_i,\, y_i):i=1,\ldots,\,m\}$, 그리고 데이터를 잘 설명할것이라고 기대되는 함수 $f(\bf{x},\,\bf{\theta})$ 에 대해 @eq-linear_regression_master_equation 의 $\bf{\theta}^\ast$ 를 얻는 것을 훈련 혹은 학습 이라고 한다. 이 $\bf{\theta}^\ast$ 에 대해 $\bf{x}$ 의 상황에서 $f(\bf{x};\bf{\theta}^\ast)$ 의 값을 얻을것이라고 기대한다. 즉 우리는 주어진 데이터를 학습시켜 미지의 상황을 예측 할 수 있다. 이것은 비단 선형 회귀 뿐만 아니라 모든 통계학적 처리 및 기계학습의 과정에 공통된다.
+
+여기서 우리가 고려해야 할 상황이 있다. 이것은 항상 명심해야 한다.
+
+&emsp; Q1. 데이터는 편항되거나 오염되거나 부실하지 않은가?
+   
+&emsp; Q2. $f(\bf{x};\bf{\theta})$ 의 선택은 합리적인가?
+
+&emsp; Q3. $\bf{\theta}^\ast$ 를 얻는 과정은 정확한가?
+
+
+
+
 </br>
 
 ### 최소제곱합 {#sec-regression_least_square_sum}
@@ -70,12 +87,12 @@ $$ {#eq-linear_regression_master_equation_with_L2}
 $$
 E(\bf{\theta})=\sum_{i=1}^m (y_i - f(\bf{x}_i;\bf{\theta}))^2 = \|\bf{y}-\bf{\Phi \theta}\|_2^2.
 $$
-
+ 
 이 때 $E(\bf{\theta})$ 가 미분가능하다면 $E(\bf{\theta})$ 를 최소로 하는 $\bf{\theta}^\ast$ 에 대해 $\nabla_\bf{\theta} E(\bf{\theta}^\ast)=\bf{0}$ 이어야 한다. 
 
 $$
 \begin{aligned}
-\nabla_\bf{\theta}E(\bf{\theta}) &= -2\bf{y}^T\bf{\Phi}-\left(\bf{\theta}^\ast\right)^T(\bf{\Phi}^T\bf{\Phi}) = \bf{0}
+\nabla_\bf{\theta}E(\bf{\theta}) &= -2\bf{\Phi}^T \bf{y}-2\bf{\Phi}^T\bf{\Phi}\bf{\theta}^\ast = \bf{0}
 \end{aligned}
 $$
 
@@ -157,6 +174,71 @@ f1(x) = f(x, θ)
 </br>
 
 ### 비선형 회귀 {#sec-regression_nonlinear_regression}
+
+다항회귀에서 예를 보였지만 우리가 맞추기를 원하는 함수가 굳이 선형함수가 아니어도 선형회귀를 쓸 수 있다. 실계수 다항식의 집합 $\R[x]$ 은 벡터공간이며 여기에서 $\{1,\,x,\,x^2,\ldots,\,x^m\}$ 이 선형독립인것, 따라서 기저가 될 수 있다는 것을 알고 있다. 마찬가지로 선형 독립인 함수의 집합을 기저로 사용 할 수 있다. 
+
+선형 독립인 기저함수를 $\{\phi_1,\ldots,\,\phi_m\}$ 라고 하고 데이터 $\{\bf{x}_i\},\, \{y_i\}$ 를 아래의 $f(\bf{x};\bf{\theta})$ 로 회귀시키고자 한다고 하자.
+
+$$
+f(\bf{x};\bf{\theta}) = \theta_0 + \theta_1\phi_1(\bf{x}) + \cdots + \theta_m \phi_m (\bf{x})
+$$
+
+그렇다면 설계 행렬 $\bf{\Phi}$ 는
+
+$$
+\bf{\Phi} = \begin{bmatrix} 1 & \phi_1(\bf{x}_1) & \cdots & \phi_m(\bf{x}_1) \\1 & \phi_1(\bf{x}_2) & \cdots & \phi_2(\bf{x}_2) \\ \vdots & & & \vdots \\ 1 & \phi_m(\bf{x}_1) & \cdots & \phi_m(\bf{x}_1) \end{bmatrix}
+$$
+
+와 같고 역시 $L_2$ 노름에 대해서라면 $\bf{\theta}^\ast = \left(\bf{\Phi}^T\bf{\Phi}\right)^{-1}\bf{\Phi}^T \bf{y}$ 를 구한다.
+
+
+비선형 회귀에 사용되는 기저함수로는 
+
+| 이름 | 정의 | 특징 |
+|:---------:|:--------:|:----------------:
+| 다항 함수 | $\phi_j (x) = x^{j}$ | |
+| 가우시안 기저 함수 | $\phi_j (\bf{x}) = \exp \left[- \dfrac{\|\bf{x}-\bf{\mu}_j\|^2}{2\sigma^2}\right]$ | 소위 radial basis function(RBF) |
+| 시그모이드 함수 | $\phi_j(x) = \dfrac{1}{1+\exp (-(x-\mu_j)/\sigma)}$ | |
+: 비선형 회귀에 사용되는 기저 함수 {#tbl-regression_basis_functions}
+
+</br>
+
+## 정규화
+
+### Overfitting {#sec-regression_overfitting}
+
+
+
+주어진 데이터 에 대한 2차, 4차, 5차, 9차 다항식에 대한 다항회귀의 결과는 아래와 같다.
+
+![다항회귀](notebooks/overfit.png){#fig-regression_overfit width=400}
+
+
+데이터 자체가 그다지 규칙적이지 않다. 총 9개의 데이터가 있으며 우리는 주어진 데이터의 결과와 일치하는 다항식이 8차 이상에 서 존재한다는 것을 안다. 그러나 이렇게 얻은 8차 이상의 다항식이 주어진 변수 $\{x_i\}$ 이외의 점에서 제대로 된 예측값을 내는것은 다른 문제이다. 예를 들어 위에서 얻은 8차 다항식에 의하면 $x=2$ 에서의 예측값이 71.8 정도인데 실제 데이터가 -20 에서 20 사이에 존재한다는 것을 고려해보면 매우 튀는 결과이다.
+
+물론 이 데이터가 어떤 데이터냐에 따라 맞는 결과, 혹은 정답에 가까운 결과일 수도 있다. 문제는 실제로 이 데이터가 실제로 어떤 시스템에 대한 데이터냐이며, 만약 우리가 다루는 시스템에서 허용하지 않거나 아주 희박한 확률로 가능한 결과라면 여기서 얻은 8차 다항식은 시스템을 제대로 설명하는 모델이라고 할 수 없다.
+
+이렇게 주어진 데이터에는 잘 맞지만 이 데이터가 기술하는 시스템과는 동떨어진 모델을 만들어 내는 것을 **과적합(overfitting)** 이라고 한다. 과적합은 모델에서 결정해야 하는 매개변수의 갯수가 필요 이상으로 많아서, 즉 모델의 자유도가 지나치게 커서 발생한다.
+
+이것을 해결하기 위해 우선 생각할 수 있는 것은 매개변수의 갯수가 적은 모델을 선택하는 것이다. 또 하나의 방법은 매개변수의 절대값이 지나치게 커지는 것을 막는 것이다. 이 방법중 가장 유용한 방법이 다음에 소개할 **정규화(reguralization)** 이다.
+
+</br>
+
+### Reguralization
+
+우리는 매개변수의 최적값 $\bf{\theta}^\ast$ 를
+
+$$
+\bf{\theta}^\ast = \arg \min_{\bf{\theta}} \|\bf{y}-\bf{\Phi \theta}\|_2^2
+$$
+
+로 정했다. 만약 적당햔 양수 $\lambda>0$ 에 대해
+
+$$
+\bf{\theta}^\ast =   \arg \min_\bf{\theta} \left(\|\bf{y}-\bf{\Phi \theta}\|_2^2 + \lambda \|\bf{\theta}\| \right)
+$$ {#eq-regression_regulaization}
+
+로 정하는 것이다. @eq-regression_regulaization 의 $\lambda \|\bf{\theta}\|$ 는 $\|\bf{\theta}\|$ 값이 큰 경우에서 $\bf{\theta}^\ast$ 가 결정되는 것을 방해한다. 뒤의 $\lambda \|\bf{\theta}\|$ 의 노름은 $L_1$ 혹은 $L_2$ 가운데 선택하며 앞의 $\|\bf{y}-\bf{\Phi \theta}\|$ 의 노름과 같을 필요는 없다. $L_2$ 노름의 경우를 **Ridge regression** 이라고 하고 $L_1$ 노름의 경우는 **LASSO** (least absolute shrinkage and selection operator) 라고 한다.
 
 
 

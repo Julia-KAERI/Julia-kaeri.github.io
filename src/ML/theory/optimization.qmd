@@ -11,14 +11,6 @@ crossref:
 
 </br>
 
-### 참고자료 {.unnumbered}
-
-- [기계공학을 위한 머신 러닝 youtube](https://www.youtube.com/watch?v=QJSSWNIAPlw&list=PLGMtjo8jDX9ACghcCLack0uCqHPWJaC14&index=17) 와 [머신 러닝 강의자료](https://iailab.kaist.ac.kr/teaching/machine-learning) @iAI_Kaist
-
-- @Bishop2006
-
-</br>
-
 ## 최적화
 
 ### 최적화의 기본 요소
@@ -51,7 +43,7 @@ $$
 
 - $\displaystyle \bf{x}^\ast = \arg \min_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는다. 이 $\bf{x}^\ast$ 를 최적해 (optimal solution) 이라고 한다.
 
-- $g_i,\,h_j$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
+- $\{g_i\}$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
 
 </br>
 **등가 변환**
@@ -97,8 +89,17 @@ $$
 - $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 찾는 문제이다.
 
 $$
-\nabla_\bf{x} f = \begin{bmatrix} \dfrac{\partial f}{\partial x_1} & \cdots & \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+\nabla_\bf{x} f := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} \\ \vdots \\ \dfrac{\partial f}{\partial x_n}\end{bmatrix}
 $$ {#eq-optimization_gradient}
+
+이와 유사하게 
+
+$$
+\dfrac{df}{d\bf{x}} := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} & \cdots & \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+$${#eq-optimization_differentiation_to_vector}
+
+로 정의한다. 즉 $\nabla_{\bf{x}}f$ 는 열벡터이며 $\dfrac{d f}{d\bf{x}}$ 는 행벡터이다. 
+
 
 </br>
 
@@ -108,10 +109,10 @@ $\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n \end{bmatrix}^T \in \mathcal{M}_n(\R
 
 $$
 \begin{aligned}
-\nabla_\bf{x} (\bf{a}^T\bf{x}) &= \bf{a}^T\\[0.3em]
-\nabla_\bf{x} (\bf{x}^T\bf{a}) &= \bf{a}^T\\[0.3em]
-\nabla_\bf{x} (\bf{x}^T\bf{x}) &= 2\bf{x}^T\\[0.3em]
-\nabla_{\bf{x}} (\bf{x}^T\bf{Ax}) &= \bf{x}^T(\bf{A}^T +\bf{A})
+\nabla_\bf{x} (\bf{a}^T\bf{x}) &= \bf{a}\\[0.3em]
+\nabla_\bf{x} (\bf{x}^T\bf{a}) &= \bf{a}\\[0.3em]
+\nabla_\bf{x} (\bf{x}^T\bf{x}) &= 2\bf{x}\\[0.3em]
+\nabla_{\bf{x}} (\bf{x}^T\bf{Ax}) &= (\bf{A}^T +\bf{A})\bf{x}
 \end{aligned}
 $$ {#eq-optimzation_gradient_of_vector}
 
@@ -120,7 +121,7 @@ $$ {#eq-optimzation_gradient_of_vector}
 
 ### 직접법
 
-- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}^T$ 인 $\bf{x}^\ast$ 를 직접 구한다.
+- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 직접 구한다.
 
 </br>
 
@@ -135,10 +136,10 @@ $$ {#eq-optimzation_gradient_of_vector}
 $f(\bf{x}) = \bf{a}^T\bf{x} + \bf{b}$ 인 경우 
 
 $$
-\nabla_\bf{x}f(\bf{x})=\bf{a}^T,\qquad \bf{H}_f = \bf{0}.
+\nabla_\bf{x}f(\bf{x})=\bf{a},\qquad \bf{H}_f = \bf{0}.
 $$
 
-이다. 따라서 $\bf{a}^T=\bf{0}^T$ 인 특별한 경우가 아니면 최소값이 존재하지 않는다.
+이다. 따라서 $\bf{a}=\bf{0}$ 인 특별한 경우가 아니면 최소값이 존재하지 않는다.
 
 :::
 
@@ -153,7 +154,7 @@ $$
 대칭행렬 $\bf{P}$ 에 대해 $f(\bf{x}) = \bf{x}^T\bf{Px} + \bf{b}^T\bf{x}+c$ 인 경우 
 
 $$
-\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{P} + \bf{b}^T,\qquad \bf{H}_f = 2\bf{P}
+\nabla_{\bf{x}}f(\bf{x})= 2\bf{Px} + \bf{b},\qquad \bf{H}_f = 2\bf{P}
 $$
 
 이다. 
@@ -175,7 +176,7 @@ $$
 이므로 gradient 와 헤시안 행렬은 다음과 같다.
 
 $$
-\nabla_{\bf{x}}f(\bf{x})= 2\bf{x}^T\bf{A}^T\bf{A} -2\bf{b}^T\bf{A},\qquad \bf{H}_f = 2\bf{A}^T\bf{A}.
+\nabla_{\bf{x}}f(\bf{x})= 2\bf{A}^T\bf{Ax} -2\bf{A}^T\bf{b},\qquad \bf{H}_f = 2\bf{A}^T\bf{A}.
 $$
 
 이 때 $\bf{x}^\ast = (\bf{A}^T\bf{A})^{-1}\bf{A}^T\bf{b}$ 이어야 한다. 이 때 $(\bf{A}^T\bf{A})^{-1}\bf{A}^T$ 는 잘 알려진 무어-펜로즈 좌측 유사역행렬(left pseudoinverse matrix) 이다.

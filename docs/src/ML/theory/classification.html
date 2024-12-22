@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>최적화 – Science &amp; Programming</title>
+<title>퍼셈트론과 분류 – Science &amp; Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../src/ML/theory/regression.html" rel="next">
-<link href="../../../src/ML/theory/ML.html" rel="prev">
+<link href="../../../src/ML/pytorch/intro.html" rel="next">
+<link href="../../../src/ML/theory/regression.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -163,7 +163,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/optimization.html">최적화</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/classification.html">퍼셈트론과 분류</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,7 +198,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/ML/theory/optimization.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../src/ML/theory/optimization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">최적화</span></a>
   </div>
 </li>
@@ -210,7 +210,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/ML/theory/classification.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/ML/theory/classification.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">퍼셈트론과 분류</span></a>
   </div>
 </li>
@@ -249,27 +249,25 @@ window.Quarto = {
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#최적화" id="toc-최적화" class="nav-link active" data-scroll-target="#최적화"><span class="header-section-number">1</span> 최적화</a>
+  <li><a href="#기하학" id="toc-기하학" class="nav-link active" data-scroll-target="#기하학">기하학</a></li>
+  <li><a href="#분류-문제" id="toc-분류-문제" class="nav-link" data-scroll-target="#분류-문제"><span class="header-section-number">1</span> 분류 문제</a>
   <ul class="collapse">
-  <li><a href="#최적화의-기본-요소" id="toc-최적화의-기본-요소" class="nav-link" data-scroll-target="#최적화의-기본-요소"><span class="header-section-number">1.1</span> 최적화의 기본 요소</a></li>
-  <li><a href="#최적화의-수학-모델" id="toc-최적화의-수학-모델" class="nav-link" data-scroll-target="#최적화의-수학-모델"><span class="header-section-number">1.2</span> 최적화의 수학 모델</a></li>
-  <li><a href="#볼록-최적화-convex-optimization" id="toc-볼록-최적화-convex-optimization" class="nav-link" data-scroll-target="#볼록-최적화-convex-optimization"><span class="header-section-number">1.3</span> 볼록 최적화 (Convex optimization)</a></li>
+  <li><a href="#sec-classificatin_introduction" id="toc-sec-classificatin_introduction" class="nav-link" data-scroll-target="#sec-classificatin_introduction"><span class="header-section-number">1.1</span> 개요</a></li>
+  <li><a href="#sec-classification_generalized_linear_model" id="toc-sec-classification_generalized_linear_model" class="nav-link" data-scroll-target="#sec-classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</a></li>
+  <li><a href="#선형-판별-2-개의-class" id="toc-선형-판별-2-개의-class" class="nav-link" data-scroll-target="#선형-판별-2-개의-class"><span class="header-section-number">1.3</span> 선형 판별 : 2 개의 class</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">1.4</span> </a></li>
+  <li><a href="#퍼셉트론" id="toc-퍼셉트론" class="nav-link" data-scroll-target="#퍼셉트론"><span class="header-section-number">1.5</span> 퍼셉트론</a></li>
   </ul></li>
-  <li><a href="#unconstrained-convex-optimizaiton-문제" id="toc-unconstrained-convex-optimizaiton-문제" class="nav-link" data-scroll-target="#unconstrained-convex-optimizaiton-문제"><span class="header-section-number">2</span> Unconstrained convex optimizaiton 문제</a>
-  <ul class="collapse">
-  <li><a href="#gradient" id="toc-gradient" class="nav-link" data-scroll-target="#gradient"><span class="header-section-number">2.1</span> Gradient</a></li>
-  <li><a href="#직접법" id="toc-직접법" class="nav-link" data-scroll-target="#직접법"><span class="header-section-number">2.2</span> 직접법</a></li>
-  <li><a href="#반복법" id="toc-반복법" class="nav-link" data-scroll-target="#반복법"><span class="header-section-number">2.3</span> 반복법</a></li>
-  </ul></li>
+  <li><a href="#support-vector-machine" id="toc-support-vector-machine" class="nav-link" data-scroll-target="#support-vector-machine"><span class="header-section-number">2</span> Support Vector Machine</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/optimization.html">최적화</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/classification.html">퍼셈트론과 분류</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">최적화</h1>
+<h1 class="title">퍼셈트론과 분류</h1>
 </div>
 
 
@@ -295,149 +293,58 @@ window.Quarto = {
 \]</span></p>
 </div>
 <p><br></p>
-<section id="최적화" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="최적화"><span class="header-section-number">1</span> 최적화</h2>
-<section id="최적화의-기본-요소" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="최적화의-기본-요소"><span class="header-section-number">1.1</span> 최적화의 기본 요소</h3>
+<section id="기하학" class="level3 unnumbered border" style="background-color:#F2F4F4  ;padding:5px;">
+<h3 class="unnumbered anchored" data-anchor-id="기하학">기하학</h3>
+<p>분류 문제를 다루는데 SVM 등은 <span class="math inline">\(n\)</span> 차원 공간 <span class="math inline">\(\mathcal{M}_n(\mathbb{R})\)</span> 에서의 기하학을 이용한다.</p>
 <p><br></p>
-<p><strong>3가지 기본 요소</strong></p>
-<ol type="1">
-<li>변수 (Decesion variable or unknown) <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{R})\)</span></li>
-<li>목적함수 (objective function) <span class="math inline">\(f:\mathcal{M}_n(\mathbb{R}) \to \mathbb{R}\)</span></li>
-<li>제약 조건 (Constraint) <span class="math inline">\(g_i:\mathcal{M}_n(\mathbb{R}) \to \mathbb{R}\)</span>, <span class="math inline">\(i=1,\ldots,\,m\)</span> 에 대해 <span class="math inline">\(g_i(\boldsymbol{x})\le 0\)</span> and/or <span class="math inline">\(h_j:\mathcal{M}_n(\mathbb{R}) \to \mathbb{R},\, j=1,\ldots,\,k\)</span> 에 대해 <span class="math inline">\(h_j(\boldsymbol{x})=0\)</span></li>
-</ol>
-<p><br></p>
-<p><strong>과정</strong></p>
-<ol type="1">
-<li>모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.</li>
-<li>모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.</li>
-</ol>
-<p><br></p>
-</section>
-<section id="최적화의-수학-모델" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="최적화의-수학-모델"><span class="header-section-number">1.2</span> 최적화의 수학 모델</h3>
-<p><strong>수학적 표준 모델</strong></p>
-<ul>
-<li><p>제약조건을 만족하는 <span class="math inline">\(\mathcal{C}\subset \mathcal{M}_n(\mathbb{R})\)</span> 를 <em>feasible region</em> 이라고 한다. 즉 <span class="math inline">\(\mathcal{C}\)</span> 는 아래와 같다. <span class="math display">\[
-\mathcal{C} = \{\boldsymbol{x}\in \mathcal{M}_n(\mathbb{R}) : g_i(\boldsymbol{x})\le 0,\,i=1,\ldots,\,m\}.
-\]</span></p></li>
-<li><p><span class="math inline">\(\displaystyle \boldsymbol{x}^\ast = \arg \min_{\boldsymbol{x}\in \mathcal{C}} f(\boldsymbol{x})\)</span> 를 찾는다. 이 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 최적해 (optimal solution) 이라고 한다.</p></li>
-<li><p><span class="math inline">\(\{g_i\}\)</span> 와 같은 제약조건이 없다면 <em>unconstrained</em> 라고 하며, 그렇지 않다면 <em>constrained</em> 라고 한다.</p></li>
-</ul>
-<p><br> <strong>등가 변환</strong></p>
-<ul>
-<li><p>우리가 구하고자 하는 문제가 <span class="math inline">\(f(\boldsymbol{x})\)</span> 를 최소화 하는 것이 아닌 최대로 하는 <span class="math inline">\(\boldsymbol{x}\)</span> 를 찾는 문제라면 <span class="math inline">\(-f(\boldsymbol{x})\)</span> 를 최소화 하는 문제이다.</p></li>
-<li><p>constraint 가 <span class="math inline">\(g_i(\boldsymbol{x}) \ge 0\)</span> 이라면 <span class="math inline">\(-g_i(\boldsymbol{x})\le 0\)</span> 으로 바꿀 수 있다. <span class="math inline">\(g_i (\boldsymbol{x})=0\)</span> 이라면 <span class="math inline">\(g_i(\boldsymbol{x}) \le 0\)</span> 와 <span class="math inline">\(-g_i(\boldsymbol{x})\le 0\)</span> 을 동시에 만족하는 조건으로 바꿀 수 있다.</p></li>
-<li><p>즉 수학적 표준 모델은 상당히 표면적으로 보이는 것보다 훨씬 넓은 범위의 문제를 포괄한다.</p></li>
-</ul>
-<p><br></p>
-</section>
-<section id="볼록-최적화-convex-optimization" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="볼록-최적화-convex-optimization"><span class="header-section-number">1.3</span> 볼록 최적화 (Convex optimization)</h3>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>convex function</strong></p>
-<p><span class="math inline">\(f:\mathcal{M}_n(\mathbb{R})\to\mathbb{R}\)</span> 이 다음을 만족하면 convect function 이라 한다. <span class="math display">\[
-\forall \theta\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in \mathcal{M}_n(\mathbb{R}) \implies f(\theta \boldsymbol{x}+(1-\theta)\boldsymbol{y}) \le \theta f(\boldsymbol{x}) + (1-\theta)f(\boldsymbol{y})
-\]</span></p>
-<p><strong>convex set</strong></p>
-<p><span class="math inline">\(A\subset\mathcal{M}_n(\mathbb{R})\)</span> 이 다음을 만족하면 convex set 이라 한다.</p>
+<p><strong>초평면 (hyperplane)</strong></p>
+<p>정해진 벡터 <span class="math inline">\(\boldsymbol{w} \in \mathcal{M}_n(\mathbb{R}) = V\)</span> 와 <span class="math inline">\(n\)</span> 차원 변수 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대해 <span class="math inline">\(\boldsymbol{w}^T\boldsymbol{x}+c=0\)</span> 를 만족하는 <span class="math inline">\(\boldsymbol{x}\)</span> 의 집합은 <span class="math inline">\(n-1\)</span> 차원 부분공간이며 이를 <span class="math inline">\(V\)</span> 에 대한 초평면이라고 한다.</p>
 <p><span class="math display">\[
-\forall \theta\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in A \implies \theta \boldsymbol{x}+(1-\theta)\boldsymbol{y}\in A
+0 = \boldsymbol{\omega}^T \boldsymbol{x} + c = \boldsymbol{\omega}^T \left( \boldsymbol{x} + \dfrac{c\boldsymbol{\omega}}{\|\omega\|^2}\right)
 \]</span></p>
-</div>
-</div>
-</div>
+<p>이므로 원점과 평면사이의 거리 <span class="math inline">\(d=\dfrac{c}{\|\boldsymbol{\omega}\|}\)</span> 이다.</p>
+</section>
 <p><br></p>
-<ul>
-<li>목적함수가 convex function 이고 feasible region 이 convex set 인 경우의 최적화를 <strong>convex optimization</strong> 이라고 한다.</li>
-<li>Convex optimization 의 모든 국소적 해는 전역적 해이다.</li>
-<li><code>CVX</code> (Matlab), <code>CVXPY</code> (Python)</li>
-</ul>
+<section id="분류-문제" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="분류-문제"><span class="header-section-number">1</span> 분류 문제</h2>
+<section id="sec-classificatin_introduction" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="sec-classificatin_introduction"><span class="header-section-number">1.1</span> 개요</h3>
+<p>분류(classification) 문제는 주어진 데이터에 대한 output 유한개인 경우이다. 여기서 가능한 ouput 을 클래스라고 하자. 대부분의 문제에서 각 클래스는 서로 겹치지 않으며, 여기서도 겹치지 않는다고 간주한다. 따라서 입력 벡터의 공간은 각각의 클래스에 따라 분리되며, 각 클래스를 분리하는 경계를 <strong>결정 경계(decision boundary)</strong> 혹은 <strong>결정 표면(decision surface)</strong> 이라고 하며 결정 경계를 바탕으로 분리된 부분집합을 <strong>결정 구역(decision region)</strong> 이라고 한다.</p>
+<p>입력 벡터가 <span class="math inline">\(D\)</span> 차원 공간이라고 하자. 결정 표면을 <span class="math inline">\(D\)</span> 차원 공간에 대한 <span class="math inline">\(D-1\)</span> 차원 초평면 으로 분리하는 모델을 <strong>선형 모델(linear model)</strong> 이라고 하며, 데이터들이 다수의 초평면으로 정확하게 각각의 클래스로 분류될 수 있을 때, 이 데이터의 집합을 <strong>선형 분리 가능 집합(linearly seperable set)</strong> 이라고 한다.</p>
+<p>가능한 output 이 <span class="math inline">\(K\)</span> 개의 클래스라고 하자. 이 <span class="math inline">\(K\)</span> 개의 클래스를 <span class="math inline">\(\mathcal{M}_n(\mathbb{R})\)</span> 의 표준 기저 벡터로 표현하는 것을 <strong>원 핫 인코딩(one hot encoding)</strong> 이라고 한다. 예를 들어 다수의 과일 이미지를 사과, 배, 딸기로 분류한다다면 이 이미지들은 3개의 클래스로 분류된다는 의미이다. 사과 클래스는 <span class="math inline">\(\boldsymbol{e}_1=\begin{bmatrix} 1 &amp; 0 &amp; 0\end{bmatrix}^T\)</span> 로 표현하고, 배, 딸기는 각각 <span class="math inline">\(\boldsymbol{e}_2,\,\boldsymbol{e}_3\)</span> 로 표현될 수 있다.</p>
 <p><br></p>
 </section>
-</section>
-<section id="unconstrained-convex-optimizaiton-문제" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="unconstrained-convex-optimizaiton-문제"><span class="header-section-number">2</span> Unconstrained convex optimizaiton 문제</h2>
-<ul>
-<li><span class="math inline">\(\nabla_\boldsymbol{x}f(\boldsymbol{x}^\ast)=\boldsymbol{0}\)</span> 인 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 찾는 문제이다.</li>
-</ul>
-<p><span id="eq-optimization_gradient"><span class="math display">\[
-\nabla_\boldsymbol{x} f := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} \\ \vdots \\ \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+<section id="sec-classification_generalized_linear_model" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="sec-classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</h3>
+<p>입력값 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 모델을 구성할 때 모댈 내부의 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 가장 간단한 함수로서</p>
+<p><span id="eq-classification_generalized_linear_model"><span class="math display">\[
+y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
 \tag{1}\]</span></span></p>
-<p>이와 유사하게</p>
-<p><span id="eq-optimization_differentiation_to_vector"><span class="math display">\[
-\dfrac{df}{d\boldsymbol{x}} := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial f}{\partial x_n}\end{bmatrix}
-\tag{2}\]</span></span></p>
-<p>로 정의한다. 즉 <span class="math inline">\(\nabla_{\boldsymbol{x}}f\)</span> 는 열벡터이며 <span class="math inline">\(\dfrac{d f}{d\boldsymbol{x}}\)</span> 는 행벡터이다.</p>
-<p><br></p>
-<section id="gradient" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="gradient"><span class="header-section-number">2.1</span> Gradient</h3>
-<p><span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_n \end{bmatrix}^T \in \mathcal{M}_n(\mathbb{R})\)</span>, <span class="math inline">\(\boldsymbol{a} \in \mathcal{M}_n(\mathbb{R})\)</span>, <span class="math inline">\(\boldsymbol{A}=\mathcal{M}_{m \times n}(\mathbb{R})\)</span> 일 때 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 스칼라 함수의 gradient 는 다음과 같다.</p>
-<p><span id="eq-optimzation_gradient_of_vector"><span class="math display">\[
-\begin{aligned}
-\nabla_\boldsymbol{x} (\boldsymbol{a}^T\boldsymbol{x}) &amp;= \boldsymbol{a}\\[0.3em]
-\nabla_\boldsymbol{x} (\boldsymbol{x}^T\boldsymbol{a}) &amp;= \boldsymbol{a}\\[0.3em]
-\nabla_\boldsymbol{x} (\boldsymbol{x}^T\boldsymbol{x}) &amp;= 2\boldsymbol{x}\\[0.3em]
-\nabla_{\boldsymbol{x}} (\boldsymbol{x}^T\boldsymbol{Ax}) &amp;= (\boldsymbol{A}^T +\boldsymbol{A})\boldsymbol{x}
-\end{aligned}
-\tag{3}\]</span></span></p>
+<p>를 생각 할 수 있다. 이 때 보통 <span class="math inline">\(f(s)\)</span> 는 비선형 함수이며 <strong>활성화 함수(activation fucntion)</strong> 이라고 불린다. 또한 <a href="#eq-classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 로 기술되는 모델을 <strong>일반화된 선형 모델(generalized linear model)</strong> 이라고 한다.</p>
+<p>일반화된 선형 모델의 경우 결정 표면은 어떤 상수 <span class="math inline">\(c\)</span> 에 대해 <span class="math inline">\(\boldsymbol{w}^T\boldsymbol{x} + w_0 = c\)</span> 인 초평면이 된다. 즉 선형 분리 가능 집합의 경우 일반화된 선형 모델로 잘 설명이 된다.</p>
 <p><br></p>
 </section>
-<section id="직접법" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="직접법"><span class="header-section-number">2.2</span> 직접법</h3>
-<ul>
-<li><span class="math inline">\(\nabla_\boldsymbol{x}f(\boldsymbol{x}^\ast)=\boldsymbol{0}\)</span> 인 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 직접 구한다.</li>
-</ul>
-<p><br></p>
-<p>이제 몇가지 형태의 convex 함수인 목적함수에 대한 그래디언트 <span class="math inline">\(\nabla_{\boldsymbol{x}}f(\boldsymbol{x})\)</span> 와 헤시안 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 를 구해보자.</p>
-<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
-<div id="exm-optimizatin_object_function_affine" class="theorem example">
-<p><span class="theorem-title"><strong>예제 1 (Affine 형태의 목적함수)</strong></span> <span class="math inline">\(f(\boldsymbol{x}) = \boldsymbol{a}^T\boldsymbol{x} + \boldsymbol{b}\)</span> 인 경우</p>
+<section id="선형-판별-2-개의-class" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="선형-판별-2-개의-class"><span class="header-section-number">1.3</span> 선형 판별 : 2 개의 class</h3>
+<p><a href="#eq-classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 의 <span class="math inline">\(f\)</span> 가 <span class="math inline">\(\text{sgn}(a)\)</span></p>
+</section>
+<section id="section" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="section"><span class="header-section-number">1.4</span> </h3>
+</section>
+<section id="퍼셉트론" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="퍼셉트론"><span class="header-section-number">1.5</span> 퍼셉트론</h3>
+<p>수학적으로 <span class="math inline">\(f:\mathbb{R}^n \to \{0,\,1\}\)</span> 인 함수로 입력 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{R})\)</span> 에 대해</p>
 <p><span class="math display">\[
-\nabla_\boldsymbol{x}f(\boldsymbol{x})=\boldsymbol{a},\qquad \boldsymbol{H}_f = \boldsymbol{0}.
+f(\boldsymbol{w}^T\boldsymbol{x} + b) = \left\{\begin{array}{ll} 1, \qquad &amp; \boldsymbol{w}^T\boldsymbol{x} + b  \ge 0, \\ -1, &amp; \text{otherwise}.\end{array} \right.
 \]</span></p>
-<p>이다. 따라서 <span class="math inline">\(\boldsymbol{a}=\boldsymbol{0}\)</span> 인 특별한 경우가 아니면 최소값이 존재하지 않는다.</p>
-</div>
-</div>
-<br>
-<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
-<div id="exm-optimizatin_object_function_quadratic" class="theorem example">
-<p><span class="theorem-title"><strong>예제 2 (Quadratic 형태의 목적함수)</strong></span> 대칭행렬 <span class="math inline">\(\boldsymbol{P}\)</span> 에 대해 <span class="math inline">\(f(\boldsymbol{x}) = \boldsymbol{x}^T\boldsymbol{Px} + \boldsymbol{b}^T\boldsymbol{x}+c\)</span> 인 경우</p>
-<p><span class="math display">\[
-\nabla_{\boldsymbol{x}}f(\boldsymbol{x})= 2\boldsymbol{Px} + \boldsymbol{b},\qquad \boldsymbol{H}_f = 2\boldsymbol{P}
-\]</span></p>
-<p>이다.</p>
-</div>
-</div>
-<br>
-<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
-<div id="exm-optimizatin_object_function_Square" class="theorem example">
-<p><span class="theorem-title"><strong>예제 3 (제곱 형태의 목적함수)</strong></span> 대칭행렬 <span class="math inline">\(\boldsymbol{P}\)</span> 에 대해 <span class="math inline">\(f(\boldsymbol{x}) = \|\boldsymbol{Ax}-\boldsymbol{b}\|^2\)</span> 인 경우</p>
-<p><span class="math display">\[
-f(\boldsymbol{x})= \boldsymbol{x}^T\boldsymbol{A}^T\boldsymbol{Ax} - \boldsymbol{x}^T\boldsymbol{A}^T\boldsymbol{b}-\boldsymbol{b}^T\boldsymbol{Ax}+\boldsymbol{b}^T\boldsymbol{b}
-\]</span></p>
-<p>이므로 gradient 와 헤시안 행렬은 다음과 같다.</p>
-<p><span class="math display">\[
-\nabla_{\boldsymbol{x}}f(\boldsymbol{x})= 2\boldsymbol{A}^T\boldsymbol{Ax} -2\boldsymbol{A}^T\boldsymbol{b},\qquad \boldsymbol{H}_f = 2\boldsymbol{A}^T\boldsymbol{A}.
-\]</span></p>
-<p>이 때 <span class="math inline">\(\boldsymbol{x}^\ast = (\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T\boldsymbol{b}\)</span> 이어야 한다. 이 때 <span class="math inline">\((\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T\)</span> 는 잘 알려진 무어-펜로즈 좌측 유사역행렬(left pseudoinverse matrix) 이다.</p>
-</div>
-</div>
+<p>인 함수이다. 여기서 <span class="math inline">\(\boldsymbol{w}\)</span> 는 매개변수(parameter), <span class="math inline">\(b\)</span> 를 편향(bias) 이라고 한다. 즉 퍼셉트론은 입력 벡터 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 이진 분류 함수이다.</p>
 <p><br></p>
 </section>
-<section id="반복법" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="반복법"><span class="header-section-number">2.3</span> 반복법</h3>
-<ul>
-<li>Gradient descent : <span class="math inline">\(\boldsymbol{x}_{k+1} = \boldsymbol{x}_k -\alpha_k \nabla_\boldsymbol{x} f(\boldsymbol{x}_k)\)</span>. <span class="math inline">\(\alpha_k\)</span> 는 내부적으로 정해지는 양의 scalar.</li>
-</ul>
+</section>
+<section id="support-vector-machine" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="support-vector-machine"><span class="header-section-number">2</span> Support Vector Machine</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -863,13 +770,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../src/ML/theory/ML.html" class="pagination-link" aria-label="기계 학습">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">기계 학습</span>
+      <a href="../../../src/ML/theory/regression.html" class="pagination-link" aria-label="선형 회귀">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">선형 회귀</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/ML/theory/regression.html" class="pagination-link" aria-label="선형 회귀">
-        <span class="nav-page-text">선형 회귀</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../src/ML/pytorch/intro.html" class="pagination-link" aria-label="소개">
+        <span class="nav-page-text">소개</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
