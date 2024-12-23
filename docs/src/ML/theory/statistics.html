@@ -257,13 +257,24 @@ window.Quarto = {
   <ul>
   <li><a href="#probability-theory" id="toc-probability-theory" class="nav-link active" data-scroll-target="#probability-theory"><span class="header-section-number">1</span> Probability Theory</a>
   <ul class="collapse">
-  <li><a href="#가지-기본-개념" id="toc-가지-기본-개념" class="nav-link" data-scroll-target="#가지-기본-개념"><span class="header-section-number">1.1</span> 3가지 기본 개념</a></li>
-  <li><a href="#확률-밀도-함수" id="toc-확률-밀도-함수" class="nav-link" data-scroll-target="#확률-밀도-함수"><span class="header-section-number">1.2</span> 확률 밀도 함수</a></li>
-  <li><a href="#기댓값과-공분산" id="toc-기댓값과-공분산" class="nav-link" data-scroll-target="#기댓값과-공분산"><span class="header-section-number">1.3</span> 기댓값과 공분산</a></li>
+  <li><a href="#기본-개념" id="toc-기본-개념" class="nav-link" data-scroll-target="#기본-개념"><span class="header-section-number">1.1</span> 기본 개념</a></li>
+  <li><a href="#이산-확률" id="toc-이산-확률" class="nav-link" data-scroll-target="#이산-확률"><span class="header-section-number">1.2</span> 이산 확률</a></li>
+  <li><a href="#확률-밀도-함수" id="toc-확률-밀도-함수" class="nav-link" data-scroll-target="#확률-밀도-함수"><span class="header-section-number">1.3</span> 확률 밀도 함수</a></li>
+  <li><a href="#기댓값과-공분산" id="toc-기댓값과-공분산" class="nav-link" data-scroll-target="#기댓값과-공분산"><span class="header-section-number">1.4</span> 기댓값과 공분산</a></li>
   </ul></li>
-  <li><a href="#베이지안-통계-bayesian-probabilities" id="toc-베이지안-통계-bayesian-probabilities" class="nav-link" data-scroll-target="#베이지안-통계-bayesian-probabilities"><span class="header-section-number">2</span> 베이지안 통계 (Bayesian Probabilities)</a></li>
-  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">3</span> 1.3. Model Selection</a></li>
-  <li><a href="#the-curse-of-dimensionality" id="toc-the-curse-of-dimensionality" class="nav-link" data-scroll-target="#the-curse-of-dimensionality"><span class="header-section-number">4</span> 1.4 The Curse of Dimensionality</a></li>
+  <li><a href="#베이지안-통계-bayesian-probabilities" id="toc-베이지안-통계-bayesian-probabilities" class="nav-link" data-scroll-target="#베이지안-통계-bayesian-probabilities"><span class="header-section-number">2</span> 베이지안 통계 (Bayesian Probabilities)</a>
+  <ul class="collapse">
+  <li><a href="#고전적빈도주의적-입장" id="toc-고전적빈도주의적-입장" class="nav-link" data-scroll-target="#고전적빈도주의적-입장"><span class="header-section-number">2.1</span> 고전적/빈도주의적 입장</a></li>
+  <li><a href="#베이지언적-입장" id="toc-베이지언적-입장" class="nav-link" data-scroll-target="#베이지언적-입장"><span class="header-section-number">2.2</span> 베이지언적 입장</a></li>
+  </ul></li>
+  <li><a href="#the-gaussian-distribution-normal-distribution" id="toc-the-gaussian-distribution-normal-distribution" class="nav-link" data-scroll-target="#the-gaussian-distribution-normal-distribution"><span class="header-section-number">3</span> The Gaussian Distribution (Normal Distribution)</a>
+  <ul class="collapse">
+  <li><a href="#변수-가우스분포에서의-mu와-sigma2-의-추정---최대-가능도" id="toc-변수-가우스분포에서의-mu와-sigma2-의-추정---최대-가능도" class="nav-link" data-scroll-target="#변수-가우스분포에서의-mu와-sigma2-의-추정---최대-가능도"><span class="header-section-number">3.1</span> 1-변수 가우스분포에서의 <span class="math inline">\(\mu\)</span>와 <span class="math inline">\(\sigma^2\)</span> 의 추정 - 최대 가능도</a></li>
+  <li><a href="#curve-fitting-revisited" id="toc-curve-fitting-revisited" class="nav-link" data-scroll-target="#curve-fitting-revisited"><span class="header-section-number">3.2</span> Curve Fitting Revisited</a></li>
+  <li><a href="#bayesian-curve-fitting" id="toc-bayesian-curve-fitting" class="nav-link" data-scroll-target="#bayesian-curve-fitting"><span class="header-section-number">3.3</span> Bayesian Curve Fitting</a></li>
+  </ul></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">4</span> 1.3. Model Selection</a></li>
+  <li><a href="#the-curse-of-dimensionality" id="toc-the-curse-of-dimensionality" class="nav-link" data-scroll-target="#the-curse-of-dimensionality"><span class="header-section-number">5</span> 1.4 The Curse of Dimensionality</a></li>
   </ul>
 </nav>
     </div>
@@ -304,30 +315,46 @@ window.Quarto = {
 <li>Uncertainty의 근원 : 측정에서의 noise + finite size of data set</li>
 </ul>
 <p><br></p>
-<section id="가지-기본-개념" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="가지-기본-개념"><span class="header-section-number">1.1</span> 3가지 기본 개념</h3>
+<section id="기본-개념" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="기본-개념"><span class="header-section-number">1.1</span> 기본 개념</h3>
 <ol type="1">
-<li><p><strong>표본 공간 (sample space) <span class="math inline">\(\Omega\)</span></strong> : 실험/측정에 있어서 가능한 모든 결과값의 집합. <span class="math inline">\(\Omega\)</span> 의 각 원소들은 각각이 식별 가능하며, 상호 배타적(동시에 발생할 수 없음) 이어야 한다.</p></li>
-<li><p><strong>사건 공간 (evant space) <span class="math inline">\(\mathcal{A}\)</span></strong> : 샘플 공간의 부분집합.</p></li>
-<li><p><strong>확률 (probability)</strong> : $</p></li>
+<li><p><strong>표본 공간 (sample space) <span class="math inline">\(\Omega\)</span></strong> : 실험/측정에 있어서 가능한 모든 결과값의 집합. <span class="math inline">\(\Omega\)</span> 의 각 원소들은 각각이 식별 가능하며, 상호 배타적(동시에 발생할 수 없음) 이어야 한다. 특정 결과값 <span class="math inline">\(\omega\)</span> 는 <span class="math inline">\(\Omega\)</span> 의 원소이다.</p></li>
+<li><p><strong>사건 공간 (evant space) <span class="math inline">\(\mathcal{A}\)</span></strong> : 실험/측정의 잠재적인 결과의 집합. 당연히 표본 공간 <span class="math inline">\(\Omega\)</span> 의 부분집합.</p></li>
+<li><p><strong>확률 (probability)</strong> : <span class="math inline">\(A\in \mathcal{A}\)</span> 에 대해 <span class="math inline">\(A\)</span> 의 사건이 발생할 확률을 <span class="math inline">\(p(A)\)</span> 라고 한다. 임의의 <span class="math inline">\(A\in \mathcal{A}\)</span> 에 대해 <span class="math inline">\(0\le p(A)\le 1\)</span> 이며 <span class="math inline">\(\sum_{A\in \Omega} p(A)=1\)</span> 이다.</p></li>
+<li><p><strong>표적 공간 (target space)</strong> <span class="math inline">\(\mathcal{T}\)</span> : 우리가 관심있는 정량화된 값. 서로 구별되는 표적공간의 원소를 <strong>상태(state)</strong> 라고 한다.</p></li>
+<li><p><strong>확률 변수 (random variable)</strong> : 표본공간의 성분 <span class="math inline">\(\omega\)</span> 와 표적공간의 성분 <span class="math inline">\(t\)</span> 를 연결하는 함수 <span class="math inline">\(X:\Omega \to \mathcal{T}\)</span> 가 존재하며 이 <span class="math inline">\(X\)</span> 를 확률변수 라고 한다.</p></li>
 </ol>
-<p><strong>결합 확률(Joint Probability)</strong></p>
-<p>Random variable <span class="math inline">\(X,\,Y\)</span> 에 대해 <span class="math inline">\(X\)</span> 는 <span class="math inline">\(x_1,\ldots,\,x_M\)</span> 값을 가질 수 있으며, <span class="math inline">\(Y\)</span> 는 <span class="math inline">\(y_1,\ldots,\,y_L\)</span> 값을 가질 수 있다고 하자. 모두 <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i,\, Y=y_j\)</span> 가 나온 횟수를 <span class="math inline">\(n_{ij}\)</span> 라 하자. <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i\)</span> 인 횟수는 <span class="math inline">\(c_i\)</span>, <span class="math inline">\(Y=y_j\)</span> 인 횟수는 <span class="math inline">\(r_j\)</span> 라 하자. 즉, <span class="math display">\[
+<p>예를 들어 두개의 동전을 던져 이중 몇개의 동전이 앞면이 나오는 지 관심있다고 하자. 앞면을 <span class="math inline">\(u\)</span>, 뒷면을 <span class="math inline">\(d\)</span> 라고 하면 <span class="math inline">\(\Omega = \mathcal{A} = \{ uu,\, ud,\,du,\,dd\}\)</span> 이며 <span class="math inline">\(\mathcal{T}=\{0,\,1,\,2\}\)</span> 가 된다. 이제 사건공간이 아닌 표적공간의 부분집합에 대한 확률에 관심을 갖게 된다. 즉 <span class="math inline">\(S\in \mathcal{T}\)</span> 에 대해 <span class="math inline">\(p(S)\)</span> 가 우리의 주요 관심사이다.</p>
+<p>표적공간 <span class="math inline">\(\mathcal{T}\)</span> 가 이산공간일 때 <span class="math inline">\(X\)</span> 를 이산확률변수라고 하고 <span class="math inline">\(\mathbb{R}\)</span> 과 같이 연속일 때 연속확률변수라고 한다.</p>
+<p><br></p>
+</section>
+<section id="이산-확률" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="이산-확률"><span class="header-section-number">1.2</span> 이산 확률</h3>
+<section id="결합-확률joint-probability" class="level4">
+<h4 class="anchored" data-anchor-id="결합-확률joint-probability"><strong>결합 확률(Joint Probability)</strong></h4>
+<p>확률변수 <span class="math inline">\(X,\,Y\)</span> 에 대해 <span class="math inline">\(X\)</span> 는 <span class="math inline">\(x_1,\ldots,\,x_M\)</span> 값을 가질 수 있으며, <span class="math inline">\(Y\)</span> 는 <span class="math inline">\(y_1,\ldots,\,y_L\)</span> 값을 가질 수 있다고 하자. 모두 <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i,\, Y=y_j\)</span> 가 나온 횟수를 <span class="math inline">\(n_{ij}\)</span> 라 하자. <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i\)</span> 인 횟수는 <span class="math inline">\(c_i\)</span>, <span class="math inline">\(Y=y_j\)</span> 인 횟수는 <span class="math inline">\(r_j\)</span> 라 하자. 즉, <span class="math display">\[
 p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}{N},\quad p(X=x_i)=\dfrac{c_i}{N},\quad p(Y=y_j)=\dfrac{r_j}{N}\;.
 \]</span> 이다. 이 때, <span class="math display">\[
 p(X=x_i)=\sum_{j=1}^L p(X=x_i,\, Y=y_j)
 \]</span> 이며 (자명하다) 이를 <strong>sum rule</strong> 이라 한다. 여기서 <span class="math inline">\(P(X=x_i)\)</span> 를 <em>marginal probability</em> 라 하기도 한다.</p>
 <p><br></p>
-<p><strong>조건부 확률(Conditional probability)</strong></p>
+</section>
+<section id="조건부-확률conditional-probability" class="level4">
+<h4 class="anchored" data-anchor-id="조건부-확률conditional-probability"><strong>조건부 확률(Conditional probability)</strong></h4>
 <p><span class="math inline">\(X=x_i\)</span> 인 상황에서 <span class="math inline">\(Y=y_j\)</span> 인 확률을 <span class="math inline">\(p(Y=y_j \mid X=x_i)\)</span> 라 쓰며 <em>conditional probability</em> of <span class="math inline">\(Y=y_j\)</span> given <span class="math inline">\(X=x_i\)</span> 라 하고 다음과 같이 주어진다. <span class="math display">\[
 p(Y=y_j\mid X=x_i)=\dfrac{n_{ij}}{c_i}
 \]</span></p>
 <p><br></p>
-<p><strong>확률의 곱의 법칙(Product rule of probability)</strong> <span class="math display">\[
+</section>
+<section id="확률의-곱의-법칙product-rule-of-probability" class="level4">
+<h4 class="anchored" data-anchor-id="확률의-곱의-법칙product-rule-of-probability"><strong>확률의 곱의 법칙(Product rule of probability)</strong></h4>
+<p><span class="math display">\[
 p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}N=\dfrac{n_{ij}}{c_i}\dfrac{c_i}{N}=P(Y=y_j\mid X=x_i)\cdot p(X=x_i)\;.
 \]</span></p>
 <p><br></p>
-<p><strong>Summary</strong></p>
+</section>
+<section id="합과-곱의-규칙" class="level4">
+<h4 class="anchored" data-anchor-id="합과-곱의-규칙"><strong>합과 곱의 규칙</strong></h4>
 <p><span id="eq-statistics_summary"><span class="math display">\[
 \begin{aligned}
 \textbf{sum rule}&amp;\qquad p(X)=\sum_Y p(X,\,Y)\,, \\
@@ -335,21 +362,27 @@ p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}N=\dfrac{n_{ij}}{c_i}\dfrac{c_i}{N}=P(Y=y_j\mid 
 \end{aligned}
 \tag{1}\]</span></span></p>
 <p><br></p>
-<p><b>베이즈 정리(Bayes’ theorem)</b></p>
+</section>
+<section id="베이즈-정리bayes-theorem" class="level4">
+<h4 class="anchored" data-anchor-id="베이즈-정리bayes-theorem"><b>베이즈 정리(Bayes’ theorem)</b></h4>
 <p><span id="eq-probability_bayse_theorem"><span class="math display">\[
 p(Y\mid X)=\dfrac{p(X\mid Y) \, p(Y)}{p(X)}\;.
 \tag{2}\]</span></span></p>
 <p>With sum rule, <span id="eq-statistics_sum_rule"><span class="math display">\[
 P(X)=\sum_{Y}p(X \mid Y)\, p(Y)\,.
 \tag{3}\]</span></span></p>
-<p><b>변수의 독립성(Independence of variable)</b></p>
+</section>
+<section id="변수의-독립성independence-of-variable" class="level4">
+<h4 class="anchored" data-anchor-id="변수의-독립성independence-of-variable"><b>변수의 독립성(Independence of variable)</b></h4>
 <p>확률변수 <span class="math inline">\(X,\,Y\)</span> 에 때해 <span class="math inline">\(p(X,\,Y)=p(X)\, p(Y)\)</span> 일 때 <span class="math inline">\(X\)</span> 와 <span class="math inline">\(Y\)</span> 는 <em>independent</em> 하다고 한다. <span class="math inline">\(X,\,Y\)</span> 가 independent 하다면 식 (1.10) 으로 부터 <span class="math inline">\(p(Y|X)=P(Y)\)</span> 임을 알 수 있다.</p>
 <p><br></p>
 </section>
-<section id="확률-밀도-함수" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="확률-밀도-함수"><span class="header-section-number">1.2</span> 확률 밀도 함수</h3>
+</section>
+<section id="확률-밀도-함수" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="확률-밀도-함수"><span class="header-section-number">1.3</span> 확률 밀도 함수</h3>
+<p>표적공간이 연속일 때 확률은 확률밀도함수 <span class="math inline">\(p(x)\)</span> 로 기술된다.</p>
 <section id="확률밀도함수와-확률" class="level4">
-<h4 class="anchored" data-anchor-id="확률밀도함수와-확률">확률밀도함수와 확률</h4>
+<h4 class="anchored" data-anchor-id="확률밀도함수와-확률"><strong>확률밀도함수와 확률</strong></h4>
 <p>확률밀도함수 <span class="math inline">\(p(x)\)</span>는 다음 두 조건을 만족해야 한다. <span id="eq-statistics_conditions_for_probability_density"><span class="math display">\[
 \begin{align}
 p(x) &amp; \ge 0\\
@@ -362,14 +395,14 @@ p(x\in (a,\,b))=\int_a^b p(x)\,dx
 <p><br></p>
 </section>
 <section id="변수의-변환" class="level4">
-<h4 class="anchored" data-anchor-id="변수의-변환">변수의 변환</h4>
+<h4 class="anchored" data-anchor-id="변수의-변환"><strong>변수의 변환</strong></h4>
 <p><span class="math inline">\(x=g(y)\)</span> 이며 <span class="math inline">\(y\)</span> 에 대한 확률분포를 알고 싶을 때, 이 확률분포를 <span class="math inline">\(p_y(y)\)</span> 라 하면, <span id="eq-statistics_change_of_variable"><span class="math display">\[
 p_y(y)=p(x)\left|\dfrac{dx}{dy}\right|=p(g(y))|g'(y)
 \tag{6}\]</span></span> 임을 쉽게 보일 수 있다.</p>
 <p><br></p>
 </section>
 <section id="누적-분포-함수" class="level4">
-<h4 class="anchored" data-anchor-id="누적-분포-함수">누적 분포 함수</h4>
+<h4 class="anchored" data-anchor-id="누적-분포-함수"><strong>누적 분포 함수</strong></h4>
 <p><span class="math inline">\(P(z)=p(x\in (-\infty,\,z))\)</span> 를 <strong>누적 분포 함수(cumulative distribution function)</strong> 이라 하며, <span id="eq-statistics_cumulative_distribution_function"><span class="math display">\[
 P(z) = \int_{-\infty}^z p(x)\, dx
 \tag{7}\]</span></span></p>
@@ -391,10 +424,10 @@ p(x,\,y)&amp;=p(y| x)\,p(x)
 <p><br></p>
 </section>
 </section>
-<section id="기댓값과-공분산" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="기댓값과-공분산"><span class="header-section-number">1.3</span> 기댓값과 공분산</h3>
+<section id="기댓값과-공분산" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="기댓값과-공분산"><span class="header-section-number">1.4</span> 기댓값과 공분산</h3>
 <section id="기댓값" class="level4">
-<h4 class="anchored" data-anchor-id="기댓값">기댓값</h4>
+<h4 class="anchored" data-anchor-id="기댓값"><strong>기댓값</strong></h4>
 <p>확률변수 <span class="math inline">\(X\)</span> 에 대한 확률분포가 <span class="math inline">\(p(x)\)</span> 일 때 <span class="math inline">\(x\)</span> 에 대한 함수 <span class="math inline">\(f(x)\)</span> 의 평균값을 <span class="math inline">\(f\)</span> 에 대한 <strong>기댓값(expectation)</strong> 이라 하며 <span class="math inline">\(\mathbb{E}[f]\)</span> 로 표기하고 다음과 같다. <span id="eq-statistics_expectation_value"><span class="math display">\[
 \begin{align}
 \mathbb{E}[f]&amp;:=\sum_x p(x) f(x) &amp;&amp;\text{for descrete distribution,}\\
@@ -411,14 +444,14 @@ p(x,\,y)&amp;=p(y| x)\,p(x)
 <p><br></p>
 </section>
 <section id="조건부-기댓값" class="level4">
-<h4 class="anchored" data-anchor-id="조건부-기댓값">조건부 기댓값</h4>
+<h4 class="anchored" data-anchor-id="조건부-기댓값"><strong>조건부 기댓값</strong></h4>
 <p><span class="math inline">\(p(x\,|\,y)\)</span> 에 대한 <span class="math inline">\(f(x)\)</span> 의 기댓값은 다음과 같다. <span id="eq-statistics_conditional_expectation"><span class="math display">\[
 \mathbb{E}_x [f \mid y\,]= \sum_x p(x\,|\, y)\, f(x)
 \tag{13}\]</span></span></p>
 <p><br></p>
 </section>
 <section id="분산" class="level4">
-<h4 class="anchored" data-anchor-id="분산">분산</h4>
+<h4 class="anchored" data-anchor-id="분산"><strong>분산</strong></h4>
 <p><span class="math inline">\(f(x)\)</span> 에 대한 <strong>분산(variance)</strong> <span class="math inline">\(\text{Var}[f]\)</span> 는 다음과 같이 정의된다. <span id="eq-statistics_variance_of_function"><span class="math display">\[
 \begin{aligned}
 \operatorname{Var}[f] &amp; := \mathbb{E}\left[(f(x)-\mathbb{E}[f(x)])^2\right] \\[0.3em]
@@ -431,7 +464,7 @@ p(x,\,y)&amp;=p(y| x)\,p(x)
 <p><br></p>
 </section>
 <section id="공분산" class="level4">
-<h4 class="anchored" data-anchor-id="공분산">공분산</h4>
+<h4 class="anchored" data-anchor-id="공분산"><strong>공분산</strong></h4>
 <p><span id="eq-statistics_covariance"><span class="math display">\[
 \begin{align}
 \operatorname{Cov}[x,\,y]&amp;\equiv \mathbb{E}_{x,\,y} \left[(x-\mathbb{E}[x]) (y-\mathbb{E}[y])\right] \\
@@ -458,84 +491,100 @@ p(\boldsymbol{w}\,|\, \mathcal{D})=\dfrac{p(\mathcal{D}\,|\,\boldsymbol{w}) \cdo
 \]</span></p>
 <p>여기서 <span class="math inline">\(p(\mathcal{D}\,|\,\boldsymbol{w})\)</span> 를 <strong>가능도</strong> 혹은 <strong>우도 (likelihood function)</strong> 라고 하고 <span class="math inline">\(p(\boldsymbol{w})\)</span> 를 <strong>사전 확률 분포 (prior distribution)</strong> 라고 한다. <span class="math inline">\(p(\mathcal{D})\)</span> 는 정규화 상수(normalization constant) 이다. <span class="math inline">\(p(\mathcal{D})\)</span> 는 실험 결과에 따라 정해지는 확률이기 때문에 실험이 종료된 상황에서는 상수일 뿐이다.</p>
 <p><br></p>
-<section id="고전적빈도주의적-입장" class="level4">
-<h4 class="anchored" data-anchor-id="고전적빈도주의적-입장">고전적/빈도주의적 입장</h4>
-<p>고전적 입장에서는 <span class="math inline">\(p(\boldsymbol{w})=1\)</span> 이다. 따라서 <span class="math inline">\(p(\boldsymbol{w}|\mathcal{D})\)</span> 를 최대화 하는 것은 <span class="math inline">\(p(\mathcal{D}|\boldsymbol{w})\)</span> 를 최대화 하는 것이다. 보통 기계학습에서 에러 함수 <span class="math inline">\(L(\boldsymbol{w})=-\ln p(\mathcal{D}|\boldsymbol{w})\)</span> 이므로 에러 함수를 최소화 하는 것 가능도를 최대로 하는 것과 동치이다.</p>
-<p>동전을 던졌을 때 앞면이 나올 확률을 <span class="math inline">\(q\)</span> 라 하자. 세번의 동전을 던져 셋 다 앞면이 나왔을 때, 빈도주의적 접근에 의하면, Likelihood function <span class="math display">\[
-p(\text{3 up}\,|\,q)=q^3
-\]</span> 이므로 <span class="math inline">\(p(\text{3 up}|q)\)</span> 를 최대화 하는 것은 <span class="math inline">\(q=1\)</span> 이다</p>
+<section id="고전적빈도주의적-입장" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="고전적빈도주의적-입장"><span class="header-section-number">2.1</span> 고전적/빈도주의적 입장</h3>
+<p>고전적 입장에서는 <span class="math inline">\(p(\boldsymbol{w})=1\)</span> 이다. 따라서 <span class="math inline">\(p(\boldsymbol{w}|\mathcal{D})\)</span> 를 최대화 하는 것은 <span class="math inline">\(p(\mathcal{D}|\boldsymbol{w})\)</span> 를 최대화 하는 것이다. 보통 기계학습에서 에러 함수 <span class="math inline">\(L(\boldsymbol{w})=-\ln p(\mathcal{D}|\boldsymbol{w})\)</span> 이므로 에러 함수를 최소화 하는 것은 가능도를 최대로 하는 것과 동치이다.</p>
 <p><br></p>
 </section>
-<section id="베이지언적-입장" class="level4">
-<h4 class="anchored" data-anchor-id="베이지언적-입장">베이지언적 입장</h4>
+<section id="베이지언적-입장" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="베이지언적-입장"><span class="header-section-number">2.2</span> 베이지언적 입장</h3>
 <p>매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 는 고정된 값이 아닌 확률로 표현되는 값이다. 데이터를 보기 전에 <span class="math inline">\(p(\boldsymbol{w})\)</span> 에 대해 임시로 정한다. <span class="math inline">\(\mathcal{D}=\{t_1,\ldots,\,t_N\}\)</span> 는 <span class="math inline">\(p(\mathcal{D}\,|\,\boldsymbol{w})\)</span> 에 반영된다.</p>
 <ul>
-<li><p>빈도주의적이든 베이즈적이든 <span class="math inline">\(p(\mathcal{D}|\boldsymbol{w})\)</span> 가 중심적인 역할을 하지만 이에 대한 두 입장의 견해는 매우 다르다. 빈도주의 입장에서는 <span class="math inline">\(\boldsymbol{w}\)</span> 는 고정된 매개변수 이며 그 값과 에러는 <span class="math inline">\(\mathcal{D}\)</span> 의 분포를 고려하여 얻어진다. 그러나 베이즈주의적 입장에서는 유일한 <span class="math inline">\(\mathcal{D}\)</span> 가 존재하며 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 가 어떤 확률 분포로서 표현된다.</p></li>
+<li><p>빈도주의적이든 베이즈적이든 <span class="math inline">\(p(\mathcal{D}|\boldsymbol{w})\)</span> 가 중심적인 역할을 하지만 이에 대한 두 입장의 견해는 매우 다르다. 빈도주의 입장에서는 <span class="math inline">\(\boldsymbol{w}\)</span> 는 고정된 매개변수 이며 그 값과 에러는 <span class="math inline">\(\mathcal{D}\)</span> 의 분포를 고려하여 얻어진다. 그러나 베이즈주의적 입장에서는 유일한 <span class="math inline">\(\mathcal{D}\)</span> 가 존재하며 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 가 확률 분포 <span class="math inline">\(p(\boldsymbol{w})\)</span> 로서 표현된다.</p></li>
 <li><p>널리 사용되는 빈도주의자들의 estimator는 <em>최대 가능도</em> 혹은 <em>최대 우도 (maximum likelihood)</em> 이다. 이 입장에서는 <span class="math inline">\(p(\boldsymbol{w})=1\)</span> 이므로 <span class="math inline">\(p(\mathcal{D}\,|\,\boldsymbol{w})\)</span> 를 최대화하면 자연스럽게 <span class="math inline">\(p(\boldsymbol{w}\,|\,\mathcal{D})\)</span> 가 최대화 된다. ML 에서는 <span class="math inline">\(-\ln p(D\,|\,\boldsymbol{w})\)</span> 를 <em>error function</em> 이라 한다. 따라서 likelihood 를 최대화 하는것은 error function 을 최소화 하는 것이다.</p></li>
-<li><p>bootstrap 방법에 대한 설명… 생략.</p></li>
+<li><p>예를 들어 동전을 던졌을 때 앞면이 나올 확률을 <span class="math inline">\(q\)</span> 라 하자. 세번의 동전을 던져 셋 다 앞면이 나왔을 때, 빈도주의적 접근에 의하면, Likelihood function 은 <span class="math display">\[
+p(\text{3 up}\,|\,q)=q^3
+\]</span> 이므로 <span class="math inline">\(p(\text{3 up}|q)\)</span> 를 최대화 하는 것은 <span class="math inline">\(q=1\)</span> 이다. 이것은 매우 극단적인 결과이다.</p></li>
+<li><p>그런데 베이지언에서는 <span class="math inline">\(\boldsymbol{w}\)</span> 에 받아들일만 한 사전확률분포 <span class="math inline">\(p(\boldsymbol{w})\)</span> 을 부여하므로 덜 극단적인 결론에 도달할 수 있다.</p></li>
+<li><p>베이지언에 대한 가장 일반적인 비판중의 하나는 사전확률분포 <span class="math inline">\(p(\boldsymbol{w})\)</span> 를 선택할 때 수학적인 편리성이나 편견에 의해 결과가 왜곡 될 수 있다는 것이다. 이러한 주관성을 개선하기 위해 소위 <strong>non-informative priors</strong> 가 도입되기도 한다.</p></li>
 </ul>
-<p>. 그런데 베이지언에서는 reasonable 한 prior distribution을 부여하므로, 덜 극단적인 결론에 도달하게 된다.</p>
-<ul>
-<li>베이지언에 대한 가장 일반적인 비판중의 하나는 prior distribution 이 어떤 선험적인 믿음의 반영이라기 보다는 수학적인 편리에 기반하여 선택된다는 것이다. 또한 prior distribution을 선택하는데는 주관이 개입할 수 밖에 없다는것도 비판의 대상이다. 이러한 주관성을 개선하기 위해 소위 <em>non-informative priors</em> 가 도입되기도 한다.</li>
-</ul>
+<p><br></p>
 </section>
-<section id="the-gaussian-distribution-normal-distribution" class="level4">
-<h4 class="anchored" data-anchor-id="the-gaussian-distribution-normal-distribution">1.2.4 The Gaussian Distribution (Normal Distribution)</h4>
-<p>평균 (mean) <span class="math inline">\(\mu\)</span> 와 분산 <span class="math inline">\(\sigma^2\)</span> 에 대한 Gaussian distribution <span class="math inline">\(\mathcal{N}(x\mid \mu,\,\sigma^2)\)</span> 는 다음과 같다. <span class="math display">\[
-\mathcal{N} (x\mid \mu,\,\sigma^2) = \dfrac{1}{\sigma \sqrt{2\pi }} \exp \left[-\dfrac{(x-\mu)^2}{2\sigma^2}\right] \tag{1.46}
-\]</span> 여기서 <span class="math inline">\(\mu\)</span> 를 평균, <span class="math inline">\(\sigma^2\)</span> 를 분산 이라고 하며, 가우시안 분포는 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 에 의해 결정된다. Gaussian distribution <span class="math inline">\(\mathcal{N}(x\mid \mu,\,\sigma^2)\)</span> 는 다음과 같은 성질을 갖는다. $$ <span class="math display">\[\begin{align}
-\mathcal{N}&amp;(x\mid \mu,\,\sigma^2)  \ge 0\,, \tag{1.47}\\
-\int_{-\infty}^\infty &amp;\mathcal{N}(x\mid \mu,\,\sigma^2)\, dx = 1,\, \tag{1.48}\\
-\mathbb{E}[x] &amp;=\int_{-\infty}^\infty x\, \mathcal{N}(x\mid \mu,\,\sigma^2)\,dx=\mu\;, \tag{1.49}\\
-\mathbb{E}[x^2] &amp;= \int_{-\infty}^\infty x^2 \mathcal{N}(x\mid \mu,\,\sigma^2)\,dx=\mu^2+\sigma^2\;,\tag{1.50}\\
-\operatorname{var}[f] &amp;=\mathbb{E}[x^2]-\left(\mathbb{E}[x]\right)^2=\sigma^2 \;. \tag{1.51}
-
-\end{align}\]</span> <span class="math display">\[
-$\mathbb{R}^\mathcal{D}$ 에서 평균 $\boldsymbol{\mu}$ 와 covariance $\boldsymbol{\Sigma}$ 를 갖는 Gaussian distribution은 다음과 같다.
-\]</span> (,,) = $$</p>
-<p><b>1-변수 가우스분포에서의 <span class="math inline">\(\mu\)</span>와 <span class="math inline">\(\sigma^2\)</span> 의 추정 -Maximum Likelyhood&nbsp;</b></p>
-<ul>
-<li>어떤 scalar variable <span class="math inline">\(x\)</span> 에 대해 <span class="math inline">\(N\)</span> 번 측정한 것을 <span class="math inline">\(\boldsymbol{x}=(x_1,\ldots,\,x_N)^T\)</span> 라 하자. (<span class="math inline">\(\boldsymbol{x}\)</span>는 <span class="math inline">\(\boldsymbol{x}=(x_1,\ldots,\,x_\mathcal{D})^T\)</span> 와는 다르다!) We shall suppose that the observations are drawn independently from a Gaussian distribution whose mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> are unknown, and we would like to determine these parameters from the data set.</li>
-<li><b>i.i.d </b> : independent and identically distributed.</li>
-<li><span class="math inline">\(N\)</span> 번의 측정이 i.i.d. 로 이루어졌으며 <span class="math inline">\(x\)</span> 가 (아마도) 가우스 분포를 따른다고 할 때, 측정된 데이터로부터 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 를 산출하는 것은 다음과 같다.</li>
-</ul>
-<p>우선 <span class="math inline">\(N\)</span> 측정에서 <span class="math inline">\(\boldsymbol{x}\)</span> 가 관측될 확률은 <span class="math display">\[
-p(\boldsymbol{x}\mid \mu,\,\sigma^2)= \prod_{n=1}^N \mathcal{N}(x_n\mid \mu,\,\sigma^2) \tag{1.53}
-\]</span> 이며 <em>likelihood function for the Gaussian</em> (가우시안 우도 함수)이라 불리운다.</p>
-<p><u>One common criterion for determining the parameters in a probability distribution using an observed data set is to find the parameter values that maximize the likelihood function. This might seem like a strange criterion because, from our foregoing discussions of probability theory, it would seem more natural to maximize the probability of the parameters given the data, not the probability of the data given the parameters</u>. 관찰 된 데이터 세트를 사용하여 확률 분포에서의 매개변수를 결정하는 일반적인 기준 중 하나는 우도 함수를 최대화하는 파라미터 값을 찾는 것이다. 앞서 언급 한 확률 이론 논의에서 매개 변수가 주어졌을 때의 데이터의 확률이 아니라 데이터가 주어졌을 때 매개 변수 확률을 최대화하는 것이 더 자연스러워 보이기 때문에 이것은 이상한 기준처럼 보일 수 있다. 사실 이 두가지는 연관되어 있으며, curve fitting의 맥락에서 뒤에 논의하기로 하자.</p>
-<p>어쨋든, 식 (1.53) 의 우도함수를 최대화하는 <span class="math inline">\(\mu,\,\sigma^2\)</span> 를 정하자. 계산의 편의를 위해 로그함수를 사용한다. <span class="math display">\[
-\ln p(\boldsymbol{x}\mid \mu,\,\sigma^2)= - \dfrac{1}{2\sigma^2}\sum_{n=1}^N (x_n-\mu)^2-\dfrac{N}{2} \ln \sigma^2 - \dfrac{N}{2} \ln 2\pi \tag{1.54}
-\]</span> 이다. 이 때 <span class="math inline">\(p (\boldsymbol{x}\mid \mu,\,\sigma^2)\)</span> 를 최대화 하는 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 를 <span class="math inline">\(\mu_{ML},\,\sigma_{ML}^2\)</span> 라 할 때 다음과 같다. <span class="math display">\[
-\begin{align}
-\mu_{ML} &amp;= \dfrac{1}{N}\sum_{n=1}^N x_n \;,\tag{1.55}\\
-\sigma_{ML}^2 &amp;= \dfrac{1}{N} \sum_{n=1}^N (x_n-\mu_{ML})^2\;.\tag{1.56}
-\end{align}
-\]</span> <b>Bias</b></p>
-<p>Maximum likelihood approach는 분포의 분산을 underestimate 하는데 이런 현상을 bias라 한다. Sample의 평균과 분산의 기대값은 다음과 같은데(이에 대한 증명은 Exercises 1.12를 참고하라.), <span class="math display">\[
-\begin{align}
-\mathbb{E}[\mu_{ML}]&amp; =\mu \,\tag{1.57}\\
-\mathbb{E}\left[\sigma_{ML}^2\right] &amp; =\left(\dfrac{N-1}{N}\right)\sigma^2 \tag{1.58}
-\end{align}
-\]</span></p>
-<p>식 (1.58)에서 보듯이 <span class="math inline">\(\mathbb{E}\left[\sigma^2_{ML}\right]&lt;\sigma^2\)</span> 이다. 따라서 아래와 같이 정의된 <span class="math inline">\(\widetilde{\sigma\,}^2\)</span> 는 samples 로 부터 추정한 모집단의 분산과 같다. (즉 unbiased.) 이를 표본분산이라 한다. <span class="math display">\[
-\widetilde{\sigma\,}^2 = \dfrac{N}{N-1}\sigma_{ML}^2 = \dfrac{1}{N-1} \sum_{n=1}^N\left(x_n-\mu_{ML}\right)^2 \tag{1.59}
-\]</span> <span class="math inline">\(N\to \infty\)</span> 일 때 <span class="math inline">\(\sigma_{ML}^2 \to \sigma^2\)</span> 임은 쉽게 알 수 있다. 실제로 <span class="math inline">\(N\)</span> 이 작지만 않으면 큰 문제는 되지 않는다.</p>
-<p>Section 10.1.3 에서는 이 결과가 베이지안 접근법에서는 자동적으로 나오는 것을 볼 것이다.</p>
 </section>
-<section id="curve-fitting-revisited" class="level4">
-<h4 class="anchored" data-anchor-id="curve-fitting-revisited">1.2.5 Curve Fitting Revisited</h4>
-<p><span class="math inline">\(N\)</span> 개의 input values <span class="math inline">\(\boldsymbol{x} = (x_1,\ldots,\,x_N)^T\)</span> 와 target values <span class="math inline">\(\boldsymbol{t}=(t_1,\ldots,\,t_N)^T\)</span> 사이에 polynomial <span class="math inline">\(t=y(x;\boldsymbol{w})=w_0 + w_1x+ \cdots +w_nx^n\)</span> 의 관계를 가정한다. Target value의 uncertainty 를 확률분포로서 표현하자. 이를 위해 주어진 <span class="math inline">\(x\)</span> 에 대해 target value의 확률은 <span class="math inline">\(y(x,\,\boldsymbol{w})\)</span> 를 중심으로 분산이 <span class="math inline">\(\beta^{-1}\)</span> 인 가우시안분포를 따른다고 가정한다. 즉, <span class="math display">\[
-p(t\mid x,\,\boldsymbol{w},\, \beta)=\mathcal{N}(t\mid y(x,\,\boldsymbol{w}),\,\beta^{-1}) \tag{1.60}
-\]</span> 이다.</p>
-<p>훈련 데이터 <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 를 이용하여 unknown parameters <span class="math inline">\(\boldsymbol{w}\)</span> 와 <span class="math inline">\(\beta\)</span> 를 결정하자. 그렇다면 likelihood function은 다음과 같이 주어진다. <span class="math display">\[
-p(\boldsymbol{t}\mid \boldsymbol{x},\,\boldsymbol{w},\,\beta)=\prod_{n=1}^N \mathcal{N}(t_n\mid y(x_n,\, \boldsymbol{w}),\, \beta^{-1}) \tag{1.61}
-\]</span> 앞서와 같이 <span class="math inline">\(\ln\)</span> 을 취하면, <span class="math display">\[
-\ln p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)= -\dfrac{\beta}{2} \sum_{n=1}^N \left[y(x_n,\,\boldsymbol{w})-t_n\right]^2+\dfrac{N}{2} \ln \beta - \dfrac{N}{2} \ln (2\pi) \tag{1.62}
-\]</span> 이 된다. 여기서 (고정된 <span class="math inline">\(\beta\)</span> 에 대해) <span class="math inline">\(p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)\)</span> 를 maximize 하는 것과 <span class="math inline">\(\displaystyle \dfrac{1}{2}\sum_{n=1}^N \left[ y(x_n,\,\boldsymbol{w})-t_n\right]^2\)</span> 를 minimize 하는 것은 동치이며 이렇게 하는 <span class="math inline">\(\boldsymbol{w}\)</span> 를 <span class="math inline">\(\boldsymbol{w}_{ML}\)</span>이라 하자. 또한 <span class="math inline">\(\beta\)</span> 에 대해 미분하여 <span class="math inline">\(p\)</span> 를 maximize 하는 <span class="math inline">\(\beta\)</span> 를 찾아 <span class="math inline">\(\beta_{ML}\)</span> 이라 하면, <span class="math display">\[
-\dfrac{1}{\beta_{ML}}=\dfrac{1}{N}\sum_{n=1}^N \left[ y(x_n,\, \boldsymbol{w})-t_n\right]^2 \tag{1.63}
-\]</span> 이다. 이제 우린는 maximum likely 한 확률 분포를 다음과 같이 얻는다. <span class="math display">\[
-p(t\mid x,\,\boldsymbol{w}_{ML},\, \beta_{ML})=\mathcal{N}(t\mid  y(x,\,\boldsymbol{w}_{ML}),\,\beta_{ML}^{-1}) \tag{1.64}
+<section id="the-gaussian-distribution-normal-distribution" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="the-gaussian-distribution-normal-distribution"><span class="header-section-number">3</span> The Gaussian Distribution (Normal Distribution)</h2>
+<p>평균 (mean) <span class="math inline">\(\mu\)</span> 와 분산 <span class="math inline">\(\sigma^2\)</span> 에 대한 1차원 가우시안 분포 <span class="math inline">\(\mathcal{N}(x\mid \mu,\,\sigma^2)\)</span> 는 다음과 같다. <span id="eq-ststistics_1d_gaussian_distribution"><span class="math display">\[
+\mathcal{N} (x\mid \mu,\,\sigma^2) = \dfrac{1}{\sigma \sqrt{2\pi }} \exp \left[-\dfrac{(x-\mu)^2}{2\sigma^2}\right]
+\tag{18}\]</span></span></p>
+<p>가우시안 분포 <span class="math inline">\(\mathcal{N}(x\mid \mu,\,\sigma^2)\)</span> 는 다음과 같은 성질을 갖는다.</p>
+<p><span id="eq-ststistics_properties_of_1d_gaussian_distribution"><span class="math display">\[
+\begin{align}
+\mathcal{N}&amp;(x\mid \mu,\,\sigma^2)  \ge 0\,,\\
+\int_{-\infty}^\infty &amp;\mathcal{N}(x\mid \mu,\,\sigma^2)\, dx = 1,\, \\
+\mathbb{E}[x] &amp;=\int_{-\infty}^\infty x\, \mathcal{N}(x\mid \mu,\,\sigma^2)\,dx=\mu\;, \\
+\mathbb{E}[x^2] &amp;= \int_{-\infty}^\infty x^2 \mathcal{N}(x\mid \mu,\,\sigma^2)\,dx=\mu^2+\sigma^2\;,\\
+\operatorname{var}[f] &amp;=\mathbb{E}[x^2]-\left(\mathbb{E}[x]\right)^2=\sigma^2 \;.
+\end{align}
+\tag{19}\]</span></span></p>
+<p><span class="math inline">\(\mathbb{R}^\mathcal{D}\)</span> 에서 평균 <span class="math inline">\(\boldsymbol{\mu}\)</span> 와 covariance <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 를 갖는 Gaussian distribution은 다음과 같다.</p>
+<p><span class="math display">\[
+\mathcal{N}(\boldsymbol{x}\mid \boldsymbol{\mu},\,\boldsymbol{\Sigma}) = \dfrac{1}{(2\pi)^{\mathcal{D}/2}}\dfrac{1}{\left|\boldsymbol{\Sigma}\right|^{1/2}} \exp \left[-\dfrac{1}{2} (\boldsymbol{x}-\boldsymbol{\mu})^T \boldsymbol{\Sigma} (\boldsymbol{x}-\boldsymbol{\mu})\right]
 \]</span></p>
+<p><br></p>
+<section id="변수-가우스분포에서의-mu와-sigma2-의-추정---최대-가능도" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="변수-가우스분포에서의-mu와-sigma2-의-추정---최대-가능도"><span class="header-section-number">3.1</span> 1-변수 가우스분포에서의 <span class="math inline">\(\mu\)</span>와 <span class="math inline">\(\sigma^2\)</span> 의 추정 - 최대 가능도</h3>
+<p>스칼라 변수 <span class="math inline">\(x\)</span> 에 대해 <span class="math inline">\(N\)</span> 번 측정한 것을 <span class="math inline">\(\boldsymbol{x}=\begin{bmatrix}x_1 &amp;\ldots &amp;x_N\end{bmatrix}^T\)</span> 라 하자. 이 관측은 평균이 <span class="math inline">\(\mu\)</span> 이며 분산이 <span class="math inline">\(\sigma^2\)</span> 인 가우시안 분포를 따르는 변수에 대한 각각 독립적인 측정이라고 하자.</p>
+<p>우선 <span class="math inline">\(N\)</span> 측정에서 <span class="math inline">\(\boldsymbol{x}\)</span> 가 관측될 확률은 <span id="eq-ststistics_gaussian_likelihood_function"><span class="math display">\[
+p(\boldsymbol{x}\mid \mu,\,\sigma^2)= \prod_{n=1}^N \mathcal{N}(x_n\mid \mu,\,\sigma^2)
+\tag{20}\]</span></span></p>
+<p>이며 <em>likelihood function for the Gaussian</em> (가우시안 가능도 함수)이라 불리운다.</p>
+<p>어쨋든, <a href="#eq-ststistics_gaussian_likelihood_function" class="quarto-xref">식&nbsp;20</a> 의 우도함수를 최대화하는 <span class="math inline">\(\mu,\,\sigma^2\)</span> 를 정하자. 계산의 편의를 위해 로그함수를 사용한다. <span class="math display">\[
+\ln p(\boldsymbol{x}\mid \mu,\,\sigma^2)= - \dfrac{1}{2\sigma^2}\sum_{n=1}^N (x_n-\mu)^2-\dfrac{N}{2} \ln \sigma^2 - \dfrac{N}{2} \ln 2\pi
+\]</span></p>
+<p>이 때 <span class="math inline">\(p (\boldsymbol{x}\mid \mu,\,\sigma^2)\)</span> 를 최대화 하는 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 를 <span class="math inline">\(\mu_{ML},\,\sigma_{ML}^2\)</span> 라 할 때 다음과 같다.</p>
+<p><span id="eq-statiscis_maximum_likelihood_mean_and_variance_of_gaussian"><span class="math display">\[
+\begin{align}
+\mu_{ML} &amp;= \dfrac{1}{N}\sum_{n=1}^N x_n \;,\\
+\sigma_{ML}^2 &amp;= \dfrac{1}{N} \sum_{n=1}^N (x_n-\mu_{ML})^2\;
+\end{align}
+\tag{21}\]</span></span></p>
+<p><br></p>
+<section id="편항" class="level4">
+<h4 class="anchored" data-anchor-id="편항"><strong>편항</strong></h4>
+<p>위와 같은 최대 가능도로부터 얻어진 분산은 원래 분포의 분산보다 작은데 하는데 이런 현상을 편향(bias)이라 한다. 표본의 평균과 분산의 기대값은 다음과 같다. <span id="eq-stastistics_mean_and_variance_of_sample_and_population"><span class="math display">\[
+\begin{align}
+\mathbb{E}[\mu_{ML}]&amp; =\mu \\
+\mathbb{E}\left[\sigma_{ML}^2\right] &amp; =\left(\dfrac{N-1}{N}\right)\sigma^2.
+\end{align}
+\tag{22}\]</span></span></p>
+<p>식 (1.58)에서 보듯이 <span class="math inline">\(\mathbb{E}\left[\sigma^2_{ML}\right]&lt;\sigma^2\)</span> 이다. 따라서 아래와 같이 정의된 <span class="math inline">\(\widetilde{\sigma\,}^2\)</span> 는 samples 로 부터 추정한 모집단의 분산과 같다. (즉 unbiased.) 이를 표본분산이라 한다. <span id="eq-statistics_population_variance"><span class="math display">\[
+\widetilde{\sigma\,}^2 = \dfrac{N}{N-1}\sigma_{ML}^2 = \dfrac{1}{N-1} \sum_{n=1}^N\left(x_n-\mu_{ML}\right)^2
+\tag{23}\]</span></span></p>
+<p><span class="math inline">\(N\to \infty\)</span> 일 때 <span class="math inline">\(\sigma_{ML}^2 \to \sigma^2\)</span> 임은 쉽게 알 수 있다. 실제로 <span class="math inline">\(N\)</span> 이 작지만 않으면 큰 문제는 되지 않는다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="curve-fitting-revisited" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="curve-fitting-revisited"><span class="header-section-number">3.2</span> Curve Fitting Revisited</h3>
+<p><span class="math inline">\(N\)</span> 개의 입력 변수 <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix} x_1 &amp;\ldots &amp; x_N \end{bmatrix}^T\)</span> 와 표적값 <span class="math inline">\(\boldsymbol{t}=\begin{bmatrix} t_1 &amp;\ldots &amp;t_N\end{bmatrix}^T\)</span> 사이에 polynomial <span class="math inline">\(t=y(x;\boldsymbol{w})=w_0 + w_1x+ \cdots +w_nx^n\)</span> 의 관계를 가정한다. 표적값의 불확도를 확률분포로서 표현하자. 이를 위해 주어진 <span class="math inline">\(x\)</span> 에 대해 표적값의 확률은 <span class="math inline">\(y(x,\,\boldsymbol{w})\)</span> 를 중심으로 분산이 <span class="math inline">\(\beta^{-1}\)</span> 인 가우시안분포를 따른다고 가정한다. 즉,</p>
+<p><span id="eq-statistics_parameter_distribution"><span class="math display">\[
+p(t\mid x,\,\boldsymbol{w},\, \beta)=\mathcal{N}(t\mid y(x,\,\boldsymbol{w}),\,\beta^{-1})
+\tag{24}\]</span></span></p>
+<p>이다.</p>
+<p>훈련 데이터 <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 를 이용하여 미지의 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 와 <span class="math inline">\(\beta\)</span> 를 결정하자. 그렇다면 가능도 함수는 다음과 같이 주어진다. <span id="eq-statistics_curve_fitting_likelihood"><span class="math display">\[
+p(\boldsymbol{t}\mid \boldsymbol{x},\,\boldsymbol{w},\,\beta)=\prod_{n=1}^N \mathcal{N}(t_n\mid y(x_n,\, \boldsymbol{w}),\, \beta^{-1})
+\tag{25}\]</span></span></p>
+<p>앞서와 같이 <span class="math inline">\(\ln\)</span> 을 취하면</p>
+<p><span id="eq-statistics_curve_fitting_likelihood_log"><span class="math display">\[
+\ln p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)= -\dfrac{\beta}{2} \sum_{n=1}^N \left[y(x_n,\,\boldsymbol{w})-t_n\right]^2+\dfrac{N}{2} \ln \beta - \dfrac{N}{2} \ln (2\pi)
+\tag{26}\]</span></span></p>
+<p>이 된다. 여기서 (고정된 <span class="math inline">\(\beta\)</span> 에 대해) <span class="math inline">\(p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)\)</span> 를 최소화 하는 것과 <span class="math inline">\(\displaystyle \dfrac{1}{2}\sum_{n=1}^N \left[ y(x_n,\,\boldsymbol{w})-t_n\right]^2\)</span> 를 최소화하는 것은 동치이며 이렇게 하는 <span class="math inline">\(\boldsymbol{w}\)</span> 를 <span class="math inline">\(\boldsymbol{w}_{ML}\)</span>이라 하자. 또한 <span class="math inline">\(\beta\)</span> 에 대해 미분하여 <span class="math inline">\(p\)</span> 를 maximize 하는 <span class="math inline">\(\beta\)</span> 를 찾아 <span class="math inline">\(\beta_{ML}\)</span> 이라 하면, <span id="eq-statistics_cuve_fitting_param_1"><span class="math display">\[
+\dfrac{1}{\beta_{ML}}=\dfrac{1}{N}\sum_{n=1}^N \left[ y(x_n,\, \boldsymbol{w})-t_n\right]^2
+\tag{27}\]</span></span></p>
+<p>이다. 이제 우린는 maximum likely 한 확률 분포를 다음과 같이 얻는다.</p>
+<p><span id="eq-statistics_cuve_fitting_most_likely_function"><span class="math display">\[
+p(t\mid x,\,\boldsymbol{w}_{ML},\, \beta_{ML})=\mathcal{N}(t\mid  y(x,\,\boldsymbol{w}_{ML}),\,\beta_{ML}^{-1})
+\tag{28}\]</span></span></p>
 <ul>
 <li>베이즈 통계를 위한 짧은 formulas</li>
 </ul>
@@ -568,19 +617,15 @@ p(\boldsymbol{w}\,|\,\boldsymbol{x},\,\boldsymbol{t},\,\alpha,\,\beta) \propto p
 \]</span> 이다. 식 (1.66) 을 <span class="math inline">\(-\ln\)</span> 을 취하고 식 (1.62), (1,65)을 대입하면, maximum of the posterior 는 다음 식을 minimize 하는 것으로 으로 주어진다. <span class="math display">\[
 \dfrac{\beta}{2}\sum_{n=1}^N \{y(x_n,\,\boldsymbol{w})-t_n\}^2+\dfrac{\alpha}{2} \boldsymbol{w}^T \boldsymbol{w} \tag{1.67}
 \]</span> 즉 Bayesian에서 posterior distribution을 maximizing 하는 것은 regularized sum of square error 함수의 minimization 과 동일하다.</p>
+<p><br></p>
 </section>
-<section id="bayesian-curve-fitting" class="level4">
-<h4 class="anchored" data-anchor-id="bayesian-curve-fitting">1.2.6 Bayesian Curve Fitting</h4>
+<section id="bayesian-curve-fitting" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="bayesian-curve-fitting"><span class="header-section-number">3.3</span> Bayesian Curve Fitting</h3>
 <ul>
-<li>앞서 우리는 prior distribution <span class="math inline">\(p(\boldsymbol{w}|\alpha)\)</span> 에 대한 추정을 포함시켰지만, <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 point estimate 이므로 이것은 제대로 된 Bayesian treatment 가 아니다. 제대로 된 베이지언에서는 확률에 대한 합과 곱의 규칙들을 일관되게 적용해야 하며, 이는 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 모든 값에 대해 적분해야 함을 의미한다. 이러한 marginalizations가 페턴 인식에서의 베이지언 방법의 핵심이다.</li>
-<li>일단 <span class="math inline">\(\alpha,\,\beta\)</span> 를 고정시키고 (편의를 위해 식에서는 일단 빼자.), test set <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 만을 생각하자. 베이지안 방법은</li>
-</ul>
-<p><span class="math display">\[
-p(t\,|\,x,\,\boldsymbol{x},\,\boldsymbol{t})=\int p(t\mid x,\,\boldsymbol{w})\, p(\boldsymbol{w}\mid\boldsymbol{x},\,\boldsymbol{t})\,d\boldsymbol{w} \tag{1.68}
-\]</span></p>
-<p>을 생각한다. 여기서 <span class="math inline">\(p(t\mid x,\,\boldsymbol{w})\)</span> 는 식 (1.60) 에 나와 있으며 <span class="math inline">\(p(\boldsymbol{w}\mid \boldsymbol{x},\,\boldsymbol{t})\)</span> 는 posterior distribution 이다. (식 (1.66) 을 보라.)</p>
-<ul>
-<li>Section 3.3 에서 보겠지만, curve fitting example 과 같은 문제에서 이 posterior distribution 은 Gaussian 이며 해석적으로 계산 할 수 있다. 비슷하게 식 (1.68) 도 해석적으로 적분될 수 있으며 그 결과는 아래와 같은 가우시한 형태로 주어진다.</li>
+<li><p>앞서 우리는 prior distribution <span class="math inline">\(p(\boldsymbol{w}|\alpha)\)</span> 에 대한 추정을 포함시켰지만, <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 point estimate 이므로 이것은 제대로 된 Bayesian treatment 가 아니다. 제대로 된 베이지언에서는 확률에 대한 합과 곱의 규칙들을 일관되게 적용해야 하며, 이는 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 모든 값에 대해 적분해야 함을 의미한다. 이러한 marginalizations 가 패턴턴 인식에서의 베이지언 방법의 핵심이다.</p></li>
+<li><p>일단 <span class="math inline">\(\alpha,\,\beta\)</span> 를 고정시키고 (편의를 위해 식에서는 일단 빼자.), test set <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 만을 생각하자. 베이지안 방법은</p>
+<p>을 생각한다. 여기서 <span class="math inline">\(p(t\mid x,\,\boldsymbol{w})\)</span> 는 식 (1.60) 에 나와 있으며 <span class="math inline">\(p(\boldsymbol{w}\mid \boldsymbol{x},\,\boldsymbol{t})\)</span> 는 posterior distribution 이다. (식 (1.66) 을 보라.)</p></li>
+<li><p>Section 3.3 에서 보겠지만, curve fitting example 과 같은 문제에서 이 posterior distribution 은 Gaussian 이며 해석적으로 계산 할 수 있다. 비슷하게 식 (1.68) 도 해석적으로 적분될 수 있으며 그 결과는 아래와 같은 가우시한 형태로 주어진다.</p></li>
 </ul>
 <p><span class="math display">\[
 \begin{align}
@@ -593,8 +638,8 @@ p(t\,|\,x,\,\boldsymbol{x},\,\boldsymbol{t})=\int p(t\mid x,\,\boldsymbol{w})\, 
 \]</span></p>
 </section>
 </section>
-<section id="model-selection" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">3</span> 1.3. Model Selection</h2>
+<section id="model-selection" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">4</span> 1.3. Model Selection</h2>
 <ul>
 <li>최소자승법을 이용한 Polynomial curve fitting 에서 보았듯이 best generalization을 주는 최적의 다항식의 order <span class="math inline">\(M\)</span> 이 존재한다. 다항식의 order는 모델에서 free parameters의 갯수를 제어한다. Regularization 을 사용하면 regularization coefficient <span class="math inline">\(\lambda\)</span> 는 모델의 유효 복잡도(effiective complexcity) 를 통제한다.</li>
 <li>실제 응용에서 우리는 이러한 parameters 들을 결정해야 하며 이렇게 하는 주요 목적은 새로운 데이터에 대한 최소의 predictive performance를 얻기 위함이다. 또한 이렇게 complexicity parameters 에 대한 적당한 값을 찾는 것 뿐만 아니라, 특정 목표에 적합한 모델을 찾기 위해 다양한 모델을 고려할 필요가 있다.</li>
@@ -613,8 +658,8 @@ p(t\,|\,x,\,\boldsymbol{x},\,\boldsymbol{t})=\int p(t\mid x,\,\boldsymbol{w})\, 
 <li><p>따라서 우리는 section 3.4 에서 fully Bayesian approach 로 전환할 것이며 이러한 complexity penalty 가 자연스럽고 원칙적인 방법으로 발생하는지 볼 것이다.</p></li>
 </ul>
 </section>
-<section id="the-curse-of-dimensionality" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="the-curse-of-dimensionality"><span class="header-section-number">4</span> 1.4 The Curse of Dimensionality</h2>
+<section id="the-curse-of-dimensionality" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="the-curse-of-dimensionality"><span class="header-section-number">5</span> 1.4 The Curse of Dimensionality</h2>
 <ul>
 <li><p>Oil examples은 그냥 읽으면 되고..</p></li>
 <li><p>우리가 다루고자 하는 입력 데이터가 고차원의 데이터 (<span class="math inline">\(\mathcal{D}-\dim\)</span>)라고 가정해보자. 다항식 근사에서 order <span class="math inline">\(3\)</span> 까지 전개해보면, <span class="math display">\[
