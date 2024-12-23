@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>퍼셈트론과 분류 – Science &amp; Programming</title>
+<title>Science &amp; Programming - 퍼셈트론과 분류</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -114,7 +114,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -153,18 +153,18 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
     <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/classification.html">퍼셈트론과 분류</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -183,9 +183,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">이론</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -218,9 +218,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">PyTorch</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -254,9 +254,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#sec-classificatin_introduction" id="toc-sec-classificatin_introduction" class="nav-link" data-scroll-target="#sec-classificatin_introduction"><span class="header-section-number">1.1</span> 개요</a></li>
   <li><a href="#sec-classification_generalized_linear_model" id="toc-sec-classification_generalized_linear_model" class="nav-link" data-scroll-target="#sec-classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</a></li>
-  <li><a href="#선형-판별-2-개의-class" id="toc-선형-판별-2-개의-class" class="nav-link" data-scroll-target="#선형-판별-2-개의-class"><span class="header-section-number">1.3</span> 선형 판별 : 2 개의 class</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">1.4</span> </a></li>
-  <li><a href="#퍼셉트론" id="toc-퍼셉트론" class="nav-link" data-scroll-target="#퍼셉트론"><span class="header-section-number">1.5</span> 퍼셉트론</a></li>
+  <li><a href="#선형-판별" id="toc-선형-판별" class="nav-link" data-scroll-target="#선형-판별"><span class="header-section-number">1.3</span> 선형 판별</a></li>
+  <li><a href="#퍼셉트론" id="toc-퍼셉트론" class="nav-link" data-scroll-target="#퍼셉트론"><span class="header-section-number">1.4</span> 퍼셉트론</a></li>
   </ul></li>
   <li><a href="#support-vector-machine" id="toc-support-vector-machine" class="nav-link" data-scroll-target="#support-vector-machine"><span class="header-section-number">2</span> Support Vector Machine</a></li>
   </ul>
@@ -324,15 +323,27 @@ y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
 <p>일반화된 선형 모델의 경우 결정 표면은 어떤 상수 <span class="math inline">\(c\)</span> 에 대해 <span class="math inline">\(\boldsymbol{w}^T\boldsymbol{x} + w_0 = c\)</span> 인 초평면이 된다. 즉 선형 분리 가능 집합의 경우 일반화된 선형 모델로 잘 설명이 된다.</p>
 <p><br></p>
 </section>
-<section id="선형-판별-2-개의-class" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="선형-판별-2-개의-class"><span class="header-section-number">1.3</span> 선형 판별 : 2 개의 class</h3>
-<p><a href="#eq-classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 의 <span class="math inline">\(f\)</span> 가 <span class="math inline">\(\text{sgn}(a)\)</span></p>
+<section id="선형-판별" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="선형-판별"><span class="header-section-number">1.3</span> 선형 판별</h3>
+<p>입력벡터를 어느 클래스로 분류할지 판단하는 함수를 판별함수라고 하고 판별함수에 의한 결정표면이 초평면 일 경우 <strong>선형 판별(linear determination)</strong> 이라고 한다,.</p>
+<p><br></p>
+<p><strong>2 개의 클래스 의 경우</strong></p>
+<p>두개의 클라스 <span class="math inline">\(C_1,\,C_2\)</span> 로 분류하는 문제를 살펴 보자. <a href="#eq-classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 에서의 활성화 함수 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(\text{sign}(a)\)</span> 함수 즉,</p>
+<p><span class="math display">\[
+\text{sign}(a) = \left\{\begin{array}{ll} 1, \qquad &amp; a\ge 0 \\ -1 &amp; a&lt;0 \end{array} \right.
+\]</span></p>
+<p>로 정한다. 즉 <span class="math inline">\(y(\boldsymbol{x};\boldsymbol{w},\,w_0)\)</span> 값이 <span class="math inline">\(1\)</span> 이면 <span class="math inline">\(C_1\)</span>, <span class="math inline">\(-1\)</span> 이면 <span class="math inline">\(C_2\)</span> 클래스에 포함되도 하는 매개변수를 찾는 문제가 된다.</p>
+<p><br></p>
+<p><strong>다중 클래스 의 경우</strong></p>
+<p>2 개 이상 <span class="math inline">\(K\)</span> 개의 클래스 <span class="math inline">\(C_1,\ldots,\,C_K\)</span> 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 각 클래스 <span class="math inline">\(C_1,\ldots,\,C_N\)</span> 에 대한 활성화 함수 <span class="math inline">\(f_1,\,\ldots,\,f_N\)</span> 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 <span class="math inline">\(K\)</span> 개의 선형 판별 함수 <span class="math inline">\(y_1,\ldots,\,y_K\)</span> 가 아래와 같이 정의된다고 하자.</p>
+<p><span class="math display">\[
+y_k(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) = \boldsymbol{w}_k^T \boldsymbol{x} + w_{k0},\qquad k=1,\ldots,\, K.
+\]</span></p>
+<p>이 때 <span class="math inline">\(y_{k}(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) \ge y_{j}(\boldsymbol{x}; \boldsymbol{w}_j,\, w_{j0})\)</span> 이면 <span class="math inline">\(C_k\)</span> 클라스에 포함되도록 하면 된다.</p>
+<p><br></p>
 </section>
-<section id="section" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="section"><span class="header-section-number">1.4</span> </h3>
-</section>
-<section id="퍼셉트론" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="퍼셉트론"><span class="header-section-number">1.5</span> 퍼셉트론</h3>
+<section id="퍼셉트론" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="퍼셉트론"><span class="header-section-number">1.4</span> 퍼셉트론</h3>
 <p>수학적으로 <span class="math inline">\(f:\mathbb{R}^n \to \{0,\,1\}\)</span> 인 함수로 입력 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{R})\)</span> 에 대해</p>
 <p><span class="math display">\[
 f(\boldsymbol{w}^T\boldsymbol{x} + b) = \left\{\begin{array}{ll} 1, \qquad &amp; \boldsymbol{w}^T\boldsymbol{x} + b  \ge 0, \\ -1, &amp; \text{otherwise}.\end{array} \right.
@@ -383,7 +394,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -415,29 +437,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/julia-kaeri\.github\.io\/");
@@ -445,7 +445,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

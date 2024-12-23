@@ -60,12 +60,39 @@ $$ {#eq-classification_generalized_linear_model}
 
 </br>
 
-### 선형 판별 : 2 개의 class 
+### 선형 판별
 
-@eq-classification_generalized_linear_model 의 $f$ 가 $\text{sgn}(a)$ 
+입력벡터를 어느 클래스로 분류할지 판단하는 함수를 판별함수라고 하고 판별함수에 의한 결정표면이 초평면 일 경우 **선형 판별(linear determination)** 이라고 한다,. 
+
+</br>
+
+**2 개의 클래스 의 경우**
+
+두개의 클라스 $C_1,\,C_2$ 로 분류하는 문제를 살펴 보자. @eq-classification_generalized_linear_model 에서의 활성화 함수 $f$ 를 $\text{sign}(a)$ 함수 즉, 
+
+$$
+\text{sign}(a) = \left\{\begin{array}{ll} 1, \qquad & a\ge 0 \\ -1 & a<0 \end{array} \right.
+$$
+
+로 정한다. 즉 $y(\bf{x};\bf{w},\,w_0)$ 값이 $1$ 이면 $C_1$, $-1$ 이면 $C_2$ 클래스에 포함되도 하는 매개변수를 찾는 문제가 된다.
+
+</br>
+
+**다중 클래스 의 경우**
+
+2 개 이상 $K$ 개의 클래스 $C_1,\ldots,\,C_K$ 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 각 클래스 $C_1,\ldots,\,C_N$ 에 대한 활성화 함수 $f_1,\,\ldots,\,f_N$ 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 $K$ 개의 선형 판별 함수 $y_1,\ldots,\,y_K$ 가 아래와 같이 정의된다고 하자.
+
+$$
+y_k(\bf{x}; \bf{w}_k,\, w_{k0}) = \bf{w}_k^T \bf{x} + w_{k0},\qquad k=1,\ldots,\, K.
+$$
+
+이 때 $y_{k}(\bf{x}; \bf{w}_k,\, w_{k0}) \ge y_{j}(\bf{x}; \bf{w}_j,\, w_{j0})$ 이면 $C_k$ 클래스에 포함되도록 하면 된다. 
 
 
-### 
+
+
+</br>
+
 
 ### 퍼셉트론
 

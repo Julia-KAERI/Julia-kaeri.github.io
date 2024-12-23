@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Science &amp; Programming - 통계학 이론</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../src/ML/theory/optimization.html" rel="next">
+<link href="../../../src/ML/theory/ML.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Science &amp; Programming</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../src/gpu/gpu.html"> 
+<span class="menu-text">GPU &amp; CUDA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../src/cpp_qt/cpp_qt.html"> 
+<span class="menu-text">C++ &amp; Qt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../src/ML/ml.html" aria-current="page"> 
+<span class="menu-text">AI &amp; ML</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../src/topics/socket.html"> 
+<span class="menu-text">주제별</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../src/tools/tools.html"> 
+<span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../src/posts/index.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/statistics.html">통계학 이론</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/ml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI &amp; ML</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">이론</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">기계 학습</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/statistics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">통계학 이론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">최적화</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">선형 회귀</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">퍼셈트론과 분류</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">PyTorch</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/pytorch/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">소개</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/pytorch/tensor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">텐서</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#probability-theory" id="toc-probability-theory" class="nav-link active" data-scroll-target="#probability-theory"><span class="header-section-number">1</span> Probability Theory</a>
+  <ul class="collapse">
+  <li><a href="#가지-기본-개념" id="toc-가지-기본-개념" class="nav-link" data-scroll-target="#가지-기본-개념"><span class="header-section-number">1.1</span> 3가지 기본 개념</a></li>
+  <li><a href="#확률-밀도-함수" id="toc-확률-밀도-함수" class="nav-link" data-scroll-target="#확률-밀도-함수"><span class="header-section-number">1.2</span> 확률 밀도 함수</a></li>
+  <li><a href="#기댓값과-공분산" id="toc-기댓값과-공분산" class="nav-link" data-scroll-target="#기댓값과-공분산"><span class="header-section-number">1.3</span> 기댓값과 공분산</a></li>
+  </ul></li>
+  <li><a href="#베이지안-통계-bayesian-probabilities" id="toc-베이지안-통계-bayesian-probabilities" class="nav-link" data-scroll-target="#베이지안-통계-bayesian-probabilities"><span class="header-section-number">2</span> 베이지안 통계 (Bayesian Probabilities)</a></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">3</span> 1.3. Model Selection</a></li>
+  <li><a href="#the-curse-of-dimensionality" id="toc-the-curse-of-dimensionality" class="nav-link" data-scroll-target="#the-curse-of-dimensionality"><span class="header-section-number">4</span> 1.4 The Curse of Dimensionality</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/ML/theory/ML.html">이론</a></li><li class="breadcrumb-item"><a href="../../../src/ML/theory/statistics.html">통계학 이론</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">통계학 이론</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="hidden">
+<p>% %</p>
+%
+<p><span class="math display">\[
+\DeclarePairedDelimiters{\set}{\{}{\}}
+\DeclareMathOperator*{\argmax}{argmax}
+\]</span></p>
+</div>
+<p><br></p>
+<section id="probability-theory" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="probability-theory"><span class="header-section-number">1</span> Probability Theory</h2>
+<ul>
+<li>Uncertainty의 근원 : 측정에서의 noise + finite size of data set</li>
+</ul>
+<p><br></p>
+<section id="가지-기본-개념" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="가지-기본-개념"><span class="header-section-number">1.1</span> 3가지 기본 개념</h3>
+<ol type="1">
+<li><p><strong>표본 공간 (sample space) <span class="math inline">\(\Omega\)</span></strong> : 실험/측정에 있어서 가능한 모든 결과값의 집합. <span class="math inline">\(\Omega\)</span> 의 각 원소들은 각각이 식별 가능하며, 상호 배타적(동시에 발생할 수 없음) 이어야 한다.</p></li>
+<li><p><strong>사건 공간 (evant space) <span class="math inline">\(\mathcal{A}\)</span></strong> : 샘플 공간의 부분집합.</p></li>
+<li><p><strong>확률 (probability)</strong> : $</p></li>
+</ol>
+<p><strong>결합 확률(Joint Probability)</strong></p>
+<p>Random variable <span class="math inline">\(X,\,Y\)</span> 에 대해 <span class="math inline">\(X\)</span> 는 <span class="math inline">\(x_1,\ldots,\,x_M\)</span> 값을 가질 수 있으며, <span class="math inline">\(Y\)</span> 는 <span class="math inline">\(y_1,\ldots,\,y_L\)</span> 값을 가질 수 있다고 하자. 모두 <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i,\, Y=y_j\)</span> 가 나온 횟수를 <span class="math inline">\(n_{ij}\)</span> 라 하자. <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i\)</span> 인 횟수는 <span class="math inline">\(c_i\)</span>, <span class="math inline">\(Y=y_j\)</span> 인 횟수는 <span class="math inline">\(r_j\)</span> 라 하자. 즉, <span class="math display">\[
+p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}{N},\quad p(X=x_i)=\dfrac{c_i}{N},\quad p(Y=y_j)=\dfrac{r_j}{N}\;.
+\]</span> 이다. 이 때, <span class="math display">\[
+p(X=x_i)=\sum_{j=1}^L p(X=x_i,\, Y=y_j)
+\]</span> 이며 (자명하다) 이를 <strong>sum rule</strong> 이라 한다. 여기서 <span class="math inline">\(P(X=x_i)\)</span> 를 <em>marginal probability</em> 라 하기도 한다.</p>
+<p><br></p>
+<p><strong>조건부 확률(Conditional probability)</strong></p>
+<p><span class="math inline">\(X=x_i\)</span> 인 상황에서 <span class="math inline">\(Y=y_j\)</span> 인 확률을 <span class="math inline">\(p(Y=y_j \mid X=x_i)\)</span> 라 쓰며 <em>conditional probability</em> of <span class="math inline">\(Y=y_j\)</span> given <span class="math inline">\(X=x_i\)</span> 라 하고 다음과 같이 주어진다. <span class="math display">\[
+p(Y=y_j\mid X=x_i)=\dfrac{n_{ij}}{c_i}
+\]</span></p>
+<p><br></p>
+<p><strong>확률의 곱의 법칙(Product rule of probability)</strong> <span class="math display">\[
+p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}N=\dfrac{n_{ij}}{c_i}\dfrac{c_i}{N}=P(Y=y_j\mid X=x_i)\cdot p(X=x_i)\;.
+\]</span></p>
+<p><br></p>
+<p><strong>Summary</strong></p>
+<p><span id="eq-statistics_summary"><span class="math display">\[
+\begin{aligned}
+\textbf{sum rule}&amp;\qquad p(X)=\sum_Y p(X,\,Y)\,, \\
+\textbf{product rule}&amp; \qquad p(X,\,Y)=p(Y\mid X)p(X)
+\end{aligned}
+\tag{1}\]</span></span></p>
+<p><br></p>
+<p><b>베이즈 정리(Bayes’ theorem)</b></p>
+<p><span id="eq-probability_bayse_theorem"><span class="math display">\[
+p(Y\mid X)=\dfrac{p(X\mid Y) \, p(Y)}{p(X)}\;.
+\tag{2}\]</span></span></p>
+<p>With sum rule, <span id="eq-statistics_sum_rule"><span class="math display">\[
+P(X)=\sum_{Y}p(X \mid Y)\, p(Y)\,.
+\tag{3}\]</span></span></p>
+<p><b>변수의 독립성(Independence of variable)</b></p>
+<p>확률변수 <span class="math inline">\(X,\,Y\)</span> 에 때해 <span class="math inline">\(p(X,\,Y)=p(X)\, p(Y)\)</span> 일 때 <span class="math inline">\(X\)</span> 와 <span class="math inline">\(Y\)</span> 는 <em>independent</em> 하다고 한다. <span class="math inline">\(X,\,Y\)</span> 가 independent 하다면 식 (1.10) 으로 부터 <span class="math inline">\(p(Y|X)=P(Y)\)</span> 임을 알 수 있다.</p>
+<p><br></p>
+</section>
+<section id="확률-밀도-함수" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="확률-밀도-함수"><span class="header-section-number">1.2</span> 확률 밀도 함수</h3>
+<section id="확률밀도함수와-확률" class="level4">
+<h4 class="anchored" data-anchor-id="확률밀도함수와-확률">확률밀도함수와 확률</h4>
+<p>확률밀도함수 <span class="math inline">\(p(x)\)</span>는 다음 두 조건을 만족해야 한다. <span id="eq-statistics_conditions_for_probability_density"><span class="math display">\[
+\begin{align}
+p(x) &amp; \ge 0\\
+\int_{-\infty}^\infty p(x)\,dx &amp;=1
+\end{align}
+\tag{4}\]</span></span></p>
+<p>연속확률변수일 때 <span class="math inline">\(x\in (a,\,b)\)</span> 일 확률 <span class="math inline">\(p(x\in (a,\,b))\)</span> 는 <span id="eq-ststistics_probability_for_continuous_variable"><span class="math display">\[
+p(x\in (a,\,b))=\int_a^b p(x)\,dx
+\tag{5}\]</span></span> 이다.</p>
+<p><br></p>
+</section>
+<section id="변수의-변환" class="level4">
+<h4 class="anchored" data-anchor-id="변수의-변환">변수의 변환</h4>
+<p><span class="math inline">\(x=g(y)\)</span> 이며 <span class="math inline">\(y\)</span> 에 대한 확률분포를 알고 싶을 때, 이 확률분포를 <span class="math inline">\(p_y(y)\)</span> 라 하면, <span id="eq-statistics_change_of_variable"><span class="math display">\[
+p_y(y)=p(x)\left|\dfrac{dx}{dy}\right|=p(g(y))|g'(y)
+\tag{6}\]</span></span> 임을 쉽게 보일 수 있다.</p>
+<p><br></p>
+</section>
+<section id="누적-분포-함수" class="level4">
+<h4 class="anchored" data-anchor-id="누적-분포-함수">누적 분포 함수</h4>
+<p><span class="math inline">\(P(z)=p(x\in (-\infty,\,z))\)</span> 를 <strong>누적 분포 함수(cumulative distribution function)</strong> 이라 하며, <span id="eq-statistics_cumulative_distribution_function"><span class="math display">\[
+P(z) = \int_{-\infty}^z p(x)\, dx
+\tag{7}\]</span></span></p>
+<p>로 정의된다. <span class="math inline">\(P'(x)=p(x)\)</span> 임은 십게 알 수 있다.</p>
+<p>다변수 <span class="math inline">\(\boldsymbol{x}=(x_1,\ldots,\,x_D)\)</span> 에 대한 확률분포는 <span class="math inline">\(\boldsymbol{x}\)</span> 를 포함하는 infinitesimal volume <span class="math inline">\(\delta \boldsymbol{x}\)</span> 에 대해 <span class="math inline">\(p(\boldsymbol{x})\,\delta \boldsymbol{x}\)</span> 로 주어지며 다음과 같은 성질을 만족한다.</p>
+<p><span id="eq-statistics_properties_of_probability_density"><span class="math display">\[
+\begin{aligned}
+p(\boldsymbol{x}) &amp; \ge 0  \\
+\int p(\boldsymbol{x})\,d\boldsymbol{x}&amp;= 1
+\end{aligned}
+\tag{8}\]</span></span></p>
+<p>연속적인 변수, 이산적인 변수 모두에 대한 확률 분포함수를 probability density function 이라 하기도 하고, 이산적인 변수에 대해서 probability mass function 이라고 구분하여 부르기도 한다.</p>
+<p>Sum rule과 Bayes’ theorem 을 생각하면 다음이 성립함을 알 수 있다. <span id="eq-statistics_rules_for_probability_density"><span class="math display">\[
+\begin{aligned}
+p(x) &amp;= \int p(x,\,y)\, dy \\
+p(x,\,y)&amp;=p(y| x)\,p(x)
+\end{aligned}
+\tag{9}\]</span></span></p>
+<p><br></p>
+</section>
+</section>
+<section id="기댓값과-공분산" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="기댓값과-공분산"><span class="header-section-number">1.3</span> 기댓값과 공분산</h3>
+<section id="기댓값" class="level4">
+<h4 class="anchored" data-anchor-id="기댓값">기댓값</h4>
+<p>확률변수 <span class="math inline">\(X\)</span> 에 대한 확률분포가 <span class="math inline">\(p(x)\)</span> 일 때 <span class="math inline">\(x\)</span> 에 대한 함수 <span class="math inline">\(f(x)\)</span> 의 평균값을 <span class="math inline">\(f\)</span> 에 대한 <strong>기댓값(expectation)</strong> 이라 하며 <span class="math inline">\(\mathbb{E}[f]\)</span> 로 표기하고 다음과 같다. <span id="eq-statistics_expectation_value"><span class="math display">\[
+\begin{align}
+\mathbb{E}[f]&amp;:=\sum_x p(x) f(x) &amp;&amp;\text{for descrete distribution,}\\
+&amp;:=\int  p(x) f(x)\, dx&amp; &amp;\text{for continuous distribution.}
+\end{align}
+\tag{10}\]</span></span></p>
+<p><span class="math inline">\(N\)</span> 개의 sample 이 주어졌을 때 기댓값은 다음과 같이 근사 될 수 있다. <span id="eq-statistics_approximation_of_expectation"><span class="math display">\[
+\mathbb{E}[f] \approx \dfrac{1}{N} \sum_{i=1}^N f(x_n).
+\tag{11}\]</span></span></p>
+<p><a href="#eq-statistics_expectation_value" class="quarto-xref">식&nbsp;10</a> 의 두 식은 <a href="#eq-statistics_approximation_of_expectation" class="quarto-xref">식&nbsp;11</a> 의 <span class="math inline">\(N \to \infty\)</span> 극한과 동일하다.</p>
+<p>다변수 확률분포에서 특정 변수에 대한 기댓값은 <span class="math inline">\(\mathbb{E}_x [f(x,\,y)]\)</span> 와 같이 표기하며 다음과 같다. <span id="eq-statistics_expectation_for_multivariables"><span class="math display">\[
+\mathbb{E}_x [f(x,\,y)]=\sum_x p (x,\,y) f(x,\,y) =\int p(x,\,y) f(x,\,y)\, dx
+\tag{12}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="조건부-기댓값" class="level4">
+<h4 class="anchored" data-anchor-id="조건부-기댓값">조건부 기댓값</h4>
+<p><span class="math inline">\(p(x\,|\,y)\)</span> 에 대한 <span class="math inline">\(f(x)\)</span> 의 기댓값은 다음과 같다. <span id="eq-statistics_conditional_expectation"><span class="math display">\[
+\mathbb{E}_x [f \mid y\,]= \sum_x p(x\,|\, y)\, f(x)
+\tag{13}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="분산" class="level4">
+<h4 class="anchored" data-anchor-id="분산">분산</h4>
+<p><span class="math inline">\(f(x)\)</span> 에 대한 <strong>분산(variance)</strong> <span class="math inline">\(\text{Var}[f]\)</span> 는 다음과 같이 정의된다. <span id="eq-statistics_variance_of_function"><span class="math display">\[
+\begin{aligned}
+\operatorname{Var}[f] &amp; := \mathbb{E}\left[(f(x)-\mathbb{E}[f(x)])^2\right] \\[0.3em]
+&amp;=\mathbb{E}[f(x)^2]-(\mathbb{E}[f(x)])^2\;
+\end{aligned}
+\tag{14}\]</span></span></p>
+<p>이다. 변수 <span class="math inline">\(x\)</span> 자체에 대한 분산 <span class="math inline">\(\text{Var}[x]\)</span> 는 다음과 같다. <span id="eq-statistics_variance_of_variable"><span class="math display">\[
+\operatorname{Var}[x]=\mathbb{E}[x^2]-\mathbb{E}[x]^2.
+\tag{15}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="공분산" class="level4">
+<h4 class="anchored" data-anchor-id="공분산">공분산</h4>
+<p><span id="eq-statistics_covariance"><span class="math display">\[
+\begin{align}
+\operatorname{Cov}[x,\,y]&amp;\equiv \mathbb{E}_{x,\,y} \left[(x-\mathbb{E}[x]) (y-\mathbb{E}[y])\right] \\
+&amp;=\mathbb{E}_{x,\,y}[xy] -\mathbb{E}[x] \mathbb{E}[y].
+\end{align}
+\tag{16}\]</span></span></p>
+<p><span class="math inline">\(x,\,y\)</span> 가 서로 독립이면 <span class="math inline">\(\operatorname{Cov}[x,\,y]=0\)</span> 이다.</p>
+<p>두 확률 변수가 벡터 <span class="math inline">\(\boldsymbol{x},\, \boldsymbol{y}\)</span> 이면 <span id="eq-statistics_covariance_matrix_form"><span class="math display">\[
+\begin{aligned}
+\operatorname{Cov}[\boldsymbol{x},\, \boldsymbol{y}]&amp;= \mathbb{E}_{\boldsymbol{x},\, \boldsymbol{y}}\left[\left( \boldsymbol{x}-\mathbb{E}[\boldsymbol{x}]\right)\left( \boldsymbol{y}^T-\mathbb{E}[\boldsymbol{y}^T]\right)\right] \\[0.3em]
+&amp;=\mathbb{E}_{\boldsymbol{x},\,\boldsymbol{y}}[\boldsymbol{x}\boldsymbol{y}^T]-\mathbb{E}[\boldsymbol{x}]\,\mathbb{E}[\boldsymbol{y}^T]
+\end{aligned}
+\tag{17}\]</span></span></p>
+<p>이다. <span class="math inline">\(\operatorname{Cov}[\boldsymbol{x}] := \operatorname{Cov}[\boldsymbol{x},\,\boldsymbol{x}]\)</span> 로 정의한다.</p>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="베이지안-통계-bayesian-probabilities" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="베이지안-통계-bayesian-probabilities"><span class="header-section-number">2</span> 베이지안 통계 (Bayesian Probabilities)</h2>
+<p>지금까지 우리는 확률을 무작위성(randomness) 과 반복적인 사건(repeated events) 이라는 <strong>고전적(classica)</strong> 혹은 <strong>빈도적(frequencies)</strong> 이라고 불리는 관점에서 봤다. 이제 우리는 확률을 이용하여 불확실성을 정량화하는 <strong>Bayesian</strong> 관점을 학습할 것이다.</p>
+<p>커브 피팅 혹은 모델링을 생각하자. 즉 측정된 값 <span class="math inline">\(\mathcal{D}=\{t_1,\ldots,\,t_n\}\)</span> 을 통해 측정값을 가장 잘 기술하는 함수 <span class="math inline">\(y(\boldsymbol{x};\,\boldsymbol{w})\)</span> 를 결정한다고하자. 여기서 <span class="math inline">\(\boldsymbol{w}\)</span> 는 모델 매개변수이다. 빈도주의적 입장에서 <span class="math inline">\(\boldsymbol{w}\)</span> 는 확률이 아닌 우리가 알 내야 하는 값이 된다. 이에 대한 베이즈 정리는 다음과 같다. <span class="math display">\[
+p(\boldsymbol{w}\,|\, \mathcal{D})=\dfrac{p(\mathcal{D}\,|\,\boldsymbol{w}) \cdot p(\boldsymbol{w})}{p(\mathcal{D})}.
+\]</span></p>
+<p>여기서 <span class="math inline">\(p(\mathcal{D}\,|\,\boldsymbol{w})\)</span> 를 <strong>가능도</strong> 혹은 <strong>우도 (likelihood function)</strong> 라고 하고 <span class="math inline">\(p(\boldsymbol{w})\)</span> 를 <strong>사전 확률 분포 (prior distribution)</strong> 라고 한다. <span class="math inline">\(p(\mathcal{D})\)</span> 는 정규화 상수(normalization constant) 이다. <span class="math inline">\(p(\mathcal{D})\)</span> 는 실험 결과에 따라 정해지는 확률이기 때문에 실험이 종료된 상황에서는 상수일 뿐이다.</p>
+<p><br></p>
+<section id="고전적빈도주의적-입장" class="level4">
+<h4 class="anchored" data-anchor-id="고전적빈도주의적-입장">고전적/빈도주의적 입장</h4>
+<p>고전적 입장에서는 <span class="math inline">\(p(\boldsymbol{w})=1\)</span> 이다. 따라서 <span class="math inline">\(p(\boldsymbol{w}|\mathcal{D})\)</span> 를 최대화 하는 것은 <span class="math inline">\(p(\mathcal{D}|\boldsymbol{w})\)</span> 를 최대화 하는 것이다. 보통 기계학습에서 에러 함수 <span class="math inline">\(L(\boldsymbol{w})=-\ln p(\mathcal{D}|\boldsymbol{w})\)</span> 이므로 에러 함수를 최소화 하는 것 가능도를 최대로 하는 것과 동치이다.</p>
+<p>동전을 던졌을 때 앞면이 나올 확률을 <span class="math inline">\(q\)</span> 라 하자. 세번의 동전을 던져 셋 다 앞면이 나왔을 때, 빈도주의적 접근에 의하면, Likelihood function <span class="math display">\[
+p(\text{3 up}\,|\,q)=q^3
+\]</span> 이므로 <span class="math inline">\(p(\text{3 up}|q)\)</span> 를 최대화 하는 것은 <span class="math inline">\(q=1\)</span> 이다</p>
+<p><br></p>
+</section>
+<section id="베이지언적-입장" class="level4">
+<h4 class="anchored" data-anchor-id="베이지언적-입장">베이지언적 입장</h4>
+<p>매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 는 고정된 값이 아닌 확률로 표현되는 값이다. 데이터를 보기 전에 <span class="math inline">\(p(\boldsymbol{w})\)</span> 에 대해 임시로 정한다. <span class="math inline">\(\mathcal{D}=\{t_1,\ldots,\,t_N\}\)</span> 는 <span class="math inline">\(p(\mathcal{D}\,|\,\boldsymbol{w})\)</span> 에 반영된다.</p>
+<ul>
+<li><p>빈도주의적이든 베이즈적이든 <span class="math inline">\(p(\mathcal{D}|\boldsymbol{w})\)</span> 가 중심적인 역할을 하지만 이에 대한 두 입장의 견해는 매우 다르다. 빈도주의 입장에서는 <span class="math inline">\(\boldsymbol{w}\)</span> 는 고정된 매개변수 이며 그 값과 에러는 <span class="math inline">\(\mathcal{D}\)</span> 의 분포를 고려하여 얻어진다. 그러나 베이즈주의적 입장에서는 유일한 <span class="math inline">\(\mathcal{D}\)</span> 가 존재하며 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 가 어떤 확률 분포로서 표현된다.</p></li>
+<li><p>널리 사용되는 빈도주의자들의 estimator는 <em>최대 가능도</em> 혹은 <em>최대 우도 (maximum likelihood)</em> 이다. 이 입장에서는 <span class="math inline">\(p(\boldsymbol{w})=1\)</span> 이므로 <span class="math inline">\(p(\mathcal{D}\,|\,\boldsymbol{w})\)</span> 를 최대화하면 자연스럽게 <span class="math inline">\(p(\boldsymbol{w}\,|\,\mathcal{D})\)</span> 가 최대화 된다. ML 에서는 <span class="math inline">\(-\ln p(D\,|\,\boldsymbol{w})\)</span> 를 <em>error function</em> 이라 한다. 따라서 likelihood 를 최대화 하는것은 error function 을 최소화 하는 것이다.</p></li>
+<li><p>bootstrap 방법에 대한 설명… 생략.</p></li>
+</ul>
+<p>. 그런데 베이지언에서는 reasonable 한 prior distribution을 부여하므로, 덜 극단적인 결론에 도달하게 된다.</p>
+<ul>
+<li>베이지언에 대한 가장 일반적인 비판중의 하나는 prior distribution 이 어떤 선험적인 믿음의 반영이라기 보다는 수학적인 편리에 기반하여 선택된다는 것이다. 또한 prior distribution을 선택하는데는 주관이 개입할 수 밖에 없다는것도 비판의 대상이다. 이러한 주관성을 개선하기 위해 소위 <em>non-informative priors</em> 가 도입되기도 한다.</li>
+</ul>
+</section>
+<section id="the-gaussian-distribution-normal-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="the-gaussian-distribution-normal-distribution">1.2.4 The Gaussian Distribution (Normal Distribution)</h4>
+<p>평균 (mean) <span class="math inline">\(\mu\)</span> 와 분산 <span class="math inline">\(\sigma^2\)</span> 에 대한 Gaussian distribution <span class="math inline">\(\mathcal{N}(x\mid \mu,\,\sigma^2)\)</span> 는 다음과 같다. <span class="math display">\[
+\mathcal{N} (x\mid \mu,\,\sigma^2) = \dfrac{1}{\sigma \sqrt{2\pi }} \exp \left[-\dfrac{(x-\mu)^2}{2\sigma^2}\right] \tag{1.46}
+\]</span> 여기서 <span class="math inline">\(\mu\)</span> 를 평균, <span class="math inline">\(\sigma^2\)</span> 를 분산 이라고 하며, 가우시안 분포는 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 에 의해 결정된다. Gaussian distribution <span class="math inline">\(\mathcal{N}(x\mid \mu,\,\sigma^2)\)</span> 는 다음과 같은 성질을 갖는다. $$ <span class="math display">\[\begin{align}
+\mathcal{N}&amp;(x\mid \mu,\,\sigma^2)  \ge 0\,, \tag{1.47}\\
+\int_{-\infty}^\infty &amp;\mathcal{N}(x\mid \mu,\,\sigma^2)\, dx = 1,\, \tag{1.48}\\
+\mathbb{E}[x] &amp;=\int_{-\infty}^\infty x\, \mathcal{N}(x\mid \mu,\,\sigma^2)\,dx=\mu\;, \tag{1.49}\\
+\mathbb{E}[x^2] &amp;= \int_{-\infty}^\infty x^2 \mathcal{N}(x\mid \mu,\,\sigma^2)\,dx=\mu^2+\sigma^2\;,\tag{1.50}\\
+\operatorname{var}[f] &amp;=\mathbb{E}[x^2]-\left(\mathbb{E}[x]\right)^2=\sigma^2 \;. \tag{1.51}
+
+\end{align}\]</span> <span class="math display">\[
+$\mathbb{R}^\mathcal{D}$ 에서 평균 $\boldsymbol{\mu}$ 와 covariance $\boldsymbol{\Sigma}$ 를 갖는 Gaussian distribution은 다음과 같다.
+\]</span> (,,) = $$</p>
+<p><b>1-변수 가우스분포에서의 <span class="math inline">\(\mu\)</span>와 <span class="math inline">\(\sigma^2\)</span> 의 추정 -Maximum Likelyhood&nbsp;</b></p>
+<ul>
+<li>어떤 scalar variable <span class="math inline">\(x\)</span> 에 대해 <span class="math inline">\(N\)</span> 번 측정한 것을 <span class="math inline">\(\boldsymbol{x}=(x_1,\ldots,\,x_N)^T\)</span> 라 하자. (<span class="math inline">\(\boldsymbol{x}\)</span>는 <span class="math inline">\(\boldsymbol{x}=(x_1,\ldots,\,x_\mathcal{D})^T\)</span> 와는 다르다!) We shall suppose that the observations are drawn independently from a Gaussian distribution whose mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> are unknown, and we would like to determine these parameters from the data set.</li>
+<li><b>i.i.d </b> : independent and identically distributed.</li>
+<li><span class="math inline">\(N\)</span> 번의 측정이 i.i.d. 로 이루어졌으며 <span class="math inline">\(x\)</span> 가 (아마도) 가우스 분포를 따른다고 할 때, 측정된 데이터로부터 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 를 산출하는 것은 다음과 같다.</li>
+</ul>
+<p>우선 <span class="math inline">\(N\)</span> 측정에서 <span class="math inline">\(\boldsymbol{x}\)</span> 가 관측될 확률은 <span class="math display">\[
+p(\boldsymbol{x}\mid \mu,\,\sigma^2)= \prod_{n=1}^N \mathcal{N}(x_n\mid \mu,\,\sigma^2) \tag{1.53}
+\]</span> 이며 <em>likelihood function for the Gaussian</em> (가우시안 우도 함수)이라 불리운다.</p>
+<p><u>One common criterion for determining the parameters in a probability distribution using an observed data set is to find the parameter values that maximize the likelihood function. This might seem like a strange criterion because, from our foregoing discussions of probability theory, it would seem more natural to maximize the probability of the parameters given the data, not the probability of the data given the parameters</u>. 관찰 된 데이터 세트를 사용하여 확률 분포에서의 매개변수를 결정하는 일반적인 기준 중 하나는 우도 함수를 최대화하는 파라미터 값을 찾는 것이다. 앞서 언급 한 확률 이론 논의에서 매개 변수가 주어졌을 때의 데이터의 확률이 아니라 데이터가 주어졌을 때 매개 변수 확률을 최대화하는 것이 더 자연스러워 보이기 때문에 이것은 이상한 기준처럼 보일 수 있다. 사실 이 두가지는 연관되어 있으며, curve fitting의 맥락에서 뒤에 논의하기로 하자.</p>
+<p>어쨋든, 식 (1.53) 의 우도함수를 최대화하는 <span class="math inline">\(\mu,\,\sigma^2\)</span> 를 정하자. 계산의 편의를 위해 로그함수를 사용한다. <span class="math display">\[
+\ln p(\boldsymbol{x}\mid \mu,\,\sigma^2)= - \dfrac{1}{2\sigma^2}\sum_{n=1}^N (x_n-\mu)^2-\dfrac{N}{2} \ln \sigma^2 - \dfrac{N}{2} \ln 2\pi \tag{1.54}
+\]</span> 이다. 이 때 <span class="math inline">\(p (\boldsymbol{x}\mid \mu,\,\sigma^2)\)</span> 를 최대화 하는 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 를 <span class="math inline">\(\mu_{ML},\,\sigma_{ML}^2\)</span> 라 할 때 다음과 같다. <span class="math display">\[
+\begin{align}
+\mu_{ML} &amp;= \dfrac{1}{N}\sum_{n=1}^N x_n \;,\tag{1.55}\\
+\sigma_{ML}^2 &amp;= \dfrac{1}{N} \sum_{n=1}^N (x_n-\mu_{ML})^2\;.\tag{1.56}
+\end{align}
+\]</span> <b>Bias</b></p>
+<p>Maximum likelihood approach는 분포의 분산을 underestimate 하는데 이런 현상을 bias라 한다. Sample의 평균과 분산의 기대값은 다음과 같은데(이에 대한 증명은 Exercises 1.12를 참고하라.), <span class="math display">\[
+\begin{align}
+\mathbb{E}[\mu_{ML}]&amp; =\mu \,\tag{1.57}\\
+\mathbb{E}\left[\sigma_{ML}^2\right] &amp; =\left(\dfrac{N-1}{N}\right)\sigma^2 \tag{1.58}
+\end{align}
+\]</span></p>
+<p>식 (1.58)에서 보듯이 <span class="math inline">\(\mathbb{E}\left[\sigma^2_{ML}\right]&lt;\sigma^2\)</span> 이다. 따라서 아래와 같이 정의된 <span class="math inline">\(\widetilde{\sigma\,}^2\)</span> 는 samples 로 부터 추정한 모집단의 분산과 같다. (즉 unbiased.) 이를 표본분산이라 한다. <span class="math display">\[
+\widetilde{\sigma\,}^2 = \dfrac{N}{N-1}\sigma_{ML}^2 = \dfrac{1}{N-1} \sum_{n=1}^N\left(x_n-\mu_{ML}\right)^2 \tag{1.59}
+\]</span> <span class="math inline">\(N\to \infty\)</span> 일 때 <span class="math inline">\(\sigma_{ML}^2 \to \sigma^2\)</span> 임은 쉽게 알 수 있다. 실제로 <span class="math inline">\(N\)</span> 이 작지만 않으면 큰 문제는 되지 않는다.</p>
+<p>Section 10.1.3 에서는 이 결과가 베이지안 접근법에서는 자동적으로 나오는 것을 볼 것이다.</p>
+</section>
+<section id="curve-fitting-revisited" class="level4">
+<h4 class="anchored" data-anchor-id="curve-fitting-revisited">1.2.5 Curve Fitting Revisited</h4>
+<p><span class="math inline">\(N\)</span> 개의 input values <span class="math inline">\(\boldsymbol{x} = (x_1,\ldots,\,x_N)^T\)</span> 와 target values <span class="math inline">\(\boldsymbol{t}=(t_1,\ldots,\,t_N)^T\)</span> 사이에 polynomial <span class="math inline">\(t=y(x;\boldsymbol{w})=w_0 + w_1x+ \cdots +w_nx^n\)</span> 의 관계를 가정한다. Target value의 uncertainty 를 확률분포로서 표현하자. 이를 위해 주어진 <span class="math inline">\(x\)</span> 에 대해 target value의 확률은 <span class="math inline">\(y(x,\,\boldsymbol{w})\)</span> 를 중심으로 분산이 <span class="math inline">\(\beta^{-1}\)</span> 인 가우시안분포를 따른다고 가정한다. 즉, <span class="math display">\[
+p(t\mid x,\,\boldsymbol{w},\, \beta)=\mathcal{N}(t\mid y(x,\,\boldsymbol{w}),\,\beta^{-1}) \tag{1.60}
+\]</span> 이다.</p>
+<p>훈련 데이터 <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 를 이용하여 unknown parameters <span class="math inline">\(\boldsymbol{w}\)</span> 와 <span class="math inline">\(\beta\)</span> 를 결정하자. 그렇다면 likelihood function은 다음과 같이 주어진다. <span class="math display">\[
+p(\boldsymbol{t}\mid \boldsymbol{x},\,\boldsymbol{w},\,\beta)=\prod_{n=1}^N \mathcal{N}(t_n\mid y(x_n,\, \boldsymbol{w}),\, \beta^{-1}) \tag{1.61}
+\]</span> 앞서와 같이 <span class="math inline">\(\ln\)</span> 을 취하면, <span class="math display">\[
+\ln p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)= -\dfrac{\beta}{2} \sum_{n=1}^N \left[y(x_n,\,\boldsymbol{w})-t_n\right]^2+\dfrac{N}{2} \ln \beta - \dfrac{N}{2} \ln (2\pi) \tag{1.62}
+\]</span> 이 된다. 여기서 (고정된 <span class="math inline">\(\beta\)</span> 에 대해) <span class="math inline">\(p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)\)</span> 를 maximize 하는 것과 <span class="math inline">\(\displaystyle \dfrac{1}{2}\sum_{n=1}^N \left[ y(x_n,\,\boldsymbol{w})-t_n\right]^2\)</span> 를 minimize 하는 것은 동치이며 이렇게 하는 <span class="math inline">\(\boldsymbol{w}\)</span> 를 <span class="math inline">\(\boldsymbol{w}_{ML}\)</span>이라 하자. 또한 <span class="math inline">\(\beta\)</span> 에 대해 미분하여 <span class="math inline">\(p\)</span> 를 maximize 하는 <span class="math inline">\(\beta\)</span> 를 찾아 <span class="math inline">\(\beta_{ML}\)</span> 이라 하면, <span class="math display">\[
+\dfrac{1}{\beta_{ML}}=\dfrac{1}{N}\sum_{n=1}^N \left[ y(x_n,\, \boldsymbol{w})-t_n\right]^2 \tag{1.63}
+\]</span> 이다. 이제 우린는 maximum likely 한 확률 분포를 다음과 같이 얻는다. <span class="math display">\[
+p(t\mid x,\,\boldsymbol{w}_{ML},\, \beta_{ML})=\mathcal{N}(t\mid  y(x,\,\boldsymbol{w}_{ML}),\,\beta_{ML}^{-1}) \tag{1.64}
+\]</span></p>
+<ul>
+<li>베이즈 통계를 위한 짧은 formulas</li>
+</ul>
+<p><span class="math display">\[
+\begin{align}
+p(a|x)&amp;=\sum_y p(a| x,\,y)\, p(y| x)  \tag{B1} \\
+p(a|x,\,y) &amp;= \dfrac{p(x|a,\,y)\, p(a|y)} {p(y|x)}  \tag{B2}
+\end{align}
+\]</span></p>
+<hr>
+<p><em>proof</em> <span class="math display">\[
+\begin{align}
+\sum_y p (a\,|\, x,\,y)\, p(y\mid x)&amp;=\sum_y \dfrac{p(a,\,x,\,y)}{p(x,y)} \cdot \dfrac{p(x,\,y)}{p(x)} =\sum_y \dfrac{p(a,\,x,\,y)}{p(x)} \\
+&amp;=\dfrac{1}{p(x)}\sum_{y}p(a,\,x,\,y) = \dfrac{p(a,\,x)}{p(x)} \\
+&amp;=p(a|x)
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+\dfrac{p(x|a,\,y)\, p(a|y)}{p(y|x)} &amp;= \dfrac{p(a,\,x,\,y)}{p(a,\,y)} \cdot \dfrac{p(a,\,y)}{p(y)} \cdot \dfrac{p(y)}{p(x,\,y)}=\dfrac{p(a,\,x,\,y)}{p(x,\,y)}=p(a|x,\,y)
+\end{align}
+\]</span></p>
+<p>이제 Bayesian 접근법을 좀 알아보자. <span class="math inline">\(\boldsymbol{w}\)</span> 가 <span class="math inline">\(\alpha\)</span> 의 정확도를 갖는 Gaussian 분포를 따른다고 하자. 그렇다면, <span class="math display">\[
+p(\boldsymbol{w}|\alpha)=\mathcal{N}(\boldsymbol{w}|0,\,\alpha^{-1}\boldsymbol{I})=\left(\dfrac{\alpha}{2\pi}\right)^{(M+1)/2} \exp \left(-\dfrac{\alpha}{2}\boldsymbol{w}^T \boldsymbol{w}\right) \tag{1.65}
+\]</span> 이다. 여기서 <span class="math inline">\(M\)</span>은 degree of polynomial 이며 따라서 <span class="math inline">\(\boldsymbol{w}\)</span> 는 <span class="math inline">\(M+1\)</span> 개의 elements를 가진다. <span class="math inline">\(\alpha\)</span> 와 같이 모델 파라메터의 분포를 제어하는 변수를 <em>hyperparameters</em> 라 한다.</p>
+<p>또한 Bayes’ theorem으로 부터, <span class="math display">\[
+[\text{posterior distribution for }\boldsymbol{w}] \propto [\text{likelihood function}]\times[\text{prior distribution}]
+\]</span> 임을 알고 있으므로, <span class="math display">\[
+p(\boldsymbol{w}\,|\,\boldsymbol{x},\,\boldsymbol{t},\,\alpha,\,\beta) \propto p(\boldsymbol{t}\,|\,\boldsymbol{x},\,\boldsymbol{w},\,\beta)\cdot p(\boldsymbol{w}\,|\,\alpha) \tag{1.66}
+\]</span> 이다. 식 (1.66) 을 <span class="math inline">\(-\ln\)</span> 을 취하고 식 (1.62), (1,65)을 대입하면, maximum of the posterior 는 다음 식을 minimize 하는 것으로 으로 주어진다. <span class="math display">\[
+\dfrac{\beta}{2}\sum_{n=1}^N \{y(x_n,\,\boldsymbol{w})-t_n\}^2+\dfrac{\alpha}{2} \boldsymbol{w}^T \boldsymbol{w} \tag{1.67}
+\]</span> 즉 Bayesian에서 posterior distribution을 maximizing 하는 것은 regularized sum of square error 함수의 minimization 과 동일하다.</p>
+</section>
+<section id="bayesian-curve-fitting" class="level4">
+<h4 class="anchored" data-anchor-id="bayesian-curve-fitting">1.2.6 Bayesian Curve Fitting</h4>
+<ul>
+<li>앞서 우리는 prior distribution <span class="math inline">\(p(\boldsymbol{w}|\alpha)\)</span> 에 대한 추정을 포함시켰지만, <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 point estimate 이므로 이것은 제대로 된 Bayesian treatment 가 아니다. 제대로 된 베이지언에서는 확률에 대한 합과 곱의 규칙들을 일관되게 적용해야 하며, 이는 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 모든 값에 대해 적분해야 함을 의미한다. 이러한 marginalizations가 페턴 인식에서의 베이지언 방법의 핵심이다.</li>
+<li>일단 <span class="math inline">\(\alpha,\,\beta\)</span> 를 고정시키고 (편의를 위해 식에서는 일단 빼자.), test set <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 만을 생각하자. 베이지안 방법은</li>
+</ul>
+<p><span class="math display">\[
+p(t\,|\,x,\,\boldsymbol{x},\,\boldsymbol{t})=\int p(t\mid x,\,\boldsymbol{w})\, p(\boldsymbol{w}\mid\boldsymbol{x},\,\boldsymbol{t})\,d\boldsymbol{w} \tag{1.68}
+\]</span></p>
+<p>을 생각한다. 여기서 <span class="math inline">\(p(t\mid x,\,\boldsymbol{w})\)</span> 는 식 (1.60) 에 나와 있으며 <span class="math inline">\(p(\boldsymbol{w}\mid \boldsymbol{x},\,\boldsymbol{t})\)</span> 는 posterior distribution 이다. (식 (1.66) 을 보라.)</p>
+<ul>
+<li>Section 3.3 에서 보겠지만, curve fitting example 과 같은 문제에서 이 posterior distribution 은 Gaussian 이며 해석적으로 계산 할 수 있다. 비슷하게 식 (1.68) 도 해석적으로 적분될 수 있으며 그 결과는 아래와 같은 가우시한 형태로 주어진다.</li>
+</ul>
+<p><span class="math display">\[
+\begin{align}
+&amp;p(t\mid x,\,\boldsymbol{x},\,\boldsymbol{t})=\mathcal{N}(t\mid m(x),\, s^2(x)) \tag{1.69}\\
+\text{where} \qquad &amp;m(x) =\beta \phi(x)^T \boldsymbol{S} \sum_{n=1}^N \phi (x_n) t_n \tag{1.70}\\
+&amp; s^2(x)=\beta^{-1}+ \phi(x)^T\boldsymbol{S}\phi(x) \tag{1.71}\\
+&amp;\boldsymbol{S}^{-1}= \alpha \boldsymbol{I} + \beta \sum_{n=1}^N \phi(x_n) \phi(x)^T \tag{1.72}\\
+&amp;\phi_i (x)=x^i \;(i\text{-th component of vector }\boldsymbol{x})
+\end{align}
+\]</span></p>
+</section>
+</section>
+<section id="model-selection" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">3</span> 1.3. Model Selection</h2>
+<ul>
+<li>최소자승법을 이용한 Polynomial curve fitting 에서 보았듯이 best generalization을 주는 최적의 다항식의 order <span class="math inline">\(M\)</span> 이 존재한다. 다항식의 order는 모델에서 free parameters의 갯수를 제어한다. Regularization 을 사용하면 regularization coefficient <span class="math inline">\(\lambda\)</span> 는 모델의 유효 복잡도(effiective complexcity) 를 통제한다.</li>
+<li>실제 응용에서 우리는 이러한 parameters 들을 결정해야 하며 이렇게 하는 주요 목적은 새로운 데이터에 대한 최소의 predictive performance를 얻기 위함이다. 또한 이렇게 complexicity parameters 에 대한 적당한 값을 찾는 것 뿐만 아니라, 특정 목표에 적합한 모델을 찾기 위해 다양한 모델을 고려할 필요가 있다.</li>
+<li>MLA (maximum likelihood approach) 에서 보았듯이 training set 에 대한 performance 가 다른 데이터에 대한 예측력을 보장해주지 않는다. (overfitting). 만약 데이터가 많다면 가용한 데이터중 일부를 다양한 모델을 학습시키거나, 주어진 모델에 대해 complexicity parameters 를 다양한 범위에서 학습시키는데 사용하고 이것을 독립적인 데이터를 사용하여 predictive performance를 비교하여 수 도 있다. 이렇게 학습데이터와 독립적으로 사용되는 데이터를 <strong>validation set</strong> 이라 한다. 이렇게 수차례 반복한 다음에 <strong>test set</strong> 이라 불리는 별도의 독립적인 데이터를 사용하여 최종적으로 평가할 수도 있다.</li>
+<li>보통은 training과 testing에 사용될 수 있는 데이터가 부족한데, 이 경우 좋은 모델을 만들기 위해 training에 가능한 많은 데이터를 사용하고자 할 수 있다. 그러나 만약 validation set이 부족하면 it will give a relatively noisy estimate of predictive performance. 이 딜레마에 대한 해결방법중 하나로 cross validation 방법이 있다.</li>
+</ul>
+<p><b>Cross Validation</b></p>
+<ul>
+<li><p>전체 데이터를 <span class="math inline">\(S\)</span> 개의 group으로 나눈다. <span class="math inline">\(S\)</span> 개의 training group 으로 각 training group 마다 <span class="math inline">\(S-1\)</span> 개의 데이터 그룹을 training set으로 나머지 하나를 validation set으로 사용한다.</p></li>
+<li><p>Training group 마다 각자의 모델 (혹은 별도의 parameters set) 을 사용하므로 computationally expensive 하다. 또한 하나의 모델에 대한 다수의 complexcity parameter 를 갖게 될 수 있다. 이런 조합들을 탐색하다보면 최악의 경우 training run 이 parameter 갯수의 지수승으로 증가할수도 있다.!!!</p></li>
+<li><p>우리는 더 좋은 접근법을 사용해야 한다. 이상적으로 이 접근법은 training data 에 의존해야 하며, 한번의 training run을 통해 비교 할 수 있는 다수의 hyperparameters와 model types 를 허용해야 하는데….</p></li>
+<li><p>이를 위해 training data 에만 의존하며 over fitting에 의한 bias로부터 자유로운 성능 척도를 찾아야 한다.</p></li>
+<li><p>역사적으로 복잡한 모델에서의 over fitting을 보상하는 penalty term을 추가함으로서 maximum likelihood의 bais를 교정하고자 하는 다양한 ‘information criteria’ 가 제안되었다. 예를 들어 <em>Akaike information criterion</em> (AIC) 의 경우 <span class="math display">\[
+\ln p(\mathcal{D}\mid \boldsymbol{w}_{ML})-M
+\]</span> 을 최대화 하는 모델을 선택한다. 여기서 <span class="math inline">\(p(\mathcal{D}\mid \boldsymbol{w}_{ML})\)</span> 은 best-fit log likelihood 이며 <span class="math inline">\(M\)</span> 은 모델에서 adjustable 한 parameter의 갯수이다. 이의 변형으로서 <em>Bayesian information criterion</em> 이 있는데 이는 section 4.4.1 에서 소개될 것이다. 이러한 criteria는 model parameter의 불확실성을 고려하지 않으며, 실제적으로는 과하게 간단한 모델을 선호한다.</p></li>
+<li><p>따라서 우리는 section 3.4 에서 fully Bayesian approach 로 전환할 것이며 이러한 complexity penalty 가 자연스럽고 원칙적인 방법으로 발생하는지 볼 것이다.</p></li>
+</ul>
+</section>
+<section id="the-curse-of-dimensionality" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="the-curse-of-dimensionality"><span class="header-section-number">4</span> 1.4 The Curse of Dimensionality</h2>
+<ul>
+<li><p>Oil examples은 그냥 읽으면 되고..</p></li>
+<li><p>우리가 다루고자 하는 입력 데이터가 고차원의 데이터 (<span class="math inline">\(\mathcal{D}-\dim\)</span>)라고 가정해보자. 다항식 근사에서 order <span class="math inline">\(3\)</span> 까지 전개해보면, <span class="math display">\[
+y(\boldsymbol{x},\,\boldsymbol{w})=w_0+\sum_{i=1}^\mathcal{D} w_i x_i + \sum_{i=1}^\mathcal{D}\sum_{j=1}^\mathcal{D} w_{ij}x_ix_j + \sum_{i=1}^\mathcal{D}\sum_{j=1}^\mathcal{D} \sum_{k=1}^\mathcal{D} w_{ijk}x_i x_j x_k \tag{1.74}
+\]</span> 이다. <span class="math inline">\(\mathcal{D}\)</span> 에 따라 3차항의 계수의 갯수는 <span class="math inline">\(\mathcal{D}^3\)</span> 개 만큼 증가하는 것처럼 보인다.(실제로는 interchange symmetry 로 인해 이것보다는 작지만 그래도 <span class="math inline">\(\mathcal{D}\gg M\)</span> 일 경우는 <span class="math inline">\(\mathcal{D}^M\)</span> 와 같이 증가한다. see exercise 1.16. 이것도 아주 급격하게 증가하는 것이다. )</p></li>
+<li><p><span class="math inline">\({D}\)</span> 차원의 구를 생각하자. <span class="math inline">\({D}\)</span> 가 커질수록 구의 대부분의 부피는 표면에 분포한다. <span class="math inline">\({D}\)</span> 차원에서 반경 <span class="math inline">\(r\)</span> 인 구의 부피 <span class="math inline">\(V_D(r)=K_D r^D\)</span> 이다 여기에 작은 <span class="math inline">\(0&lt;\epsilon\ll 1\)</span> 을 생각하면 구 표면의 두께 <span class="math inline">\(\epsilon\)</span> 만큼의 껍질의 부피와 <span class="math inline">\(D\)</span> 차원에서의 unit sphere 의 부피의 비는, <span class="math display">\[
+\dfrac{V_D(1)-V_D(1-r)}{V_D(1)}=1-(1-\epsilon)^D
+\]</span> 임을 안다. <span class="math inline">\({D}\)</span> 가 커질 수록 작은 <span class="math inline">\(\epsilon\)</span> 에서의 값이 크다.</p></li>
+<li><p><span class="math inline">\(D\)</span> 차원 가우시안 분포에서 이 데이터를 polar coordinate 로 바꾸어 보자. 차원이 늘어날수록 <span class="math inline">\(p(r)\)</span> 에서 가장 높은 확률을 가진 값이 점점 커진다. 이는 고차원 구에서 대부분의 부피가 spherical shell에 위치한다는 앞의 논리와 상응한다.</p></li>
+<li><p>차원의 저주는 저차원에서의 직관이 고차원에서도 통용되지 않는 경우가 많음을 의미한다. 이 차원의 저주는 패턴 인식의 응용에 있어서 중요한 문제를 제기하지만 고차원을 다루는 효율적인 테크닉이 부족하거나 없다는 것을 의미하지는 않는다.</p>
+<ul>
+<li>고차원의 데이터라도 실제로는 보다 낮은 차원의 특정 영역에 데이터가 제한되어 있는 경우가 흔하며,</li>
+<li>실제 데이터는 전형적으로 어떤 smoothness properties 를 (최소한 국소적으로라도) 가지고 있는 경우가 많다.</li>
+</ul></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/julia-kaeri\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../src/ML/theory/ML.html" class="pagination-link" aria-label="기계 학습">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">기계 학습</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../src/ML/theory/optimization.html" class="pagination-link" aria-label="최적화">
+        <span class="nav-page-text">최적화</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
