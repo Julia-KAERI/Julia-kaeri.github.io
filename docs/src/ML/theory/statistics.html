@@ -526,19 +526,19 @@ p(\text{3 up}\,|\,q)=q^3
 \operatorname{var}[f] &amp;=\mathbb{E}[x^2]-\left(\mathbb{E}[x]\right)^2=\sigma^2 \;.
 \end{align}
 \tag{19}\]</span></span></p>
-<p><span class="math inline">\(\mathbb{R}^\mathcal{D}\)</span> 에서 평균 <span class="math inline">\(\boldsymbol{\mu}\)</span> 와 covariance <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 를 갖는 Gaussian distribution은 다음과 같다.</p>
-<p><span class="math display">\[
+<p><span class="math inline">\(\mathbb{R}^\mathcal{D}\)</span> 에서 평균 <span class="math inline">\(\boldsymbol{\mu}\)</span> 와 공분산 <span class="math inline">\(\boldsymbol{\Sigma}\)</span> 를 갖는 가우스 분포는 다음과 같다.</p>
+<p><span id="eq-ststistics_properties_of_gaussian_distribution"><span class="math display">\[
 \mathcal{N}(\boldsymbol{x}\mid \boldsymbol{\mu},\,\boldsymbol{\Sigma}) = \dfrac{1}{(2\pi)^{\mathcal{D}/2}}\dfrac{1}{\left|\boldsymbol{\Sigma}\right|^{1/2}} \exp \left[-\dfrac{1}{2} (\boldsymbol{x}-\boldsymbol{\mu})^T \boldsymbol{\Sigma} (\boldsymbol{x}-\boldsymbol{\mu})\right]
-\]</span></p>
+\tag{20}\]</span></span></p>
 <p><br></p>
 <section id="변수-가우스분포에서의-mu와-sigma2-의-추정---최대-가능도" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="변수-가우스분포에서의-mu와-sigma2-의-추정---최대-가능도"><span class="header-section-number">3.1</span> 1-변수 가우스분포에서의 <span class="math inline">\(\mu\)</span>와 <span class="math inline">\(\sigma^2\)</span> 의 추정 - 최대 가능도</h3>
 <p>스칼라 변수 <span class="math inline">\(x\)</span> 에 대해 <span class="math inline">\(N\)</span> 번 측정한 것을 <span class="math inline">\(\boldsymbol{x}=\begin{bmatrix}x_1 &amp;\ldots &amp;x_N\end{bmatrix}^T\)</span> 라 하자. 이 관측은 평균이 <span class="math inline">\(\mu\)</span> 이며 분산이 <span class="math inline">\(\sigma^2\)</span> 인 가우시안 분포를 따르는 변수에 대한 각각 독립적인 측정이라고 하자.</p>
 <p>우선 <span class="math inline">\(N\)</span> 측정에서 <span class="math inline">\(\boldsymbol{x}\)</span> 가 관측될 확률은 <span id="eq-ststistics_gaussian_likelihood_function"><span class="math display">\[
 p(\boldsymbol{x}\mid \mu,\,\sigma^2)= \prod_{n=1}^N \mathcal{N}(x_n\mid \mu,\,\sigma^2)
-\tag{20}\]</span></span></p>
+\tag{21}\]</span></span></p>
 <p>이며 <em>likelihood function for the Gaussian</em> (가우시안 가능도 함수)이라 불리운다.</p>
-<p>어쨋든, <a href="#eq-ststistics_gaussian_likelihood_function" class="quarto-xref">식&nbsp;20</a> 의 우도함수를 최대화하는 <span class="math inline">\(\mu,\,\sigma^2\)</span> 를 정하자. 계산의 편의를 위해 로그함수를 사용한다. <span class="math display">\[
+<p>어쨋든, <a href="#eq-ststistics_gaussian_likelihood_function" class="quarto-xref">식&nbsp;21</a> 의 우도함수를 최대화하는 <span class="math inline">\(\mu,\,\sigma^2\)</span> 를 정하자. 계산의 편의를 위해 로그함수를 사용한다. <span class="math display">\[
 \ln p(\boldsymbol{x}\mid \mu,\,\sigma^2)= - \dfrac{1}{2\sigma^2}\sum_{n=1}^N (x_n-\mu)^2-\dfrac{N}{2} \ln \sigma^2 - \dfrac{N}{2} \ln 2\pi
 \]</span></p>
 <p>이 때 <span class="math inline">\(p (\boldsymbol{x}\mid \mu,\,\sigma^2)\)</span> 를 최대화 하는 <span class="math inline">\(\mu\)</span> 와 <span class="math inline">\(\sigma^2\)</span> 를 <span class="math inline">\(\mu_{ML},\,\sigma_{ML}^2\)</span> 라 할 때 다음과 같다.</p>
@@ -547,7 +547,7 @@ p(\boldsymbol{x}\mid \mu,\,\sigma^2)= \prod_{n=1}^N \mathcal{N}(x_n\mid \mu,\,\s
 \mu_{ML} &amp;= \dfrac{1}{N}\sum_{n=1}^N x_n \;,\\
 \sigma_{ML}^2 &amp;= \dfrac{1}{N} \sum_{n=1}^N (x_n-\mu_{ML})^2\;
 \end{align}
-\tag{21}\]</span></span></p>
+\tag{22}\]</span></span></p>
 <p><br></p>
 <section id="편항" class="level4">
 <h4 class="anchored" data-anchor-id="편항"><strong>편항</strong></h4>
@@ -556,38 +556,43 @@ p(\boldsymbol{x}\mid \mu,\,\sigma^2)= \prod_{n=1}^N \mathcal{N}(x_n\mid \mu,\,\s
 \mathbb{E}[\mu_{ML}]&amp; =\mu \\
 \mathbb{E}\left[\sigma_{ML}^2\right] &amp; =\left(\dfrac{N-1}{N}\right)\sigma^2.
 \end{align}
-\tag{22}\]</span></span></p>
+\tag{23}\]</span></span></p>
 <p>식 (1.58)에서 보듯이 <span class="math inline">\(\mathbb{E}\left[\sigma^2_{ML}\right]&lt;\sigma^2\)</span> 이다. 따라서 아래와 같이 정의된 <span class="math inline">\(\widetilde{\sigma\,}^2\)</span> 는 samples 로 부터 추정한 모집단의 분산과 같다. (즉 unbiased.) 이를 표본분산이라 한다. <span id="eq-statistics_population_variance"><span class="math display">\[
 \widetilde{\sigma\,}^2 = \dfrac{N}{N-1}\sigma_{ML}^2 = \dfrac{1}{N-1} \sum_{n=1}^N\left(x_n-\mu_{ML}\right)^2
-\tag{23}\]</span></span></p>
+\tag{24}\]</span></span></p>
 <p><span class="math inline">\(N\to \infty\)</span> 일 때 <span class="math inline">\(\sigma_{ML}^2 \to \sigma^2\)</span> 임은 쉽게 알 수 있다. 실제로 <span class="math inline">\(N\)</span> 이 작지만 않으면 큰 문제는 되지 않는다.</p>
 <p><br></p>
 </section>
 </section>
 <section id="curve-fitting-revisited" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="curve-fitting-revisited"><span class="header-section-number">3.2</span> Curve Fitting Revisited</h3>
-<p><span class="math inline">\(N\)</span> 개의 입력 변수 <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix} x_1 &amp;\ldots &amp; x_N \end{bmatrix}^T\)</span> 와 표적값 <span class="math inline">\(\boldsymbol{t}=\begin{bmatrix} t_1 &amp;\ldots &amp;t_N\end{bmatrix}^T\)</span> 사이에 polynomial <span class="math inline">\(t=y(x;\boldsymbol{w})=w_0 + w_1x+ \cdots +w_nx^n\)</span> 의 관계를 가정한다. 표적값의 불확도를 확률분포로서 표현하자. 이를 위해 주어진 <span class="math inline">\(x\)</span> 에 대해 표적값의 확률은 <span class="math inline">\(y(x,\,\boldsymbol{w})\)</span> 를 중심으로 분산이 <span class="math inline">\(\beta^{-1}\)</span> 인 가우시안분포를 따른다고 가정한다. 즉,</p>
+<p><span class="math inline">\(N\)</span> 개의 입력 변수 <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix} x_1 &amp;\ldots &amp; x_N \end{bmatrix}^T\)</span> 와 표적값 <span class="math inline">\(\boldsymbol{t}=\begin{bmatrix} t_1 &amp;\ldots &amp;t_N\end{bmatrix}^T\)</span> 사이에 다항식 <span class="math inline">\(t=y(x;\boldsymbol{w})=w_0 + w_1x+ \cdots +w_nx^n\)</span> 의 관계를 가정한다. 표적값의 불확도를 확률분포로서 표현하자. 이를 위해 주어진 <span class="math inline">\(x\)</span> 에 대해 표적값의 확률은 <span class="math inline">\(y(\boldsymbol{x},\,\boldsymbol{w})\)</span> 를 중심으로 분산이 <span class="math inline">\(\beta^{-1}\)</span> 인 가우시안분포를 따른다고 가정한다. 즉,</p>
 <p><span id="eq-statistics_parameter_distribution"><span class="math display">\[
 p(t\mid x,\,\boldsymbol{w},\, \beta)=\mathcal{N}(t\mid y(x,\,\boldsymbol{w}),\,\beta^{-1})
-\tag{24}\]</span></span></p>
+\tag{25}\]</span></span></p>
 <p>이다.</p>
 <p>훈련 데이터 <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 를 이용하여 미지의 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 와 <span class="math inline">\(\beta\)</span> 를 결정하자. 그렇다면 가능도 함수는 다음과 같이 주어진다. <span id="eq-statistics_curve_fitting_likelihood"><span class="math display">\[
-p(\boldsymbol{t}\mid \boldsymbol{x},\,\boldsymbol{w},\,\beta)=\prod_{n=1}^N \mathcal{N}(t_n\mid y(x_n,\, \boldsymbol{w}),\, \beta^{-1})
-\tag{25}\]</span></span></p>
+p(\boldsymbol{t}\mid \boldsymbol{x},\,\boldsymbol{w},\,\beta)=\prod_{n=1}^N \mathcal{N}(t_n\mid y(x_n,\, \boldsymbol{w}),\, \beta^{-1}).
+\tag{26}\]</span></span></p>
 <p>앞서와 같이 <span class="math inline">\(\ln\)</span> 을 취하면</p>
 <p><span id="eq-statistics_curve_fitting_likelihood_log"><span class="math display">\[
 \ln p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)= -\dfrac{\beta}{2} \sum_{n=1}^N \left[y(x_n,\,\boldsymbol{w})-t_n\right]^2+\dfrac{N}{2} \ln \beta - \dfrac{N}{2} \ln (2\pi)
-\tag{26}\]</span></span></p>
-<p>이 된다. 여기서 (고정된 <span class="math inline">\(\beta\)</span> 에 대해) <span class="math inline">\(p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)\)</span> 를 최소화 하는 것과 <span class="math inline">\(\displaystyle \dfrac{1}{2}\sum_{n=1}^N \left[ y(x_n,\,\boldsymbol{w})-t_n\right]^2\)</span> 를 최소화하는 것은 동치이며 이렇게 하는 <span class="math inline">\(\boldsymbol{w}\)</span> 를 <span class="math inline">\(\boldsymbol{w}_{ML}\)</span>이라 하자. 또한 <span class="math inline">\(\beta\)</span> 에 대해 미분하여 <span class="math inline">\(p\)</span> 를 maximize 하는 <span class="math inline">\(\beta\)</span> 를 찾아 <span class="math inline">\(\beta_{ML}\)</span> 이라 하면, <span id="eq-statistics_cuve_fitting_param_1"><span class="math display">\[
-\dfrac{1}{\beta_{ML}}=\dfrac{1}{N}\sum_{n=1}^N \left[ y(x_n,\, \boldsymbol{w})-t_n\right]^2
 \tag{27}\]</span></span></p>
-<p>이다. 이제 우린는 maximum likely 한 확률 분포를 다음과 같이 얻는다.</p>
+<p>이 된다.</p>
+<ul>
+<li><p><a href="#eq-statistics_curve_fitting_likelihood_log" class="quarto-xref">식&nbsp;27</a> 로부터 고정된 <span class="math inline">\(\beta\)</span> 에 대해 <span class="math inline">\(p(\boldsymbol{t}\mid \boldsymbol{x},\, \boldsymbol{w},\,\beta)\)</span> 를 최대화 하는 것과 <span class="math inline">\(\displaystyle \dfrac{1}{2}\sum_{n=1}^N \left[ y(x_n,\,\boldsymbol{w})-t_n\right]^2\)</span> 를 최소화하는 것, 즉 제곱합 오차를 최소화 하는것은 동치라는 것을 알 수 있다. 이 <span class="math inline">\(\boldsymbol{w}\)</span> 를 <span class="math inline">\(\boldsymbol{w}_{ML}\)</span>이라 하자.</p></li>
+<li><p>또한 <span class="math inline">\(\beta\)</span> 에 대해 미분하여 <span class="math inline">\(p\)</span> 를 최대화 하는 <span class="math inline">\(\beta\)</span> 를 찾아 <span class="math inline">\(\beta_{ML}\)</span> 이라 하면, <span id="eq-statistics_cuve_fitting_param_1"><span class="math display">\[
+\dfrac{1}{\beta_{ML}}=\dfrac{1}{N}\sum_{n=1}^N \left[ y(x_n,\, \boldsymbol{w}_{ML})-t_n\right]^2
+\tag{28}\]</span></span></p>
+<p>이다. <span class="math inline">\(\beta\)</span> 역시 <span class="math inline">\(\boldsymbol{w}_{ML}\)</span> 이 결정된 상황에서 제곱합 오차를 최소화 할 때 확률을 최대화 하도록 결정된다.</p></li>
+</ul>
+<p>이제 우리는 주어진 데이터로부터 가장 잘 예측할 수 있는 확률 분포를 다음과 갇이 얻는다.</p>
 <p><span id="eq-statistics_cuve_fitting_most_likely_function"><span class="math display">\[
 p(t\mid x,\,\boldsymbol{w}_{ML},\, \beta_{ML})=\mathcal{N}(t\mid  y(x,\,\boldsymbol{w}_{ML}),\,\beta_{ML}^{-1})
-\tag{28}\]</span></span></p>
-<ul>
-<li>베이즈 통계를 위한 짧은 formulas</li>
-</ul>
+\tag{29}\]</span></span></p>
+<p><br></p>
+<section id="베이즈-통계를-위한-공식" class="level5 border" style="background-color:#F2F4F4  ;padding:5px;">
+<h5 class="anchored" data-anchor-id="베이즈-통계를-위한-공식"><strong>베이즈 통계를 위한 공식</strong></h5>
 <p><span class="math display">\[
 \begin{align}
 p(a|x)&amp;=\sum_y p(a| x,\,y)\, p(y| x)  \tag{B1} \\
@@ -595,47 +600,67 @@ p(a|x,\,y) &amp;= \dfrac{p(x|a,\,y)\, p(a|y)} {p(y|x)}  \tag{B2}
 \end{align}
 \]</span></p>
 <hr>
-<p><em>proof</em> <span class="math display">\[
-\begin{align}
+<div class="proof">
+<p><span class="proof-title"><em>(증명)</em>. </span>(<span class="math inline">\(B1\)</span>) <span class="math display">\[
+\begin{aligned}
 \sum_y p (a\,|\, x,\,y)\, p(y\mid x)&amp;=\sum_y \dfrac{p(a,\,x,\,y)}{p(x,y)} \cdot \dfrac{p(x,\,y)}{p(x)} =\sum_y \dfrac{p(a,\,x,\,y)}{p(x)} \\
 &amp;=\dfrac{1}{p(x)}\sum_{y}p(a,\,x,\,y) = \dfrac{p(a,\,x)}{p(x)} \\
 &amp;=p(a|x)
-\end{align}
+\end{aligned}
 \]</span></p>
-<p><span class="math display">\[
-\begin{align}
+<p>(<span class="math inline">\(B2\)</span>) <span class="math display">\[
+\begin{aligned}
 \dfrac{p(x|a,\,y)\, p(a|y)}{p(y|x)} &amp;= \dfrac{p(a,\,x,\,y)}{p(a,\,y)} \cdot \dfrac{p(a,\,y)}{p(y)} \cdot \dfrac{p(y)}{p(x,\,y)}=\dfrac{p(a,\,x,\,y)}{p(x,\,y)}=p(a|x,\,y)
-\end{align}
+\end{aligned}
 \]</span></p>
-<p>이제 Bayesian 접근법을 좀 알아보자. <span class="math inline">\(\boldsymbol{w}\)</span> 가 <span class="math inline">\(\alpha\)</span> 의 정확도를 갖는 Gaussian 분포를 따른다고 하자. 그렇다면, <span class="math display">\[
-p(\boldsymbol{w}|\alpha)=\mathcal{N}(\boldsymbol{w}|0,\,\alpha^{-1}\boldsymbol{I})=\left(\dfrac{\alpha}{2\pi}\right)^{(M+1)/2} \exp \left(-\dfrac{\alpha}{2}\boldsymbol{w}^T \boldsymbol{w}\right) \tag{1.65}
-\]</span> 이다. 여기서 <span class="math inline">\(M\)</span>은 degree of polynomial 이며 따라서 <span class="math inline">\(\boldsymbol{w}\)</span> 는 <span class="math inline">\(M+1\)</span> 개의 elements를 가진다. <span class="math inline">\(\alpha\)</span> 와 같이 모델 파라메터의 분포를 제어하는 변수를 <em>hyperparameters</em> 라 한다.</p>
-<p>또한 Bayes’ theorem으로 부터, <span class="math display">\[
-[\text{posterior distribution for }\boldsymbol{w}] \propto [\text{likelihood function}]\times[\text{prior distribution}]
-\]</span> 임을 알고 있으므로, <span class="math display">\[
-p(\boldsymbol{w}\,|\,\boldsymbol{x},\,\boldsymbol{t},\,\alpha,\,\beta) \propto p(\boldsymbol{t}\,|\,\boldsymbol{x},\,\boldsymbol{w},\,\beta)\cdot p(\boldsymbol{w}\,|\,\alpha) \tag{1.66}
-\]</span> 이다. 식 (1.66) 을 <span class="math inline">\(-\ln\)</span> 을 취하고 식 (1.62), (1,65)을 대입하면, maximum of the posterior 는 다음 식을 minimize 하는 것으로 으로 주어진다. <span class="math display">\[
-\dfrac{\beta}{2}\sum_{n=1}^N \{y(x_n,\,\boldsymbol{w})-t_n\}^2+\dfrac{\alpha}{2} \boldsymbol{w}^T \boldsymbol{w} \tag{1.67}
-\]</span> 즉 Bayesian에서 posterior distribution을 maximizing 하는 것은 regularized sum of square error 함수의 minimization 과 동일하다.</p>
+</div>
+</section>
+<p><br></p>
+<p>이제 Bayesian 접근법을 좀 알아보자. 즉 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 사전 분포 <span class="math inline">\(p(\boldsymbol{w})\)</span> 에 대한 것이다. <span class="math inline">\(\boldsymbol{w}\)</span> 가 아래와 같은 분포를 따른다고 하자.</p>
+<p><span id="eq-statistics_bayesian_fitting_1"><span class="math display">\[
+p(\boldsymbol{w}|\alpha)=\mathcal{N}(\boldsymbol{w}|\boldsymbol{0},\,\alpha^{-1}\boldsymbol{1}_{M+1})=\left(\dfrac{\alpha}{2\pi}\right)^{(M+1)/2} \exp \left(-\dfrac{\alpha}{2}\boldsymbol{w}^T \boldsymbol{w}\right)
+\tag{30}\]</span></span></p>
+<p>여기서 <span class="math inline">\(M\)</span> 은 다항식의 차수이며 이며 따라서 <span class="math inline">\(\boldsymbol{w}\)</span> 는 <span class="math inline">\(M+1\)</span> 개의 성분을 가진다. <span class="math inline">\(\alpha\)</span> 와 같이 모델 파라메터의 분포를 제어하는 변수를 <strong>초매개변수(hyperparameters)</strong> 라 한다.</p>
+<p>베이즈 정리로 부터, <span class="math display">\[
+[\boldsymbol{w} \text{ 에 대한 사후 확률}] \propto [\text{가능도}]\times[\boldsymbol{w}\text{ 의 사전 확률 분포}]
+\]</span></p>
+<p>임을 알고 있으므로,</p>
+<p><span id="eq-statistics_bayesian_fitting_2"><span class="math display">\[
+p(\boldsymbol{w}\,|\,\boldsymbol{x},\,\boldsymbol{t},\,\alpha,\,\beta) \propto p(\boldsymbol{t}\,|\,\boldsymbol{x},\,\boldsymbol{w},\,\beta)\cdot p(\boldsymbol{w}\,|\,\alpha)
+\tag{31}\]</span></span></p>
+<p>이다. <a href="#eq-statistics_bayesian_fitting_2" class="quarto-xref">식&nbsp;31</a> 에 <span class="math inline">\(-\ln\)</span> 을 취하고 <a href="#eq-statistics_curve_fitting_likelihood_log" class="quarto-xref">식&nbsp;27</a>, <a href="#eq-statistics_cuve_fitting_most_likely_function" class="quarto-xref">식&nbsp;29</a> 를 대입하면, 사후확률을 극대화 하는 <span class="math inline">\(\boldsymbol{w}\)</span> 는 다음 식을 최소화 하는 것 <span class="math inline">\(\boldsymbol{w}\)</span> 이다.</p>
+<p><span id="eq-statistics_bayesian_fitting_3"><span class="math display">\[
+\dfrac{\beta}{2}\sum_{n=1}^N \{y(x_n,\,\boldsymbol{w})-t_n\}^2+\dfrac{\alpha}{2} \boldsymbol{w}^T \boldsymbol{w}.
+\tag{32}\]</span></span></p>
+<p>즉 베이지안에서 사후확률분포를 최대화하는 것은 정규화된 제곱합 오차 함수를 최소화 하는 것과 동등하다.</p>
 <p><br></p>
 </section>
 <section id="bayesian-curve-fitting" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="bayesian-curve-fitting"><span class="header-section-number">3.3</span> Bayesian Curve Fitting</h3>
+<p>앞서 우리는 사전확률분포 <span class="math inline">\(p(\boldsymbol{w}|\alpha)\)</span> 에 대한 추정을 포함시켰지만, <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 point estimate 이므로 이것은 제대로 된 베이지안 처리가 아니다. 제대로 된 베이지언 처리는 확률에 대한 합과 곱의 규칙들을 일관되게 적용해야 하며, 이는 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 모든 값에 대해 적분해야 함을 의미한다. 이러한 marginalizations 가 패턴 인식에서의 베이지언 방법의 핵심이다.</p>
 <ul>
-<li><p>앞서 우리는 prior distribution <span class="math inline">\(p(\boldsymbol{w}|\alpha)\)</span> 에 대한 추정을 포함시켰지만, <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 point estimate 이므로 이것은 제대로 된 Bayesian treatment 가 아니다. 제대로 된 베이지언에서는 확률에 대한 합과 곱의 규칙들을 일관되게 적용해야 하며, 이는 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 모든 값에 대해 적분해야 함을 의미한다. 이러한 marginalizations 가 패턴턴 인식에서의 베이지언 방법의 핵심이다.</p></li>
 <li><p>일단 <span class="math inline">\(\alpha,\,\beta\)</span> 를 고정시키고 (편의를 위해 식에서는 일단 빼자.), test set <span class="math inline">\(\{\boldsymbol{x},\,\boldsymbol{t}\}\)</span> 만을 생각하자. 베이지안 방법은</p>
-<p>을 생각한다. 여기서 <span class="math inline">\(p(t\mid x,\,\boldsymbol{w})\)</span> 는 식 (1.60) 에 나와 있으며 <span class="math inline">\(p(\boldsymbol{w}\mid \boldsymbol{x},\,\boldsymbol{t})\)</span> 는 posterior distribution 이다. (식 (1.66) 을 보라.)</p></li>
-<li><p>Section 3.3 에서 보겠지만, curve fitting example 과 같은 문제에서 이 posterior distribution 은 Gaussian 이며 해석적으로 계산 할 수 있다. 비슷하게 식 (1.68) 도 해석적으로 적분될 수 있으며 그 결과는 아래와 같은 가우시한 형태로 주어진다.</p></li>
-</ul>
+<p><span id="eq-statistics_bayesian_fitting_4"><span class="math display">\[
+p(t\,|\,x,\,\mathbf{x},\,\mathbf{t})=\int p(t\mid x,\,\mathbf{w})\, p(\mathbf{w}\mid\mathbf{x},\,\mathbf{t})\,d\mathbf{w}
+\tag{33}\]</span></span></p>
+<p>을 생각한다. 여기서 <span class="math inline">\(p(t\mid x,\,\boldsymbol{w})\)</span> 는 식 <a href="#eq-statistics_parameter_distribution" class="quarto-xref">식&nbsp;25</a> 에 나와 있으며 <span class="math inline">\(p(\boldsymbol{w}\mid \boldsymbol{x},\,\boldsymbol{t})\)</span> 는 사후확률분포이다. (<a href="#eq-statistics_bayesian_fitting_2" class="quarto-xref">식&nbsp;31</a> 을 보라.)</p></li>
+<li><p>뒤에 보겠지만, curve fitting example 과 같은 문제에서 이 사후확률분포 은 Gaussian 이며 해석적으로 계산 할 수 있다. 비슷하게 <a href="#eq-statistics_bayesian_fitting_4" class="quarto-xref">식&nbsp;33</a> 도 해석적으로 적분될 수 있으며 그 결과는 아래와 같은 가우시한 형태로 주어진다.</p>
 <p><span class="math display">\[
-\begin{align}
-&amp;p(t\mid x,\,\boldsymbol{x},\,\boldsymbol{t})=\mathcal{N}(t\mid m(x),\, s^2(x)) \tag{1.69}\\
-\text{where} \qquad &amp;m(x) =\beta \phi(x)^T \boldsymbol{S} \sum_{n=1}^N \phi (x_n) t_n \tag{1.70}\\
-&amp; s^2(x)=\beta^{-1}+ \phi(x)^T\boldsymbol{S}\phi(x) \tag{1.71}\\
-&amp;\boldsymbol{S}^{-1}= \alpha \boldsymbol{I} + \beta \sum_{n=1}^N \phi(x_n) \phi(x)^T \tag{1.72}\\
-&amp;\phi_i (x)=x^i \;(i\text{-th component of vector }\boldsymbol{x})
-\end{align}
+p(t\mid x,\,\boldsymbol{x},\,\boldsymbol{t}) =\mathcal{N}(t\mid m(x),\, s^2(x))
 \]</span></p>
+<p>여기서 평균 <span class="math inline">\(m(x)\)</span> 와 분산 <span class="math inline">\(s^2(x)\)</span> 는 다음과 같다. <span class="math display">\[
+\begin{aligned}
+m(x) &amp;=\beta \phi(x)^T \boldsymbol{S} \sum_{n=1}^N \boldsymbol{\phi} (x_n) t_n\\
+s^2(x) &amp;=\beta^{-1}+ \boldsymbol{\phi}(x)^T\boldsymbol{S}\boldsymbol{\phi}(x) \\
+\end{aligned}
+\]</span></p>
+<p>여기서 행렬 <span class="math inline">\(\boldsymbol{S}\)</span> 는 다음과 같고 <span class="math inline">\(\boldsymbol{\phi}(x) = \begin{bmatrix} x^0 &amp; \cdots &amp; x^M\end{bmatrix}^T\)</span> 이다.<br>
+<span class="math display">\[
+\begin{align}
+\boldsymbol{S}^{-1} &amp;= \alpha \boldsymbol{I} + \beta \sum_{n=1}^N \boldsymbol{\phi}(x_n) \boldsymbol{\phi}(x_n)^T
+\end{align}
+\]</span></p></li>
+</ul>
 </section>
 </section>
 <section id="model-selection" class="level2" data-number="4">

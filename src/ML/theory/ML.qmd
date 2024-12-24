@@ -8,7 +8,7 @@ crossref:
 
 
 nocite: |
-  @Bishop2006, @iAI_Kaist
+  @Bishop2006, @iAI_Kaist, @Deisenroth2020
 ---
 
 {{< include ../../../latexmacros.qmd >}}

@@ -308,11 +308,11 @@ $$
 \end{align}
 $${#eq-ststistics_properties_of_1d_gaussian_distribution}
 
-$\mathbb{R}^\mathcal{D}$ 에서 평균 $\boldsymbol{\mu}$ 와 covariance $\boldsymbol{\Sigma}$ 를 갖는 Gaussian distribution은 다음과 같다.
+$\mathbb{R}^\mathcal{D}$ 에서 평균 $\boldsymbol{\mu}$ 와 공분산 $\boldsymbol{\Sigma}$ 를 갖는 가우스 분포는 다음과 같다.
 
 $$
 \mathcal{N}(\boldsymbol{x}\mid \boldsymbol{\mu},\,\boldsymbol{\Sigma}) = \dfrac{1}{(2\pi)^{\mathcal{D}/2}}\dfrac{1}{\left|\boldsymbol{\Sigma}\right|^{1/2}} \exp \left[-\dfrac{1}{2} (\boldsymbol{x}-\boldsymbol{\mu})^T \boldsymbol{\Sigma} (\boldsymbol{x}-\boldsymbol{\mu})\right]
-$$
+$${#eq-ststistics_properties_of_gaussian_distribution}
 
 </br>
 
@@ -364,9 +364,7 @@ $N\to \infty$ 일 때 $\sigma_{ML}^2 \to \sigma^2$ 임은 쉽게 알 수 있다.
 
 ### Curve Fitting Revisited
 
-
-
-$N$ 개의 입력 변수 $\bf{x} = \begin{bmatrix} x_1 &\ldots & x_N \end{bmatrix}^T$ 와 표적값 $\bf{t}=\begin{bmatrix} t_1 &\ldots &t_N\end{bmatrix}^T$ 사이에 polynomial $t=y(x;\bf{w})=w_0 + w_1x+ \cdots +w_nx^n$ 의 관계를 가정한다. 표적값의 불확도를 확률분포로서 표현하자. 이를 위해 주어진 $x$ 에 대해 표적값의 확률은 $y(x,\,\bf{w})$ 를 중심으로 분산이 $\beta^{-1}$ 인 가우시안분포를 따른다고 가정한다. 즉,
+$N$ 개의 입력 변수 $\bf{x} = \begin{bmatrix} x_1 &\ldots & x_N \end{bmatrix}^T$ 와 표적값 $\bf{t}=\begin{bmatrix} t_1 &\ldots &t_N\end{bmatrix}^T$ 사이에 다항식 $t=y(x;\bf{w})=w_0 + w_1x+ \cdots +w_nx^n$ 의 관계를 가정한다. 표적값의 불확도를 확률분포로서 표현하자. 이를 위해 주어진 $x$ 에 대해 표적값의 확률은 $y(\bf{x},\,\bf{w})$ 를 중심으로 분산이 $\beta^{-1}$ 인 가우시안분포를 따른다고 가정한다. 즉,
 
 $$
 p(t\mid x,\,\bf{w},\, \beta)=\mathcal{N}(t\mid y(x,\,\bf{w}),\,\beta^{-1}) 
@@ -376,7 +374,7 @@ $$ {#eq-statistics_parameter_distribution}
 
 훈련 데이터 $\{\bf{x},\,\bf{t}\}$ 를 이용하여 미지의 매개변수 $\bf{w}$ 와 $\beta$ 를 결정하자. 그렇다면 가능도 함수는 다음과 같이 주어진다.
 $$
-p(\bf{t}\mid \bf{x},\,\bf{w},\,\beta)=\prod_{n=1}^N \mathcal{N}(t_n\mid y(x_n,\, \bf{w}),\, \beta^{-1}) 
+p(\bf{t}\mid \bf{x},\,\bf{w},\,\beta)=\prod_{n=1}^N \mathcal{N}(t_n\mid y(x_n,\, \bf{w}),\, \beta^{-1}).
 $$ {#eq-statistics_curve_fitting_likelihood}
 
 앞서와 같이 $\ln$ 을 취하면
@@ -385,22 +383,30 @@ $$
 \ln p(\bf{t}\mid \bf{x},\, \bf{w},\,\beta)= -\dfrac{\beta}{2} \sum_{n=1}^N \left[y(x_n,\,\bf{w})-t_n\right]^2+\dfrac{N}{2} \ln \beta - \dfrac{N}{2} \ln (2\pi)
 $$ {#eq-statistics_curve_fitting_likelihood_log}
 
-이 된다. 여기서 (고정된 $\beta$ 에 대해) $p(\bf{t}\mid \bf{x},\, \bf{w},\,\beta)$ 를 최소화 하는 것과 $\displaystyle \dfrac{1}{2}\sum_{n=1}^N \left[ y(x_n,\,\bf{w})-t_n\right]^2$ 를 최소화하는 것은  동치이며 이렇게 하는 $\bf{w}$ 를 $\bf{w}_{ML}$이라 하자. 또한 $\beta$ 에 대해 미분하여 $p$ 를 maximize 하는 $\beta$ 를 찾아 $\beta_{ML}$ 이라 하면,
-$$
-\dfrac{1}{\beta_{ML}}=\dfrac{1}{N}\sum_{n=1}^N \left[ y(x_n,\, \bf{w})-t_n\right]^2 
-$$ {#eq-statistics_cuve_fitting_param_1}
+이 된다. 
 
-이다. 이제 우린는 maximum likely 한 확률 분포를 다음과 같이 얻는다.
+
+- @eq-statistics_curve_fitting_likelihood_log 로부터 고정된 $\beta$ 에 대해 $p(\bf{t}\mid \bf{x},\, \bf{w},\,\beta)$ 를 최대화 하는 것과 $\displaystyle \dfrac{1}{2}\sum_{n=1}^N \left[ y(x_n,\,\bf{w})-t_n\right]^2$ 를 최소화하는 것, 즉 제곱합 오차를 최소화 하는것은 동치라는 것을 알 수 있다. 이 $\bf{w}$ 를 $\bf{w}_{ML}$이라 하자. 
+  
+- 또한 $\beta$ 에 대해 미분하여 $p$ 를 최대화 하는 $\beta$ 를 찾아 $\beta_{ML}$ 이라 하면,
+  $$
+  \dfrac{1}{\beta_{ML}}=\dfrac{1}{N}\sum_{n=1}^N \left[ y(x_n,\, \bf{w}_{ML})-t_n\right]^2 
+  $$ {#eq-statistics_cuve_fitting_param_1}
+
+  이다. $\beta$ 역시 $\bf{w}_{ML}$ 이 결정된 상황에서 제곱합 오차를 최소화 할 때 확률을 최대화 하도록 결정된다.
+  
+  
+이제 우리는 주어진 데이터로부터 가장 잘 예측할 수 있는 확률 분포를 다음과 갇이 얻는다.
 
 $$
 p(t\mid x,\,\bf{w}_{ML},\, \beta_{ML})=\mathcal{N}(t\mid  y(x,\,\bf{w}_{ML}),\,\beta_{ML}^{-1})
 $$ {#eq-statistics_cuve_fitting_most_likely_function}
 
+</br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
-
-
-- 베이즈 통계를 위한 짧은 formulas
+##### **베이즈 통계를 위한 공식**
 
 $$
 \begin{align}
@@ -411,64 +417,87 @@ $$
 
 ---
 
-*proof*
+::: {.proof}
+($B1$)
 $$
-\begin{align}
+\begin{aligned}
 \sum_y p (a\,|\, x,\,y)\, p(y\mid x)&=\sum_y \dfrac{p(a,\,x,\,y)}{p(x,y)} \cdot \dfrac{p(x,\,y)}{p(x)} =\sum_y \dfrac{p(a,\,x,\,y)}{p(x)} \\
 &=\dfrac{1}{p(x)}\sum_{y}p(a,\,x,\,y) = \dfrac{p(a,\,x)}{p(x)} \\
 &=p(a|x)
-\end{align}
+\end{aligned}
 $$
 
+($B2$)
 $$
-\begin{align}
+\begin{aligned}
 \dfrac{p(x|a,\,y)\, p(a|y)}{p(y|x)} &= \dfrac{p(a,\,x,\,y)}{p(a,\,y)} \cdot \dfrac{p(a,\,y)}{p(y)} \cdot \dfrac{p(y)}{p(x,\,y)}=\dfrac{p(a,\,x,\,y)}{p(x,\,y)}=p(a|x,\,y)
-\end{align}
+\end{aligned}
 $$
+:::
+</div></br>
 
 
+이제 Bayesian 접근법을 좀 알아보자. 즉 $\bf{w}$ 에 대한 사전 분포 $p(\bf{w})$ 에 대한 것이다. $\bf{w}$ 가 아래와 같은 분포를 따른다고 하자.
 
-이제 Bayesian 접근법을 좀 알아보자. $\bf{w}$ 가 $\alpha$ 의 정확도를 갖는 Gaussian 분포를 따른다고 하자. 그렇다면,
 $$
-p(\bf{w}|\alpha)=\mathcal{N}(\bf{w}|0,\,\alpha^{-1}\bf{I})=\left(\dfrac{\alpha}{2\pi}\right)^{(M+1)/2} \exp \left(-\dfrac{\alpha}{2}\bf{w}^T \bf{w}\right) \tag{1.65}
-$$
-이다. 여기서 $M$은 degree of polynomial 이며 따라서 $\bf{w}$ 는 $M+1$ 개의 elements를 가진다. $\alpha$ 와 같이 모델 파라메터의 분포를 제어하는 변수를 *hyperparameters* 라 한다. 
+p(\bf{w}|\alpha)=\mathcal{N}(\bf{w}|\bf{0},\,\alpha^{-1}\bf{1}_{M+1})=\left(\dfrac{\alpha}{2\pi}\right)^{(M+1)/2} \exp \left(-\dfrac{\alpha}{2}\bf{w}^T \bf{w}\right) 
+$$ {#eq-statistics_bayesian_fitting_1}
 
-또한 Bayes' theorem으로 부터,
+여기서 $M$ 은 다항식의 차수이며 이며 따라서 $\bf{w}$ 는 $M+1$ 개의 성분을 가진다. $\alpha$ 와 같이 모델 파라메터의 분포를 제어하는 변수를 **초매개변수(hyperparameters)** 라 한다.  
+
+베이즈 정리로 부터,
 $$
-[\text{posterior distribution for }\bf{w}] \propto [\text{likelihood function}]\times[\text{prior distribution}]
+[\bf{w} \text{ 에 대한 사후 확률}] \propto [\text{가능도}]\times[\bf{w}\text{ 의 사전 확률 분포}]
 $$
+
 임을 알고 있으므로,
+
 $$
-p(\bf{w}\,|\,\bf{x},\,\bf{t},\,\alpha,\,\beta) \propto p(\bf{t}\,|\,\bf{x},\,\bf{w},\,\beta)\cdot p(\bf{w}\,|\,\alpha) \tag{1.66}
+p(\bf{w}\,|\,\bf{x},\,\bf{t},\,\alpha,\,\beta) \propto p(\bf{t}\,|\,\bf{x},\,\bf{w},\,\beta)\cdot p(\bf{w}\,|\,\alpha) 
+$$ {#eq-statistics_bayesian_fitting_2}
+
+이다. @eq-statistics_bayesian_fitting_2 에 $-\ln$ 을 취하고 @eq-statistics_curve_fitting_likelihood_log, @eq-statistics_cuve_fitting_most_likely_function 를 대입하면, 사후확률을 극대화 하는 $\bf{w}$ 는 다음 식을 최소화 하는 것 $\bf{w}$ 이다.
+
 $$
-이다. 식 (1.66) 을 $-\ln$ 을 취하고 식 (1.62), (1,65)을 대입하면, maximum of the posterior 는 다음 식을 minimize 하는 것으로 으로 주어진다.
-$$
-\dfrac{\beta}{2}\sum_{n=1}^N \{y(x_n,\,\bf{w})-t_n\}^2+\dfrac{\alpha}{2} \bf{w}^T \bf{w} \tag{1.67}
-$$
-즉 Bayesian에서 posterior distribution을 maximizing 하는 것은 regularized sum of square error 함수의 minimization 과 동일하다. 
+\dfrac{\beta}{2}\sum_{n=1}^N \{y(x_n,\,\bf{w})-t_n\}^2+\dfrac{\alpha}{2} \bf{w}^T \bf{w}.
+$$ {#eq-statistics_bayesian_fitting_3}
+
+
+즉 베이지안에서 사후확률분포를 최대화하는 것은 정규화된 제곱합 오차 함수를 최소화 하는 것과 동등하다.
 
 </br>
 
 ### Bayesian Curve Fitting
 
-- 앞서 우리는 prior distribution $p(\bf{w}|\alpha)$ 에 대한 추정을 포함시켰지만, $\bf{w}$ 에 대한 point estimate 이므로 이것은 제대로 된 Bayesian treatment 가 아니다. 제대로 된 베이지언에서는 확률에 대한 합과 곱의 규칙들을 일관되게 적용해야 하며, 이는 $\bf{w}$ 에 대한 모든 값에 대해 적분해야 함을 의미한다. 이러한 marginalizations 가 패턴턴 인식에서의 베이지언 방법의 핵심이다.
+앞서 우리는 사전확률분포 $p(\bf{w}|\alpha)$ 에 대한 추정을 포함시켰지만, $\bf{w}$ 에 대한 point estimate 이므로 이것은 제대로 된 베이지안 처리가 아니다. 제대로 된 베이지언 처리는 확률에 대한 합과 곱의 규칙들을 일관되게 적용해야 하며, 이는 $\bf{w}$ 에 대한 모든 값에 대해 적분해야 함을 의미한다. 이러한 marginalizations 가 패턴 인식에서의 베이지언 방법의 핵심이다.
   
 - 일단 $\alpha,\,\beta$ 를 고정시키고 (편의를 위해 식에서는 일단 빼자.), test set $\{\bf{x},\,\bf{t}\}$ 만을 생각하자. 베이지안 방법은
 
-   
+  $$
+  p(t\,|\,x,\,\mathbf{x},\,\mathbf{t})=\int p(t\mid x,\,\mathbf{w})\, p(\mathbf{w}\mid\mathbf{x},\,\mathbf{t})\,d\mathbf{w}
+  $${#eq-statistics_bayesian_fitting_4}
 
-  을 생각한다. 여기서 $p(t\mid x,\,\bf{w})$ 는 식 (1.60) 에 나와 있으며 $p(\bf{w}\mid \bf{x},\,\bf{t})$ 는 posterior distribution 이다. (식 (1.66) 을 보라.) 
 
-- Section 3.3 에서 보겠지만, curve fitting example 과 같은 문제에서 이 posterior distribution 은 Gaussian 이며 해석적으로 계산 할 수 있다. 비슷하게 식 (1.68) 도 해석적으로 적분될 수 있으며 그 결과는 아래와 같은 가우시한 형태로 주어진다.
+  을 생각한다. 여기서 $p(t\mid x,\,\bf{w})$ 는 식 @eq-statistics_parameter_distribution 에 나와 있으며 $p(\bf{w}\mid \bf{x},\,\bf{t})$ 는 사후확률분포이다. (@eq-statistics_bayesian_fitting_2 을 보라.) 
 
+- 뒤에 보겠지만, curve fitting example 과 같은 문제에서 이 사후확률분포 은 Gaussian 이며 해석적으로 계산 할 수 있다. 비슷하게 @eq-statistics_bayesian_fitting_4 도 해석적으로 적분될 수 있으며 그 결과는 아래와 같은 가우시한 형태로 주어진다.
+
+  $$
+  p(t\mid x,\,\bf{x},\,\bf{t}) =\mathcal{N}(t\mid m(x),\, s^2(x))
+  $$
+
+  여기서 평균 $m(x)$ 와 분산 $s^2(x)$ 는 다음과 같다.
+  $$
+  \begin{aligned}
+  m(x) &=\beta \phi(x)^T \bf{S} \sum_{n=1}^N \bf{\phi} (x_n) t_n\\
+  s^2(x) &=\beta^{-1}+ \bf{\phi}(x)^T\bf{S}\bf{\phi}(x) \\
+  \end{aligned}
+  $$
+
+  여기서 행렬 $\bf{S}$ 는 다음과 같고 $\bf{\phi}(x) = \begin{bmatrix} x^0 & \cdots & x^M\end{bmatrix}^T$ 이다.  
 $$
 \begin{align}
-&p(t\mid x,\,\bf{x},\,\bf{t})=\mathcal{N}(t\mid m(x),\, s^2(x)) \tag{1.69}\\
-\text{where} \qquad &m(x) =\beta \phi(x)^T \bf{S} \sum_{n=1}^N \phi (x_n) t_n \tag{1.70}\\
-& s^2(x)=\beta^{-1}+ \phi(x)^T\bf{S}\phi(x) \tag{1.71}\\
-&\bf{S}^{-1}= \alpha \bf{I} + \beta \sum_{n=1}^N \phi(x_n) \phi(x)^T \tag{1.72}\\
-&\phi_i (x)=x^i \;(i\text{-th component of vector }\bf{x})
+\bf{S}^{-1} &= \alpha \bf{I} + \beta \sum_{n=1}^N \bf{\phi}(x_n) \bf{\phi}(x_n)^T
 \end{align}
 $$
 

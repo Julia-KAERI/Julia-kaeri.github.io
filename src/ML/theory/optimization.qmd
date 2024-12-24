@@ -19,12 +19,11 @@ crossref:
 
 **3가지 기본 요소**
 
-1. 변수 (Decesion variable or unknown) $\bf{x}\in \mathcal{M}_n(\R)$
-2. 목적함수 (objective function) $f:\mathcal{M}_n(\R) \to \R$
-3. 제약 조건 (Constraint) $g_i:\mathcal{M}_n(\R) \to \R$, $i=1,\ldots,\,m$ 에 대해 $g_i(\bf{x})\le 0$ and/or $h_j:\mathcal{M}_n(\R) \to \R,\, j=1,\ldots,\,k$ 에 대해 $h_j(\bf{x})=0$
+1. 변수 (Decesion variable or unknown) $\bf{x}\in \R^n$
+2. 목적함수 (objective function) $f:\R^n \to \R$
+3. 제약 조건 (Constraint) $g_i:\R^n \to \R$, $i=1,\ldots,\,m$ 에 대해 $g_i(\bf{x})\le 0$ and/or $h_j:\R^n \to \R,\, j=1,\ldots,\,k$ 에 대해 $h_j(\bf{x})=0$
 
 </br>
-
 **과정**
 
 1. 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.
@@ -36,12 +35,12 @@ crossref:
 
 **수학적 표준 모델**
 
-- 제약조건을 만족하는 $\mathcal{C}\subset \mathcal{M}_n(\R)$ 를 *feasible region* 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
+- 제약조건을 만족하는 $\mathcal{C}\subset \R^n$ 를 *feasible region* 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
 $$
-\mathcal{C} = \{\bf{x}\in \mathcal{M}_n(\R) : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m\}.
+\mathcal{C} = \{\bf{x}\in \R^n : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m\}.
 $$
 
-- $\displaystyle \bf{x}^\ast = \arg \min_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는다. 이 $\bf{x}^\ast$ 를 최적해 (optimal solution) 이라고 한다.
+- $\displaystyle \bf{x}^\ast = \argmin_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는다. 이 $\bf{x}^\ast$ 를 최적해 (optimal solution) 이라고 한다.
 
 - $\{g_i\}$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
 
@@ -62,14 +61,14 @@ $$
 ::: {.callout-tip appearance="minimal"}
 **convex function**
 
-$f:\mathcal{M}_n(\R)\to\R$ 이 다음을 만족하면 convect function 이라 한다.
+$f:\R^n\to\R$ 이 다음을 만족하면 convect function 이라 한다.
 $$
-\forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in \mathcal{M}_n(\R) \implies f(\theta \bf{x}+(1-\theta)\bf{y}) \le \theta f(\bf{x}) + (1-\theta)f(\bf{y})
+\forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in \R^n \implies f(\theta \bf{x}+(1-\theta)\bf{y}) \le \theta f(\bf{x}) + (1-\theta)f(\bf{y})
 $$
 
 **convex set**
 
-$A\subset\mathcal{M}_n(\R)$ 이 다음을 만족하면 convex set 이라 한다.
+$A\subset\R^n$ 이 다음을 만족하면 convex set 이라 한다.
 
 $$
 \forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in A \implies \theta \bf{x}+(1-\theta)\bf{y}\in A
@@ -105,7 +104,7 @@ $${#eq-optimization_differentiation_to_vector}
 
 ### Gradient
 
-$\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n \end{bmatrix}^T \in \mathcal{M}_n(\R)$, $\bf{a} \in \mathcal{M}_n(\R)$, $\bf{A}=\mathcal{M}_{m \times n}(\R)$ 일 때 $\bf{x}$ 에 대한 스칼라 함수의 gradient 는 다음과 같다.
+$\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n \end{bmatrix}^T \in \R^n$, $\bf{a} \in \R^n$, $\bf{A}=\mathcal{M}_{m \times n}(\R)$ 일 때 $\bf{x}$ 에 대한 스칼라 함수의 gradient 는 다음과 같다.
 
 $$
 \begin{aligned}

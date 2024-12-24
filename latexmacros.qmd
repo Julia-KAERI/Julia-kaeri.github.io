@@ -32,8 +32,8 @@ format: html
 
 $$
 \DeclarePairedDelimiters{\set}{\{}{\}}
-\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 $$
-
 
 :::

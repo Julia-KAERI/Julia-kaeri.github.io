@@ -6,3 +6,19 @@ number-depth: 2
 crossref:
   chapters: false
 ---
+
+## 자료
+
+### 강의 자료
+
+- [고려대 오승상 교수 강의 자료 및 강의 영상 링크 ](https://sites.google.com/view/seungsangoh/youtube-%EA%B0%95%EC%9D%98-%EC%98%81%EC%83%81)
+
+- [서울대 심형보 교수 강의 링크](https://lecture.cdsl.kr/home)
+
+- [포항공대 이승철 교수 강의 링크](https://iailab.kaist.ac.kr/teaching/machine-learning)
+
+</br>
+
+### 공개 강의 자료
+
+- [Stanford Andrew Ng 교수 강의노트, 2023 version](https://cs229.stanford.edu/main_notes.pdf)

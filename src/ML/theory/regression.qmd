@@ -16,13 +16,13 @@ crossref:
 
 ### 선형회귀와 설계행렬 {#sec-regression_design_matrix}
 
-$n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \mathcal{M}_n(\R)$ 에 대한 값 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
+$n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \R^n$ 에 대한 값 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
 
 $$
 f(\bf{x};\bf{\theta})= \begin{bmatrix} \theta_1 & \cdots & \theta_n\end{bmatrix}\bf{x} + \theta_0 = \begin{bmatrix}\theta_0 & \theta_1 & \cdots & \theta_m\end{bmatrix} \begin{bmatrix} 1 \\ \bf{x}\end{bmatrix}
 $$
 
-를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 $\bf{x}_i \in \mathcal{M}_n(\R)$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
+를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 $\bf{x}_i \in \R^n$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
 
 $$
 \bf{\Phi}:= \begin{bmatrix} 1 & (\bf{x}_1)_1 & \cdots & (\bf{x}_1)_n \\ 1 & (\bf{x}_2)_1 & \cdots & (\bf{x}_2)_n \\ \vdots & & & \vdots \\ 1 & (\bf{x}_m)_1 & \cdots & (\bf{x}_m)_n  \end{bmatrix}, \qquad \bf{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \bf{y} := \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}
@@ -34,20 +34,20 @@ $$
 \bf{e}:=\bf{y}-\bf{\Phi \theta}
 $$
 
-라고 하면 $\bf{e}\in \mathcal{M}_m(\R)$ 의 $i$ 번째 성분 $e_i = y_i - f(\bf{x}_i;\bf{\theta})$ 이다. 결국 선형 회귀 문제는 벡터 $\bf{e}$ 의 크기, 즉 노름을 최소화 하는 $\bf{\theta}^\ast$ 를 찾는 문제로 바뀌며 다음과 같이 기술 될 수 있다.
+라고 하면 $\bf{e}\in \R^m$ 의 $i$ 번째 성분 $e_i = y_i - f(\bf{x}_i;\bf{\theta})$ 이다. 결국 선형 회귀 문제는 벡터 $\bf{e}$ 의 크기, 즉 노름을 최소화 하는 $\bf{\theta}^\ast$ 를 찾는 문제로 바뀌며 다음과 같이 기술 될 수 있다.
 
 $$
-\bf{\theta}^\ast = \arg\min_\bf{\theta} \left\|\bf{y}- \bf{\Phi \theta}\right\|
+\bf{\theta}^\ast = \argmin_\bf{\theta} \left\|\bf{y}- \bf{\Phi \theta}\right\|
 $$ {#eq-linear_regression_master_equation}
 
 
 노름 가운데 유클리드 노름, 즉 $L_2$ 노름 혹은 $L_1$ 노름을 사용한다. $L_p$ 노름을 사용했을 경우 @eq-linear_regression_master_equation 는 다음과 같이 표기된다.
 
 $$
-\bf{\theta}^\ast = \arg\min_\bf{\theta} \left\|\bf{y}- \bf{\Phi \theta}\right\|_p
+\bf{\theta}^\ast = \argmin_\bf{\theta} \left\|\bf{y}- \bf{\Phi \theta}\right\|_p
 $$ {#eq-linear_regression_master_equation_with_p}
 
-벡터 $\bf{v}\in \mathcal{M}_k(\R)$ 의 $L_p$ 노름 $\|\bf{v}\|_p$ 는 다음과 같이 정의된다.
+벡터 $\bf{v}\in \R^k$ 의 $L_p$ 노름 $\|\bf{v}\|_p$ 는 다음과 같이 정의된다.
 
 $$
 \|\bf{v}\|_p := \left(\sum_{i=1}^k |v_i|^p\right)^{1/p}
@@ -56,10 +56,10 @@ $$
 즉 $\|\bf{v}\|_1 = \sum |v_i|$ 이며 $\|\bf{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}$ 는 유클리드 노름이다. $L_\infty$ 는 $p\to \infty$ 극한으로 정의되며 $\|\bf{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|$ 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 $L_\infty$ 노름이 가장 큰 영향을 받으며 $\|\bf{v}\|_1$ 노름이 가장 영향을 적게 받는다. 일반적으로 $L_2$ 노름을 가장 많이 사용하며 튀는 데이터가 있을 경우 $L_1$ 노름을 사용하기도 한다. $L_2$ 노름의 경우
 
 $$
-\bf{\theta}^\ast = \arg \min_\bf{\theta} \|\bf{y}-\bf{\Phi\theta}\|_2^2
+\bf{\theta}^\ast = \argmin_\bf{\theta} \|\bf{y}-\bf{\Phi\theta}\|_2^2
 $$ {#eq-linear_regression_master_equation_with_L2}
 
-이며 $\arg \min_\bf{\theta}\|\bf{y}-\bf{\Phi\theta}\|_2^2$ 가 $\sqrt{\cdots}$ 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.
+이며 $\argmin_\bf{\theta}\|\bf{y}-\bf{\Phi\theta}\|_2^2$ 가 $\sqrt{\cdots}$ 가 없어 미분 계산이 훨씬 간단해 지기 때문에 노름의 제곱을 많이 사용한다.
  
 </br>
 
@@ -130,7 +130,7 @@ $$
 에 대해
 
 $$
-\theta^\ast = \begin{bmatrix} \theta_1^\ast \\ \theta_2^\ast\end{bmatrix} = \arg \min_{\bf{\theta}} \|\bf{y} - \bf{\Phi \theta}\|^2 
+\theta^\ast = \begin{bmatrix} \theta_1^\ast \\ \theta_2^\ast\end{bmatrix} = \argmin_{\bf{\theta}} \|\bf{y} - \bf{\Phi \theta}\|^2 
 $$
 
 이다. $L_2$ 노름의 경우 $\bf{\theta}^\ast$ 는 @eq-linear_regression_solution_L2_norm 로 부터 다음과 같다는 것을 안다.
@@ -180,13 +180,13 @@ f1(x) = f(x, θ)
 선형 독립인 기저함수를 $\{\phi_1,\ldots,\,\phi_m\}$ 라고 하고 데이터 $\{\bf{x}_i\},\, \{y_i\}$ 를 아래의 $f(\bf{x};\bf{\theta})$ 로 회귀시키고자 한다고 하자.
 
 $$
-f(\bf{x};\bf{\theta}) = \theta_0 + \theta_1\phi_1(\bf{x}) + \cdots + \theta_m \phi_m (\bf{x})
+f(\bf{x};\bf{\theta}) = \theta_1\phi_1(\bf{x}) + \cdots + \theta_m \phi_m (\bf{x})
 $$
 
 그렇다면 설계 행렬 $\bf{\Phi}$ 는
 
 $$
-\bf{\Phi} = \begin{bmatrix} 1 & \phi_1(\bf{x}_1) & \cdots & \phi_m(\bf{x}_1) \\1 & \phi_1(\bf{x}_2) & \cdots & \phi_2(\bf{x}_2) \\ \vdots & & & \vdots \\ 1 & \phi_m(\bf{x}_1) & \cdots & \phi_m(\bf{x}_1) \end{bmatrix}
+\bf{\Phi} = \begin{bmatrix}  \phi_1(\bf{x}_1) & \cdots & \phi_m(\bf{x}_1) \\ \phi_1(\bf{x}_2) & \cdots & \phi_2(\bf{x}_2) \\ \vdots & & \vdots \\  \phi_m(\bf{x}_1) & \cdots & \phi_m(\bf{x}_1) \end{bmatrix}
 $$
 
 와 같고 역시 $L_2$ 노름에 대해서라면 $\bf{\theta}^\ast = \left(\bf{\Phi}^T\bf{\Phi}\right)^{-1}\bf{\Phi}^T \bf{y}$ 를 구한다.
@@ -203,7 +203,18 @@ $$
 
 </br>
 
-## 정규화
+## Reguralization
+
+::: {.callout-note icon="false"}
+
+#### Reguralization 의 한글 번역
+
+Reguralization 에 대한 한글 번역으로 정규화, 정칙화 등이 사용되지만 보통 정규화로 번역되는 normalization 와는 달리 reguralization 은 특정 값이 너무 커지지 않게 묶어 두는 역할을 하게 되며, 정규화나 정칙화의 글자 그대로의 의미와는 거리가 있다. 게다가 값 자체를 바꾸는 것이 아니고 값 자체의 크기를 제한하기 때문에 xx화 라는 이름을 붙이는 것도 어울리지 않는것처럼 보인다. (**억제기**가 어떨까?)  
+
+
+:::
+
+</br>
 
 ### Overfitting {#sec-regression_overfitting}
 
@@ -229,13 +240,13 @@ $$
 우리는 매개변수의 최적값 $\bf{\theta}^\ast$ 를
 
 $$
-\bf{\theta}^\ast = \arg \min_{\bf{\theta}} \|\bf{y}-\bf{\Phi \theta}\|_2^2
+\bf{\theta}^\ast = \argmin_{\bf{\theta}} \|\bf{y}-\bf{\Phi \theta}\|_2^2
 $$
 
 로 정했다. 만약 적당햔 양수 $\lambda>0$ 에 대해
 
 $$
-\bf{\theta}^\ast =   \arg \min_\bf{\theta} \left(\|\bf{y}-\bf{\Phi \theta}\|_2^2 + \lambda \|\bf{\theta}\| \right)
+\bf{\theta}^\ast =   \argmin_\bf{\theta} \left(\|\bf{y}-\bf{\Phi \theta}\|_2^2 + \lambda \|\bf{\theta}\| \right)
 $$ {#eq-regression_regulaization}
 
 로 정하는 것이다. @eq-regression_regulaization 의 $\lambda \|\bf{\theta}\|$ 는 $\|\bf{\theta}\|$ 값이 큰 경우에서 $\bf{\theta}^\ast$ 가 결정되는 것을 방해한다. 뒤의 $\lambda \|\bf{\theta}\|$ 의 노름은 $L_1$ 혹은 $L_2$ 가운데 선택하며 앞의 $\|\bf{y}-\bf{\Phi \theta}\|$ 의 노름과 같을 필요는 없다. $L_2$ 노름의 경우를 **Ridge regression** 이라고 하고 $L_1$ 노름의 경우는 **LASSO** (least absolute shrinkage and selection operator) 라고 한다.

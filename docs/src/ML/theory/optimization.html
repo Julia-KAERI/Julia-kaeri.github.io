@@ -210,6 +210,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../src/ML/theory/statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">통계학 이론</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../src/ML/theory/classification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">퍼셈트론과 분류</span></a>
   </div>
@@ -291,7 +297,8 @@ window.Quarto = {
 %
 <p><span class="math display">\[
 \DeclarePairedDelimiters{\set}{\{}{\}}
-\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 \]</span></p>
 </div>
 <p><br></p>
@@ -302,12 +309,11 @@ window.Quarto = {
 <p><br></p>
 <p><strong>3가지 기본 요소</strong></p>
 <ol type="1">
-<li>변수 (Decesion variable or unknown) <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{R})\)</span></li>
-<li>목적함수 (objective function) <span class="math inline">\(f:\mathcal{M}_n(\mathbb{R}) \to \mathbb{R}\)</span></li>
-<li>제약 조건 (Constraint) <span class="math inline">\(g_i:\mathcal{M}_n(\mathbb{R}) \to \mathbb{R}\)</span>, <span class="math inline">\(i=1,\ldots,\,m\)</span> 에 대해 <span class="math inline">\(g_i(\boldsymbol{x})\le 0\)</span> and/or <span class="math inline">\(h_j:\mathcal{M}_n(\mathbb{R}) \to \mathbb{R},\, j=1,\ldots,\,k\)</span> 에 대해 <span class="math inline">\(h_j(\boldsymbol{x})=0\)</span></li>
+<li>변수 (Decesion variable or unknown) <span class="math inline">\(\boldsymbol{x}\in \mathbb{R}^n\)</span></li>
+<li>목적함수 (objective function) <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}\)</span></li>
+<li>제약 조건 (Constraint) <span class="math inline">\(g_i:\mathbb{R}^n \to \mathbb{R}\)</span>, <span class="math inline">\(i=1,\ldots,\,m\)</span> 에 대해 <span class="math inline">\(g_i(\boldsymbol{x})\le 0\)</span> and/or <span class="math inline">\(h_j:\mathbb{R}^n \to \mathbb{R},\, j=1,\ldots,\,k\)</span> 에 대해 <span class="math inline">\(h_j(\boldsymbol{x})=0\)</span></li>
 </ol>
-<p><br></p>
-<p><strong>과정</strong></p>
+<p><br> <strong>과정</strong></p>
 <ol type="1">
 <li>모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.</li>
 <li>모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.</li>
@@ -318,10 +324,10 @@ window.Quarto = {
 <h3 data-number="1.2" class="anchored" data-anchor-id="최적화의-수학-모델"><span class="header-section-number">1.2</span> 최적화의 수학 모델</h3>
 <p><strong>수학적 표준 모델</strong></p>
 <ul>
-<li><p>제약조건을 만족하는 <span class="math inline">\(\mathcal{C}\subset \mathcal{M}_n(\mathbb{R})\)</span> 를 <em>feasible region</em> 이라고 한다. 즉 <span class="math inline">\(\mathcal{C}\)</span> 는 아래와 같다. <span class="math display">\[
-\mathcal{C} = \{\boldsymbol{x}\in \mathcal{M}_n(\mathbb{R}) : g_i(\boldsymbol{x})\le 0,\,i=1,\ldots,\,m\}.
+<li><p>제약조건을 만족하는 <span class="math inline">\(\mathcal{C}\subset \mathbb{R}^n\)</span> 를 <em>feasible region</em> 이라고 한다. 즉 <span class="math inline">\(\mathcal{C}\)</span> 는 아래와 같다. <span class="math display">\[
+\mathcal{C} = \{\boldsymbol{x}\in \mathbb{R}^n : g_i(\boldsymbol{x})\le 0,\,i=1,\ldots,\,m\}.
 \]</span></p></li>
-<li><p><span class="math inline">\(\displaystyle \boldsymbol{x}^\ast = \arg \min_{\boldsymbol{x}\in \mathcal{C}} f(\boldsymbol{x})\)</span> 를 찾는다. 이 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 최적해 (optimal solution) 이라고 한다.</p></li>
+<li><p><span class="math inline">\(\displaystyle \boldsymbol{x}^\ast = \argmin_{\boldsymbol{x}\in \mathcal{C}} f(\boldsymbol{x})\)</span> 를 찾는다. 이 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 최적해 (optimal solution) 이라고 한다.</p></li>
 <li><p><span class="math inline">\(\{g_i\}\)</span> 와 같은 제약조건이 없다면 <em>unconstrained</em> 라고 하며, 그렇지 않다면 <em>constrained</em> 라고 한다.</p></li>
 </ul>
 <p><br> <strong>등가 변환</strong></p>
@@ -341,11 +347,11 @@ window.Quarto = {
 </div>
 <div class="callout-body-container">
 <p><strong>convex function</strong></p>
-<p><span class="math inline">\(f:\mathcal{M}_n(\mathbb{R})\to\mathbb{R}\)</span> 이 다음을 만족하면 convect function 이라 한다. <span class="math display">\[
-\forall \theta\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in \mathcal{M}_n(\mathbb{R}) \implies f(\theta \boldsymbol{x}+(1-\theta)\boldsymbol{y}) \le \theta f(\boldsymbol{x}) + (1-\theta)f(\boldsymbol{y})
+<p><span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}\)</span> 이 다음을 만족하면 convect function 이라 한다. <span class="math display">\[
+\forall \theta\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in \mathbb{R}^n \implies f(\theta \boldsymbol{x}+(1-\theta)\boldsymbol{y}) \le \theta f(\boldsymbol{x}) + (1-\theta)f(\boldsymbol{y})
 \]</span></p>
 <p><strong>convex set</strong></p>
-<p><span class="math inline">\(A\subset\mathcal{M}_n(\mathbb{R})\)</span> 이 다음을 만족하면 convex set 이라 한다.</p>
+<p><span class="math inline">\(A\subset\mathbb{R}^n\)</span> 이 다음을 만족하면 convex set 이라 한다.</p>
 <p><span class="math display">\[
 \forall \theta\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in A \implies \theta \boldsymbol{x}+(1-\theta)\boldsymbol{y}\in A
 \]</span></p>
@@ -377,7 +383,7 @@ window.Quarto = {
 <p><br></p>
 <section id="gradient" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="gradient"><span class="header-section-number">2.1</span> Gradient</h3>
-<p><span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_n \end{bmatrix}^T \in \mathcal{M}_n(\mathbb{R})\)</span>, <span class="math inline">\(\boldsymbol{a} \in \mathcal{M}_n(\mathbb{R})\)</span>, <span class="math inline">\(\boldsymbol{A}=\mathcal{M}_{m \times n}(\mathbb{R})\)</span> 일 때 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 스칼라 함수의 gradient 는 다음과 같다.</p>
+<p><span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_n \end{bmatrix}^T \in \mathbb{R}^n\)</span>, <span class="math inline">\(\boldsymbol{a} \in \mathbb{R}^n\)</span>, <span class="math inline">\(\boldsymbol{A}=\mathcal{M}_{m \times n}(\mathbb{R})\)</span> 일 때 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 스칼라 함수의 gradient 는 다음과 같다.</p>
 <p><span id="eq-optimzation_gradient_of_vector"><span class="math display">\[
 \begin{aligned}
 \nabla_\boldsymbol{x} (\boldsymbol{a}^T\boldsymbol{x}) &amp;= \boldsymbol{a}\\[0.3em]
