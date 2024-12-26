@@ -1,5 +1,5 @@
 ---
-title: "퍼셈트론과 분류"
+title: "퍼셉트론과 분류"
 
 number-sections: true
 number-depth: 3

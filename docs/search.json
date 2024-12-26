@@ -850,13 +850,13 @@
   {
     "objectID": "src/ML/theory/classification.html",
     "href": "src/ML/theory/classification.html",
-    "title": "퍼셈트론과 분류",
+    "title": "퍼셉트론과 분류",
     "section": "",
-    "text": "% %\n%\n\\[\n\\DeclarePairedDelimiters{\\set}{\\{}{\\}}\n\\DeclareMathOperator*{\\argmax}{argmax}\n\\]",
+    "text": "% %\n%\n\\[\n\\DeclarePairedDelimiters{\\set}{\\{}{\\}}\n\\DeclareMathOperator*{\\argmax}{arg\\,max}\n\\DeclareMathOperator*{\\argmin}{arg\\,min}\n\\]",
     "crumbs": [
       "AI & ML",
       "이론",
-      "퍼셈트론과 분류"
+      "퍼셉트론과 분류"
     ]
   },
   {
@@ -874,13 +874,13 @@
   {
     "objectID": "src/ML/theory/classification.html#support-vector-machine",
     "href": "src/ML/theory/classification.html#support-vector-machine",
-    "title": "퍼셈트론과 분류",
+    "title": "퍼셉트론과 분류",
     "section": "2 Support Vector Machine",
     "text": "2 Support Vector Machine",
     "crumbs": [
       "AI & ML",
       "이론",
-      "퍼셈트론과 분류"
+      "퍼셉트론과 분류"
     ]
   },
   {
@@ -922,13 +922,13 @@
   {
     "objectID": "src/ML/theory/classification.html#분류-문제",
     "href": "src/ML/theory/classification.html#분류-문제",
-    "title": "퍼셈트론과 분류",
+    "title": "퍼셉트론과 분류",
     "section": "1 분류 문제",
     "text": "1 분류 문제\n\n1.1 개요\n분류(classification) 문제는 주어진 데이터에 대한 output 유한개인 경우이다. 여기서 가능한 ouput 을 클래스라고 하자. 대부분의 문제에서 각 클래스는 서로 겹치지 않으며, 여기서도 겹치지 않는다고 간주한다. 따라서 입력 벡터의 공간은 각각의 클래스에 따라 분리되며, 각 클래스를 분리하는 경계를 결정 경계(decision boundary) 혹은 결정 표면(decision surface) 이라고 하며 결정 경계를 바탕으로 분리된 부분집합을 결정 구역(decision region) 이라고 한다.\n입력 벡터가 \\(D\\) 차원 공간이라고 하자. 결정 표면을 \\(D\\) 차원 공간에 대한 \\(D-1\\) 차원 초평면 으로 분리하는 모델을 선형 모델(linear model) 이라고 하며, 데이터들이 다수의 초평면으로 정확하게 각각의 클래스로 분류될 수 있을 때, 이 데이터의 집합을 선형 분리 가능 집합(linearly seperable set) 이라고 한다.\n가능한 output 이 \\(K\\) 개의 클래스라고 하자. 이 \\(K\\) 개의 클래스를 \\(\\mathcal{M}_n(\\mathbb{R})\\) 의 표준 기저 벡터로 표현하는 것을 원 핫 인코딩(one hot encoding) 이라고 한다. 예를 들어 다수의 과일 이미지를 사과, 배, 딸기로 분류한다다면 이 이미지들은 3개의 클래스로 분류된다는 의미이다. 사과 클래스는 \\(\\boldsymbol{e}_1=\\begin{bmatrix} 1 & 0 & 0\\end{bmatrix}^T\\) 로 표현하고, 배, 딸기는 각각 \\(\\boldsymbol{e}_2,\\,\\boldsymbol{e}_3\\) 로 표현될 수 있다.\n\n\n\n1.2 일반화된 선형 모델\n입력값 \\(\\boldsymbol{x}\\) 에 대한 모델을 구성할 때 모댈 내부의 매개변수 \\(\\boldsymbol{w}\\) 에 대한 가장 간단한 함수로서\n\\[\ny(\\boldsymbol{x}; \\boldsymbol{w},\\,w_0) = f(\\boldsymbol{w}^T \\boldsymbol{x}+w_0)\n\\tag{1}\\]\n를 생각 할 수 있다. 이 때 보통 \\(f(s)\\) 는 비선형 함수이며 활성화 함수(activation fucntion) 이라고 불린다. 또한 식 1 로 기술되는 모델을 일반화된 선형 모델(generalized linear model) 이라고 한다.\n일반화된 선형 모델의 경우 결정 표면은 어떤 상수 \\(c\\) 에 대해 \\(\\boldsymbol{w}^T\\boldsymbol{x} + w_0 = c\\) 인 초평면이 된다. 즉 선형 분리 가능 집합의 경우 일반화된 선형 모델로 잘 설명이 된다.\n\n\n\n1.3 선형 판별\n입력벡터를 어느 클래스로 분류할지 판단하는 함수를 판별함수라고 하고 판별함수에 의한 결정표면이 초평면 일 경우 선형 판별(linear determination) 이라고 한다,.\n\n2 개의 클래스 의 경우\n두개의 클라스 \\(C_1,\\,C_2\\) 로 분류하는 문제를 살펴 보자. 식 1 에서의 활성화 함수 \\(f\\) 를 \\(\\text{sign}(a)\\) 함수 즉,\n\\[\n\\text{sign}(a) = \\left\\{\\begin{array}{ll} 1, \\qquad & a\\ge 0 \\\\ -1 & a&lt;0 \\end{array} \\right.\n\\]\n로 정한다. 즉 \\(y(\\boldsymbol{x};\\boldsymbol{w},\\,w_0)\\) 값이 \\(1\\) 이면 \\(C_1\\), \\(-1\\) 이면 \\(C_2\\) 클래스에 포함되도 하는 매개변수를 찾는 문제가 된다.\n\n다중 클래스 의 경우\n2 개 이상 \\(K\\) 개의 클래스 \\(C_1,\\ldots,\\,C_K\\) 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 각 클래스 \\(C_1,\\ldots,\\,C_N\\) 에 대한 활성화 함수 \\(f_1,\\,\\ldots,\\,f_N\\) 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 \\(K\\) 개의 선형 판별 함수 \\(y_1,\\ldots,\\,y_K\\) 가 아래와 같이 정의된다고 하자.\n\\[\ny_k(\\boldsymbol{x}; \\boldsymbol{w}_k,\\, w_{k0}) = \\boldsymbol{w}_k^T \\boldsymbol{x} + w_{k0},\\qquad k=1,\\ldots,\\, K.\n\\]\n이 때 \\(y_{k}(\\boldsymbol{x}; \\boldsymbol{w}_k,\\, w_{k0}) \\ge y_{j}(\\boldsymbol{x}; \\boldsymbol{w}_j,\\, w_{j0})\\) 이면 \\(C_k\\) 클래스에 포함되도록 하면 된다.\n\n\n\n1.4 퍼셉트론\n수학적으로 \\(f:\\mathbb{R}^n \\to \\{0,\\,1\\}\\) 인 함수로 입력 벡터 \\(\\boldsymbol{x}\\in \\mathcal{M}_n(\\mathbb{R})\\) 에 대해\n\\[\nf(\\boldsymbol{w}^T\\boldsymbol{x} + b) = \\left\\{\\begin{array}{ll} 1, \\qquad & \\boldsymbol{w}^T\\boldsymbol{x} + b  \\ge 0, \\\\ -1, & \\text{otherwise}.\\end{array} \\right.\n\\]\n인 함수이다. 여기서 \\(\\boldsymbol{w}\\) 는 매개변수(parameter), \\(b\\) 를 편향(bias) 이라고 한다. 즉 퍼셉트론은 입력 벡터 \\(\\boldsymbol{x}\\) 에 대한 이진 분류 함수이다.",
     "crumbs": [
       "AI & ML",
       "이론",
-      "퍼셈트론과 분류"
+      "퍼셉트론과 분류"
     ]
   },
   {
