@@ -345,11 +345,15 @@ window.Quarto = {
 <h2 data-number="1" class="anchored" data-anchor-id="선형회귀"><span class="header-section-number">1</span> 선형회귀</h2>
 <section id="sec-regression_design_matrix" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="sec-regression_design_matrix"><span class="header-section-number">1.1</span> 선형회귀와 설계행렬</h3>
-<p><span class="math inline">\(n\)</span> 차원 벡터 입력변수 <span class="math inline">\(\boldsymbol{x}_1,\ldots,\,\boldsymbol{x}_m \in \mathbb{R}^n\)</span> 에 대한 값 <span class="math inline">\(y_1,\,\ldots,\,y_m\)</span> 을 가장 잘 기술하는 함수</p>
+<p><span class="math inline">\(n\)</span> 차원 벡터 입력변수 <span class="math inline">\(\boldsymbol{x}_1,\ldots,\,\boldsymbol{x}_m \in \mathbb{R}^n\)</span> 와 입력 변수 각각에 대한 레이블 <span class="math inline">\(y_1,\,\ldots,\,y_m\)</span> 을 가장 잘 기술하는 함수</p>
 <p><span class="math display">\[
 f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &amp; \theta_n\end{bmatrix}\boldsymbol{x} + \theta_0 = \begin{bmatrix}\theta_0 &amp; \theta_1 &amp; \cdots &amp; \theta_m\end{bmatrix} \begin{bmatrix} 1 \\ \boldsymbol{x}\end{bmatrix}
 \]</span></p>
-<p>를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 <span class="math inline">\(\boldsymbol{x}_i \in \mathbb{R}^n\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 <span class="math inline">\((\boldsymbol{x}_i)_j\)</span> 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.</p>
+<p>를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다.</p>
+<ul>
+<li>여기서 주의할 것은 <span class="math inline">\(\{\boldsymbol{x}_i\}\)</span> 에 대해 선형이기 때문에 선형 회귀가 아니라 <span class="math inline">\(\boldsymbol{\theta}=  \begin{bmatrix}\theta_0 &amp; \theta_1 &amp; \cdots &amp; \theta_m\end{bmatrix}\)</span> 에 대한 선형 함수이므로 선형 회귀이다.</li>
+</ul>
+<p>이제 <span class="math inline">\(\boldsymbol{x}_i \in \mathbb{R}^n\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 <span class="math inline">\((\boldsymbol{x}_i)_j\)</span> 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.</p>
 <p><span class="math display">\[
 \boldsymbol{\Phi}:= \begin{bmatrix} 1 &amp; (\boldsymbol{x}_1)_1 &amp; \cdots &amp; (\boldsymbol{x}_1)_n \\ 1 &amp; (\boldsymbol{x}_2)_1 &amp; \cdots &amp; (\boldsymbol{x}_2)_n \\ \vdots &amp; &amp; &amp; \vdots \\ 1 &amp; (\boldsymbol{x}_m)_1 &amp; \cdots &amp; (\boldsymbol{x}_m)_n  \end{bmatrix}, \qquad \boldsymbol{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \boldsymbol{y} := \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}
 \]</span></p>
@@ -369,7 +373,7 @@ f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &am
 <p><span class="math display">\[
 \|\boldsymbol{v}\|_p := \left(\sum_{i=1}^k |v_i|^p\right)^{1/p}
 \]</span></p>
-<p>즉 <span class="math inline">\(\|\boldsymbol{v}\|_1 = \sum |v_i|\)</span> 이며 <span class="math inline">\(\|\boldsymbol{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}\)</span> 는 유클리드 노름이다. <span class="math inline">\(L_\infty\)</span> 는 <span class="math inline">\(p\to \infty\)</span> 극한으로 정의되며 <span class="math inline">\(\|\boldsymbol{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|\)</span> 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 <span class="math inline">\(L_\infty\)</span> 노름이 가장 큰 영향을 받으며 <span class="math inline">\(\|\boldsymbol{v}\|_1\)</span> 노름이 가장 영향을 적게 받는다. 일반적으로 <span class="math inline">\(L_2\)</span> 노름을 가장 많이 사용하며 튀는 데이터가 있을 경우 <span class="math inline">\(L_1\)</span> 노름을 사용하기도 한다. <span class="math inline">\(L_2\)</span> 노름의 경우</p>
+<p>즉 <span class="math inline">\(\|\boldsymbol{v}\|_1 = \sum |v_i|\)</span> 이며 <span class="math inline">\(\|\boldsymbol{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}\)</span> 는 유클리드 노름이다. <span class="math inline">\(L_\infty\)</span> 는 <span class="math inline">\(p\to \infty\)</span> 극한으로 정의되며 <span class="math inline">\(\|\boldsymbol{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|\)</span> 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 <span class="math inline">\(L_\infty\)</span> 노름이 가장 큰 영향을 받으며 <span class="math inline">\(\|\boldsymbol{v}\|_1\)</span> 노름이 가장 영향을 적게 받는다. 따라서 <span class="math inline">\(L_\infty\)</span> 노름은 거의 사용되지 않는다. <span class="math inline">\(L_2\)</span> 노름의 경우</p>
 <p><span id="eq-linear_regression_master_equation_with_L2"><span class="math display">\[
 \boldsymbol{\theta}^\ast = \argmin_\boldsymbol{\theta} \|\boldsymbol{y}-\boldsymbol{\Phi\theta}\|_2^2
 \tag{3}\]</span></span></p>

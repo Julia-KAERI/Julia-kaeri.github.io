@@ -278,6 +278,13 @@ window.Quarto = {
   <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
   <li><a href="#기계-학습의-분류" id="toc-기계-학습의-분류" class="nav-link" data-scroll-target="#기계-학습의-분류"><span class="header-section-number">1</span> 기계 학습의 분류</a></li>
   <li><a href="#함수로서의-기계학습" id="toc-함수로서의-기계학습" class="nav-link" data-scroll-target="#함수로서의-기계학습"><span class="header-section-number">2</span> 함수로서의 기계학습</a></li>
+  <li><a href="#통계학의-기본" id="toc-통계학의-기본" class="nav-link" data-scroll-target="#통계학의-기본"><span class="header-section-number">3</span> 통계학의 기본</a>
+  <ul class="collapse">
+  <li><a href="#기본-개념" id="toc-기본-개념" class="nav-link" data-scroll-target="#기본-개념"><span class="header-section-number">3.1</span> 기본 개념</a></li>
+  <li><a href="#이산-확률" id="toc-이산-확률" class="nav-link" data-scroll-target="#이산-확률"><span class="header-section-number">3.2</span> 이산 확률</a></li>
+  <li><a href="#확률-밀도-함수" id="toc-확률-밀도-함수" class="nav-link" data-scroll-target="#확률-밀도-함수"><span class="header-section-number">3.3</span> 확률 밀도 함수</a></li>
+  <li><a href="#기댓값과-공분산" id="toc-기댓값과-공분산" class="nav-link" data-scroll-target="#기댓값과-공분산"><span class="header-section-number">3.4</span> 기댓값과 공분산</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -308,7 +315,8 @@ window.Quarto = {
 %
 <p><span class="math display">\[
 \DeclarePairedDelimiters{\set}{\{}{\}}
-\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 \]</span></p>
 </div>
 <p><br></p>
@@ -378,8 +386,183 @@ y=f(\boldsymbol{x} ; \boldsymbol{w})
 <li>따라서 기계학습에서 학습이란 <span class="math inline">\(L(\boldsymbol{w})\)</span> 가 최소값이 되도록 하는 <span class="math inline">\(\boldsymbol{w}\)</span> 를 찾는 것이다. (최적화 (optimization))</li>
 </ul></li>
 </ul>
+<p><br></p>
+</section>
+<section id="통계학의-기본" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="통계학의-기본"><span class="header-section-number">3</span> 통계학의 기본</h2>
+<p><br></p>
+<section id="기본-개념" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="기본-개념"><span class="header-section-number">3.1</span> 기본 개념</h3>
+<ol type="1">
+<li><p><strong>표본 공간 (sample space) <span class="math inline">\(\Omega\)</span></strong> : 실험/측정에 있어서 가능한 모든 결과값의 집합. <span class="math inline">\(\Omega\)</span> 의 각 원소들은 각각이 식별 가능하며, 상호 배타적(동시에 발생할 수 없음) 이어야 한다. 특정 결과값 <span class="math inline">\(\omega\)</span> 는 <span class="math inline">\(\Omega\)</span> 의 원소이다.</p></li>
+<li><p><strong>사건 공간 (evant space) <span class="math inline">\(\mathcal{A}\)</span></strong> : 실험/측정의 잠재적인 결과의 집합. 당연히 표본 공간 <span class="math inline">\(\Omega\)</span> 의 부분집합.</p></li>
+<li><p><strong>확률 (probability)</strong> : <span class="math inline">\(A\in \mathcal{A}\)</span> 에 대해 <span class="math inline">\(A\)</span> 의 사건이 발생할 확률을 <span class="math inline">\(p(A)\)</span> 라고 한다. 임의의 <span class="math inline">\(A\in \mathcal{A}\)</span> 에 대해 <span class="math inline">\(0\le p(A)\le 1\)</span> 이며 <span class="math inline">\(\sum_{A\in \Omega} p(A)=1\)</span> 이다.</p></li>
+<li><p><strong>표적 공간 (target space)</strong> <span class="math inline">\(\mathcal{T}\)</span> : 우리가 관심있는 정량화된 값. 서로 구별되는 표적공간의 원소를 <strong>상태(state)</strong> 라고 한다.</p></li>
+<li><p><strong>확률 변수 (random variable)</strong> : 표본공간의 성분 <span class="math inline">\(\omega\)</span> 와 표적공간의 성분 <span class="math inline">\(t\)</span> 를 연결하는 함수 <span class="math inline">\(X:\Omega \to \mathcal{T}\)</span> 가 존재하며 이 <span class="math inline">\(X\)</span> 를 확률변수 라고 한다.</p></li>
+</ol>
+<p>예를 들어 두개의 동전을 던져 이중 몇개의 동전이 앞면이 나오는 지 관심있다고 하자. 앞면을 <span class="math inline">\(u\)</span>, 뒷면을 <span class="math inline">\(d\)</span> 라고 하면 <span class="math inline">\(\Omega = \mathcal{A} = \{ uu,\, ud,\,du,\,dd\}\)</span> 이며 <span class="math inline">\(\mathcal{T}=\{0,\,1,\,2\}\)</span> 가 된다. 이제 사건공간이 아닌 표적공간의 부분집합에 대한 확률에 관심을 갖게 된다. 즉 <span class="math inline">\(S\in \mathcal{T}\)</span> 에 대해 <span class="math inline">\(p(S)\)</span> 가 우리의 주요 관심사이다.</p>
+<p>표적공간 <span class="math inline">\(\mathcal{T}\)</span> 가 이산공간일 때 <span class="math inline">\(X\)</span> 를 이산확률변수라고 하고 <span class="math inline">\(\mathbb{R}\)</span> 과 같이 연속일 때 연속확률변수라고 한다.</p>
+<p><br></p>
+</section>
+<section id="이산-확률" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="이산-확률"><span class="header-section-number">3.2</span> 이산 확률</h3>
+<section id="결합-확률joint-probability" class="level4">
+<h4 class="anchored" data-anchor-id="결합-확률joint-probability"><strong>결합 확률(Joint Probability)</strong></h4>
+<p>확률변수 <span class="math inline">\(X,\,Y\)</span> 에 대해 <span class="math inline">\(X\)</span> 는 <span class="math inline">\(x_1,\ldots,\,x_M\)</span> 값을 가질 수 있으며, <span class="math inline">\(Y\)</span> 는 <span class="math inline">\(y_1,\ldots,\,y_L\)</span> 값을 가질 수 있다고 하자. 모두 <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i,\, Y=y_j\)</span> 가 나온 횟수를 <span class="math inline">\(n_{ij}\)</span> 라 하자. <span class="math inline">\(N\)</span> 번의 시행에서 <span class="math inline">\(X=x_i\)</span> 인 횟수는 <span class="math inline">\(c_i\)</span>, <span class="math inline">\(Y=y_j\)</span> 인 횟수는 <span class="math inline">\(r_j\)</span> 라 하자. 즉, <span id="eq-ml_joint_probability_1"><span class="math display">\[
+p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}{N},\quad p(X=x_i)=\dfrac{c_i}{N},\quad p(Y=y_j)=\dfrac{r_j}{N}\;.
+\tag{1}\]</span></span></p>
+<p>이다. 이 때,</p>
+<p><span id="eq-ml_joint_probability"><span class="math display">\[
+p(X=x_i)=\sum_{j=1}^L p(X=x_i,\, Y=y_j)
+\tag{2}\]</span></span></p>
+<p>이며 (자명하다) 이를 <strong>sum rule</strong> 이라 한다. 여기서 <span class="math inline">\(P(X=x_i)\)</span> 를 개별 사건의 확률로 <strong>주변 확률(marginal probability)</strong> 라 하기도 한다.</p>
+<p><br></p>
+</section>
+<section id="조건부-확률conditional-probability" class="level4">
+<h4 class="anchored" data-anchor-id="조건부-확률conditional-probability"><strong>조건부 확률(Conditional probability)</strong></h4>
+<p><span class="math inline">\(X=x_i\)</span> 인 상황에서 <span class="math inline">\(Y=y_j\)</span> 인 확률을 <span class="math inline">\(p(Y=y_j \mid X=x_i)\)</span> 라 쓰며 <span class="math inline">\(X=x_i\)</span> 일 때 <span class="math inline">\(Y=y_j\)</span> 에 대한 <strong>조건부 확률(conditional probability)</strong> 이라고 하고 다음과 같이 주어진다. <span id="eq-ml_conditional_probability"><span class="math display">\[
+p(Y=y_j\mid X=x_i)=\dfrac{n_{ij}}{c_i}
+\tag{3}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="확률의-곱의-법칙product-rule-of-probability" class="level4">
+<h4 class="anchored" data-anchor-id="확률의-곱의-법칙product-rule-of-probability"><strong>확률의 곱의 법칙(Product rule of probability)</strong></h4>
+<p><span id="eq-ml_product_rule_of_probability"><span class="math display">\[
+p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}N=\dfrac{n_{ij}}{c_i}\dfrac{c_i}{N}=P(Y=y_j\mid X=x_i)\cdot p(X=x_i)\;.
+\tag{4}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="합과-곱의-규칙" class="level4">
+<h4 class="anchored" data-anchor-id="합과-곱의-규칙"><strong>합과 곱의 규칙</strong></h4>
+<p><span id="eq-statistics_summary"><span class="math display">\[
+\begin{aligned}
+\textbf{sum rule}&amp;\qquad p(X)=\sum_Y p(X,\,Y)\,, \\
+\textbf{product rule}&amp; \qquad p(X,\,Y)=p(Y\mid X)p(X)
+\end{aligned}
+\tag{5}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="베이즈-정리bayes-theorem" class="level4">
+<h4 class="anchored" data-anchor-id="베이즈-정리bayes-theorem"><b>베이즈 정리(Bayes’ theorem)</b></h4>
+<p><span id="eq-probability_bayse_theorem"><span class="math display">\[
+p(Y\mid X)=\dfrac{p(X\mid Y) \, p(Y)}{p(X)}\;.
+\tag{6}\]</span></span></p>
+<p>With sum rule, <span id="eq-statistics_sum_rule"><span class="math display">\[
+P(X)=\sum_{Y}p(X \mid Y)\, p(Y)\,.
+\tag{7}\]</span></span></p>
+</section>
+<section id="변수의-독립성independence-of-variable" class="level4">
+<h4 class="anchored" data-anchor-id="변수의-독립성independence-of-variable"><b>변수의 독립성(Independence of variable)</b></h4>
+<p>확률변수 <span class="math inline">\(X,\,Y\)</span> 에 때해 <span class="math inline">\(p(X,\,Y)=p(X)\, p(Y)\)</span> 일 때 <span class="math inline">\(X\)</span> 와 <span class="math inline">\(Y\)</span> 는 서로 <strong>독립적(independent)</strong> 이라고 한다. <span class="math inline">\(X,\,Y\)</span> 가 서로 독립적이면 식 <a href="#eq-statistics_summary" class="quarto-xref">식&nbsp;5</a> 으로 부터 <span class="math inline">\(p(Y|X)=p(Y)\)</span> 임을 알 수 있다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="확률-밀도-함수" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="확률-밀도-함수"><span class="header-section-number">3.3</span> 확률 밀도 함수</h3>
+<p>표적공간이 연속일 때 확률은 확률밀도함수 <span class="math inline">\(p(x)\)</span> 로 기술된다.</p>
+<section id="확률밀도함수와-확률" class="level4">
+<h4 class="anchored" data-anchor-id="확률밀도함수와-확률"><strong>확률밀도함수와 확률</strong></h4>
+<p>확률밀도함수 <span class="math inline">\(p(x)\)</span>는 다음 두 조건을 만족해야 한다. <span id="eq-statistics_conditions_for_probability_density"><span class="math display">\[
+\begin{align}
+p(x) &amp; \ge 0\\
+\int_{-\infty}^\infty p(x)\,dx &amp;=1
+\end{align}
+\tag{8}\]</span></span></p>
+<p>연속확률변수일 때 <span class="math inline">\(x\in (a,\,b)\)</span> 일 확률 <span class="math inline">\(p(x\in (a,\,b))\)</span> 는 <span id="eq-ststistics_probability_for_continuous_variable"><span class="math display">\[
+p(x\in (a,\,b))=\int_a^b p(x)\,dx
+\tag{9}\]</span></span> 이다.</p>
+<p><br></p>
+</section>
+<section id="변수의-변환" class="level4">
+<h4 class="anchored" data-anchor-id="변수의-변환"><strong>변수의 변환</strong></h4>
+<p><span class="math inline">\(x=g(y)\)</span> 이며 <span class="math inline">\(y\)</span> 에 대한 확률분포를 알고 싶을 때, 이 확률분포를 <span class="math inline">\(p_y(y)\)</span> 라 하면, <span id="eq-statistics_change_of_variable"><span class="math display">\[
+p_y(y)=p(x)\left|\dfrac{dx}{dy}\right|=p(g(y))|g'(y)
+\tag{10}\]</span></span> 임을 쉽게 보일 수 있다.</p>
+<p><br></p>
+</section>
+<section id="누적-분포-함수" class="level4">
+<h4 class="anchored" data-anchor-id="누적-분포-함수"><strong>누적 분포 함수</strong></h4>
+<p><span class="math inline">\(P(z)=p(x\in (-\infty,\,z))\)</span> 를 <strong>누적 분포 함수(cumulative distribution function)</strong> 이라 하며, <span id="eq-statistics_cumulative_distribution_function"><span class="math display">\[
+P(z) = \int_{-\infty}^z p(x)\, dx
+\tag{11}\]</span></span></p>
+<p>로 정의된다. <span class="math inline">\(P'(x)=p(x)\)</span> 임은 십게 알 수 있다.</p>
+<p>다변수 <span class="math inline">\(\boldsymbol{x}=(x_1,\ldots,\,x_D)\)</span> 에 대한 확률분포는 <span class="math inline">\(\boldsymbol{x}\)</span> 를 포함하는 infinitesimal volume <span class="math inline">\(\delta \boldsymbol{x}\)</span> 에 대해 <span class="math inline">\(p(\boldsymbol{x})\,\delta \boldsymbol{x}\)</span> 로 주어지며 다음과 같은 성질을 만족한다.</p>
+<p><span id="eq-statistics_properties_of_probability_density"><span class="math display">\[
+\begin{aligned}
+p(\boldsymbol{x}) &amp; \ge 0  \\
+\int p(\boldsymbol{x})\,d\boldsymbol{x}&amp;= 1
+\end{aligned}
+\tag{12}\]</span></span></p>
+<p>연속적인 변수, 이산적인 변수 모두에 대한 확률 분포함수를 probability density function 이라 하기도 하고, 이산적인 변수에 대해서 probability mass function 이라고 구분하여 부르기도 한다.</p>
+<p>Sum rule과 Bayes’ theorem 을 생각하면 다음이 성립함을 알 수 있다. <span id="eq-statistics_rules_for_probability_density"><span class="math display">\[
+\begin{aligned}
+p(x) &amp;= \int p(x,\,y)\, dy \\
+p(x,\,y)&amp;=p(y| x)\,p(x)
+\end{aligned}
+\tag{13}\]</span></span></p>
+<p><br></p>
+</section>
+</section>
+<section id="기댓값과-공분산" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="기댓값과-공분산"><span class="header-section-number">3.4</span> 기댓값과 공분산</h3>
+<section id="기댓값" class="level4">
+<h4 class="anchored" data-anchor-id="기댓값"><strong>기댓값</strong></h4>
+<p>확률변수 <span class="math inline">\(X\)</span> 에 대한 확률분포가 <span class="math inline">\(p(x)\)</span> 일 때 <span class="math inline">\(x\)</span> 에 대한 함수 <span class="math inline">\(f(x)\)</span> 의 평균값을 <span class="math inline">\(f\)</span> 에 대한 <strong>기댓값(expectation)</strong> 이라 하며 <span class="math inline">\(\mathbb{E}[f]\)</span> 로 표기하고 다음과 같다. <span id="eq-statistics_expectation_value"><span class="math display">\[
+\begin{align}
+\mathbb{E}[f]&amp;:=\sum_x p(x) f(x) &amp;&amp;\text{for descrete distribution,}\\
+&amp;:=\int  p(x) f(x)\, dx&amp; &amp;\text{for continuous distribution.}
+\end{align}
+\tag{14}\]</span></span></p>
+<p><span class="math inline">\(N\)</span> 개의 sample 이 주어졌을 때 기댓값은 다음과 같이 근사 될 수 있다. <span id="eq-statistics_approximation_of_expectation"><span class="math display">\[
+\mathbb{E}[f] \approx \dfrac{1}{N} \sum_{i=1}^N f(x_n).
+\tag{15}\]</span></span></p>
+<p><a href="#eq-statistics_expectation_value" class="quarto-xref">식&nbsp;14</a> 의 두 식은 <a href="#eq-statistics_approximation_of_expectation" class="quarto-xref">식&nbsp;15</a> 의 <span class="math inline">\(N \to \infty\)</span> 극한과 동일하다.</p>
+<p>다변수 확률분포에서 특정 변수에 대한 기댓값은 <span class="math inline">\(\mathbb{E}_x [f(x,\,y)]\)</span> 와 같이 표기하며 다음과 같다. <span id="eq-statistics_expectation_for_multivariables"><span class="math display">\[
+\mathbb{E}_x [f(x,\,y)]=\sum_x p (x,\,y) f(x,\,y) =\int p(x,\,y) f(x,\,y)\, dx
+\tag{16}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="조건부-기댓값" class="level4">
+<h4 class="anchored" data-anchor-id="조건부-기댓값"><strong>조건부 기댓값</strong></h4>
+<p><span class="math inline">\(p(x\,|\,y)\)</span> 에 대한 <span class="math inline">\(f(x)\)</span> 의 기댓값은 다음과 같다. <span id="eq-statistics_conditional_expectation"><span class="math display">\[
+\mathbb{E}_x [f \mid y\,]= \sum_x p(x\,|\, y)\, f(x)
+\tag{17}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="분산" class="level4">
+<h4 class="anchored" data-anchor-id="분산"><strong>분산</strong></h4>
+<p><span class="math inline">\(f(x)\)</span> 에 대한 <strong>분산(variance)</strong> <span class="math inline">\(\text{Var}[f]\)</span> 는 다음과 같이 정의된다. <span id="eq-statistics_variance_of_function"><span class="math display">\[
+\begin{aligned}
+\operatorname{Var}[f] &amp; := \mathbb{E}\left[(f(x)-\mathbb{E}[f(x)])^2\right] \\[0.3em]
+&amp;=\mathbb{E}[f(x)^2]-(\mathbb{E}[f(x)])^2\;
+\end{aligned}
+\tag{18}\]</span></span></p>
+<p>이다. 변수 <span class="math inline">\(x\)</span> 자체에 대한 분산 <span class="math inline">\(\text{Var}[x]\)</span> 는 다음과 같다. <span id="eq-statistics_variance_of_variable"><span class="math display">\[
+\operatorname{Var}[x]=\mathbb{E}[x^2]-\mathbb{E}[x]^2.
+\tag{19}\]</span></span></p>
+<p><br></p>
+</section>
+<section id="공분산" class="level4">
+<h4 class="anchored" data-anchor-id="공분산"><strong>공분산</strong></h4>
+<p>아래와 같이 정의되는 <span class="math inline">\(\text{Cov}[x,\,y]\)</span> 를 <span class="math inline">\(X,\,Y\)</span> 에 대한 <strong>공분산(covariance)</strong> 라고 한다. <span id="eq-statistics_covariance"><span class="math display">\[
+\begin{align}
+\operatorname{Cov}[x,\,y]&amp;:= \mathbb{E}_{x,\,y} \left[(x-\mathbb{E}[x]) (y-\mathbb{E}[y])\right] \\
+&amp;=\mathbb{E}_{x,\,y}[xy] -\mathbb{E}[x] \mathbb{E}[y].
+\end{align}
+\tag{20}\]</span></span></p>
+<p><span class="math inline">\(x,\,y\)</span> 가 서로 독립이면 <span class="math inline">\(\operatorname{Cov}[x,\,y]=0\)</span> 이다.</p>
+<p>두 확률 변수가 벡터 <span class="math inline">\(\boldsymbol{x},\, \boldsymbol{y}\)</span> 이면 <span id="eq-statistics_covariance_matrix_form"><span class="math display">\[
+\begin{aligned}
+\operatorname{Cov}[\boldsymbol{x},\, \boldsymbol{y}]&amp;= \mathbb{E}_{\boldsymbol{x},\, \boldsymbol{y}}\left[\left( \boldsymbol{x}-\mathbb{E}[\boldsymbol{x}]\right)\left( \boldsymbol{y}^T-\mathbb{E}[\boldsymbol{y}^T]\right)\right] \\[0.3em]
+&amp;=\mathbb{E}_{\boldsymbol{x},\,\boldsymbol{y}}[\boldsymbol{x}\boldsymbol{y}^T]-\mathbb{E}[\boldsymbol{x}]\,\mathbb{E}[\boldsymbol{y}^T]
+\end{aligned}
+\tag{21}\]</span></span></p>
+<p>이다. <span class="math inline">\(\operatorname{Cov}[\boldsymbol{x}] := \operatorname{Cov}[\boldsymbol{x},\,\boldsymbol{x}]\)</span> 로 정의한다.</p>
+<p><br></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

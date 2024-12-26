@@ -16,13 +16,18 @@ crossref:
 
 ### 선형회귀와 설계행렬 {#sec-regression_design_matrix}
 
-$n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \R^n$ 에 대한 값 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
+$n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \R^n$ 와 입력 변수 각각에 대한 레이블 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
 
 $$
 f(\bf{x};\bf{\theta})= \begin{bmatrix} \theta_1 & \cdots & \theta_n\end{bmatrix}\bf{x} + \theta_0 = \begin{bmatrix}\theta_0 & \theta_1 & \cdots & \theta_m\end{bmatrix} \begin{bmatrix} 1 \\ \bf{x}\end{bmatrix}
 $$
 
-를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 이제 $\bf{x}_i \in \R^n$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
+를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 
+
+- 여기서 주의할 것은 $\{\bf{x}_i\}$ 에 대해 선형이기 때문에 선형 회귀가 아니라 $\bf{\theta}=  \begin{bmatrix}\theta_0 & \theta_1 & \cdots & \theta_m\end{bmatrix}$ 에 대한 선형 함수이므로 선형 회귀이다.
+
+
+이제 $\bf{x}_i \in \R^n$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
 
 $$
 \bf{\Phi}:= \begin{bmatrix} 1 & (\bf{x}_1)_1 & \cdots & (\bf{x}_1)_n \\ 1 & (\bf{x}_2)_1 & \cdots & (\bf{x}_2)_n \\ \vdots & & & \vdots \\ 1 & (\bf{x}_m)_1 & \cdots & (\bf{x}_m)_n  \end{bmatrix}, \qquad \bf{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \bf{y} := \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}
@@ -53,7 +58,7 @@ $$
 \|\bf{v}\|_p := \left(\sum_{i=1}^k |v_i|^p\right)^{1/p}
 $$
 
-즉 $\|\bf{v}\|_1 = \sum |v_i|$ 이며 $\|\bf{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}$ 는 유클리드 노름이다. $L_\infty$ 는 $p\to \infty$ 극한으로 정의되며 $\|\bf{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|$ 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 $L_\infty$ 노름이 가장 큰 영향을 받으며 $\|\bf{v}\|_1$ 노름이 가장 영향을 적게 받는다. 일반적으로 $L_2$ 노름을 가장 많이 사용하며 튀는 데이터가 있을 경우 $L_1$ 노름을 사용하기도 한다. $L_2$ 노름의 경우
+즉 $\|\bf{v}\|_1 = \sum |v_i|$ 이며 $\|\bf{v}\|_2 = \displaystyle \sqrt{\sum_{i=1}^k |v_i|^2}$ 는 유클리드 노름이다. $L_\infty$ 는 $p\to \infty$ 극한으로 정의되며 $\|\bf{v}\|_\infty =\displaystyle \max_{i=1,\ldots,\,k} |v_k|$ 이다. 만약 데이터 가운데 소위 튀는 데이터가 있다면 $L_\infty$ 노름이 가장 큰 영향을 받으며 $\|\bf{v}\|_1$ 노름이 가장 영향을 적게 받는다. 따라서 $L_\infty$ 노름은 거의 사용되지 않는다. $L_2$ 노름의 경우
 
 $$
 \bf{\theta}^\ast = \argmin_\bf{\theta} \|\bf{y}-\bf{\Phi\theta}\|_2^2

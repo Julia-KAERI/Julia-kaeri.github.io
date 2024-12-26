@@ -259,13 +259,18 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#최적화의-기본-요소" id="toc-최적화의-기본-요소" class="nav-link" data-scroll-target="#최적화의-기본-요소"><span class="header-section-number">1.1</span> 최적화의 기본 요소</a></li>
   <li><a href="#최적화의-수학-모델" id="toc-최적화의-수학-모델" class="nav-link" data-scroll-target="#최적화의-수학-모델"><span class="header-section-number">1.2</span> 최적화의 수학 모델</a></li>
-  <li><a href="#볼록-최적화-convex-optimization" id="toc-볼록-최적화-convex-optimization" class="nav-link" data-scroll-target="#볼록-최적화-convex-optimization"><span class="header-section-number">1.3</span> 볼록 최적화 (Convex optimization)</a></li>
+  <li><a href="#전역적-최적화와-국소적-최적화" id="toc-전역적-최적화와-국소적-최적화" class="nav-link" data-scroll-target="#전역적-최적화와-국소적-최적화"><span class="header-section-number">1.3</span> 전역적 최적화와 국소적 최적화</a></li>
+  <li><a href="#볼록-최적화-convex-optimization" id="toc-볼록-최적화-convex-optimization" class="nav-link" data-scroll-target="#볼록-최적화-convex-optimization"><span class="header-section-number">1.4</span> 볼록 최적화 (Convex optimization)</a></li>
   </ul></li>
   <li><a href="#unconstrained-convex-optimizaiton-문제" id="toc-unconstrained-convex-optimizaiton-문제" class="nav-link" data-scroll-target="#unconstrained-convex-optimizaiton-문제"><span class="header-section-number">2</span> Unconstrained convex optimizaiton 문제</a>
   <ul class="collapse">
   <li><a href="#gradient" id="toc-gradient" class="nav-link" data-scroll-target="#gradient"><span class="header-section-number">2.1</span> Gradient</a></li>
   <li><a href="#직접법" id="toc-직접법" class="nav-link" data-scroll-target="#직접법"><span class="header-section-number">2.2</span> 직접법</a></li>
-  <li><a href="#반복법" id="toc-반복법" class="nav-link" data-scroll-target="#반복법"><span class="header-section-number">2.3</span> 반복법</a></li>
+  <li><a href="#경사-하강법gradient-descent" id="toc-경사-하강법gradient-descent" class="nav-link" data-scroll-target="#경사-하강법gradient-descent"><span class="header-section-number">2.3</span> 경사 하강법(Gradient descent)</a></li>
+  </ul></li>
+  <li><a href="#등식-제약이-주어졌을-때" id="toc-등식-제약이-주어졌을-때" class="nav-link" data-scroll-target="#등식-제약이-주어졌을-때"><span class="header-section-number">3</span> 등식 제약이 주어졌을 때</a>
+  <ul class="collapse">
+  <li><a href="#라그랑제-승수법" id="toc-라그랑제-승수법" class="nav-link" data-scroll-target="#라그랑제-승수법"><span class="header-section-number">3.1</span> 라그랑제 승수법</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -324,7 +329,7 @@ window.Quarto = {
 <h3 data-number="1.2" class="anchored" data-anchor-id="최적화의-수학-모델"><span class="header-section-number">1.2</span> 최적화의 수학 모델</h3>
 <p><strong>수학적 표준 모델</strong></p>
 <ul>
-<li><p>제약조건을 만족하는 <span class="math inline">\(\mathcal{C}\subset \mathbb{R}^n\)</span> 를 <em>feasible region</em> 이라고 한다. 즉 <span class="math inline">\(\mathcal{C}\)</span> 는 아래와 같다. <span class="math display">\[
+<li><p>제약조건을 만족하는 <span class="math inline">\(\mathcal{C}\subset \mathbb{R}^n\)</span> 를 <strong>가능해 영역(feasible region)</strong> 이라고 한다. 즉 <span class="math inline">\(\mathcal{C}\)</span> 는 아래와 같다. <span class="math display">\[
 \mathcal{C} = \{\boldsymbol{x}\in \mathbb{R}^n : g_i(\boldsymbol{x})\le 0,\,i=1,\ldots,\,m\}.
 \]</span></p></li>
 <li><p><span class="math inline">\(\displaystyle \boldsymbol{x}^\ast = \argmin_{\boldsymbol{x}\in \mathcal{C}} f(\boldsymbol{x})\)</span> 를 찾는다. 이 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 최적해 (optimal solution) 이라고 한다.</p></li>
@@ -338,8 +343,24 @@ window.Quarto = {
 </ul>
 <p><br></p>
 </section>
-<section id="볼록-최적화-convex-optimization" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="볼록-최적화-convex-optimization"><span class="header-section-number">1.3</span> 볼록 최적화 (Convex optimization)</h3>
+<section id="전역적-최적화와-국소적-최적화" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="전역적-최적화와-국소적-최적화"><span class="header-section-number">1.3</span> 전역적 최적화와 국소적 최적화</h3>
+<p>함수 <span class="math inline">\(f(x)\)</span> 가 아래 그림과 같다고 하자.</p>
+<div id="fig-optimization_global_local_minima" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-optimization_global_local_minima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="notebooks/local_global_minimum.png" class="img-fluid figure-img" width="500">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-optimization_global_local_minima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 전역적 최소와 국소적 최소
+</figcaption>
+</figure>
+</div>
+<p>전체 영역에서의 최소점은 <span class="math inline">\(x_G\)</span> 이며 이를 <strong>전역적 최소점(global minimum)</strong> 이라고 한다. 그리고 <span class="math inline">\(x_L\)</span> 같이 어떤 근방에서의 최소점을 <strong>국소적 최소점(local minimum)</strong> 이라고 한다. 함수 <span class="math inline">\(f(x)\)</span> 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. <span class="math inline">\(f(x)\)</span> 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 <span class="math inline">\(0\)</span> 이고 이차미분이 양수인 점이다. 다변수의 경우 <span class="math inline">\(\nabla f(\boldsymbol{x})=\boldsymbol{0}\)</span> 이며 헤시안 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 가 positive definite 한 경우이다.</p>
+<p><br></p>
+</section>
+<section id="볼록-최적화-convex-optimization" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="볼록-최적화-convex-optimization"><span class="header-section-number">1.4</span> 볼록 최적화 (Convex optimization)</h3>
 <div class="callout callout-style-simple callout-tip no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -436,11 +457,28 @@ f(\boldsymbol{x})= \boldsymbol{x}^T\boldsymbol{A}^T\boldsymbol{Ax} - \boldsymbol
 </div>
 <p><br></p>
 </section>
-<section id="반복법" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="반복법"><span class="header-section-number">2.3</span> 반복법</h3>
-<ul>
-<li>Gradient descent : <span class="math inline">\(\boldsymbol{x}_{k+1} = \boldsymbol{x}_k -\alpha_k \nabla_\boldsymbol{x} f(\boldsymbol{x}_k)\)</span>. <span class="math inline">\(\alpha_k\)</span> 는 내부적으로 정해지는 양의 scalar.</li>
-</ul>
+<section id="경사-하강법gradient-descent" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="경사-하강법gradient-descent"><span class="header-section-number">2.3</span> 경사 하강법(Gradient descent)</h3>
+<p>미분 가능한 <span class="math inline">\(f(\boldsymbol{x})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}_0\)</span> 가 주어졌으며 충분히 작은 값 <span class="math inline">\(\alpha_k\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}_{k+1}\)</span> 이 다음과 같다고 하자.</p>
+<p><span class="math display">\[
+\boldsymbol{x}_{k+1} = \boldsymbol{x}_k -\alpha_k \nabla_\boldsymbol{x} f(\boldsymbol{x}_k)
+\]</span></p>
+<p>그렇다면 <span class="math inline">\(f(\boldsymbol{x}_{k+1}) &lt; f(\boldsymbol{x}_k)\)</span> 가 될 것이고 이것을 계속 반복해 나가면 <span class="math inline">\(f(\boldsymbol{x})\)</span> 의 국소적 최저점을 찾을 수 있다. 이것을 <strong>경사 하강법(gradient descent method)</strong> 이라고 한다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="등식-제약이-주어졌을-때" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="등식-제약이-주어졌을-때"><span class="header-section-number">3</span> 등식 제약이 주어졌을 때</h2>
+<section id="라그랑제-승수법" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="라그랑제-승수법"><span class="header-section-number">3.1</span> 라그랑제 승수법</h3>
+<p>목적함수 <span class="math inline">\(f(\boldsymbol{x})\)</span> 에 대해 <span class="math inline">\(h_i(\boldsymbol{x})=0,\, (i=1,\ldots,\,M)\)</span> 의 제약조건이 주어졌다고 하자. 이 때</p>
+<p><span class="math display">\[
+\begin{aligned}
+\nabla f(\boldsymbol{x}^\ast) &amp;= \lambda_i \nabla h_i(\boldsymbol{x}^\ast) \\[0.3em]
+h_i(\boldsymbol{x}^\ast) &amp;= 0.
+\end{aligned}
+\]</span></p>
+<p>을 만족하는 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 는 가능해 영역에서의 <span class="math inline">\(f(\boldsymbol{x})\)</span> 의 stationary point 이다.</p>
 
 
 </section>

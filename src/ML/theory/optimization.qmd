@@ -35,7 +35,7 @@ crossref:
 
 **수학적 표준 모델**
 
-- 제약조건을 만족하는 $\mathcal{C}\subset \R^n$ 를 *feasible region* 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
+- 제약조건을 만족하는 $\mathcal{C}\subset \R^n$ 를 **가능해 영역(feasible region)** 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
 $$
 \mathcal{C} = \{\bf{x}\in \R^n : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m\}.
 $$
@@ -52,6 +52,17 @@ $$
 - constraint 가 $g_i(\bf{x}) \ge 0$ 이라면 $-g_i(\bf{x})\le 0$ 으로 바꿀 수 있다. $g_i (\bf{x})=0$ 이라면 $g_i(\bf{x}) \le 0$ 와 $-g_i(\bf{x})\le 0$ 을 동시에 만족하는 조건으로 바꿀 수 있다.
 
 - 즉 수학적 표준 모델은 상당히 표면적으로 보이는 것보다 훨씬 넓은 범위의 문제를 포괄한다.
+
+
+</br>
+
+### 전역적 최적화와 국소적 최적화
+
+함수 $f(x)$ 가 아래 그림과 같다고 하자.
+
+![전역적 최소와 국소적 최소](notebooks/local_global_minimum.png){#fig-optimization_global_local_minima width=500}
+
+전체 영역에서의 최소점은 $x_G$ 이며 이를 **전역적 최소점(global minimum)** 이라고 한다. 그리고 $x_L$ 같이 어떤 근방에서의 최소점을 **국소적 최소점(local minimum)** 이라고 한다. 함수 $f(x)$ 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. $f(x)$ 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 $0$ 이고 이차미분이 양수인 점이다. 다변수의 경우 $\nabla f(\bf{x})=\bf{0}$ 이며 헤시안 행렬 $\bf{H}_f$ 가 positive definite 한 경우이다. 
 
 
 </br>
@@ -185,8 +196,30 @@ $$
 
 </br>
 
-### 반복법
+### 경사 하강법(Gradient descent)
 
-- Gradient descent : $\bf{x}_{k+1} = \bf{x}_k -\alpha_k \nabla_\bf{x} f(\bf{x}_k)$. $\alpha_k$ 는 내부적으로 정해지는 양의 scalar.
+미분 가능한 $f(\bf{x})$ 에 대해 $\bf{x}_0$ 가 주어졌으며 충분히 작은 값 $\alpha_k$ 에 대해 $\bf{x}_{k+1}$ 이 다음과 같다고 하자.
+
+$$
+\bf{x}_{k+1} = \bf{x}_k -\alpha_k \nabla_\bf{x} f(\bf{x}_k)
+$$
+
+그렇다면 $f(\bf{x}_{k+1}) < f(\bf{x}_k)$ 가 될 것이고 이것을 계속 반복해 나가면 $f(\bf{x})$ 의 국소적 최저점을 찾을 수 있다. 이것을 **경사 하강법(gradient descent method)** 이라고 한다.
 
 
+</br>
+
+## 등식 제약이 주어졌을 때
+
+### 라그랑제 승수법
+
+목적함수 $f(\bf{x})$ 에 대해 $h_i(\bf{x})=0,\, (i=1,\ldots,\,M)$ 의 제약조건이 주어졌다고 하자. 이 때
+
+$$
+\begin{aligned}
+\nabla f(\bf{x}^\ast) &= \lambda_i \nabla h_i(\bf{x}^\ast) \\[0.3em]
+h_i(\bf{x}^\ast) &= 0.
+\end{aligned}
+$$
+
+을 만족하는 $\bf{x}^\ast$ 는 가능해 영역에서의 $f(\bf{x})$ 의 stationary point 이다. 

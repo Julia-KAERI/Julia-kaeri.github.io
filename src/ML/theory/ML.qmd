@@ -76,4 +76,241 @@ $$
   - 따라서 기계학습에서 학습이란 $L(\bf{w})$ 가 최소값이 되도록 하는 $\bf{w}$ 를 찾는 것이다. (최적화 (optimization))
   
 
+</br>
+
+## 통계학의 기본 
+</br>
+
+### 기본 개념
+
+
+1. **표본 공간 (sample space) $\Omega$** : 실험/측정에 있어서 가능한 모든 결과값의 집합. $\Omega$ 의 각 원소들은 각각이 식별 가능하며, 상호 배타적(동시에 발생할 수 없음) 이어야 한다. 특정 결과값 $\omega$ 는 $\Omega$ 의 원소이다.
+
+2. **사건 공간 (evant space) $\mathcal{A}$** :  실험/측정의 잠재적인 결과의 집합. 당연히 표본 공간 $\Omega$ 의 부분집합. 
+
+3. **확률 (probability)** : $A\in \mathcal{A}$ 에 대해 $A$ 의 사건이 발생할 확률을 $p(A)$ 라고 한다. 임의의 $A\in \mathcal{A}$ 에 대해 $0\le p(A)\le 1$ 이며 $\sum_{A\in \Omega} p(A)=1$ 이다.
+
+4. **표적 공간 (target space)** $\mathcal{T}$ : 우리가 관심있는 정량화된 값. 서로 구별되는 표적공간의 원소를 **상태(state)** 라고 한다. 
+   
+5. **확률 변수 (random variable)** : 표본공간의 성분 $\omega$ 와 표적공간의 성분 $t$ 를 연결하는 함수 $X:\Omega \to \mathcal{T}$ 가 존재하며 이 $X$ 를 확률변수 라고 한다.
+
+예를 들어 두개의 동전을 던져 이중 몇개의 동전이 앞면이 나오는 지 관심있다고 하자. 앞면을 $u$, 뒷면을 $d$ 라고 하면 $\Omega = \mathcal{A} = \{ uu,\, ud,\,du,\,dd\}$ 이며 $\mathcal{T}=\{0,\,1,\,2\}$ 가 된다. 이제 사건공간이 아닌 표적공간의 부분집합에 대한 확률에 관심을 갖게 된다. 즉 $S\in \mathcal{T}$ 에 대해 $p(S)$ 가 우리의 주요 관심사이다.
+
+
+표적공간 $\mathcal{T}$ 가 이산공간일 때 $X$ 를 이산확률변수라고 하고 $\R$ 과 같이 연속일 때 연속확률변수라고 한다.
+
+</br>
+
+### 이산 확률
+
+#### **결합 확률(Joint Probability)**
+
+확률변수 $X,\,Y$ 에 대해 $X$ 는 $x_1,\ldots,\,x_M$ 값을 가질 수 있으며, $Y$ 는 $y_1,\ldots,\,y_L$ 값을 가질 수 있다고 하자. 모두 $N$ 번의 시행에서 $X=x_i,\, Y=y_j$ 가 나온 횟수를 $n_{ij}$ 라 하자. $N$ 번의 시행에서 $X=x_i$ 인 횟수는 $c_i$, $Y=y_j$ 인 횟수는 $r_j$ 라 하자. 즉,
+$$
+p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}{N},\quad p(X=x_i)=\dfrac{c_i}{N},\quad p(Y=y_j)=\dfrac{r_j}{N}\;.
+$$ {#eq-ml_joint_probability_1}
+
+이다. 이 때,
+
+$$
+p(X=x_i)=\sum_{j=1}^L p(X=x_i,\, Y=y_j)
+$$ {#eq-ml_joint_probability}
+
+이며 (자명하다) 이를 **sum rule** 이라 한다. 여기서 $P(X=x_i)$ 를 개별 사건의 확률로 **주변 확률(marginal probability)** 라 하기도 한다.
+
+</br>
+
+#### **조건부 확률(Conditional probability)**
+
+$X=x_i$ 인 상황에서 $Y=y_j$ 인 확률을 $p(Y=y_j \mid X=x_i)$ 라 쓰며 $X=x_i$ 일 때 $Y=y_j$ 에 대한 **조건부 확률(conditional probability)** 이라고 하고 다음과 같이 주어진다.
+$$
+p(Y=y_j\mid X=x_i)=\dfrac{n_{ij}}{c_i}
+$$ {#eq-ml_conditional_probability}
+
+</br>
+
+#### **확률의 곱의 법칙(Product rule of probability)**
+$$
+p(X=x_i,\, Y=y_j)=\dfrac{n_{ij}}N=\dfrac{n_{ij}}{c_i}\dfrac{c_i}{N}=P(Y=y_j\mid X=x_i)\cdot p(X=x_i)\;.
+$$ {#eq-ml_product_rule_of_probability}
+
+</br>
+
+#### **합과 곱의 규칙**
+
+$$
+\begin{aligned}
+ \textbf{sum rule}&\qquad p(X)=\sum_Y p(X,\,Y)\,, \\
+ \textbf{product rule}& \qquad p(X,\,Y)=p(Y\mid X)p(X) 
+\end{aligned} 
+$$ {#eq-statistics_summary}
+
+</br>
+
+#### <b>베이즈 정리(Bayes' theorem)</b>
+
+$$
+p(Y\mid X)=\dfrac{p(X\mid Y) \, p(Y)}{p(X)}\;.
+$$ {#eq-probability_bayse_theorem}
+
+With sum rule,
+$$
+P(X)=\sum_{Y}p(X \mid Y)\, p(Y)\,. 
+$$ {#eq-statistics_sum_rule}
+
+
+
+#### <b>변수의 독립성(Independence of variable)</b>
+
+확률변수 $X,\,Y$ 에 때해 $p(X,\,Y)=p(X)\, p(Y)$ 일 때 $X$ 와 $Y$ 는 서로 **독립적(independent)** 이라고 한다. $X,\,Y$ 가 서로 독립적이면 식 @eq-statistics_summary 으로 부터 $p(Y|X)=p(Y)$ 임을 알 수 있다.
+
+</br>
+
+### 확률 밀도 함수
+
+표적공간이 연속일 때 확률은 확률밀도함수 $p(x)$ 로 기술된다.
+
+#### **확률밀도함수와 확률**
+
+확률밀도함수 $p(x)$는 다음 두 조건을 만족해야 한다.
+$$
+\begin{align}
+p(x) & \ge 0\\
+\int_{-\infty}^\infty p(x)\,dx &=1 
+\end{align}
+$$ {#eq-statistics_conditions_for_probability_density}
+
+연속확률변수일 때 $x\in (a,\,b)$ 일 확률 $p(x\in (a,\,b))$ 는
+$$
+p(x\in (a,\,b))=\int_a^b p(x)\,dx 
+$$ {#eq-ststistics_probability_for_continuous_variable}
+이다. 
+
+</br>
+
+#### **변수의 변환**
+
+$x=g(y)$ 이며 $y$ 에 대한 확률분포를 알고 싶을 때, 이 확률분포를 $p_y(y)$ 라 하면,
+$$
+p_y(y)=p(x)\left|\dfrac{dx}{dy}\right|=p(g(y))|g'(y)
+$$ {#eq-statistics_change_of_variable}
+임을 쉽게 보일 수 있다.
+
+</br>
+
+#### **누적 분포 함수**
+
+$P(z)=p(x\in (-\infty,\,z))$ 를 **누적 분포 함수(cumulative distribution function)** 이라 하며,
+$$
+P(z) = \int_{-\infty}^z p(x)\, dx
+$$ {#eq-statistics_cumulative_distribution_function}
+
+로 정의된다. $P'(x)=p(x)$ 임은 십게 알 수 있다.
+
+
+
+다변수  $\bf{x}=(x_1,\ldots,\,x_D)$ 에 대한 확률분포는 $\bf{x}$ 를 포함하는 infinitesimal volume $\delta \bf{x}$ 에 대해 $p(\bf{x})\,\delta \bf{x}$ 로 주어지며 다음과 같은 성질을 만족한다.
+
+$$
+\begin{aligned}
+p(\bf{x}) & \ge 0  \\
+\int p(\bf{x})\,d\bf{x}&= 1
+\end{aligned}
+$$ {#eq-statistics_properties_of_probability_density}
+
+
+연속적인 변수, 이산적인 변수 모두에 대한 확률 분포함수를 probability density function 이라 하기도 하고, 이산적인 변수에 대해서 probability mass function 이라고 구분하여 부르기도 한다.
+
+
+
+Sum rule과 Bayes' theorem 을 생각하면 다음이 성립함을 알 수 있다.
+$$
+\begin{aligned}
+p(x) &= \int p(x,\,y)\, dy \\
+p(x,\,y)&=p(y| x)\,p(x) 
+\end{aligned}
+$$  {#eq-statistics_rules_for_probability_density}
+
+</br>
+
+### 기댓값과 공분산
+
+#### **기댓값**
+
+확률변수 $X$ 에 대한 확률분포가 $p(x)$ 일 때 $x$ 에 대한 함수 $f(x)$ 의 평균값을 $f$ 에 대한 **기댓값(expectation)** 이라 하며 $\mathbb{E}[f]$ 로 표기하고 다음과 같다.
+$$
+\begin{align}
+\mathbb{E}[f]&:=\sum_x p(x) f(x) &&\text{for descrete distribution,}\\
+&:=\int  p(x) f(x)\, dx& &\text{for continuous distribution.} 
+\end{align}
+$$ {#eq-statistics_expectation_value}
+
+$N$ 개의 sample 이 주어졌을 때 기댓값은 다음과 같이 근사 될 수 있다.
+$$
+\mathbb{E}[f] \approx \dfrac{1}{N} \sum_{i=1}^N f(x_n).
+$$ {#eq-statistics_approximation_of_expectation}
+
+
+@eq-statistics_expectation_value 의 두 식은 @eq-statistics_approximation_of_expectation 의 $N \to \infty$  극한과 동일하다.
+
+다변수 확률분포에서 특정 변수에 대한 기댓값은 $\mathbb{E}_x [f(x,\,y)]$ 와 같이 표기하며 다음과 같다.
+$$
+\mathbb{E}_x [f(x,\,y)]=\sum_x p (x,\,y) f(x,\,y) =\int p(x,\,y) f(x,\,y)\, dx
+$$ {#eq-statistics_expectation_for_multivariables}
+
+</br>
+
+#### **조건부 기댓값**
+
+$p(x\,|\,y)$ 에 대한 $f(x)$ 의 기댓값은 다음과 같다.
+$$
+\mathbb{E}_x [f \mid y\,]= \sum_x p(x\,|\, y)\, f(x) 
+$$ {#eq-statistics_conditional_expectation}
+
+</br>
+
+#### **분산**
+
+$f(x)$ 에 대한 **분산(variance)** $\text{Var}[f]$ 는 다음과 같이 정의된다.
+$$
+\begin{aligned}
+\operatorname{Var}[f] & := \mathbb{E}\left[(f(x)-\mathbb{E}[f(x)])^2\right] \\[0.3em]
+&=\mathbb{E}[f(x)^2]-(\mathbb{E}[f(x)])^2\;
+\end{aligned}
+$$ {#eq-statistics_variance_of_function}
+
+이다. 변수 $x$ 자체에 대한 분산 $\text{Var}[x]$ 는 다음과 같다.
+$$
+\operatorname{Var}[x]=\mathbb{E}[x^2]-\mathbb{E}[x]^2.
+$$ {#eq-statistics_variance_of_variable}
+
+</br>
+
+#### **공분산**
+
+아래와 같이 정의되는 $\text{Cov}[x,\,y]$ 를 $X,\,Y$ 에 대한 **공분산(covariance)** 라고 한다.
+$$
+\begin{align}
+\operatorname{Cov}[x,\,y]&:= \mathbb{E}_{x,\,y} \left[(x-\mathbb{E}[x]) (y-\mathbb{E}[y])\right] \\
+&=\mathbb{E}_{x,\,y}[xy] -\mathbb{E}[x] \mathbb{E}[y].
+\end{align}
+$$ {#eq-statistics_covariance}
+
+$x,\,y$ 가 서로 독립이면 $\operatorname{Cov}[x,\,y]=0$ 이다.
+
+
+두 확률 변수가 벡터 $\bf{x},\, \bf{y}$ 이면
+$$
+\begin{aligned}
+\operatorname{Cov}[\bf{x},\, \bf{y}]&= \mathbb{E}_{\bf{x},\, \bf{y}}\left[\left( \bf{x}-\mathbb{E}[\bf{x}]\right)\left( \bf{y}^T-\mathbb{E}[\bf{y}^T]\right)\right] \\[0.3em]
+&=\mathbb{E}_{\bf{x},\,\bf{y}}[\bf{x}\bf{y}^T]-\mathbb{E}[\bf{x}]\,\mathbb{E}[\bf{y}^T]
+\end{aligned}
+$$ {#eq-statistics_covariance_matrix_form}
+
+
+이다. $\operatorname{Cov}[\bf{x}] := \operatorname{Cov}[\bf{x},\,\bf{x}]$ 로 정의한다. 
+
+</br>
+
+
 
