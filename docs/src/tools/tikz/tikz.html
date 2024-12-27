@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>tikz in Quarto – Science &amp; Programming</title>
+<title>Science &amp; Programming - tikz in Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -148,7 +148,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -187,18 +187,18 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
     <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/tools/Asymptote/asymptote.html">Plotting</a></li><li class="breadcrumb-item"><a href="../../../src/tools/tikz/tikz.html">tikz in Quarto</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -217,9 +217,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Plotting</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -264,9 +264,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">C/C++ 관련</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -281,9 +281,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Unix/Linux 관련</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="토글 섹션">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -378,7 +378,7 @@ window.Quarto = {
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-tikz_first_exam" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-tikz_first_exam" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz_first_exam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_files/figure-html/fig-tikz_first_exam-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -413,7 +413,7 @@ window.Quarto = {
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-tikz_2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-tikz_2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_files/figure-html/fig-tikz_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="192">
@@ -451,7 +451,7 @@ window.Quarto = {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-tikz_2_2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-tikz_2_2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz_2_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_files/figure-html/fig-tikz_2_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="192">
@@ -487,7 +487,7 @@ window.Quarto = {
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-tikz_2_3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-tikz_2_3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz_2_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_files/figure-html/fig-tikz_2_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="192">
@@ -526,7 +526,7 @@ window.Quarto = {
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-tikz_3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-tikz_3" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_files/figure-html/fig-tikz_3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="192">
@@ -568,7 +568,7 @@ window.Quarto = {
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="fig-tikz_4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-tikz_4" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz_4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_files/figure-html/fig-tikz_4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384">
@@ -589,7 +589,6 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="도형">도형</h3>
 <section id="shade" class="level4">
 <h4 class="anchored" data-anchor-id="shade">Shade</h4>
-<<<<<<< HEAD
 <div class="sourceCode" id="cb7"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
@@ -606,29 +605,6 @@ window.Quarto = {
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-tikz0_test07" class="quarto-figure quarto-figure-center quarto-float anchored">
-=======
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-tikz_shade</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 6</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "tikz shade"</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[scale = 3, rounded corners,ultra thick]</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="in">  \shade[top color=yellow,bottom color=black] (0,0) rectangle +(2,1);</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="in">  \shade[left color=yellow,right color=black] (3,0) rectangle +(2,1);</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="in">  \shadedraw[inner color=yellow,outer color=black,draw=yellow] (6,0) rectangle +(2,1);</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="in">  \shade[ball color=green] (9,.5) circle (.5cm);</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-tikz_shade" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
->>>>>>> parent of 3a35325 (20241227_1322)
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz0_test07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_test/test07.png" class="img-fluid figure-img" width="500">
@@ -638,7 +614,6 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<<<<<<< HEAD
 <p><br></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
@@ -661,35 +636,6 @@ window.Quarto = {
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-tikz0_test08" class="quarto-figure quarto-figure-center quarto-float anchored">
-=======
-</div>
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-tikz_shade2</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 3</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "tikz shade"</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[scale=3]</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="in">  \clip (-0.1,-0.2) rectangle (1.1,0.75);</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[step=.5cm,gray,very thin] (-1.4,-1.4) grid (1.4,1.4);</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw (-1.5,0) -- (1.5,0);</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw (0,-1.5) -- (0,1.5);</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw (0,0) circle (1cm);</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="in">  \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm) arc</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="in">  (0:30:3mm) -- cycle;</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[red,very thick]  (30:1cm) -- +(0,-0.5);</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[blue,very thick] (30:1cm) ++(0,-0.5) -- (0,0);</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-tikz_shade2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
->>>>>>> parent of 3a35325 (20241227_1322)
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz0_test08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_test/test08.png" class="img-fluid figure-img" width="300">
@@ -704,7 +650,6 @@ window.Quarto = {
 </section>
 <section id="좌표계" class="level3">
 <h3 class="anchored" data-anchor-id="좌표계">좌표계</h3>
-<<<<<<< HEAD
 <div class="sourceCode" id="cb9"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
@@ -723,29 +668,6 @@ window.Quarto = {
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-tikz0_test09" class="quarto-figure quarto-figure-center quarto-float anchored">
-=======
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-tikz_co_1</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 2</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "좌표계"</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [red,-&gt;](0,0) -- (xyz cs:x=2) node[right, black] {$x$};</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [green,-&gt;](0,0) -- (xyz cs:y=2) node[right, black] {$y$};</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [blue,-&gt;](0,0) -- (xyz cs:z=2) node[right, black] {$z$};</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [red, thick, -&gt;] (0, 0) -- (xyz cs:x=2, y=2, z=1);</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [red, dashed] (xyz cs:x=2, y=2, z=1) -- (xyz cs:x=0, y=2, z=1);</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-tikz_co_1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
->>>>>>> parent of 3a35325 (20241227_1322)
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz0_test09-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_test/test09.png" class="img-fluid figure-img" width="250">
@@ -755,7 +677,6 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<<<<<<< HEAD
 <p><br></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
@@ -789,49 +710,6 @@ window.Quarto = {
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-tikz0_test10" class="quarto-figure quarto-figure-center quarto-float anchored">
-=======
-</div>
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-rotation_of_vector</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 6</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "두 좌표계"</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary {3d} </span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary {arrows}</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{shapes.geometric}</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture} %[=&gt;stealth]</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="in">\tikzset{</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="in">    partial ellipse/.style args={#1:#2:#3}{</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="in">        insert path={+ (#1:#3) arc (#1:#2:#3)}</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="in">    }</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [-&gt;] (0,0) -- (xyz cs:x=3);</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [-&gt;] (0,0) -- (xyz cs:y=4.5);</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [-&gt;] (0,0) -- (xyz cs:z=3); </span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [dashed] (0.0,3.0) ellipse (1.5 and 0.5);</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [thick, -{stealth}] (0, 0) -- (xyz cs:x=0.7,y=2.55);</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="in">  \node[below, scale=.6] at (0.3, 2.3) {$\boldsymbol{r}_i (q_j)$};</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [thick, -{stealth}] (0, 0) --(xyz cs:x=1.4,y=2.8);</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="in">  \node[scale=.6] at (1.5, 1.7) {$\boldsymbol{r}_i (q_j+dq_j)$};</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [red, thick, -{stealth}] (0.7, 2.55) -- (1.4, 2.8);</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="in">  \node[red, scale=.6] at (1.0, 2.5) {$d\boldsymbol{r}_i$};</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [thick, -{stealth}] (0, 3) -- (0, 3.7) node[right, scale=0.6] {$\;\boldsymbol{n}$};</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [teal] (0, 3) -- (0.7, 2.55);</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw [teal] (0, 3) -- (1.4, 2.8);</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[teal, -&gt;] (0, 3.0) [partial ellipse=297:340:0.6 and 0.2] node[above, scale=0.6] {$dq_j$} ;</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[purple, -&gt;] (0, 0) [partial ellipse=90:75:1 and 1] node[above left, scale=0.6] {$\theta$} ;</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-rotation_of_vector" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
->>>>>>> parent of 3a35325 (20241227_1322)
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz0_test10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_test/test10.png" class="img-fluid figure-img" width="250">
@@ -845,7 +723,6 @@ window.Quarto = {
 </section>
 <section id="신호처리-함수" class="level3">
 <h3 class="anchored" data-anchor-id="신호처리-함수">신호처리 함수</h3>
-<<<<<<< HEAD
 <div class="sourceCode" id="cb11"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
@@ -886,48 +763,6 @@ window.Quarto = {
 <span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
 <span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-tikz0_test11" class="quarto-figure quarto-figure-center quarto-float anchored">
-=======
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[ &gt;=stealth]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (-2, 0) -- (2, 0) node[below, black] {<span class="ss">$x$</span>} ;</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[ -&gt;] (0, -0.5) -- (0, 1.5);</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick] (-2, 0) -- (0, 0) node[below left, black] {<span class="ss">$0$</span>} -- (0, 1) node[left, black] {<span class="ss">$1$</span>}-- (2, 1) node[above left, black] {<span class="ss">$</span><span class="sc">\text</span>{step}<span class="ss">(x)$</span>};</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (4, 0) -- (8, 0) node[below, black] {<span class="ss">$x$</span>} ;</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[ -&gt;] (6, -0.5) -- (6, 1.5);</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick] (4, 0) -- (5.5, 0) node[below, black] {<span class="ss">$-</span><span class="sc">\frac</span><span class="ss">{1}{2}$</span>} -- (5.5, 1) -- (6, 1)  -- (6.5, 1)-- (6.5, 0)  node[below, black] {<span class="ss">$</span><span class="sc">\frac</span><span class="ss">{1}{2}$</span>} -- (8, 0) node[above left, black] {<span class="ss">$</span><span class="sc">\text</span>{rect}<span class="ss">(x)$</span>};</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (-2, -3) -- (2, -3) node[below, black] {<span class="ss">$x$</span>} ;</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[ -&gt;] (0, -3.5) -- (0, -1.5);</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick] (-2, -3) -- (-0.5, -3) node[below, black] {<span class="ss">$-</span><span class="sc">\frac</span><span class="ss">{1}{2}$</span>} -- (0, -2) -- (0.5, -3) node[below, black] {<span class="ss">$-</span><span class="sc">\frac</span><span class="ss">{1}{2}$</span>} -- (2, -3) node[above left, black] {<span class="ss">$</span><span class="sc">\text</span>{tri}<span class="ss">(x)$</span>};</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (4, -3) node[above right, black] {<span class="ss">$</span><span class="sc">\text</span>{sinc}<span class="ss">(x)$</span>} -- (8, -3) node[below, black] {<span class="ss">$x$</span>} ;</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[ -&gt;] (6, -3.5) -- (6, -1.5);</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[domain=4.0:8.0, smooth, variable=<span class="fu">\x</span>, thick] plot ({<span class="fu">\x</span>}, {0.116*sin(500* (<span class="fu">\x</span>-6))/((<span class="fu">\x</span>-6)) -3 });</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> (6.36, -2.9) -- (6.36, -3.1) node[below, black] {<span class="ss">$</span><span class="sc">\pi</span><span class="ss">$</span>} ; </span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (-2, -6) -- (2, -6) node[below, black] {<span class="ss">$x$</span>} ;</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[ -&gt;] (0, -6.5) -- (0, -4);</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[domain=-1.8:1.8, smooth, variable=<span class="fu">\x</span>, thick] plot ({<span class="fu">\x</span>}, {exp(-(<span class="fu">\x</span>)^2) - 6 });</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[black, right] at (0, -4.7) {<span class="ss">$</span><span class="sc">\text</span>{gauss}<span class="ss">(x)$</span>};</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co">%\draw (6.36, -2.9) -- (6.36, -3.1) node[below, black] {$\pi$} ; </span></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;] (4, -6)  -- (8, -6) node[below, black] {<span class="ss">$x$</span>} ;</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[ -&gt;] (6, -6.5) -- (6, -4);</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[very thick] (4.2, -6) -- (6, -6) -- (6, -4) node[left, black] {<span class="ss">$</span><span class="sc">\infty</span><span class="ss">$</span>}-- (6, -6)  -- (7.8, -6) node[above left, black] {<span class="ss">$</span><span class="sc">\delta</span><span class="ss"> (x)$</span>};</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-signal_functions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
->>>>>>> parent of 3a35325 (20241227_1322)
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tikz0_test11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="tikz_test/test11.png" class="img-fluid figure-img" width="450">
@@ -1042,7 +877,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1074,29 +920,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/julia-kaeri\.github\.io\/");
@@ -1104,7 +928,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
