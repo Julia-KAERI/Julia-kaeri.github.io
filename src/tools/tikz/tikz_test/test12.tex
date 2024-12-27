@@ -1,0 +1,11 @@
+\documentclass[border=3pt,tikz]{standalone}
+\usepackage{amsmath}
+\usetikzlibrary{arrows}
+\begin{document}
+\begin{tikzpicture}
+    \draw [black, very thick, ->](0, 0) -- (2, 2)  node[right] {$\boldsymbol{v}$};
+    \draw [red, very thick, ->] (0, 0) -- (-2.646, 1 ) node[left] {$\boldsymbol{H_v x}$};
+    \draw [blue, very thick, ->] (0, 0) -- (-0.646, 3 ) node[left] {$\boldsymbol{x}$};
+    \draw [green, dashed, thick] (1, -1) -- (-2, 2 ) node[left, black] {Plane normal to $\boldsymbol{v}$};
+\end{tikzpicture}
+\end{document}

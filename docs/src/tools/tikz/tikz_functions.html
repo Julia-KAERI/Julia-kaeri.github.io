@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../src/tools/tikz/tikz_image.html" rel="next">
+<link href="../../../src/tools/tikz/tikz_wavelet.html" rel="next">
 <link href="../../../src/tools/tikz/tikz.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
@@ -215,12 +215,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/tools/tikz/tikz_image.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tikz code for image in Quarto</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../../src/tools/tikz/tikz_wavelet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tikz Wavelet</span></a>
   </div>
@@ -303,189 +297,153 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-linear_approximation</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 3</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "tikz in Quarto 예시"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{positioning}</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{calc}</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{decorations.pathreplacing}</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[very thin,color=gray] (-0.1,-0.1) grid (4.2,5.2);</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-&gt;] (-0.6, 0) -- (4.2,0) node[right] {$x$};</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-&gt;] (0,-0.6) -- (0,5.2) node[above] {$y$};</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \x in {1,...,8}</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[thin] (\x / 2, 0.05) -- (\x /2, -0.05);</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \x in {2, 4, 6, 8}</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">  \node[below]  at (\x /2 , -0.05) {$\x$};</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \y in {1,...,9}</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[thin] (0.05 , \y / 2) -- (-0.05 , \y /2);</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \y in {2, 4, 6, 8, 10}</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">  \node[left]  at (-0.05, \y / 2) {$\y$};</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">\filldraw[black] (0.5,1.1 /2) circle (2pt);</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">\filldraw[black] (2/2, 1.65 /2) circle (2pt);</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">\filldraw[black] (3/2, 3.43/2) circle (2pt);</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">\filldraw[black] (4/2, 4.02/2) circle (2pt);</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">\filldraw[black] (5/2, 4.58/2) circle (2pt);</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">\filldraw[black] (6/2, 5.78/2) circle (2pt);</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">\filldraw[black] (7/2, 7.32/2) circle (2pt);</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[thick, dashed, red] (0, 0) -- (3.8, 3.8);</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-linear_approximation" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div class="sourceCode" id="cb1"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{positioning}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{calc}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{decorations.pathreplacing}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[very thin,color=gray] (-0.1,-0.1) grid (4.2,5.2);</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[-&gt;] (-0.6, 0) -- (4.2,0) node[right] {<span class="ss">$x$</span>};</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[-&gt;] (0,-0.6) -- (0,5.2) node[above] {<span class="ss">$y$</span>};</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\x</span> in {1,...,8}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\draw</span>[thin] (<span class="fu">\x</span> / 2, 0.05) -- (<span class="fu">\x</span> /2, -0.05);</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\x</span> in {2, 4, 6, 8}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\node</span>[below]  at (<span class="fu">\x</span> /2 , -0.05) {<span class="ss">$</span><span class="sc">\x</span><span class="ss">$</span>};</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\y</span> in {1,...,9}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\draw</span>[thin] (0.05 , <span class="fu">\y</span> / 2) -- (-0.05 , <span class="fu">\y</span> /2);</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\y</span> in {2, 4, 6, 8, 10}</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\node</span>[left]  at (-0.05, <span class="fu">\y</span> / 2) {<span class="ss">$</span><span class="sc">\y</span><span class="ss">$</span>};</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[black] (0.5,1.1 /2) circle (2pt);</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[black] (2/2, 1.65 /2) circle (2pt);</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[black] (3/2, 3.43/2) circle (2pt);</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[black] (4/2, 4.02/2) circle (2pt);</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[black] (5/2, 4.58/2) circle (2pt);</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[black] (6/2, 5.78/2) circle (2pt);</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[black] (7/2, 7.32/2) circle (2pt);</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[thick, dashed, red] (0, 0) -- (3.8, 3.8);</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-tikz_functions01" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-linear_approximation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="tikz_functions_files/figure-html/fig-linear_approximation-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="288">
+<div aria-describedby="fig-tikz_functions01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tikz_functions/function01.png" class="img-fluid figure-img" width="400">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear_approximation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;1: tikz in Quarto 예시
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tikz_functions01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: 선형회귀
 </figcaption>
 </figure>
-</div>
 </div>
 <p><br></p>
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-Chevyshev_polynoimal</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 4</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Chevyshev 다항식"</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{positioning}</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{calc}</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{decorations.pathreplacing}</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[domain=-1:1, samples = 100, scale=3]</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-1.2, 0) -- (1.2,0) node[right] {$x$};</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-1.2) -- (0,1.2) node[above] {$y$};</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">\node[left, scale=0.8] at (0, 1) {$1$};</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">\node[left, scale=0.8] at (0, -1) {$-1$};</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">\node[below, scale=0.8] at (-1, 0) {$-1$};</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">\node[below, scale=0.8] at (1, 0) {$1$};</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \x in {-5,...,5}</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[thin] (\x / 5, 0.02) -- (\x /5, -0.02);</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \y in {-5,...,5}</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[thin] (0.02 , \y / 5) -- (-0.02 , \y /5);</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black]   plot (\x, \x) ;</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="in">\node[above, black] at (0.7, 0.73) {$T_1(x)$};</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=blue]   plot (\x, 2 * \x * \x - 1);</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="in">\node[below right, blue] at (0, -1) {$T_2(x)$};</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=red]   plot (\x, 4 * \x * \x * \x - 3* \x);</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="in">\node[above, red] at (-0.5, 1) {$T_3(x)$};</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=teal]   plot (\x, 8 * \x * \x * \x * \x - 8* \x * \x + 1);</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">\node[right, teal] at (0.2, 0.8) {$T_4(x)$};</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-Chevyshev_polynoimal" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div class="sourceCode" id="cb2"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{positioning}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{calc}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{decorations.pathreplacing}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[domain=-1:1, samples = 100, scale=3]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[-{stealth}] (-1.2, 0) -- (1.2,0) node[right] {<span class="ss">$x$</span>};</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[-{stealth}] (0,-1.2) -- (0,1.2) node[above] {<span class="ss">$y$</span>};</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[left, scale=0.8] at (0, 1) {<span class="ss">$1$</span>};</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[left, scale=0.8] at (0, -1) {<span class="ss">$-1$</span>};</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[below, scale=0.8] at (-1, 0) {<span class="ss">$-1$</span>};</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[below, scale=0.8] at (1, 0) {<span class="ss">$1$</span>};</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\x</span> in {-5,...,5}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\draw</span>[thin] (<span class="fu">\x</span> / 5, 0.02) -- (<span class="fu">\x</span> /5, -0.02);</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\y</span> in {-5,...,5}</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\draw</span>[thin] (0.02 , <span class="fu">\y</span> / 5) -- (-0.02 , <span class="fu">\y</span> /5);</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=black]   plot (<span class="fu">\x</span>, <span class="fu">\x</span>) ;</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[above, black] at (0.7, 0.73) {<span class="ss">$T_1(x)$</span>};</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=blue]   plot (<span class="fu">\x</span>, 2 * <span class="fu">\x</span> * <span class="fu">\x</span> - 1);</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[below right, blue] at (0, -1) {<span class="ss">$T_2(x)$</span>};</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=red]   plot (<span class="fu">\x</span>, 4 * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> - 3* <span class="fu">\x</span>);</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[above, red] at (-0.5, 1) {<span class="ss">$T_3(x)$</span>};</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=teal]   plot (<span class="fu">\x</span>, 8 * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> - 8* <span class="fu">\x</span> * <span class="fu">\x</span> + 1);</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[right, teal] at (0.2, 0.8) {<span class="ss">$T_4(x)$</span>};</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-tikz_functions02" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-Chevyshev_polynoimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="tikz_functions_files/figure-html/fig-Chevyshev_polynoimal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384">
+<div aria-describedby="fig-tikz_functions02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tikz_functions/function02.png" class="img-fluid figure-img" width="400">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Chevyshev_polynoimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;2: Chevyshev 다항식
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tikz_functions02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: 체비셰프 다항식
 </figcaption>
 </figure>
 </div>
-</div>
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>코드</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, engine = 'tikz'}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-Legendre_polynoimal</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| code-fold: true</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: asis</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-width: 4</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: center</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Legendre 다항식"</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{positioning}</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{calc}</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{arrows}</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">\usetikzlibrary{decorations.pathreplacing}</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="in">\begin{tikzpicture}[domain=-1:1, samples = 100, scale=3]</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (-1.2, 0) -- (1.2,0) node[right] {$x$};</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[-{stealth}] (0,-1.2) -- (0,1.2) node[above] {$y$};</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">\node[left, scale=0.8] at (0, 1) {$1$};</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">\node[left, scale=0.8] at (0, -1) {$-1$};</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">\node[below, scale=0.8] at (-1, 0) {$-1$};</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">\node[below, scale=0.8] at (1, 0) {$1$};</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \x in {-5,...,5}</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[thin] (\x / 5, 0.02) -- (\x /5, -0.02);</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="in">\foreach \y in {-5,...,5}</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="in">{</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="in">  \draw[thin] (0.02 , \y / 5) -- (-0.02 , \y /5);</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=black]   plot (\x, 1.5 * \x * \x - 0.5 ) ;</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="in">\node[above, black] at (-0.7, 0.73) {$P_2(x)$};</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=blue]   plot (\x, 2.5 * \x * \x * \x - 1.5 * \x);</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="in">\node[above, blue] at (-0.5, 0.4) {$P_3(x)$};</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=red]   plot (\x, 35/8 * \x * \x * \x *\x - 30 / 8 * \x *\x + 3/8 );</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="in">\node[red] at (-0.5, -0.5) {$P_4(x)$};</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="in">\draw[color=teal]   plot (\x, 63/8 * \x * \x * \x * \x * \x - 70/8* \x * \x * \x + 15/8 * \x);</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="in">\node[right, teal] at (0.2, 0.5) {$P_5(x)$};</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div id="fig-Legendre_polynoimal" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div class="sourceCode" id="cb3"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>[border=3pt,tikz]{<span class="ex">standalone</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{positioning}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{calc}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{arrows}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{decorations.pathreplacing}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[domain=-1:1, samples = 100, scale=3]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[-{stealth}] (-1.2, 0) -- (1.2,0) node[right] {<span class="ss">$x$</span>};</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[-{stealth}] (0,-1.2) -- (0,1.2) node[above] {<span class="ss">$y$</span>};</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[left, scale=0.8] at (0, 1) {<span class="ss">$1$</span>};</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[left, scale=0.8] at (0, -1) {<span class="ss">$-1$</span>};</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[below, scale=0.8] at (-1, 0) {<span class="ss">$-1$</span>};</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[below, scale=0.8] at (1, 0) {<span class="ss">$1$</span>};</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\x</span> in {-5,...,5}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\draw</span>[thin] (<span class="fu">\x</span> / 5, 0.02) -- (<span class="fu">\x</span> /5, -0.02);</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\foreach</span> <span class="fu">\y</span> in {-5,...,5}</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">\draw</span>[thin] (0.02 , <span class="fu">\y</span> / 5) -- (-0.02 , <span class="fu">\y</span> /5);</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=black]   plot (<span class="fu">\x</span>, 1.5 * <span class="fu">\x</span> * <span class="fu">\x</span> - 0.5 ) ;</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[above, black] at (-0.7, 0.73) {<span class="ss">$P_2(x)$</span>};</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=blue]   plot (<span class="fu">\x</span>, 2.5 * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> - 1.5 * <span class="fu">\x</span>);</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[above, blue] at (-0.5, 0.4) {<span class="ss">$P_3(x)$</span>};</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=red]   plot (<span class="fu">\x</span>, 35/8 * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> *<span class="fu">\x</span> - 30 / 8 * <span class="fu">\x</span> *<span class="fu">\x</span> + 3/8 );</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[red] at (-0.5, -0.5) {<span class="ss">$P_4(x)$</span>};</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[color=teal]   plot (<span class="fu">\x</span>, 63/8 * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> - 70/8* <span class="fu">\x</span> * <span class="fu">\x</span> * <span class="fu">\x</span> + 15/8 * <span class="fu">\x</span>);</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\node</span>[right, teal] at (0.2, 0.5) {<span class="ss">$P_5(x)$</span>};</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-tikz_legendre_polynomialo" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-Legendre_polynoimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="tikz_functions_files/figure-html/fig-Legendre_polynoimal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384">
+<div aria-describedby="fig-tikz_legendre_polynomialo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tikz_functions/legendre.png" class="img-fluid figure-img" width="400">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Legendre_polynoimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;3: Legendre 다항식
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tikz_legendre_polynomialo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: 르장드르 다항식
 </figcaption>
 </figure>
-</div>
 </div>
 
 
@@ -907,8 +865,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/tools/tikz/tikz_image.html" class="pagination-link" aria-label="Tikz code for image in Quarto">
-        <span class="nav-page-text">Tikz code for image in Quarto</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../src/tools/tikz/tikz_wavelet.html" class="pagination-link" aria-label="tikz Wavelet">
+        <span class="nav-page-text">tikz Wavelet</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
