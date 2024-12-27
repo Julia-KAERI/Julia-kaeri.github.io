@@ -24,7 +24,7 @@ $$
 
 를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다. 
 
-- 여기서 주의할 것은 $\{\bf{x}_i\}$ 에 대해 선형이기 때문에 선형 회귀가 아니라 $\bf{\theta}=  \begin{bmatrix}\theta_0 & \theta_1 & \cdots & \theta_m\end{bmatrix}$ 에 대한 선형 함수이므로 선형 회귀이다.
+- 여기서 주의할 것은 $\{\bf{x}_i\}$ 에 대해 선형이기 때문에 선형 회귀가 아니라 $\bf{\theta}=  \begin{bmatrix}\theta_0 & \theta_1 & \cdots & \theta_m\end{bmatrix}$ 에 대한 선형 함수이므로 선형 회귀라는 것임.
 
 
 이제 $\bf{x}_i \in \R^n$ 의 $j$ 번째 성분을 $(\bf{x}_i)_j$ 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.
@@ -74,11 +74,11 @@ $$ {#eq-linear_regression_master_equation_with_L2}
 
 여기서 우리가 고려해야 할 상황이 있다. 이것은 항상 명심해야 한다.
 
-&emsp; Q1. 데이터는 편항되거나 오염되거나 부실하지 않은가?
+&emsp; **Q1**. 데이터는 편항되거나 오염되거나 부실하지 않은가?
    
-&emsp; Q2. $f(\bf{x};\bf{\theta})$ 의 선택은 합리적인가?
+&emsp; **Q2**. $f(\bf{x};\bf{\theta})$ 의 선택은 합리적인가?
 
-&emsp; Q3. $\bf{\theta}^\ast$ 를 얻는 과정은 정확한가?
+&emsp; **Q3**. $\bf{\theta}^\ast$ 를 얻는 과정은 정확한가?
 
 
 

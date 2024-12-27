@@ -65,6 +65,8 @@ $$
 전체 영역에서의 최소점은 $x_G$ 이며 이를 **전역적 최소점(global minimum)** 이라고 한다. 그리고 $x_L$ 같이 어떤 근방에서의 최소점을 **국소적 최소점(local minimum)** 이라고 한다. 함수 $f(x)$ 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. $f(x)$ 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 $0$ 이고 이차미분이 양수인 점이다. 다변수의 경우 $\nabla f(\bf{x})=\bf{0}$ 이며 헤시안 행렬 $\bf{H}_f$ 가 positive definite 한 경우이다. 
 
 
+
+
 </br>
 
 ### 볼록 최적화 (Convex optimization)
@@ -209,17 +211,60 @@ $$
 
 </br>
 
-## 등식 제약이 주어졌을 때
+## 제약이 주어졌을 때
 
-### 라그랑제 승수법
+### 라그랑주 승수법
 
-목적함수 $f(\bf{x})$ 에 대해 $h_i(\bf{x})=0,\, (i=1,\ldots,\,M)$ 의 제약조건이 주어졌다고 하자. 이 때
+라그랑주 승수법은 제약조건들이 모두 $h(\bf{x})=0$ 꼴의 함수에 대한 등식일 경우 사용 할 수 있다. 아래의 정리가 알려져 있다.
+
+</br><div class="border" style="background-color:#FFF0F5 ;padding:5px;">
+
+::: {#thm-optimization_lagrange_multiplier_methoid}
+
+#### 라그랑주 승수법
+
+함수 $f(\bf{x})$ 에 대해 $h_i(\bf{x})=0,\, (i=1,\ldots,\,M)$ 의 제약조건이 주어졌다고 하자. 이 경우
+
+- 가능해 영역 $\mathcal{C}$ 가 $\R^n$ 에서 열린 영역이며,
+- 각각의 $\bf{x}\in \mathcal{C}$ 에서 $\nabla h_1(\bf{x}),\ldots,\,\nabla h_M(\bf{x})$ 이 선형 독립이다.
+
+의 조건을 만족하면 $f$ 를 $\mathcal{C}$ 에 제한시킨 $f|_\mathcal{C}$ 의 극점 $\bf{x}^\ast$ 에서
 
 $$
 \begin{aligned}
 \nabla f(\bf{x}^\ast) &= \lambda_i \nabla h_i(\bf{x}^\ast) \\[0.3em]
 h_i(\bf{x}^\ast) &= 0.
 \end{aligned}
-$$
+$$ {#eq-optimization_lagrange_multiplier}
 
-을 만족하는 $\bf{x}^\ast$ 는 가능해 영역에서의 $f(\bf{x})$ 의 stationary point 이다. 
+을 만족하는 $\lambda_1,\ldots,\,\lambda_M$ 이 존재한다.
+:::
+</div>
+
+</br>
+
+$\bf{x}^\ast$ 는 가능해 영역에서의 $f(\bf{x})$ 의 stationary point 이다. 즉 $\bf{x}^\ast$ 가 최소점이기 위한 필요조건이다. 
+
+<br>
+
+</br>
+
+### KKH 조건 (Karush-Kuhn-Tucker conditions)
+
+가능해 영역 $\mathcal{C}$ 가 등식으로 이루어진 함수 $h_i(\bf{x})=0,\, (i=1,\ldots,\,M)$ 과 부등식 $g_j(\bf{x})\le 0$ 에 의해 정해진다고 하자. 가능해 영역에서의 $f(\bf{x})$ 의 최적점 $\bf{x}^\ast$ 은 다음 조건을 만족하는데 이 조건을 KKK 조건이라고 한다.
+
+1. 라그랑지안 
+  $$
+  \mathcal{L}(\bf{x}; \{\lambda_i\},\, \{\mu_j\}) := f(\bf{x}) +\sum_{i=1}^M \lambda_i h_i(\bf{x}) + \sum_{j=1}^K \mu_j g_j(\bf{x})
+  $$
+  에 대해
+  $$
+  \nabla_{\bf{x}}\mathcal{L}(\bf{x}^\ast; \{\lambda_i\},\, \{\mu_j\}) = \nabla f(\bf{x}^\ast) + \sum_{i=1}^M \lambda_i \nabla h_i(\bf{x}^\ast) + \sum_{j=1}^K \mu_j \nabla g_j(\bf{x}^\ast) = 0
+  $$
+  이다.
+
+2. 모든 $\mu_j \ge 0$ 이다.
+3. 모든 $\mu_j g_j(\bf{x}^\ast) = 0$ 이다.
+
+
+물론 위의 조건을 만족하는 $\bf{x}^\ast$ 가 최적점은 아니다. 

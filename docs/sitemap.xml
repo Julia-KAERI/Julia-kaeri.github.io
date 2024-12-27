@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz.html</loc>
-    <lastmod>2024-12-18T01:56:48.362Z</lastmod>
+    <lastmod>2024-12-27T04:21:31.716Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
-    <lastmod>2024-12-18T01:56:48.365Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.334Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_test.html</loc>
-    <lastmod>2024-12-18T01:56:48.368Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.334Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/regression.html</loc>
-    <lastmod>2024-12-26T02:15:55.644Z</lastmod>
+    <lastmod>2024-12-27T01:57:39.742Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/pytorch/tensor.html</loc>
@@ -26,11 +26,11 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/unixLinux/git.html</loc>
-    <lastmod>2024-12-18T01:56:48.371Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
-    <lastmod>2024-12-18T01:56:48.362Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.333Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
@@ -98,11 +98,11 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/Asymptote/asymptote.html</loc>
-    <lastmod>2024-12-18T01:56:48.361Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.332Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
-    <lastmod>2024-12-18T01:56:48.371Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
@@ -114,19 +114,19 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/optimization.html</loc>
-    <lastmod>2024-12-26T06:32:23.174Z</lastmod>
+    <lastmod>2024-12-27T01:37:06.504Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
-    <lastmod>2024-12-18T01:56:48.367Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.334Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_image.html</loc>
-    <lastmod>2024-12-18T01:56:48.366Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.334Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
-    <lastmod>2024-12-18T01:56:48.368Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.334Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/ML.html</loc>
@@ -134,10 +134,10 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/classification.html</loc>
-    <lastmod>2024-12-26T08:05:17.913Z</lastmod>
+    <lastmod>2024-12-27T03:55:28.358Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/statistics.html</loc>
-    <lastmod>2024-12-26T02:11:06.511Z</lastmod>
+    <lastmod>2024-12-27T02:01:20.135Z</lastmod>
   </url>
 </urlset>

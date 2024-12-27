@@ -266,22 +266,19 @@ $$
 \end{align}
 $$
 
+</br>
 
 
+## Model Selection
 
-
-
-
-## 1.3. Model Selection
-
-- 최소자승법을 이용한 Polynomial curve fitting 에서 보았듯이 best generalization을 주는 최적의 다항식의 order $M$ 이 존재한다. 다항식의 order는 모델에서 free parameters의 갯수를 제어한다. Regularization 을 사용하면 regularization coefficient $\lambda$ 는 모델의 유효 복잡도(effiective complexcity) 를 통제한다. 
+- 최소자승법을 이용한 다항함수 피팅 에서 보았듯이 best generalization을 주는 최적의 다항식의 order $M$ 이 존재한다. 다항식의 order는 모델에서 free parameters의 갯수를 제어한다. Regularization 을 사용하면 regularization coefficient $\lambda$ 는 모델의 유효 복잡도(effiective complexcity) 를 통제한다. 
 - 실제 응용에서 우리는 이러한 parameters 들을 결정해야 하며 이렇게 하는 주요 목적은 새로운 데이터에 대한 최소의 predictive performance를 얻기 위함이다. 또한 이렇게 complexicity parameters 에 대한 적당한 값을 찾는 것 뿐만 아니라, 특정 목표에 적합한 모델을 찾기 위해 다양한 모델을 고려할 필요가 있다.
 - MLA (maximum likelihood approach) 에서 보았듯이 training set 에 대한 performance 가 다른 데이터에 대한 예측력을 보장해주지 않는다. (overfitting). 만약 데이터가 많다면 가용한 데이터중 일부를 다양한 모델을 학습시키거나, 주어진 모델에 대해 complexicity parameters 를 다양한 범위에서 학습시키는데 사용하고 이것을 독립적인 데이터를 사용하여 predictive performance를 비교하여 수 도 있다. 이렇게 학습데이터와 독립적으로 사용되는 데이터를 **validation set** 이라 한다. 이렇게 수차례 반복한 다음에 **test set** 이라 불리는 별도의 독립적인 데이터를 사용하여 최종적으로 평가할 수도 있다.
 -  보통은 training과 testing에 사용될 수 있는 데이터가 부족한데, 이 경우 좋은 모델을 만들기 위해 training에 가능한 많은 데이터를 사용하고자 할 수 있다. 그러나 만약 validation set이 부족하면 it will give a relatively noisy estimate of predictive performance. 이 딜레마에 대한 해결방법중 하나로 cross validation 방법이 있다.
 
 
 
-<b>Cross Validation</b>
+### Cross Validation
 
 - 전체 데이터를 $S$ 개의 group으로 나눈다. $S$ 개의 training group 으로 각 training group 마다 $S-1$ 개의 데이터 그룹을 training set으로 나머지 하나를 validation set으로 사용한다.
 
@@ -300,12 +297,9 @@ $$
 - 따라서 우리는 section 3.4 에서 fully Bayesian approach 로 전환할 것이며 이러한 complexity penalty 가 자연스럽고 원칙적인 방법으로 발생하는지 볼 것이다.
 
   
+  </br>
 
-
-
-## 1.4 The Curse of Dimensionality
-
-- Oil examples은 그냥 읽으면 되고..
+## 차원의 저주 
 
 - 우리가 다루고자 하는 입력 데이터가 고차원의 데이터 ($\mathcal{D}-\dim$)라고 가정해보자. 다항식 근사에서 order $3$ 까지 전개해보면,
   $$

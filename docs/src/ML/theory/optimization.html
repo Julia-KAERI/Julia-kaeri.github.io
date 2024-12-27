@@ -217,7 +217,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/ML/theory/classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">퍼셈트론과 분류</span></a>
+ <span class="menu-text">퍼셉트론과 분류</span></a>
   </div>
 </li>
       </ul>
@@ -268,9 +268,10 @@ window.Quarto = {
   <li><a href="#직접법" id="toc-직접법" class="nav-link" data-scroll-target="#직접법"><span class="header-section-number">2.2</span> 직접법</a></li>
   <li><a href="#경사-하강법gradient-descent" id="toc-경사-하강법gradient-descent" class="nav-link" data-scroll-target="#경사-하강법gradient-descent"><span class="header-section-number">2.3</span> 경사 하강법(Gradient descent)</a></li>
   </ul></li>
-  <li><a href="#등식-제약이-주어졌을-때" id="toc-등식-제약이-주어졌을-때" class="nav-link" data-scroll-target="#등식-제약이-주어졌을-때"><span class="header-section-number">3</span> 등식 제약이 주어졌을 때</a>
+  <li><a href="#제약이-주어졌을-때" id="toc-제약이-주어졌을-때" class="nav-link" data-scroll-target="#제약이-주어졌을-때"><span class="header-section-number">3</span> 제약이 주어졌을 때</a>
   <ul class="collapse">
-  <li><a href="#라그랑제-승수법" id="toc-라그랑제-승수법" class="nav-link" data-scroll-target="#라그랑제-승수법"><span class="header-section-number">3.1</span> 라그랑제 승수법</a></li>
+  <li><a href="#라그랑주-승수법" id="toc-라그랑주-승수법" class="nav-link" data-scroll-target="#라그랑주-승수법"><span class="header-section-number">3.1</span> 라그랑주 승수법</a></li>
+  <li><a href="#kkh-조건-karush-kuhn-tucker-conditions" id="toc-kkh-조건-karush-kuhn-tucker-conditions" class="nav-link" data-scroll-target="#kkh-조건-karush-kuhn-tucker-conditions"><span class="header-section-number">3.2</span> KKH 조건 (Karush-Kuhn-Tucker conditions)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -467,18 +468,47 @@ f(\boldsymbol{x})= \boldsymbol{x}^T\boldsymbol{A}^T\boldsymbol{Ax} - \boldsymbol
 <p><br></p>
 </section>
 </section>
-<section id="등식-제약이-주어졌을-때" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="등식-제약이-주어졌을-때"><span class="header-section-number">3</span> 등식 제약이 주어졌을 때</h2>
-<section id="라그랑제-승수법" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="라그랑제-승수법"><span class="header-section-number">3.1</span> 라그랑제 승수법</h3>
-<p>목적함수 <span class="math inline">\(f(\boldsymbol{x})\)</span> 에 대해 <span class="math inline">\(h_i(\boldsymbol{x})=0,\, (i=1,\ldots,\,M)\)</span> 의 제약조건이 주어졌다고 하자. 이 때</p>
-<p><span class="math display">\[
+<section id="제약이-주어졌을-때" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="제약이-주어졌을-때"><span class="header-section-number">3</span> 제약이 주어졌을 때</h2>
+<section id="라그랑주-승수법" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="라그랑주-승수법"><span class="header-section-number">3.1</span> 라그랑주 승수법</h3>
+<p>라그랑주 승수법은 제약조건들이 모두 <span class="math inline">\(h(\boldsymbol{x})=0\)</span> 꼴의 함수에 대한 등식일 경우 사용 할 수 있다. 아래의 정리가 알려져 있다.</p>
+<br>
+<div class="border" style="background-color:#FFF0F5 ;padding:5px;">
+<div id="thm-optimization_lagrange_multiplier_methoid" class="theorem">
+<p><span class="theorem-title"><strong>정리 1 (라그랑주 승수법)</strong></span> 함수 <span class="math inline">\(f(\boldsymbol{x})\)</span> 에 대해 <span class="math inline">\(h_i(\boldsymbol{x})=0,\, (i=1,\ldots,\,M)\)</span> 의 제약조건이 주어졌다고 하자. 이 경우</p>
+<ul>
+<li>가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 가 <span class="math inline">\(\mathbb{R}^n\)</span> 에서 열린 영역이며,</li>
+<li>각각의 <span class="math inline">\(\boldsymbol{x}\in \mathcal{C}\)</span> 에서 <span class="math inline">\(\nabla h_1(\boldsymbol{x}),\ldots,\,\nabla h_M(\boldsymbol{x})\)</span> 이 선형 독립이다.</li>
+</ul>
+<p>의 조건을 만족하면 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(\mathcal{C}\)</span> 에 제한시킨 <span class="math inline">\(f|_\mathcal{C}\)</span> 의 극점 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 에서</p>
+<p><span id="eq-optimization_lagrange_multiplier"><span class="math display">\[
 \begin{aligned}
 \nabla f(\boldsymbol{x}^\ast) &amp;= \lambda_i \nabla h_i(\boldsymbol{x}^\ast) \\[0.3em]
 h_i(\boldsymbol{x}^\ast) &amp;= 0.
 \end{aligned}
-\]</span></p>
-<p>을 만족하는 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 는 가능해 영역에서의 <span class="math inline">\(f(\boldsymbol{x})\)</span> 의 stationary point 이다.</p>
+\tag{4}\]</span></span></p>
+<p>을 만족하는 <span class="math inline">\(\lambda_1,\ldots,\,\lambda_M\)</span> 이 존재한다.</p>
+</div>
+</div>
+<p><br></p>
+<p><span class="math inline">\(\boldsymbol{x}^\ast\)</span> 는 가능해 영역에서의 <span class="math inline">\(f(\boldsymbol{x})\)</span> 의 stationary point 이다. 즉 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 가 최소점이기 위한 필요조건이다.</p>
+<p><br></p>
+<p><br></p>
+</section>
+<section id="kkh-조건-karush-kuhn-tucker-conditions" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="kkh-조건-karush-kuhn-tucker-conditions"><span class="header-section-number">3.2</span> KKH 조건 (Karush-Kuhn-Tucker conditions)</h3>
+<p>가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 가 등식으로 이루어진 함수 <span class="math inline">\(h_i(\boldsymbol{x})=0,\, (i=1,\ldots,\,M)\)</span> 과 부등식 <span class="math inline">\(g_j(\boldsymbol{x})\le 0\)</span> 에 의해 정해진다고 하자. 가능해 영역에서의 <span class="math inline">\(f(\boldsymbol{x})\)</span> 의 최적점 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 은 다음 조건을 만족하는데 이 조건을 KKK 조건이라고 한다.</p>
+<ol type="1">
+<li><p>라그랑지안 <span class="math display">\[
+  \mathcal{L}(\boldsymbol{x}; \{\lambda_i\},\, \{\mu_j\}) := f(\boldsymbol{x}) +\sum_{i=1}^M \lambda_i h_i(\boldsymbol{x}) + \sum_{j=1}^K \mu_j g_j(\boldsymbol{x})
+  \]</span> 에 대해 <span class="math display">\[
+  \nabla_{\boldsymbol{x}}\mathcal{L}(\boldsymbol{x}^\ast; \{\lambda_i\},\, \{\mu_j\}) = \nabla f(\boldsymbol{x}^\ast) + \sum_{i=1}^M \lambda_i \nabla h_i(\boldsymbol{x}^\ast) + \sum_{j=1}^K \mu_j \nabla g_j(\boldsymbol{x}^\ast) = 0
+  \]</span> 이다.</p></li>
+<li><p>모든 <span class="math inline">\(\mu_j \ge 0\)</span> 이다.</p></li>
+<li><p>모든 <span class="math inline">\(\mu_j g_j(\boldsymbol{x}^\ast) = 0\)</span> 이다.</p></li>
+</ol>
+<p>물론 위의 조건을 만족하는 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 가 최적점은 아니다.</p>
 
 
 </section>

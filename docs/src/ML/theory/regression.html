@@ -251,7 +251,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../src/ML/theory/classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">퍼셈트론과 분류</span></a>
+ <span class="menu-text">퍼셉트론과 분류</span></a>
   </div>
 </li>
       </ul>
@@ -351,7 +351,7 @@ f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &am
 \]</span></p>
 <p>를 찾는 문제를 선형 회귀 (linear regression) 문제라고 한다.</p>
 <ul>
-<li>여기서 주의할 것은 <span class="math inline">\(\{\boldsymbol{x}_i\}\)</span> 에 대해 선형이기 때문에 선형 회귀가 아니라 <span class="math inline">\(\boldsymbol{\theta}=  \begin{bmatrix}\theta_0 &amp; \theta_1 &amp; \cdots &amp; \theta_m\end{bmatrix}\)</span> 에 대한 선형 함수이므로 선형 회귀이다.</li>
+<li>여기서 주의할 것은 <span class="math inline">\(\{\boldsymbol{x}_i\}\)</span> 에 대해 선형이기 때문에 선형 회귀가 아니라 <span class="math inline">\(\boldsymbol{\theta}=  \begin{bmatrix}\theta_0 &amp; \theta_1 &amp; \cdots &amp; \theta_m\end{bmatrix}\)</span> 에 대한 선형 함수이므로 선형 회귀라는 것임.</li>
 </ul>
 <p>이제 <span class="math inline">\(\boldsymbol{x}_i \in \mathbb{R}^n\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 <span class="math inline">\((\boldsymbol{x}_i)_j\)</span> 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.</p>
 <p><span class="math display">\[
@@ -384,9 +384,9 @@ f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &am
 <h3 data-number="1.2" class="anchored" data-anchor-id="sec-regression_training_and_prediction"><span class="header-section-number">1.2</span> 학습/훈련과 예측</h3>
 <p>우리가 이미 획득한 입력 벡터의 집합 <span class="math inline">\(\{\boldsymbol{x}_i\}\)</span> 와 레이블(label) <span class="math inline">\(\{y_i = y_i(\boldsymbol{x}_i)\}\)</span> 로 이루어진 데이터 <span class="math inline">\(\{(\boldsymbol{x}_i,\, y_i):i=1,\ldots,\,m\}\)</span>, 그리고 데이터를 잘 설명할것이라고 기대되는 함수 <span class="math inline">\(f(\boldsymbol{x},\,\boldsymbol{\theta})\)</span> 에 대해 <a href="#eq-linear_regression_master_equation" class="quarto-xref">식&nbsp;1</a> 의 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 얻는 것을 훈련 혹은 학습 이라고 한다. 이 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}\)</span> 의 상황에서 <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta}^\ast)\)</span> 의 값을 얻을것이라고 기대한다. 즉 우리는 주어진 데이터를 학습시켜 미지의 상황을 예측 할 수 있다. 이것은 비단 선형 회귀 뿐만 아니라 모든 통계학적 처리 및 기계학습의 과정에 공통된다.</p>
 <p>여기서 우리가 고려해야 할 상황이 있다. 이것은 항상 명심해야 한다.</p>
-<p>  Q1. 데이터는 편항되거나 오염되거나 부실하지 않은가?</p>
-<p>  Q2. <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta})\)</span> 의 선택은 합리적인가?</p>
-<p>  Q3. <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 얻는 과정은 정확한가?</p>
+<p>  <strong>Q1</strong>. 데이터는 편항되거나 오염되거나 부실하지 않은가?</p>
+<p>  <strong>Q2</strong>. <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta})\)</span> 의 선택은 합리적인가?</p>
+<p>  <strong>Q3</strong>. <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 얻는 과정은 정확한가?</p>
 <p><br></p>
 </section>
 <section id="sec-regression_least_square_sum" class="level3" data-number="1.3">
