@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz.html</loc>
-    <lastmod>2024-12-27T10:12:37.967Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/regression.html</loc>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/statistics.html</loc>
     <lastmod>2024-12-26T08:04:56.550Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/classification.html</loc>
-    <lastmod>2024-12-26T08:05:17.913Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/optimization.html</loc>
+    <lastmod>2024-12-26T08:04:56.549Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/pytorch/tensor.html</loc>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/ML.html</loc>
+    <lastmod>2024-12-26T08:04:56.546Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/pytorch/intro.html</loc>
     <lastmod>2024-12-18T01:56:48.359Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_test.html</loc>
-    <lastmod>2024-12-27T09:54:23.412Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
+    <lastmod>2024-12-18T14:46:44.724Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
-    <lastmod>2024-12-18T01:58:25.945Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
+    <loc>https://julia-kaeri.github.io/src/tools/unixLinux/git.html</loc>
     <lastmod>2024-12-18T01:56:48.371Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
-    <lastmod>2024-12-27T09:57:20.230Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
+    <lastmod>2024-12-27T09:53:53.621Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
+    <lastmod>2024-12-27T09:26:00.080Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
@@ -105,35 +105,35 @@
     <lastmod>2024-12-18T01:56:48.361Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
-    <lastmod>2024-12-27T09:26:00.080Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz.html</loc>
+    <lastmod>2024-12-27T10:12:37.967Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
-    <lastmod>2024-12-27T09:53:53.621Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
+    <lastmod>2024-12-27T09:57:20.230Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/unixLinux/git.html</loc>
+    <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
     <lastmod>2024-12-18T01:56:48.371Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
-    <lastmod>2024-12-18T14:46:44.724Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
+    <lastmod>2024-12-18T01:58:25.945Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/pytorch/intro.html</loc>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_test.html</loc>
+    <lastmod>2024-12-27T09:54:23.412Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/pytorch/tensor.html</loc>
     <lastmod>2024-12-18T01:56:48.359Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/ML.html</loc>
-    <lastmod>2024-12-26T08:04:56.546Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/classification.html</loc>
+    <lastmod>2024-12-26T08:05:17.913Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/optimization.html</loc>
-    <lastmod>2024-12-26T08:04:56.549Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/statistics.html</loc>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/regression.html</loc>
     <lastmod>2024-12-26T08:04:56.550Z</lastmod>
   </url>
 </urlset>
