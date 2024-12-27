@@ -10,15 +10,20 @@ crossref:
 
 
 
-```{.tex}
-\documentclass[border=3pt,tikz]{standalone}
-\usepackage{amsmath}
+```{r, engine = 'tikz'}
+#| label: fig-tikz_first_exam
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-align: center
+#| fig-cap: "tikz in Quarto 예시"
+
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{decorations.pathreplacing}
-\begin{document}
+
 \begin{tikzpicture}
 \draw (0,0)node(a){} -- (10,0) node (b) {} ;
 \foreach \x in  {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10} % edit here for the vertical lines
@@ -36,10 +41,7 @@ crossref:
 \draw[decorate, decoration={brace, amplitude=6pt},] ([yshift=-1cm]7,0)-- node[below=0.25cm]
 {\shortstack{Text}}([yshift=-1cm]3,0);
 \end{tikzpicture}
-\end{document}
 ```
-
-![tikz 예시 1](tikz_test/test01.png){#fig-tikz0_test01 width=500}
 
 </br>
 
@@ -49,24 +51,21 @@ crossref:
 
 다음은 교차하는 직선과 교점을 그린 것이다.
 
-```{.tex}
-\documentclass[border=3pt,tikz]{standalone}
-\usepackage{amsmath}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{decorations.pathreplacing}
-\begin{document}
-\begin{tikzpicture}[scale=1.0]
-    \draw[gray] (-1,2) -- (2,-4);
-    \draw[red, thick] (-1,-1) -- (2,2);
-    \filldraw[black] (0,0) circle (2pt) node[anchor=west]{Intersection point};
-    \end{tikzpicture}
-\end{document}
-```
+```{r, engine = 'tikz'}
+#| label: fig-tikz_2
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 2
+#| fig-align: center
+#| fig-cap: "tikz 2"
 
-![tikz 예시 2](tikz_test/test02.png){#fig-tikz0_test02 width=250}
+\begin{tikzpicture}[scale=1.0]
+\draw[gray] (-1,2) -- (2,-4);
+\draw[red, thick] (-1,-1) -- (2,2);
+\filldraw[black] (0,0) circle (2pt) node[anchor=west]{Intersection point};
+\end{tikzpicture}
+```
 
 - `\draw[gray](-1, 2) -- (2, -4);` 는 $(-1, 2)$ 에서 $(2, -4)$ 까지 회색(gray) 의 직선을 그으라는 명령어이다. 
   
@@ -78,24 +77,21 @@ crossref:
 
 ### 그리드와 직선의 두께
 
-```{.tex}
-\documentclass[border=3pt,tikz]{standalone}
-\usepackage{amsmath}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{decorations.pathreplacing}
-\begin{document}
+```{r, engine = 'tikz'}
+#| label: fig-tikz_2_2
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 2
+#| fig-align: center
+#| fig-cap: "그리드와 직선의 두께"
+
 \begin{tikzpicture}
     \draw[gray, very thick] (0,0) grid (4,3);
     \draw[blue, dashed] (0,0) -- (1,2) -- (3,3) -- (4,2);
     \draw[red, ->, thick] (2,0) -- (3.5,2.5);
 \end{tikzpicture}
-\end{document}
 ```
-
-![tikz 예시 3](tikz_test/test03.png){#fig-tikz0_test03 width=200}
 
 - `\draw[gray, very thick] (0,0) grid (4,3);` 는 $(0, 0)$ 부터 $(4, 3)$ 까지 가로, 세로 1 간격의 그리드를 회색(gray) 의 두꺼운 선(very thick) 으로 그린다. 
 - `draw[blue, dashed] (0,0) -- (1,2) -- (3,3) -- (4,2);` 는 이어지는 파선(dashed) 을 파란 색으로 그린다.
@@ -105,23 +101,19 @@ crossref:
 
 ### 닫힌 선분
 
-```{.tex}
-\documentclass[border=3pt,tikz]{standalone}
-\usepackage{amsmath}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{decorations.pathreplacing}
-\begin{document}
+```{r, engine = 'tikz'}
+#| label: fig-tikz_2_3
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 2
+#| fig-align: center
+#| fig-cap: "닫힌 선분"
+
 \begin{tikzpicture}
     \draw[green, thick] (0,0) -- (1,2) -- (3,3) -- (3,-1)--cycle;
 \end{tikzpicture}
-\end{document}
 ```
-
-![tikz 예시 4](tikz_test/test04.png){#fig-tikz0_test04 width=200}
-
 
 - `\draw[green, thick] (0,0) -- (1,2) -- (3,3) -- (3,-1)--cycle;` 에서 `--cycle` 은 이 앞의 `(3, -1)` 을 맨 앞의 `(0, 0)` 과 연결시키라는 의미이다.
 
@@ -132,25 +124,23 @@ crossref:
 
 다음은 곡선을 그린 것이다.
 
-```{.tex}
-\documentclass[border=3pt,tikz]{standalone}
-\usepackage{amsmath}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{decorations.pathreplacing}
-\begin{document}
+```{r, engine = 'tikz'}
+#| label: fig-tikz_3
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 2
+#| fig-align: center
+#| fig-cap: "tikz 3"
+
 \begin{tikzpicture}[scale=1.0]
-    \draw (-2,0) -- (2,0);
-    \filldraw [blue] (0,0) circle (2pt);
-    \draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);
-    \draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
-    
-    \end{tikzpicture}
-\end{document}
+\draw (-2,0) -- (2,0);
+\filldraw [blue] (0,0) circle (2pt);
+\draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);
+\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
+
+\end{tikzpicture}
 ```
-![tikz 예시 5](tikz_test/test05.png){#fig-tikz0_test05 width=200}
 
 - `\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);` 는 $(-2, 2)$ 와 $(2, 2)$ 를 끝점으로 하고 $(-1, 0)$ 과 $(1, 0)$ 을 제어점으로 하는 사차 베지어 곡선을 magenta 색으로 그린다. 
 - `\draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);` 는 ($-2, 2)$ 와 $(2, 2)$ 를 끝점으로 하고 제어점이 $(0, 0)$ 인 사차 베지어 곡선을 cyan 색으로 그린다. 즉 `\draw[magenta] (-2,2) .. controls (0,0) and (0,0) .. (2,2);` 과 같다.
@@ -159,30 +149,26 @@ crossref:
 
 ### 함수
 
-```{.tex}
-\documentclass[border=3pt,tikz]{standalone}
-\usepackage{amsmath}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{decorations.pathreplacing}
-\begin{document}
+```{r, engine = 'tikz'}
+#| label: fig-tikz_4
+#| code-fold: true
+#| echo: fenced
+#| output: asis
+#| fig-width: 4
+#| fig-align: center
+#| fig-cap: "tikz 3"
 \begin{tikzpicture}[domain=0:4]
-    \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
-  
-    \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
-    \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
-  
-    \draw[color=red]    plot (\x,\x)             node[right] {$f(x) =x$};
-    % \x r means to convert '\x' from degrees to _r_adians:
-    \draw[color=blue]   plot (\x,{sin(\x r)})    node[right] {$f(x) = \sin x$};
-    \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} e^x$};
-  \end{tikzpicture}
-\end{document}
-```
+  \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
 
-![tikz 예시 6](tikz_test/test06.png){#fig-tikz0_test06 width=300}
+  \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+  \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+
+  \draw[color=red]    plot (\x,\x)             node[right] {$f(x) =x$};
+  % \x r means to convert '\x' from degrees to _r_adians:
+  \draw[color=blue]   plot (\x,{sin(\x r)})    node[right] {$f(x) = \sin x$};
+  \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} e^x$};
+\end{tikzpicture}
+```
 
 - `\begin{tikzpicture}[domain=0:4]` 에서 `[domain=0:4]` 은 함수를 사용할 때 $[0, 4]$ 구간을 사용한다는 의미이다.
 - `\draw[color=red] plot (\x,\x) node[right] {$f(x) =x$};` 팔간색 선으로 $y=x$ 그래프를 그리며 끝점의 오른쪽에 $f(x)=x$ 라는 문자열을 넣으라는 의미.
