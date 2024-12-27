@@ -129,23 +129,26 @@ crossref:
 
 다음은 곡선을 그린 것이다.
 
-```{r, engine = 'tikz'}
-#| label: fig-tikz_3
-#| code-fold: true
-#| echo: fenced
-#| output: asis
-#| fig-width: 2
-#| fig-align: center
-#| fig-cap: "tikz 3"
-
+```{.tex}
+\documentclass[border=3pt,tikz]{standalone}
+\usepackage{amsmath}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\begin{document}
 \begin{tikzpicture}[scale=1.0]
-\draw (-2,0) -- (2,0);
-\filldraw [blue] (0,0) circle (2pt);
-\draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);
-\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
-
-\end{tikzpicture}
+    \draw (-2,0) -- (2,0);
+    \filldraw [blue] (0,0) circle (2pt);
+    \draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);
+    \draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
+    
+    \end{tikzpicture}
+\end{document}
 ```
+
+![Tikz figure-5](tikz_test/test05.png){#fig-tikz_test05 width=250}
 
 - `\draw[magenta] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);` 는 $(-2, 2)$ 와 $(2, 2)$ 를 끝점으로 하고 $(-1, 0)$ 과 $(1, 0)$ 을 제어점으로 하는 사차 베지어 곡선을 magenta 색으로 그린다. 
 - `\draw[cyan] (-2,-2) .. controls (0,0) .. (2,-2);` 는 ($-2, 2)$ 와 $(2, 2)$ 를 끝점으로 하고 제어점이 $(0, 0)$ 인 사차 베지어 곡선을 cyan 색으로 그린다. 즉 `\draw[magenta] (-2,2) .. controls (0,0) and (0,0) .. (2,2);` 과 같다.
@@ -154,26 +157,30 @@ crossref:
 
 ### 함수
 
-```{r, engine = 'tikz'}
-#| label: fig-tikz_4
-#| code-fold: true
-#| echo: fenced
-#| output: asis
-#| fig-width: 4
-#| fig-align: center
-#| fig-cap: "tikz 3"
+```{.tex}
+\documentclass[border=3pt,tikz]{standalone}
+\usepackage{amsmath}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\begin{document}
 \begin{tikzpicture}[domain=0:4]
-  \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
-
-  \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
-  \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
-
-  \draw[color=red]    plot (\x,\x)             node[right] {$f(x) =x$};
-  % \x r means to convert '\x' from degrees to _r_adians:
-  \draw[color=blue]   plot (\x,{sin(\x r)})    node[right] {$f(x) = \sin x$};
-  \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} e^x$};
-\end{tikzpicture}
+    \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+  
+    \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+    \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+  
+    \draw[color=red]    plot (\x,\x)             node[right] {$f(x) =x$};
+    % \x r means to convert '\x' from degrees to _r_adians:
+    \draw[color=blue]   plot (\x,{sin(\x r)})    node[right] {$f(x) = \sin x$};
+    \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} e^x$};
+  \end{tikzpicture}
+\end{document}
 ```
+![Tikz figure-6](tikz_test/test06.png){#fig-tikz_test06 width=350}
+
 
 - `\begin{tikzpicture}[domain=0:4]` 에서 `[domain=0:4]` 은 함수를 사용할 때 $[0, 4]$ 구간을 사용한다는 의미이다.
 - `\draw[color=red] plot (\x,\x) node[right] {$f(x) =x$};` 팔간색 선으로 $y=x$ 그래프를 그리며 끝점의 오른쪽에 $f(x)=x$ 라는 문자열을 넣으라는 의미.
