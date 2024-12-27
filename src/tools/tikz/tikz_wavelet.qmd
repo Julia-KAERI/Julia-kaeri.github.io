@@ -262,20 +262,14 @@ crossref:
 
 </br>
 
-```{r, engine = 'tikz'}
-#| label: fig-wavelet_resolution_1
-#| code-fold: true
-#| echo: fenced
-#| output: asis
-#| fig-width: 10
-#| fig-align: center
-#| fig-cap: "Haar wavelet"
-
+```{.tex}
+\documentclass[border=3pt,tikz]{standalone}
+\usepackage{amsmath}
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows}
-
+\begin{document}
 \begin{tikzpicture}[samples = 200, scale=1.2]
 
 \draw[-{stealth}] (-0.5, 0) -- (8,0) node[right] {$t$};
@@ -283,9 +277,9 @@ crossref:
 
 \foreach \x in {0,...,2}
 {
-  \draw (2*\x +2 , 0.1)-- (2*\x +2, 0.0) node[below, scale=0.8] {$b_\x + a_\x t_m$};
-  \draw (0.1, \x +1)-- (0.0, \x +1) node[left, scale=0.8] {$\omega_m/a_\x$};
-  \draw[dashed] (2*\x+2, 0.0) -- (2*\x+2, \x+1) -- (0, \x+1);
+    \draw (2*\x +2 , 0.1)-- (2*\x +2, 0.0) node[below, scale=0.8] {$b_\x + a_\x t_m$};
+    \draw (0.1, \x +1)-- (0.0, \x +1) node[left, scale=0.8] {$\omega_m/a_\x$};
+    \draw[dashed] (2*\x+2, 0.0) -- (2*\x+2, \x+1) -- (0, \x+1);
 }
 
 \draw [thick, red] (1, 0.7) -- (3, 0.7) -- (3, 1.3) -- (1, 1.3) -- cycle;
@@ -299,8 +293,66 @@ crossref:
 \draw [thick, teal] (5.8, 2) -- (5.8, 4) -- (6.2, 4) -- (6.2, 2) -- cycle;
 \node [above, teal, scale=0.8] at (6, 4) {$2a_2 \sigma_t$};
 \node [right, teal, scale=0.8] at (6.2, 3.0) {$\dfrac{2}{a_2}\sigma_\omega$};
-
-
-
 \end{tikzpicture}
+\end{document}
 ```
+![Wavelet resolution](tikz_wavelets/wavelet08.png){#fig-wavelet_resolution width=600}
+
+
+</br>
+
+
+```{.tex}
+\documentclass[border=3pt,tikz]{standalone}
+\usepackage{amsmath}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\begin{document}
+\begin{tikzpicture}[samples = 200, scale=1.2]
+
+    \draw[-{stealth}] (0, 0) -- (8.5,0) node[right] {$t$};
+    \draw[-{stealth}] (0,0) -- (0,4) node[above] {$\omega$};
+    
+    \draw [thick] (0, 0.5) -- (8, 0.5);
+    \draw [thick] (0, 1.5) -- (8, 1.5);
+    \draw [thick] (0, 3.5) -- (8, 3.5);
+    
+    
+    \filldraw[black] (0, 0) circle (1pt) node [below, scale=0.7] {$n=0$};
+    \filldraw[black] (4, 0) circle (1pt) node [below, scale=0.7] {$n=1$};
+    \filldraw[black] (8, 0) circle (1pt) node [below, scale=0.7] {$n=2$};
+    \filldraw[black] (0, 0) circle (1pt) node [left, scale=0.7] {$m=0$};
+    \filldraw[black] (0, 0.5) circle (1pt) node [left, scale=0.7] {$m=-1$};
+    \filldraw[black] (0, 1.5) circle (1pt) node [left, scale=0.7] {$m=-2$};
+    \filldraw[black] (0, 3.5) circle (1pt) node [left, scale=0.7] {$m=-3$};
+    
+    \foreach \x in {0,...,4}
+    {
+    \draw [thick] (2*\x, 0) -- (2*\x, 3.5);
+    
+    }
+    
+    
+    \foreach \x in {0,...,8}
+    {
+    \draw [thick] (\x, 0.5) -- (\x, 3.5);
+    }
+    
+    \foreach \x in {0,...,15}
+    {
+    \draw [thick] (\x/2, 1.5) -- (\x/2, 3.5);
+    }
+    
+    \draw[{stealth}-{stealth}] (7.5, 3.7) -- (8.0,3.7);
+    \node[above] at (7.75, 3.7) {$\sigma_t$};
+    
+    \draw[{stealth}-{stealth}] (8.2, 1.5) -- (8.2,3.5);
+    \node[right] at (8.2, 2.5) {$\sigma_\omega$};
+    
+    \end{tikzpicture}
+\end{document}
+```
+
+![Wavelet resolution-2](tikz_wavelets/wavelet09.png){#fig-wavelet_resolution2 width=600}

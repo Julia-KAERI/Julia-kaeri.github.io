@@ -8,7 +8,7 @@ crossref:
 
 ---
 
-
+<!-- 
 ```{r, engine = 'tikz'}
 #| label: fig-wavelet_resolution_2
 #| code-fold: true
@@ -65,4 +65,4 @@ crossref:
 \node[right] at (8.2, 2.5) {$\sigma_\omega$};
 
 \end{tikzpicture}
-```
+``` -->
