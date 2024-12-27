@@ -8,8 +8,6 @@ crossref:
 
 ---
 
-
-
 ```{.tex}
 \documentclass[border=3pt,tikz]{standalone}
 \usepackage{amsmath}
