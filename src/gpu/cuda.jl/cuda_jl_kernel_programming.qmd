@@ -63,7 +63,7 @@ a
 
 ## 커널 구동 설정과 인덱싱 {#sec-cudajl_kernel_configuration_and_indexing}
 
-`@cuda` 를 통해 커널을 구동하면 단일 스레드만 시작되므로 그다지 유용하지 않다. @cuda 에 대한 `threads` 및 `blocks` 키워드 인수를 사용하면 다수의 스레드를 구동할 수 있으며, 커널 내에서는 인덱싱 내장 함수를 사용하여 각 스레드의 계산을 차별화 할 수 있다.
+`@cuda` 를 통해 커널을 구동하면 단일 스레드만 시작되므로 그다지 유용하지 않다. `@cuda` 에 대한 `threads` 및 `blocks` 키워드 인수를 사용하면 다수의 스레드를 구동할 수 있으며, 커널 내에서는 인덱싱 내장 함수를 사용하여 각 스레드의 계산을 차별화 할 수 있다.
 
 ```julia
 function my_kernel(a)
@@ -449,7 +449,7 @@ julia> a
 
 </br>
 
-### 동기화 {#sec-cudajl_synchronization}
+### 동기화 {#sec-cudajl_synchronization_2}
 
 그룹 객체는 그룹 내 스레드를 동기화하기 위해 `CG.sync` 연산을 지원합니다.
 

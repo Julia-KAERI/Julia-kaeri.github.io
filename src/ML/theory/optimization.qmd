@@ -11,6 +11,17 @@ crossref:
 
 </br>
 
+<div class="border" style="background-color:#F0FFFF  ;padding:5px;">
+
+
+<p align="right">*Within the universe of applied mathematics, optimization is often a world of its own. There are occasional expeditions to other worlds (like differential equations), but mostly the life of optimizers is self-contained: Find the minimum of* $F(x_1, \cdots , x_n)$.</p>
+
+<p align="right">G. Strang, *Computational Science and Engineering*</p>
+
+</div>
+
+</br>
+
 ## 최적화
 
 ### 최적화의 기본 요소

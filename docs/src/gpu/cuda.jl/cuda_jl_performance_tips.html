@@ -336,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2" class="anchored" data-anchor-id="julia-전용-팁"><span class="header-section-number">2</span> Julia 전용 팁</h2>
 <section id="런타임-예외를-최소화한다" class="level3">
 <h3 class="anchored" data-anchor-id="런타임-예외를-최소화한다">런타임 예외를 최소화한다</h3>
-<p>Julia 에서 많은 일반적인 연산은 런타임에 Error 를 발생시킬 수 있으며, Error 는 종종 분기를 만들고 해당 분기에서 함수를 호출하는데, 이 둘 다 GPU 에서는 느리다. 배열을 인덱싱할 때 <span class="citation" data-cites="inbounds를">(<a href="#ref-inbounds를" role="doc-biblioref"><strong>inbounds를?</strong></a>)</span> 사용하면 경계 검사로 인한 예외가 제거된다. <code>--check-bounds=yes</code> (Pkg.test의 기본값) 로 코드를 실행하면 항상 경계 검사가 발생한다. <code>LLVM.jl</code> 패키지의 <code>assume</code> 을 사용하여 예외를 제거할 수도 있다. 다음을 보라.</p>
+<p>Julia 에서 많은 일반적인 연산은 런타임에 Error 를 발생시킬 수 있으며, Error 는 종종 분기를 만들고 해당 분기에서 함수를 호출하는데, 이 둘 다 GPU 에서는 느리다. 배열을 인덱싱할 때 <code>@inbounds</code> 를 사용하면 경계 검사로 인한 예외가 제거된다. <code>--check-bounds=yes</code> (Pkg.test의 기본값) 로 코드를 실행하면 항상 경계 검사가 발생한다. <code>LLVM.jl</code> 패키지의 <code>assume</code> 을 사용하여 예외를 제거할 수도 있다. 다음을 보라.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LLVM.Interop</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">test</span>(x, y)</span>
