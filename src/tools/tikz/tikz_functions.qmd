@@ -5,12 +5,9 @@ number-sections: true
 number-depth: 2
 crossref:
   chapters: false
-
 ---
 
-
-
-```{.tex}
+```tex
 \documentclass[border=3pt,tikz]{standalone}
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
