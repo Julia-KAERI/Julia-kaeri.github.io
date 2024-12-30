@@ -24,22 +24,40 @@ crossref:
 
 ## 최적화
 
-### 최적화의 기본 요소
+### 최적화문제 
 
 </br>
 
+$f:U \subset \R^n \to \R$ 에 대해 아래의 $\bf{x}^\ast$ 문제를 구하는 것을 최적화 문제라고 한다.
+
+$$
+\boxed{
+\begin{aligned}
+\quad& \bf{x}^\ast = \argmin_{\bf{x}\in U} && f(\bf{x}) \\[0.3em]
+&\text{subject to} \quad && g_i(\bf{x})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
+&&& h_j(\bf{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\end{aligned}
+}
+$$ {#eq-optimization_optimization_problem}
+
 **3가지 기본 요소**
 
-1. 변수 (Decesion variable or unknown) $\bf{x}\in \R^n$
-2. 목적함수 (objective function) $f:\R^n \to \R$
-3. 제약 조건 (Constraint) $g_i:\R^n \to \R$, $i=1,\ldots,\,m$ 에 대해 $g_i(\bf{x})\le 0$ and/or $h_j:\R^n \to \R,\, j=1,\ldots,\,k$ 에 대해 $h_j(\bf{x})=0$
+&emsp;($1$) 변수 (Decesion variable or unknown) $\bf{x}\in \R^n$
+
+&emsp;($2$) 목적함수 (objective function) $f:\R^n \to \R$
+
+&emsp;($3$) 제약 조건 (Constraint) : @eq-optimization_optimization_problem 에 주어진 $g_i(\bf{x}) \le 0,\, h_j(\bf{x})=0$ 의 조건들.
+
+
+
 
 </br>
 
 **과정**
 
-1. 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.
-2. 모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.
+&emsp;($1$) 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.
+
+&emsp;($2$) 모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.
 
 </br>
 
@@ -49,12 +67,12 @@ crossref:
 
 - 제약조건을 만족하는 $\mathcal{C}\subset \R^n$ 를 **가능해 영역(feasible region)** 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
 $$
-\mathcal{C} = \{\bf{x}\in \R^n : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m\}.
-$$
+\mathcal{C} = \{\bf{x}\in U : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m,\, h_j(\bf{x})=0,\, j=1,\ldots,\,k\}.
+$$ {#eq-optimization_feasible_model}
 
-- $\displaystyle \bf{x}^\ast = \argmin_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는다. 이 $\bf{x}^\ast$ 를 최적해 (optimal solution) 이라고 한다.
+- @eq-optimization_optimization_problem 을 짧게 쓰면 가능해 영역 $\mathcal{C}$ 에 대해 $\displaystyle \bf{x}^\ast = \argmin_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는 문제이다. 이 $\bf{x}^\ast$ 를 **최적해 (optimal solution)** 이라고 한다.
 
-- $\{g_i\}$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
+- $\{g_i\}$ 나 $\{h_j\}$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
 
 </br>
 
@@ -62,7 +80,7 @@ $$
 
 - 우리가 구하고자 하는 문제가 $f(\bf{x})$ 를 최소화 하는 것이 아닌 최대로 하는 $\bf{x}$ 를 찾는 문제라면 $-f(\bf{x})$ 를 최소화 하는 문제이다.
 
-- constraint 가 $g_i(\bf{x}) \ge 0$ 이라면 $-g_i(\bf{x})\le 0$ 으로 바꿀 수 있다. $g_i (\bf{x})=0$ 이라면 $g_i(\bf{x}) \le 0$ 와 $-g_i(\bf{x})\le 0$ 을 동시에 만족하는 조건으로 바꿀 수 있다.
+- constraint 가 $g_i(\bf{x}) \ge 0$ 이라면 $-g_i(\bf{x})\le 0$ 으로 바꿀 수 있다. 
 
 - 즉 수학적 표준 모델은 상당히 표면적으로 보이는 것보다 훨씬 넓은 범위의 문제를 포괄한다.
 
@@ -75,24 +93,26 @@ $$
 
 ![전역적 최소와 국소적 최소](notebooks/local_global_minimum.png){#fig-optimization_global_local_minima width=500}
 
-전체 영역에서의 최소점은 $x_G$ 이며 이를 **전역적 최소점(global minimum)** 이라고 한다. 그리고 $x_L$ 같이 어떤 근방에서의 최소점을 **국소적 최소점(local minimum)** 이라고 한다. 함수 $f(x)$ 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. $f(x)$ 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 $0$ 이고 이차미분이 양수인 점이다. 다변수의 경우 $\nabla f(\bf{x})=\bf{0}$ 이며 헤시안 행렬 $\bf{H}_f$ 가 positive definite 한 경우이다. 
+전체 영역에서의 최소점은 $x_G$ 이며 이를 **전역적 최소점(global minimum)** 이라고 한다. 그리고 $x_L$ 같이 어떤 근방에서의 최소점을 **국소적 최소점(local minimum)** 혹은 **극소점** 이라고 한다. 함수 $f(x)$ 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. $f(x)$ 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 $0$ 이고 이차미분이 양수인 점이다. 다변수의 경우 $\nabla f(\bf{x})=\bf{0}$ 이며 헤시안 행렬 $\bf{H}_f$ 가 positive definite 한 경우이다. 
 
 
 </br>
 
-### 볼록 최적화 (Convex optimization)
+## 볼록 최적화 (Convex optimization)
+
+### 볼록 함수와 볼록 집합
 
 ::: {.callout-tip appearance="minimal"}
-**convex function**
+**볼록 함수 (convex function)**
 
-$f:\R^n\to\R$ 이 다음을 만족하면 convect function 이라 한다.
+$f:\R^n\to\R$ 이 다음을 만족하면 볼록 함수라고 한다.
 $$
 \forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in \R^n \implies f(\theta \bf{x}+(1-\theta)\bf{y}) \le \theta f(\bf{x}) + (1-\theta)f(\bf{y})
 $$ {#eq-optimization_convex_function}
 
-**convex set**
+**볼록 집합 (convex set)**
 
-$A\subset\R^n$ 이 다음을 만족하면 convex set 이라 한다.
+$A\subset\R^n$ 이 다음을 만족하면 볼록 집합이라 한다.
 
 $$
 \forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in A \implies \theta \bf{x}+(1-\theta)\bf{y}\in A
@@ -102,24 +122,13 @@ $$ {#eq-optimization_convex_set}
 </br>
 
 
-#### 볼록 최적화
+### 볼록 최적화
 
-다음과 같은 최적화 문제가 주어졌다고 하자. 일반적으로 최적화 문제는 다음과 같이 주어진다.
+@eq-optimization_optimization_problem 의 최적화 문제가 주어졌다고 하자. 이 때 목적함수가 볼록 함수 이고 가능해 영역 이 볼록 집합인 경우의 최적화 문제를 **볼록 최적화 (convex optimization)** 문제 라고 한다.
 
+1. $g_i(\bf{x})$ 가 볼록 함수이고 $h_j(\bf{x})=\bf{a}^T\bf{x}+b$ 꼴이면 항상 볼록 최적화 문제이다.
 
-$$
-\boxed{
-\begin{aligned}
-\quad&\min_{\bf{x}} && f(\bf{x}) \\[0.3em]
-&\text{subject to} \quad && g_i(\bf{x})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
-&&& h_j(\bf{x})= 0,\qquad j=1,\ldots,\,k.\quad
-\end{aligned}
-}
-$$ {#eq-optimization_optimization_problem}
-
-1. 목적함수가 convex function 이고 가능해 영역 이 convex set 인 경우의 최적화 문제를 **볼록 최적화 (convex optimization)** 문제 라고 한다.
-2. $g_i(\bf{x})$ 가 convex function 이고 $h_j(\bf{x})=\bf{a}^T\bf{x}+b$ 꼴이면 항상 볼록 최적화 문제이다.
-3. Convex optimization 의 모든 국소적 해는 전역적 해이다. (@thm-optimization_convex_local_global_minima)
+2. 볼록 최적화에서의 모든 국소적 해는 전역적 해이다. (@thm-optimization_convex_local_global_minima)
 
 
 </br><div class="border" style="background-color:#FFF0F5 ;padding:5px;">
@@ -145,11 +154,68 @@ $$
 
 이다. 즉 $f(\bf{x}^\ast)$ 가 국소적 해라는 전제에 모순이므로 국소적 해와 다른 전역적 해는 존재하지 않는다. $\square$
 
+:::
+
+</br>
+
+국소적 최저점이 전역적 최저점이라고 해서 단 하나의 국소적 최저점만 가질 필요는 없다. 여러개의 최적해가 존재할 때 다음의 성질을 갖는다.
+
+</br> <div class="border" style="background-color:#FFF0F5 ;padding:5px;">
+
+::: {#thm-optimization_convex_solution_set}
+
+볼록 최적화 문제의 해 가 하나 이상일 때 해의 집합을 $X_{\text{co}}$ 라고 하자. 즉 $\displaystyle X_{\text{co}} = \argmin_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 라고 하면 $X_{\text{op}}$ 는 볼록집합이다.
+
+:::
+
+</div>
+</br>
+
+::: {.proof}
+
+$\bf{x}_1,\, \bf{x}_2\in X_{\text{co}}$ 라고 하자. $\mathcal{C}$ 가 볼록집합이므로 $\theta\in [0,\,1]$ 에 대해 $\theta \bf{x}_1 + (1-\theta)\bf{x}_2 \in \mathcal{C}$ 이다. 또한 $\bf{x}_1,\,\bf{x}_2$ 가 전역적 최소점이므로 $f(\bf{x}_1)=f(\bf{x}_2)=f_m$ 이다. 이로부터
+
+
+$$
+\begin{aligned}
+f(\theta \bf{x}_1 + (1-\theta)\bf{x}_2) & \le \theta f(\bf{x}_1) + (1-\theta)f(\bf{x}_2) = f_m
+\end{aligned}
+$$
+
+그런데 $f(\theta \bf{x}_1 + (1-\theta)\bf{x}_2) \ge f_m$ 이어야 하므로 $f(\theta \bf{x}_1 + (1-\theta)\bf{x}_2) =f_m$ 이다. $\square$
 
 :::
 
 
 </br>
+
+## 선형계획법
+
+일반적으로 선형계획법 문제는 다음과 같은 형태로 주어진다.
+
+
+$$
+\boxed{
+\begin{aligned}
+\quad \bf{x}^\ast = \argmin_{\bf{x}\in U} f(\bf{x}), \quad &&f(\bf{x}) = \bf{c}^T\bf{x} \\[0.3em]
+&&\text{subject to} \quad & \bf{g}_i^T\bf{x}\le b_j,\qquad && i = 1,\ldots,\,m,\\[0.3em]
+&&& \bf{h}_j^T\bf{x}= a_j,\qquad &&j=1,\ldots,\,k.\quad
+\end{aligned}
+}
+$$ {#eq-optimization_linear_general_LP}
+
+</br>
+
+즉 선형계획법에서는
+
+- 목적함수는 변수에 대한 선형함수이며
+  
+- 제한조건은 변수에 대한 affine 함수 ($\bf{a}^T\bf{x}+b$ 형태의 함수) 이다.
+
+
+
+</br>
+
 
 ## Unconstrained convex optimizaiton 문제 
 
@@ -331,6 +397,18 @@ $$
 
 ### 라그랑주 승수법
 
+라그랑주 승수법은 다음과 같이 기술되는 문제에 사용된다. 즉 제한조건이 등식 형태로만 주어진 경우이다.
+
+$$
+\boxed{
+\begin{aligned}
+\quad&\min_{\bf{x}} && f(\bf{x}) \\[0.3em]
+&\text{subject to} \quad && h_j(\bf{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\end{aligned}
+}
+$$ {#eq-optimization_optimization_problem}
+
+
 아래의 정리는 잘 알려져 있다.
 
 </br><div class="border" style="background-color:#FFF0F5 ;padding:5px;">
@@ -365,5 +443,27 @@ $$ {#eq-optimization_lagrange_mutiplier_for_equal_restrictions}
 - 만약 $U$ 의 경계를 포함하는 영역에서의 극소점을 찾는다면 경계에서의 값은 별도로 찾아서 비교해야 한다.
 
 
+<br>
 
+### KKH
+
+문제가 다음과 같이 주어졌다고 하자.
+
+$$
+\boxed{
+\begin{aligned}
+\quad&\min_{\bf{x}} && f(\bf{x}) \\[0.3em]
+&\text{subject to} \quad && g_i(\bf{x})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
+&&& h_j(\bf{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\end{aligned}
+}
+$$ {#eq-optimization_optimization_problem_re}
+
+KKH 조건, 즉 Karush-Kuhn-Tucker conditions 는 $\bf{x}^\ast$ 의 필요조건의 나열이다.
+
+&emsp;($1$) $\displaystyle \nabla_{\bf{x}} f(\bf{x}) + \sum_{i=1}^m \lambda_i \nabla_{\bf{x}}g_i(\bf{x}) + \sum_{j=1}^k \nabla_{\bf{x}} \mu_j h_j(\bf{x})=0$ 을 만족하는 $\{\lambda_i\}$ 와 $\{\mu_j\}$ 가 존재한다.
+
+&emsp;($2$) $\mu_j h_j(\bf{x})$ 이다. 즉 $\mu_j$ 와 $h_j(\bf{x})$ 가운데 하나는 $0$ 이다. 
+
+&emsp;($3$) $j=1,\ldots,\,k$ 에 대해 $\mu_j\ge 0$ 이다.
 
