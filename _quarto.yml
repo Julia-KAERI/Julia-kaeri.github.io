@@ -73,6 +73,7 @@ website:
             - src/ML/theory/regression.qmd
             - src/ML/theory/statistics.qmd
             - src/ML/theory/classification.qmd
+            - src/ML/theory/perceptron_and_ann.qmd
         - section : "PyTorch"
           contents :
             - src/ML/pytorch/intro.qmd

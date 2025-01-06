@@ -1,0 +1,56 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+
+\tikzset{basic/.style={draw,fill=blue!40!green!10,
+                       text badly centered,minimum width=3em}}
+\tikzset{input/.style={basic,circle,minimum width=3.5em}}
+\tikzset{weights/.style={basic,rectangle,minimum width=2em}}
+\tikzset{functions/.style={basic,circle, minimum width=4em}}
+\newcommand{\addaxes}{\draw (0em,1em) -- (0em,-1em)
+                            (-1em,0em) -- (1em,0em);}
+\newcommand{\relu}{\draw[line width=1.5pt] (-1em,0) -- (0,0)
+                                (0,0) -- (0.75em,0.75em);}
+\newcommand{\stepfunc}{\draw[line width=1.5pt] (0.65em,0.65em) -- (0,0.65em) 
+                                    -- (0,-0.65em) -- (-0.65em,-0.65em);}
+
+\begin{document}
+    \begin{tikzpicture}[scale=1.2]
+    % Draw input nodes
+    \foreach \h [count=\hi ] in {$x_3$,$x_2$,$x_1$}{%
+          \node[input] (f\hi) at (0,\hi*1.25cm-1.5 cm) {\h};
+        }
+    % Dot dot dot ... x_n
+    \node[below=0.62cm] (idots) at (f1) {\vdots};
+    \node[input, below=0.62cm] (last_input) at (idots) {$x_n$};
+    % Draw summation node
+    \node[functions] (sum) at (4,0) {$z=b+\displaystyle \sum_{i=0}^n w_ix_i$};
+    % Draw edges from input nodes to summation node
+    \foreach \h [count=\hi ] in {$w_3$,$w_2$,$w_1$}{%
+          \path (f\hi) -- node[weights] (w\hi) {\h} (sum);
+          \draw[->] (f\hi) -- (w\hi);
+          \draw[->] (w\hi) -- (sum);
+        }
+    % Dot dot dot ... w_n
+    \node[below=0.05cm] (wdots) at (w1) {\vdots};
+    \node[weights, below=0.45cm] (last_weight) at (wdots) {$w_n$};
+    % Add edges for last node and last weight etc
+    \path[draw,->] (last_input) -- (last_weight);
+    \path[draw,->] (last_weight) -- (sum);
+    % Draw node for activation function
+    \node[functions] (activation) at (7,0) {};
+    % Place activation function in its node
+    \begin{scope}[xshift=7cm,scale=1.25]
+        \addaxes
+        % flexible selection of activation function
+        \relu
+        % \stepfunc
+    \end{scope}
+    % Connect sum to relu
+    \draw[->] (sum) -- (activation);
+    \draw[->] (activation) -- ++(1,0);
+    % Labels
+    \node[above=1cm]  at (f3) {inputs};
+    \node[above=1cm] at (w3) {weights};
+    \node[above=1cm] at (activation) {activation function $\sigma(z)$};
+    \end{tikzpicture}
+\end{document}
