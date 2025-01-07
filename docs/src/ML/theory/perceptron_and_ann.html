@@ -270,7 +270,8 @@ window.Quarto = {
   <li><a href="#다층-퍼셉트론" id="toc-다층-퍼셉트론" class="nav-link" data-scroll-target="#다층-퍼셉트론"><span class="header-section-number">2</span> 다층 퍼셉트론</a>
   <ul class="collapse">
   <li><a href="#다층-퍼셉트론-1" id="toc-다층-퍼셉트론-1" class="nav-link" data-scroll-target="#다층-퍼셉트론-1"><span class="header-section-number">2.1</span> 다층 퍼셉트론</a></li>
-  <li><a href="#softmax" id="toc-softmax" class="nav-link" data-scroll-target="#softmax"><span class="header-section-number">2.2</span> Softmax</a></li>
+  <li><a href="#활성화-함수" id="toc-활성화-함수" class="nav-link" data-scroll-target="#활성화-함수"><span class="header-section-number">2.2</span> 활성화 함수</a></li>
+  <li><a href="#sec-ML_cost_function_of_nn" id="toc-sec-ML_cost_function_of_nn" class="nav-link" data-scroll-target="#sec-ML_cost_function_of_nn"><span class="header-section-number">2.3</span> 비용함수</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -375,18 +376,55 @@ h^{(1)}_j = \sigma (\boldsymbol{w}^{1j} \boldsymbol{\cdot x}+b^{(1)}_j)
 \]</span></p>
 <p>이다. 같은 방법으로 <span class="math inline">\(\tilde{\boldsymbol{h}}^{(2)} = \boldsymbol{\sigma}^{(2)}\left(\boldsymbol{W}^{(2)}\tilde{\boldsymbol{h}}^{(1)}\right) = \boldsymbol{\sigma}^{(2)}\left(\boldsymbol{W}^{(2)}\boldsymbol{\sigma}^{(1)}\left(\boldsymbol{W}^{(1)}\tilde{\boldsymbol{x}}\right)\right)\)</span> 이며, 이 과정을 반복하면</p>
 <p><span class="math display">\[
-\hat{\boldsymbol{y}} =  \boldsymbol{\sigma}^{(3)} \left(\boldsymbol{W}^{(3)} \boldsymbol{\sigma}^{(2)} \left(\boldsymbol{W}^{(2)} \boldsymbol{\sigma}^{(1)}\left(\boldsymbol{W}^{(1)}\tilde{\boldsymbol{x}}\right)\right) \right)
+\hat{\boldsymbol{y}} =  \boldsymbol{\sigma}^{(4)}\left( \boldsymbol{W}^{(4)}\boldsymbol{\sigma}^{(3)} \left(\boldsymbol{W}^{(3)} \boldsymbol{\sigma}^{(2)} \left(\boldsymbol{W}^{(2)} \boldsymbol{\sigma}^{(1)}\left(\boldsymbol{W}^{(1)}\tilde{\boldsymbol{x}}\right)\right) \right) \right)
 \]</span></p>
 <p>임을 안다. 즉 매개변수에 의해 정해지는 행렬 <span class="math inline">\(\boldsymbol{W}^{(1)},\ldots\)</span> 와 활성화 함수 <span class="math inline">\(\boldsymbol{\sigma}\)</span> 에 의해 입력벡터 <span class="math inline">\(\boldsymbol{x}\)</span> 에 따른 출력 벡터 <span class="math inline">\(\hat{\boldsymbol{y}}\)</span> 가 자동적으로 정해진다.</p>
 <p><br></p>
 </section>
-<section id="softmax" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="softmax"><span class="header-section-number">2.2</span> Softmax</h3>
-<p>이산적인 표적공간에 대해 <span class="math inline">\(\hat{\boldsymbol{y}}\)</span> 를 내는 활성화 함수는 <strong>소프트 맥스(softmax)</strong> 함수이다. 소프트 맥스 함수 <span class="math inline">\(\text{softmax}:\mathbb{R}^n \to \mathbb{R}^n\)</span> 은 <span class="math inline">\(\boldsymbol{z}=\begin{bmatrix}z_1 &amp; \cdots &amp; z_n\end{bmatrix}^T\)</span> 에 대해 다음과 같이 정의된다.</p>
+<section id="활성화-함수" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="활성화-함수"><span class="header-section-number">2.2</span> 활성화 함수</h3>
+<p>은닉층, 즉 출력층을 제외한 신경망의 퍼셉트론에 대표적으로 많이 사용되는 활성화 함수에는 다음과 같은 것이 있다.</p>
+<div id="fig-ML_activation_functions" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ML_activation_functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figure/activation_function.png" class="img-fluid figure-img" width="450">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ML_activation_functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3: 대표적인 활성화 함수
+</figcaption>
+</figure>
+</div>
+<p><br></p>
+<p>활성화 함수를 구별짓는 특징으로는 다음과 같은 것들이 있다.</p>
+<ul>
+<li><p>함수의 치역(range) 는 어디인가?</p></li>
+<li><p>매끄러운 정도는? 즉 몇번 미분 가능한가?</p></li>
+<li><p>도함수를 원래 함수, 또는 쉽게 계산 할수 있는 함수를 이용하여 쉽게 계산 할 수 있는가?</p></li>
+</ul>
+<p><br></p>
+<p>이 외에 특정한 목적으로 사용되는 <span class="math inline">\(\text{Maxout}\)</span> 함수가 있다. <span class="math inline">\(\boldsymbol{x}=\begin{bmatrix}x_1 &amp; \cdots &amp; x_n\end{bmatrix}^T\)</span> 에 대해</p>
+<p><span id="eq-ML_maxout"><span class="math display">\[
+\text{Maxout}(\boldsymbol{x}) := \max \{x_1,\ldots,\,x_n\}
+\tag{1}\]</span></span></p>
+<p>으로 정의된다.</p>
+<p><br></p>
+<section id="softmax" class="level4">
+<h4 class="anchored" data-anchor-id="softmax"><strong>Softmax</strong></h4>
+<p>출력 벡터를 내는 이산적인 표적공간에 대해 <span class="math inline">\(\hat{\boldsymbol{y}}\)</span> 를 내는 활성화 함수는 <strong>소프트 맥스(softmax)</strong> 함수이다. 소프트 맥스 함수 <span class="math inline">\(\text{softmax}:\mathbb{R}^n \to \mathbb{R}^n\)</span> 은 <span class="math inline">\(\boldsymbol{z}=\begin{bmatrix}z_1 &amp; \cdots &amp; z_n\end{bmatrix}^T\)</span> 에 대해 다음과 같이 정의된다.</p>
 <p><span id="eq-perceptron_softmax"><span class="math display">\[
 \text{softmax}(\boldsymbol{z}) := \dfrac{1}{\sum_{i=1}^n e^{z_i}}\begin{bmatrix}e^{z_1} \\ \vdots \\ e^{z_n}\end{bmatrix}
-\tag{1}\]</span></span></p>
+\tag{2}\]</span></span></p>
 <p>즉 <span class="math inline">\(p_i = \text{softmax}(\boldsymbol{z})_i\)</span> 일 때 <span class="math inline">\(p_i \ge 0\)</span> 이며 <span class="math inline">\(\displaystyle \sum_{i=1}^{n} p_i = 1\)</span> 로 확률의 성질을 가진다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="sec-ML_cost_function_of_nn" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="sec-ML_cost_function_of_nn"><span class="header-section-number">2.3</span> 비용함수</h3>
+<p>정해진 모든 퍼셉트론의 파라미터를 <span class="math inline">\(\boldsymbol{\theta}\)</span> 라고 하고 입력 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 출력값을 <span class="math inline">\(\hat{\boldsymbol{y}}=\boldsymbol{h}(\boldsymbol{x};\boldsymbol{\theta})\)</span> 라고 쓰자. 우리가 데이터를 학습시킬 때 <span class="math inline">\(i\)</span> 번째 입력 벡터를 <span class="math inline">\(\boldsymbol{x}^{(i)}\)</span> 라고 쓰면 마찬가지로 label 은 <span class="math inline">\(\boldsymbol{y}^{(i)}\)</span> 로 표현 할 수 있으며 출력값은 <span class="math inline">\(\hat{\boldsymbol{y}}^{(i)}=\boldsymbol{h}\left(\boldsymbol{x}^{(i)};\boldsymbol{\theta}\right)\)</span> 로 표기 할 수 있다.</p>
+<p>다층신경망에서의 출력은 <span class="math inline">\(\mathbb{R}^N\)</span> 벡터이며 각 성분은 <span class="math inline">\([0,\,1]\)</span> 의 범위이고 그 합이 <span class="math inline">\(1\)</span> 이다. 이경우 손실함수는 교차 엔트로피 함수를 사용한다. 우선 학습을 시킬 때</p>
+<p><span class="math display">\[
+L(\boldsymbol{\theta}) =CEE(\boldsymbol{\theta})= -\sum_{i=1}^N \sum_{j=1}^K y_j^{(i)} \ln \hat{y}_j^{(i)}
+\]</span></p>
 
 
 </section>

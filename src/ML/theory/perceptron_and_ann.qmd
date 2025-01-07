@@ -81,16 +81,46 @@ $$
 이다. 같은 방법으로 $\tilde{\bf{h}}^{(2)} = \bf{\sigma}^{(2)}\left(\bf{W}^{(2)}\tilde{\bf{h}}^{(1)}\right) = \bf{\sigma}^{(2)}\left(\bf{W}^{(2)}\bf{\sigma}^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right)\right)$ 이며, 이 과정을 반복하면 
 
 $$
-\hat{\bf{y}} =  \bf{\sigma}^{(3)} \left(\bf{W}^{(3)} \bf{\sigma}^{(2)} \left(\bf{W}^{(2)} \bf{\sigma}^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right)\right) \right)
+\hat{\bf{y}} =  \bf{\sigma}^{(4)}\left( \bf{W}^{(4)}\bf{\sigma}^{(3)} \left(\bf{W}^{(3)} \bf{\sigma}^{(2)} \left(\bf{W}^{(2)} \bf{\sigma}^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right)\right) \right) \right)
 $$
 
 임을 안다. 즉 매개변수에 의해 정해지는 행렬 $\bf{W}^{(1)},\ldots$ 와 활성화 함수 $\bf{\sigma}$ 에 의해 입력벡터 $\bf{x}$ 에 따른 출력 벡터 $\hat{\bf{y}}$ 가 자동적으로 정해진다.
 
 </br>
 
-### Softmax
 
-이산적인 표적공간에 대해 $\hat{\bf{y}}$ 를 내는 활성화 함수는 **소프트 맥스(softmax)** 함수이다. 소프트 맥스 함수 $\text{softmax}:\R^n \to \R^n$ 은 $\bf{z}=\begin{bmatrix}z_1 & \cdots & z_n\end{bmatrix}^T$ 에 대해 다음과 같이 정의된다.
+### 활성화 함수
+
+
+은닉층, 즉 출력층을 제외한 신경망의 퍼셉트론에 대표적으로 많이 사용되는 활성화 함수에는 다음과 같은 것이 있다. 
+
+![대표적인 활성화 함수](figure/activation_function.png){#fig-ML_activation_functions width=450}
+
+</br>
+
+활성화 함수를 구별짓는 특징으로는 다음과 같은 것들이 있다.
+
+- 함수의 치역(range) 는 어디인가?
+
+- 매끄러운 정도는? 즉 몇번 미분 가능한가?
+
+- 도함수를 원래 함수, 또는 쉽게 계산 할수 있는 함수를 이용하여 쉽게 계산 할 수 있는가?
+
+</br>
+
+이 외에 특정한 목적으로 사용되는 $\text{Maxout}$ 함수가 있다. $\bf{x}=\begin{bmatrix}x_1 & \cdots & x_n\end{bmatrix}^T$ 에 대해 
+
+$$
+\text{Maxout}(\bf{x}) := \max \{x_1,\ldots,\,x_n\}
+$$ {#eq-ML_maxout}
+
+으로 정의된다.
+
+</br>
+
+#### **Softmax**
+
+출력 벡터를 내는 이산적인 표적공간에 대해 $\hat{\bf{y}}$ 를 내는 활성화 함수는 **소프트 맥스(softmax)** 함수이다. 소프트 맥스 함수 $\text{softmax}:\R^n \to \R^n$ 은 $\bf{z}=\begin{bmatrix}z_1 & \cdots & z_n\end{bmatrix}^T$ 에 대해 다음과 같이 정의된다.
 
 $$
 \text{softmax}(\bf{z}) := \dfrac{1}{\sum_{i=1}^n e^{z_i}}\begin{bmatrix}e^{z_1} \\ \vdots \\ e^{z_n}\end{bmatrix}
@@ -98,6 +128,19 @@ $$ {#eq-perceptron_softmax}
 
 즉 $p_i = \text{softmax}(\bf{z})_i$ 일 때 $p_i \ge 0$ 이며 $\displaystyle \sum_{i=1}^{n} p_i = 1$ 로 확률의 성질을 가진다. 
 
+
+</br>
+
+### 비용함수 {#sec-ML_cost_function_of_nn}
+
+정해진 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 하고 입력 $\bf{x}$ 에 대한 출력값을 $\hat{\bf{y}}=\bf{h}(\bf{x};\bf{\theta})$ 라고 쓰자. 우리가 데이터를 학습시킬 때 $i$ 번째 입력 벡터를 $\bf{x}^{(i)}$ 라고 쓰면 마찬가지로 label 은 $\bf{y}^{(i)}$ 로 표현 할 수 있으며 출력값은 $\hat{\bf{y}}^{(i)}=\bf{h}\left(\bf{x}^{(i)};\bf{\theta}\right)$ 로 표기 할 수 있다. 
+
+
+다층신경망에서의 출력은 $\R^N$ 벡터이며 각 성분은 $[0,\,1]$ 의 범위이고 그 합이 $1$ 이다. 이경우 손실함수는 교차 엔트로피 함수를 사용한다. 우선 학습을 시킬 때 
+
+$$
+L(\bf{\theta}) =CEE(\bf{\theta})= -\sum_{i=1}^N \sum_{j=1}^K y_j^{(i)} \ln \hat{y}_j^{(i)}
+$$
 
 
 
