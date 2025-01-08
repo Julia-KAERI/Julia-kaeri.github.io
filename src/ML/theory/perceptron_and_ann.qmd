@@ -23,7 +23,7 @@ crossref:
 
 &emsp;($2$) $n+1$ 개의 내부 파라미터 : 1개의 bias $b$ 와 $n$ 개의 값을 갖는 $\bf{w}=\begin{bmatrix} w_1 & \ldots &w_n\end{bmatrix}^T$,
 
-&emsp;($3$) 활성화 함수(activation function) $\sigma(z)$ 
+&emsp;($3$) 활성화 함수(activation function) $\sigma(z)$ : 비선형 함수.
 
 로 정의된다. 
 
@@ -48,43 +48,80 @@ $$
 
 </br>
 
-## 다층 퍼셉트론
+## 다층 신경망
 
-### 다층 퍼셉트론
+### 다층 신경망
 
 ![다층 퍼셉트론](figure/perceptron02.png){#fig-perceptron_multi_layer_perceptron width=600}
 
-입력층 $\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n\end{bmatrix}^T$ 에 대해 첫번째 은닉층의 $h^{(1)}_j$ 의 내부 파라미터는 $\bf{w}^{(1j)}$
+- 입력층(input layer) 는 퍼셉트론이 아닌 입력 데이터 벡터이다.
+- 첫번째 은닉층(hidden layer)의 퍼셉트론을 $h_1^{(1)},\,h_2^{(1)},\ldots$ 와 같이 표기한다.
+- $k$ 번째 은닉층의 퍼셉트론을 $h_1^{(k)},\,h_2^{(k)},\ldots$ 와 같이 표기한다.
+- $k$ 번째 은닉층의 퍼셉트론의 갯수를 $N_k$ 로 표기한다.
+- 출력층은 출력값 벡터를 출력하는 마지막 층의 퍼셉트론이다.
+- 신경망의 층수는 입력층을 제외하고 은닉층의 수에 출력층 1 을 더하여 표기한다. 즉 위의 그림은 4층 신경망이다.
+
+다층 퍼셉트론은 입력값 벡터 $\bf{x}\in \R^D$ 에 대해 출력값 $\hat{\bf{y}}\in \R^K$ 를 내는 함수로 내부에 각각의 퍼셉트론의 매개변수 전체를 매개변수로 가지는 함수이다. 
+
+
+입력층 $\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n\end{bmatrix}^T$ 에 대해 첫번째 은닉층의 $j$ 번째 퍼셉트론의 내부 파라미터 벡터를 $\bf{w}^{(1j)}$ 와 $b^{(1)}_j$ 로 표기하기로 하고
 
 $$
-h^{(1)}_j = \sigma (\bf{w}^{1j} \bf{\cdot x}+b^{(1)}_j)
+z_j^{(1)} = \bf{w}^{(1j)}\bf{\cdot x} + b_j^{(1)}
 $$
 
-이다. 첫번째 은닉층에 $N_1$ 개의 퍼셉트론이 있다고 하고 행렬 $\bf{W}^{(1)}$ 와 $\tilde{\bf{h}}$ 를 다음과 같이 정의하자.
+라고 하자. 그렇다면 활성화 함수 $\sigma$ 에 대해 출력값 $y^{(1)}_j$ 는 
+$$
+h^{(1)}_j = \sigma(z_j) = \sigma \left(\bf{w}^{1j} \bf{\cdot x}+b^{(1)}_j\right)
+$$
+
+이다. 첫번째 은닉층에 $N_1$ 개의 퍼셉트론이 있다고 하고 행렬 $\bf{W}^{(1)}$ 와 $\tilde{\bf{h}}$ 를 다음과 같이 정의하자. 
 
 $$
 \bf{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 & w^{11}_1 & w^{11}_2 & \cdots & w^{11}_n \\ b^{(1)}_2 & w^{12}_1 & w^{12}_2 & \cdots & w^{12}_n \\ \vdots & & & & \vdots \\ b^{(1)}_{N_1} & w^{1N_1}_1 & w^{1N_1}_2 & \cdots & w^{1N_1}_n\end{bmatrix},\qquad \tilde{\bf{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
 $$
 
-$\bf{W}^{(1)}\tilde{\bf{x}}$ 의 $j$ 번 째 행을 $\left[\bf{W}^{(1)}\tilde{\bf{x}}\right]_j$ 라고 표기한다면 $h_j^{(1)} = \sigma \left(\left[\bf{W}^{(1)}\tilde{\bf{x}}\right]_j\right)$ 이다. 이제 $\sigma$ 함수를 확장하여
+$\bf{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 & \cdots & z^{(1)}_{N_1}\end{bmatrix}^{T}$ 에 대해
 
 $$
-\bf{\sigma}^{(1)}\left(\begin{bmatrix} z_1 \\ \vdots \\ z_m \end{bmatrix}\right) = \begin{bmatrix} 1 \\ \sigma(z_1) \\ \vdots \\ \sigma(z_m)\end{bmatrix}
+\bf{z}^{(1)} =  \bf{W}^{(1)}\tilde{\bf{x}}
 $$
 
-으로 놓자. 또한 $\tilde{\bf{h}}^{(1)} =\begin{bmatrix} 1 & h^{(1)}_1 & \cdots & h^{(1)}_{N_1}\end{bmatrix}^T$ 라 놓으면
+이며 출력값을 역시 벡터로 
 
 $$
-\tilde{\bf{h}}^{(1)} = \bf{\sigma}^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right)
+\bf{h}^{(1)}= \bf{\sigma}\left(\bf{z}^{(1)}\right) = \begin{bmatrix} \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left({z}^{(1)}_{N_1}\right) \end{bmatrix}
 $$
 
-이다. 같은 방법으로 $\tilde{\bf{h}}^{(2)} = \bf{\sigma}^{(2)}\left(\bf{W}^{(2)}\tilde{\bf{h}}^{(1)}\right) = \bf{\sigma}^{(2)}\left(\bf{W}^{(2)}\bf{\sigma}^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right)\right)$ 이며, 이 과정을 반복하면 
+놓자. 출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로
 
 $$
-\hat{\bf{y}} =  \bf{\sigma}^{(4)}\left( \bf{W}^{(4)}\bf{\sigma}^{(3)} \left(\bf{W}^{(3)} \bf{\sigma}^{(2)} \left(\bf{W}^{(2)} \bf{\sigma}^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right)\right) \right) \right)
+\tilde{\bf{h}}^{(1)} = \begin{bmatrix} 1 \\ \bf{h}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left(z^{(1)}_{(N_1)}\right) \end{bmatrix}
 $$
 
-임을 안다. 즉 매개변수에 의해 정해지는 행렬 $\bf{W}^{(1)},\ldots$ 와 활성화 함수 $\bf{\sigma}$ 에 의해 입력벡터 $\bf{x}$ 에 따른 출력 벡터 $\hat{\bf{y}}$ 가 자동적으로 정해진다.
+라 놓으면 두번째 층에서 첫번째 층과 같은 방법으로 구성한 $\bf{W}^{(2)}$ 와 두번째 층의 퍼셉트론의 갯수 $N_2$ 에 대해 $\bf{z}^{(2)} = \bf{W}^{(2)}\bf{\cdot}\tilde{\bf{h}}^{(1)}$ 로 놓고
+
+$$
+\tilde{\bf{h}}^{(2)} = \begin{bmatrix} 1 \\ \sigma \left( z^{(2)}_1\right) \\ \vdots \\\sigma \left( z^{(2)}_{N_2} \right) \end{bmatrix}
+$$
+
+라 할 수 있다. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 $\sigma_F$ 라고 하면 
+
+
+$$
+\hat{\bf{y}} = \begin{bmatrix}  \sigma_F \left( z^{(4)}_1\right) \\ \vdots \\\sigma_F \left( z^{(4)}_{N_F} \right) \end{bmatrix}
+$$
+
+이며
+
+$$
+\begin{aligned}
+\hat{y}_i = \sigma_F\left(z^{(4)}_i\right) = \sigma_F \left(\bf{W}^{(4)}_{i:} \tilde{\bf{h}}^{(3)}\right) 
+\end{aligned}
+$$
+
+이다.
+
 
 </br>
 
@@ -133,14 +170,50 @@ $$ {#eq-perceptron_softmax}
 
 ### 비용함수 {#sec-ML_cost_function_of_nn}
 
-정해진 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 하고 입력 $\bf{x}$ 에 대한 출력값을 $\hat{\bf{y}}=\bf{h}(\bf{x};\bf{\theta})$ 라고 쓰자. 우리가 데이터를 학습시킬 때 $i$ 번째 입력 벡터를 $\bf{x}^{(i)}$ 라고 쓰면 마찬가지로 label 은 $\bf{y}^{(i)}$ 로 표현 할 수 있으며 출력값은 $\hat{\bf{y}}^{(i)}=\bf{h}\left(\bf{x}^{(i)};\bf{\theta}\right)$ 로 표기 할 수 있다. 
+정해진 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 하고 입력 $\bf{x}$ 에 대한 출력값을 $\hat{\bf{y}}=\bf{h}(\bf{x};\bf{\theta})$ 라고 쓰자. 우리가 데이터를 학습시킬 때 $i$ 번째 입력 벡터를 $\bf{x}^{(i)}$ 라고 쓰면 마찬가지로 label 은 원-핫 벡터 $\bf{y}^{(i)}$ 로 표현 할 수 있으며 출력값은 $\hat{\bf{y}}^{(i)}=\bf{h}\left(\bf{x}^{(i)};\bf{\theta}\right)$ 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 표기하기로 하자. 
 
 
-다층신경망에서의 출력은 $\R^N$ 벡터이며 각 성분은 $[0,\,1]$ 의 범위이고 그 합이 $1$ 이다. 이경우 손실함수는 교차 엔트로피 함수를 사용한다. 우선 학습을 시킬 때 
+다층신경망에서의 출력은 $\R^K$ 벡터이며 각 성분은 $[0,\,1]$ 의 범위이고 그 합이 $1$ 이다. 이경우 손실함수는 제곱합 오차 함수를 사용하자. 우선 학습을 시킬 때 
 
 $$
-L(\bf{\theta}) =CEE(\bf{\theta})= -\sum_{i=1}^N \sum_{j=1}^K y_j^{(i)} \ln \hat{y}_j^{(i)}
+L(\bf{\theta}) = \sum_{i=1}^N \left\|\bf{y}^{(i)} - \hat{\bf{y}}^{(i)}\right\|^2 = \sum_{i=1}^N \left\|\bf{y}^{(i)} - \bf{h}\left(\bf{x}^{(i)};\,\bf{\theta}\right)\right\|^2
+$$
+를 사용한다.
+
+
+</br>
+
+### 경사 하강법
+
+결국은 다층 신경망을 학습시키는 것은 입력 데이터 $\bf{x}^{(1)}, \,\bf{x}^{(2)},\ldots$ 와 정답(label) $\bf{y}^{(1)},\,\bf{y}^{(2)},\ldots$, 모델함수 $f(\bf{x};\bf{\theta})$ 에 대해 손실함수 $L(\bf{\theta})$ 를 최소화 하는 파라미터 $\bf{\theta}$ 를 찾는 문제이다. 문제는 입력 및 정답의 갯수 뿐만 아니라 $\bf{\theta}$ 의 갯수도 아주 크다는 것이다. 어쨌든 신경망은 일단 파라미터에 제한이 없으므로 unrestricted condtion 의 최적화 문제로 볼 수 있다. 이 경우 사용하는 것이 경사하강법이다. 매개변수 $\bf{\theta}$ 는 $k$ 번째 update 에서의 학습률 $\eta_k$ 에 대해 다음과 같이 update 된다.
+
+$$
+\bf{\theta}_{k+1} = \bf{\theta}_k - \eta_k \nabla_\bf{\theta}L(\bf{\theta}_k) 
 $$
 
 
+한번의 업데이트에 사용되는 데이터셋을 **배치(batch)** 라고 한다. 데이터셋의 크기가 매우 클 경우 모든 데이터셋을 포함하여 손실함수를 계산한다면, 손실함수 및 그 그래디언트를 계산하는데 계산 비용이 많이 소모된다. 만약 소수의 데이터셋만 사용한다면 계산량은 줄지만 노이즈에 취약하게 된다. 이를 위해 전체 데이터셋을 몇등분하며 각각의 등분된 부분의 데이터셋으로 파라미터를 업데이트 할 수 도 있다. 이렇게 등분된 데이터셋을 **미니 배치(mini batch)** 라고 한다. 전체의 데이터셋으로 파라미터를 업데이트 시켰을 경우를 1 **에포크(epoch)** 라고 한다.
 
+즉 1000 개의 훈련용 데이터 셋이 있다면 1000 개의 데이터셋으로 이루어진 1개의 배치가 있다. 이것을 250 개의 미니배치로 나누어 250 개의 데이터셋을 이용하여 4번 파라미터를 업데이트 할 수도 있다. 어쨌든 1000 개의 준비된 데이터셋을 사용하여 파라미터를 업데이트 하였다면 1 에포크 의 훈련 혹은 학습을 수행한 것이다. 
+
+</br>
+
+배치와 미니배치에 따라 세가지 방법을 사용 할 수 있다.
+
+ - **배치 경사 하강법 (Batch gradient discent)** : 각각의 $\bf{\theta}$ 업데이트에 대해 전체 데이터셋을 사용한다. 즉 미니배치를 사용하지 않는다.노이즈에 대해 강건하지만(영향을 적게 받지만) 계산량이 많다.
+ - **확률적 경사 하강법 (Stochastic gradient discent)** : 데이터셋 하나가 미니배치를 이룬다. 즉 $\bf{\theta}$ 업데이트에 하나의 데이터셋만 사용한다. 계산량이 가장 적지만 노이즈에 취약하다.
+ - **미니 배치 경사 하강법(Mini batch gradient discent)** : 전체 데이터셋보다 작고 하나보다 큰 미니배치를 사용한다.
+
+
+</br>
+
+## 역전파 (Backpropagation)
+
+$$
+\dfrac{\partial L}{\partial \theta_m} = \sum_{i=1}^N \left(\bf{y}^{(i)} - \hat{\bf{y}}^{(i)}\right)^T \dfrac{\partial \bf{h}\left(\bf{x}^{(i)};\bf{\theta}\right)}{\partial \theta_m} 
+$$
+
+
+$$
+\text{softmax}(\bf{z})_j = \bf{W}\bf{h} 
+$$

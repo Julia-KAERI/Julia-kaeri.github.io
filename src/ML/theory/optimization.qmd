@@ -467,3 +467,6 @@ KKH 조건, 즉 Karush-Kuhn-Tucker conditions 는 $\bf{x}^\ast$ 의 필요조건
 
 &emsp;($3$) $j=1,\ldots,\,k$ 에 대해 $\mu_j\ge 0$ 이다.
 
+</br>
+
+
