@@ -79,7 +79,7 @@ $$
 
 $$
 \bf{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 & w^{11}_1 & w^{11}_2 & \cdots & w^{11}_n \\ b^{(1)}_2 & w^{12}_1 & w^{12}_2 & \cdots & w^{12}_n \\ \vdots & & & & \vdots \\ b^{(1)}_{N_1} & w^{1N_1}_1 & w^{1N_1}_2 & \cdots & w^{1N_1}_n\end{bmatrix},\qquad \tilde{\bf{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
-$$
+$$ {#eq-ML_parameters_representations}
 
 $\bf{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 & \cdots & z^{(1)}_{N_1}\end{bmatrix}^{T}$ 에 대해
 
@@ -118,7 +118,7 @@ $$
 \begin{aligned}
 \hat{y}_i = \sigma_F\left(z^{(4)}_i\right) = \sigma_F \left(\bf{W}^{(4)}_{i:} \tilde{\bf{h}}^{(3)}\right) 
 \end{aligned}
-$$
+$$ {#eq-ML_output_of_mlnn}
 
 이다.
 
@@ -170,14 +170,14 @@ $$ {#eq-perceptron_softmax}
 
 ### 비용함수 {#sec-ML_cost_function_of_nn}
 
-정해진 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 하고 입력 $\bf{x}$ 에 대한 출력값을 $\hat{\bf{y}}=\bf{h}(\bf{x};\bf{\theta})$ 라고 쓰자. 우리가 데이터를 학습시킬 때 $i$ 번째 입력 벡터를 $\bf{x}^{(i)}$ 라고 쓰면 마찬가지로 label 은 원-핫 벡터 $\bf{y}^{(i)}$ 로 표현 할 수 있으며 출력값은 $\hat{\bf{y}}^{(i)}=\bf{h}\left(\bf{x}^{(i)};\bf{\theta}\right)$ 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 표기하기로 하자. 
+정해진 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 하고 입력 $\bf{x}$ 에 대한 출력값을 $\hat{\bf{y}}=\bf{h}(\bf{x};\bf{\theta})$ 라고 쓰자. 우리가 데이터를 학습시킬 때 $i$ 번째 입력 벡터를 $\bf{x}_{(i)}$ 라고 쓰면 마찬가지로 label 은 원-핫 벡터 $\bf{y}_{(i)}$ 로 표현 할 수 있으며 출력값은 $\hat{\bf{y}}_{(i)}=\bf{h}\left(\bf{x}_{(i)};\bf{\theta}\right)$ 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 표기하기로 하자. 
 
 
 다층신경망에서의 출력은 $\R^K$ 벡터이며 각 성분은 $[0,\,1]$ 의 범위이고 그 합이 $1$ 이다. 이경우 손실함수는 제곱합 오차 함수를 사용하자. 우선 학습을 시킬 때 
 
 $$
-L(\bf{\theta}) = \sum_{i=1}^N \left\|\bf{y}^{(i)} - \hat{\bf{y}}^{(i)}\right\|^2 = \sum_{i=1}^N \left\|\bf{y}^{(i)} - \bf{h}\left(\bf{x}^{(i)};\,\bf{\theta}\right)\right\|^2
-$$
+L(\bf{\theta}) = \sum_{i=1}^N \left\|\bf{y}_{(i)} - \hat{\bf{y}}_{(i)}\right\|^2 = \sum_{i=1}^N \left\|\bf{y}_{(i)} - \bf{h}\left(\bf{x}_{(i)};\,\bf{\theta}\right)\right\|^2
+$$ {#eq-ML_cost_function_for_mlnn}
 를 사용한다.
 
 
@@ -209,11 +209,95 @@ $$
 
 ## 역전파 (Backpropagation)
 
+### 출력층에서의 역전파 
+
+- 입력 벡터 $\bf{x}$ 와 $M$ 개의 은닉층 그리고 마지막 출력층으로 이루어진 신경망을 생각하자. $l$ 번째 은닉층에는 $N_l$ 개의 퍼셉트론이 있으며 출력층의 원-핫 벡터는 $N_F$ 개의 성분을 갖는다고 하자. 
+- 레이블과 함께 데이터셋이 $\left(\bf{x}_{(1)},\,\bf{y}_{(1)}\right),\ldots,\,\left(\bf{x}_{(N)},\, \bf{y}_{(N)}\right)$ 이 준비되었다고 하자. 
+- 내부의 모든 매개변수를 일단 $\bf{\theta}$ 로 표기하자. 
+  
+
+오차제곱합 함수 $L$ 은 @eq-ML_cost_function_for_mlnn 로 주어지며 이 때
+
 $$
-\dfrac{\partial L}{\partial \theta_m} = \sum_{i=1}^N \left(\bf{y}^{(i)} - \hat{\bf{y}}^{(i)}\right)^T \dfrac{\partial \bf{h}\left(\bf{x}^{(i)};\bf{\theta}\right)}{\partial \theta_m} 
+L_k(\bf{\theta}) = \dfrac{1}{2}\|\hat{\bf{y}}_{(k)}-\bf{y}_{(k)}\|^2
+$$
+
+라고 하면 (앞의 $1/2$ 는 뒤에 나올 미분을 고려하여 넣어주었다)
+
+$$
+L = \sum_{k=1}^N L_k (\bf{\theta})
+$$
+
+
+이며 매개변수 $\theta_m$ 에 대한 편미분은
+$$
+\dfrac{\partial L}{\partial \theta_m} = \sum_{k=1}^N \left(\hat{\bf{y}}_{(i)} - \bf{y}_{(i)}\right)^T \dfrac{\partial \hat{\bf{y}}^{(i)}}{\partial \theta_m} = \sum_{k=1}^N \dfrac{\partial L_k}{\partial \theta_m}
+$$ {#eq-ML_general_partial_differential_of_cost_function}
+
+이다. $\bf{z}^{(F)}=\bf{W}^{(F)}\tilde{\bf{h}}^{(M)}$ 에 대해 
+
+$$
+\hat{\bf{y}}= \bf{\sigma}^{(F)}(\bf{z}^{(F)}) = \begin{bmatrix} \sigma_1^{(F)} \left(z_1^{(F)}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(z_{N_F}^{(F)}\right)\end{bmatrix} = \begin{bmatrix} \sigma_1^{(F)} \left(W^{(F)}_{11}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{1,N_M} \tilde{h}^{(M)}_{N_M}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(W^{(F)}_{N_F,1}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{N_F,N_M} \tilde{h}^{(M)}_{N_M}\right) \end{bmatrix},\qquad 
+$$
+
+이므로 $W^{(F)}_{ij} = \left(\bf{W}^{(F)}\right)_{ij}$ 에 대한 편미분은
+
+$$
+\dfrac{\partial L}{\partial W^{(F)}_{ij}} = \sum_{k=1}^N \left(\hat{\bf{y}}_{(k)}-\bf{y}_{(k)}\right)_i \tilde{h}^{(M)}_j \dfrac{d\sigma_i^{(F)}(z_i)}{dz_i}
+$$
+
+
+여기서
+
+$$
+\sigma^{(F)}_m(\bf{z}) = \dfrac{e^{z_m}}{\sum_{q=1} e^{z_q}}
+$$
+
+이므로
+
+$$
+\dfrac{\partial \sigma^{(F)}_m(\bf{z})}{\partial z_m} = \sigma_m(\bf{z}) - (\sigma_m(\bf{z}))^2
+$$
+
+이다. $\bf{y}_{(k)}$ 나 $\hat{\bf{y}}_{(k)}$ 의 $i$ 번째 성분을 $[\cdot]_{i}$ 로 쓴다면 
+
+$$
+\dfrac{\partial L}{\partial W^{(F)}_{ij}} = \sum_{k=1}^N \left([\hat{\bf{y}}_{(k)}]_i-[\bf{y}_{(k)}]_i\right) \left( [\hat{\bf{y}}_{(k)}]_i - [\hat{\bf{y}}_{(k)}]_i^2\right)\tilde{h}^{(M)}_j
+$$
+
+이다. 즉 최소한 출력층의 매개변수 $W_{ij}^{(F)}$ 에 대해 $\dfrac{\partial L}{\partial W^{(F)}_{ij}}$ 의 값은 이미 주어진 데이터셋과 오차제곱을 위해 미리 계산한 적이 있는 모델값과 출력층의 입력값($\tilde{\bf{h}}^{(M)}$) 만 있으면 사칙연산만을 이용하여 계산 할 수 있다는 것이다. 
+
+
+$$
+\begin{aligned}
+\dfrac{\partial L}{\partial W^{(m)}_{ij}} \sum_{k=1}^n (\hat{\bf{y}}_{(k)}- \bf{y}_{(k)})^T \dfrac{\partial \hat{\bf{y}}_{(k)}}{\partial W_{ij}^{(m)}}
+\end{aligned}
+$$
+
+
+
+
+
+
+@eq-ML_output_of_mlnn 에서 
+
+$$
+\dfrac{\partial L}{\partial W^{(F)}_{jk}} = \sum_{i=1}^N \left(y_j^{(i)} - \hat{y}_j^{(i)}\right)  \dfrac{\partial h_j}{\partial W^{(F)}_{jk}}
+$$
+
+이며, $\bf{z}^{(F)}=\bf{W}^{(F)}\bf{\cdot}\tilde{\bf{h}}^{(M)}$ 에 대해 
+
+$$
+h_j = \dfrac{e^{z_j^{(F)}}}{\sum_{i=1}^{N_F} e^{z_i^{(F)}}} 
+$$
+
+이므로
+
+$$
+\dfrac{\partial h_j}{\partial W^{(F)}_{jk}} = W_{jk}^{(F)}(h_j - h_j^2)
 $$
 
 
 $$
-\text{softmax}(\bf{z})_j = \bf{W}\bf{h} 
+\text{softmax}(\bf{z})_j = \bf{W}\bf{h} \dfrac{\partial h_j}{\partial }
 $$

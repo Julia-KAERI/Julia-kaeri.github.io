@@ -16,6 +16,7 @@ crossref:
 
 ### 선형회귀와 설계행렬 {#sec-regression_design_matrix}
 
+
 $n$ 차원 벡터 입력변수 $\bf{x}_1,\ldots,\,\bf{x}_m \in \R^n$ 와 입력 변수 각각에 대한 레이블 $y_1,\,\ldots,\,y_m$ 을 가장 잘 기술하는 함수
 
 $$

@@ -334,45 +334,53 @@ G. Strang, <em>Computational Science and Engineering</em>
 <h2 data-number="1" class="anchored" data-anchor-id="최적화"><span class="header-section-number">1</span> 최적화</h2>
 <section id="최적화문제" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="최적화문제"><span class="header-section-number">1.1</span> 최적화문제</h3>
-<p><br></p>
-<p><span class="math inline">\(f:U \subset \mathbb{R}^n \to \mathbb{R}\)</span> 에 대해 아래의 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 문제를 구하는 것을 최적화 문제라고 한다.</p>
-<p><span id="eq-optimization_optimization_problem"><span class="math display">\[
+<p>일반적으로 최적화 문제는 어떤 함수 <span class="math inline">\(f:U \subset \mathbb{R}^n \to \mathbb{R}\)</span> 에 대해 아래의 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 문제를 구하는 것으로 주어진다.</p>
+<p><span id="eq-ML_optimization_optimization_problem"><span class="math display">\[
 \boxed{
 \begin{aligned}
-\quad&amp; \boldsymbol{x}^\ast = \argmin_{\boldsymbol{x}\in U} &amp;&amp; f(\boldsymbol{x}) \\[0.3em]
-&amp;\text{subject to} \quad &amp;&amp; g_i(\boldsymbol{x})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
-&amp;&amp;&amp; h_j(\boldsymbol{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\quad&amp; \boldsymbol{\theta}^\ast = \argmin_{\boldsymbol{\theta}\in U} &amp;&amp; f(\boldsymbol{\theta}) \\[0.3em]
+&amp;\text{subject to} \quad &amp;&amp; g_i(\boldsymbol{\theta})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
+&amp;&amp;&amp; h_j(\boldsymbol{\theta})= 0,\qquad j=1,\ldots,\,k.\quad
 \end{aligned}
 }
 \tag{1}\]</span></span></p>
-<p><strong>3가지 기본 요소</strong></p>
-<p> (<span class="math inline">\(1\)</span>) 변수 (Decesion variable or unknown) <span class="math inline">\(\boldsymbol{x}\in \mathbb{R}^n\)</span></p>
-<p> (<span class="math inline">\(2\)</span>) 목적함수 (objective function) <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}\)</span></p>
-<p> (<span class="math inline">\(3\)</span>) 제약 조건 (Constraint) : <a href="#eq-optimization_optimization_problem" class="quarto-xref">식&nbsp;9</a> 에 주어진 <span class="math inline">\(g_i(\boldsymbol{x}) \le 0,\, h_j(\boldsymbol{x})=0\)</span> 의 조건들.</p>
 <p><br></p>
-<p><strong>과정</strong></p>
+<section id="가지-기본-요소" class="level4">
+<h4 class="anchored" data-anchor-id="가지-기본-요소"><strong>3가지 기본 요소</strong></h4>
+<p> (<span class="math inline">\(1\)</span>) 변수 (Decesion variable or unknown) <span class="math inline">\(\boldsymbol{\theta}\in \mathbb{R}^n\)</span></p>
+<p> (<span class="math inline">\(2\)</span>) 목적함수 (objective function) <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}\)</span></p>
+<p> (<span class="math inline">\(3\)</span>) 제약 조건 (Constraint) : <a href="#eq-ML_optimization_optimization_problem" class="quarto-xref">식&nbsp;1</a> 에 주어진 <span class="math inline">\(g_i(\boldsymbol{\theta}) \le 0,\, h_j(\boldsymbol{\theta})=0\)</span> 의 조건들.</p>
+<p><br></p>
+</section>
+<section id="과정" class="level4">
+<h4 class="anchored" data-anchor-id="과정"><strong>과정</strong></h4>
 <p> (<span class="math inline">\(1\)</span>) 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.</p>
 <p> (<span class="math inline">\(2\)</span>) 모델을 만든 후 최적화 알고리즘을 사용하여 해를 구한다.</p>
 <p><br></p>
 </section>
+</section>
 <section id="최적화의-수학-모델" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="최적화의-수학-모델"><span class="header-section-number">1.2</span> 최적화의 수학 모델</h3>
-<p><strong>수학적 표준 모델</strong></p>
+<section id="수학적-표준-모델" class="level4">
+<h4 class="anchored" data-anchor-id="수학적-표준-모델"><strong>수학적 표준 모델</strong></h4>
 <ul>
-<li><p>제약조건을 만족하는 <span class="math inline">\(\mathcal{C}\subset \mathbb{R}^n\)</span> 를 <strong>가능해 영역(feasible region)</strong> 이라고 한다. 즉 <span class="math inline">\(\mathcal{C}\)</span> 는 아래와 같다. <span id="eq-optimization_feasible_model"><span class="math display">\[
-\mathcal{C} = \{\boldsymbol{x}\in U : g_i(\boldsymbol{x})\le 0,\,i=1,\ldots,\,m,\, h_j(\boldsymbol{x})=0,\, j=1,\ldots,\,k\}.
+<li><p>제약조건을 만족하는 <span class="math inline">\(\mathcal{C}\subset \mathbb{R}^n\)</span> 를 <strong>가능해 영역(feasible region)</strong> 이라고 한다. <a href="#eq-ML_optimization_optimization_problem" class="quarto-xref">식&nbsp;1</a> 과 같은 최적화 문제에 대해 <span class="math inline">\(\mathcal{C}\)</span> 는 아래와 같다. <span id="eq-optimization_feasible_model"><span class="math display">\[
+\mathcal{C} = \{\boldsymbol{\theta}\in U : g_i(\boldsymbol{\theta})\le 0,\,i=1,\ldots,\,m,\, h_j(\boldsymbol{\theta})=0,\, j=1,\ldots,\,k\}.
 \tag{2}\]</span></span></p></li>
-<li><p><a href="#eq-optimization_optimization_problem" class="quarto-xref">식&nbsp;9</a> 을 짧게 쓰면 가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 에 대해 <span class="math inline">\(\displaystyle \boldsymbol{x}^\ast = \argmin_{\boldsymbol{x}\in \mathcal{C}} f(\boldsymbol{x})\)</span> 를 찾는 문제이다. 이 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 <strong>최적해 (optimal solution)</strong> 이라고 한다.</p></li>
+<li><p><a href="#eq-ML_optimization_optimization_problem" class="quarto-xref">식&nbsp;1</a> 을 짧게 쓰면 가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 에 대해 <span class="math inline">\(\displaystyle \boldsymbol{\theta}^\ast = \argmin_{\boldsymbol{\theta}\in \mathcal{C}} f(\boldsymbol{\theta})\)</span> 를 찾는 문제이다. 이 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 <strong>최적해 (optimal solution)</strong> 이라고 한다.</p></li>
 <li><p><span class="math inline">\(\{g_i\}\)</span> 나 <span class="math inline">\(\{h_j\}\)</span> 와 같은 제약조건이 없다면 <em>unconstrained</em> 라고 하며, 그렇지 않다면 <em>constrained</em> 라고 한다.</p></li>
 </ul>
 <p><br></p>
-<p><strong>등가 변환</strong></p>
+</section>
+<section id="등가-변환" class="level4">
+<h4 class="anchored" data-anchor-id="등가-변환"><strong>등가 변환</strong></h4>
 <ul>
-<li><p>우리가 구하고자 하는 문제가 <span class="math inline">\(f(\boldsymbol{x})\)</span> 를 최소화 하는 것이 아닌 최대로 하는 <span class="math inline">\(\boldsymbol{x}\)</span> 를 찾는 문제라면 <span class="math inline">\(-f(\boldsymbol{x})\)</span> 를 최소화 하는 문제이다.</p></li>
-<li><p>constraint 가 <span class="math inline">\(g_i(\boldsymbol{x}) \ge 0\)</span> 이라면 <span class="math inline">\(-g_i(\boldsymbol{x})\le 0\)</span> 으로 바꿀 수 있다.</p></li>
+<li><p>우리가 구하고자 하는 문제가 <span class="math inline">\(f(\boldsymbol{\theta})\)</span> 를 최소화 하는 것이 아닌 최대로 하는 <span class="math inline">\(\boldsymbol{\theta}\)</span> 를 찾는 문제라면 <span class="math inline">\(-f(\boldsymbol{\theta})\)</span> 를 최소화 하는 문제이다.</p></li>
+<li><p>constraint 가 <span class="math inline">\(g_i(\boldsymbol{\theta}) \ge 0\)</span> 이라면 <span class="math inline">\(-g_i(\boldsymbol{\theta})\le 0\)</span> 으로 바꿀 수 있다.</p></li>
 <li><p>즉 수학적 표준 모델은 상당히 표면적으로 보이는 것보다 훨씬 넓은 범위의 문제를 포괄한다.</p></li>
 </ul>
 <p><br></p>
+</section>
 </section>
 <section id="전역적-최적화와-국소적-최적화" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="전역적-최적화와-국소적-최적화"><span class="header-section-number">1.3</span> 전역적 최적화와 국소적 최적화</h3>
@@ -387,7 +395,7 @@ G. Strang, <em>Computational Science and Engineering</em>
 </figcaption>
 </figure>
 </div>
-<p>전체 영역에서의 최소점은 <span class="math inline">\(x_G\)</span> 이며 이를 <strong>전역적 최소점(global minimum)</strong> 이라고 한다. 그리고 <span class="math inline">\(x_L\)</span> 같이 어떤 근방에서의 최소점을 <strong>국소적 최소점(local minimum)</strong> 혹은 <strong>극소점</strong> 이라고 한다. 함수 <span class="math inline">\(f(x)\)</span> 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. <span class="math inline">\(f(x)\)</span> 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 <span class="math inline">\(0\)</span> 이고 이차미분이 양수인 점이다. 다변수의 경우 <span class="math inline">\(\nabla f(\boldsymbol{x})=\boldsymbol{0}\)</span> 이며 헤시안 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 가 positive definite 한 경우이다.</p>
+<p>전체 영역에서의 최소점은 <span class="math inline">\(x_G\)</span> 이며 이를 <strong>전역적 최소점(global minimum)</strong> 이라고 한다. 그리고 <span class="math inline">\(x_L\)</span> 같이 어떤 근방에서의 최소점을 <strong>국소적 최소점(local minimum)</strong> 혹은 <strong>극소점</strong> 이라고 한다. 함수 <span class="math inline">\(f(x)\)</span> 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. <span class="math inline">\(f(x)\)</span> 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 <span class="math inline">\(0\)</span> 이고 이차미분이 양수인 점이다. 다변수의 경우 <span class="math inline">\(\nabla f(\boldsymbol{\theta})=\boldsymbol{0}\)</span> 이며 헤시안 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 가 positive definite 한 경우이다.</p>
 <p><br></p>
 </section>
 </section>
@@ -401,15 +409,17 @@ G. Strang, <em>Computational Science and Engineering</em>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>볼록 함수 (convex function)</strong></p>
-<p><span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}\)</span> 이 다음을 만족하면 볼록 함수라고 한다. <span id="eq-optimization_convex_function"><span class="math display">\[
-\forall \theta\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in \mathbb{R}^n \implies f(\theta \boldsymbol{x}+(1-\theta)\boldsymbol{y}) \le \theta f(\boldsymbol{x}) + (1-\theta)f(\boldsymbol{y})
+<div id="def-ML_convex_function_and_set" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 1 (볼록 함수 (convex function))</strong></span> <span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}\)</span> 이 다음을 만족하면 볼록 함수라고 한다. <span id="eq-optimization_convex_function"><span class="math display">\[
+\forall s\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in \mathbb{R}^n \implies f(s \boldsymbol{x}+(1-s)\boldsymbol{y}) \le s f(\boldsymbol{x}) + (1-s)f(\boldsymbol{y})
 \tag{3}\]</span></span></p>
-<p><strong>볼록 집합 (convex set)</strong></p>
-<p><span class="math inline">\(A\subset\mathbb{R}^n\)</span> 이 다음을 만족하면 볼록 집합이라 한다.</p>
+</div>
+<div id="def-ML_convex_function_and_set_2" class="theorem definition">
+<p><span class="theorem-title"><strong>정의 2 (볼록 집합 (convex set))</strong></span> <span class="math inline">\(A\subset\mathbb{R}^n\)</span> 이 다음을 만족하면 볼록 집합이라 한다.</p>
 <p><span id="eq-optimization_convex_set"><span class="math display">\[
-\forall \theta\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in A \implies \theta \boldsymbol{x}+(1-\theta)\boldsymbol{y}\in A
+\forall s\in [0,\,1],\, \boldsymbol{x},\, \boldsymbol{y}\in A \implies s \boldsymbol{x}+(1-s)\boldsymbol{y}\in A
 \tag{4}\]</span></span></p>
+</div>
 </div>
 </div>
 </div>
@@ -417,45 +427,45 @@ G. Strang, <em>Computational Science and Engineering</em>
 </section>
 <section id="볼록-최적화" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="볼록-최적화"><span class="header-section-number">2.2</span> 볼록 최적화</h3>
-<p><a href="#eq-optimization_optimization_problem" class="quarto-xref">식&nbsp;9</a> 의 최적화 문제가 주어졌다고 하자. 이 때 목적함수가 볼록 함수 이고 가능해 영역 이 볼록 집합인 경우의 최적화 문제를 <strong>볼록 최적화 (convex optimization)</strong> 문제 라고 한다.</p>
-<ol type="1">
-<li><p><span class="math inline">\(g_i(\boldsymbol{x})\)</span> 가 볼록 함수이고 <span class="math inline">\(h_j(\boldsymbol{x})=\boldsymbol{a}^T\boldsymbol{x}+b\)</span> 꼴이면 항상 볼록 최적화 문제이다.</p></li>
-<li><p>볼록 최적화에서의 모든 국소적 해는 전역적 해이다. (<a href="#thm-optimization_convex_local_global_minima" class="quarto-xref">정리&nbsp;1</a>)</p></li>
-</ol>
+<p><a href="#eq-ML_optimization_optimization_problem" class="quarto-xref">식&nbsp;1</a> 의 최적화 문제가 주어졌다고 하자. 이 때 목적함수가 볼록 함수 이고 가능해 영역 이 볼록 집합인 경우의 최적화 문제를 <strong>볼록 최적화 (convex optimization)</strong> 문제 라고 한다.</p>
+<ul>
+<li><p><span class="math inline">\(g_i(\boldsymbol{\theta})\)</span> 가 볼록 함수이고 <span class="math inline">\(h_j(\boldsymbol{\theta})=\boldsymbol{a}^T\boldsymbol{\theta}+b\)</span> 꼴이면 항상 볼록 최적화 문제이다.</p></li>
+<li><p>볼록 최적화에서의 모든 국소적 해는 전역적 해이다. (<a href="#thm-ML_optimization_convex_local_global_minima" class="quarto-xref">정리&nbsp;1</a>)</p></li>
+</ul>
 <br>
 <div class="border" style="background-color:#FFF0F5 ;padding:5px;">
-<div id="thm-optimization_convex_local_global_minima" class="theorem">
+<div id="thm-ML_optimization_convex_local_global_minima" class="theorem">
 <p><span class="theorem-title"><strong>정리 1</strong></span> 볼록 최적화 문제에서 목적함수 <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}\)</span> 과 가능해 공간 <span class="math inline">\(\mathcal{C}\)</span> 에 대해 국소적 최소점은 전역적 최소점이다.</p>
 </div>
 </div>
 <p><br></p>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\boldsymbol{x}^\ast\)</span> 가 국소적 최소점이며 <span class="math inline">\(\boldsymbol{x}_G \ne \boldsymbol{x}^\ast\)</span> 가 전역적 최소점이라고 하자. 즉 <span class="math inline">\(f(\boldsymbol{x}_G)&lt;f(\boldsymbol{x}^\ast)\)</span> 이다. <span class="math inline">\(\theta\in [0,\,1]\)</span> 에 대해 <span class="math inline">\(\theta \boldsymbol{x}^\ast + (1-\theta)\boldsymbol{x}_G\in \mathcal{C}\)</span> 이며</p>
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 가 국소적 최소점이며 <span class="math inline">\(\boldsymbol{\theta}_G \ne \boldsymbol{\theta}^\ast\)</span> 가 전역적 최소점이라고 하자. 즉 <span class="math inline">\(f(\boldsymbol{\theta}_G)&lt;f(\boldsymbol{\theta}^\ast)\)</span> 이다. <span class="math inline">\(s\in [0,\,1]\)</span> 에 대해 <span class="math inline">\(s\boldsymbol{\theta}^\ast + (1-s)\boldsymbol{\theta}_G\in \mathcal{C}\)</span> 이며</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(\theta \boldsymbol{x}^\ast + (1-\theta)\boldsymbol{x}_G) &amp;\le \theta f(\boldsymbol{x}^\ast) + (1-\theta)f(\boldsymbol{x}_G) \\[0.3em]
-&amp; &lt; \theta f(\boldsymbol{x}^\ast) + (1-\theta)f(\boldsymbol{x}^\ast) = f(\boldsymbol{x}^\ast)
+f(s \boldsymbol{\theta}^\ast + (1-s)\boldsymbol{\theta}_G) &amp;\le s f(\boldsymbol{\theta}^\ast) + (1-s)f(\boldsymbol{\theta}_G) \\[0.3em]
+&amp; &lt; s f(\boldsymbol{\theta}^\ast) + (1-s)f(\boldsymbol{\theta}^\ast) = f(\boldsymbol{\theta}^\ast)
 \end{aligned}
 \]</span></p>
-<p>이다. 즉 <span class="math inline">\(f(\boldsymbol{x}^\ast)\)</span> 가 국소적 해라는 전제에 모순이므로 국소적 해와 다른 전역적 해는 존재하지 않는다. <span class="math inline">\(\square\)</span></p>
+<p>이다. 즉 <span class="math inline">\(f(\boldsymbol{\theta}^\ast)\)</span> 가 국소적 해라는 전제에 모순이므로 국소적 해와 다른 전역적 해는 존재하지 않는다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
 <p>국소적 최저점이 전역적 최저점이라고 해서 단 하나의 국소적 최저점만 가질 필요는 없다. 여러개의 최적해가 존재할 때 다음의 성질을 갖는다.</p>
 <br>
 <div class="border" style="background-color:#FFF0F5 ;padding:5px;">
 <div id="thm-optimization_convex_solution_set" class="theorem">
-<p><span class="theorem-title"><strong>정리 2</strong></span> 볼록 최적화 문제의 해 가 하나 이상일 때 해의 집합을 <span class="math inline">\(X_{\text{co}}\)</span> 라고 하자. 즉 <span class="math inline">\(\displaystyle X_{\text{co}} = \argmin_{\boldsymbol{x}\in \mathcal{C}} f(\boldsymbol{x})\)</span> 라고 하면 <span class="math inline">\(X_{\text{op}}\)</span> 는 볼록집합이다.</p>
+<p><span class="theorem-title"><strong>정리 2</strong></span> 볼록 최적화 문제의 해 가 하나 이상일 때 해의 집합을 <span class="math inline">\(X\)</span> 라고 하자. 즉 <span class="math inline">\(\displaystyle X = \argmin_{\boldsymbol{\theta}\in \mathcal{C}} f(\boldsymbol{\theta})\)</span> 라고 하면 <span class="math inline">\(X\)</span> 는 볼록집합이다.</p>
 </div>
 </div>
 <p><br></p>
 <div class="proof">
-<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\boldsymbol{x}_1,\, \boldsymbol{x}_2\in X_{\text{co}}\)</span> 라고 하자. <span class="math inline">\(\mathcal{C}\)</span> 가 볼록집합이므로 <span class="math inline">\(\theta\in [0,\,1]\)</span> 에 대해 <span class="math inline">\(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2 \in \mathcal{C}\)</span> 이다. 또한 <span class="math inline">\(\boldsymbol{x}_1,\,\boldsymbol{x}_2\)</span> 가 전역적 최소점이므로 <span class="math inline">\(f(\boldsymbol{x}_1)=f(\boldsymbol{x}_2)=f_m\)</span> 이다. 이로부터</p>
+<p><span class="proof-title"><em>(증명)</em>. </span><span class="math inline">\(\boldsymbol{\theta}_1,\, \boldsymbol{\theta}_2\in X\)</span> 라고 하자. <span class="math inline">\(\mathcal{C}\)</span> 가 볼록집합이므로 <span class="math inline">\(s\in [0,\,1]\)</span> 에 대해 <span class="math inline">\(s \boldsymbol{\theta}_1 + (1-s)\boldsymbol{\theta}_2 \in \mathcal{C}\)</span> 이다. 또한 <span class="math inline">\(\boldsymbol{\theta}_1,\,\boldsymbol{\theta}_2\)</span> 가 전역적 최소점이므로 <span class="math inline">\(f(\boldsymbol{\theta}_1)=f(\boldsymbol{\theta}_2)=f_m\)</span> 이다. 이로부터</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) &amp; \le \theta f(\boldsymbol{x}_1) + (1-\theta)f(\boldsymbol{x}_2) = f_m
+f(s \boldsymbol{\theta}_1 + (1-s)\boldsymbol{\theta}_2) &amp; \le s f(\boldsymbol{\theta}_1) + (1-s)f(\boldsymbol{\theta}_2) = f_m
 \end{aligned}
 \]</span></p>
-<p>그런데 <span class="math inline">\(f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) \ge f_m\)</span> 이어야 하므로 <span class="math inline">\(f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) =f_m\)</span> 이다. <span class="math inline">\(\square\)</span></p>
+<p>그런데 <span class="math inline">\(f(s \boldsymbol{\theta}_1 + (1-s)\boldsymbol{\theta}_2) \ge f_m\)</span> 이어야 하므로 <span class="math inline">\(f(s\boldsymbol{\theta}_1 + (1-s)\boldsymbol{\theta}_2) =f_m\)</span> 이다. <span class="math inline">\(\square\)</span></p>
 </div>
 <p><br></p>
 </section>
@@ -466,9 +476,9 @@ f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) &amp; \le \theta f(\bold
 <p><span id="eq-optimization_linear_general_LP"><span class="math display">\[
 \boxed{
 \begin{aligned}
-\quad \boldsymbol{x}^\ast = \argmin_{\boldsymbol{x}\in U} f(\boldsymbol{x}), \quad &amp;&amp;f(\boldsymbol{x}) = \boldsymbol{c}^T\boldsymbol{x} \\[0.3em]
-&amp;&amp;\text{subject to} \quad &amp; \boldsymbol{g}_i^T\boldsymbol{x}\le b_j,\qquad &amp;&amp; i = 1,\ldots,\,m,\\[0.3em]
-&amp;&amp;&amp; \boldsymbol{h}_j^T\boldsymbol{x}= a_j,\qquad &amp;&amp;j=1,\ldots,\,k.\quad
+\quad \boldsymbol{\theta}^\ast = \argmin_{\boldsymbol{\theta}\in U} f(\boldsymbol{x}), \quad &amp;&amp;f(\boldsymbol{\theta}) = \boldsymbol{c}^T\boldsymbol{\theta} \\[0.3em]
+&amp;&amp;\text{subject to} \quad &amp; \boldsymbol{g}_i^T\boldsymbol{\theta}\le b_j,\qquad &amp;&amp; i = 1,\ldots,\,m,\\[0.3em]
+&amp;&amp;&amp; \boldsymbol{h}_j^T\boldsymbol{\theta}= a_j,\qquad &amp;&amp;j=1,\ldots,\,k.\quad
 \end{aligned}
 }
 \tag{5}\]</span></span></p>
@@ -476,33 +486,33 @@ f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) &amp; \le \theta f(\bold
 <p>즉 선형계획법에서는</p>
 <ul>
 <li><p>목적함수는 변수에 대한 선형함수이며</p></li>
-<li><p>제한조건은 변수에 대한 affine 함수 (<span class="math inline">\(\boldsymbol{a}^T\boldsymbol{x}+b\)</span> 형태의 함수) 이다.</p></li>
+<li><p>제한조건은 변수에 대한 affine 함수 (<span class="math inline">\(\boldsymbol{a}^T\boldsymbol{\theta}+b\)</span> 형태의 함수) 이다.</p></li>
 </ul>
 <p><br></p>
 </section>
 <section id="unconstrained-convex-optimizaiton-문제" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="unconstrained-convex-optimizaiton-문제"><span class="header-section-number">4</span> Unconstrained convex optimizaiton 문제</h2>
 <ul>
-<li><span class="math inline">\(\nabla_\boldsymbol{x}f(\boldsymbol{x}^\ast)=\boldsymbol{0}\)</span> 인 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 찾는 문제이다.</li>
+<li><span class="math inline">\(\nabla_\boldsymbol{\theta}f(\boldsymbol{\theta}^\ast)=\boldsymbol{0}\)</span> 인 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 찾는 문제이다.</li>
 </ul>
 <p><span id="eq-optimization_gradient"><span class="math display">\[
-\nabla_\boldsymbol{x} f := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} \\ \vdots \\ \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+\nabla_\boldsymbol{\theta} f := \begin{bmatrix} \dfrac{\partial f}{\partial \theta_1} \\ \vdots \\ \dfrac{\partial f}{\partial \theta_n}\end{bmatrix}
 \tag{6}\]</span></span></p>
 <p>이와 유사하게</p>
 <p><span id="eq-optimization_differentiation_to_vector"><span class="math display">\[
-\dfrac{df}{d\boldsymbol{x}} := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} &amp; \cdots &amp; \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+\dfrac{df}{d\boldsymbol{\theta}} := \begin{bmatrix} \dfrac{\partial f}{\partial \theta_1} &amp; \cdots &amp; \dfrac{\partial f}{\partial \theta_n}\end{bmatrix}
 \tag{7}\]</span></span></p>
-<p>로 정의한다. 즉 <span class="math inline">\(\nabla_{\boldsymbol{x}}f\)</span> 는 열벡터이며 <span class="math inline">\(\dfrac{d f}{d\boldsymbol{x}}\)</span> 는 행벡터이다.</p>
+<p>로 정의한다. 즉 <span class="math inline">\(\nabla_{\boldsymbol{\theta}}f\)</span> 는 열벡터이며 <span class="math inline">\(\dfrac{d f}{d\boldsymbol{\theta}}\)</span> 는 행벡터이다.</p>
 <p><br></p>
 <section id="gradient" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="gradient"><span class="header-section-number">4.1</span> Gradient</h3>
-<p><span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_n \end{bmatrix}^T \in \mathbb{R}^n\)</span>, <span class="math inline">\(\boldsymbol{a} \in \mathbb{R}^n\)</span>, <span class="math inline">\(\boldsymbol{A}=\mathcal{M}_{m \times n}(\mathbb{R})\)</span> 일 때 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 스칼라 함수의 gradient 는 다음과 같다.</p>
+<p><span class="math inline">\(\boldsymbol{\theta} = \begin{bmatrix}\theta_1 &amp; \cdots &amp; \theta_n \end{bmatrix}^T \in \mathbb{R}^n\)</span>, <span class="math inline">\(\boldsymbol{a} \in \mathbb{R}^n\)</span>, <span class="math inline">\(\boldsymbol{A}=\mathcal{M}_{m \times n}(\mathbb{R})\)</span> 일 때 <span class="math inline">\(\boldsymbol{\theta}\)</span> 에 대한 스칼라 함수의 gradient 는 다음과 같다.</p>
 <p><span id="eq-optimzation_gradient_of_vector"><span class="math display">\[
 \begin{aligned}
-\nabla_\boldsymbol{x} (\boldsymbol{a}^T\boldsymbol{x}) &amp;= \boldsymbol{a}\\[0.3em]
-\nabla_\boldsymbol{x} (\boldsymbol{x}^T\boldsymbol{a}) &amp;= \boldsymbol{a}\\[0.3em]
-\nabla_\boldsymbol{x} (\boldsymbol{x}^T\boldsymbol{x}) &amp;= 2\boldsymbol{x}\\[0.3em]
-\nabla_{\boldsymbol{x}} (\boldsymbol{x}^T\boldsymbol{Ax}) &amp;= (\boldsymbol{A}^T +\boldsymbol{A})\boldsymbol{x}
+\nabla_\boldsymbol{\theta} (\boldsymbol{a}^T\boldsymbol{\theta}) &amp;= \boldsymbol{a}\\[0.3em]
+\nabla_\boldsymbol{\theta} (\boldsymbol{\theta}^T\boldsymbol{a}) &amp;= \boldsymbol{a}\\[0.3em]
+\nabla_\boldsymbol{\theta} (\boldsymbol{\theta}^T\boldsymbol{\theta}) &amp;= 2\boldsymbol{\theta}\\[0.3em]
+\nabla_{\boldsymbol{\theta}} (\boldsymbol{\theta}^T\boldsymbol{A\theta}) &amp;= (\boldsymbol{A}^T +\boldsymbol{A})\boldsymbol{\theta}
 \end{aligned}
 \tag{8}\]</span></span></p>
 <p><br></p>
@@ -510,15 +520,15 @@ f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) &amp; \le \theta f(\bold
 <section id="직접법" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="직접법"><span class="header-section-number">4.2</span> 직접법</h3>
 <ul>
-<li><span class="math inline">\(\nabla_\boldsymbol{x}f(\boldsymbol{x}^\ast)=\boldsymbol{0}\)</span> 인 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 직접 구한다.</li>
+<li><span class="math inline">\(\nabla_\boldsymbol{\theta}f(\boldsymbol{\theta}^\ast)=\boldsymbol{0}\)</span> 인 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 직접 구한다.</li>
 </ul>
 <p><br></p>
-<p>이제 몇가지 형태의 convex 함수인 목적함수에 대한 그래디언트 <span class="math inline">\(\nabla_{\boldsymbol{x}}f(\boldsymbol{x})\)</span> 와 헤시안 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 를 구해보자.</p>
+<p>이제 몇가지 형태의 convex 함수인 목적함수에 대한 그래디언트 <span class="math inline">\(\nabla_{\boldsymbol{\theta}}f(\boldsymbol{\theta})\)</span> 와 헤시안 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 를 구해보자.</p>
 <div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="exm-optimizatin_object_function_affine" class="theorem example">
-<p><span class="theorem-title"><strong>예제 1 (Affine 형태의 목적함수)</strong></span> <span class="math inline">\(f(\boldsymbol{x}) = \boldsymbol{a}^T\boldsymbol{x} + \boldsymbol{b}\)</span> 인 경우</p>
+<p><span class="theorem-title"><strong>예제 1 (Affine 형태의 목적함수)</strong></span> <span class="math inline">\(f(\boldsymbol{\theta}) = \boldsymbol{a}^T\boldsymbol{\theta} + \boldsymbol{b}\)</span> 인 경우</p>
 <p><span class="math display">\[
-\nabla_\boldsymbol{x}f(\boldsymbol{x})=\boldsymbol{a},\qquad \boldsymbol{H}_f = \boldsymbol{0}.
+\nabla_\boldsymbol{\theta}f(\boldsymbol{\theta})=\boldsymbol{a},\qquad \boldsymbol{H}_f = \boldsymbol{0}.
 \]</span></p>
 <p>이다. 따라서 <span class="math inline">\(\boldsymbol{a}=\boldsymbol{0}\)</span> 인 특별한 경우가 아니면 최소값이 존재하지 않는다.</p>
 </div>
@@ -526,9 +536,9 @@ f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) &amp; \le \theta f(\bold
 <br>
 <div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="exm-optimizatin_object_function_quadratic" class="theorem example">
-<p><span class="theorem-title"><strong>예제 2 (Quadratic 형태의 목적함수)</strong></span> 대칭행렬 <span class="math inline">\(\boldsymbol{P}\)</span> 에 대해 <span class="math inline">\(f(\boldsymbol{x}) = \boldsymbol{x}^T\boldsymbol{Px} + \boldsymbol{b}^T\boldsymbol{x}+c\)</span> 인 경우</p>
+<p><span class="theorem-title"><strong>예제 2 (Quadratic 형태의 목적함수)</strong></span> 대칭행렬 <span class="math inline">\(\boldsymbol{P}\)</span> 에 대해 <span class="math inline">\(f(\boldsymbol{\theta}) = \boldsymbol{\theta}^T\boldsymbol{P\theta} + \boldsymbol{b}^T\boldsymbol{\theta}+c\)</span> 인 경우</p>
 <p><span class="math display">\[
-\nabla_{\boldsymbol{x}}f(\boldsymbol{x})= 2\boldsymbol{Px} + \boldsymbol{b},\qquad \boldsymbol{H}_f = 2\boldsymbol{P}
+\nabla_{\boldsymbol{\theta}}f(\boldsymbol{\theta})= 2\boldsymbol{P\theta} + \boldsymbol{b},\qquad \boldsymbol{H}_f = 2\boldsymbol{P}
 \]</span></p>
 <p>이다.</p>
 </div>
@@ -536,66 +546,66 @@ f(\theta \boldsymbol{x}_1 + (1-\theta)\boldsymbol{x}_2) &amp; \le \theta f(\bold
 <br>
 <div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 <div id="exm-optimizatin_object_function_Square" class="theorem example">
-<p><span class="theorem-title"><strong>예제 3 (제곱 형태의 목적함수)</strong></span> 대칭행렬 <span class="math inline">\(\boldsymbol{P}\)</span> 에 대해 <span class="math inline">\(f(\boldsymbol{x}) = \|\boldsymbol{Ax}-\boldsymbol{b}\|_2^2\)</span> 인 경우</p>
+<p><span class="theorem-title"><strong>예제 3 (제곱 형태의 목적함수)</strong></span> 대칭행렬 <span class="math inline">\(\boldsymbol{P}\)</span> 에 대해 <span class="math inline">\(f(\boldsymbol{\theta}) = \|\boldsymbol{A\theta}-\boldsymbol{b}\|_2^2\)</span> 인 경우</p>
 <p><span class="math display">\[
-f(\boldsymbol{x})= \boldsymbol{x}^T\boldsymbol{A}^T\boldsymbol{Ax} - \boldsymbol{x}^T\boldsymbol{A}^T\boldsymbol{b}-\boldsymbol{b}^T\boldsymbol{Ax}+\boldsymbol{b}^T\boldsymbol{b}
+f(\boldsymbol{\theta})= \boldsymbol{\theta}^T\boldsymbol{A}^T\boldsymbol{A\theta} - \boldsymbol{\theta}^T\boldsymbol{A}^T\boldsymbol{b}-\boldsymbol{b}^T\boldsymbol{A\theta}+\boldsymbol{b}^T\boldsymbol{b}
 \]</span></p>
 <p>이므로 gradient 와 헤시안 행렬은 다음과 같다.</p>
 <p><span class="math display">\[
-\nabla_{\boldsymbol{x}}f(\boldsymbol{x})= 2\boldsymbol{A}^T\boldsymbol{Ax} -2\boldsymbol{A}^T\boldsymbol{b},\qquad \boldsymbol{H}_f = 2\boldsymbol{A}^T\boldsymbol{A}.
+\nabla_{\boldsymbol{\theta}}f(\boldsymbol{\theta})= 2\boldsymbol{A}^T\boldsymbol{A\theta} -2\boldsymbol{A}^T\boldsymbol{b},\qquad \boldsymbol{H}_f = 2\boldsymbol{A}^T\boldsymbol{A}.
 \]</span></p>
-<p>이 때 <span class="math inline">\(\boldsymbol{x}^\ast = (\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T\boldsymbol{b}\)</span> 이어야 한다. 이 때 <span class="math inline">\((\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T\)</span> 는 잘 알려진 무어-펜로즈 좌측 유사역행렬(left pseudoinverse matrix) 이다.</p>
+<p>이 때 <span class="math inline">\(\boldsymbol{\theta}^\ast = (\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T\boldsymbol{b}\)</span> 이어야 한다. 이 때 <span class="math inline">\((\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T\)</span> 는 잘 알려진 무어-펜로즈 좌측 유사역행렬(left pseudoinverse matrix) 이다.</p>
 </div>
 </div>
 <p><br></p>
 </section>
 <section id="경사-하강법gradient-descent" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="경사-하강법gradient-descent"><span class="header-section-number">4.3</span> 경사 하강법(Gradient descent)</h3>
-<p>미분 가능한 <span class="math inline">\(f(\boldsymbol{x})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}_0\)</span> 가 주어졌으며 충분히 작은 값 <span class="math inline">\(\alpha_k\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}_{k+1}\)</span> 이 다음과 같다고 하자.</p>
+<p>미분 가능한 <span class="math inline">\(f(\boldsymbol{\theta})\)</span> 에 대해 <span class="math inline">\(\boldsymbol{\theta}_0\)</span> 가 주어졌으며 충분히 작은 값 <span class="math inline">\(\alpha_k\)</span> 에 대해 <span class="math inline">\(\boldsymbol{\theta}_{k+1}\)</span> 이 다음과 같다고 하자.</p>
 <p><span class="math display">\[
-\boldsymbol{x}_{k+1} = \boldsymbol{x}_k -\alpha_k \nabla_\boldsymbol{x} f(\boldsymbol{x}_k)
+\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k -\alpha_k \nabla_\boldsymbol{\theta} f(\boldsymbol{\theta}_k)
 \]</span></p>
-<p>그렇다면 <span class="math inline">\(f(\boldsymbol{x}_{k+1}) &lt; f(\boldsymbol{x}_k)\)</span> 가 될 것이고 이것을 계속 반복해 나가면 <span class="math inline">\(f(\boldsymbol{x})\)</span> 의 국소적 최저점을 찾을 수 있다. 이것을 <strong>경사 하강법(gradient descent method)</strong> 이라고 한다.</p>
+<p>그렇다면 <span class="math inline">\(f(\boldsymbol{\theta}_{k+1}) &lt; f(\boldsymbol{\theta}_k)\)</span> 가 될 것이고 이것을 계속 반복해 나가면 <span class="math inline">\(f(\boldsymbol{\theta})\)</span> 의 국소적 최저점을 찾을 수 있다. 이것을 <strong>경사 하강법(gradient descent method)</strong> 이라고 한다.</p>
 <p><br></p>
 </section>
 <section id="뉴턴법" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="뉴턴법"><span class="header-section-number">4.4</span> 뉴턴법</h3>
-<p><span class="math inline">\(f:U \subset \mathbb{R}\to R\)</span> 인 함수에 대해 <span class="math inline">\(f(x)=0\)</span> 을 찾는 방법 가운데 뉴턴-랩슨 방법은 초기값 <span class="math inline">\(x_0\)</span> 를 주고</p>
+<p><span class="math inline">\(f:U \subset \mathbb{R}\to R\)</span> 인 함수에 대해 <span class="math inline">\(f(\theta)=0\)</span> 을 찾는 방법 가운데 뉴턴-랩슨 방법은 초기값 <span class="math inline">\(\theta_0\)</span> 를 주고</p>
 <p><span class="math display">\[
-x_{k+1} = x_k - \dfrac{f(x_k)}{f'(x_k)}
+\theta_{k+1} = \theta_k - \dfrac{f(\theta_k)}{f'(\theta_k)}
 \]</span></p>
-<p>를 통해 점진적으로 <span class="math inline">\(f(x)=0\)</span> 을 찾는 방법이다. 만약 <span class="math inline">\(f\in C_2\)</span> 라면 <span class="math inline">\(f'(x^\ast)=0\)</span> 의 해는 뉴턴-랩슨 방법을 사용하여</p>
+<p>를 통해 점진적으로 <span class="math inline">\(f(\theta)=0\)</span> 을 찾는 방법이다. 만약 <span class="math inline">\(f\in C_2\)</span> 라면 <span class="math inline">\(f'(\theta^\ast)=0\)</span> 의 해는 뉴턴-랩슨 방법을 사용하여</p>
 <p><span class="math display">\[
-x_{k+1}=x_k - \dfrac{f'(x_k)}{f''(x_k)}
+\theta_{k+1}=\theta_k - \dfrac{f'(\theta_k)}{f''(\theta_k)}
 \]</span></p>
 <p>를 통해 얻을 수 있다. 만약 <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}\)</span> 이</p>
 <p><span class="math display">\[
-f(\boldsymbol{x}) = \|\boldsymbol{Ax}-\boldsymbol{b}\|_2^2
+f(\boldsymbol{\theta}) = \|\boldsymbol{A\theta}-\boldsymbol{b}\|_2^2
 \]</span></p>
 <p>으로 주어졌다면 <a href="#exm-optimizatin_object_function_Square" class="quarto-xref">예제&nbsp;3</a> 로 부터</p>
 <p><span class="math display">\[
-\boldsymbol{x}_{k+1}= \boldsymbol{x}_k - \left(\boldsymbol{H}_f\right)^{-1} \nabla_\boldsymbol{x} f(\boldsymbol{x}_k) = \boldsymbol{x}_k - (\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T(\boldsymbol{A}\boldsymbol{x}_k-\boldsymbol{b})
+\boldsymbol{\theta}_{k+1}= \boldsymbol{\theta}_k - \left(\boldsymbol{H}_f\right)^{-1} \nabla_\boldsymbol{\theta} f(\boldsymbol{\theta}_k) = \boldsymbol{\theta}_k - (\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T(\boldsymbol{A}\boldsymbol{\theta}_k-\boldsymbol{b})
 \]</span></p>
-<p>를 이용하여 반복적으로 최적해 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 를 찾는다. 뉴턴법은 경사하강법에 비해 수렴속도가 빠르지만 1) 헤세 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 를 구해야 하며, 2) 헤세 행렬에 대한 역행렬도 구해야 한다. 이 둘 모두 큰 계산량을 요구한다.</p>
+<p>를 이용하여 반복적으로 최적해 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 찾는다. 뉴턴법은 경사하강법에 비해 수렴속도가 빠르지만 1) 헤세 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 를 구해야 하며, 2) 헤세 행렬에 대한 역행렬도 구해야 한다. 이 둘 모두 큰 계산량을 요구한다.</p>
 <p><br></p>
 </section>
 <section id="준-뉴턴법quasi-newton-method" class="level3" data-number="4.5">
 <h3 data-number="4.5" class="anchored" data-anchor-id="준-뉴턴법quasi-newton-method"><span class="header-section-number">4.5</span> 준-뉴턴법(Quasi-Newton method)</h3>
-<p>뉴턴법의 큰 계산량을 줄이기 위해 고안된 방법이다. <span class="math inline">\(f(\boldsymbol{x})\)</span> 를 2차 근사하면 헤세 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 에 대해 다음과 같다.</p>
+<p>뉴턴법의 큰 계산량을 줄이기 위해 고안된 방법이다. <span class="math inline">\(f(\boldsymbol{\theta})\)</span> 를 2차 근사하면 헤세 행렬 <span class="math inline">\(\boldsymbol{H}_f\)</span> 에 대해 다음과 같다.</p>
 <p><br></p>
 <p><span class="math display">\[
-f(\boldsymbol{x} + \Delta \boldsymbol{x}) \approx f(\boldsymbol{x}) + \dfrac{df(\boldsymbol{x})}{d\boldsymbol{x}} \cdot \Delta \boldsymbol{x} + \dfrac{1}{2} \Delta \boldsymbol{x}^T \boldsymbol{H}_f\Delta \boldsymbol{x}
+f(\boldsymbol{\theta} + \Delta \boldsymbol{\theta}) \approx f(\boldsymbol{\theta}) + \dfrac{df(\boldsymbol{\theta})}{d\boldsymbol{\theta}} \cdot \Delta \boldsymbol{\theta} + \dfrac{1}{2} \Delta \boldsymbol{\theta}^T \boldsymbol{H}_f\Delta \boldsymbol{\theta}
 \]</span></p>
-<p>뉴턴법에서는 최적해 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 에 대한 추정값 <span class="math inline">\(\boldsymbol{x}_0\)</span> 을 입력하고 헤세 행렬을 직접 계산했지만 여기서는 <span class="math inline">\(\boldsymbol{x}_0\)</span> 뿐만 아니라 헤세 행렬에 대한 추정값 <span class="math inline">\(\boldsymbol{B}_0\)</span> 도 입력하며 <span class="math inline">\(\boldsymbol{x}_k\)</span> 뿐만 아니라 헤세 행렬에 상응하는 행렬 <span class="math inline">\(\boldsymbol{B}_k\)</span> 도 계속 업데이트 한다.</p>
+<p>뉴턴법에서는 최적해 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 에 대한 추정값 <span class="math inline">\(\boldsymbol{\theta}_0\)</span> 을 입력하고 헤세 행렬을 직접 계산했지만 여기서는 <span class="math inline">\(\boldsymbol{\theta}_0\)</span> 뿐만 아니라 헤세 행렬에 대한 추정값 <span class="math inline">\(\boldsymbol{B}_0\)</span> 도 입력하며 <span class="math inline">\(\boldsymbol{\theta}_k\)</span> 뿐만 아니라 헤세 행렬에 상응하는 행렬 <span class="math inline">\(\boldsymbol{B}_k\)</span> 도 계속 업데이트 한다.</p>
 <p><span class="math display">\[
 \begin{aligned}
-f(\boldsymbol{x}_k + \boldsymbol{\epsilon}_k) &amp;\approx f(\boldsymbol{x}_k) + \dfrac{df(\boldsymbol{x})}{d\boldsymbol{x}} \cdot \boldsymbol{\epsilon}_k + \dfrac{1}{2} (\boldsymbol{\epsilon}_k)^T\cdot  \boldsymbol{B}_k \cdot ( \boldsymbol{\epsilon}_k) \\[0.3em]
-\nabla_{\boldsymbol{\epsilon}_k} f(\boldsymbol{x}_k + \boldsymbol{\epsilon}_k) &amp;\approx  \nabla_{\boldsymbol{x}}f(\boldsymbol{x}_k) + \boldsymbol{B}_k\boldsymbol{\epsilon}_k
+f(\boldsymbol{\theta}_k + \boldsymbol{\epsilon}_k) &amp;\approx f(\boldsymbol{\theta}_k) + \dfrac{df(\boldsymbol{\theta})}{d\boldsymbol{\theta}} \cdot \boldsymbol{\epsilon}_k + \dfrac{1}{2} (\boldsymbol{\epsilon}_k)^T\cdot  \boldsymbol{B}_k \cdot ( \boldsymbol{\epsilon}_k) \\[0.3em]
+\nabla_{\boldsymbol{\epsilon}_k} f(\boldsymbol{\theta}_k + \boldsymbol{\epsilon}_k) &amp;\approx  \nabla_{\boldsymbol{\theta}}f(\boldsymbol{\theta}_k) + \boldsymbol{B}_k\boldsymbol{\epsilon}_k
 \end{aligned}
 \]</span></p>
-<p>을 이용한다. 위의 식 가운데 두번째에서 <span class="math inline">\(\boldsymbol{x}_k + \boldsymbol{\epsilon}_k\)</span> 가 극소점에 다가가면 <span class="math inline">\(0\)</span> 에 가깝게 될 것이므로 <span class="math inline">\(\boldsymbol{\epsilon}_k = - \boldsymbol{B}_k^{-1}\cdot \nabla_{\boldsymbol{x}}f(\boldsymbol{x}_k)\)</span> 로 근사한다. 그렇다면</p>
+<p>을 이용한다. 위의 식 가운데 두번째에서 <span class="math inline">\(\boldsymbol{\theta}_k + \boldsymbol{\epsilon}_k\)</span> 가 극소점에 다가가면 <span class="math inline">\(0\)</span> 에 가깝게 될 것이므로 <span class="math inline">\(\boldsymbol{\epsilon}_k = - \boldsymbol{B}_k^{-1}\cdot \nabla_{\boldsymbol{\theta}}f(\boldsymbol{\theta}_k)\)</span> 로 근사한다. 그렇다면</p>
 <p><span class="math display">\[
-\boldsymbol{x}_{k+1} = \boldsymbol{x}_k +\boldsymbol{\epsilon}_k = \boldsymbol{x}_k -\boldsymbol{B}_k^{-1} \cdot \nabla_{\boldsymbol{x}}f(\boldsymbol{x})
+\boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k +\boldsymbol{\epsilon}_k = \boldsymbol{\theta}_k -\boldsymbol{B}_k^{-1} \cdot \nabla_{\boldsymbol{\theta}}f(\boldsymbol{\theta})
 \]</span></p>
 <p>로 업데이트 한다. 이것은 뉴턴법과 차이가 없지만 준 뉴턴법은 <span class="math inline">\(\boldsymbol{B}_k\)</span> 를 구하는 방법에 따라 BFGS, DFP, SR1, Broyden 등의 여러가지 세부 방법이 있다.</p>
 <p><br></p>
@@ -609,8 +619,8 @@ f(\boldsymbol{x}_k + \boldsymbol{\epsilon}_k) &amp;\approx f(\boldsymbol{x}_k) +
 <p><span id="eq-optimization_optimization_problem"><span class="math display">\[
 \boxed{
 \begin{aligned}
-\quad&amp;\min_{\boldsymbol{x}} &amp;&amp; f(\boldsymbol{x}) \\[0.3em]
-&amp;\text{subject to} \quad &amp;&amp; h_j(\boldsymbol{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\quad&amp;\min_{\boldsymbol{\theta}} &amp;&amp; f(\boldsymbol{\theta}) \\[0.3em]
+&amp;\text{subject to} \quad &amp;&amp; h_j(\boldsymbol{\theta})= 0,\qquad j=1,\ldots,\,k.\quad
 \end{aligned}
 }
 \tag{9}\]</span></span></p>
@@ -618,19 +628,19 @@ f(\boldsymbol{x}_k + \boldsymbol{\epsilon}_k) &amp;\approx f(\boldsymbol{x}_k) +
 <br>
 <div class="border" style="background-color:#FFF0F5 ;padding:5px;">
 <div id="thm-optimization_lagrange_multipiler" class="theorem">
-<p><span class="theorem-title"><strong>정리 3 (라그랑주 승수법)</strong></span> <span class="math inline">\(\mathbb{R}^n\)</span> 에서의 열린 영역 <span class="math inline">\(U\)</span> 에서 정의된 미분가능한 <span class="math inline">\(f:U \to \mathbb{R}\)</span> 와 <span class="math inline">\(C_1\)</span> 급 함수 <span class="math inline">\(h_i : U \to \mathbb{R},\, i=1,\ldots,\,M\)</span> 에 대해 가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 가 다음과 같이 <span class="math inline">\(h_i(\boldsymbol{x})=0\)</span> 을 만족하는 형태로만 주어졌다고 하자.</p>
+<p><span class="theorem-title"><strong>정리 3 (라그랑주 승수법)</strong></span> <span class="math inline">\(\mathbb{R}^n\)</span> 에서의 열린 영역 <span class="math inline">\(U\)</span> 에서 정의된 미분가능한 <span class="math inline">\(f:U \to \mathbb{R}\)</span> 와 <span class="math inline">\(C_1\)</span> 급 함수 <span class="math inline">\(h_i : U \to \mathbb{R},\, i=1,\ldots,\,M\)</span> 에 대해 가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 가 다음과 같이 <span class="math inline">\(h_i(\boldsymbol{\theta})=0\)</span> 을 만족하는 형태로만 주어졌다고 하자.</p>
 <p><span class="math display">\[
-\mathcal{C} = \{\boldsymbol{x}\in U: \boldsymbol{x}\in h_i(\boldsymbol{x})=0,\, i=1,\ldots,\,M\}
+\mathcal{C} = \{\boldsymbol{\theta}\in U: \boldsymbol{\theta}\in h_i(\boldsymbol{\theta})=0,\, i=1,\ldots,\,M\}
 \]</span></p>
-<p>각각의 <span class="math inline">\(\boldsymbol{x}\in \mathcal{C}\)</span> 에 대해 <span class="math inline">\(\nabla_{\boldsymbol{x}} h_1(\boldsymbol{x}),\ldots,\,\nabla_{\boldsymbol{x}}h_M(\boldsymbol{x})\)</span> 가 선형 독립일 때 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(\mathcal{C}\)</span> 로 제한한 <span class="math inline">\(f|_{\mathcal{C}}\)</span> 의 극점 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 가 존재한다면</p>
+<p>각각의 <span class="math inline">\(\boldsymbol{\theta}\in \mathcal{C}\)</span> 에 대해 <span class="math inline">\(\nabla_{\boldsymbol{\theta}} h_1(\boldsymbol{\theta}),\ldots,\,\nabla_{\boldsymbol{\theta}}h_M(\boldsymbol{\theta})\)</span> 가 선형 독립일 때 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(\mathcal{C}\)</span> 로 제한한 <span class="math inline">\(f|_{\mathcal{C}}\)</span> 의 극점 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 가 존재한다면</p>
 <p><span id="eq-optimization_lagrange_mutiplier_for_equal_restrictions"><span class="math display">\[
-\nabla_{\boldsymbol{x}}f(\boldsymbol{x}^\ast) = \sum_{i=1}^M \lambda_i \nabla_\boldsymbol{x}h_i(\boldsymbol{x}^\ast)
+\nabla_{\boldsymbol{\theta}}f(\boldsymbol{\theta}^\ast) = \sum_{i=1}^M \lambda_i \nabla_\boldsymbol{\theta}h_i(\boldsymbol{\theta}^\ast)
 \tag{10}\]</span></span></p>
 <p>인 <span class="math inline">\(\lambda_i,\, i=1,\ldots,\,M\)</span> 가 존재한다.</p>
 </div>
 </div>
 <p><br></p>
-<p>목적함수 <span class="math inline">\(f(\boldsymbol{x})\)</span> 에 대해 <span class="math inline">\(h_i(\boldsymbol{x})=0,\, (i=1,\ldots,\,M)\)</span> 의 제약조건이 주어졌다고 하자. 이 때 <a href="#eq-optimization_lagrange_mutiplier_for_equal_restrictions" class="quarto-xref">식&nbsp;10</a> 을 만족하는 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 는 가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 에서의 <span class="math inline">\(f(\boldsymbol{x})\)</span> 의 stationary point 이다. 극소점일 수도, 극대점일 수도 saddle point 일 수도 있다.</p>
+<p>목적함수 <span class="math inline">\(f(\boldsymbol{\theta})\)</span> 에 대해 <span class="math inline">\(h_i(\boldsymbol{\theta})=0,\, (i=1,\ldots,\,M)\)</span> 의 제약조건이 주어졌다고 하자. 이 때 <a href="#eq-optimization_lagrange_mutiplier_for_equal_restrictions" class="quarto-xref">식&nbsp;10</a> 을 만족하는 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 는 가능해 영역 <span class="math inline">\(\mathcal{C}\)</span> 에서의 <span class="math inline">\(f(\boldsymbol{\theta})\)</span> 의 stationary point 이다. 극소점일 수도, 극대점일 수도 saddle point 일 수도 있다.</p>
 <ul>
 <li>극소점인지 확인해야 한다.</li>
 <li>만약 <span class="math inline">\(U\)</span> 의 경계를 포함하는 영역에서의 극소점을 찾는다면 경계에서의 값은 별도로 찾아서 비교해야 한다.</li>
@@ -643,15 +653,15 @@ f(\boldsymbol{x}_k + \boldsymbol{\epsilon}_k) &amp;\approx f(\boldsymbol{x}_k) +
 <p><span id="eq-optimization_optimization_problem_re"><span class="math display">\[
 \boxed{
 \begin{aligned}
-\quad&amp;\min_{\boldsymbol{x}} &amp;&amp; f(\boldsymbol{x}) \\[0.3em]
-&amp;\text{subject to} \quad &amp;&amp; g_i(\boldsymbol{x})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
-&amp;&amp;&amp; h_j(\boldsymbol{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\quad&amp;\min_{\boldsymbol{\theta}} &amp;&amp; f(\boldsymbol{\theta}) \\[0.3em]
+&amp;\text{subject to} \quad &amp;&amp; g_i(\boldsymbol{\theta})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
+&amp;&amp;&amp; h_j(\boldsymbol{\theta})= 0,\qquad j=1,\ldots,\,k.\quad
 \end{aligned}
 }
 \tag{11}\]</span></span></p>
-<p>KKH 조건, 즉 Karush-Kuhn-Tucker conditions 는 <span class="math inline">\(\boldsymbol{x}^\ast\)</span> 의 필요조건의 나열이다.</p>
-<p> (<span class="math inline">\(1\)</span>) <span class="math inline">\(\displaystyle \nabla_{\boldsymbol{x}} f(\boldsymbol{x}) + \sum_{i=1}^m \lambda_i \nabla_{\boldsymbol{x}}g_i(\boldsymbol{x}) + \sum_{j=1}^k \nabla_{\boldsymbol{x}} \mu_j h_j(\boldsymbol{x})=0\)</span> 을 만족하는 <span class="math inline">\(\{\lambda_i\}\)</span> 와 <span class="math inline">\(\{\mu_j\}\)</span> 가 존재한다.</p>
-<p> (<span class="math inline">\(2\)</span>) <span class="math inline">\(\mu_j h_j(\boldsymbol{x})\)</span> 이다. 즉 <span class="math inline">\(\mu_j\)</span> 와 <span class="math inline">\(h_j(\boldsymbol{x})\)</span> 가운데 하나는 <span class="math inline">\(0\)</span> 이다.</p>
+<p>KKH 조건, 즉 Karush-Kuhn-Tucker conditions 는 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 의 필요조건의 나열이다.</p>
+<p> (<span class="math inline">\(1\)</span>) <span class="math inline">\(\displaystyle \nabla_{\boldsymbol{\theta}} f(\boldsymbol{\theta}) + \sum_{i=1}^m \lambda_i \nabla_{\boldsymbol{\theta}}g_i(\boldsymbol{\theta}) + \sum_{j=1}^k \nabla_{\boldsymbol{\theta}} \mu_j h_j(\boldsymbol{\theta})=0\)</span> 을 만족하는 <span class="math inline">\(\{\lambda_i\}\)</span> 와 <span class="math inline">\(\{\mu_j\}\)</span> 가 존재한다.</p>
+<p> (<span class="math inline">\(2\)</span>) <span class="math inline">\(\mu_j h_j(\boldsymbol{\theta})\)</span> 이다. 즉 <span class="math inline">\(\mu_j\)</span> 와 <span class="math inline">\(h_j(\boldsymbol{\theta})\)</span> 가운데 하나는 <span class="math inline">\(0\)</span> 이다.</p>
 <p> (<span class="math inline">\(3\)</span>) <span class="math inline">\(j=1,\ldots,\,k\)</span> 에 대해 <span class="math inline">\(\mu_j\ge 0\)</span> 이다.</p>
 <p><br></p>
 

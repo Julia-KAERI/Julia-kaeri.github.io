@@ -26,34 +26,31 @@ crossref:
 
 ### 최적화문제 
 
-</br>
-
-$f:U \subset \R^n \to \R$ 에 대해 아래의 $\bf{x}^\ast$ 문제를 구하는 것을 최적화 문제라고 한다.
+일반적으로 최적화 문제는 어떤 함수 $f:U \subset \R^n \to \R$ 에 대해 아래의 $\bf{\theta}^\ast$ 문제를 구하는 것으로 주어진다.
 
 $$
 \boxed{
 \begin{aligned}
-\quad& \bf{x}^\ast = \argmin_{\bf{x}\in U} && f(\bf{x}) \\[0.3em]
-&\text{subject to} \quad && g_i(\bf{x})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
-&&& h_j(\bf{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\quad& \bf{\theta}^\ast = \argmin_{\bf{\theta}\in U} && f(\bf{\theta}) \\[0.3em]
+&\text{subject to} \quad && g_i(\bf{\theta})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
+&&& h_j(\bf{\theta})= 0,\qquad j=1,\ldots,\,k.\quad
 \end{aligned}
 }
-$$ {#eq-optimization_optimization_problem}
-
-**3가지 기본 요소**
-
-&emsp;($1$) 변수 (Decesion variable or unknown) $\bf{x}\in \R^n$
-
-&emsp;($2$) 목적함수 (objective function) $f:\R^n \to \R$
-
-&emsp;($3$) 제약 조건 (Constraint) : @eq-optimization_optimization_problem 에 주어진 $g_i(\bf{x}) \le 0,\, h_j(\bf{x})=0$ 의 조건들.
-
-
-
+$$ {#eq-ML_optimization_optimization_problem}
 
 </br>
 
-**과정**
+#### **3가지 기본 요소**
+
+&emsp;($1$) 변수 (Decesion variable or unknown) $\bf{\theta}\in \R^n$
+
+&emsp;($2$) 목적함수 (objective function) $f:\R^n \to \R$
+
+&emsp;($3$) 제약 조건 (Constraint) : @eq-ML_optimization_optimization_problem 에 주어진 $g_i(\bf{\theta}) \le 0,\, h_j(\bf{\theta})=0$ 의 조건들.
+
+</br>
+
+#### **과정**
 
 &emsp;($1$) 모델링 : 목적함수, 변수, 제약조건을 찾고 확인한다.
 
@@ -63,24 +60,24 @@ $$ {#eq-optimization_optimization_problem}
 
 ### 최적화의 수학 모델
 
-**수학적 표준 모델**
+#### **수학적 표준 모델**
 
-- 제약조건을 만족하는 $\mathcal{C}\subset \R^n$ 를 **가능해 영역(feasible region)** 이라고 한다. 즉 $\mathcal{C}$ 는 아래와 같다.
+- 제약조건을 만족하는 $\mathcal{C}\subset \R^n$ 를 **가능해 영역(feasible region)** 이라고 한다. @eq-ML_optimization_optimization_problem 과 같은 최적화 문제에 대해 $\mathcal{C}$ 는 아래와 같다.
 $$
-\mathcal{C} = \{\bf{x}\in U : g_i(\bf{x})\le 0,\,i=1,\ldots,\,m,\, h_j(\bf{x})=0,\, j=1,\ldots,\,k\}.
+\mathcal{C} = \{\bf{\theta}\in U : g_i(\bf{\theta})\le 0,\,i=1,\ldots,\,m,\, h_j(\bf{\theta})=0,\, j=1,\ldots,\,k\}.
 $$ {#eq-optimization_feasible_model}
 
-- @eq-optimization_optimization_problem 을 짧게 쓰면 가능해 영역 $\mathcal{C}$ 에 대해 $\displaystyle \bf{x}^\ast = \argmin_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 를 찾는 문제이다. 이 $\bf{x}^\ast$ 를 **최적해 (optimal solution)** 이라고 한다.
+- @eq-ML_optimization_optimization_problem 을 짧게 쓰면 가능해 영역 $\mathcal{C}$ 에 대해 $\displaystyle \bf{\theta}^\ast = \argmin_{\bf{\theta}\in \mathcal{C}} f(\bf{\theta})$ 를 찾는 문제이다. 이 $\bf{\theta}^\ast$ 를 **최적해 (optimal solution)** 이라고 한다.
 
 - $\{g_i\}$ 나 $\{h_j\}$ 와 같은 제약조건이 없다면 *unconstrained* 라고 하며, 그렇지 않다면 *constrained* 라고 한다.
 
 </br>
 
-**등가 변환**
+#### **등가 변환**
 
-- 우리가 구하고자 하는 문제가 $f(\bf{x})$ 를 최소화 하는 것이 아닌 최대로 하는 $\bf{x}$ 를 찾는 문제라면 $-f(\bf{x})$ 를 최소화 하는 문제이다.
+- 우리가 구하고자 하는 문제가 $f(\bf{\theta})$ 를 최소화 하는 것이 아닌 최대로 하는 $\bf{\theta}$ 를 찾는 문제라면 $-f(\bf{\theta})$ 를 최소화 하는 문제이다.
 
-- constraint 가 $g_i(\bf{x}) \ge 0$ 이라면 $-g_i(\bf{x})\le 0$ 으로 바꿀 수 있다. 
+- constraint 가 $g_i(\bf{\theta}) \ge 0$ 이라면 $-g_i(\bf{\theta})\le 0$ 으로 바꿀 수 있다. 
 
 - 즉 수학적 표준 모델은 상당히 표면적으로 보이는 것보다 훨씬 넓은 범위의 문제를 포괄한다.
 
@@ -93,7 +90,7 @@ $$ {#eq-optimization_feasible_model}
 
 ![전역적 최소와 국소적 최소](notebooks/local_global_minimum.png){#fig-optimization_global_local_minima width=500}
 
-전체 영역에서의 최소점은 $x_G$ 이며 이를 **전역적 최소점(global minimum)** 이라고 한다. 그리고 $x_L$ 같이 어떤 근방에서의 최소점을 **국소적 최소점(local minimum)** 혹은 **극소점** 이라고 한다. 함수 $f(x)$ 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. $f(x)$ 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 $0$ 이고 이차미분이 양수인 점이다. 다변수의 경우 $\nabla f(\bf{x})=\bf{0}$ 이며 헤시안 행렬 $\bf{H}_f$ 가 positive definite 한 경우이다. 
+전체 영역에서의 최소점은 $x_G$ 이며 이를 **전역적 최소점(global minimum)** 이라고 한다. 그리고 $x_L$ 같이 어떤 근방에서의 최소점을 **국소적 최소점(local minimum)** 혹은 **극소점** 이라고 한다. 함수 $f(x)$ 가 단 하나의 국소적 최소점을 갖는다는 보장이 없으며, 또한 많은 알고리즘은 전역적 최소점이 아닌 국소적 최소점을 찾는다. $f(x)$ 가 두번 미분 가능할 경우 국소적 최소점은 보통 미분이 $0$ 이고 이차미분이 양수인 점이다. 다변수의 경우 $\nabla f(\bf{\theta})=\bf{0}$ 이며 헤시안 행렬 $\bf{H}_f$ 가 positive definite 한 경우이다. 
 
 
 </br>
@@ -103,20 +100,26 @@ $$ {#eq-optimization_feasible_model}
 ### 볼록 함수와 볼록 집합
 
 ::: {.callout-tip appearance="minimal"}
-**볼록 함수 (convex function)**
+::: {#def-ML_convex_function_and_set}
+
+#### 볼록 함수 (convex function)
 
 $f:\R^n\to\R$ 이 다음을 만족하면 볼록 함수라고 한다.
 $$
-\forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in \R^n \implies f(\theta \bf{x}+(1-\theta)\bf{y}) \le \theta f(\bf{x}) + (1-\theta)f(\bf{y})
+\forall s\in [0,\,1],\, \bf{x},\, \bf{y}\in \R^n \implies f(s \bf{x}+(1-s)\bf{y}) \le s f(\bf{x}) + (1-s)f(\bf{y})
 $$ {#eq-optimization_convex_function}
 
-**볼록 집합 (convex set)**
+:::
+
+::: {#def-ML_convex_function_and_set_2}
+#### 볼록 집합 (convex set)
 
 $A\subset\R^n$ 이 다음을 만족하면 볼록 집합이라 한다.
 
 $$
-\forall \theta\in [0,\,1],\, \bf{x},\, \bf{y}\in A \implies \theta \bf{x}+(1-\theta)\bf{y}\in A
+\forall s\in [0,\,1],\, \bf{x},\, \bf{y}\in A \implies s \bf{x}+(1-s)\bf{y}\in A
 $$ {#eq-optimization_convex_set}
+:::
 :::
 
 </br>
@@ -124,16 +127,16 @@ $$ {#eq-optimization_convex_set}
 
 ### 볼록 최적화
 
-@eq-optimization_optimization_problem 의 최적화 문제가 주어졌다고 하자. 이 때 목적함수가 볼록 함수 이고 가능해 영역 이 볼록 집합인 경우의 최적화 문제를 **볼록 최적화 (convex optimization)** 문제 라고 한다.
+@eq-ML_optimization_optimization_problem 의 최적화 문제가 주어졌다고 하자. 이 때 목적함수가 볼록 함수 이고 가능해 영역 이 볼록 집합인 경우의 최적화 문제를 **볼록 최적화 (convex optimization)** 문제 라고 한다.
 
-1. $g_i(\bf{x})$ 가 볼록 함수이고 $h_j(\bf{x})=\bf{a}^T\bf{x}+b$ 꼴이면 항상 볼록 최적화 문제이다.
+- $g_i(\bf{\theta})$ 가 볼록 함수이고 $h_j(\bf{\theta})=\bf{a}^T\bf{\theta}+b$ 꼴이면 항상 볼록 최적화 문제이다.
 
-2. 볼록 최적화에서의 모든 국소적 해는 전역적 해이다. (@thm-optimization_convex_local_global_minima)
+- 볼록 최적화에서의 모든 국소적 해는 전역적 해이다. (@thm-ML_optimization_convex_local_global_minima)
 
 
 </br><div class="border" style="background-color:#FFF0F5 ;padding:5px;">
 
-::: {#thm-optimization_convex_local_global_minima}
+::: {#thm-ML_optimization_convex_local_global_minima}
 
 볼록 최적화 문제에서 목적함수 $f:\R^n \to \R$ 과 가능해 공간 $\mathcal{C}$ 에 대해 국소적 최소점은 전역적 최소점이다.
 
@@ -143,16 +146,16 @@ $$ {#eq-optimization_convex_set}
 
 ::: {.proof}
 
-$\bf{x}^\ast$ 가 국소적 최소점이며 $\bf{x}_G \ne \bf{x}^\ast$ 가 전역적 최소점이라고 하자. 즉 $f(\bf{x}_G)<f(\bf{x}^\ast)$ 이다. $\theta\in [0,\,1]$ 에 대해 $\theta \bf{x}^\ast + (1-\theta)\bf{x}_G\in \mathcal{C}$ 이며
+$\bf{\theta}^\ast$ 가 국소적 최소점이며 $\bf{\theta}_G \ne \bf{\theta}^\ast$ 가 전역적 최소점이라고 하자. 즉 $f(\bf{\theta}_G)<f(\bf{\theta}^\ast)$ 이다. $s\in [0,\,1]$ 에 대해 $s\bf{\theta}^\ast + (1-s)\bf{\theta}_G\in \mathcal{C}$ 이며
 
 $$
 \begin{aligned}
-f(\theta \bf{x}^\ast + (1-\theta)\bf{x}_G) &\le \theta f(\bf{x}^\ast) + (1-\theta)f(\bf{x}_G) \\[0.3em]
-& < \theta f(\bf{x}^\ast) + (1-\theta)f(\bf{x}^\ast) = f(\bf{x}^\ast)
+f(s \bf{\theta}^\ast + (1-s)\bf{\theta}_G) &\le s f(\bf{\theta}^\ast) + (1-s)f(\bf{\theta}_G) \\[0.3em]
+& < s f(\bf{\theta}^\ast) + (1-s)f(\bf{\theta}^\ast) = f(\bf{\theta}^\ast)
 \end{aligned}
 $$
 
-이다. 즉 $f(\bf{x}^\ast)$ 가 국소적 해라는 전제에 모순이므로 국소적 해와 다른 전역적 해는 존재하지 않는다. $\square$
+이다. 즉 $f(\bf{\theta}^\ast)$ 가 국소적 해라는 전제에 모순이므로 국소적 해와 다른 전역적 해는 존재하지 않는다. $\square$
 
 :::
 
@@ -164,7 +167,7 @@ $$
 
 ::: {#thm-optimization_convex_solution_set}
 
-볼록 최적화 문제의 해 가 하나 이상일 때 해의 집합을 $X_{\text{co}}$ 라고 하자. 즉 $\displaystyle X_{\text{co}} = \argmin_{\bf{x}\in \mathcal{C}} f(\bf{x})$ 라고 하면 $X_{\text{op}}$ 는 볼록집합이다.
+볼록 최적화 문제의 해 가 하나 이상일 때 해의 집합을 $X$ 라고 하자. 즉 $\displaystyle X = \argmin_{\bf{\theta}\in \mathcal{C}} f(\bf{\theta})$ 라고 하면 $X$ 는 볼록집합이다.
 
 :::
 
@@ -173,16 +176,16 @@ $$
 
 ::: {.proof}
 
-$\bf{x}_1,\, \bf{x}_2\in X_{\text{co}}$ 라고 하자. $\mathcal{C}$ 가 볼록집합이므로 $\theta\in [0,\,1]$ 에 대해 $\theta \bf{x}_1 + (1-\theta)\bf{x}_2 \in \mathcal{C}$ 이다. 또한 $\bf{x}_1,\,\bf{x}_2$ 가 전역적 최소점이므로 $f(\bf{x}_1)=f(\bf{x}_2)=f_m$ 이다. 이로부터
+$\bf{\theta}_1,\, \bf{\theta}_2\in X$ 라고 하자. $\mathcal{C}$ 가 볼록집합이므로 $s\in [0,\,1]$ 에 대해 $s \bf{\theta}_1 + (1-s)\bf{\theta}_2 \in \mathcal{C}$ 이다. 또한 $\bf{\theta}_1,\,\bf{\theta}_2$ 가 전역적 최소점이므로 $f(\bf{\theta}_1)=f(\bf{\theta}_2)=f_m$ 이다. 이로부터
 
 
 $$
 \begin{aligned}
-f(\theta \bf{x}_1 + (1-\theta)\bf{x}_2) & \le \theta f(\bf{x}_1) + (1-\theta)f(\bf{x}_2) = f_m
+f(s \bf{\theta}_1 + (1-s)\bf{\theta}_2) & \le s f(\bf{\theta}_1) + (1-s)f(\bf{\theta}_2) = f_m
 \end{aligned}
 $$
 
-그런데 $f(\theta \bf{x}_1 + (1-\theta)\bf{x}_2) \ge f_m$ 이어야 하므로 $f(\theta \bf{x}_1 + (1-\theta)\bf{x}_2) =f_m$ 이다. $\square$
+그런데 $f(s \bf{\theta}_1 + (1-s)\bf{\theta}_2) \ge f_m$ 이어야 하므로 $f(s\bf{\theta}_1 + (1-s)\bf{\theta}_2) =f_m$ 이다. $\square$
 
 :::
 
@@ -197,9 +200,9 @@ $$
 $$
 \boxed{
 \begin{aligned}
-\quad \bf{x}^\ast = \argmin_{\bf{x}\in U} f(\bf{x}), \quad &&f(\bf{x}) = \bf{c}^T\bf{x} \\[0.3em]
-&&\text{subject to} \quad & \bf{g}_i^T\bf{x}\le b_j,\qquad && i = 1,\ldots,\,m,\\[0.3em]
-&&& \bf{h}_j^T\bf{x}= a_j,\qquad &&j=1,\ldots,\,k.\quad
+\quad \bf{\theta}^\ast = \argmin_{\bf{\theta}\in U} f(\bf{x}), \quad &&f(\bf{\theta}) = \bf{c}^T\bf{\theta} \\[0.3em]
+&&\text{subject to} \quad & \bf{g}_i^T\bf{\theta}\le b_j,\qquad && i = 1,\ldots,\,m,\\[0.3em]
+&&& \bf{h}_j^T\bf{\theta}= a_j,\qquad &&j=1,\ldots,\,k.\quad
 \end{aligned}
 }
 $$ {#eq-optimization_linear_general_LP}
@@ -210,7 +213,7 @@ $$ {#eq-optimization_linear_general_LP}
 
 - 목적함수는 변수에 대한 선형함수이며
   
-- 제한조건은 변수에 대한 affine 함수 ($\bf{a}^T\bf{x}+b$ 형태의 함수) 이다.
+- 제한조건은 변수에 대한 affine 함수 ($\bf{a}^T\bf{\theta}+b$ 형태의 함수) 이다.
 
 
 
@@ -219,33 +222,33 @@ $$ {#eq-optimization_linear_general_LP}
 
 ## Unconstrained convex optimizaiton 문제 
 
-- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 찾는 문제이다.
+- $\nabla_\bf{\theta}f(\bf{\theta}^\ast)=\bf{0}$ 인 $\bf{\theta}^\ast$ 를 찾는 문제이다.
 
 $$
-\nabla_\bf{x} f := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} \\ \vdots \\ \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+\nabla_\bf{\theta} f := \begin{bmatrix} \dfrac{\partial f}{\partial \theta_1} \\ \vdots \\ \dfrac{\partial f}{\partial \theta_n}\end{bmatrix}
 $$ {#eq-optimization_gradient}
 
 이와 유사하게 
 
 $$
-\dfrac{df}{d\bf{x}} := \begin{bmatrix} \dfrac{\partial f}{\partial x_1} & \cdots & \dfrac{\partial f}{\partial x_n}\end{bmatrix}
+\dfrac{df}{d\bf{\theta}} := \begin{bmatrix} \dfrac{\partial f}{\partial \theta_1} & \cdots & \dfrac{\partial f}{\partial \theta_n}\end{bmatrix}
 $${#eq-optimization_differentiation_to_vector}
 
-로 정의한다. 즉 $\nabla_{\bf{x}}f$ 는 열벡터이며 $\dfrac{d f}{d\bf{x}}$ 는 행벡터이다. 
+로 정의한다. 즉 $\nabla_{\bf{\theta}}f$ 는 열벡터이며 $\dfrac{d f}{d\bf{\theta}}$ 는 행벡터이다. 
 
 
 </br>
 
 ### Gradient
 
-$\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n \end{bmatrix}^T \in \R^n$, $\bf{a} \in \R^n$, $\bf{A}=\mathcal{M}_{m \times n}(\R)$ 일 때 $\bf{x}$ 에 대한 스칼라 함수의 gradient 는 다음과 같다.
+$\bf{\theta} = \begin{bmatrix}\theta_1 & \cdots & \theta_n \end{bmatrix}^T \in \R^n$, $\bf{a} \in \R^n$, $\bf{A}=\mathcal{M}_{m \times n}(\R)$ 일 때 $\bf{\theta}$ 에 대한 스칼라 함수의 gradient 는 다음과 같다.
 
 $$
 \begin{aligned}
-\nabla_\bf{x} (\bf{a}^T\bf{x}) &= \bf{a}\\[0.3em]
-\nabla_\bf{x} (\bf{x}^T\bf{a}) &= \bf{a}\\[0.3em]
-\nabla_\bf{x} (\bf{x}^T\bf{x}) &= 2\bf{x}\\[0.3em]
-\nabla_{\bf{x}} (\bf{x}^T\bf{Ax}) &= (\bf{A}^T +\bf{A})\bf{x}
+\nabla_\bf{\theta} (\bf{a}^T\bf{\theta}) &= \bf{a}\\[0.3em]
+\nabla_\bf{\theta} (\bf{\theta}^T\bf{a}) &= \bf{a}\\[0.3em]
+\nabla_\bf{\theta} (\bf{\theta}^T\bf{\theta}) &= 2\bf{\theta}\\[0.3em]
+\nabla_{\bf{\theta}} (\bf{\theta}^T\bf{A\theta}) &= (\bf{A}^T +\bf{A})\bf{\theta}
 \end{aligned}
 $$ {#eq-optimzation_gradient_of_vector}
 
@@ -254,11 +257,11 @@ $$ {#eq-optimzation_gradient_of_vector}
 
 ### 직접법
 
-- $\nabla_\bf{x}f(\bf{x}^\ast)=\bf{0}$ 인 $\bf{x}^\ast$ 를 직접 구한다.
+- $\nabla_\bf{\theta}f(\bf{\theta}^\ast)=\bf{0}$ 인 $\bf{\theta}^\ast$ 를 직접 구한다.
 
 </br>
 
-이제 몇가지 형태의 convex 함수인 목적함수에 대한 그래디언트 $\nabla_{\bf{x}}f(\bf{x})$ 와 헤시안 행렬 $\bf{H}_f$ 를 구해보자.
+이제 몇가지 형태의 convex 함수인 목적함수에 대한 그래디언트 $\nabla_{\bf{\theta}}f(\bf{\theta})$ 와 헤시안 행렬 $\bf{H}_f$ 를 구해보자.
 
 <div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
@@ -266,10 +269,10 @@ $$ {#eq-optimzation_gradient_of_vector}
 
 #### Affine 형태의 목적함수
 
-$f(\bf{x}) = \bf{a}^T\bf{x} + \bf{b}$ 인 경우 
+$f(\bf{\theta}) = \bf{a}^T\bf{\theta} + \bf{b}$ 인 경우 
 
 $$
-\nabla_\bf{x}f(\bf{x})=\bf{a},\qquad \bf{H}_f = \bf{0}.
+\nabla_\bf{\theta}f(\bf{\theta})=\bf{a},\qquad \bf{H}_f = \bf{0}.
 $$
 
 이다. 따라서 $\bf{a}=\bf{0}$ 인 특별한 경우가 아니면 최소값이 존재하지 않는다.
@@ -284,10 +287,10 @@ $$
 
 #### Quadratic 형태의 목적함수
 
-대칭행렬 $\bf{P}$ 에 대해 $f(\bf{x}) = \bf{x}^T\bf{Px} + \bf{b}^T\bf{x}+c$ 인 경우 
+대칭행렬 $\bf{P}$ 에 대해 $f(\bf{\theta}) = \bf{\theta}^T\bf{P\theta} + \bf{b}^T\bf{\theta}+c$ 인 경우 
 
 $$
-\nabla_{\bf{x}}f(\bf{x})= 2\bf{Px} + \bf{b},\qquad \bf{H}_f = 2\bf{P}
+\nabla_{\bf{\theta}}f(\bf{\theta})= 2\bf{P\theta} + \bf{b},\qquad \bf{H}_f = 2\bf{P}
 $$
 
 이다. 
@@ -300,19 +303,19 @@ $$
 
 #### 제곱 형태의 목적함수
 
-대칭행렬 $\bf{P}$ 에 대해 $f(\bf{x}) = \|\bf{Ax}-\bf{b}\|_2^2$ 인 경우 
+대칭행렬 $\bf{P}$ 에 대해 $f(\bf{\theta}) = \|\bf{A\theta}-\bf{b}\|_2^2$ 인 경우 
 
 $$
-f(\bf{x})= \bf{x}^T\bf{A}^T\bf{Ax} - \bf{x}^T\bf{A}^T\bf{b}-\bf{b}^T\bf{Ax}+\bf{b}^T\bf{b}
+f(\bf{\theta})= \bf{\theta}^T\bf{A}^T\bf{A\theta} - \bf{\theta}^T\bf{A}^T\bf{b}-\bf{b}^T\bf{A\theta}+\bf{b}^T\bf{b}
 $$
 
 이므로 gradient 와 헤시안 행렬은 다음과 같다.
 
 $$
-\nabla_{\bf{x}}f(\bf{x})= 2\bf{A}^T\bf{Ax} -2\bf{A}^T\bf{b},\qquad \bf{H}_f = 2\bf{A}^T\bf{A}.
+\nabla_{\bf{\theta}}f(\bf{\theta})= 2\bf{A}^T\bf{A\theta} -2\bf{A}^T\bf{b},\qquad \bf{H}_f = 2\bf{A}^T\bf{A}.
 $$
 
-이 때 $\bf{x}^\ast = (\bf{A}^T\bf{A})^{-1}\bf{A}^T\bf{b}$ 이어야 한다. 이 때 $(\bf{A}^T\bf{A})^{-1}\bf{A}^T$ 는 잘 알려진 무어-펜로즈 좌측 유사역행렬(left pseudoinverse matrix) 이다.
+이 때 $\bf{\theta}^\ast = (\bf{A}^T\bf{A})^{-1}\bf{A}^T\bf{b}$ 이어야 한다. 이 때 $(\bf{A}^T\bf{A})^{-1}\bf{A}^T$ 는 잘 알려진 무어-펜로즈 좌측 유사역행렬(left pseudoinverse matrix) 이다.
 
 :::
 </div>
@@ -321,70 +324,71 @@ $$
 
 ### 경사 하강법(Gradient descent)
 
-미분 가능한 $f(\bf{x})$ 에 대해 $\bf{x}_0$ 가 주어졌으며 충분히 작은 값 $\alpha_k$ 에 대해 $\bf{x}_{k+1}$ 이 다음과 같다고 하자.
+미분 가능한 $f(\bf{\theta})$ 에 대해 $\bf{\theta}_0$ 가 주어졌으며 충분히 작은 값 $\alpha_k$ 에 대해 $\bf{\theta}_{k+1}$ 이 다음과 같다고 하자.
 
 $$
-\bf{x}_{k+1} = \bf{x}_k -\alpha_k \nabla_\bf{x} f(\bf{x}_k)
+\bf{\theta}_{k+1} = \bf{\theta}_k -\alpha_k \nabla_\bf{\theta} f(\bf{\theta}_k)
 $$
 
-그렇다면 $f(\bf{x}_{k+1}) < f(\bf{x}_k)$ 가 될 것이고 이것을 계속 반복해 나가면 $f(\bf{x})$ 의 국소적 최저점을 찾을 수 있다. 이것을 **경사 하강법(gradient descent method)** 이라고 한다.
+그렇다면 $f(\bf{\theta}_{k+1}) < f(\bf{\theta}_k)$ 가 될 것이고 이것을 계속 반복해 나가면 $f(\bf{\theta})$ 의 국소적 최저점을 찾을 수 있다. 이것을 **경사 하강법(gradient descent method)** 이라고 한다.
+
 
 </br>
 
 ### 뉴턴법
 
-$f:U \subset \R \to R$ 인 함수에 대해 $f(x)=0$ 을 찾는 방법 가운데 뉴턴-랩슨 방법은 초기값 $x_0$ 를 주고
+$f:U \subset \R \to R$ 인 함수에 대해 $f(\theta)=0$ 을 찾는 방법 가운데 뉴턴-랩슨 방법은 초기값 $\theta_0$ 를 주고
 
 $$
-x_{k+1} = x_k - \dfrac{f(x_k)}{f'(x_k)}
+\theta_{k+1} = \theta_k - \dfrac{f(\theta_k)}{f'(\theta_k)}
 $$
 
-를 통해 점진적으로 $f(x)=0$ 을 찾는 방법이다. 만약 $f\in C_2$ 라면 $f'(x^\ast)=0$ 의 해는 뉴턴-랩슨 방법을 사용하여
+를 통해 점진적으로 $f(\theta)=0$ 을 찾는 방법이다. 만약 $f\in C_2$ 라면 $f'(\theta^\ast)=0$ 의 해는 뉴턴-랩슨 방법을 사용하여
 
 $$
-x_{k+1}=x_k - \dfrac{f'(x_k)}{f''(x_k)}
+\theta_{k+1}=\theta_k - \dfrac{f'(\theta_k)}{f''(\theta_k)}
 $$
 
 를 통해 얻을 수 있다. 만약 $f:\R^n \to \R$ 이
 
 $$
-f(\bf{x}) = \|\bf{Ax}-\bf{b}\|_2^2 
+f(\bf{\theta}) = \|\bf{A\theta}-\bf{b}\|_2^2 
 $$
 
 으로 주어졌다면 @exm-optimizatin_object_function_Square 로 부터
 
 $$
-\bf{x}_{k+1}= \bf{x}_k - \left(\bf{H}_f\right)^{-1} \nabla_\bf{x} f(\bf{x}_k) = \bf{x}_k - (\bf{A}^T\bf{A})^{-1}\bf{A}^T(\bf{A}\bf{x}_k-\bf{b})
+\bf{\theta}_{k+1}= \bf{\theta}_k - \left(\bf{H}_f\right)^{-1} \nabla_\bf{\theta} f(\bf{\theta}_k) = \bf{\theta}_k - (\bf{A}^T\bf{A})^{-1}\bf{A}^T(\bf{A}\bf{\theta}_k-\bf{b})
 $$
 
-를 이용하여 반복적으로 최적해 $\bf{x}^\ast$ 를 찾는다. 뉴턴법은 경사하강법에 비해 수렴속도가 빠르지만 1) 헤세 행렬 $\bf{H}_f$ 를 구해야 하며, 2) 헤세 행렬에 대한 역행렬도 구해야 한다. 이 둘 모두 큰 계산량을 요구한다.
+를 이용하여 반복적으로 최적해 $\bf{\theta}^\ast$ 를 찾는다. 뉴턴법은 경사하강법에 비해 수렴속도가 빠르지만 1) 헤세 행렬 $\bf{H}_f$ 를 구해야 하며, 2) 헤세 행렬에 대한 역행렬도 구해야 한다. 이 둘 모두 큰 계산량을 요구한다.
 
 
 </br>
 
 ### 준-뉴턴법(Quasi-Newton method)
 
-뉴턴법의 큰 계산량을 줄이기 위해 고안된 방법이다. $f(\bf{x})$ 를 2차 근사하면 헤세 행렬 $\bf{H}_f$ 에 대해 다음과 같다.
+뉴턴법의 큰 계산량을 줄이기 위해 고안된 방법이다. $f(\bf{\theta})$ 를 2차 근사하면 헤세 행렬 $\bf{H}_f$ 에 대해 다음과 같다.
 
 </br>
 
 $$
-f(\bf{x} + \Delta \bf{x}) \approx f(\bf{x}) + \dfrac{df(\bf{x})}{d\bf{x}} \cdot \Delta \bf{x} + \dfrac{1}{2} \Delta \bf{x}^T \bf{H}_f\Delta \bf{x}
+f(\bf{\theta} + \Delta \bf{\theta}) \approx f(\bf{\theta}) + \dfrac{df(\bf{\theta})}{d\bf{\theta}} \cdot \Delta \bf{\theta} + \dfrac{1}{2} \Delta \bf{\theta}^T \bf{H}_f\Delta \bf{\theta}
 $$
 
-뉴턴법에서는 최적해 $\bf{x}^\ast$ 에 대한 추정값 $\bf{x}_0$ 을 입력하고 헤세 행렬을 직접 계산했지만 여기서는 $\bf{x}_0$ 뿐만 아니라 헤세 행렬에 대한 추정값 $\bf{B}_0$ 도 입력하며 $\bf{x}_k$ 뿐만 아니라 헤세 행렬에 상응하는 행렬 $\bf{B}_k$ 도 계속 업데이트 한다.
+뉴턴법에서는 최적해 $\bf{\theta}^\ast$ 에 대한 추정값 $\bf{\theta}_0$ 을 입력하고 헤세 행렬을 직접 계산했지만 여기서는 $\bf{\theta}_0$ 뿐만 아니라 헤세 행렬에 대한 추정값 $\bf{B}_0$ 도 입력하며 $\bf{\theta}_k$ 뿐만 아니라 헤세 행렬에 상응하는 행렬 $\bf{B}_k$ 도 계속 업데이트 한다.
 
 $$
 \begin{aligned}
-f(\bf{x}_k + \bf{\epsilon}_k) &\approx f(\bf{x}_k) + \dfrac{df(\bf{x})}{d\bf{x}} \cdot \bf{\epsilon}_k + \dfrac{1}{2} (\bf{\epsilon}_k)^T\cdot  \bf{B}_k \cdot ( \bf{\epsilon}_k) \\[0.3em]
-\nabla_{\bf{\epsilon}_k} f(\bf{x}_k + \bf{\epsilon}_k) &\approx  \nabla_{\bf{x}}f(\bf{x}_k) + \bf{B}_k\bf{\epsilon}_k
+f(\bf{\theta}_k + \bf{\epsilon}_k) &\approx f(\bf{\theta}_k) + \dfrac{df(\bf{\theta})}{d\bf{\theta}} \cdot \bf{\epsilon}_k + \dfrac{1}{2} (\bf{\epsilon}_k)^T\cdot  \bf{B}_k \cdot ( \bf{\epsilon}_k) \\[0.3em]
+\nabla_{\bf{\epsilon}_k} f(\bf{\theta}_k + \bf{\epsilon}_k) &\approx  \nabla_{\bf{\theta}}f(\bf{\theta}_k) + \bf{B}_k\bf{\epsilon}_k
 \end{aligned}
 $$
 
-을 이용한다. 위의 식 가운데 두번째에서 $\bf{x}_k + \bf{\epsilon}_k$ 가 극소점에 다가가면 $0$ 에 가깝게 될 것이므로 $\bf{\epsilon}_k = - \bf{B}_k^{-1}\cdot \nabla_{\bf{x}}f(\bf{x}_k)$ 로 근사한다. 그렇다면 
+을 이용한다. 위의 식 가운데 두번째에서 $\bf{\theta}_k + \bf{\epsilon}_k$ 가 극소점에 다가가면 $0$ 에 가깝게 될 것이므로 $\bf{\epsilon}_k = - \bf{B}_k^{-1}\cdot \nabla_{\bf{\theta}}f(\bf{\theta}_k)$ 로 근사한다. 그렇다면 
 
 $$
-\bf{x}_{k+1} = \bf{x}_k +\bf{\epsilon}_k = \bf{x}_k -\bf{B}_k^{-1} \cdot \nabla_{\bf{x}}f(\bf{x}) 
+\bf{\theta}_{k+1} = \bf{\theta}_k +\bf{\epsilon}_k = \bf{\theta}_k -\bf{B}_k^{-1} \cdot \nabla_{\bf{\theta}}f(\bf{\theta}) 
 $$
 
 로 업데이트 한다. 이것은 뉴턴법과 차이가 없지만 준 뉴턴법은 $\bf{B}_k$ 를 구하는 방법에 따라 BFGS, DFP, SR1, Broyden 등의 여러가지 세부 방법이 있다.
@@ -402,8 +406,8 @@ $$
 $$
 \boxed{
 \begin{aligned}
-\quad&\min_{\bf{x}} && f(\bf{x}) \\[0.3em]
-&\text{subject to} \quad && h_j(\bf{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\quad&\min_{\bf{\theta}} && f(\bf{\theta}) \\[0.3em]
+&\text{subject to} \quad && h_j(\bf{\theta})= 0,\qquad j=1,\ldots,\,k.\quad
 \end{aligned}
 }
 $$ {#eq-optimization_optimization_problem}
@@ -417,16 +421,16 @@ $$ {#eq-optimization_optimization_problem}
 
 #### 라그랑주 승수법
 
-$\R^n$ 에서의 열린 영역 $U$ 에서 정의된 미분가능한 $f:U \to \R$ 와 $C_1$ 급 함수 $h_i : U \to \R,\, i=1,\ldots,\,M$ 에 대해 가능해 영역 $\mathcal{C}$ 가 다음과 같이 $h_i(\bf{x})=0$ 을 만족하는 형태로만 주어졌다고 하자.
+$\R^n$ 에서의 열린 영역 $U$ 에서 정의된 미분가능한 $f:U \to \R$ 와 $C_1$ 급 함수 $h_i : U \to \R,\, i=1,\ldots,\,M$ 에 대해 가능해 영역 $\mathcal{C}$ 가 다음과 같이 $h_i(\bf{\theta})=0$ 을 만족하는 형태로만 주어졌다고 하자.
 
 $$
-\mathcal{C} = \{\bf{x}\in U: \bf{x}\in h_i(\bf{x})=0,\, i=1,\ldots,\,M\}
+\mathcal{C} = \{\bf{\theta}\in U: \bf{\theta}\in h_i(\bf{\theta})=0,\, i=1,\ldots,\,M\}
 $$ 
 
-각각의 $\bf{x}\in \mathcal{C}$ 에 대해 $\nabla_{\bf{x}} h_1(\bf{x}),\ldots,\,\nabla_{\bf{x}}h_M(\bf{x})$ 가 선형 독립일 때 $f$ 를 $\mathcal{C}$ 로 제한한 $f|_{\mathcal{C}}$ 의 극점 $\bf{x}^\ast$ 가 존재한다면
+각각의 $\bf{\theta}\in \mathcal{C}$ 에 대해 $\nabla_{\bf{\theta}} h_1(\bf{\theta}),\ldots,\,\nabla_{\bf{\theta}}h_M(\bf{\theta})$ 가 선형 독립일 때 $f$ 를 $\mathcal{C}$ 로 제한한 $f|_{\mathcal{C}}$ 의 극점 $\bf{\theta}^\ast$ 가 존재한다면
 
 $$
-\nabla_{\bf{x}}f(\bf{x}^\ast) = \sum_{i=1}^M \lambda_i \nabla_\bf{x}h_i(\bf{x}^\ast)
+\nabla_{\bf{\theta}}f(\bf{\theta}^\ast) = \sum_{i=1}^M \lambda_i \nabla_\bf{\theta}h_i(\bf{\theta}^\ast)
 $$ {#eq-optimization_lagrange_mutiplier_for_equal_restrictions}
 
 인 $\lambda_i,\, i=1,\ldots,\,M$ 가 존재한다. 
@@ -437,7 +441,7 @@ $$ {#eq-optimization_lagrange_mutiplier_for_equal_restrictions}
 </div></br>
 
 
-목적함수 $f(\bf{x})$ 에 대해 $h_i(\bf{x})=0,\, (i=1,\ldots,\,M)$ 의 제약조건이 주어졌다고 하자. 이 때 @eq-optimization_lagrange_mutiplier_for_equal_restrictions 을 만족하는 $\bf{x}^\ast$ 는 가능해 영역 $\mathcal{C}$ 에서의 $f(\bf{x})$ 의 stationary point 이다. 극소점일 수도, 극대점일 수도 saddle point 일 수도 있다.
+목적함수 $f(\bf{\theta})$ 에 대해 $h_i(\bf{\theta})=0,\, (i=1,\ldots,\,M)$ 의 제약조건이 주어졌다고 하자. 이 때 @eq-optimization_lagrange_mutiplier_for_equal_restrictions 을 만족하는 $\bf{\theta}^\ast$ 는 가능해 영역 $\mathcal{C}$ 에서의 $f(\bf{\theta})$ 의 stationary point 이다. 극소점일 수도, 극대점일 수도 saddle point 일 수도 있다.
 
 - 극소점인지 확인해야 한다.
 - 만약 $U$ 의 경계를 포함하는 영역에서의 극소점을 찾는다면 경계에서의 값은 별도로 찾아서 비교해야 한다.
@@ -452,18 +456,18 @@ $$ {#eq-optimization_lagrange_mutiplier_for_equal_restrictions}
 $$
 \boxed{
 \begin{aligned}
-\quad&\min_{\bf{x}} && f(\bf{x}) \\[0.3em]
-&\text{subject to} \quad && g_i(\bf{x})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
-&&& h_j(\bf{x})= 0,\qquad j=1,\ldots,\,k.\quad
+\quad&\min_{\bf{\theta}} && f(\bf{\theta}) \\[0.3em]
+&\text{subject to} \quad && g_i(\bf{\theta})\le 0,\qquad i = 1,\ldots,\,m\\[0.3em]
+&&& h_j(\bf{\theta})= 0,\qquad j=1,\ldots,\,k.\quad
 \end{aligned}
 }
 $$ {#eq-optimization_optimization_problem_re}
 
-KKH 조건, 즉 Karush-Kuhn-Tucker conditions 는 $\bf{x}^\ast$ 의 필요조건의 나열이다.
+KKH 조건, 즉 Karush-Kuhn-Tucker conditions 는 $\bf{\theta}^\ast$ 의 필요조건의 나열이다.
 
-&emsp;($1$) $\displaystyle \nabla_{\bf{x}} f(\bf{x}) + \sum_{i=1}^m \lambda_i \nabla_{\bf{x}}g_i(\bf{x}) + \sum_{j=1}^k \nabla_{\bf{x}} \mu_j h_j(\bf{x})=0$ 을 만족하는 $\{\lambda_i\}$ 와 $\{\mu_j\}$ 가 존재한다.
+&emsp;($1$) $\displaystyle \nabla_{\bf{\theta}} f(\bf{\theta}) + \sum_{i=1}^m \lambda_i \nabla_{\bf{\theta}}g_i(\bf{\theta}) + \sum_{j=1}^k \nabla_{\bf{\theta}} \mu_j h_j(\bf{\theta})=0$ 을 만족하는 $\{\lambda_i\}$ 와 $\{\mu_j\}$ 가 존재한다.
 
-&emsp;($2$) $\mu_j h_j(\bf{x})$ 이다. 즉 $\mu_j$ 와 $h_j(\bf{x})$ 가운데 하나는 $0$ 이다. 
+&emsp;($2$) $\mu_j h_j(\bf{\theta})$ 이다. 즉 $\mu_j$ 와 $h_j(\bf{\theta})$ 가운데 하나는 $0$ 이다. 
 
 &emsp;($3$) $j=1,\ldots,\,k$ 에 대해 $\mu_j\ge 0$ 이다.
 

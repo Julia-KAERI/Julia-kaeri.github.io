@@ -1,143 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/statistics.html</loc>
-    <lastmod>2024-12-27T05:10:18.951Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/optimization.html</loc>
-    <lastmod>2025-01-08T01:49:52.709Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/ML.html</loc>
-    <lastmod>2025-01-07T11:16:31.951Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/ML/pytorch/intro.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
-  </url>
-  <url>
     <loc>https://julia-kaeri.github.io/src/topics/socket.html</loc>
-    <lastmod>2024-12-18T14:46:44.724Z</lastmod>
+    <lastmod>2024-12-20T01:33:20.950Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/unixLinux/git.html</loc>
-    <lastmod>2024-12-18T01:56:48.371Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_wavelet.html</loc>
     <lastmod>2024-12-30T00:04:07.782Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
     <lastmod>2024-12-30T00:04:07.775Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
-    <lastmod>2024-12-18T01:56:48.362Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
-    <lastmod>2024-12-18T01:56:48.361Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/02_programming_model.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_performance_tips.html</loc>
-    <lastmod>2024-12-30T00:04:07.774Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_array_programming.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/ML/ml.html</loc>
-    <lastmod>2024-12-24T08:12:27.557Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/index.html</loc>
-    <lastmod>2024-12-18T01:56:48.358Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/about.html</loc>
-    <lastmod>2024-12-18T01:56:48.333Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/latexmacros.html</loc>
-    <lastmod>2024-12-24T08:12:27.557Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/cpp_qt/cpp_qt.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_kernel_programming.html</loc>
-    <lastmod>2024-12-30T00:04:07.773Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/01_introduction.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/03_programming_interface.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/gpu/cuda/05_performance_guideline.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/posts/first.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://julia-kaeri.github.io/src/tools/Asymptote/asymptote.html</loc>
-    <lastmod>2024-12-18T01:56:48.361Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz.html</loc>
     <lastmod>2024-12-30T00:04:07.774Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_pde.html</loc>
-    <lastmod>2024-12-30T00:04:07.775Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/tools/Asymptote/asymptote.html</loc>
+    <lastmod>2024-12-12T11:32:00.332Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
-    <lastmod>2024-12-18T01:56:48.371Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/posts/first.html</loc>
+    <lastmod>2024-12-12T11:32:00.331Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
-    <lastmod>2024-12-30T00:04:07.791Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/05_performance_guideline.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_test.html</loc>
-    <lastmod>2024-12-30T00:04:07.776Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/03_programming_interface.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/01_introduction.html</loc>
+    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_kernel_programming.html</loc>
+    <lastmod>2024-12-30T00:04:07.773Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/cpp_qt/cpp_qt.html</loc>
+    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/regression.html</loc>
+    <lastmod>2025-01-09T08:10:49.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/optimization.html</loc>
+    <lastmod>2025-01-09T08:10:44.627Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/ML.html</loc>
+    <lastmod>2025-01-09T06:05:03.791Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/pytorch/intro.html</loc>
+    <lastmod>2024-12-17T11:34:29.277Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/latexmacros.html</loc>
+    <lastmod>2024-12-24T06:02:45.452Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/about.html</loc>
+    <lastmod>2024-12-12T11:32:00.234Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/index.html</loc>
+    <lastmod>2024-12-12T11:32:00.326Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/ML/ml.html</loc>
+    <lastmod>2024-12-24T05:27:46.746Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/pytorch/tensor.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
+    <lastmod>2024-12-17T11:34:54.787Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/classification.html</loc>
     <lastmod>2024-12-30T00:05:02.666Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/regression.html</loc>
-    <lastmod>2024-12-27T05:10:18.950Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/perceptron_and_ann.html</loc>
+    <lastmod>2025-01-09T04:40:46.724Z</lastmod>
   </url>
   <url>
-    <loc>https://julia-kaeri.github.io/src/ML/theory/perceptron_and_ann.html</loc>
-    <lastmod>2025-01-08T10:23:04.280Z</lastmod>
+    <loc>https://julia-kaeri.github.io/src/ML/theory/statistics.html</loc>
+    <lastmod>2024-12-27T05:10:18.951Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_array_programming.html</loc>
+    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_performance_tips.html</loc>
+    <lastmod>2024-12-30T00:04:07.774Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/02_programming_model.html</loc>
+    <lastmod>2024-12-12T11:32:00.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/posts/index.html</loc>
+    <lastmod>2024-12-12T11:32:00.331Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/tools/Cpp/vcpkg.html</loc>
+    <lastmod>2024-12-12T11:32:00.333Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_functions.html</loc>
+    <lastmod>2024-12-30T00:04:07.775Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/tools/tikz/tikz_test.html</loc>
+    <lastmod>2024-12-30T00:04:07.776Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
+    <lastmod>2024-12-12T11:32:00.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
+    <lastmod>2024-12-30T00:04:07.791Z</lastmod>
   </url>
 </urlset>
