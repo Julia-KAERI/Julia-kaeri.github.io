@@ -351,7 +351,7 @@ window.Quarto = {
 <h2 data-number="1" class="anchored" data-anchor-id="선형회귀"><span class="header-section-number">1</span> 선형회귀</h2>
 <section id="sec-regression_design_matrix" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="sec-regression_design_matrix"><span class="header-section-number">1.1</span> 선형회귀와 설계행렬</h3>
-<p><span class="math inline">\(n\)</span> 차원 벡터 입력변수 <span class="math inline">\(\boldsymbol{x}_1,\ldots,\,\boldsymbol{x}_m \in \mathbb{R}^n\)</span> 와 입력 변수 각각에 대한 레이블 <span class="math inline">\(y_1,\,\ldots,\,y_m\)</span> 을 가장 잘 기술하는 함수</p>
+<p>입력 <span class="math inline">\(\boldsymbol{x}^{(1)},\ldots,\,\boldsymbol{x}^{(N)}\in \mathbb{R}^n\)</span> 과 이에 대한 레이블 <span class="math inline">\(y^{(1)},\ldots,\,y^{(N)}\)</span> 을 데이터셋이라고 하자. 이 데이터셋을 기술하는 함수</p>
 <p><span class="math display">\[
 f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &amp; \theta_n\end{bmatrix}\boldsymbol{x} + \theta_0 = \begin{bmatrix}\theta_0 &amp; \theta_1 &amp; \cdots &amp; \theta_m\end{bmatrix} \begin{bmatrix} 1 \\ \boldsymbol{x}\end{bmatrix}
 \]</span></p>
@@ -359,9 +359,9 @@ f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &am
 <ul>
 <li>여기서 주의할 것은 <span class="math inline">\(\{\boldsymbol{x}_i\}\)</span> 에 대해 선형이기 때문에 선형 회귀가 아니라 <span class="math inline">\(\boldsymbol{\theta}=  \begin{bmatrix}\theta_0 &amp; \theta_1 &amp; \cdots &amp; \theta_m\end{bmatrix}\)</span> 에 대한 선형 함수이므로 선형 회귀이다.</li>
 </ul>
-<p>이제 <span class="math inline">\(\boldsymbol{x}_i \in \mathbb{R}^n\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 <span class="math inline">\((\boldsymbol{x}_i)_j\)</span> 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.</p>
+<p>이제 <span class="math inline">\(\boldsymbol{x}^{(i)} \in \mathbb{R}^n\)</span> 의 <span class="math inline">\(j\)</span> 번째 성분을 <span class="math inline">\(\boldsymbol{x}^{(i)}_j\)</span> 라고 표기하기로 하고 아래와 같이 행렬과 벡터를 정의한다.</p>
 <p><span class="math display">\[
-\boldsymbol{\Phi}:= \begin{bmatrix} 1 &amp; (\boldsymbol{x}_1)_1 &amp; \cdots &amp; (\boldsymbol{x}_1)_n \\ 1 &amp; (\boldsymbol{x}_2)_1 &amp; \cdots &amp; (\boldsymbol{x}_2)_n \\ \vdots &amp; &amp; &amp; \vdots \\ 1 &amp; (\boldsymbol{x}_m)_1 &amp; \cdots &amp; (\boldsymbol{x}_m)_n  \end{bmatrix}, \qquad \boldsymbol{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \boldsymbol{y} := \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{bmatrix}
+\boldsymbol{\Phi}:= \begin{bmatrix} 1 &amp; \boldsymbol{x}^{(1)}_1 &amp; \cdots &amp; \boldsymbol{x}^{(1)}_n \\ 1 &amp; \boldsymbol{x}^{(2)}_1 &amp; \cdots &amp; \boldsymbol{x}^{(2)}_n \\ \vdots &amp; &amp; &amp; \vdots \\ 1 &amp; \boldsymbol{x}^{(N)}_1 &amp; \cdots &amp; \boldsymbol{x}^{(N)}_n  \end{bmatrix}, \qquad \boldsymbol{\theta} := \begin{bmatrix} \theta_0 \\ \theta_1 \\ \vdots \\ \theta_n \end{bmatrix},\qquad \boldsymbol{y} := \begin{bmatrix} y^{(1)} \\ y^{(2)} \\ \vdots \\ y^{(N)} \end{bmatrix}
 \]</span></p>
 <p>이 때 <span class="math inline">\(\boldsymbol{\Phi}\)</span> 를 <strong>설계 행렬(design matrix)</strong> 이라고 한다. 그리고</p>
 <p><span class="math display">\[
@@ -388,7 +388,7 @@ f(\boldsymbol{x};\boldsymbol{\theta})= \begin{bmatrix} \theta_1 &amp; \cdots &am
 </section>
 <section id="sec-regression_training_and_prediction" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="sec-regression_training_and_prediction"><span class="header-section-number">1.2</span> 학습/훈련과 예측</h3>
-<p>우리가 이미 획득한 입력 벡터의 집합 <span class="math inline">\(\{\boldsymbol{x}_i\}\)</span> 와 레이블(label) <span class="math inline">\(\{y_i = y_i(\boldsymbol{x}_i)\}\)</span> 로 이루어진 데이터 <span class="math inline">\(\{(\boldsymbol{x}_i,\, y_i):i=1,\ldots,\,m\}\)</span>, 그리고 데이터를 잘 설명할것이라고 기대되는 함수 <span class="math inline">\(f(\boldsymbol{x},\,\boldsymbol{\theta})\)</span> 에 대해 <a href="#eq-linear_regression_master_equation" class="quarto-xref">식&nbsp;1</a> 의 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 얻는 것을 훈련 혹은 학습 이라고 한다. 이 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}\)</span> 의 상황에서 <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta}^\ast)\)</span> 의 값을 얻을것이라고 기대한다. 즉 우리는 주어진 데이터를 학습시켜 미지의 상황을 예측 할 수 있다. 이것은 비단 선형 회귀 뿐만 아니라 모든 통계학적 처리 및 기계학습의 과정에 공통된다.</p>
+<p>우리가 이미 획득한 입력 벡터의 집합 <span class="math inline">\(\{\boldsymbol{x}^{(i)}\}\)</span> 와 레이블(label) <span class="math inline">\(\{y^{(i)}\}\)</span> 로 이루어진 데이터셋 <span class="math inline">\(\{(\boldsymbol{x}^{(i)},\, y^{(i)})\}\)</span>, 그리고 데이터를 잘 설명할것이라고 기대되는 함수 <span class="math inline">\(f(\boldsymbol{x},\,\boldsymbol{\theta})\)</span> 에 대해 <a href="#eq-linear_regression_master_equation" class="quarto-xref">식&nbsp;1</a> 의 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 를 얻는 것을 훈련 혹은 학습 이라고 한다. 이 <span class="math inline">\(\boldsymbol{\theta}^\ast\)</span> 에 대해 <span class="math inline">\(\boldsymbol{x}\)</span> 의 상황에서 <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta}^\ast)\)</span> 의 값을 얻을것이라고 기대한다. 즉 우리는 주어진 데이터를 학습시켜 미지의 상황을 예측 할 수 있다. 이것은 비단 선형 회귀 뿐만 아니라 모든 통계학적 처리 및 기계학습의 과정에 공통된다.</p>
 <p>여기서 우리가 고려해야 할 상황이 있다. 이것은 항상 명심해야 한다.</p>
 <p>  Q1. 데이터는 편항되거나 오염되거나 부실하지 않은가?</p>
 <p>  Q2. <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta})\)</span> 의 선택은 합리적인가?</p>

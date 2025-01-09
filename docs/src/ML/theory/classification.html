@@ -267,7 +267,8 @@ window.Quarto = {
   <li><a href="#sec-classificatin_introduction" id="toc-sec-classificatin_introduction" class="nav-link" data-scroll-target="#sec-classificatin_introduction"><span class="header-section-number">1.1</span> 개요</a></li>
   <li><a href="#sec-classification_generalized_linear_model" id="toc-sec-classification_generalized_linear_model" class="nav-link" data-scroll-target="#sec-classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</a></li>
   <li><a href="#선형-판별" id="toc-선형-판별" class="nav-link" data-scroll-target="#선형-판별"><span class="header-section-number">1.3</span> 선형 판별</a></li>
-  <li><a href="#퍼셉트론" id="toc-퍼셉트론" class="nav-link" data-scroll-target="#퍼셉트론"><span class="header-section-number">1.4</span> 퍼셉트론</a></li>
+  <li><a href="#비용-함수" id="toc-비용-함수" class="nav-link" data-scroll-target="#비용-함수"><span class="header-section-number">1.4</span> 비용 함수</a></li>
+  <li><a href="#퍼셉트론" id="toc-퍼셉트론" class="nav-link" data-scroll-target="#퍼셉트론"><span class="header-section-number">1.5</span> 퍼셉트론</a></li>
   </ul></li>
   <li><a href="#support-vector-machine" id="toc-support-vector-machine" class="nav-link" data-scroll-target="#support-vector-machine"><span class="header-section-number">2</span> Support Vector Machine</a></li>
   </ul>
@@ -321,18 +322,18 @@ window.Quarto = {
 <h2 data-number="1" class="anchored" data-anchor-id="분류-문제"><span class="header-section-number">1</span> 분류 문제</h2>
 <section id="sec-classificatin_introduction" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="sec-classificatin_introduction"><span class="header-section-number">1.1</span> 개요</h3>
-<p>분류(classification) 문제는 주어진 데이터에 대한 output 유한개인 경우이다. 여기서 가능한 ouput 을 클래스라고 하자. 대부분의 문제에서 각 클래스는 서로 겹치지 않으며, 여기서도 겹치지 않는다고 간주한다. 따라서 입력 벡터의 공간은 각각의 클래스에 따라 분리되며, 각 클래스를 분리하는 경계를 <strong>결정 경계(decision boundary)</strong> 혹은 <strong>결정 표면(decision surface)</strong> 이라고 하며 결정 경계를 바탕으로 분리된 부분집합을 <strong>결정 구역(decision region)</strong> 이라고 한다.</p>
+<p>분류(classification) 문제는 표적값(target) 이 유한개인 문제이다. 표적값에 따라 입력 벡터를 구별할 수 있으며, 이렇게 구별되는 입력 벡터의 집합을 클래스(class) 라고 하고 각 클래스를 분리하는 경계를 <strong>결정 경계(decision boundary)</strong> 혹은 <strong>결정 표면(decision surface)</strong> 이라고 하며 결정 경계를 바탕으로 분리된 부분집합을 <strong>결정 구역(decision region)</strong> 이라고 한다.</p>
 <p>입력 벡터가 <span class="math inline">\(D\)</span> 차원 공간이라고 하자. 결정 표면을 <span class="math inline">\(D\)</span> 차원 공간에 대한 <span class="math inline">\(D-1\)</span> 차원 초평면 으로 분리하는 모델을 <strong>선형 모델(linear model)</strong> 이라고 하며, 데이터들이 다수의 초평면으로 정확하게 각각의 클래스로 분류될 수 있을 때, 이 데이터의 집합을 <strong>선형 분리 가능 집합(linearly seperable set)</strong> 이라고 한다.</p>
-<p>가능한 output 이 <span class="math inline">\(K\)</span> 개의 클래스라고 하자. 이 <span class="math inline">\(K\)</span> 개의 클래스를 <span class="math inline">\(\mathcal{M}_n(\mathbb{R})\)</span> 의 표준 기저 벡터로 표현하는 것을 <strong>원 핫 인코딩(one hot encoding)</strong> 이라고 한다. 예를 들어 다수의 과일 이미지를 사과, 배, 딸기로 분류한다다면 이 이미지들은 3개의 클래스로 분류된다는 의미이다. 사과 클래스는 <span class="math inline">\(\boldsymbol{e}_1=\begin{bmatrix} 1 &amp; 0 &amp; 0\end{bmatrix}^T\)</span> 로 표현하고, 배, 딸기는 각각 <span class="math inline">\(\boldsymbol{e}_2,\,\boldsymbol{e}_3\)</span> 로 표현될 수 있다.</p>
+<p>가능한 output 이 <span class="math inline">\(K\)</span> 개의 클래스라고 하자. 이 <span class="math inline">\(K\)</span> 개의 클래스를 <span class="math inline">\(\mathbb{R}^K\)</span> 의 표준 기저 벡터로 표현하는 것을 <strong>원-핫 인코딩(one hot encoding)</strong> 이라고 하고 이렇게 표현된 벡터를 <strong>원-핫 벡터</strong> 라고 한다. 예를 들어 다수의 과일 이미지를 사과, 배, 딸기로 분류한다다면 이 이미지들은 3개의 클래스로 분류된다는 의미이다. 사과 클래스는 원-핫 인코딩을 통해 <span class="math inline">\(\boldsymbol{e}_1=\begin{bmatrix} 1 &amp; 0 &amp; 0\end{bmatrix}^T\)</span> 로, 배, 딸기는 각각 <span class="math inline">\(\boldsymbol{e}_2,\,\boldsymbol{e}_3\)</span> 로 표현될 수 있다.</p>
 <p><br></p>
 </section>
 <section id="sec-classification_generalized_linear_model" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="sec-classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</h3>
 <p>입력값 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 모델을 구성할 때 모댈 내부의 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 가장 간단한 함수로서</p>
-<p><span id="eq-classification_generalized_linear_model"><span class="math display">\[
+<p><span id="eq-ML_classification_generalized_linear_model"><span class="math display">\[
 y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
 \tag{1}\]</span></span></p>
-<p>를 생각 할 수 있다. 이 때 보통 <span class="math inline">\(f(s)\)</span> 는 비선형 함수이며 <strong>활성화 함수(activation fucntion)</strong> 이라고 불린다. 또한 <a href="#eq-classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 로 기술되는 모델을 <strong>일반화된 선형 모델(generalized linear model)</strong> 이라고 한다.</p>
+<p>를 생각 할 수 있다. 이 때 보통 <span class="math inline">\(f(s)\)</span> 는 비선형 함수이며 <strong>활성화 함수(activation fucntion)</strong> 이라고 불린다. 또한 <a href="#eq-ML_classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 로 기술되는 모델을 <strong>일반화된 선형 모델(generalized linear model)</strong> 이라고 한다.</p>
 <p>일반화된 선형 모델의 경우 결정 표면은 어떤 상수 <span class="math inline">\(c\)</span> 에 대해 <span class="math inline">\(\boldsymbol{w}^T\boldsymbol{x} + w_0 = c\)</span> 인 초평면이 된다. 즉 선형 분리 가능 집합의 경우 일반화된 선형 모델로 잘 설명이 된다.</p>
 <p><br></p>
 </section>
@@ -340,14 +341,17 @@ y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
 <h3 data-number="1.3" class="anchored" data-anchor-id="선형-판별"><span class="header-section-number">1.3</span> 선형 판별</h3>
 <p>입력벡터를 어느 클래스로 분류할지 판단하는 함수를 판별함수라고 하고 판별함수에 의한 결정표면이 초평면 일 경우 <strong>선형 판별(linear determination)</strong> 이라고 한다,.</p>
 <p><br></p>
-<p><strong>2 개의 클래스 의 경우</strong></p>
-<p>두개의 클라스 <span class="math inline">\(C_1,\,C_2\)</span> 로 분류하는 문제를 살펴 보자. <a href="#eq-classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 에서의 활성화 함수 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(\text{sign}(a)\)</span> 함수 즉,</p>
+<section id="개의-클래스-의-경우" class="level4">
+<h4 class="anchored" data-anchor-id="개의-클래스-의-경우"><strong>2 개의 클래스 의 경우</strong></h4>
+<p>두개의 클라스 <span class="math inline">\(C_1,\,C_2\)</span> 로 분류하는 문제를 살펴 보자. <a href="#eq-ML_classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 에서의 활성화 함수 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(\text{sign}(a)\)</span> 함수 즉,</p>
 <p><span class="math display">\[
 \text{sign}(a) = \left\{\begin{array}{ll} 1, \qquad &amp; a\ge 0 \\ -1 &amp; a&lt;0 \end{array} \right.
 \]</span></p>
 <p>로 정한다. 즉 <span class="math inline">\(y(\boldsymbol{x};\boldsymbol{w},\,w_0)\)</span> 값이 <span class="math inline">\(1\)</span> 이면 <span class="math inline">\(C_1\)</span>, <span class="math inline">\(-1\)</span> 이면 <span class="math inline">\(C_2\)</span> 클래스에 포함되도 하는 매개변수를 찾는 문제가 된다.</p>
 <p><br></p>
-<p><strong>다중 클래스 의 경우</strong></p>
+</section>
+<section id="다중-클래스-의-경우" class="level4">
+<h4 class="anchored" data-anchor-id="다중-클래스-의-경우"><strong>다중 클래스 의 경우</strong></h4>
 <p>2 개 이상 <span class="math inline">\(K\)</span> 개의 클래스 <span class="math inline">\(C_1,\ldots,\,C_K\)</span> 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 각 클래스 <span class="math inline">\(C_1,\ldots,\,C_N\)</span> 에 대한 활성화 함수 <span class="math inline">\(f_1,\,\ldots,\,f_N\)</span> 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 <span class="math inline">\(K\)</span> 개의 선형 판별 함수 <span class="math inline">\(y_1,\ldots,\,y_K\)</span> 가 아래와 같이 정의된다고 하자.</p>
 <p><span class="math display">\[
 y_k(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) = \boldsymbol{w}_k^T \boldsymbol{x} + w_{k0},\qquad k=1,\ldots,\, K.
@@ -355,8 +359,14 @@ y_k(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) = \boldsymbol{w}_k^T \boldsymbol
 <p>이 때 <span class="math inline">\(y_{k}(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) \ge y_{j}(\boldsymbol{x}; \boldsymbol{w}_j,\, w_{j0})\)</span> 이면 <span class="math inline">\(C_k\)</span> 클래스에 포함되도록 하면 된다.</p>
 <p><br></p>
 </section>
-<section id="퍼셉트론" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="퍼셉트론"><span class="header-section-number">1.4</span> 퍼셉트론</h3>
+</section>
+<section id="비용-함수" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="비용-함수"><span class="header-section-number">1.4</span> 비용 함수</h3>
+<p><span class="math inline">\(f(\boldsymbol{x};\,\boldsymbol{\theta})\)</span> 를 통해 데이터 셋 <span class="math inline">\(\{(\boldsymbol{x}^{(i)},\, y^{(i)}):i=1,\ldots,\,N\}\)</span> 을 기술한다고 하자. 이 때 비용함수로 가장 많이 사용되는 것은 교차 엔트로피</p>
+<p><br></p>
+</section>
+<section id="퍼셉트론" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="퍼셉트론"><span class="header-section-number">1.5</span> 퍼셉트론</h3>
 <p>수학적으로 <span class="math inline">\(f:\mathbb{R}^n \to \{0,\,1\}\)</span> 인 함수로 입력 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathcal{M}_n(\mathbb{R})\)</span> 에 대해</p>
 <p><span class="math display">\[
 f(\boldsymbol{w}^T\boldsymbol{x} + b) = \left\{\begin{array}{ll} 1, \qquad &amp; \boldsymbol{w}^T\boldsymbol{x} + b  \ge 0, \\ -1, &amp; \text{otherwise}.\end{array} \right.
