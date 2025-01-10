@@ -68,13 +68,13 @@ $$ {#eq-ML_classification_generalized_linear_model}
 
 #### **2 개의 클래스 의 경우**
 
-두개의 클라스 $C_1,\,C_2$ 로 분류하는 문제를 살펴 보자. @eq-ML_classification_generalized_linear_model 에서의 활성화 함수 $f$ 를 $\text{sign}(a)$ 함수 즉, 
+두개의 클래스 $C_1,\,C_2$ 로 분류하는 것을 이진 분류라고 한다. @eq-ML_classification_generalized_linear_model 에서의 활성화 함수 $f$ 를 $\text{sign}(a)$ 함수 즉, 
 
 $$
-\text{sign}(a) = \left\{\begin{array}{ll} 1, \qquad & a\ge 0 \\ -1 & a<0 \end{array} \right.
+\text{sign}(a) = \left\{\begin{array}{ll} 1, \qquad & a\ge 0 \\ 0 & a<0 \end{array} \right.
 $$
 
-로 정한다. 즉 $y(\bf{x};\bf{w},\,w_0)$ 값이 $1$ 이면 $C_1$, $-1$ 이면 $C_2$ 클래스에 포함되도 하는 매개변수를 찾는 문제가 된다.
+로 정한다. 즉 $y(\bf{x};\bf{w},\,w_0)$ 값이 $1$ 이면 $C_1$, $-1$ 이면 $C_2$ 클래스에 포함되도 하는 매개변수를 찾는 문제가 된다. 이진분류의 함수값을 $\{1,\,0\}$ 이 아니라 $\{-1,\,1\}$ 로 놓는 경우도 있지만 뒤에 다룰 확률론적 분류를 위해 $\{1,\,0\}$ 의 값을 사용하도록 한다.
 
 </br>
 
@@ -91,27 +91,162 @@ $$
 
 </br>
 
-### 비용 함수
+### 이진 분류와 퍼셉트론
 
-$f(\bf{x};\,\bf{\theta})$ 를 통해 데이터 셋 $\{(\bf{x}^{(i)},\, y^{(i)}):i=1,\ldots,\,N\}$ 을 기술한다고 하자. 이 때 비용함수로 가장 많이 사용되는 것은 교차 엔트로피 
+수학적으로 $f:\R^n \to \{0,\,1\}$ 인 함수
+
+$$
+f(t) = \left\{\begin{array}{ll} 1,\qquad & t\ge 0,\\ 0, &t<0 \end{array}\right. .
+$$
+
+를 생각하자. 입력 벡터 $\bf{x}$ 를 비선형 변환 $\bf{\phi}$ 를 통해 특징벡터(feature vector) 로 변환시킬 때
+
+$$
+y = f(\bf{w}^T \bf{\phi}(\bf{x}))
+$$
+
+인 함수이다. 
+
+우선 여기에 대한 비용함수를 생각해보자. 우선적으로 생각 할 수 있는 오차제곱합을 사용할 경우 발생할 수 있는 문제를 예를 들어 보자. 
 
 </br>
 
+<div class="border" style="background-color:#F2F4F4  ;padding:5px;">
 
-### 퍼셉트론
+::: {#exm-ML_binary_classification_and_cost_function}
 
-수학적으로 $f:\R^n \to \{0,\,1\}$ 인 함수로 입력 벡터 $\bf{x}\in \mathcal{M}_n(\R)$ 에 대해
+간단한 이진 분류 문제를 생각해 보자. $[0,\,1]\times [0,\,1]$ 공간에 $N$ 개의 임의의 점을 찍고 $x\ge y$ 이면 $1$, 아니면 $2$ 의 클래스를 부여한다고 하자. 그리고 원점을 지나는 직선 $y=wx$ 로 클래스를 분리한다고 할 때 비용함수로 오차제곱합을 사용한다고 하자. 총 50 개의 무작위 점에 대해 분류하고 $w$ 에 대한 오차제곱합 $L(w)$ 를 구하면 아래 그림의 가운데 그림과 같다. 가장 오른쪽 그림의 $L_{\text{Logistics}}(w)$ 는 이후 설명한다.
+
+```julia
+using CairoMakie, LinearAlgebra, LaTeXStrings
+
+N=50
+t2, t3 = nothing, nothing
+σ(t) = 1/(1.0+exp(-t))
+X, Y = rand(N), rand(N)
+C1X, C1Y, C2X, C2Y = [], [],[],[]
+t1=[]
+for i in 1:N
+    if X[i] ≥ Y[i] 
+        append!(C1X, X[i])
+        append!(C1Y, Y[i])
+        append!(t1,1)
+    else 
+        append!(C2X, X[i])
+        append!(C2Y, Y[i])
+        append!(t1, 0)
+    end
+end
+wr = 0.0:0.01:1.0
+err1 = []
+err2 = []
+for w0 ∈ wr
+    t2=Int.(w0.*X .- 0.5.* Y .>0)
+    t3=σ.(30 .* w0 .* X .- 15 .* Y)
+    append!(err1, sum((t1 .- t2).^2))
+    append!(err2, -sum((t1 .* log.(t3 .+ 1.0e-15) .+ (1.0 .- t1) .* log.(1.0 .- t3 .+ 1.0e-15))))
+end
+
+
+fig = Figure(size=(1500, 600))
+ax = Axis(fig[1, 1], aspect = 1, limits = (-0.05, 1.05, -0.05, 1.05), xlabel=L"X", ylabel = L"Y")
+scatter!(ax, C1X, C1Y, color=:red, markersize=15, label=L"C1")
+scatter!(ax, C2X, C2Y, color=:green, markersize=15, label=L"C2")
+axislegend(ax)
+ax2 = Axis(fig[1, 2], xlabel = L"w", ylabel = L"L(w)")
+scatter!(ax2, wr, err1)
+ax3 = Axis(fig[1, 3], xlabel = L"w", ylabel = L"L_{\text{Logistic}}(w)")
+scatter!(ax3, wr, err2)
+fig
+```
+
+![이진 분류와 비용함수](figure/binaryclassification.png){#fig-ML_classicifation_binary_classification_1 width=700}
+
+가운데 그림에서 보다시피 오차제곱합 함수를 사용한 비용함수 $L(w)$ 는 불연속이며 따라서 미분 불가 함수이다. $w$ 를 변경시킬 때 각 클래스에 속하는 점의 갯수가 변할 때마다 불연속이 된다. 
+
+:::
+
+</div> </br>
+
+### 로지스틱 회귀
+
+이 문제를 해결하기 위해 확률론을 도입한다. 우선 퍼셉트론의 출력 함수를 시그모이드 함수
 
 $$
-f(\bf{w}^T\bf{x} + b) = \left\{\begin{array}{ll} 1, \qquad & \bf{w}^T\bf{x} + b  \ge 0, \\ -1, & \text{otherwise}.\end{array} \right.
+\sigma(t) = \dfrac{1}{1+e^{-t}}
 $$
 
-인 함수이다. 여기서 $\bf{w}$ 는 매개변수(parameter), $b$ 를 편향(bias) 이라고 한다. 즉 퍼셉트론은 입력 벡터 $\bf{x}$ 에 대한 이진 분류 함수이다.
+로 정의한다. 시그모이드 함수 $\sigma (t)$ 의 치역은 $[0,\,1]$ 사이에 있으며 
+
+$$
+y=\sigma\left(\bf{w}^T\bf{\phi}\left(\bf{x}\right)\right)
+$$
+
+를 $\bf{y}$ 가 어떤 클래스에 속할 확률로 생각한다. 
 
 
 
+
+![시그모이드 함수](figure/sigmoid.png){#fig-ML_classification_sigmoid width=300}
+
+
+그리고 이에 대한 비용 함수는 이진 교차 엔트로피(Binary cross entropy, BCE) 함수를 사용한다. $\hat{y}^{(i)} = \sigma \left(\bf{w}^T\bf{\phi}\left(\bf{x}^{(i)}\right)\right)$ 에 대해
+
+$$
+L(\bf{w}) = \text{BCE}(\bf{w}) -\sum_{i=1}^n y^{(i)} \left[\ln \left(\hat{y}^{(i)}\right) + \left(1-y^{(i)}\right) \ln \left(1-\left(\hat{y}^{(i)}\right)\right)\right]
+$$ {#eq-ML_classification_binary_cross_entropy}
+
+를 사용한다. 앞서 @exm-ML_binary_classification_and_cost_function 에서 오차함수로 위의 $\text{BCE}$ 함수를 사용했을 때가 @fig-ML_classicifation_binary_classification_1 의 가장 오른쪽 그림이다. 
+
+이렇게 이진 분류 문제에 시그모이드 함수를 도입하여 확률론적으로 최적화 하는 것을 **로지스틱 회귀(logistic regression)** 이라고 한다. 회귀(regression) 이라는 말이 들어가지만 회귀가 아닌 분류 문제에 사용된다.
 
 </br>
 
-## Support Vector Machine
+### 다중 클래스 로지스틱 회귀
 
+$C_1,\ldots,\,C_K$ 클라스로 분류하는 데 사용되는 판별함수 $a_1 = a_1(\bf{x};\bf{w}_1),\ldots,\,a_K=a_K(\bf{x};\bf{w}_K)$ 를 원-핫 벡터로 하고 이 값을 기준으로 확률적으로 어떤 클래스에 속하는지 판단한다고 하자. 여기에는 소프트 맥스 변환을 이용한다. $\bf{a}\in \R^K$ 에 대한 소프트 맥스 변환 $\bf{\gamma}:\R^K \to \R^K$ 은
+$$
+\bf{y} = \bf{\gamma}(\bf{a})= \dfrac{1}{\sum_{j=1}^K e^{a_j}} \begin{bmatrix} e^{a_1} \\ \vdots \\ e^{a_K}\end{bmatrix}
+$$
+
+로 $\bf{y}$ 의 각 성분은 $[0,\,1]$ 범위의 값을 가지며 그 성분의 합은 $1$ 이다. 따라서 $\bf{y}$ 의 각 성분은 확률로 해석 할 수 있다. 이렇게 다중 클래스 분류 문제를 확률로 해석하는 것을 다중 클래스 로지스틱 회귀라고 한다. 
+
+
+다중 클래스 로지스틱 회귀에 대한 비용함수로는 **교차 엔트로피 오차 함수(Cross entropy error function, CEE)** 가 사용된다.
+
+$$
+\text{CEE}(\bf{w}) = -\sum_{i=1}^n\sum_{j=1}^K   y^{(i)}_j \ln \left(\hat{y}^{(i)}_j\right) =  -\sum_{i=1}^n\sum_{j=1}^K  y^{(i)}_j \left[ a_j - \ln \left(\sum_{m=1}^K e^{a_m}\right) \right]
+$$
+
+</br>
+
+### 손실 함수의 미분
+
+교차 엔트로피 함수 $L_C(\bf{w}_1,\ldots,\bf{w}_K)= \text{CEE}(\bf{w})$ 에 대한 미분을 생각해보자. $w_{kl}= (\bf{w}_k)_l$ 이라 하면
+
+$$
+\begin{aligned}
+\dfrac{\partial L_C}{\partial w_{kl}} &= -\sum_{i=1}^n \sum_{j=1}^K y_j^{(i)} \left[\dfrac{\partial a_j}{\partial w_{kl}} - \dfrac{\dfrac{\partial a_k}{\partial w_{kl}} e^{a_k}}{\sum a_m}\right] = -\sum_{i=1}^n \sum_{j=1}^K y_j^{(i)} \left[\delta_{jk}\dfrac{\partial a_j}{\partial w_{kl}} - \dfrac{\partial a_k}{\partial w_{kl}} \hat{y}_k^{(i)}\right] \\
+&= - \dfrac{\partial a_k}{\partial w_{kl}}\left[\sum_{i=1}^n \left[y_k^{(i)}  - \sum_{j=1}^K y_j^{(i)} \hat{y}_k^{(i)} \right]\right]
+\end{aligned}
+$$
+
+여기서 $\sum_{j=1}^K y_j^{(i)}=1$ 이므로
+
+$$
+\dfrac{\partial L_C}{\partial w_{kl}} =- \dfrac{\partial a_k}{\partial w_{kl}} \sum_{i=1}^n \left(y_k^{(i)} -\hat{y}^{(i)}_k\right)
+$$ {#eq-ML_classification_partial_differential_of_cost_function_for_multi_class_logistic_regression}
+
+인 매우 단순한 식이 된다. 즉
+
+$$
+\nabla_{\bf{w}_k} L_C(\bf{w}_1,\ldots,\, \bf{w}_K) =  \left[\sum_{i=1}^n \left(\hat{y}_k^{(i)} -y^{(i)}_k\right)\right] \nabla_{\bf{w}_k} a_k
+$$ {#eq-ML_classification_gradient_of_cost_function_for_multi_class_logistic_regression}
+
+이다. 이진 분류의 경우 $\bf{w}$ 만 생각하면 되므로
+
+$$
+\nabla_\bf{w} L_B(\bf{w})= \left[\sum_{i=1}^n \left(\hat{y}_k^{(i)} -y^{(i)}_k\right)\right] \nabla_{\bf{w}} a
+$${#eq-ML_classification_gradient_of_cost_function_for_binary_logistic_regression}
+
+이다. 
