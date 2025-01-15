@@ -298,13 +298,16 @@ window.Quarto = {
   <li><a href="#기하학" id="toc-기하학" class="nav-link active" data-scroll-target="#기하학">기하학</a></li>
   <li><a href="#분류-문제" id="toc-분류-문제" class="nav-link" data-scroll-target="#분류-문제"><span class="header-section-number">1</span> 분류 문제</a>
   <ul class="collapse">
-  <li><a href="#sec-classificatin_introduction" id="toc-sec-classificatin_introduction" class="nav-link" data-scroll-target="#sec-classificatin_introduction"><span class="header-section-number">1.1</span> 개요</a></li>
-  <li><a href="#sec-classification_generalized_linear_model" id="toc-sec-classification_generalized_linear_model" class="nav-link" data-scroll-target="#sec-classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</a></li>
+  <li><a href="#sec-ML_classification_introduction" id="toc-sec-ML_classification_introduction" class="nav-link" data-scroll-target="#sec-ML_classification_introduction"><span class="header-section-number">1.1</span> 개요</a></li>
+  <li><a href="#sec-ML_classification_generalized_linear_model" id="toc-sec-ML_classification_generalized_linear_model" class="nav-link" data-scroll-target="#sec-ML_classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</a></li>
   <li><a href="#선형-판별" id="toc-선형-판별" class="nav-link" data-scroll-target="#선형-판별"><span class="header-section-number">1.3</span> 선형 판별</a></li>
-  <li><a href="#이진-분류와-퍼셉트론" id="toc-이진-분류와-퍼셉트론" class="nav-link" data-scroll-target="#이진-분류와-퍼셉트론"><span class="header-section-number">1.4</span> 이진 분류와 퍼셉트론</a></li>
-  <li><a href="#로지스틱-회귀" id="toc-로지스틱-회귀" class="nav-link" data-scroll-target="#로지스틱-회귀"><span class="header-section-number">1.5</span> 로지스틱 회귀</a></li>
-  <li><a href="#다중-클래스-로지스틱-회귀" id="toc-다중-클래스-로지스틱-회귀" class="nav-link" data-scroll-target="#다중-클래스-로지스틱-회귀"><span class="header-section-number">1.6</span> 다중 클래스 로지스틱 회귀</a></li>
-  <li><a href="#손실-함수의-미분" id="toc-손실-함수의-미분" class="nav-link" data-scroll-target="#손실-함수의-미분"><span class="header-section-number">1.7</span> 손실 함수의 미분</a></li>
+  </ul></li>
+  <li><a href="#로지스틱-회귀" id="toc-로지스틱-회귀" class="nav-link" data-scroll-target="#로지스틱-회귀"><span class="header-section-number">2</span> 로지스틱 회귀</a>
+  <ul class="collapse">
+  <li><a href="#비용함수" id="toc-비용함수" class="nav-link" data-scroll-target="#비용함수"><span class="header-section-number">2.1</span> 비용함수</a></li>
+  <li><a href="#시그모이드-함수와-로지스틱-회귀" id="toc-시그모이드-함수와-로지스틱-회귀" class="nav-link" data-scroll-target="#시그모이드-함수와-로지스틱-회귀"><span class="header-section-number">2.2</span> 시그모이드 함수와 로지스틱 회귀</a></li>
+  <li><a href="#다중-클래스-로지스틱-회귀" id="toc-다중-클래스-로지스틱-회귀" class="nav-link" data-scroll-target="#다중-클래스-로지스틱-회귀"><span class="header-section-number">2.3</span> 다중 클래스 로지스틱 회귀</a></li>
+  <li><a href="#손실-함수의-미분" id="toc-손실-함수의-미분" class="nav-link" data-scroll-target="#손실-함수의-미분"><span class="header-section-number">2.4</span> 손실 함수의 미분</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -355,15 +358,15 @@ window.Quarto = {
 <p><br></p>
 <section id="분류-문제" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="분류-문제"><span class="header-section-number">1</span> 분류 문제</h2>
-<section id="sec-classificatin_introduction" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="sec-classificatin_introduction"><span class="header-section-number">1.1</span> 개요</h3>
+<section id="sec-ML_classification_introduction" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="sec-ML_classification_introduction"><span class="header-section-number">1.1</span> 개요</h3>
 <p>분류(classification) 문제는 표적값(target) 이 유한개인 문제이다. 표적값에 따라 입력 벡터를 구별할 수 있으며, 이렇게 구별되는 입력 벡터의 집합을 클래스(class) 라고 하고 각 클래스를 분리하는 경계를 <strong>결정 경계(decision boundary)</strong> 혹은 <strong>결정 표면(decision surface)</strong> 이라고 하며 결정 경계를 바탕으로 분리된 부분집합을 <strong>결정 구역(decision region)</strong> 이라고 한다.</p>
 <p>입력 벡터가 <span class="math inline">\(D\)</span> 차원 공간이라고 하자. 결정 표면을 <span class="math inline">\(D\)</span> 차원 공간에 대한 <span class="math inline">\(D-1\)</span> 차원 초평면 으로 분리하는 모델을 <strong>선형 모델(linear model)</strong> 이라고 하며, 데이터들이 다수의 초평면으로 정확하게 각각의 클래스로 분류될 수 있을 때, 이 데이터의 집합을 <strong>선형 분리 가능 집합(linearly seperable set)</strong> 이라고 한다.</p>
 <p>가능한 output 이 <span class="math inline">\(K\)</span> 개의 클래스라고 하자. 이 <span class="math inline">\(K\)</span> 개의 클래스를 <span class="math inline">\(\mathbb{R}^K\)</span> 의 표준 기저 벡터로 표현하는 것을 <strong>원-핫 인코딩(one hot encoding)</strong> 이라고 하고 이렇게 표현된 벡터를 <strong>원-핫 벡터</strong> 라고 한다. 예를 들어 다수의 과일 이미지를 사과, 배, 딸기로 분류한다다면 이 이미지들은 3개의 클래스로 분류된다는 의미이다. 사과 클래스는 원-핫 인코딩을 통해 <span class="math inline">\(\boldsymbol{e}_1=\begin{bmatrix} 1 &amp; 0 &amp; 0\end{bmatrix}^T\)</span> 로, 배, 딸기는 각각 <span class="math inline">\(\boldsymbol{e}_2,\,\boldsymbol{e}_3\)</span> 로 표현될 수 있다.</p>
 <p><br></p>
 </section>
-<section id="sec-classification_generalized_linear_model" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="sec-classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</h3>
+<section id="sec-ML_classification_generalized_linear_model" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="sec-ML_classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</h3>
 <p>입력값 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 모델을 구성할 때 모댈 내부의 매개변수 <span class="math inline">\(\boldsymbol{w}\)</span> 에 대한 가장 간단한 함수로서</p>
 <p><span id="eq-ML_classification_generalized_linear_model"><span class="math display">\[
 y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
@@ -376,8 +379,8 @@ y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
 <h3 data-number="1.3" class="anchored" data-anchor-id="선형-판별"><span class="header-section-number">1.3</span> 선형 판별</h3>
 <p>입력벡터를 어느 클래스로 분류할지 판단하는 함수를 판별함수라고 하고 판별함수에 의한 결정표면이 초평면 일 경우 <strong>선형 판별(linear determination)</strong> 이라고 한다,.</p>
 <p><br></p>
-<section id="개의-클래스-의-경우" class="level4">
-<h4 class="anchored" data-anchor-id="개의-클래스-의-경우"><strong>2 개의 클래스 의 경우</strong></h4>
+<section id="이진-분류" class="level4">
+<h4 class="anchored" data-anchor-id="이진-분류"><strong>이진 분류</strong></h4>
 <p>두개의 클래스 <span class="math inline">\(C_1,\,C_2\)</span> 로 분류하는 것을 이진 분류라고 한다. <a href="#eq-ML_classification_generalized_linear_model" class="quarto-xref">식&nbsp;1</a> 에서의 활성화 함수 <span class="math inline">\(f\)</span> 를 <span class="math inline">\(\text{sign}(a)\)</span> 함수 즉,</p>
 <p><span class="math display">\[
 \text{sign}(a) = \left\{\begin{array}{ll} 1, \qquad &amp; a\ge 0 \\ 0 &amp; a&lt;0 \end{array} \right.
@@ -387,23 +390,26 @@ y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
 </section>
 <section id="다중-클래스-의-경우" class="level4">
 <h4 class="anchored" data-anchor-id="다중-클래스-의-경우"><strong>다중 클래스 의 경우</strong></h4>
-<p>2 개 이상 <span class="math inline">\(K\)</span> 개의 클래스 <span class="math inline">\(C_1,\ldots,\,C_K\)</span> 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 각 클래스 <span class="math inline">\(C_1,\ldots,\,C_N\)</span> 에 대한 활성화 함수 <span class="math inline">\(f_1,\,\ldots,\,f_N\)</span> 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 <span class="math inline">\(K\)</span> 개의 선형 판별 함수 <span class="math inline">\(y_1,\ldots,\,y_K\)</span> 가 아래와 같이 정의된다고 하자.</p>
-<p><span class="math display">\[
-y_k(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) = \boldsymbol{w}_k^T \boldsymbol{x} + w_{k0},\qquad k=1,\ldots,\, K.
-\]</span></p>
-<p>이 때 <span class="math inline">\(y_{k}(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) \ge y_{j}(\boldsymbol{x}; \boldsymbol{w}_j,\, w_{j0})\)</span> 이면 <span class="math inline">\(C_k\)</span> 클래스에 포함되도록 하면 된다.</p>
+<p>2 개 이상 <span class="math inline">\(K\)</span> 개의 클래스 <span class="math inline">\(C_1,\ldots,\,C_K\)</span> 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 이진 분류법을 각 클래스 <span class="math inline">\(C_1,\ldots,\,C_N\)</span> 에 대해 사용한다고 하자. 각 클래스에 대한 대한 활성화 함수 <span class="math inline">\(f_1,\,\ldots,\,f_N\)</span> 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 <span class="math inline">\(K\)</span> 개의 선형 판별 함수 <span class="math inline">\(y_1,\ldots,\,y_K\)</span> 를 아래와 같이 우선 정의한다.</p>
+<p><span id="eq-ML_classification_linear_modelling_function"><span class="math display">\[
+y_k(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) = \boldsymbol{w}_k^T \boldsymbol{x} + b_k,\qquad k=1,\ldots,\, K.
+\tag{2}\]</span></span></p>
+<p>이 때 <span class="math inline">\(y_{k}(\boldsymbol{x}; \boldsymbol{w}_k,\, b_k) \ge y_{j}(\boldsymbol{x}; \boldsymbol{w}_j,\, b_j)\)</span> 이면 <span class="math inline">\(C_k\)</span> 클래스에 포함되도록 하면 된다. 즉 결정</p>
 <p><br></p>
 </section>
 </section>
-<section id="이진-분류와-퍼셉트론" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="이진-분류와-퍼셉트론"><span class="header-section-number">1.4</span> 이진 분류와 퍼셉트론</h3>
+</section>
+<section id="로지스틱-회귀" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="로지스틱-회귀"><span class="header-section-number">2</span> 로지스틱 회귀</h2>
+<section id="비용함수" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="비용함수"><span class="header-section-number">2.1</span> 비용함수</h3>
 <p>수학적으로 <span class="math inline">\(f:\mathbb{R}^n \to \{0,\,1\}\)</span> 인 함수</p>
 <p><span class="math display">\[
 f(t) = \left\{\begin{array}{ll} 1,\qquad &amp; t\ge 0,\\ 0, &amp;t&lt;0 \end{array}\right. .
 \]</span></p>
 <p>를 생각하자. 입력 벡터 <span class="math inline">\(\boldsymbol{x}\)</span> 를 비선형 변환 <span class="math inline">\(\boldsymbol{\phi}\)</span> 를 통해 특징벡터(feature vector) 로 변환시킬 때</p>
 <p><span class="math display">\[
-y = f(\boldsymbol{w}^T \boldsymbol{\phi}(\boldsymbol{x}))
+y = f(\boldsymbol{w}^T \boldsymbol{x} + b)
 \]</span></p>
 <p>인 함수이다.</p>
 <p>우선 여기에 대한 비용함수를 생각해보자. 우선적으로 생각 할 수 있는 오차제곱합을 사용할 경우 발생할 수 있는 문제를 예를 들어 보자.</p>
@@ -463,20 +469,16 @@ y = f(\boldsymbol{w}^T \boldsymbol{\phi}(\boldsymbol{x}))
 </div>
 <p>가운데 그림에서 보다시피 오차제곱합 함수를 사용한 비용함수 <span class="math inline">\(L(w)\)</span> 는 불연속이며 따라서 미분 불가 함수이다. <span class="math inline">\(w\)</span> 를 변경시킬 때 각 클래스에 속하는 점의 갯수가 변할 때마다 불연속이 된다.</p>
 </div>
+<p>물론 오차제곱합 함수 말고도 단지 함수에서 오분류된 점의 갯수, 혹은 전체 점에 대한 비율로 오류함수를 정의 할 수 도 있지만 어쨌든 <span class="math inline">\(w\)</span> 에 대해 불연속이 된다는 것은 자명하다.</p>
 </div>
 <p><br></p>
 </section>
-<section id="로지스틱-회귀" class="level3" data-number="1.5">
-<h3 data-number="1.5" class="anchored" data-anchor-id="로지스틱-회귀"><span class="header-section-number">1.5</span> 로지스틱 회귀</h3>
-<p>이 문제를 해결하기 위해 확률론을 도입한다. 우선 퍼셉트론의 출력 함수를 시그모이드 함수</p>
-<p><span class="math display">\[
+<section id="시그모이드-함수와-로지스틱-회귀" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="시그모이드-함수와-로지스틱-회귀"><span class="header-section-number">2.2</span> 시그모이드 함수와 로지스틱 회귀</h3>
+<p>앞서 비용함수의 불연속성은 target 집합 이 <span class="math inline">\(\{0,\,1\}\)</span> 이기 때문에 발생한다. 이 문제를 해결하기 위해 확률론을 도입한다. 즉 모델 함수의 치역을 <span class="math inline">\([0,\,1]\)</span> 하는 연속함수중에 선택 할 수 있다. 가장 대표적으로 널리 사용되는 것이 로지스틱 시그모이드 함수(logistic sigmoid function) <span class="math inline">\(\sigma(t)\)</span> 이다.</p>
+<p><span id="eq-ML_classification_sigmoid"><span class="math display">\[
 \sigma(t) = \dfrac{1}{1+e^{-t}}
-\]</span></p>
-<p>로 정의한다. 시그모이드 함수 <span class="math inline">\(\sigma (t)\)</span> 의 치역은 <span class="math inline">\([0,\,1]\)</span> 사이에 있으며</p>
-<p><span class="math display">\[
-y=\sigma\left(\boldsymbol{w}^T\boldsymbol{\phi}\left(\boldsymbol{x}\right)\right)
-\]</span></p>
-<p>를 <span class="math inline">\(\boldsymbol{y}\)</span> 가 어떤 클래스에 속할 확률로 생각한다.</p>
+\tag{3}\]</span></span></p>
 <div id="fig-ML_classification_sigmoid" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ML_classification_sigmoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -487,28 +489,40 @@ y=\sigma\left(\boldsymbol{w}^T\boldsymbol{\phi}\left(\boldsymbol{x}\right)\right
 </figcaption>
 </figure>
 </div>
-<p>그리고 이에 대한 비용 함수는 이진 교차 엔트로피(Binary cross entropy, BCE) 함수를 사용한다. <span class="math inline">\(\hat{y}^{(i)} = \sigma \left(\boldsymbol{w}^T\boldsymbol{\phi}\left(\boldsymbol{x}^{(i)}\right)\right)\)</span> 에 대해</p>
+<p>그렇다면 모델 함수 <span class="math display">\[
+y=\sigma\left(\boldsymbol{w}^T \boldsymbol{x} + b\right)
+\]</span></p>
+<p>는 <span class="math inline">\(\boldsymbol{x}\)</span> 가 정해진 클래스에 속할 확률이 된다. 이 로지스틱 시그모이드를 판별함수로 하는 분류를 <strong>로지스틱 회귀(logistic regression)</strong> 라고 한다. 회귀(regression) 이라는 말이 들어가지만 회귀가 아닌 분류 문제에 사용된다.</p>
+<p>그리고 이에 대한 비용 함수는 이진 교차 엔트로피(Binary cross entropy, BCE) 함수를 사용한다. <span class="math inline">\(\hat{y}^{(i)} = \sigma \left(\boldsymbol{w}^T\boldsymbol{x}^{(i)}\right)\)</span> 에 대해</p>
 <p><span id="eq-ML_classification_binary_cross_entropy"><span class="math display">\[
-L(\boldsymbol{w}) = \text{BCE}(\boldsymbol{w}) -\sum_{i=1}^n y^{(i)} \left[\ln \left(\hat{y}^{(i)}\right) + \left(1-y^{(i)}\right) \ln \left(1-\left(\hat{y}^{(i)}\right)\right)\right]
-\tag{2}\]</span></span></p>
+L(\boldsymbol{w}) = \text{BCE}(\boldsymbol{w}) =\sum_{i=1}^n y^{(i)} \left[\ln \left(\hat{y}^{(i)}\right) + \left(1-y^{(i)}\right) \ln \left(1-\left(\hat{y}^{(i)}\right)\right)\right]
+\tag{4}\]</span></span></p>
 <p>를 사용한다. 앞서 <a href="#exm-ML_binary_classification_and_cost_function" class="quarto-xref">예제&nbsp;1</a> 에서 오차함수로 위의 <span class="math inline">\(\text{BCE}\)</span> 함수를 사용했을 때가 <a href="#fig-ML_classicifation_binary_classification_1" class="quarto-xref">그림&nbsp;1</a> 의 가장 오른쪽 그림이다.</p>
-<p>이렇게 이진 분류 문제에 시그모이드 함수를 도입하여 확률론적으로 최적화 하는 것을 <strong>로지스틱 회귀(logistic regression)</strong> 이라고 한다. 회귀(regression) 이라는 말이 들어가지만 회귀가 아닌 분류 문제에 사용된다.</p>
 <p><br></p>
 </section>
-<section id="다중-클래스-로지스틱-회귀" class="level3" data-number="1.6">
-<h3 data-number="1.6" class="anchored" data-anchor-id="다중-클래스-로지스틱-회귀"><span class="header-section-number">1.6</span> 다중 클래스 로지스틱 회귀</h3>
-<p><span class="math inline">\(C_1,\ldots,\,C_K\)</span> 클라스로 분류하는 데 사용되는 판별함수 <span class="math inline">\(a_1 = a_1(\boldsymbol{x};\boldsymbol{w}_1),\ldots,\,a_K=a_K(\boldsymbol{x};\boldsymbol{w}_K)\)</span> 를 원-핫 벡터로 하고 이 값을 기준으로 확률적으로 어떤 클래스에 속하는지 판단한다고 하자. 여기에는 소프트 맥스 변환을 이용한다. <span class="math inline">\(\boldsymbol{a}\in \mathbb{R}^K\)</span> 에 대한 소프트 맥스 변환 <span class="math inline">\(\boldsymbol{\gamma}:\mathbb{R}^K \to \mathbb{R}^K\)</span> 은 <span class="math display">\[
-\boldsymbol{y} = \boldsymbol{\gamma}(\boldsymbol{a})= \dfrac{1}{\sum_{j=1}^K e^{a_j}} \begin{bmatrix} e^{a_1} \\ \vdots \\ e^{a_K}\end{bmatrix}
-\]</span></p>
-<p>로 <span class="math inline">\(\boldsymbol{y}\)</span> 의 각 성분은 <span class="math inline">\([0,\,1]\)</span> 범위의 값을 가지며 그 성분의 합은 <span class="math inline">\(1\)</span> 이다. 따라서 <span class="math inline">\(\boldsymbol{y}\)</span> 의 각 성분은 확률로 해석 할 수 있다. 이렇게 다중 클래스 분류 문제를 확률로 해석하는 것을 다중 클래스 로지스틱 회귀라고 한다.</p>
-<p>다중 클래스 로지스틱 회귀에 대한 비용함수로는 <strong>교차 엔트로피 오차 함수(Cross entropy error function, CEE)</strong> 가 사용된다.</p>
+<section id="다중-클래스-로지스틱-회귀" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="다중-클래스-로지스틱-회귀"><span class="header-section-number">2.3</span> 다중 클래스 로지스틱 회귀</h3>
+<p><span class="math inline">\(C_1,\ldots,\,C_K\)</span> 클래스로 분류하는 데 사용되는 판별함수 <span class="math inline">\(a_1 = a_1(\boldsymbol{x};\boldsymbol{w}_1,\,b_1),\ldots,\,a_K=a_K(\boldsymbol{x};\boldsymbol{w}_K,\,b_K)\)</span> 에 대해 소프트 맥스 변환 <span class="math inline">\(G:\mathbb{R}^K \to \mathbb{R}^K\)</span> 은 <span class="math inline">\(\boldsymbol{a}=\begin{bmatrix} a_1 &amp; \cdots &amp; a_K\end{bmatrix}^T\)</span> 에 대해 다음과 같이 정의된다. <span id="eq-ML_classification_softmax"><span class="math display">\[
+G(\boldsymbol{a}) := \dfrac{1}{\sum_{j=1}^K e^{a_j}} \begin{bmatrix} e^{a_1} \\ \vdots \\ e^{a_K}\end{bmatrix}
+\tag{5}\]</span></span></p>
+<p>우리는 각각의 <span class="math inline">\(a_i\)</span> 가 <span class="math inline">\([0,\,1]\)</span> 사이의 값을 갖는다는 것을 알고 있다. <span class="math inline">\(G(\boldsymbol{a})\)</span> 의 각 성분 역시 <span class="math inline">\([0,\,1]\)</span> 사이의 값을 가지며 그 성분의 합이 <span class="math inline">\(1\)</span> 이다. 따라서 <span class="math inline">\(G(\boldsymbol{a})\)</span> 의 각 성분은 확률 그 클래스에 속할 확률로 해석 할 수 있다. 이렇게 다중 클래스 분류 문제를 확률로 해석하는 것을 다중 클래스 로지스틱 회귀라고 한다.</p>
+<p>다중 클래스 회귀에 대한 비용함수로는 <strong>교차 엔트로피 오차 함수(Cross entropy error function, CEE)</strong> 가 사용된다.</p>
+<p><span id="eq-ML_classification_cost_function_of_many_class_classification"><span class="math display">\[
+\text{CEE}(\boldsymbol{w}) = -\sum_{i=1}^n\sum_{j=1}^K   y^{(i)}_j \ln \left(\hat{y}^{(i)}_j\right)
+\tag{6}\]</span></span></p>
+<p>소프트 맥스 회귀를 사용하는 다중 클래스 로지스틱 회귀에서는 <a href="#eq-ML_classification_cost_function_of_many_class_classification" class="quarto-xref">식&nbsp;6</a> 는 <span id="eq-ML_classification_cost_function_of_many_class_logistic_regression"><span class="math display">\[
+\text{CEE}(\boldsymbol{w})  =  -\sum_{i=1}^n\sum_{j=1}^K  y^{(i)}_j \left[ a_j - \ln \left(\sum_{m=1}^K e^{a_m}\right) \right]
+\tag{7}\]</span></span></p>
+<p>이다.</p>
+<p><br></p>
+</section>
+<section id="손실-함수의-미분" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="손실-함수의-미분"><span class="header-section-number">2.4</span> 손실 함수의 미분</h3>
+<p>로지스틱 회귀의 모델 함수 <span class="math inline">\(\sigma(\boldsymbol{w}^T\boldsymbol{x}+b)\)</span> 에서 우리가 최적값을 찾아야 할 것은 <span class="math inline">\(\boldsymbol{w}\)</span> 와 <span class="math inline">\(b\)</span> 이다. 수식 표기량을 줄이기 위해</p>
 <p><span class="math display">\[
-\text{CEE}(\boldsymbol{w}) = -\sum_{i=1}^n\sum_{j=1}^K   y^{(i)}_j \ln \left(\hat{y}^{(i)}_j\right) =  -\sum_{i=1}^n\sum_{j=1}^K  y^{(i)}_j \left[ a_j - \ln \left(\sum_{m=1}^K e^{a_m}\right) \right]
+\tilde{\boldsymbol{x}}=\begin{bmatrix}1 \\ \boldsymbol{x}\end{bmatrix} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}, \qquad \tilde{\boldsymbol{w}}= \begin{bmatrix} b \\ \boldsymbol{w}\end{bmatrix} = \begin{bmatrix} b \\ w_1 \\ \vdots \\ w_n\end{bmatrix}
 \]</span></p>
-<p><br></p>
-</section>
-<section id="손실-함수의-미분" class="level3" data-number="1.7">
-<h3 data-number="1.7" class="anchored" data-anchor-id="손실-함수의-미분"><span class="header-section-number">1.7</span> 손실 함수의 미분</h3>
+<p>를 사용하여 <span class="math inline">\(\sigma (\boldsymbol{w}^T\boldsymbol{x}+b)=\sigma (\tilde{\boldsymbol{w}}^T\tilde{\boldsymbol{x}})\)</span> 의 표기법을 도입하거나 <span class="math inline">\(\boldsymbol{w},\, \boldsymbol{x}\)</span> 가 실제로는 <span class="math inline">\(\tilde{\boldsymbol{w}},\, \tilde{\boldsymbol{x}}\)</span> 를 의미한다고 간주하고 계산하기도 한다. 여기서는 후자를 사용하며 이후로는 필요하다면 명확하게 언급 한 후 그 방식으로 사용하기로 하자.</p>
 <p>교차 엔트로피 함수 <span class="math inline">\(L_C(\boldsymbol{w}_1,\ldots,\boldsymbol{w}_K)= \text{CEE}(\boldsymbol{w})\)</span> 에 대한 미분을 생각해보자. <span class="math inline">\(w_{kl}= (\boldsymbol{w}_k)_l\)</span> 이라 하면</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -519,15 +533,15 @@ L(\boldsymbol{w}) = \text{BCE}(\boldsymbol{w}) -\sum_{i=1}^n y^{(i)} \left[\ln \
 <p>여기서 <span class="math inline">\(\sum_{j=1}^K y_j^{(i)}=1\)</span> 이므로</p>
 <p><span id="eq-ML_classification_partial_differential_of_cost_function_for_multi_class_logistic_regression"><span class="math display">\[
 \dfrac{\partial L_C}{\partial w_{kl}} =- \dfrac{\partial a_k}{\partial w_{kl}} \sum_{i=1}^n \left(y_k^{(i)} -\hat{y}^{(i)}_k\right)
-\tag{3}\]</span></span></p>
+\tag{8}\]</span></span></p>
 <p>인 매우 단순한 식이 된다. 즉</p>
 <p><span id="eq-ML_classification_gradient_of_cost_function_for_multi_class_logistic_regression"><span class="math display">\[
 \nabla_{\boldsymbol{w}_k} L_C(\boldsymbol{w}_1,\ldots,\, \boldsymbol{w}_K) =  \left[\sum_{i=1}^n \left(\hat{y}_k^{(i)} -y^{(i)}_k\right)\right] \nabla_{\boldsymbol{w}_k} a_k
-\tag{4}\]</span></span></p>
+\tag{9}\]</span></span></p>
 <p>이다. 이진 분류의 경우 <span class="math inline">\(\boldsymbol{w}\)</span> 만 생각하면 되므로</p>
 <p><span id="eq-ML_classification_gradient_of_cost_function_for_binary_logistic_regression"><span class="math display">\[
 \nabla_\boldsymbol{w} L_B(\boldsymbol{w})= \left[\sum_{i=1}^n \left(\hat{y}_k^{(i)} -y^{(i)}_k\right)\right] \nabla_{\boldsymbol{w}} a
-\tag{5}\]</span></span></p>
+\tag{10}\]</span></span></p>
 <p>이다.</p>
 
 

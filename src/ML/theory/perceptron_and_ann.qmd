@@ -13,11 +13,13 @@ crossref:
 
 ## 퍼셉트론
 
-### 퍼셉트론 {#sec-perceptron}
+### 퍼셉트론 {#sec-ML_ann_perceptron}
+
+앞서의 [일반화된 선형 모델](classification.qmd#sec-ML_classification_generalized_linear_model) 은 원래 생물의 신경 세포(neuron) 을 수학적으로 모사한 것이다. 로지스틱 회귀에서는 입력변수와 매개변수의 내적에 대한 시그모이드 함수로 처리하여 출력했으며, 다중 클래스 로지스틱 회귀에서는 소프트 맥스 함수를 사용하였다. 이 퍼셉트론을 여러 층으로 쌓은 것을 신경망(neural network) 이라고 하며 현재 인공지능 시스템의 핵심이 되었다. 여기서 입력변수와 매개변수의 내적을 처리하는 함수를 **활성화 함수(activation function)** 라고 하며 신경망 에서는 시그모이드나 소프트 맥스 이외에 각각의 장점과 목적에 맞게 다양한 함수를 사용 할 수 있다.
 
 ![퍼셉트론](figure/perceptron01.png){#fig-perceptron_perceptron width=400}
 
-퍼셉트론은 
+요약하자면
 
 &emsp;($1$) $n$ 개의 입력 변수 $\bf{x}\in \R^n$,
 
@@ -27,44 +29,26 @@ crossref:
 
 로 정의된다. 
 
-$$
-z=b+ \sum_{i=1}^n \bf{x}\cdot \bf{w} = b + w_1x_1 + \cdots + w_n x_n
-$$
-
-을 계산 한 후, 활성화 함수값 $\sigma(z)$ 를 출력한다.  
-
-</br>
-
-### 이진분류
-
-활성화 함수 $\sigma$ 가 $\sigma:\R \to \{0,\,1\}$ 일 경우 2진분류 문제이며 $\bf{w}$ 에 의해 결정표면이 정해진다. 물론 활성화 함수가 항상 이런 형태일 필요는 없다. 
-
-
-</br>
-
-### 활성화 함수의 비선형성
-
-일반적으로 활성화 함수는 비선형 함수이다. 즉 $\sigma (z)$ 는 $az+b$ 꼴이 아니다. 
-
 </br>
 
 ## 다층 신경망
 
-### 다층 신경망
+### 다층 신경망 {#sec-ML_ANN_neural_network}
 
-![다층 퍼셉트론](figure/perceptron02.png){#fig-perceptron_multi_layer_perceptron width=600}
+![다층 신경망](figure/perceptron02.png){#fig-perceptron_multi_layer_perceptron width=600}
 
-- 입력층(input layer) 는 퍼셉트론이 아닌 입력 데이터 벡터이다.
+- **입력층(input layer)** 는 퍼셉트론이 아닌 입력 데이터 벡터이다.
+- 입력층과 출력층을 제외한 신경망의 각 층을 **은닉층(hidden layer)** 라고 한다.
 - 첫번째 은닉층(hidden layer)의 퍼셉트론을 $h_1^{(1)},\,h_2^{(1)},\ldots$ 와 같이 표기한다.
 - $k$ 번째 은닉층의 퍼셉트론을 $h_1^{(k)},\,h_2^{(k)},\ldots$ 와 같이 표기한다.
 - $k$ 번째 은닉층의 퍼셉트론의 갯수를 $N_k$ 로 표기한다.
 - 출력층은 출력값 벡터를 출력하는 마지막 층의 퍼셉트론이다.
 - 신경망의 층수는 입력층을 제외하고 은닉층의 수에 출력층 1 을 더하여 표기한다. 즉 위의 그림은 4층 신경망이다.
 
-다층 퍼셉트론은 입력값 벡터 $\bf{x}\in \R^D$ 에 대해 출력값 $\hat{\bf{y}}\in \R^K$ 를 내는 함수로 내부에 각각의 퍼셉트론의 매개변수 전체를 매개변수로 가지는 함수이다. 
+다층 퍼셉트론은 입력값 벡터 $\bf{x}\in \R^D$ 에 대해 출력값 $\hat{\bf{y}}\in \R^K$ 를 내는 함수로 내부에 각각의 퍼셉트론의 매개변수 전체 신경망의 매개변수로 가지는 함수이다. 
 
 
-입력층 $\bf{x} = \begin{bmatrix}x_1 & \cdots & x_n\end{bmatrix}^T$ 에 대해 첫번째 은닉층의 $j$ 번째 퍼셉트론의 내부 파라미터 벡터를 $\bf{w}^{(1j)}$ 와 $b^{(1)}_j$ 로 표기하기로 하고
+입력층 $\bf{x} = \begin{bmatrix}x_1 & \cdots & x_D\end{bmatrix}^T$ 에 대해 첫번째 은닉층의 $j$ 번째 퍼셉트론의 내부 파라미터 벡터를 $\bf{w}^{(1j)}$ 와 $b^{(1)}_j$ 로 표기하기로 하고
 
 $$
 z_j^{(1)} = \bf{w}^{(1j)}\bf{\cdot x} + b_j^{(1)}
@@ -72,13 +56,13 @@ $$
 
 라고 하자. 그렇다면 활성화 함수 $\sigma$ 에 대해 출력값 $y^{(1)}_j$ 는 
 $$
-h^{(1)}_j = \sigma(z_j) = \sigma \left(\bf{w}^{1j} \bf{\cdot x}+b^{(1)}_j\right)
+h^{(1)}_j = \sigma(z_j) = \sigma \left(\bf{w}^{(1j)} \bf{\cdot x}+b^{(1)}_j\right)
 $$
 
 이다. 첫번째 은닉층에 $N_1$ 개의 퍼셉트론이 있다고 하고 행렬 $\bf{W}^{(1)}$ 와 $\tilde{\bf{h}}$ 를 다음과 같이 정의하자. 
 
 $$
-\bf{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 & w^{11}_1 & w^{11}_2 & \cdots & w^{11}_n \\ b^{(1)}_2 & w^{12}_1 & w^{12}_2 & \cdots & w^{12}_n \\ \vdots & & & & \vdots \\ b^{(1)}_{N_1} & w^{1N_1}_1 & w^{1N_1}_2 & \cdots & w^{1N_1}_n\end{bmatrix},\qquad \tilde{\bf{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
+\bf{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 & w^{(11)}_1 & w^{(11)}_2 & \cdots & w^{(11)}_n \\ b^{(1)}_2 & w^{(12)}_1 & w^{(12)}_2 & \cdots & w^{(12)}_n \\ \vdots & & & & \vdots \\ b^{(1)}_{N_1} & w^{(1,N_1)}_1 & w^{(1,N_1)}_2 & \cdots & w^{(1,N_1)}_n\end{bmatrix},\qquad \tilde{\bf{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
 $$ {#eq-ML_parameters_representations}
 
 $\bf{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 & \cdots & z^{(1)}_{N_1}\end{bmatrix}^{T}$ 에 대해
@@ -90,7 +74,7 @@ $$
 이며 출력값을 역시 벡터로 
 
 $$
-\bf{h}^{(1)}= \bf{\sigma}\left(\bf{z}^{(1)}\right) = \begin{bmatrix} \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left({z}^{(1)}_{N_1}\right) \end{bmatrix}
+\bf{h}^{(1)}= F^{(1)}\left(\bf{z}^{(1)}\right) = \begin{bmatrix} \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left({z}^{(1)}_{N_1}\right) \end{bmatrix}
 $$
 
 놓자. 출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로
@@ -155,30 +139,9 @@ $$ {#eq-ML_maxout}
 
 </br>
 
-#### **Softmax**
-
-출력 벡터를 내는 이산적인 표적공간에 대해 $\hat{\bf{y}}$ 를 내는 활성화 함수는 **소프트 맥스(softmax)** 함수이다. 소프트 맥스 함수 $\text{softmax}:\R^n \to \R^n$ 은 $\bf{z}=\begin{bmatrix}z_1 & \cdots & z_n\end{bmatrix}^T$ 에 대해 다음과 같이 정의된다.
-
-$$
-\text{softmax}(\bf{z}) := \dfrac{1}{\sum_{i=1}^n e^{z_i}}\begin{bmatrix}e^{z_1} \\ \vdots \\ e^{z_n}\end{bmatrix}
-$$ {#eq-perceptron_softmax}
-
-즉 $p_i = \text{softmax}(\bf{z})_i$ 일 때 $p_i \ge 0$ 이며 $\displaystyle \sum_{i=1}^{n} p_i = 1$ 로 확률의 성질을 가진다. 
-
-
-</br>
-
 ### 비용함수 {#sec-ML_cost_function_of_nn}
 
-정해진 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 하고 입력 $\bf{x}$ 에 대한 출력값을 $\hat{\bf{y}}=\bf{h}(\bf{x};\bf{\theta})$ 라고 쓰자. 우리가 데이터를 학습시킬 때 $i$ 번째 입력 벡터를 $\bf{x}_{(i)}$ 라고 쓰면 마찬가지로 label 은 원-핫 벡터 $\bf{y}_{(i)}$ 로 표현 할 수 있으며 출력값은 $\hat{\bf{y}}_{(i)}=\bf{h}\left(\bf{x}_{(i)};\bf{\theta}\right)$ 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 표기하기로 하자. 
-
-
-다층신경망에서의 출력은 $\R^K$ 벡터이며 각 성분은 $[0,\,1]$ 의 범위이고 그 합이 $1$ 이다. 이경우 손실함수는 제곱합 오차 함수를 사용하자. 우선 학습을 시킬 때 
-
-$$
-L(\bf{\theta}) = \sum_{i=1}^N \left\|\bf{y}_{(i)} - \hat{\bf{y}}_{(i)}\right\|^2 = \sum_{i=1}^N \left\|\bf{y}_{(i)} - \bf{h}\left(\bf{x}_{(i)};\,\bf{\theta}\right)\right\|^2
-$$ {#eq-ML_cost_function_for_mlnn}
-를 사용한다.
+정해진 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 하고 입력 $\bf{x}$ 에 대한 출력값을 $\hat{\bf{y}}=F(\bf{x};\bf{\theta})$ 라고 쓰자. 우리가 데이터를 학습시킬 때 $i$ 번째 입력 벡터를 $\bf{x}_{(i)}$ 라고 쓰면 마찬가지로 label 은 원-핫 벡터 $\bf{y}_{(i)}$ 로 표현 할 수 있으며 출력값은 $\hat{\bf{y}}_{(i)}=F\left(\bf{x}_{(i)};\bf{\theta}\right)$ 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 $\bf{\theta}$ 라고 표기하기로 하자. 다층 신경망에서의 오차함수는 신경망에서의 출력값의 특성에 따라 최소 제곱합이나 교차 엔트로피 함수 혹은 다른 특정한 목적을 위한 함수를 사용 할 수 있다. 
 
 
 </br>

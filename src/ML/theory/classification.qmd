@@ -36,7 +36,7 @@ $$
 
 ## 분류 문제
 
-### 개요 {#sec-classificatin_introduction}
+### 개요 {#sec-ML_classification_introduction}
 
 분류(classification) 문제는 표적값(target) 이 유한개인 문제이다. 표적값에 따라 입력 벡터를 구별할 수 있으며, 이렇게 구별되는 입력 벡터의 집합을 클래스(class) 라고 하고 각 클래스를 분리하는 경계를 **결정 경계(decision boundary)** 혹은 **결정 표면(decision surface)** 이라고 하며 결정 경계를 바탕으로 분리된 부분집합을 **결정 구역(decision region)** 이라고 한다.
 
@@ -46,7 +46,7 @@ $$
 
 </br>
 
-### 일반화된 선형 모델 {#sec-classification_generalized_linear_model}
+### 일반화된 선형 모델 {#sec-ML_classification_generalized_linear_model}
 
 입력값 $\bf{x}$ 에 대한 모델을 구성할 때 모댈 내부의 매개변수 $\bf{w}$ 에 대한 가장 간단한 함수로서
 
@@ -66,7 +66,7 @@ $$ {#eq-ML_classification_generalized_linear_model}
 
 </br>
 
-#### **2 개의 클래스 의 경우**
+#### **이진 분류**
 
 두개의 클래스 $C_1,\,C_2$ 로 분류하는 것을 이진 분류라고 한다. @eq-ML_classification_generalized_linear_model 에서의 활성화 함수 $f$ 를 $\text{sign}(a)$ 함수 즉, 
 
@@ -80,18 +80,21 @@ $$
 
 #### **다중 클래스 의 경우**
 
-2 개 이상 $K$ 개의 클래스 $C_1,\ldots,\,C_K$ 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 각 클래스 $C_1,\ldots,\,C_N$ 에 대한 활성화 함수 $f_1,\,\ldots,\,f_N$ 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 $K$ 개의 선형 판별 함수 $y_1,\ldots,\,y_K$ 가 아래와 같이 정의된다고 하자.
+2 개 이상 $K$ 개의 클래스 $C_1,\ldots,\,C_K$ 로 분류하는 문제의 경우는 매우 복잡해진다. 예를 들어 이진 분류법을 각 클래스 $C_1,\ldots,\,C_N$ 에 대해 사용한다고 하자. 각 클래스에 대한 대한 활성화 함수 $f_1,\,\ldots,\,f_N$ 을 정하더라도 겹치거나, 어디에도 포함되지 않는 모호한 영역이 생길 수 있다. 이런 경우를 처리할 수 있는 한가지 방법으로 $K$ 개의 선형 판별 함수 $y_1,\ldots,\,y_K$ 를 아래와 같이 우선 정의한다.
 
 $$
-y_k(\bf{x}; \bf{w}_k,\, w_{k0}) = \bf{w}_k^T \bf{x} + w_{k0},\qquad k=1,\ldots,\, K.
-$$
+y_k(\bf{x}; \bf{w}_k,\, w_{k0}) = \bf{w}_k^T \bf{x} + b_k,\qquad k=1,\ldots,\, K.
+$$ {#eq-ML_classification_linear_modelling_function}
 
-이 때 $y_{k}(\bf{x}; \bf{w}_k,\, w_{k0}) \ge y_{j}(\bf{x}; \bf{w}_j,\, w_{j0})$ 이면 $C_k$ 클래스에 포함되도록 하면 된다. 
+이 때 $y_{k}(\bf{x}; \bf{w}_k,\, b_k) \ge y_{j}(\bf{x}; \bf{w}_j,\, b_j)$ 이면 $C_k$ 클래스에 포함되도록 하면 된다. 즉 결정
 
 
 </br>
 
-### 이진 분류와 퍼셉트론
+
+## 로지스틱 회귀
+
+### 비용함수
 
 수학적으로 $f:\R^n \to \{0,\,1\}$ 인 함수
 
@@ -102,7 +105,7 @@ $$
 를 생각하자. 입력 벡터 $\bf{x}$ 를 비선형 변환 $\bf{\phi}$ 를 통해 특징벡터(feature vector) 로 변환시킬 때
 
 $$
-y = f(\bf{w}^T \bf{\phi}(\bf{x}))
+y = f(\bf{w}^T \bf{x} + b)
 $$
 
 인 함수이다. 
@@ -166,61 +169,77 @@ fig
 
 :::
 
+물론 오차제곱합 함수 말고도 단지 함수에서 오분류된 점의 갯수, 혹은 전체 점에 대한 비율로 오류함수를 정의 할 수 도 있지만 어쨌든 $w$ 에 대해 불연속이 된다는 것은 자명하다.
+
 </div> </br>
 
-### 로지스틱 회귀
+### 시그모이드 함수와 로지스틱 회귀
 
-이 문제를 해결하기 위해 확률론을 도입한다. 우선 퍼셉트론의 출력 함수를 시그모이드 함수
+앞서 비용함수의 불연속성은 target 집합 이 $\{0,\,1\}$ 이기 때문에 발생한다. 이 문제를 해결하기 위해 확률론을 도입한다. 즉 모델 함수의 치역을 $[0,\,1]$ 하는 연속함수중에 선택 할 수 있다. 가장 대표적으로 널리 사용되는 것이 로지스틱 시그모이드 함수(logistic sigmoid function) $\sigma(t)$ 이다.
 
 $$
 \sigma(t) = \dfrac{1}{1+e^{-t}}
-$$
-
-로 정의한다. 시그모이드 함수 $\sigma (t)$ 의 치역은 $[0,\,1]$ 사이에 있으며 
-
-$$
-y=\sigma\left(\bf{w}^T\bf{\phi}\left(\bf{x}\right)\right)
-$$
-
-를 $\bf{y}$ 가 어떤 클래스에 속할 확률로 생각한다. 
-
-
+$$ {#eq-ML_classification_sigmoid}
 
 
 ![시그모이드 함수](figure/sigmoid.png){#fig-ML_classification_sigmoid width=300}
 
 
-그리고 이에 대한 비용 함수는 이진 교차 엔트로피(Binary cross entropy, BCE) 함수를 사용한다. $\hat{y}^{(i)} = \sigma \left(\bf{w}^T\bf{\phi}\left(\bf{x}^{(i)}\right)\right)$ 에 대해
+그렇다면 모델 함수 
+$$
+y=\sigma\left(\bf{w}^T \bf{x} + b\right)
+$$
+
+는 $\bf{x}$ 가 정해진 클래스에 속할 확률이 된다. 이 로지스틱 시그모이드를 판별함수로 하는 분류를 **로지스틱 회귀(logistic regression)** 라고 한다. 회귀(regression) 이라는 말이 들어가지만 회귀가 아닌 분류 문제에 사용된다.
+
+
+그리고 이에 대한 비용 함수는 이진 교차 엔트로피(Binary cross entropy, BCE) 함수를 사용한다. $\hat{y}^{(i)} = \sigma \left(\bf{w}^T\bf{x}^{(i)}\right)$ 에 대해
 
 $$
-L(\bf{w}) = \text{BCE}(\bf{w}) -\sum_{i=1}^n y^{(i)} \left[\ln \left(\hat{y}^{(i)}\right) + \left(1-y^{(i)}\right) \ln \left(1-\left(\hat{y}^{(i)}\right)\right)\right]
+L(\bf{w}) = \text{BCE}(\bf{w}) =\sum_{i=1}^n y^{(i)} \left[\ln \left(\hat{y}^{(i)}\right) + \left(1-y^{(i)}\right) \ln \left(1-\left(\hat{y}^{(i)}\right)\right)\right]
 $$ {#eq-ML_classification_binary_cross_entropy}
 
 를 사용한다. 앞서 @exm-ML_binary_classification_and_cost_function 에서 오차함수로 위의 $\text{BCE}$ 함수를 사용했을 때가 @fig-ML_classicifation_binary_classification_1 의 가장 오른쪽 그림이다. 
 
-이렇게 이진 분류 문제에 시그모이드 함수를 도입하여 확률론적으로 최적화 하는 것을 **로지스틱 회귀(logistic regression)** 이라고 한다. 회귀(regression) 이라는 말이 들어가지만 회귀가 아닌 분류 문제에 사용된다.
 
 </br>
 
 ### 다중 클래스 로지스틱 회귀
 
-$C_1,\ldots,\,C_K$ 클라스로 분류하는 데 사용되는 판별함수 $a_1 = a_1(\bf{x};\bf{w}_1),\ldots,\,a_K=a_K(\bf{x};\bf{w}_K)$ 를 원-핫 벡터로 하고 이 값을 기준으로 확률적으로 어떤 클래스에 속하는지 판단한다고 하자. 여기에는 소프트 맥스 변환을 이용한다. $\bf{a}\in \R^K$ 에 대한 소프트 맥스 변환 $\bf{\gamma}:\R^K \to \R^K$ 은
+$C_1,\ldots,\,C_K$ 클래스로 분류하는 데 사용되는 판별함수 $a_1 = a_1(\bf{x};\bf{w}_1,\,b_1),\ldots,\,a_K=a_K(\bf{x};\bf{w}_K,\,b_K)$ 에 대해 소프트 맥스 변환 $G:\R^K \to \R^K$ 은 $\bf{a}=\begin{bmatrix} a_1 & \cdots & a_K\end{bmatrix}^T$ 에 대해 다음과 같이 정의된다.
 $$
-\bf{y} = \bf{\gamma}(\bf{a})= \dfrac{1}{\sum_{j=1}^K e^{a_j}} \begin{bmatrix} e^{a_1} \\ \vdots \\ e^{a_K}\end{bmatrix}
+G(\bf{a}) := \dfrac{1}{\sum_{j=1}^K e^{a_j}} \begin{bmatrix} e^{a_1} \\ \vdots \\ e^{a_K}\end{bmatrix}
+$$ {#eq-ML_classification_softmax}
+
+우리는 각각의 $a_i$ 가 $[0,\,1]$ 사이의 값을 갖는다는 것을 알고 있다. $G(\bf{a})$ 의 각 성분 역시 $[0,\,1]$ 사이의 값을 가지며 그 성분의 합이 $1$ 이다. 따라서 $G(\bf{a})$ 의 각 성분은 확률 그 클래스에 속할 확률로 해석 할 수 있다. 이렇게 다중 클래스 분류 문제를 확률로 해석하는 것을 다중 클래스 로지스틱 회귀라고 한다. 
+
+
+다중 클래스 회귀에 대한 비용함수로는 **교차 엔트로피 오차 함수(Cross entropy error function, CEE)** 가 사용된다.
+
 $$
+\text{CEE}(\bf{w}) = -\sum_{i=1}^n\sum_{j=1}^K   y^{(i)}_j \ln \left(\hat{y}^{(i)}_j\right) 
+$$ {#eq-ML_classification_cost_function_of_many_class_classification}
 
-로 $\bf{y}$ 의 각 성분은 $[0,\,1]$ 범위의 값을 가지며 그 성분의 합은 $1$ 이다. 따라서 $\bf{y}$ 의 각 성분은 확률로 해석 할 수 있다. 이렇게 다중 클래스 분류 문제를 확률로 해석하는 것을 다중 클래스 로지스틱 회귀라고 한다. 
-
-
-다중 클래스 로지스틱 회귀에 대한 비용함수로는 **교차 엔트로피 오차 함수(Cross entropy error function, CEE)** 가 사용된다.
-
+소프트 맥스 회귀를 사용하는 다중 클래스 로지스틱 회귀에서는 @eq-ML_classification_cost_function_of_many_class_classification 는
 $$
-\text{CEE}(\bf{w}) = -\sum_{i=1}^n\sum_{j=1}^K   y^{(i)}_j \ln \left(\hat{y}^{(i)}_j\right) =  -\sum_{i=1}^n\sum_{j=1}^K  y^{(i)}_j \left[ a_j - \ln \left(\sum_{m=1}^K e^{a_m}\right) \right]
-$$
+\text{CEE}(\bf{w})  =  -\sum_{i=1}^n\sum_{j=1}^K  y^{(i)}_j \left[ a_j - \ln \left(\sum_{m=1}^K e^{a_m}\right) \right]
+$$ {#eq-ML_classification_cost_function_of_many_class_logistic_regression}
+
+이다. 
+
+
 
 </br>
 
 ### 손실 함수의 미분
+
+로지스틱 회귀의 모델 함수 $\sigma(\bf{w}^T\bf{x}+b)$ 에서 우리가 최적값을 찾아야 할 것은 $\bf{w}$ 와 $b$ 이다. 수식 표기량을 줄이기 위해 
+
+$$
+\tilde{\bf{x}}=\begin{bmatrix}1 \\ \bf{x}\end{bmatrix} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}, \qquad \tilde{\bf{w}}= \begin{bmatrix} b \\ \bf{w}\end{bmatrix} = \begin{bmatrix} b \\ w_1 \\ \vdots \\ w_n\end{bmatrix}
+$$
+
+를 사용하여 $\sigma (\bf{w}^T\bf{x}+b)=\sigma (\tilde{\bf{w}}^T\tilde{\bf{x}})$ 의 표기법을 도입하거나 $\bf{w},\, \bf{x}$ 가 실제로는 $\tilde{\bf{w}},\, \tilde{\bf{x}}$ 를 의미한다고 간주하고 계산하기도 한다. 여기서는 후자를 사용하며 이후로는 필요하다면 명확하게 언급 한 후 그 방식으로 사용하기로 하자. 
 
 교차 엔트로피 함수 $L_C(\bf{w}_1,\ldots,\bf{w}_K)= \text{CEE}(\bf{w})$ 에 대한 미분을 생각해보자. $w_{kl}= (\bf{w}_k)_l$ 이라 하면
 

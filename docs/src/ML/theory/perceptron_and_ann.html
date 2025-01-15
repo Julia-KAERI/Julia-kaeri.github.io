@@ -263,13 +263,11 @@ window.Quarto = {
   <ul>
   <li><a href="#퍼셉트론" id="toc-퍼셉트론" class="nav-link active" data-scroll-target="#퍼셉트론"><span class="header-section-number">1</span> 퍼셉트론</a>
   <ul class="collapse">
-  <li><a href="#sec-perceptron" id="toc-sec-perceptron" class="nav-link" data-scroll-target="#sec-perceptron"><span class="header-section-number">1.1</span> 퍼셉트론</a></li>
-  <li><a href="#이진분류" id="toc-이진분류" class="nav-link" data-scroll-target="#이진분류"><span class="header-section-number">1.2</span> 이진분류</a></li>
-  <li><a href="#활성화-함수의-비선형성" id="toc-활성화-함수의-비선형성" class="nav-link" data-scroll-target="#활성화-함수의-비선형성"><span class="header-section-number">1.3</span> 활성화 함수의 비선형성</a></li>
+  <li><a href="#sec-ML_ann_perceptron" id="toc-sec-ML_ann_perceptron" class="nav-link" data-scroll-target="#sec-ML_ann_perceptron"><span class="header-section-number">1.1</span> 퍼셉트론</a></li>
   </ul></li>
   <li><a href="#다층-신경망" id="toc-다층-신경망" class="nav-link" data-scroll-target="#다층-신경망"><span class="header-section-number">2</span> 다층 신경망</a>
   <ul class="collapse">
-  <li><a href="#다층-신경망-1" id="toc-다층-신경망-1" class="nav-link" data-scroll-target="#다층-신경망-1"><span class="header-section-number">2.1</span> 다층 신경망</a></li>
+  <li><a href="#sec-ML_ANN_neural_network" id="toc-sec-ML_ANN_neural_network" class="nav-link" data-scroll-target="#sec-ML_ANN_neural_network"><span class="header-section-number">2.1</span> 다층 신경망</a></li>
   <li><a href="#활성화-함수" id="toc-활성화-함수" class="nav-link" data-scroll-target="#활성화-함수"><span class="header-section-number">2.2</span> 활성화 함수</a></li>
   <li><a href="#sec-ML_cost_function_of_nn" id="toc-sec-ML_cost_function_of_nn" class="nav-link" data-scroll-target="#sec-ML_cost_function_of_nn"><span class="header-section-number">2.3</span> 비용함수</a></li>
   <li><a href="#경사-하강법" id="toc-경사-하강법" class="nav-link" data-scroll-target="#경사-하강법"><span class="header-section-number">2.4</span> 경사 하강법</a></li>
@@ -315,8 +313,9 @@ window.Quarto = {
 <p><br></p>
 <section id="퍼셉트론" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="퍼셉트론"><span class="header-section-number">1</span> 퍼셉트론</h2>
-<section id="sec-perceptron" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="sec-perceptron"><span class="header-section-number">1.1</span> 퍼셉트론</h3>
+<section id="sec-ML_ann_perceptron" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="sec-ML_ann_perceptron"><span class="header-section-number">1.1</span> 퍼셉트론</h3>
+<p>앞서의 <a href="../../../src/ML/theory/classification.html#sec-ML_classification_generalized_linear_model">일반화된 선형 모델</a> 은 원래 생물의 신경 세포(neuron) 을 수학적으로 모사한 것이다. 로지스틱 회귀에서는 입력변수와 매개변수의 내적에 대한 시그모이드 함수로 처리하여 출력했으며, 다중 클래스 로지스틱 회귀에서는 소프트 맥스 함수를 사용하였다. 이 퍼셉트론을 여러 층으로 쌓은 것을 신경망(neural network) 이라고 하며 현재 인공지능 시스템의 핵심이 되었다. 여기서 입력변수와 매개변수의 내적을 처리하는 함수를 <strong>활성화 함수(activation function)</strong> 라고 하며 신경망 에서는 시그모이드나 소프트 맥스 이외에 각각의 장점과 목적에 맞게 다양한 함수를 사용 할 수 있다.</p>
 <div id="fig-perceptron_perceptron" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-perceptron_perceptron-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -327,61 +326,48 @@ window.Quarto = {
 </figcaption>
 </figure>
 </div>
-<p>퍼셉트론은</p>
+<p>요약하자면</p>
 <p> (<span class="math inline">\(1\)</span>) <span class="math inline">\(n\)</span> 개의 입력 변수 <span class="math inline">\(\boldsymbol{x}\in \mathbb{R}^n\)</span>,</p>
 <p> (<span class="math inline">\(2\)</span>) <span class="math inline">\(n+1\)</span> 개의 내부 파라미터 : 1개의 bias <span class="math inline">\(b\)</span> 와 <span class="math inline">\(n\)</span> 개의 값을 갖는 <span class="math inline">\(\boldsymbol{w}=\begin{bmatrix} w_1 &amp; \ldots &amp;w_n\end{bmatrix}^T\)</span>,</p>
 <p> (<span class="math inline">\(3\)</span>) 활성화 함수(activation function) <span class="math inline">\(\sigma(z)\)</span> : 비선형 함수.</p>
 <p>로 정의된다.</p>
-<p><span class="math display">\[
-z=b+ \sum_{i=1}^n \boldsymbol{x}\cdot \boldsymbol{w} = b + w_1x_1 + \cdots + w_n x_n
-\]</span></p>
-<p>을 계산 한 후, 활성화 함수값 <span class="math inline">\(\sigma(z)\)</span> 를 출력한다.</p>
-<p><br></p>
-</section>
-<section id="이진분류" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="이진분류"><span class="header-section-number">1.2</span> 이진분류</h3>
-<p>활성화 함수 <span class="math inline">\(\sigma\)</span> 가 <span class="math inline">\(\sigma:\mathbb{R}\to \{0,\,1\}\)</span> 일 경우 2진분류 문제이며 <span class="math inline">\(\boldsymbol{w}\)</span> 에 의해 결정표면이 정해진다. 물론 활성화 함수가 항상 이런 형태일 필요는 없다.</p>
-<p><br></p>
-</section>
-<section id="활성화-함수의-비선형성" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="활성화-함수의-비선형성"><span class="header-section-number">1.3</span> 활성화 함수의 비선형성</h3>
-<p>일반적으로 활성화 함수는 비선형 함수이다. 즉 <span class="math inline">\(\sigma (z)\)</span> 는 <span class="math inline">\(az+b\)</span> 꼴이 아니다.</p>
 <p><br></p>
 </section>
 </section>
 <section id="다층-신경망" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="다층-신경망"><span class="header-section-number">2</span> 다층 신경망</h2>
-<section id="다층-신경망-1" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="다층-신경망-1"><span class="header-section-number">2.1</span> 다층 신경망</h3>
+<section id="sec-ML_ANN_neural_network" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="sec-ML_ANN_neural_network"><span class="header-section-number">2.1</span> 다층 신경망</h3>
 <div id="fig-perceptron_multi_layer_perceptron" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-perceptron_multi_layer_perceptron-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figure/perceptron02.png" class="img-fluid figure-img" width="600">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perceptron_multi_layer_perceptron-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;2: 다층 퍼셉트론
+그림&nbsp;2: 다층 신경망
 </figcaption>
 </figure>
 </div>
 <ul>
-<li>입력층(input layer) 는 퍼셉트론이 아닌 입력 데이터 벡터이다.</li>
+<li><strong>입력층(input layer)</strong> 는 퍼셉트론이 아닌 입력 데이터 벡터이다.</li>
+<li>입력층과 출력층을 제외한 신경망의 각 층을 <strong>은닉층(hidden layer)</strong> 라고 한다.</li>
 <li>첫번째 은닉층(hidden layer)의 퍼셉트론을 <span class="math inline">\(h_1^{(1)},\,h_2^{(1)},\ldots\)</span> 와 같이 표기한다.</li>
 <li><span class="math inline">\(k\)</span> 번째 은닉층의 퍼셉트론을 <span class="math inline">\(h_1^{(k)},\,h_2^{(k)},\ldots\)</span> 와 같이 표기한다.</li>
 <li><span class="math inline">\(k\)</span> 번째 은닉층의 퍼셉트론의 갯수를 <span class="math inline">\(N_k\)</span> 로 표기한다.</li>
 <li>출력층은 출력값 벡터를 출력하는 마지막 층의 퍼셉트론이다.</li>
 <li>신경망의 층수는 입력층을 제외하고 은닉층의 수에 출력층 1 을 더하여 표기한다. 즉 위의 그림은 4층 신경망이다.</li>
 </ul>
-<p>다층 퍼셉트론은 입력값 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{R}^D\)</span> 에 대해 출력값 <span class="math inline">\(\hat{\boldsymbol{y}}\in \mathbb{R}^K\)</span> 를 내는 함수로 내부에 각각의 퍼셉트론의 매개변수 전체를 매개변수로 가지는 함수이다.</p>
-<p>입력층 <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_n\end{bmatrix}^T\)</span> 에 대해 첫번째 은닉층의 <span class="math inline">\(j\)</span> 번째 퍼셉트론의 내부 파라미터 벡터를 <span class="math inline">\(\boldsymbol{w}^{(1j)}\)</span> 와 <span class="math inline">\(b^{(1)}_j\)</span> 로 표기하기로 하고</p>
+<p>다층 퍼셉트론은 입력값 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{R}^D\)</span> 에 대해 출력값 <span class="math inline">\(\hat{\boldsymbol{y}}\in \mathbb{R}^K\)</span> 를 내는 함수로 내부에 각각의 퍼셉트론의 매개변수 전체 신경망의 매개변수로 가지는 함수이다.</p>
+<p>입력층 <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_D\end{bmatrix}^T\)</span> 에 대해 첫번째 은닉층의 <span class="math inline">\(j\)</span> 번째 퍼셉트론의 내부 파라미터 벡터를 <span class="math inline">\(\boldsymbol{w}^{(1j)}\)</span> 와 <span class="math inline">\(b^{(1)}_j\)</span> 로 표기하기로 하고</p>
 <p><span class="math display">\[
 z_j^{(1)} = \boldsymbol{w}^{(1j)}\boldsymbol{\cdot x} + b_j^{(1)}
 \]</span></p>
 <p>라고 하자. 그렇다면 활성화 함수 <span class="math inline">\(\sigma\)</span> 에 대해 출력값 <span class="math inline">\(y^{(1)}_j\)</span> 는 <span class="math display">\[
-h^{(1)}_j = \sigma(z_j) = \sigma \left(\boldsymbol{w}^{1j} \boldsymbol{\cdot x}+b^{(1)}_j\right)
+h^{(1)}_j = \sigma(z_j) = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\right)
 \]</span></p>
 <p>이다. 첫번째 은닉층에 <span class="math inline">\(N_1\)</span> 개의 퍼셉트론이 있다고 하고 행렬 <span class="math inline">\(\boldsymbol{W}^{(1)}\)</span> 와 <span class="math inline">\(\tilde{\boldsymbol{h}}\)</span> 를 다음과 같이 정의하자.</p>
 <p><span id="eq-ML_parameters_representations"><span class="math display">\[
-\boldsymbol{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 &amp; w^{11}_1 &amp; w^{11}_2 &amp; \cdots &amp; w^{11}_n \\ b^{(1)}_2 &amp; w^{12}_1 &amp; w^{12}_2 &amp; \cdots &amp; w^{12}_n \\ \vdots &amp; &amp; &amp; &amp; \vdots \\ b^{(1)}_{N_1} &amp; w^{1N_1}_1 &amp; w^{1N_1}_2 &amp; \cdots &amp; w^{1N_1}_n\end{bmatrix},\qquad \tilde{\boldsymbol{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
+\boldsymbol{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 &amp; w^{(11)}_1 &amp; w^{(11)}_2 &amp; \cdots &amp; w^{(11)}_n \\ b^{(1)}_2 &amp; w^{(12)}_1 &amp; w^{(12)}_2 &amp; \cdots &amp; w^{(12)}_n \\ \vdots &amp; &amp; &amp; &amp; \vdots \\ b^{(1)}_{N_1} &amp; w^{(1,N_1)}_1 &amp; w^{(1,N_1)}_2 &amp; \cdots &amp; w^{(1,N_1)}_n\end{bmatrix},\qquad \tilde{\boldsymbol{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
 \tag{1}\]</span></span></p>
 <p><span class="math inline">\(\boldsymbol{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 &amp; \cdots &amp; z^{(1)}_{N_1}\end{bmatrix}^{T}\)</span> 에 대해</p>
 <p><span class="math display">\[
@@ -389,7 +375,7 @@ h^{(1)}_j = \sigma(z_j) = \sigma \left(\boldsymbol{w}^{1j} \boldsymbol{\cdot x}+
 \]</span></p>
 <p>이며 출력값을 역시 벡터로</p>
 <p><span class="math display">\[
-\boldsymbol{h}^{(1)}= \boldsymbol{\sigma}\left(\boldsymbol{z}^{(1)}\right) = \begin{bmatrix} \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left({z}^{(1)}_{N_1}\right) \end{bmatrix}
+\boldsymbol{h}^{(1)}= F^{(1)}\left(\boldsymbol{z}^{(1)}\right) = \begin{bmatrix} \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left({z}^{(1)}_{N_1}\right) \end{bmatrix}
 \]</span></p>
 <p>놓자. 출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로</p>
 <p><span class="math display">\[
@@ -439,23 +425,10 @@ h^{(1)}_j = \sigma(z_j) = \sigma \left(\boldsymbol{w}^{1j} \boldsymbol{\cdot x}+
 \tag{3}\]</span></span></p>
 <p>으로 정의된다.</p>
 <p><br></p>
-<section id="softmax" class="level4">
-<h4 class="anchored" data-anchor-id="softmax"><strong>Softmax</strong></h4>
-<p>출력 벡터를 내는 이산적인 표적공간에 대해 <span class="math inline">\(\hat{\boldsymbol{y}}\)</span> 를 내는 활성화 함수는 <strong>소프트 맥스(softmax)</strong> 함수이다. 소프트 맥스 함수 <span class="math inline">\(\text{softmax}:\mathbb{R}^n \to \mathbb{R}^n\)</span> 은 <span class="math inline">\(\boldsymbol{z}=\begin{bmatrix}z_1 &amp; \cdots &amp; z_n\end{bmatrix}^T\)</span> 에 대해 다음과 같이 정의된다.</p>
-<p><span id="eq-perceptron_softmax"><span class="math display">\[
-\text{softmax}(\boldsymbol{z}) := \dfrac{1}{\sum_{i=1}^n e^{z_i}}\begin{bmatrix}e^{z_1} \\ \vdots \\ e^{z_n}\end{bmatrix}
-\tag{4}\]</span></span></p>
-<p>즉 <span class="math inline">\(p_i = \text{softmax}(\boldsymbol{z})_i\)</span> 일 때 <span class="math inline">\(p_i \ge 0\)</span> 이며 <span class="math inline">\(\displaystyle \sum_{i=1}^{n} p_i = 1\)</span> 로 확률의 성질을 가진다.</p>
-<p><br></p>
-</section>
 </section>
 <section id="sec-ML_cost_function_of_nn" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="sec-ML_cost_function_of_nn"><span class="header-section-number">2.3</span> 비용함수</h3>
-<p>정해진 모든 퍼셉트론의 파라미터를 <span class="math inline">\(\boldsymbol{\theta}\)</span> 라고 하고 입력 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 출력값을 <span class="math inline">\(\hat{\boldsymbol{y}}=\boldsymbol{h}(\boldsymbol{x};\boldsymbol{\theta})\)</span> 라고 쓰자. 우리가 데이터를 학습시킬 때 <span class="math inline">\(i\)</span> 번째 입력 벡터를 <span class="math inline">\(\boldsymbol{x}_{(i)}\)</span> 라고 쓰면 마찬가지로 label 은 원-핫 벡터 <span class="math inline">\(\boldsymbol{y}_{(i)}\)</span> 로 표현 할 수 있으며 출력값은 <span class="math inline">\(\hat{\boldsymbol{y}}_{(i)}=\boldsymbol{h}\left(\boldsymbol{x}_{(i)};\boldsymbol{\theta}\right)\)</span> 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 <span class="math inline">\(\boldsymbol{\theta}\)</span> 라고 표기하기로 하자.</p>
-<p>다층신경망에서의 출력은 <span class="math inline">\(\mathbb{R}^K\)</span> 벡터이며 각 성분은 <span class="math inline">\([0,\,1]\)</span> 의 범위이고 그 합이 <span class="math inline">\(1\)</span> 이다. 이경우 손실함수는 제곱합 오차 함수를 사용하자. 우선 학습을 시킬 때</p>
-<p><span id="eq-ML_cost_function_for_mlnn"><span class="math display">\[
-L(\boldsymbol{\theta}) = \sum_{i=1}^N \left\|\boldsymbol{y}_{(i)} - \hat{\boldsymbol{y}}_{(i)}\right\|^2 = \sum_{i=1}^N \left\|\boldsymbol{y}_{(i)} - \boldsymbol{h}\left(\boldsymbol{x}_{(i)};\,\boldsymbol{\theta}\right)\right\|^2
-\tag{5}\]</span></span> 를 사용한다.</p>
+<p>정해진 모든 퍼셉트론의 파라미터를 <span class="math inline">\(\boldsymbol{\theta}\)</span> 라고 하고 입력 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 출력값을 <span class="math inline">\(\hat{\boldsymbol{y}}=F(\boldsymbol{x};\boldsymbol{\theta})\)</span> 라고 쓰자. 우리가 데이터를 학습시킬 때 <span class="math inline">\(i\)</span> 번째 입력 벡터를 <span class="math inline">\(\boldsymbol{x}_{(i)}\)</span> 라고 쓰면 마찬가지로 label 은 원-핫 벡터 <span class="math inline">\(\boldsymbol{y}_{(i)}\)</span> 로 표현 할 수 있으며 출력값은 <span class="math inline">\(\hat{\boldsymbol{y}}_{(i)}=F\left(\boldsymbol{x}_{(i)};\boldsymbol{\theta}\right)\)</span> 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 <span class="math inline">\(\boldsymbol{\theta}\)</span> 라고 표기하기로 하자. 다층 신경망에서의 오차함수는 신경망에서의 출력값의 특성에 따라 최소 제곱합이나 교차 엔트로피 함수 혹은 다른 특정한 목적을 위한 함수를 사용 할 수 있다.</p>
 <p><br></p>
 </section>
 <section id="경사-하강법" class="level3" data-number="2.4">
@@ -485,7 +458,7 @@ L(\boldsymbol{\theta}) = \sum_{i=1}^N \left\|\boldsymbol{y}_{(i)} - \hat{\boldsy
 <li>레이블과 함께 데이터셋이 <span class="math inline">\(\left(\boldsymbol{x}_{(1)},\,\boldsymbol{y}_{(1)}\right),\ldots,\,\left(\boldsymbol{x}_{(N)},\, \boldsymbol{y}_{(N)}\right)\)</span> 이 준비되었다고 하자.</li>
 <li>내부의 모든 매개변수를 일단 <span class="math inline">\(\boldsymbol{\theta}\)</span> 로 표기하자.</li>
 </ul>
-<p>오차제곱합 함수 <span class="math inline">\(L\)</span> 은 <a href="#eq-ML_cost_function_for_mlnn" class="quarto-xref">식&nbsp;5</a> 로 주어지며 이 때</p>
+<p>오차제곱합 함수 <span class="math inline">\(L\)</span> 은 <strong>?@eq-ML_cost_function_for_mlnn</strong> 로 주어지며 이 때</p>
 <p><span class="math display">\[
 L_k(\boldsymbol{\theta}) = \dfrac{1}{2}\|\hat{\boldsymbol{y}}_{(k)}-\boldsymbol{y}_{(k)}\|^2
 \]</span></p>
@@ -495,7 +468,7 @@ L = \sum_{k=1}^N L_k (\boldsymbol{\theta})
 \]</span></p>
 <p>이며 매개변수 <span class="math inline">\(\theta_m\)</span> 에 대한 편미분은 <span id="eq-ML_general_partial_differential_of_cost_function"><span class="math display">\[
 \dfrac{\partial L}{\partial \theta_m} = \sum_{k=1}^N \left(\hat{\boldsymbol{y}}_{(i)} - \boldsymbol{y}_{(i)}\right)^T \dfrac{\partial \hat{\boldsymbol{y}}^{(i)}}{\partial \theta_m} = \sum_{k=1}^N \dfrac{\partial L_k}{\partial \theta_m}
-\tag{6}\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>이다. <span class="math inline">\(\boldsymbol{z}^{(F)}=\boldsymbol{W}^{(F)}\tilde{\boldsymbol{h}}^{(M)}\)</span> 에 대해</p>
 <p><span class="math display">\[
 \hat{\boldsymbol{y}}= \boldsymbol{\sigma}^{(F)}(\boldsymbol{z}^{(F)}) = \begin{bmatrix} \sigma_1^{(F)} \left(z_1^{(F)}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(z_{N_F}^{(F)}\right)\end{bmatrix} = \begin{bmatrix} \sigma_1^{(F)} \left(W^{(F)}_{11}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{1,N_M} \tilde{h}^{(M)}_{N_M}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(W^{(F)}_{N_F,1}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{N_F,N_M} \tilde{h}^{(M)}_{N_M}\right) \end{bmatrix},\qquad
