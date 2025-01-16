@@ -358,42 +358,28 @@ window.Quarto = {
 <li>신경망의 층수는 입력층을 제외하고 은닉층의 수에 출력층 1 을 더하여 표기한다. 즉 위의 그림은 4층 신경망이다.</li>
 </ul>
 <p>다층 퍼셉트론은 입력값 벡터 <span class="math inline">\(\boldsymbol{x}\in \mathbb{R}^D\)</span> 에 대해 출력값 <span class="math inline">\(\hat{\boldsymbol{y}}\in \mathbb{R}^K\)</span> 를 내는 함수로 내부에 각각의 퍼셉트론의 매개변수 전체 신경망의 매개변수로 가지는 함수이다.</p>
-<p>입력층 <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_D\end{bmatrix}^T\)</span> 에 대해 첫번째 은닉층의 <span class="math inline">\(j\)</span> 번째 퍼셉트론의 내부 파라미터 벡터를 <span class="math inline">\(\boldsymbol{w}^{(1j)}\)</span> 와 <span class="math inline">\(b^{(1)}_j\)</span> 로 표기하기로 하고</p>
-<p><span class="math display">\[
-z_j^{(1)} = \boldsymbol{w}^{(1j)}\boldsymbol{\cdot x} + b_j^{(1)}
-\]</span></p>
-<p>라고 하자. 그렇다면 활성화 함수 <span class="math inline">\(\sigma\)</span> 에 대해 출력값 <span class="math inline">\(y^{(1)}_j\)</span> 는 <span class="math display">\[
-h^{(1)}_j = \sigma(z_j) = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\right)
+<p>입력층 <span class="math inline">\(\boldsymbol{x} = \begin{bmatrix}x_1 &amp; \cdots &amp; x_D\end{bmatrix}^T\)</span> 에 대해 첫번째 은닉층의 <span class="math inline">\(j\)</span> 번째 퍼셉트론의 내부 파라미터 벡터를 <span class="math inline">\(\boldsymbol{w}^{(1j)}\)</span> 와 <span class="math inline">\(b^{(1)}_j\)</span> 로 표기한다면 활성화 함수 <span class="math inline">\(\sigma\)</span> 에 대해 출력값 <span class="math inline">\(y^{(1)}_j\)</span> 는 <span class="math display">\[
+z^{(1)}_j = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\right)
 \]</span></p>
 <p>이다. 첫번째 은닉층에 <span class="math inline">\(N_1\)</span> 개의 퍼셉트론이 있다고 하고 행렬 <span class="math inline">\(\boldsymbol{W}^{(1)}\)</span> 와 <span class="math inline">\(\tilde{\boldsymbol{h}}\)</span> 를 다음과 같이 정의하자.</p>
 <p><span id="eq-ML_parameters_representations"><span class="math display">\[
 \boldsymbol{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 &amp; w^{(11)}_1 &amp; w^{(11)}_2 &amp; \cdots &amp; w^{(11)}_n \\ b^{(1)}_2 &amp; w^{(12)}_1 &amp; w^{(12)}_2 &amp; \cdots &amp; w^{(12)}_n \\ \vdots &amp; &amp; &amp; &amp; \vdots \\ b^{(1)}_{N_1} &amp; w^{(1,N_1)}_1 &amp; w^{(1,N_1)}_2 &amp; \cdots &amp; w^{(1,N_1)}_n\end{bmatrix},\qquad \tilde{\boldsymbol{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
 \tag{1}\]</span></span></p>
-<p><span class="math inline">\(\boldsymbol{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 &amp; \cdots &amp; z^{(1)}_{N_1}\end{bmatrix}^{T}\)</span> 에 대해</p>
+<p>즉 <span class="math inline">\(\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\)</span> 의 <span class="math inline">\(j\)</span> 번째 행은 첫번째 은닉층의 <span class="math inline">\(j\)</span> 번째 퍼셉트론의 활성화 함수에 적용되는 값이다. 따라서 <span class="math inline">\(\boldsymbol{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 &amp; \cdots &amp; z^{(1)}_{N_1}\end{bmatrix}^{T}\)</span> 에 대해</p>
 <p><span class="math display">\[
-\boldsymbol{z}^{(1)} =  \boldsymbol{W}^{(1)}\tilde{\boldsymbol{x}}
-\]</span></p>
-<p>이며 출력값을 역시 벡터로</p>
-<p><span class="math display">\[
-\boldsymbol{h}^{(1)}= F^{(1)}\left(\boldsymbol{z}^{(1)}\right) = \begin{bmatrix} \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left({z}^{(1)}_{N_1}\right) \end{bmatrix}
+\boldsymbol{z}^{(1)}= F^{(1)}\left(\boldsymbol{W}^{(1)}\tilde{\boldsymbol{x}}\right) = \begin{bmatrix} z_1^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_1}^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_1}\right)  \end{bmatrix}
 \]</span></p>
 <p>놓자. 출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로</p>
 <p><span class="math display">\[
-\tilde{\boldsymbol{h}}^{(1)} = \begin{bmatrix} 1 \\ \boldsymbol{h}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left(z^{(1)}_{(N_1)}\right) \end{bmatrix}
+\tilde{\boldsymbol{z}}^{(1)} = \begin{bmatrix} 1 \\ \boldsymbol{z}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ z_1^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_1}^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_1}\right) \end{bmatrix}
 \]</span></p>
-<p>라 놓으면 두번째 층에서 첫번째 층과 같은 방법으로 구성한 <span class="math inline">\(\boldsymbol{W}^{(2)}\)</span> 와 두번째 층의 퍼셉트론의 갯수 <span class="math inline">\(N_2\)</span> 에 대해 <span class="math inline">\(\boldsymbol{z}^{(2)} = \boldsymbol{W}^{(2)}\boldsymbol{\cdot}\tilde{\boldsymbol{h}}^{(1)}\)</span> 로 놓고</p>
+<p>라 놓으면 두번째 층에서 첫번째 층과 같은 방법으로 구성한 <span class="math inline">\(\boldsymbol{W}^{(2)}\)</span> 와 두번째 층의 퍼셉트론의 갯수 <span class="math inline">\(N_2\)</span> 에 대해</p>
 <p><span class="math display">\[
-\tilde{\boldsymbol{h}}^{(2)} = \begin{bmatrix} 1 \\ \sigma \left( z^{(2)}_1\right) \\ \vdots \\\sigma \left( z^{(2)}_{N_2} \right) \end{bmatrix}
+\tilde{\boldsymbol{z}}^{(2)} = F^{(2)}\left(\boldsymbol{W}^{(2)}\tilde{\boldsymbol{z}}^{(1)}\right) = \begin{bmatrix} 1 \\ z_1^{(2)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_2}^{(2)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_2}\right) \end{bmatrix}
 \]</span></p>
-<p>라 할 수 있다. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 <span class="math inline">\(\sigma_F\)</span> 라고 하면</p>
-<p><span class="math display">\[
-\hat{\boldsymbol{y}} = \begin{bmatrix}  \sigma_F \left( z^{(4)}_1\right) \\ \vdots \\\sigma_F \left( z^{(4)}_{N_F} \right) \end{bmatrix}
-\]</span></p>
-<p>이며</p>
+<p>라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 <span class="math inline">\(\sigma_F\)</span> 라고 하자. 은닉층이 3개이므로</p>
 <p><span id="eq-ML_output_of_mlnn"><span class="math display">\[
-\begin{aligned}
-\hat{y}_i = \sigma_F\left(z^{(4)}_i\right) = \sigma_F \left(\boldsymbol{W}^{(4)}_{i:} \tilde{\boldsymbol{h}}^{(3)}\right)
-\end{aligned}
+\hat{\boldsymbol{y}} = \begin{bmatrix}  \sigma_F \left( \tilde{z}_1^{(3)}\right) \\ \vdots \\\sigma_F \left( \tilde{z}^{(3)}_{N_3} \right) \end{bmatrix}
 \tag{2}\]</span></span></p>
 <p>이다.</p>
 <p><br></p>

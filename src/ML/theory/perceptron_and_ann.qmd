@@ -48,15 +48,9 @@ crossref:
 다층 퍼셉트론은 입력값 벡터 $\bf{x}\in \R^D$ 에 대해 출력값 $\hat{\bf{y}}\in \R^K$ 를 내는 함수로 내부에 각각의 퍼셉트론의 매개변수 전체 신경망의 매개변수로 가지는 함수이다. 
 
 
-입력층 $\bf{x} = \begin{bmatrix}x_1 & \cdots & x_D\end{bmatrix}^T$ 에 대해 첫번째 은닉층의 $j$ 번째 퍼셉트론의 내부 파라미터 벡터를 $\bf{w}^{(1j)}$ 와 $b^{(1)}_j$ 로 표기하기로 하고
-
+입력층 $\bf{x} = \begin{bmatrix}x_1 & \cdots & x_D\end{bmatrix}^T$ 에 대해 첫번째 은닉층의 $j$ 번째 퍼셉트론의 내부 파라미터 벡터를 $\bf{w}^{(1j)}$ 와 $b^{(1)}_j$ 로 표기한다면 활성화 함수 $\sigma$ 에 대해 출력값 $y^{(1)}_j$ 는 
 $$
-z_j^{(1)} = \bf{w}^{(1j)}\bf{\cdot x} + b_j^{(1)}
-$$
-
-라고 하자. 그렇다면 활성화 함수 $\sigma$ 에 대해 출력값 $y^{(1)}_j$ 는 
-$$
-h^{(1)}_j = \sigma(z_j) = \sigma \left(\bf{w}^{(1j)} \bf{\cdot x}+b^{(1)}_j\right)
+z^{(1)}_j = \sigma \left(\bf{w}^{(1j)} \bf{\cdot x}+b^{(1)}_j\right)
 $$
 
 이다. 첫번째 은닉층에 $N_1$ 개의 퍼셉트론이 있다고 하고 행렬 $\bf{W}^{(1)}$ 와 $\tilde{\bf{h}}$ 를 다음과 같이 정의하자. 
@@ -65,47 +59,32 @@ $$
 \bf{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 & w^{(11)}_1 & w^{(11)}_2 & \cdots & w^{(11)}_n \\ b^{(1)}_2 & w^{(12)}_1 & w^{(12)}_2 & \cdots & w^{(12)}_n \\ \vdots & & & & \vdots \\ b^{(1)}_{N_1} & w^{(1,N_1)}_1 & w^{(1,N_1)}_2 & \cdots & w^{(1,N_1)}_n\end{bmatrix},\qquad \tilde{\bf{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
 $$ {#eq-ML_parameters_representations}
 
-$\bf{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 & \cdots & z^{(1)}_{N_1}\end{bmatrix}^{T}$ 에 대해
+즉 $\bf{W}^{(1)}\bf{\tilde{x}}$ 의 $j$ 번째 행은 첫번째 은닉층의 $j$ 번째 퍼셉트론의 활성화 함수에 적용되는 값이다. 따라서 $\bf{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 & \cdots & z^{(1)}_{N_1}\end{bmatrix}^{T}$ 에 대해
 
 $$
-\bf{z}^{(1)} =  \bf{W}^{(1)}\tilde{\bf{x}}
-$$
-
-이며 출력값을 역시 벡터로 
-
-$$
-\bf{h}^{(1)}= F^{(1)}\left(\bf{z}^{(1)}\right) = \begin{bmatrix} \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left({z}^{(1)}_{N_1}\right) \end{bmatrix}
+\bf{z}^{(1)}= F^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right) = \begin{bmatrix} z_1^{(1)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_1}^{(1)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_1}\right)  \end{bmatrix}
 $$
 
 놓자. 출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로
 
 $$
-\tilde{\bf{h}}^{(1)} = \begin{bmatrix} 1 \\ \bf{h}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ \sigma \left(z^{(1)}_1\right) \\ \vdots \\ \sigma \left(z^{(1)}_{(N_1)}\right) \end{bmatrix}
+\tilde{\bf{z}}^{(1)} = \begin{bmatrix} 1 \\ \bf{z}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ z_1^{(1)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_1}^{(1)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_1}\right) \end{bmatrix}
 $$
 
-라 놓으면 두번째 층에서 첫번째 층과 같은 방법으로 구성한 $\bf{W}^{(2)}$ 와 두번째 층의 퍼셉트론의 갯수 $N_2$ 에 대해 $\bf{z}^{(2)} = \bf{W}^{(2)}\bf{\cdot}\tilde{\bf{h}}^{(1)}$ 로 놓고
+라 놓으면 두번째 층에서 첫번째 층과 같은 방법으로 구성한 $\bf{W}^{(2)}$ 와 두번째 층의 퍼셉트론의 갯수 $N_2$ 에 대해 
 
 $$
-\tilde{\bf{h}}^{(2)} = \begin{bmatrix} 1 \\ \sigma \left( z^{(2)}_1\right) \\ \vdots \\\sigma \left( z^{(2)}_{N_2} \right) \end{bmatrix}
+\tilde{\bf{z}}^{(2)} = F^{(2)}\left(\bf{W}^{(2)}\tilde{\bf{z}}^{(1)}\right) = \begin{bmatrix} 1 \\ z_1^{(2)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_2}^{(2)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_2}\right) \end{bmatrix}
 $$
 
-라 할 수 있다. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 $\sigma_F$ 라고 하면 
+라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 $\sigma_F$ 라고 하자. 은닉층이 3개이므로 
 
 
 $$
-\hat{\bf{y}} = \begin{bmatrix}  \sigma_F \left( z^{(4)}_1\right) \\ \vdots \\\sigma_F \left( z^{(4)}_{N_F} \right) \end{bmatrix}
-$$
-
-이며
-
-$$
-\begin{aligned}
-\hat{y}_i = \sigma_F\left(z^{(4)}_i\right) = \sigma_F \left(\bf{W}^{(4)}_{i:} \tilde{\bf{h}}^{(3)}\right) 
-\end{aligned}
+\hat{\bf{y}} = \begin{bmatrix}  \sigma_F \left( \tilde{z}_1^{(3)}\right) \\ \vdots \\\sigma_F \left( \tilde{z}^{(3)}_{N_3} \right) \end{bmatrix}
 $$ {#eq-ML_output_of_mlnn}
 
-이다.
-
+이다. 
 
 </br>
 
