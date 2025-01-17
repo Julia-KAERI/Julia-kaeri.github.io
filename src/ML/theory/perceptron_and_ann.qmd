@@ -77,11 +77,11 @@ $$
 \tilde{\bf{z}}^{(2)} = F^{(2)}\left(\bf{W}^{(2)}\tilde{\bf{z}}^{(1)}\right) = \begin{bmatrix} 1 \\ z_1^{(2)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_2}^{(2)}\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_2}\right) \end{bmatrix}
 $$
 
-라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 $\sigma_F$ 라고 하자. 은닉층이 3개이므로 
+라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 $\sigma_O$ 라고 하자. 은닉층이 3개이므로 
 
 
 $$
-\hat{\bf{y}} = \begin{bmatrix}  \sigma_F \left( \tilde{z}_1^{(3)}\right) \\ \vdots \\\sigma_F \left( \tilde{z}^{(3)}_{N_3} \right) \end{bmatrix}
+\hat{\bf{y}} = \begin{bmatrix}  \sigma_O \left( [\bf{W}^{(O)}\tilde{\bf{z}}^{(3)}]_1\right) \\ \vdots \\\sigma_O \left(  [\bf{W}^{(O)}\tilde{\bf{z}}^{(3)}]_K \right) \end{bmatrix}
 $$ {#eq-ML_output_of_mlnn}
 
 이다. 
@@ -125,13 +125,15 @@ $$ {#eq-ML_maxout}
 
 </br>
 
-### 경사 하강법
+### 경사 하강법 {#sec-ML_ANN_gradient_discent}
 
 결국은 다층 신경망을 학습시키는 것은 입력 데이터 $\bf{x}^{(1)}, \,\bf{x}^{(2)},\ldots$ 와 정답(label) $\bf{y}^{(1)},\,\bf{y}^{(2)},\ldots$, 모델함수 $f(\bf{x};\bf{\theta})$ 에 대해 손실함수 $L(\bf{\theta})$ 를 최소화 하는 파라미터 $\bf{\theta}$ 를 찾는 문제이다. 문제는 입력 및 정답의 갯수 뿐만 아니라 $\bf{\theta}$ 의 갯수도 아주 크다는 것이다. 어쨌든 신경망은 일단 파라미터에 제한이 없으므로 unrestricted condtion 의 최적화 문제로 볼 수 있다. 이 경우 사용하는 것이 경사하강법이다. 매개변수 $\bf{\theta}$ 는 $k$ 번째 update 에서의 학습률 $\eta_k$ 에 대해 다음과 같이 update 된다.
 
 $$
 \bf{\theta}_{k+1} = \bf{\theta}_k - \eta_k \nabla_\bf{\theta}L(\bf{\theta}_k) 
 $$
+
+$\nabla_{\bf{\theta}}L(\bf{\theta}_k)$ 를 구하는 방법은 뒤의 [역전파](#sec-ML_ANN_backpropagation)에서 다루기로 하고 일단 이것을 알고 있다고 하자.
 
 
 한번의 업데이트에 사용되는 데이터셋을 **배치(batch)** 라고 한다. 데이터셋의 크기가 매우 클 경우 모든 데이터셋을 포함하여 손실함수를 계산한다면, 손실함수 및 그 그래디언트를 계산하는데 계산 비용이 많이 소모된다. 만약 소수의 데이터셋만 사용한다면 계산량은 줄지만 노이즈에 취약하게 된다. 이를 위해 전체 데이터셋을 몇등분하며 각각의 등분된 부분의 데이터셋으로 파라미터를 업데이트 할 수 도 있다. 이렇게 등분된 데이터셋을 **미니 배치(mini batch)** 라고 한다. 전체의 데이터셋으로 파라미터를 업데이트 시켰을 경우를 1 **에포크(epoch)** 라고 한다.
@@ -149,97 +151,34 @@ $$
 
 </br>
 
-## 역전파 (Backpropagation)
+## 역전파 (Backpropagation) {#sec-ML_ANN_backpropagation}
+
+역전파는 손실함수 $L(\bf{\theta})$ 의 내부 매개변수가 $\bf{\theta}_k$ 로 주어졌을 때 $\nabla_\bf{\theta}L(\bf{\theta}_k)$ 를 계산하는 방법이다. 일반적으로 신경망에서 $\nabla_\bf{\theta} L(\bf{\theta}_k)$ 를 계산 할 때 [자동미분(Auto differentiation)](https://julia-kaeri.github.io/JuliaNumerical/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#자동-미분) 의 후진법(Backward method or reverse method) 를 사용하며, 신경망의 각 층을 거꾸로 거슬러 올라가며 $\bf{\theta}$ 를 update 하므로 역전파(back propagation) 이라고 불린다.
+
+다음과 같은 신경망을 생각하자.
+
+- $\R^D$ 차원의 입력 벡터와 $\R^K$ 차원의 출력 벡터, 그리고 $M$ 개의 은닉층과 출력층으로 구성되었으며 $l$ 번째 은닉층에는 $N_l$ 개의 퍼셉트론이 존재한다.
+
+</br>
+
+
+
 
 ### 출력층에서의 역전파 
 
-- 입력 벡터 $\bf{x}$ 와 $M$ 개의 은닉층 그리고 마지막 출력층으로 이루어진 신경망을 생각하자. $l$ 번째 은닉층에는 $N_l$ 개의 퍼셉트론이 있으며 출력층의 원-핫 벡터는 $N_F$ 개의 성분을 갖는다고 하자. 
-- 레이블과 함께 데이터셋이 $\left(\bf{x}_{(1)},\,\bf{y}_{(1)}\right),\ldots,\,\left(\bf{x}_{(N)},\, \bf{y}_{(N)}\right)$ 이 준비되었다고 하자. 
-- 내부의 모든 매개변수를 일단 $\bf{\theta}$ 로 표기하자. 
-  
-
-오차제곱합 함수 $L$ 은 @eq-ML_cost_function_for_mlnn 로 주어지며 이 때
+출력층의 매개변수를 $\bf{W}^{(F)}$ 이라고 하고 활성화 함수를 $\sigma_{(F)}$ 라고 하자. 그리고 비용 함수를 $L(\bf{\theta})$ 라고 하자.
 
 $$
-L_k(\bf{\theta}) = \dfrac{1}{2}\|\hat{\bf{y}}_{(k)}-\bf{y}_{(k)}\|^2
+L(\bf{\theta}) = L(\bf{W}^{(1)},\ldots,\,\bf{W}^{(M)},\, \bf{W}^{(F)})
 $$
 
-라고 하면 (앞의 $1/2$ 는 뒤에 나올 미분을 고려하여 넣어주었다)
+이다. 기본적으로 출력층에서의 편미분은 자동 미분 기법에 의해 쉽게 계산 된다. 
 
 $$
-L = \sum_{k=1}^N L_k (\bf{\theta})
+\dfrac{\partial L(\bf{\theta})}{\partial w^{(O)}_{ij}}
 $$
-
-
-이며 매개변수 $\theta_m$ 에 대한 편미분은
-$$
-\dfrac{\partial L}{\partial \theta_m} = \sum_{k=1}^N \left(\hat{\bf{y}}_{(i)} - \bf{y}_{(i)}\right)^T \dfrac{\partial \hat{\bf{y}}^{(i)}}{\partial \theta_m} = \sum_{k=1}^N \dfrac{\partial L_k}{\partial \theta_m}
-$$ {#eq-ML_general_partial_differential_of_cost_function}
-
-이다. $\bf{z}^{(F)}=\bf{W}^{(F)}\tilde{\bf{h}}^{(M)}$ 에 대해 
+ 
 
 $$
-\hat{\bf{y}}= \bf{\sigma}^{(F)}(\bf{z}^{(F)}) = \begin{bmatrix} \sigma_1^{(F)} \left(z_1^{(F)}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(z_{N_F}^{(F)}\right)\end{bmatrix} = \begin{bmatrix} \sigma_1^{(F)} \left(W^{(F)}_{11}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{1,N_M} \tilde{h}^{(M)}_{N_M}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(W^{(F)}_{N_F,1}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{N_F,N_M} \tilde{h}^{(M)}_{N_M}\right) \end{bmatrix},\qquad 
-$$
-
-이므로 $W^{(F)}_{ij} = \left(\bf{W}^{(F)}\right)_{ij}$ 에 대한 편미분은
-
-$$
-\dfrac{\partial L}{\partial W^{(F)}_{ij}} = \sum_{k=1}^N \left(\hat{\bf{y}}_{(k)}-\bf{y}_{(k)}\right)_i \tilde{h}^{(M)}_j \dfrac{d\sigma_i^{(F)}(z_i)}{dz_i}
-$$
-
-
-여기서
-
-$$
-\sigma^{(F)}_m(\bf{z}) = \dfrac{e^{z_m}}{\sum_{q=1} e^{z_q}}
-$$
-
-이므로
-
-$$
-\dfrac{\partial \sigma^{(F)}_m(\bf{z})}{\partial z_m} = \sigma_m(\bf{z}) - (\sigma_m(\bf{z}))^2
-$$
-
-이다. $\bf{y}_{(k)}$ 나 $\hat{\bf{y}}_{(k)}$ 의 $i$ 번째 성분을 $[\cdot]_{i}$ 로 쓴다면 
-
-$$
-\dfrac{\partial L}{\partial W^{(F)}_{ij}} = \sum_{k=1}^N \left([\hat{\bf{y}}_{(k)}]_i-[\bf{y}_{(k)}]_i\right) \left( [\hat{\bf{y}}_{(k)}]_i - [\hat{\bf{y}}_{(k)}]_i^2\right)\tilde{h}^{(M)}_j
-$$
-
-이다. 즉 최소한 출력층의 매개변수 $W_{ij}^{(F)}$ 에 대해 $\dfrac{\partial L}{\partial W^{(F)}_{ij}}$ 의 값은 이미 주어진 데이터셋과 오차제곱을 위해 미리 계산한 적이 있는 모델값과 출력층의 입력값($\tilde{\bf{h}}^{(M)}$) 만 있으면 사칙연산만을 이용하여 계산 할 수 있다는 것이다. 
-
-
-$$
-\begin{aligned}
-\dfrac{\partial L}{\partial W^{(m)}_{ij}} \sum_{k=1}^n (\hat{\bf{y}}_{(k)}- \bf{y}_{(k)})^T \dfrac{\partial \hat{\bf{y}}_{(k)}}{\partial W_{ij}^{(m)}}
-\end{aligned}
-$$
-
-
-
-
-
-
-@eq-ML_output_of_mlnn 에서 
-
-$$
-\dfrac{\partial L}{\partial W^{(F)}_{jk}} = \sum_{i=1}^N \left(y_j^{(i)} - \hat{y}_j^{(i)}\right)  \dfrac{\partial h_j}{\partial W^{(F)}_{jk}}
-$$
-
-이며, $\bf{z}^{(F)}=\bf{W}^{(F)}\bf{\cdot}\tilde{\bf{h}}^{(M)}$ 에 대해 
-
-$$
-h_j = \dfrac{e^{z_j^{(F)}}}{\sum_{i=1}^{N_F} e^{z_i^{(F)}}} 
-$$
-
-이므로
-
-$$
-\dfrac{\partial h_j}{\partial W^{(F)}_{jk}} = W_{jk}^{(F)}(h_j - h_j^2)
-$$
-
-
-$$
-\text{softmax}(\bf{z})_j = \bf{W}\bf{h} \dfrac{\partial h_j}{\partial }
+\dfrac{\partial L(\bf{\theta})}{\partial w^{(m)}_{ij}} = \sum_{k_{M}=1}^{N_{M}} \dfrac{\partial L(\bf{\theta})}{\partial w_{kl}^{(O)}} 
 $$

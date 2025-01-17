@@ -270,9 +270,9 @@ window.Quarto = {
   <li><a href="#sec-ML_ANN_neural_network" id="toc-sec-ML_ANN_neural_network" class="nav-link" data-scroll-target="#sec-ML_ANN_neural_network"><span class="header-section-number">2.1</span> 다층 신경망</a></li>
   <li><a href="#활성화-함수" id="toc-활성화-함수" class="nav-link" data-scroll-target="#활성화-함수"><span class="header-section-number">2.2</span> 활성화 함수</a></li>
   <li><a href="#sec-ML_cost_function_of_nn" id="toc-sec-ML_cost_function_of_nn" class="nav-link" data-scroll-target="#sec-ML_cost_function_of_nn"><span class="header-section-number">2.3</span> 비용함수</a></li>
-  <li><a href="#경사-하강법" id="toc-경사-하강법" class="nav-link" data-scroll-target="#경사-하강법"><span class="header-section-number">2.4</span> 경사 하강법</a></li>
+  <li><a href="#sec-ML_ANN_gradient_discent" id="toc-sec-ML_ANN_gradient_discent" class="nav-link" data-scroll-target="#sec-ML_ANN_gradient_discent"><span class="header-section-number">2.4</span> 경사 하강법</a></li>
   </ul></li>
-  <li><a href="#역전파-backpropagation" id="toc-역전파-backpropagation" class="nav-link" data-scroll-target="#역전파-backpropagation"><span class="header-section-number">3</span> 역전파 (Backpropagation)</a>
+  <li><a href="#sec-ML_ANN_backpropagation" id="toc-sec-ML_ANN_backpropagation" class="nav-link" data-scroll-target="#sec-ML_ANN_backpropagation"><span class="header-section-number">3</span> 역전파 (Backpropagation)</a>
   <ul class="collapse">
   <li><a href="#출력층에서의-역전파" id="toc-출력층에서의-역전파" class="nav-link" data-scroll-target="#출력층에서의-역전파"><span class="header-section-number">3.1</span> 출력층에서의 역전파</a></li>
   </ul></li>
@@ -377,9 +377,9 @@ z^{(1)}_j = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\ri
 <p><span class="math display">\[
 \tilde{\boldsymbol{z}}^{(2)} = F^{(2)}\left(\boldsymbol{W}^{(2)}\tilde{\boldsymbol{z}}^{(1)}\right) = \begin{bmatrix} 1 \\ z_1^{(2)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_2}^{(2)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_2}\right) \end{bmatrix}
 \]</span></p>
-<p>라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 <span class="math inline">\(\sigma_F\)</span> 라고 하자. 은닉층이 3개이므로</p>
+<p>라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 <span class="math inline">\(\sigma_O\)</span> 라고 하자. 은닉층이 3개이므로</p>
 <p><span id="eq-ML_output_of_mlnn"><span class="math display">\[
-\hat{\boldsymbol{y}} = \begin{bmatrix}  \sigma_F \left( \tilde{z}_1^{(3)}\right) \\ \vdots \\\sigma_F \left( \tilde{z}^{(3)}_{N_3} \right) \end{bmatrix}
+\hat{\boldsymbol{y}} = \begin{bmatrix}  \sigma_O \left( [\boldsymbol{W}^{(O)}\tilde{\boldsymbol{z}}^{(3)}]_1\right) \\ \vdots \\\sigma_O \left(  [\boldsymbol{W}^{(O)}\tilde{\boldsymbol{z}}^{(3)}]_K \right) \end{bmatrix}
 \tag{2}\]</span></span></p>
 <p>이다.</p>
 <p><br></p>
@@ -417,12 +417,13 @@ z^{(1)}_j = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\ri
 <p>정해진 모든 퍼셉트론의 파라미터를 <span class="math inline">\(\boldsymbol{\theta}\)</span> 라고 하고 입력 <span class="math inline">\(\boldsymbol{x}\)</span> 에 대한 출력값을 <span class="math inline">\(\hat{\boldsymbol{y}}=F(\boldsymbol{x};\boldsymbol{\theta})\)</span> 라고 쓰자. 우리가 데이터를 학습시킬 때 <span class="math inline">\(i\)</span> 번째 입력 벡터를 <span class="math inline">\(\boldsymbol{x}_{(i)}\)</span> 라고 쓰면 마찬가지로 label 은 원-핫 벡터 <span class="math inline">\(\boldsymbol{y}_{(i)}\)</span> 로 표현 할 수 있으며 출력값은 <span class="math inline">\(\hat{\boldsymbol{y}}_{(i)}=F\left(\boldsymbol{x}_{(i)};\boldsymbol{\theta}\right)\)</span> 로 표기 할 수 있다. 다층신경망에 사용된 모든 퍼셉트론의 파라미터를 <span class="math inline">\(\boldsymbol{\theta}\)</span> 라고 표기하기로 하자. 다층 신경망에서의 오차함수는 신경망에서의 출력값의 특성에 따라 최소 제곱합이나 교차 엔트로피 함수 혹은 다른 특정한 목적을 위한 함수를 사용 할 수 있다.</p>
 <p><br></p>
 </section>
-<section id="경사-하강법" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="경사-하강법"><span class="header-section-number">2.4</span> 경사 하강법</h3>
+<section id="sec-ML_ANN_gradient_discent" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="sec-ML_ANN_gradient_discent"><span class="header-section-number">2.4</span> 경사 하강법</h3>
 <p>결국은 다층 신경망을 학습시키는 것은 입력 데이터 <span class="math inline">\(\boldsymbol{x}^{(1)}, \,\boldsymbol{x}^{(2)},\ldots\)</span> 와 정답(label) <span class="math inline">\(\boldsymbol{y}^{(1)},\,\boldsymbol{y}^{(2)},\ldots\)</span>, 모델함수 <span class="math inline">\(f(\boldsymbol{x};\boldsymbol{\theta})\)</span> 에 대해 손실함수 <span class="math inline">\(L(\boldsymbol{\theta})\)</span> 를 최소화 하는 파라미터 <span class="math inline">\(\boldsymbol{\theta}\)</span> 를 찾는 문제이다. 문제는 입력 및 정답의 갯수 뿐만 아니라 <span class="math inline">\(\boldsymbol{\theta}\)</span> 의 갯수도 아주 크다는 것이다. 어쨌든 신경망은 일단 파라미터에 제한이 없으므로 unrestricted condtion 의 최적화 문제로 볼 수 있다. 이 경우 사용하는 것이 경사하강법이다. 매개변수 <span class="math inline">\(\boldsymbol{\theta}\)</span> 는 <span class="math inline">\(k\)</span> 번째 update 에서의 학습률 <span class="math inline">\(\eta_k\)</span> 에 대해 다음과 같이 update 된다.</p>
 <p><span class="math display">\[
 \boldsymbol{\theta}_{k+1} = \boldsymbol{\theta}_k - \eta_k \nabla_\boldsymbol{\theta}L(\boldsymbol{\theta}_k)
 \]</span></p>
+<p><span class="math inline">\(\nabla_{\boldsymbol{\theta}}L(\boldsymbol{\theta}_k)\)</span> 를 구하는 방법은 뒤의 <a href="#sec-ML_ANN_backpropagation">역전파</a>에서 다루기로 하고 일단 이것을 알고 있다고 하자.</p>
 <p>한번의 업데이트에 사용되는 데이터셋을 <strong>배치(batch)</strong> 라고 한다. 데이터셋의 크기가 매우 클 경우 모든 데이터셋을 포함하여 손실함수를 계산한다면, 손실함수 및 그 그래디언트를 계산하는데 계산 비용이 많이 소모된다. 만약 소수의 데이터셋만 사용한다면 계산량은 줄지만 노이즈에 취약하게 된다. 이를 위해 전체 데이터셋을 몇등분하며 각각의 등분된 부분의 데이터셋으로 파라미터를 업데이트 할 수 도 있다. 이렇게 등분된 데이터셋을 <strong>미니 배치(mini batch)</strong> 라고 한다. 전체의 데이터셋으로 파라미터를 업데이트 시켰을 경우를 1 <strong>에포크(epoch)</strong> 라고 한다.</p>
 <p>즉 1000 개의 훈련용 데이터 셋이 있다면 1000 개의 데이터셋으로 이루어진 1개의 배치가 있다. 이것을 250 개의 미니배치로 나누어 250 개의 데이터셋을 이용하여 4번 파라미터를 업데이트 할 수도 있다. 어쨌든 1000 개의 준비된 데이터셋을 사용하여 파라미터를 업데이트 하였다면 1 에포크 의 훈련 혹은 학습을 수행한 것이다.</p>
 <p><br></p>
@@ -435,66 +436,26 @@ z^{(1)}_j = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\ri
 <p><br></p>
 </section>
 </section>
-<section id="역전파-backpropagation" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="역전파-backpropagation"><span class="header-section-number">3</span> 역전파 (Backpropagation)</h2>
+<section id="sec-ML_ANN_backpropagation" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-ML_ANN_backpropagation"><span class="header-section-number">3</span> 역전파 (Backpropagation)</h2>
+<p>역전파는 손실함수 <span class="math inline">\(L(\boldsymbol{\theta})\)</span> 의 내부 매개변수가 <span class="math inline">\(\boldsymbol{\theta}_k\)</span> 로 주어졌을 때 <span class="math inline">\(\nabla_\boldsymbol{\theta}L(\boldsymbol{\theta}_k)\)</span> 를 계산하는 방법이다. 일반적으로 신경망에서 <span class="math inline">\(\nabla_\boldsymbol{\theta} L(\boldsymbol{\theta}_k)\)</span> 를 계산 할 때 <a href="https://julia-kaeri.github.io/JuliaNumerical/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#자동-미분">자동미분(Auto differentiation)</a> 의 후진법(Backward method or reverse method) 를 사용하며, 신경망의 각 층을 거꾸로 거슬러 올라가며 <span class="math inline">\(\boldsymbol{\theta}\)</span> 를 update 하므로 역전파(back propagation) 이라고 불린다.</p>
+<p>다음과 같은 신경망을 생각하자.</p>
+<ul>
+<li><span class="math inline">\(\mathbb{R}^D\)</span> 차원의 입력 벡터와 <span class="math inline">\(\mathbb{R}^K\)</span> 차원의 출력 벡터, 그리고 <span class="math inline">\(M\)</span> 개의 은닉층과 출력층으로 구성되었으며 <span class="math inline">\(l\)</span> 번째 은닉층에는 <span class="math inline">\(N_l\)</span> 개의 퍼셉트론이 존재한다.</li>
+</ul>
+<p><br></p>
 <section id="출력층에서의-역전파" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="출력층에서의-역전파"><span class="header-section-number">3.1</span> 출력층에서의 역전파</h3>
-<ul>
-<li>입력 벡터 <span class="math inline">\(\boldsymbol{x}\)</span> 와 <span class="math inline">\(M\)</span> 개의 은닉층 그리고 마지막 출력층으로 이루어진 신경망을 생각하자. <span class="math inline">\(l\)</span> 번째 은닉층에는 <span class="math inline">\(N_l\)</span> 개의 퍼셉트론이 있으며 출력층의 원-핫 벡터는 <span class="math inline">\(N_F\)</span> 개의 성분을 갖는다고 하자.</li>
-<li>레이블과 함께 데이터셋이 <span class="math inline">\(\left(\boldsymbol{x}_{(1)},\,\boldsymbol{y}_{(1)}\right),\ldots,\,\left(\boldsymbol{x}_{(N)},\, \boldsymbol{y}_{(N)}\right)\)</span> 이 준비되었다고 하자.</li>
-<li>내부의 모든 매개변수를 일단 <span class="math inline">\(\boldsymbol{\theta}\)</span> 로 표기하자.</li>
-</ul>
-<p>오차제곱합 함수 <span class="math inline">\(L\)</span> 은 <strong>?@eq-ML_cost_function_for_mlnn</strong> 로 주어지며 이 때</p>
+<p>출력층의 매개변수를 <span class="math inline">\(\boldsymbol{W}^{(F)}\)</span> 이라고 하고 활성화 함수를 <span class="math inline">\(\sigma_{(F)}\)</span> 라고 하자. 그리고 비용 함수를 <span class="math inline">\(L(\boldsymbol{\theta})\)</span> 라고 하자.</p>
 <p><span class="math display">\[
-L_k(\boldsymbol{\theta}) = \dfrac{1}{2}\|\hat{\boldsymbol{y}}_{(k)}-\boldsymbol{y}_{(k)}\|^2
+L(\boldsymbol{\theta}) = L(\boldsymbol{W}^{(1)},\ldots,\,\boldsymbol{W}^{(M)},\, \boldsymbol{W}^{(F)})
 \]</span></p>
-<p>라고 하면 (앞의 <span class="math inline">\(1/2\)</span> 는 뒤에 나올 미분을 고려하여 넣어주었다)</p>
+<p>이다. 기본적으로 출력층에서의 편미분은 자동 미분 기법에 의해 쉽게 계산 된다.</p>
 <p><span class="math display">\[
-L = \sum_{k=1}^N L_k (\boldsymbol{\theta})
-\]</span></p>
-<p>이며 매개변수 <span class="math inline">\(\theta_m\)</span> 에 대한 편미분은 <span id="eq-ML_general_partial_differential_of_cost_function"><span class="math display">\[
-\dfrac{\partial L}{\partial \theta_m} = \sum_{k=1}^N \left(\hat{\boldsymbol{y}}_{(i)} - \boldsymbol{y}_{(i)}\right)^T \dfrac{\partial \hat{\boldsymbol{y}}^{(i)}}{\partial \theta_m} = \sum_{k=1}^N \dfrac{\partial L_k}{\partial \theta_m}
-\tag{4}\]</span></span></p>
-<p>이다. <span class="math inline">\(\boldsymbol{z}^{(F)}=\boldsymbol{W}^{(F)}\tilde{\boldsymbol{h}}^{(M)}\)</span> 에 대해</p>
-<p><span class="math display">\[
-\hat{\boldsymbol{y}}= \boldsymbol{\sigma}^{(F)}(\boldsymbol{z}^{(F)}) = \begin{bmatrix} \sigma_1^{(F)} \left(z_1^{(F)}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(z_{N_F}^{(F)}\right)\end{bmatrix} = \begin{bmatrix} \sigma_1^{(F)} \left(W^{(F)}_{11}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{1,N_M} \tilde{h}^{(M)}_{N_M}\right) \\ \vdots \\ \sigma_{N_F}^{(F)} \left(W^{(F)}_{N_F,1}\tilde{h}^{(M)}_1 + \cdots + W^{(F)}_{N_F,N_M} \tilde{h}^{(M)}_{N_M}\right) \end{bmatrix},\qquad
-\]</span></p>
-<p>이므로 <span class="math inline">\(W^{(F)}_{ij} = \left(\boldsymbol{W}^{(F)}\right)_{ij}\)</span> 에 대한 편미분은</p>
-<p><span class="math display">\[
-\dfrac{\partial L}{\partial W^{(F)}_{ij}} = \sum_{k=1}^N \left(\hat{\boldsymbol{y}}_{(k)}-\boldsymbol{y}_{(k)}\right)_i \tilde{h}^{(M)}_j \dfrac{d\sigma_i^{(F)}(z_i)}{dz_i}
-\]</span></p>
-<p>여기서</p>
-<p><span class="math display">\[
-\sigma^{(F)}_m(\boldsymbol{z}) = \dfrac{e^{z_m}}{\sum_{q=1} e^{z_q}}
-\]</span></p>
-<p>이므로</p>
-<p><span class="math display">\[
-\dfrac{\partial \sigma^{(F)}_m(\boldsymbol{z})}{\partial z_m} = \sigma_m(\boldsymbol{z}) - (\sigma_m(\boldsymbol{z}))^2
-\]</span></p>
-<p>이다. <span class="math inline">\(\boldsymbol{y}_{(k)}\)</span> 나 <span class="math inline">\(\hat{\boldsymbol{y}}_{(k)}\)</span> 의 <span class="math inline">\(i\)</span> 번째 성분을 <span class="math inline">\([\cdot]_{i}\)</span> 로 쓴다면</p>
-<p><span class="math display">\[
-\dfrac{\partial L}{\partial W^{(F)}_{ij}} = \sum_{k=1}^N \left([\hat{\boldsymbol{y}}_{(k)}]_i-[\boldsymbol{y}_{(k)}]_i\right) \left( [\hat{\boldsymbol{y}}_{(k)}]_i - [\hat{\boldsymbol{y}}_{(k)}]_i^2\right)\tilde{h}^{(M)}_j
-\]</span></p>
-<p>이다. 즉 최소한 출력층의 매개변수 <span class="math inline">\(W_{ij}^{(F)}\)</span> 에 대해 <span class="math inline">\(\dfrac{\partial L}{\partial W^{(F)}_{ij}}\)</span> 의 값은 이미 주어진 데이터셋과 오차제곱을 위해 미리 계산한 적이 있는 모델값과 출력층의 입력값(<span class="math inline">\(\tilde{\boldsymbol{h}}^{(M)}\)</span>) 만 있으면 사칙연산만을 이용하여 계산 할 수 있다는 것이다.</p>
-<p><span class="math display">\[
-\begin{aligned}
-\dfrac{\partial L}{\partial W^{(m)}_{ij}} \sum_{k=1}^n (\hat{\boldsymbol{y}}_{(k)}- \boldsymbol{y}_{(k)})^T \dfrac{\partial \hat{\boldsymbol{y}}_{(k)}}{\partial W_{ij}^{(m)}}
-\end{aligned}
-\]</span></p>
-<p><a href="#eq-ML_output_of_mlnn" class="quarto-xref">식&nbsp;2</a> 에서</p>
-<p><span class="math display">\[
-\dfrac{\partial L}{\partial W^{(F)}_{jk}} = \sum_{i=1}^N \left(y_j^{(i)} - \hat{y}_j^{(i)}\right)  \dfrac{\partial h_j}{\partial W^{(F)}_{jk}}
-\]</span></p>
-<p>이며, <span class="math inline">\(\boldsymbol{z}^{(F)}=\boldsymbol{W}^{(F)}\boldsymbol{\cdot}\tilde{\boldsymbol{h}}^{(M)}\)</span> 에 대해</p>
-<p><span class="math display">\[
-h_j = \dfrac{e^{z_j^{(F)}}}{\sum_{i=1}^{N_F} e^{z_i^{(F)}}}
-\]</span></p>
-<p>이므로</p>
-<p><span class="math display">\[
-\dfrac{\partial h_j}{\partial W^{(F)}_{jk}} = W_{jk}^{(F)}(h_j - h_j^2)
+\dfrac{\partial L(\boldsymbol{\theta})}{\partial w^{(O)}_{ij}}
 \]</span></p>
 <p><span class="math display">\[
-\text{softmax}(\boldsymbol{z})_j = \boldsymbol{W}\boldsymbol{h} \dfrac{\partial h_j}{\partial }
+\dfrac{\partial L(\boldsymbol{\theta})}{\partial w^{(m)}_{ij}} = \sum_{k_{M}=1}^{N_{M}} \dfrac{\partial L(\boldsymbol{\theta})}{\partial w_{kl}^{(O)}}
 \]</span></p>
 
 
