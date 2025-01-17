@@ -274,7 +274,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-ML_ANN_backpropagation" id="toc-sec-ML_ANN_backpropagation" class="nav-link" data-scroll-target="#sec-ML_ANN_backpropagation"><span class="header-section-number">3</span> 역전파 (Backpropagation)</a>
   <ul class="collapse">
-  <li><a href="#출력층에서의-역전파" id="toc-출력층에서의-역전파" class="nav-link" data-scroll-target="#출력층에서의-역전파"><span class="header-section-number">3.1</span> 출력층에서의 역전파</a></li>
+  <li><a href="#sec-ML_ANN_backpropagation_at_output_layer" id="toc-sec-ML_ANN_backpropagation_at_output_layer" class="nav-link" data-scroll-target="#sec-ML_ANN_backpropagation_at_output_layer"><span class="header-section-number">3.1</span> 출력층에서의 역전파</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -367,20 +367,32 @@ z^{(1)}_j = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\ri
 \tag{1}\]</span></span></p>
 <p>즉 <span class="math inline">\(\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\)</span> 의 <span class="math inline">\(j\)</span> 번째 행은 첫번째 은닉층의 <span class="math inline">\(j\)</span> 번째 퍼셉트론의 활성화 함수에 적용되는 값이다. 따라서 <span class="math inline">\(\boldsymbol{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 &amp; \cdots &amp; z^{(1)}_{N_1}\end{bmatrix}^{T}\)</span> 에 대해</p>
 <p><span class="math display">\[
-\boldsymbol{z}^{(1)}= F^{(1)}\left(\boldsymbol{W}^{(1)}\tilde{\boldsymbol{x}}\right) = \begin{bmatrix} z_1^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_1}^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_1}\right)  \end{bmatrix}
+\boldsymbol{z}^{(1)}= F^{(1)}\left(\boldsymbol{W}^{(1)}\tilde{\boldsymbol{x}}\right) = \begin{bmatrix} \sigma_1\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_1\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_1}\right)  \end{bmatrix}
 \]</span></p>
-<p>놓자. 출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로</p>
+<p>놓자. 여기서 <span class="math inline">\(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_k\)</span> 는 <span class="math inline">\(\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\)</span> 의 <span class="math inline">\(k\)</span> 행 값을 의미한다. 출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로</p>
 <p><span class="math display">\[
-\tilde{\boldsymbol{z}}^{(1)} = \begin{bmatrix} 1 \\ \boldsymbol{z}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ z_1^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_1}^{(1)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_1}\right) \end{bmatrix}
+\tilde{\boldsymbol{z}}^{(1)} = \begin{bmatrix} 1 \\ \boldsymbol{z}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ \sigma_1\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_1\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_1}\right) \end{bmatrix}
 \]</span></p>
 <p>라 놓으면 두번째 층에서 첫번째 층과 같은 방법으로 구성한 <span class="math inline">\(\boldsymbol{W}^{(2)}\)</span> 와 두번째 층의 퍼셉트론의 갯수 <span class="math inline">\(N_2\)</span> 에 대해</p>
 <p><span class="math display">\[
-\tilde{\boldsymbol{z}}^{(2)} = F^{(2)}\left(\boldsymbol{W}^{(2)}\tilde{\boldsymbol{z}}^{(1)}\right) = \begin{bmatrix} 1 \\ z_1^{(2)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  z_{N_2}^{(2)}\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_2}\right) \end{bmatrix}
+\tilde{\boldsymbol{z}}^{(2)} = F^{(2)}\left(\boldsymbol{W}^{(2)}\tilde{\boldsymbol{z}}^{(1)}\right) = \begin{bmatrix} 1 \\ \sigma_2\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_2\left(\left[\boldsymbol{W}^{(1)}\boldsymbol{\tilde{x}}\right]_{N_2}\right) \end{bmatrix}
 \]</span></p>
-<p>라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 <span class="math inline">\(\sigma_O\)</span> 라고 하자. 은닉층이 3개이므로</p>
+<p>라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이후 <a href="#sec-ML_ANN_backpropagation">역전파</a> 에 나올 내용이지만 여기서 미리 언급해 두자. 임의의 <span class="math inline">\(m\)</span> 번째 은닉층에서</p>
+<p><span class="math display">\[
+\tilde{\boldsymbol{z}}^{(m)} = F^{(m)}\left(\boldsymbol{W}^{(m)} \tilde{\boldsymbol{z}}^{(m-1)}\right) = \begin{bmatrix} 1 \\ \sigma_m\left(\left[\boldsymbol{W}^{(m)} \tilde{\boldsymbol{z}}^{(m-1)}\right]_1\right) \\ \vdots \\ \sigma_m\left(\left[\boldsymbol{W}^{(m)} \tilde{\boldsymbol{z}}^{(m-1)}\right]_{N_m}\right) \end{bmatrix}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\tilde{\boldsymbol{z}}^{(m-1)}=\boldsymbol{a}\)</span> 에서의 미분은 다음과 같다.</p>
+<p><span id="eq-ML_ANN_derivatives_of_hidden_layer"><span class="math display">\[
+\dfrac{\partial \tilde{z}_1^{(m)}}{\partial w_{ij}^{(m)}} = \delta_{i1},\qquad \left(\dfrac{\partial \tilde{z}_{k\ne 1}^{(m)}}{\partial w_{ij}^{(m)}}\right)_{\tilde{\boldsymbol{z}}^{(m-1)}=\boldsymbol{a}} = \delta_{ik}\sigma'_{m}\left(\left[\boldsymbol{W}^{(m)} \boldsymbol{a}\right]_i \right)a_j
+\tag{2}\]</span></span></p>
+<p>여기서 정해진 <span class="math inline">\(\boldsymbol{W}^{(m)}\boldsymbol{a}\)</span> 에 대해 <span class="math inline">\(\sigma'_{m}\left(\left[\boldsymbol{W}^{(m)} \boldsymbol{a}\right]_i\right) = \sigma'_{m,i}\)</span> 라고 쓰자. 그렇다면 <span class="math inline">\(i\ne 1\)</span> 에 대해</p>
+<p><span id="eq-ML_ANN_derivatives_of_hidden_layer_2"><span class="math display">\[
+\left(\dfrac{\partial \tilde{z}_{i\ne 1}^{(m)}}{\partial w_{ij}^{(m)}}\right)_{\tilde{\boldsymbol{z}}^{(m-1)}=\boldsymbol{a}} =\sigma'_{m,i} a_j
+\tag{3}\]</span></span></p>
+<p>이다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 <span class="math inline">\(\sigma_O\)</span> 라고 하자. 은닉층이 3개이므로</p>
 <p><span id="eq-ML_output_of_mlnn"><span class="math display">\[
 \hat{\boldsymbol{y}} = \begin{bmatrix}  \sigma_O \left( [\boldsymbol{W}^{(O)}\tilde{\boldsymbol{z}}^{(3)}]_1\right) \\ \vdots \\\sigma_O \left(  [\boldsymbol{W}^{(O)}\tilde{\boldsymbol{z}}^{(3)}]_K \right) \end{bmatrix}
-\tag{2}\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>이다.</p>
 <p><br></p>
 </section>
@@ -408,7 +420,7 @@ z^{(1)}_j = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\ri
 <p>이 외에 특정한 목적으로 사용되는 <span class="math inline">\(\text{Maxout}\)</span> 함수가 있다. <span class="math inline">\(\boldsymbol{x}=\begin{bmatrix}x_1 &amp; \cdots &amp; x_n\end{bmatrix}^T\)</span> 에 대해</p>
 <p><span id="eq-ML_maxout"><span class="math display">\[
 \text{Maxout}(\boldsymbol{x}) := \max \{x_1,\ldots,\,x_n\}
-\tag{3}\]</span></span></p>
+\tag{5}\]</span></span></p>
 <p>으로 정의된다.</p>
 <p><br></p>
 </section>
@@ -438,25 +450,30 @@ z^{(1)}_j = \sigma \left(\boldsymbol{w}^{(1j)} \boldsymbol{\cdot x}+b^{(1)}_j\ri
 </section>
 <section id="sec-ML_ANN_backpropagation" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="sec-ML_ANN_backpropagation"><span class="header-section-number">3</span> 역전파 (Backpropagation)</h2>
-<p>역전파는 손실함수 <span class="math inline">\(L(\boldsymbol{\theta})\)</span> 의 내부 매개변수가 <span class="math inline">\(\boldsymbol{\theta}_k\)</span> 로 주어졌을 때 <span class="math inline">\(\nabla_\boldsymbol{\theta}L(\boldsymbol{\theta}_k)\)</span> 를 계산하는 방법이다. 일반적으로 신경망에서 <span class="math inline">\(\nabla_\boldsymbol{\theta} L(\boldsymbol{\theta}_k)\)</span> 를 계산 할 때 <a href="https://julia-kaeri.github.io/JuliaNumerical/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#자동-미분">자동미분(Auto differentiation)</a> 의 후진법(Backward method or reverse method) 를 사용하며, 신경망의 각 층을 거꾸로 거슬러 올라가며 <span class="math inline">\(\boldsymbol{\theta}\)</span> 를 update 하므로 역전파(back propagation) 이라고 불린다.</p>
+<p>역전파는 손실함수 <span class="math inline">\(L(\boldsymbol{\theta})\)</span> 의 내부 매개변수가 <span class="math inline">\(\boldsymbol{\theta}_k\)</span> 로 주어졌을 때 <span class="math inline">\(\nabla_\boldsymbol{\theta}L(\boldsymbol{\theta}_k)\)</span> 를 계산하는 방법이다. 역전파를 위해서는 우선 주어진 매개변수 <span class="math inline">\(\boldsymbol{\theta}\)</span> 와 입력값에 대해 모든 퍼셉트론에 대해서 출력값이 정해져야 한다. 이것을 <strong>순전파 (forward propagation)</strong> 이라고 한다. 그리고 이 손실함수 값고 모든 퍼셉트론의 출력값을 이용하여 신경망에서 <span class="math inline">\(\nabla_\boldsymbol{\theta} L(\boldsymbol{\theta}_k)\)</span> 를 계산 할 때 <a href="https://julia-kaeri.github.io/JuliaNumerical/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#자동-미분">자동미분(Auto differentiation)</a> 의 후진법(Backward method or reverse method) 를 사용하며, 신경망의 각 층을 거꾸로 거슬러 올라가며 <span class="math inline">\(\boldsymbol{\theta}\)</span> 를 update 하므로 역전파(back propagation) 이라고 불린다.</p>
 <p>다음과 같은 신경망을 생각하자.</p>
 <ul>
 <li><span class="math inline">\(\mathbb{R}^D\)</span> 차원의 입력 벡터와 <span class="math inline">\(\mathbb{R}^K\)</span> 차원의 출력 벡터, 그리고 <span class="math inline">\(M\)</span> 개의 은닉층과 출력층으로 구성되었으며 <span class="math inline">\(l\)</span> 번째 은닉층에는 <span class="math inline">\(N_l\)</span> 개의 퍼셉트론이 존재한다.</li>
 </ul>
 <p><br></p>
-<section id="출력층에서의-역전파" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="출력층에서의-역전파"><span class="header-section-number">3.1</span> 출력층에서의 역전파</h3>
+<section id="sec-ML_ANN_backpropagation_at_output_layer" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="sec-ML_ANN_backpropagation_at_output_layer"><span class="header-section-number">3.1</span> 출력층에서의 역전파</h3>
 <p>출력층의 매개변수를 <span class="math inline">\(\boldsymbol{W}^{(F)}\)</span> 이라고 하고 활성화 함수를 <span class="math inline">\(\sigma_{(F)}\)</span> 라고 하자. 그리고 비용 함수를 <span class="math inline">\(L(\boldsymbol{\theta})\)</span> 라고 하자.</p>
 <p><span class="math display">\[
 L(\boldsymbol{\theta}) = L(\boldsymbol{W}^{(1)},\ldots,\,\boldsymbol{W}^{(M)},\, \boldsymbol{W}^{(F)})
 \]</span></p>
-<p>이다. 기본적으로 출력층에서의 편미분은 자동 미분 기법에 의해 쉽게 계산 된다.</p>
-<p><span class="math display">\[
-\dfrac{\partial L(\boldsymbol{\theta})}{\partial w^{(O)}_{ij}}
-\]</span></p>
-<p><span class="math display">\[
-\dfrac{\partial L(\boldsymbol{\theta})}{\partial w^{(m)}_{ij}} = \sum_{k_{M}=1}^{N_{M}} \dfrac{\partial L(\boldsymbol{\theta})}{\partial w_{kl}^{(O)}} \dfrac{\partial }
-\]</span></p>
+<p>이다. Chain rule 을 이용하면 <a href="#eq-ML_output_of_mlnn" class="quarto-xref">식&nbsp;4</a> 에 대해 다음을 알 수 있다.</p>
+<p><span id="eq-ML_ANN_derivatives_at_output_layer"><span class="math display">\[
+\dfrac{\partial L(\boldsymbol{\theta})}{\partial w^{(O)}_{ij}} = \dfrac{\partial L}{\partial \hat{y}_i}\sigma'_{O,i}\tilde{z}^{(M)}_{j}
+\tag{6}\]</span></span></p>
+<p>기본적으로 자동 미분에 의해 <span class="math inline">\(\sigma'_{O, i},\, \tilde{z}_j^{(M)}\)</span> 는 순전파 과정에서 이미 정해졌으며 여기서는 <span class="math inline">\({\partial L}{\partial \hat{y}_i}\)</span> 만을 구해서 출력층에서의 매개변수에 대한 편미분을 구할 수 있다. 이제 마지막 은닉층 <span class="math inline">\(\tilde{z}^{(M)}_j= \sigma \left(\left[\boldsymbol{W}^{(M)}\tilde{\boldsymbol{z}}^{(M-1)}\right]_j\right)\)</span> 에 대해</p>
+<p><span id="eq-ML_ANN_derivatives_at_final_hidden_layer"><span class="math display">\[
+\dfrac{\partial L(\boldsymbol{\theta})}{\partial w^{(M)}_{ij}} = \dfrac{\partial L(\boldsymbol{\theta})}{\partial \tilde{z}_{i}^{(M)}} \dfrac{\partial \tilde{z}_{i}^{(M)}}{\partial w^{(M)}_{ij}}= \sum_{k_O=1}^K \dfrac{\partial L}{\partial \hat{y}_{k_O}} \sigma'_{O, k_O} \sigma'_{M, i}z^{(M-1)}_j
+\tag{7}\]</span></span></p>
+<p>이다. 여기서 <span class="math inline">\(\sigma'_{O, k_O},\, \sigma'_{M, i},\,z^{(M-2)}_j\)</span> 는 순전파 과정에서 정해지므로 마지막 은닉층의 매개변수에 대한 손실함수의 편미분을 모두 구할 수 있다. 이제 <span class="math inline">\(m\)</span> 번 은닉층의 매개변수에 대한 편미분은</p>
+<p><span id="eq-ML_ANN_derivatives_at_hidden_layer"><span class="math display">\[
+\dfrac{\partial L(\boldsymbol{\theta})}{\partial w_{ij}^{(m)}} = \sum_{k_O=1}^{K} \sum_{k_M=1}^{N_M} \cdots \sum_{k_m=1}^{N_m}\dfrac{\partial L}{\partial \hat{y}_{k_O}} \sigma'_{O,\,k_O} \sigma'_{M,\, k_M}  \cdots \sigma'_{m,\,i}z_j^{(m-1)}
+\tag{8}\]</span></span></p>
 
 
 </section>
