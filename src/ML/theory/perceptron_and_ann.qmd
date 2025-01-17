@@ -180,5 +180,5 @@ $$
  
 
 $$
-\dfrac{\partial L(\bf{\theta})}{\partial w^{(m)}_{ij}} = \sum_{k_{M}=1}^{N_{M}} \dfrac{\partial L(\bf{\theta})}{\partial w_{kl}^{(O)}} 
+\dfrac{\partial L(\bf{\theta})}{\partial w^{(m)}_{ij}} = \sum_{k_{M}=1}^{N_{M}} \dfrac{\partial L(\bf{\theta})}{\partial w_{kl}^{(O)}} \dfrac{\partial }
 $$
