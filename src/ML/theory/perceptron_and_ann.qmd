@@ -53,59 +53,68 @@ $$
 z^{(1)}_j = \sigma \left(\bf{w}^{(1j)} \bf{\cdot x}+b^{(1)}_j\right)
 $$
 
-이다. 첫번째 은닉층에 $N_1$ 개의 퍼셉트론이 있다고 하고 행렬 $\bf{W}^{(1)}$ 와 $\tilde{\bf{h}}$ 를 다음과 같이 정의하자. 
+이다. 첫번째 은닉층에 $N_1$ 개의 퍼셉트론이 있다고 하고 행렬 $\bf{W}^{(1)}$ 와 $\tilde{\bf{x}}$ 를 다음과 같이 정의하자. 
 
 $$
-\bf{W}^{(1)} = \begin{bmatrix} b^{(1)}_1 & w^{(11)}_1 & w^{(11)}_2 & \cdots & w^{(11)}_n \\ b^{(1)}_2 & w^{(12)}_1 & w^{(12)}_2 & \cdots & w^{(12)}_n \\ \vdots & & & & \vdots \\ b^{(1)}_{N_1} & w^{(1,N_1)}_1 & w^{(1,N_1)}_2 & \cdots & w^{(1,N_1)}_n\end{bmatrix},\qquad \tilde{\bf{x}} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}.
+\bf{W}^{(1)} := \begin{bmatrix} w^{(11)}_1 & w^{(11)}_2 & \cdots & w^{(11)}_n & b^{(1)}_1 \\ w^{(12)}_1 & w^{(12)}_2 & \cdots & w^{(12)}_n & b^{(1)}_2 \\ \vdots & & & & \vdots \\ w^{(1,N_1)}_1 & w^{(1,N_1)}_2 & \cdots & w^{(1,N_1)}_n & b^{(1)}_{N_1} \end{bmatrix},\qquad \tilde{\bf{x}} := \begin{bmatrix} x_1 \\ \vdots \\ x_n \\ 1\end{bmatrix}.
 $$ {#eq-ML_parameters_representations}
 
-즉 $\bf{W}^{(1)}\bf{\tilde{x}}$ 의 $j$ 번째 행은 첫번째 은닉층의 $j$ 번째 퍼셉트론의 활성화 함수에 적용되는 값이다. 따라서 $\bf{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 & \cdots & z^{(1)}_{N_1}\end{bmatrix}^{T}$ 에 대해
+즉 $\bf{W}^{(1)}\bf{\tilde{x}}$ 의 $j$ 번째 행은 첫번째 은닉층의 $j$ 번째 퍼셉트론의 활성화 함수에 적용되는 값이다. 첫번째 은닉층의 $j$ 번째 퍼셉트론의 출력값을 $z^{(j)}$ 라고 하고 
 
 $$
-\bf{z}^{(1)}= F^{(1)}\left(\bf{W}^{(1)}\tilde{\bf{x}}\right) = \begin{bmatrix} \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_1}\right)  \end{bmatrix}
+\bf{z}^{(1)} = \begin{bmatrix} z^{(1)}_1 \\ \vdots \\ z^{(1)}_{N_1}\end{bmatrix} = \begin{bmatrix} \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_1}\right)  \end{bmatrix}
 $$
 
-놓자. 여기서 $\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_k$ 는 $\bf{W}^{(1)}\bf{\tilde{x}}$ 의 $k$ 행 값을 의미한다.  출력값은 다음 층의 입력값이 되며 bias 를 고려해야 하므로
+라고 하면 $\bf{z}^{(1)}$ 은 첫번째 은닉층에서의 전체 출력값을 나타내는 벡터이다. 여기서 $\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_k$ 는 $\bf{W}^{(1)}\bf{\tilde{x}}$ 의 $k$ 행 값을 의미한다. 이 값이 두번째 은닉층의 입력값이 되는데, 첫번째 은닉층에 대한 입력값과 마찬가지로 bias 를 고려해야 하므로 두번째 은닉층의 입력값 $\tilde{\bf{z}}^{(1)}$ 을 다음과 같이 놓자.
 
 $$
-\tilde{\bf{z}}^{(1)} = \begin{bmatrix} 1 \\ \bf{z}^{(1)}\end{bmatrix} = \begin{bmatrix} 1 \\ \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_1}\right) \end{bmatrix}
+\tilde{\bf{z}}^{(1)} := \begin{bmatrix} \bf{z}^{(1)} \\ 1\end{bmatrix} = F^{(1)}\left(\bf{W}^{(1)}\bf{\tilde{x}}\right) = \begin{bmatrix} \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_1\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_1}\right) \\ 1 \end{bmatrix}
 $$
 
-라 놓으면 두번째 층에서 첫번째 층과 같은 방법으로 구성한 $\bf{W}^{(2)}$ 와 두번째 층의 퍼셉트론의 갯수 $N_2$ 에 대해 
+이제 두번째 은닉층에서의 매개변수를 첫번째 은닉층의 매개변수와 같은 방법으로 구성한 $\bf{W}^{(2)}$ 와 두번째 층의 퍼셉트론의 갯수 $N_2$ 에 대해 
 
 $$
-\tilde{\bf{z}}^{(2)} = F^{(2)}\left(\bf{W}^{(2)}\tilde{\bf{z}}^{(1)}\right) = \begin{bmatrix} 1 \\ \sigma_2\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_2\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_2}\right) \end{bmatrix}
+\tilde{\bf{z}}^{(2)} = F^{(2)}\left(\bf{W}^{(2)}\tilde{\bf{z}}^{(1)}\right) = \begin{bmatrix}  \sigma_2\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{1}\right) \\ \vdots \\  \sigma_2\left(\left[\bf{W}^{(1)}\bf{\tilde{x}}\right]_{N_2}\right) \\ 1\end{bmatrix}
 $$
 
-라 할 수 있다. 이것을 독같이 세번째 은닉층에도 할 수 있다. 이후 [역전파](#sec-ML_ANN_backpropagation) 에 나올 내용이지만 여기서 미리 언급해 두자. 임의의 $m$ 번째 은닉층에서 
+라 할 수 있다. 이것을 이후 이어지는 은닉층에 계속 진행 할 수 있다. 임의의 $m$ 번째 은닉층이 $N_m$ 개의 퍼셉트론으로 구성되었다고 하자. 여기에서의 출력값은 은닉층의 매개변수 $\bf{W}^{(m)}$ 과 입력 벡터 $\tilde{\bf{z}}^{(m-1)}$ 에 대해 다음과 같다.
 
 $$
-\tilde{\bf{z}}^{(m)} = F^{(m)}\left(\bf{W}^{(m)} \tilde{\bf{z}}^{(m-1)}\right) = \begin{bmatrix} 1 \\ \sigma_m\left(\left[\bf{W}^{(m)} \tilde{\bf{z}}^{(m-1)}\right]_1\right) \\ \vdots \\ \sigma_m\left(\left[\bf{W}^{(m)} \tilde{\bf{z}}^{(m-1)}\right]_{N_m}\right) \end{bmatrix}
+\tilde{\bf{z}}^{(m)} = F^{(m)}\left(\bf{W}^{(m)} \tilde{\bf{z}}^{(m-1)}\right) = \begin{bmatrix} \sigma_m\left(\left[\bf{W}^{(m)} \tilde{\bf{z}}^{(m-1)}\right]_1\right) \\ \vdots \\ \sigma_m\left(\left[\bf{W}^{(m)} \tilde{\bf{z}}^{(m-1)}\right]_{N_m}\right) \\ 1 \end{bmatrix}
+$$ {#eq-ML_ANN_output_of_hidden_layer}
+
+
+이후 [역전파](#sec-ML_ANN_backpropagation) 에 나올 내용이지만 여기서 미리 언급해 두자. 여기서 $\tilde{\bf{z}}^{(m-1)}=\bf{a}$ 에서의 미분은 다음과 같다. 
 $$
-
-
-여기서 $\tilde{\bf{z}}^{(m-1)}=\bf{a}$ 에서의 미분은 다음과 같다. 
-
-$$
-\dfrac{\partial \tilde{z}_1^{(m)}}{\partial w_{ij}^{(m)}} = \delta_{i1},\qquad \left(\dfrac{\partial \tilde{z}_{k\ne 1}^{(m)}}{\partial w_{ij}^{(m)}}\right)_{\tilde{\bf{z}}^{(m-1)}=\bf{a}} = \delta_{ik}\sigma'_{m}\left(\left[\bf{W}^{(m)} \bf{a}\right]_i \right)a_j
+\dfrac{\partial \tilde{z}_k^{(m)}}{\partial w_{ij}^{(m)}} = \left\{\begin{array}{ll}0, & i\ne k\text{ or } k=N_m+1,\\[0.3em] \sigma'_{m}\left(\left[\bf{W}^{(m)} \bf{a}\right]_i \right)a_j, & i=k \end{array}\right.
 $$ {#eq-ML_ANN_derivatives_of_hidden_layer}
 
-여기서 정해진 $\bf{W}^{(m)}\bf{a}$ 에 대해 $\sigma'_{m}\left(\left[\bf{W}^{(m)} \bf{a}\right]_i\right) = \sigma'_{m,i}$ 라고 쓰자. 그렇다면 $i\ne 1$ 에 대해 
+즉, 다음과 같이 쓸 수 있다.
+
 
 $$
-\left(\dfrac{\partial \tilde{z}_{i\ne 1}^{(m)}}{\partial w_{ij}^{(m)}}\right)_{\tilde{\bf{z}}^{(m-1)}=\bf{a}} =\sigma'_{m,i} a_j
-$${#eq-ML_ANN_derivatives_of_hidden_layer_2}
+\boxed{
+\dfrac{\partial \tilde{z}_k^{(m)}}{\partial w_{ij}^{(m)}} = \delta_{ik} \sigma'_{m}\left(\left[\bf{W}^{(m)} \tilde{\bf{z}}^{(m-1)}\right]_i \right)\tilde{z}_j^{(m-1)}
+}
+$$ {#eq-ML_ANN_derivatives_of_hidden_layer_2}
 
-이다. 이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 $\sigma_O$ 라고 하자. 은닉층이 3개이므로 
+이제 출력층을 보자. 보통 출력층에서의 활성화 함수는 다른 은닉층의 활성화 함수와 다르기 때문에 $\sigma_O$ 라고 하자. 은닉층이 3개이므로 
 
 
 $$
 \hat{\bf{y}} = \begin{bmatrix}  \sigma_O \left( [\bf{W}^{(O)}\tilde{\bf{z}}^{(3)}]_1\right) \\ \vdots \\\sigma_O \left(  [\bf{W}^{(O)}\tilde{\bf{z}}^{(3)}]_K \right) \end{bmatrix}
 $$ {#eq-ML_output_of_mlnn}
 
-이다. 
+이다. 여기에 대한 미분은
+
+$$
+\boxed{
+\dfrac{\partial \hat{y}_k}{\partial w^{(O)}_{ij}} = \delta_{ik} \sigma_{O}'\left([\bf{W}^{(O)}\tilde{\bf{z}}^{(3)}]_i\right)\tilde{z}^{(3)}_j
+}
+$${#eq-ML_ANN_derivatives_of_output_layer}
 
 </br>
+
 
 
 ### 활성화 함수
@@ -172,7 +181,11 @@ $\nabla_{\bf{\theta}}L(\bf{\theta}_k)$ 를 구하는 방법은 뒤의 [역전파
 
 ## 역전파 (Backpropagation) {#sec-ML_ANN_backpropagation}
 
-역전파는 손실함수 $L(\bf{\theta})$ 의 내부 매개변수가 $\bf{\theta}_k$ 로 주어졌을 때 $\nabla_\bf{\theta}L(\bf{\theta}_k)$ 를 계산하는 방법이다. 역전파를 위해서는 우선 주어진 매개변수 $\bf{\theta}$ 와 입력값에 대해 모든 퍼셉트론에 대해서 출력값이 정해져야 한다. 이것을 **순전파 (forward propagation)** 이라고 한다. 그리고 이 손실함수 값고 모든 퍼셉트론의 출력값을 이용하여 신경망에서 $\nabla_\bf{\theta} L(\bf{\theta}_k)$ 를 계산 할 때 [자동미분(Auto differentiation)](https://julia-kaeri.github.io/JuliaNumerical/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#자동-미분) 의 후진법(Backward method or reverse method) 를 사용하며, 신경망의 각 층을 거꾸로 거슬러 올라가며 $\bf{\theta}$ 를 update 하므로 역전파(back propagation) 이라고 불린다.
+역전파는 손실함수 $L(\bf{\theta})$ 의 내부 매개변수가 $\bf{\theta}_k$ 로 주어졌을 때 $\nabla_\bf{\theta}L(\bf{\theta}_k)$ 를 계산하는 방법이다. 역전파를 위해서는 우선 주어진 매개변수 $\bf{\theta}$ 와 입력값에 대해 모든 퍼셉트론에 대해서 출력값이 정해져야 한다. 신경망의 경우 입력 벡터, 혹은 데이터셋에 대해 $\tilde{\bf{z}}^{(1)}$ 부터 마지막 은닉층의 $\tilde{\bf{z}}^{(M)}$ 와 출력값 $\hat{\bf{y}}$ 까지 모두 정해진다. 뿐만 아니라 [자동미분(Auto differentiation)](https://julia-kaeri.github.io/JuliaNumerical/src/numerical_analysis_using_julia/06_calculus_of_one_variable_function.html#자동-미분)을 통해 각 퍼셉트론의 @eq-ML_ANN_derivatives_of_hidden_layer_2 가 계산된다. 이것을 **순전파 (forward propagation)** 라고 한다. 
+
+
+
+그리고 이 손실함수 값과 모든 퍼셉트론의 출력값을 이용하여 신경망에서 $\nabla_\bf{\theta} L(\bf{\theta}_k)$ 를 계산 할 때  의 후진법(Backward method or reverse method) 를 사용하며, 신경망의 각 층을 거꾸로 거슬러 올라가며 $\bf{\theta}$ 를 update 하므로 **역전파(back propagation)** 이라고 불린다.
 
 다음과 같은 신경망을 생각하자.
 
@@ -181,38 +194,75 @@ $\nabla_{\bf{\theta}}L(\bf{\theta}_k)$ 를 구하는 방법은 뒤의 [역전파
 </br>
 
 
-
-
 ### 출력층에서의 역전파 {#sec-ML_ANN_backpropagation_at_output_layer}
 
-출력층의 매개변수를 $\bf{W}^{(F)}$ 이라고 하고 활성화 함수를 $\sigma_{(F)}$ 라고 하자. 그리고 비용 함수를 $L(\bf{\theta})$ 라고 하자. 
+출력층의 매개변수를 $\bf{W}^{(O)}$ 이라고 하고 활성화 함수를 $\sigma_{(O)}$ 라고 하자. 그리고 비용 함수를 $L(\bf{\theta})$ 라고 하자. 그렇다면 비용함수는 $\bf{W}^{(1)},\ldots,\, \bf{W}^{(M)},\, \bf{W}^{(O)}$ 의 함수이다.
 
 $$
-L(\bf{\theta}) = L(\bf{W}^{(1)},\ldots,\,\bf{W}^{(M)},\, \bf{W}^{(F)})
+L(\bf{W}) = L\left(\bf{W}^{(1)},\ldots,\,\bf{W}^{(M)},\, \bf{W}^{(F)}\right)
 $$
 
-이다. Chain rule 을 이용하면 @eq-ML_output_of_mlnn 에 대해 다음을 알 수 있다.
+Chain rule 을 이용하면 @eq-ML_output_of_mlnn 에 대해 다음을 알 수 있다. 여기서 $\sigma'_{O,\,i}:=\sigma'_{O}\left(\left[\bf{W}^{(O)} \tilde{\bf{z}}^{(M)}\right]_i \right)$ 라고 하면
 
 $$
-\dfrac{\partial L(\bf{\theta})}{\partial w^{(O)}_{ij}} = \dfrac{\partial L}{\partial \hat{y}_i}\sigma'_{O,i}\tilde{z}^{(M)}_{j}
+\dfrac{\partial L(\bf{W})}{\partial w^{(O)}_{ij}} = \sum_k \dfrac{\partial L}{\partial \hat{y}_k} \dfrac{\partial \hat{y}_k}{\partial w^{(O)}_{ij}} = \sum_k \dfrac{\partial L}{\partial \hat{y}_k}\delta_{ik}\sigma'_{O, i} \tilde{z}^{(M)}_j= \dfrac{\partial L}{\partial\hat{y}_i} \dfrac{\partial \hat{y}_i}{\partial w^{(O)}_{ij}}
 $$ {#eq-ML_ANN_derivatives_at_output_layer}
  
-기본적으로 자동 미분에 의해 $\sigma'_{O, i},\, \tilde{z}_j^{(M)}$ 는 순전파 과정에서 이미 정해졌으며 여기서는 ${\partial L}{\partial \hat{y}_i}$ 만을 구해서 출력층에서의 매개변수에 대한 편미분을 구할 수 있다. 이제 마지막 은닉층 $\tilde{z}^{(M)}_j= \sigma \left(\left[\bf{W}^{(M)}\tilde{\bf{z}}^{(M-1)}\right]_j\right)$ 에 대해
+이다. 기본적으로 자동 미분에 의해 $\dfrac{\partial \hat{y}_i}{\partial w^{(O)}_{ij}}$ 는 순전파 과정에서 이미 정해졌으며 여기서는 ${\partial L}/{\partial \hat{y}_i}$ 만을 구해서 출력층에서의 매개변수에 대한 편미분을 구할 수 있다. 이제 마지막 은닉층에서의 출력값 $\tilde{z}^{(M)}_j= \sigma \left(\left[\bf{W}^{(M)}\tilde{\bf{z}}^{(M-1)}\right]_j\right)$ 에 대해
+$$
+\dfrac{\partial L(\bf{W})}{\partial w^{(M)}_{ij}} = \sum_{k} \sum_{l}\dfrac{\partial L(\bf{\theta})}{\partial \hat{y}_k} \dfrac{\partial \hat{y}_k}{\partial \tilde{z}^{(M)}_l}\dfrac{\partial \tilde{z}^{(M)}_l}{\partial w^{(M)}_{ij}} 
+$${#eq-ML_ANN_derivatives_at_final_hidden_layer_1}
 
+이며, 
 
 $$
-\dfrac{\partial L(\bf{\theta})}{\partial w^{(M)}_{ij}} = \dfrac{\partial L(\bf{\theta})}{\partial \tilde{z}_{i}^{(M)}} \dfrac{\partial \tilde{z}_{i}^{(M)}}{\partial w^{(M)}_{ij}}= \sum_{k_O=1}^K \dfrac{\partial L}{\partial \hat{y}_{k_O}} \sigma'_{O, k_O} \sigma'_{M, i}z^{(M-1)}_j
-$${#eq-ML_ANN_derivatives_at_final_hidden_layer}
+\sigma'_{M, k} = \left(\dfrac{d\sigma_M(t)}{dt}\right)_{t=[\bf{W}^{(M)}\tilde{\bf{z}}]_k}
+$$ 
 
-이다. 여기서 $\sigma'_{O, k_O},\, \sigma'_{M, i},\,z^{(M-2)}_j$ 는 순전파 과정에서 정해지므로 마지막 은닉층의 매개변수에 대한 손실함수의 편미분을 모두 구할 수 있다. 이제 $m$ 번 은닉층의 매개변수에 대한 편미분은
+라고 하면 
+$$
+\dfrac{\partial \hat{y}_k}{\partial \tilde{z}_l^{(M)}}=\sigma'_{M, k} w^{(M)}_{kl},\qquad \dfrac{\partial \tilde{z}_l^{(M)}}{\partial w^{(M)}_{ij}}= \delta_{il}\sigma'_{M, i}\tilde{z}^{(M-1)} = \delta_{li}\dfrac{\partial \tilde{z}^{(M)}_l}{\partial w^{(M)}_{ij}} 
+$$
+
+이므로 @eq-ML_ANN_derivatives_at_final_hidden_layer_1 은
 
 $$
-\dfrac{\partial L(\bf{\theta})}{\partial w_{ij}^{(m)}} = \sum_{k_O=1}^{K} \sum_{k_M=1}^{N_M} \cdots \sum_{k_m=1}^{N_m}\dfrac{\partial L}{\partial \hat{y}_{k_O}} \sigma'_{O,\,k_O} \sigma'_{M,\, k_M}  \cdots \sigma'_{m,\,i}z_j^{(m-1)}
-$$ {#eq-ML_ANN_derivatives_at_hidden_layer}
+\dfrac{\partial L}{\partial w^{(M)}_{ij}} = \sum_{k_O} \dfrac{\partial L}{\partial \hat{y}_{k_O}} \sigma'_{M, k} w_{k_O,i}^{(M)} \dfrac{\partial \tilde{z}^{(M)}_i}{\partial w^{(M)}_{ij}} 
+$${#eq-ML_ANN_derivatives_at_final_hidden_layer_2}
+
+이다. 여기서 $\dfrac{\partial \tilde{z}^{(M)}_i}{\partial w^{(M)}_{ij}}$ 는 순전파 과정에서 정해지므로 마지막 은닉층의 매개변수에 대한 손실함수의 편미분을 모두 구할 수 있다. 이제 $m$ 번 은닉층의 매개변수에 대한 편미분은
+
+$$
+\boxed{
+\begin{aligned}
+\dfrac{\partial L}{\partial w_{ij}^{(m)}} &= \sum_{k_O=1}^{K} \sum_{k_M=1}^{N_M} \cdots \sum_{k_{m+1}=1}^{N_{m+1}}\dfrac{\partial L}{\partial \hat{y}_{k_O}}  \\[0.3em]
+&\qquad \times \left[ \sigma'_{M, k_O} w^{(M)}_{k_O, k_M}\right] \left[\sigma'_{M-1, k_{M-1}}w^{(M-1)}_{k_{M},k_{M-1}}\right] \cdots \left[\sigma'_{m+1,\, k_{m+1}}w^{(m+1)}_{k_{m+1}, i}\right]\dfrac{\partial \tilde{z}^{(m)}_i}{\partial w^{(m)}_{ij}}
+\end{aligned}
+}
+$$ {#eq-ML_ANN_derivatives_at_arbitrary_hidden_layer}
 
 로 구할 수 있다. 
 
+</br>
 
+### 기울기 소멸 {#sec-ML_ANN_vanishing_gradient}
 
+신경망 초기에는 활성화 함수로 sigmoid 함수를 만이 사용했다. $f(t)$ 가 sigmoid 함수일 때 $0<f(t)<1$ 이며
+
+$$
+f'(t) = \dfrac{e^{-t}}{(1+e^{-t})^2}= f(t) (1-f(t))
+$$
+
+이다. Sigmoid 함수와 그 도함수는 아래 그림과 같으며 도함수의 최대값은 0.25 이다. 
+
+![Sigmoid 함수와 그 미분](figure/sigmoid_and_diff.png){#fig-ML_ANN_sigmoid_function_and_its_derivative}
+
+@eq-ML_ANN_derivatives_at_arbitrary_hidden_layer 를 보면 각 층에서의 활성화 함수의 도함수가 계속 곱해진다. 신경망의 층수가 매우 크다면 입력층에 가까운 퍼셉트론의 매개변수에 대한 미분값은 $0$ 에 가까울 것이며 따라서 경사 하강법에 의헤 업데이트 되는 매개변수 $\theta$ 는 그 update 가 매우 느리거나 멈출 수 밖에 없다. 즉
+
+$$
+\theta_{k+1} = \theta_k - \alpha_k \dfrac{\partial L}{\partial \theta}
+$$
+
+에서 $\partial L/\partial \theta \approx 0$ 이므로 $\theta_{k+1}\approx \theta_k$ 가 된다. 이 현상을 **기울기 소멸(vanishing gradient)** 라고 한다. 기울기 소멸을 극복하기 위해 다양한 기법이 제시되었으며 대표적으로 활성화 함수를 기울기 소멸이 쉬운 sigmoid 함수나 $\tanh$ 함수를 사용하지 않고 $\text{ReLU}$, 혹은 이에서 파생한 $\text{Leaky ReLU}$, $\text{ELU}$ 함수를 사용하는 방법이 있다(@fig-ML_activation_functions 를 보라).
 
 

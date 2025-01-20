@@ -2,8 +2,8 @@ PWD /Users/jiyong/Documents/Projects/ScienceComputing/src/ML/theory/figure
 INPUT /usr/local/texlive/2022/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/jiyong/Documents/Projects/ScienceComputing/src/ML/theory/figure/sigmoid.tex
-OUTPUT sigmoid.log
+INPUT /Users/jiyong/Documents/Projects/ScienceComputing/src/ML/theory/figure/sigmoid_and_diff.tex
+OUTPUT sigmoid_and_diff.log
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/standalone/standalone.cls
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/standalone/standalone.cls
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/standalone/standalone.cls
@@ -423,10 +423,10 @@ INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.de
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./sigmoid.aux
-INPUT sigmoid.aux
-INPUT sigmoid.aux
-OUTPUT sigmoid.aux
+INPUT ./sigmoid_and_diff.aux
+INPUT sigmoid_and_diff.aux
+INPUT sigmoid_and_diff.aux
+OUTPUT sigmoid_and_diff.aux
 INPUT /usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -530,9 +530,9 @@ INPUT /usr/local/texlive/2022/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-OUTPUT sigmoid.pdf
+OUTPUT sigmoid_and_diff.pdf
 INPUT /usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT sigmoid.aux
+INPUT sigmoid_and_diff.aux
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
