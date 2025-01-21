@@ -60,7 +60,7 @@ $$ {#eq-ML_classification_generalized_linear_model}
 
 </br>
 
-### 선형 판별
+### 선형 판별 {#sec-ML_classification_linear_determination}
 
 입력벡터를 어느 클래스로 분류할지 판단하는 함수를 판별함수라고 하고 판별함수에 의한 결정표면이 초평면 일 경우 **선형 판별(linear determination)** 이라고 한다,. 
 
@@ -94,7 +94,7 @@ $$ {#eq-ML_classification_linear_modelling_function}
 
 ## 로지스틱 회귀
 
-### 비용함수
+### 비용함수 {#sec-ML_classification_cost_function}
 
 수학적으로 $f:\R^n \to \{0,\,1\}$ 인 함수
 
@@ -173,7 +173,7 @@ fig
 
 </div> </br>
 
-### 시그모이드 함수와 로지스틱 회귀
+### 시그모이드 함수와 로지스틱 회귀 {#sec-ML_classification_sigmoid_and_logistic_regression}
 
 앞서 비용함수의 불연속성은 target 집합 이 $\{0,\,1\}$ 이기 때문에 발생한다. 이 문제를 해결하기 위해 확률론을 도입한다. 즉 모델 함수의 치역을 $[0,\,1]$ 하는 연속함수중에 선택 할 수 있다. 가장 대표적으로 널리 사용되는 것이 로지스틱 시그모이드 함수(logistic sigmoid function) $\sigma(t)$ 이다.
 
@@ -204,7 +204,7 @@ $$ {#eq-ML_classification_binary_cross_entropy}
 
 </br>
 
-### 다중 클래스 로지스틱 회귀
+### 다중 클래스 로지스틱 회귀 {#sec-ML_classification_multiclass_logistic_regresssion}
 
 $C_1,\ldots,\,C_K$ 클래스로 분류하는 데 사용되는 판별함수 $a_1 = a_1(\bf{x};\bf{w}_1,\,b_1),\ldots,\,a_K=a_K(\bf{x};\bf{w}_K,\,b_K)$ 에 대해 소프트 맥스 변환 $G:\R^K \to \R^K$ 은 $\bf{a}=\begin{bmatrix} a_1 & \cdots & a_K\end{bmatrix}^T$ 에 대해 다음과 같이 정의된다.
 $$
@@ -231,7 +231,7 @@ $$ {#eq-ML_classification_cost_function_of_many_class_logistic_regression}
 
 </br>
 
-### 손실 함수의 미분
+### 비용 함수의 미분 {#sec-ML_classification_derivative_of_cost_function}
 
 로지스틱 회귀의 모델 함수 $\sigma(\bf{w}^T\bf{x}+b)$ 에서 우리가 최적값을 찾아야 할 것은 $\bf{w}$ 와 $b$ 이다. 수식 표기량을 줄이기 위해 
 

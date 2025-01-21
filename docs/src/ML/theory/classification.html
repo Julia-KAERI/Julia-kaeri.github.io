@@ -300,14 +300,14 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#sec-ML_classification_introduction" id="toc-sec-ML_classification_introduction" class="nav-link" data-scroll-target="#sec-ML_classification_introduction"><span class="header-section-number">1.1</span> 개요</a></li>
   <li><a href="#sec-ML_classification_generalized_linear_model" id="toc-sec-ML_classification_generalized_linear_model" class="nav-link" data-scroll-target="#sec-ML_classification_generalized_linear_model"><span class="header-section-number">1.2</span> 일반화된 선형 모델</a></li>
-  <li><a href="#선형-판별" id="toc-선형-판별" class="nav-link" data-scroll-target="#선형-판별"><span class="header-section-number">1.3</span> 선형 판별</a></li>
+  <li><a href="#sec-ML_classification_linear_determination" id="toc-sec-ML_classification_linear_determination" class="nav-link" data-scroll-target="#sec-ML_classification_linear_determination"><span class="header-section-number">1.3</span> 선형 판별</a></li>
   </ul></li>
   <li><a href="#로지스틱-회귀" id="toc-로지스틱-회귀" class="nav-link" data-scroll-target="#로지스틱-회귀"><span class="header-section-number">2</span> 로지스틱 회귀</a>
   <ul class="collapse">
-  <li><a href="#비용함수" id="toc-비용함수" class="nav-link" data-scroll-target="#비용함수"><span class="header-section-number">2.1</span> 비용함수</a></li>
-  <li><a href="#시그모이드-함수와-로지스틱-회귀" id="toc-시그모이드-함수와-로지스틱-회귀" class="nav-link" data-scroll-target="#시그모이드-함수와-로지스틱-회귀"><span class="header-section-number">2.2</span> 시그모이드 함수와 로지스틱 회귀</a></li>
-  <li><a href="#다중-클래스-로지스틱-회귀" id="toc-다중-클래스-로지스틱-회귀" class="nav-link" data-scroll-target="#다중-클래스-로지스틱-회귀"><span class="header-section-number">2.3</span> 다중 클래스 로지스틱 회귀</a></li>
-  <li><a href="#손실-함수의-미분" id="toc-손실-함수의-미분" class="nav-link" data-scroll-target="#손실-함수의-미분"><span class="header-section-number">2.4</span> 손실 함수의 미분</a></li>
+  <li><a href="#sec-ML_classification_cost_function" id="toc-sec-ML_classification_cost_function" class="nav-link" data-scroll-target="#sec-ML_classification_cost_function"><span class="header-section-number">2.1</span> 비용함수</a></li>
+  <li><a href="#sec-ML_classification_sigmoid_and_logistic_regression" id="toc-sec-ML_classification_sigmoid_and_logistic_regression" class="nav-link" data-scroll-target="#sec-ML_classification_sigmoid_and_logistic_regression"><span class="header-section-number">2.2</span> 시그모이드 함수와 로지스틱 회귀</a></li>
+  <li><a href="#sec-ML_classification_multiclass_logistic_regresssion" id="toc-sec-ML_classification_multiclass_logistic_regresssion" class="nav-link" data-scroll-target="#sec-ML_classification_multiclass_logistic_regresssion"><span class="header-section-number">2.3</span> 다중 클래스 로지스틱 회귀</a></li>
+  <li><a href="#sec-ML_classification_derivative_of_cost_function" id="toc-sec-ML_classification_derivative_of_cost_function" class="nav-link" data-scroll-target="#sec-ML_classification_derivative_of_cost_function"><span class="header-section-number">2.4</span> 비용 함수의 미분</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -375,8 +375,8 @@ y(\boldsymbol{x}; \boldsymbol{w},\,w_0) = f(\boldsymbol{w}^T \boldsymbol{x}+w_0)
 <p>일반화된 선형 모델의 경우 결정 표면은 어떤 상수 <span class="math inline">\(c\)</span> 에 대해 <span class="math inline">\(\boldsymbol{w}^T\boldsymbol{x} + w_0 = c\)</span> 인 초평면이 된다. 즉 선형 분리 가능 집합의 경우 일반화된 선형 모델로 잘 설명이 된다.</p>
 <p><br></p>
 </section>
-<section id="선형-판별" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="선형-판별"><span class="header-section-number">1.3</span> 선형 판별</h3>
+<section id="sec-ML_classification_linear_determination" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="sec-ML_classification_linear_determination"><span class="header-section-number">1.3</span> 선형 판별</h3>
 <p>입력벡터를 어느 클래스로 분류할지 판단하는 함수를 판별함수라고 하고 판별함수에 의한 결정표면이 초평면 일 경우 <strong>선형 판별(linear determination)</strong> 이라고 한다,.</p>
 <p><br></p>
 <section id="이진-분류" class="level4">
@@ -401,8 +401,8 @@ y_k(\boldsymbol{x}; \boldsymbol{w}_k,\, w_{k0}) = \boldsymbol{w}_k^T \boldsymbol
 </section>
 <section id="로지스틱-회귀" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="로지스틱-회귀"><span class="header-section-number">2</span> 로지스틱 회귀</h2>
-<section id="비용함수" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="비용함수"><span class="header-section-number">2.1</span> 비용함수</h3>
+<section id="sec-ML_classification_cost_function" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="sec-ML_classification_cost_function"><span class="header-section-number">2.1</span> 비용함수</h3>
 <p>수학적으로 <span class="math inline">\(f:\mathbb{R}^n \to \{0,\,1\}\)</span> 인 함수</p>
 <p><span class="math display">\[
 f(t) = \left\{\begin{array}{ll} 1,\qquad &amp; t\ge 0,\\ 0, &amp;t&lt;0 \end{array}\right. .
@@ -473,8 +473,8 @@ y = f(\boldsymbol{w}^T \boldsymbol{x} + b)
 </div>
 <p><br></p>
 </section>
-<section id="시그모이드-함수와-로지스틱-회귀" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="시그모이드-함수와-로지스틱-회귀"><span class="header-section-number">2.2</span> 시그모이드 함수와 로지스틱 회귀</h3>
+<section id="sec-ML_classification_sigmoid_and_logistic_regression" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="sec-ML_classification_sigmoid_and_logistic_regression"><span class="header-section-number">2.2</span> 시그모이드 함수와 로지스틱 회귀</h3>
 <p>앞서 비용함수의 불연속성은 target 집합 이 <span class="math inline">\(\{0,\,1\}\)</span> 이기 때문에 발생한다. 이 문제를 해결하기 위해 확률론을 도입한다. 즉 모델 함수의 치역을 <span class="math inline">\([0,\,1]\)</span> 하는 연속함수중에 선택 할 수 있다. 가장 대표적으로 널리 사용되는 것이 로지스틱 시그모이드 함수(logistic sigmoid function) <span class="math inline">\(\sigma(t)\)</span> 이다.</p>
 <p><span id="eq-ML_classification_sigmoid"><span class="math display">\[
 \sigma(t) = \dfrac{1}{1+e^{-t}}
@@ -500,8 +500,8 @@ L(\boldsymbol{w}) = \text{BCE}(\boldsymbol{w}) =\sum_{i=1}^n y^{(i)} \left[\ln \
 <p>를 사용한다. 앞서 <a href="#exm-ML_binary_classification_and_cost_function" class="quarto-xref">예제&nbsp;1</a> 에서 오차함수로 위의 <span class="math inline">\(\text{BCE}\)</span> 함수를 사용했을 때가 <a href="#fig-ML_classicifation_binary_classification_1" class="quarto-xref">그림&nbsp;1</a> 의 가장 오른쪽 그림이다.</p>
 <p><br></p>
 </section>
-<section id="다중-클래스-로지스틱-회귀" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="다중-클래스-로지스틱-회귀"><span class="header-section-number">2.3</span> 다중 클래스 로지스틱 회귀</h3>
+<section id="sec-ML_classification_multiclass_logistic_regresssion" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="sec-ML_classification_multiclass_logistic_regresssion"><span class="header-section-number">2.3</span> 다중 클래스 로지스틱 회귀</h3>
 <p><span class="math inline">\(C_1,\ldots,\,C_K\)</span> 클래스로 분류하는 데 사용되는 판별함수 <span class="math inline">\(a_1 = a_1(\boldsymbol{x};\boldsymbol{w}_1,\,b_1),\ldots,\,a_K=a_K(\boldsymbol{x};\boldsymbol{w}_K,\,b_K)\)</span> 에 대해 소프트 맥스 변환 <span class="math inline">\(G:\mathbb{R}^K \to \mathbb{R}^K\)</span> 은 <span class="math inline">\(\boldsymbol{a}=\begin{bmatrix} a_1 &amp; \cdots &amp; a_K\end{bmatrix}^T\)</span> 에 대해 다음과 같이 정의된다. <span id="eq-ML_classification_softmax"><span class="math display">\[
 G(\boldsymbol{a}) := \dfrac{1}{\sum_{j=1}^K e^{a_j}} \begin{bmatrix} e^{a_1} \\ \vdots \\ e^{a_K}\end{bmatrix}
 \tag{5}\]</span></span></p>
@@ -516,8 +516,8 @@ G(\boldsymbol{a}) := \dfrac{1}{\sum_{j=1}^K e^{a_j}} \begin{bmatrix} e^{a_1} \\ 
 <p>이다.</p>
 <p><br></p>
 </section>
-<section id="손실-함수의-미분" class="level3" data-number="2.4">
-<h3 data-number="2.4" class="anchored" data-anchor-id="손실-함수의-미분"><span class="header-section-number">2.4</span> 손실 함수의 미분</h3>
+<section id="sec-ML_classification_derivative_of_cost_function" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="sec-ML_classification_derivative_of_cost_function"><span class="header-section-number">2.4</span> 비용 함수의 미분</h3>
 <p>로지스틱 회귀의 모델 함수 <span class="math inline">\(\sigma(\boldsymbol{w}^T\boldsymbol{x}+b)\)</span> 에서 우리가 최적값을 찾아야 할 것은 <span class="math inline">\(\boldsymbol{w}\)</span> 와 <span class="math inline">\(b\)</span> 이다. 수식 표기량을 줄이기 위해</p>
 <p><span class="math display">\[
 \tilde{\boldsymbol{x}}=\begin{bmatrix}1 \\ \boldsymbol{x}\end{bmatrix} = \begin{bmatrix} 1 \\ x_1 \\ \vdots \\ x_n\end{bmatrix}, \qquad \tilde{\boldsymbol{w}}= \begin{bmatrix} b \\ \boldsymbol{w}\end{bmatrix} = \begin{bmatrix} b \\ w_1 \\ \vdots \\ w_n\end{bmatrix}
