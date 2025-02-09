@@ -22,4 +22,43 @@ plugins=(git)
 
 </br>
 
+### `git push` 멈춤
+
+많은 quarto 프로젝트를 github 에서 관리하는데 때때로 `git push -u origin main` 명령어가 특정 quarto 프로젝트에서만 안될 때가 있었다. 구글 검색을 해 보면 인증 문제가 많이 뜨지만 다른 프로젝트에서는 잘 되는 것으로 보아 이 문제는 아닐 경우..
+
+
+```sh
+git log
+```
+
+로 로그를 본다. 대충 아래와 같이 출력된다.
+
+```txt
+commit d6f83cf82a6898635fc1ab136270b783a2e61424 
+Author: julia-KAERI <julia.kaeri@gmail.com>
+Date:   Sun Feb 9 16:09:36 2025 +0900
+
+    20250209_1609
+
+commit 8eb459eff7454b17b96e74fac3abb580cc089d54
+Author: julia-KAERI <julia.kaeri@gmail.com>
+Date:   Sun Feb 9 16:06:00 2025 +0900
+
+    20250209_1605
+
+commit 1a2c309277b9d5892bb23b1cda255666587e261f
+Author: julia-KAERI <julia.kaeri@gmail.com>
+Date:   Sun Feb 9 16:03:30 2025 +0900
+
+    20250209_1603
+```
+
+여기서 최근의 커밋 id(여기서는 `d6f83cf82a6898635fc1ab136270b783a2e61424`)  를 복사한
+
+```sh
+git reset [commit-id]
+```
+
+와 같이 입력해준다. `[commit-id]` 는 위에서 복사한 커밋 아이디 이다. 그리고 나면 잘 된다.
+
 

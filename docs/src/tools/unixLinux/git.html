@@ -279,6 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#팁들" id="toc-팁들" class="nav-link active" data-scroll-target="#팁들"><span class="header-section-number">1</span> 팁들</a>
   <ul class="collapse">
   <li><a href="#터미널에서-git-관련-alias-정리" id="toc-터미널에서-git-관련-alias-정리" class="nav-link" data-scroll-target="#터미널에서-git-관련-alias-정리"><span class="header-section-number">1.1</span> 터미널에서 <code>git</code> 관련 <code>alias</code> 정리</a></li>
+  <li><a href="#git-push-멈춤" id="toc-git-push-멈춤" class="nav-link" data-scroll-target="#git-push-멈춤"><span class="header-section-number">1.2</span> <code>git push</code> 멈춤</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -314,6 +315,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span>git<span class="va">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>를 찾아 주석처리(<code>#</code>) 해준다.</p>
 <p><br></p>
+</section>
+<section id="git-push-멈춤" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="git-push-멈춤"><span class="header-section-number">1.2</span> <code>git push</code> 멈춤</h3>
+<p>많은 quarto 프로젝트를 github 에서 관리하는데 때때로 <code>git push -u origin main</code> 명령어가 특정 quarto 프로젝트에서만 안될 때가 있었다. 구글 검색을 해 보면 인증 문제가 많이 뜨지만 다른 프로젝트에서는 잘 되는 것으로 보아 이 문제는 아닐 경우..</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>로 로그를 본다. 대충 아래와 같이 출력된다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>commit d6f83cf82a6898635fc1ab136270b783a2e61424 </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Author: julia-KAERI &lt;julia.kaeri@gmail.com&gt;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Date:   Sun Feb 9 16:09:36 2025 +0900</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    20250209_1609</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>commit 8eb459eff7454b17b96e74fac3abb580cc089d54</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Author: julia-KAERI &lt;julia.kaeri@gmail.com&gt;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Date:   Sun Feb 9 16:06:00 2025 +0900</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    20250209_1605</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>commit 1a2c309277b9d5892bb23b1cda255666587e261f</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>Author: julia-KAERI &lt;julia.kaeri@gmail.com&gt;</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>Date:   Sun Feb 9 16:03:30 2025 +0900</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    20250209_1603</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>여기서 최근의 커밋 id(여기서는 <code>d6f83cf82a6898635fc1ab136270b783a2e61424</code>) 를 복사한</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="pp">[</span><span class="ss">commit</span><span class="pp">-</span><span class="ss">id</span><span class="pp">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>와 같이 입력해준다. <code>[commit-id]</code> 는 위에서 복사한 커밋 아이디 이다. 그리고 나면 잘 된다.</p>
 
 
 </section>
