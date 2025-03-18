@@ -68,3 +68,25 @@ add_executable(eigen1 eigen1.cpp)
 
 target_link_libraries(eigen1 PRIVATE Eigen3::Eigen)
 ```
+
+</br>
+
+### `Armadillo`
+```{.cmake filename="CMakeLists.txt"}
+cmake_minimum_required(VERSION 3.10.0)
+
+SET(CMAKE_TOOLCHAIN_FILE "/Users/jiyong/Lib/vcpkg/scripts/buildsystems/vcpkg.cmake")
+SET(ARMADILLO_INCLUDE_DIR "/Users/jiyong/Lib/vcpkg/installed/x64-osx/include")
+SET(ARMADILLO_LIBRARY "/Users/jiyong/Lib/vcpkg/installed/x64-osx/lib")
+set(CMAKE_CXX_STANDARD 17)
+project(test01 VERSION 0.1.0 LANGUAGES C CXX)
+
+find_package(Armadillo REQUIRED)
+message("ARMADILLO Include dirs"  ${ARMADILLO_INCLUDE_DIRS})
+
+
+add_executable(test01 main.cpp)
+
+target_include_directories(test01 PRIVATE ${ARMADILLO_INCLUDE_DIRS})
+target_link_libraries(test01 PRIVATE ${ARMADILLO_LIBRARY}/libarmadillo.dylib)
+```
