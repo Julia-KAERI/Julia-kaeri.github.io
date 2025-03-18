@@ -1,0 +1,70 @@
+---
+title: "cmake"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+</br>
+
+## vcpkg 설치 라이브러리를 사용할 경우
+
+`[VCPKG_ROOT]` 는 `vcpkg` 설치 경로를 말한다. `[Project Name]` 은 프로젝트 이름이다.
+
+</br>
+
+### `OpenCV` 
+
+
+```{.cmake filename="CMakeLists.txt"}
+cmake_minimum_required(VERSION 3.10)
+
+SET(CMAKE_TOOLCHAIN_FILE 
+    "[VCPKG_ROOT]/scripts/buildsystems/vcpkg.cmake")
+
+project([Project Name] VERSION 0.1.0 LANGUAGES C CXX)
+# C++11 표준 사용
+set(CMAKE_CXX_STANDARD 11)
+
+find_package(OpenCV REQUIRED)
+
+link_directories(${OpenCV_INCLUDE_DIRS}) 
+
+IF( NOT OpenCV_INCLUDE_DIRS )
+    MESSAGE( FATAL_ERROR 
+            "OpenCV_INCLUDE_DIR can't be assigned")
+ENDIF()
+
+INCLUDE_DIRECTORIES ( ${OpenCV_INCLUDE_DIRS} )
+
+add_executable([Project Name] mycv2.cpp)
+
+target_link_libraries([Project Name] ${OpenCV_LIBS})
+```
+
+</br>
+
+### `Eigen3`
+```{.cmake filename="CMakeLists.txt"}
+cmake_minimum_required(VERSION 3.10)
+SET(CMAKE_TOOLCHAIN_FILE 
+    "/Users/jiyong/Lib/vcpkg/scripts/buildsystems/vcpkg.cmake")
+
+project(eigen1 VERSION 0.1.0 LANGUAGES C CXX)
+
+find_package(Eigen3 REQUIRED)
+
+link_directories(${Eigen_INCLUDE_DIRS}) 
+
+IF( NOT EIGEN3_INCLUDE_DIR )
+    MESSAGE( FATAL_ERROR 
+            "EIGEN3_INCLUDE_DIR can't be assigned")
+ENDIF()
+INCLUDE_DIRECTORIES ( ${EIGEN3_INCLUDE_DIR} )
+
+add_executable(eigen1 eigen1.cpp)
+
+target_link_libraries(eigen1 PRIVATE Eigen3::Eigen)
+```

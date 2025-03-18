@@ -78,6 +78,21 @@ website:
           contents :
             - src/ML/pytorch/intro.qmd
             - src/ML/pytorch/tensor.qmd
+    - title : "CPP & QT"
+      collapse-level: 2
+      contents :
+        - src/cpp_qt/cpp_qt.qmd
+        - section : "Tools"
+          contents :
+            - src/cpp_qt/tools_vcpkg.qmd
+            - src/cpp_qt/tools_cmake.qmd
+
+        - section : "C++"
+          contents :
+
+        - section : "Qt"
+          contents :
+
     - title : "주제별"
       # style : "docked"
       # type : "dark"
@@ -98,9 +113,6 @@ website:
           - href: src/tools/tikz/tikz_wavelet.qmd
           - href: src/tools/tikz/tikz_pde.qmd
           - href: src/tools/tikz/tikz_test.qmd
-        - section : "C/C++ 관련"
-          contents :
-          - href : src/tools/Cpp/vcpkg.qmd
         - section : "Unix/Linux 관련"
           contents : 
           - href : src/tools/unixLinux/git.qmd

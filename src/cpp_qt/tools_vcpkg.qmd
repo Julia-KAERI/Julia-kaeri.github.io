@@ -15,4 +15,13 @@ crossref:
 
 - 원조의 설명서 : [vcpkg 설명서](https://learn.microsoft.com/ko-kr/vcpkg/)
 
-- 
+
+</br>
+
+## 설치 후 곧바로 해 할 일
+
+- 환경 변수 `VCPKG_ROOT` 를 vcpkg 설치 위치로 설정한다.
+- 설치 폴더의 `vcpkg` (Windows 의 경우 `vcpkg.exe`) 는 `vcpkg` 관리 명령어이다. 환경변수 `PATH` 에 적절히 등록한다.
+
+
+
