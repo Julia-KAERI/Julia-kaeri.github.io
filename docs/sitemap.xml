@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/gpu.html</loc>
-    <lastmod>2024-12-18T01:56:48.360Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.330Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda/04_hardware_implementation.html</loc>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/gpu/cuda.jl/cuda_jl_array_programming.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.328Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/cpp_qt/tools_cmake.html</loc>
@@ -62,11 +62,11 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/pytorch/tensor.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
+    <lastmod>2024-12-17T11:34:54.787Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/ml.html</loc>
-    <lastmod>2024-12-24T08:12:27.557Z</lastmod>
+    <lastmod>2024-12-24T05:27:46.746Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/index.html</loc>
@@ -82,7 +82,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/pytorch/intro.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
+    <lastmod>2024-12-17T11:34:29.277Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/ML/theory/ML.html</loc>
@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/cpp_qt/cpp_qt.html</loc>
-    <lastmod>2024-12-18T01:56:48.359Z</lastmod>
+    <lastmod>2025-04-08T09:25:52.404Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/cpp_qt/tools_vcpkg.html</loc>
@@ -138,7 +138,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/tools/tools.html</loc>
-    <lastmod>2024-12-18T01:56:48.371Z</lastmod>
+    <lastmod>2024-12-12T11:32:00.335Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
