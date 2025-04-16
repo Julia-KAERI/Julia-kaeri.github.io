@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -70,7 +36,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-442e5c93d6224642134ff5cd604ad228.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -226,11 +192,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#vcpkg-설치-라이브러리를-사용할-경우" id="toc-vcpkg-설치-라이브러리를-사용할-경우" class="nav-link active" data-scroll-target="#vcpkg-설치-라이브러리를-사용할-경우"><span class="header-section-number">1</span> vcpkg 설치 라이브러리를 사용할 경우</a>
+  <li><a href="#find_package" id="toc-find_package" class="nav-link active" data-scroll-target="#find_package"><span class="header-section-number">1</span> <code>find_package</code></a>
   <ul class="collapse">
-  <li><a href="#opencv" id="toc-opencv" class="nav-link" data-scroll-target="#opencv"><span class="header-section-number">1.1</span> <code>OpenCV</code></a></li>
-  <li><a href="#eigen3" id="toc-eigen3" class="nav-link" data-scroll-target="#eigen3"><span class="header-section-number">1.2</span> <code>Eigen3</code></a></li>
-  <li><a href="#armadillo" id="toc-armadillo" class="nav-link" data-scroll-target="#armadillo"><span class="header-section-number">1.3</span> <code>Armadillo</code></a></li>
+  <li><a href="#모듈모드-module-mode" id="toc-모듈모드-module-mode" class="nav-link" data-scroll-target="#모듈모드-module-mode"><span class="header-section-number">1.1</span> 모듈모드 (module mode)</a></li>
+  <li><a href="#구성모드-config-mode" id="toc-구성모드-config-mode" class="nav-link" data-scroll-target="#구성모드-config-mode"><span class="header-section-number">1.2</span> 구성모드 (config mode)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -258,93 +223,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><br></p>
-<section id="vcpkg-설치-라이브러리를-사용할-경우" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="vcpkg-설치-라이브러리를-사용할-경우"><span class="header-section-number">1</span> vcpkg 설치 라이브러리를 사용할 경우</h2>
-<p><code>[VCPKG_ROOT]</code> 는 <code>vcpkg</code> 설치 경로를 말한다. <code>[Project Name]</code> 은 프로젝트 이름이다.</p>
-<p><br></p>
-<section id="opencv" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="opencv"><span class="header-section-number">1.1</span> <code>OpenCV</code></h3>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>CMakeLists.txt</strong></pre>
+<section id="find_package" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="find_package"><span class="header-section-number">1</span> <code>find_package</code></h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="sourceCode" id="cb1" data-filename="CMakeLists.txt"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.10</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span>(<span class="dv">CMAKE_TOOLCHAIN_FILE</span> </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"[VCPKG_ROOT]/scripts/buildsystems/vcpkg.cmake"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>([Project Name] <span class="ot">VERSION</span> <span class="dt">0.1.0</span> <span class="ot">LANGUAGES</span> <span class="ot">C</span> <span class="ot">CXX</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># C++11 표준 사용</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 11)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">find_package</span>(OpenCV <span class="ot">REQUIRED</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">link_directories</span>(<span class="dv">${OpenCV_INCLUDE_DIRS}</span>) </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">IF</span>( <span class="ot">NOT</span> <span class="dv">OpenCV_INCLUDE_DIRS</span> )</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">MESSAGE</span>( <span class="ot">FATAL_ERROR</span> </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"OpenCV_INCLUDE_DIR can't be assigned"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">ENDIF</span>()</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE_DIRECTORIES</span> ( <span class="dv">${OpenCV_INCLUDE_DIRS}</span> )</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="er">[Project Name] mycv2.cpp)</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bn">target_link_libraries</span>([Project Name] <span class="dv">${OpenCV_LIBS}</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Source
 </div>
-<p><br></p>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://github.com/jacking75/examples_CMake/blob/master/find_package_And_pkg_check_modules.md">jacking75 님의 find_package 와 pkg_check_modules에 의한 라이브러리 탐색</a></p>
+</div>
+</div>
+<p><code>find_package</code> 는 두가지 방식으로 동작한다. 우선 모듈 모드로 찾고 여기에 없다면 구성 모드로 찾는다.</p>
+<section id="모듈모드-module-mode" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="모듈모드-module-mode"><span class="header-section-number">1.1</span> 모듈모드 (module mode)</h3>
+<ul>
+<li>CMake를 설치하면 <code>cmake</code> 명령뿐만 아니라 잘 알려진 라이브러리 검색 모듈을 포함한 여러 모듈을 설치한다.</li>
+<li><code>cmake --help-module-list</code> 은 사용 가능한 모듈 목록을 나열하며, 이가운데 <code>FindXXX</code> 형태의 모듈이 탐색용 모듈이다.</li>
+</ul>
 </section>
-<section id="eigen3" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="eigen3"><span class="header-section-number">1.2</span> <code>Eigen3</code></h3>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>CMakeLists.txt</strong></pre>
-</div>
-<div class="sourceCode" id="cb2" data-filename="CMakeLists.txt"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.10</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span>(<span class="dv">CMAKE_TOOLCHAIN_FILE</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"/Users/jiyong/Lib/vcpkg/scripts/buildsystems/vcpkg.cmake"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(eigen1 <span class="ot">VERSION</span> <span class="dt">0.1.0</span> <span class="ot">LANGUAGES</span> <span class="ot">C</span> <span class="ot">CXX</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">find_package</span>(Eigen3 <span class="ot">REQUIRED</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">link_directories</span>(<span class="dv">${Eigen_INCLUDE_DIRS}</span>) </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">IF</span>( <span class="ot">NOT</span> EIGEN3_INCLUDE_DIR )</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">MESSAGE</span>( <span class="ot">FATAL_ERROR</span> </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"EIGEN3_INCLUDE_DIR can't be assigned"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">ENDIF</span>()</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">INCLUDE_DIRECTORIES</span> ( <span class="dv">${EIGEN3_INCLUDE_DIR}</span> )</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">eigen1</span> eigen1.cpp)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">eigen1</span> <span class="ot">PRIVATE</span> <span class="bn">Eigen3::Eigen</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-</section>
-<section id="armadillo" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="armadillo"><span class="header-section-number">1.3</span> <code>Armadillo</code></h3>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>CMakeLists.txt</strong></pre>
-</div>
-<div class="sourceCode" id="cb3" data-filename="CMakeLists.txt"><pre class="sourceCode cmake code-with-copy"><code class="sourceCode cmake"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.10.0</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span>(<span class="dv">CMAKE_TOOLCHAIN_FILE</span> <span class="st">"/Users/jiyong/Lib/vcpkg/scripts/buildsystems/vcpkg.cmake"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span>(ARMADILLO_INCLUDE_DIR <span class="st">"/Users/jiyong/Lib/vcpkg/installed/x64-osx/include"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span>(ARMADILLO_LIBRARY <span class="st">"/Users/jiyong/Lib/vcpkg/installed/x64-osx/lib"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(test01 <span class="ot">VERSION</span> <span class="dt">0.1.0</span> <span class="ot">LANGUAGES</span> <span class="ot">C</span> <span class="ot">CXX</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">find_package</span>(<span class="im">Armadillo</span> <span class="ot">REQUIRED</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">message</span>(<span class="st">"ARMADILLO Include dirs"</span>  <span class="dv">${ARMADILLO_INCLUDE_DIRS}</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">test01</span> main.cpp)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">target_include_directories</span>(<span class="bn">test01</span> <span class="ot">PRIVATE</span> <span class="dv">${ARMADILLO_INCLUDE_DIRS}</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">test01</span> <span class="ot">PRIVATE</span> <span class="dv">${ARMADILLO_LIBRARY}</span>/libarmadillo.dylib)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="구성모드-config-mode" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="구성모드-config-mode"><span class="header-section-number">1.2</span> 구성모드 (config mode)</h3>
+<ul>
+<li>거의 사용되지 않는다.</li>
+</ul>
 
 
 </section>

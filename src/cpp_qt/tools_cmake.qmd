@@ -9,84 +9,26 @@ crossref:
 
 </br>
 
-## vcpkg 설치 라이브러리를 사용할 경우
+## `find_package`
 
-`[VCPKG_ROOT]` 는 `vcpkg` 설치 경로를 말한다. `[Project Name]` 은 프로젝트 이름이다.
+::: {.callout-note}
 
-</br>
+#### Source
+[jacking75 님의 find_package 와 pkg_check_modules에 의한 라이브러리 탐색](https://github.com/jacking75/examples_CMake/blob/master/find_package_And_pkg_check_modules.md)
 
-### `OpenCV` 
-
-
-```{.cmake filename="CMakeLists.txt"}
-cmake_minimum_required(VERSION 3.10)
-
-SET(CMAKE_TOOLCHAIN_FILE 
-    "[VCPKG_ROOT]/scripts/buildsystems/vcpkg.cmake")
-
-project([Project Name] VERSION 0.1.0 LANGUAGES C CXX)
-# C++11 표준 사용
-set(CMAKE_CXX_STANDARD 11)
-
-find_package(OpenCV REQUIRED)
-
-link_directories(${OpenCV_INCLUDE_DIRS}) 
-
-IF( NOT OpenCV_INCLUDE_DIRS )
-    MESSAGE( FATAL_ERROR 
-            "OpenCV_INCLUDE_DIR can't be assigned")
-ENDIF()
-
-INCLUDE_DIRECTORIES ( ${OpenCV_INCLUDE_DIRS} )
-
-add_executable([Project Name] mycv2.cpp)
-
-target_link_libraries([Project Name] ${OpenCV_LIBS})
-```
-
-</br>
-
-### `Eigen3`
-```{.cmake filename="CMakeLists.txt"}
-cmake_minimum_required(VERSION 3.10)
-SET(CMAKE_TOOLCHAIN_FILE 
-    "/Users/jiyong/Lib/vcpkg/scripts/buildsystems/vcpkg.cmake")
-
-project(eigen1 VERSION 0.1.0 LANGUAGES C CXX)
-
-find_package(Eigen3 REQUIRED)
-
-link_directories(${Eigen_INCLUDE_DIRS}) 
-
-IF( NOT EIGEN3_INCLUDE_DIR )
-    MESSAGE( FATAL_ERROR 
-            "EIGEN3_INCLUDE_DIR can't be assigned")
-ENDIF()
-INCLUDE_DIRECTORIES ( ${EIGEN3_INCLUDE_DIR} )
-
-add_executable(eigen1 eigen1.cpp)
-
-target_link_libraries(eigen1 PRIVATE Eigen3::Eigen)
-```
-
-</br>
-
-### `Armadillo`
-```{.cmake filename="CMakeLists.txt"}
-cmake_minimum_required(VERSION 3.10.0)
-
-SET(CMAKE_TOOLCHAIN_FILE "/Users/jiyong/Lib/vcpkg/scripts/buildsystems/vcpkg.cmake")
-SET(ARMADILLO_INCLUDE_DIR "/Users/jiyong/Lib/vcpkg/installed/x64-osx/include")
-SET(ARMADILLO_LIBRARY "/Users/jiyong/Lib/vcpkg/installed/x64-osx/lib")
-set(CMAKE_CXX_STANDARD 17)
-project(test01 VERSION 0.1.0 LANGUAGES C CXX)
-
-find_package(Armadillo REQUIRED)
-message("ARMADILLO Include dirs"  ${ARMADILLO_INCLUDE_DIRS})
+:::
 
 
-add_executable(test01 main.cpp)
+`find_package` 는 두가지 방식으로 동작한다. 우선 모듈 모드로 찾고 여기에 없다면 구성 모드로 찾는다.
 
-target_include_directories(test01 PRIVATE ${ARMADILLO_INCLUDE_DIRS})
-target_link_libraries(test01 PRIVATE ${ARMADILLO_LIBRARY}/libarmadillo.dylib)
-```
+### 모듈모드 (module mode)
+
+- CMake를 설치하면 `cmake` 명령뿐만 아니라 잘 알려진 라이브러리 검색 모듈을 포함한 여러 모듈을 설치한다. 
+- `cmake --help-module-list` 은 사용 가능한 모듈 목록을 나열하며, 이가운데 `FindXXX` 형태의 모듈이 탐색용 모듈이다.
+
+### 구성모드 (config mode)
+
+- 거의 사용되지 않는다.
+
+
+
