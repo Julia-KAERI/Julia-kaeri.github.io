@@ -1,0 +1,27 @@
+---
+title: "Qt 개요"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+---
+
+</br>
+
+## 개요
+
+억까가 좀 있지만 나무위키의 해당항목 [나무위키 Qt(프레임워크)](https://namu.wiki/w/Qt(프레임워크)) 를 참고하라.
+
+- 역사가 30년이 넘은 전통적인 cross-platform 어플리케이션 개발 프레임웍이다. Window, Mac, Linux 등의 데스크탑 환경 뿐만 아니라 안드로이드, 아이폰 등의 모바일 환경을 지원한다.
+- C++ 로 개발되며 python 언어를 공식 지원한다(PySide). PyQt 역시 python 에서 Qt 를 사용할 수 있게 해 주는 패키지이지만 제작사가 다르다. 실제로는 PyQt 가 PySide 보다 먼저 개발됬다. 
+- [Qt Creator](https://doc.qt.io/qtcreator/) 라는 통합 개발 환경이 존재한다. PyQt 나 PySide 를 사용할 때는 큰 필요를 못느끼지만 C++ 로 개발할 때는 거의 필수적이다. 
+- [Designer](https://doc.qt.io/qt-6/qtdesigner-manual.html) 라는 강력한 GUI 디자인 툴이 존재한다. Qt Creator 에 거의 동일하게 작동하며 Creator 와 연동된 기능이 존재한다. PyQt 나 PySide 가 python 에서 사용 가능한 다른 gui library 보다 선호되는 가장 큰 이유라고 생각한다. 
+
+</br>
+
+## 자료들
+- [Qt https://www.qt.io/product/qt6](https://www.qt.io/product/qt6) : QT 본진 
+- Scythe Studio : 폴란드의 Qt & QML consulting 회사. 아래 유튜브 자료가 괜찮음. C++ & QML 위주
+  - [Scythe Studio Youtube](https://www.youtube.com/@scythe-studio) 쉬운 영어로 깔끔하개 설명함.
+  - 

@@ -24,7 +24,6 @@ website:
       #   text : "수치해석"
       # - href :  src/image_processing/index.qmd
       #   text : "영상 처리/토모그래피"
-
       - href : src/gpu/gpu.qmd
         text : "GPU & CUDA"
       - href : src/cpp_qt/cpp_qt.qmd
@@ -47,7 +46,6 @@ website:
 
 
   sidebar:
-
     - title : "GPU & CUDA"
       collapse-level: 2
       contents : 
@@ -66,14 +64,7 @@ website:
       collapse-level: 2
       contents :
         - src/ML/ml.qmd
-        # - section : "이론"
-        #   contents :
-        #     - src/ML/theory/ML.qmd
-        #     - src/ML/theory/optimization.qmd
-        #     - src/ML/theory/regression.qmd
-        #     - src/ML/theory/statistics.qmd
-        #     - src/ML/theory/classification.qmd
-        #     - src/ML/theory/perceptron_and_ann.qmd
+
         - section : "PyTorch"
           contents :
             - src/ML/pytorch/intro.qmd
@@ -92,6 +83,7 @@ website:
 
         - section : "Qt"
           contents :
+            - src/cpp_qt/Qt.qmd
 
     - title : "주제별"
       # style : "docked"
