@@ -9,10 +9,10 @@
 <link>https://julia-kaeri.github.io/src/posts/</link>
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.43</generator>
-<lastBuildDate>Mon, 14 Apr 2025 13:12:29 GMT</lastBuildDate>
+<generator>quarto-1.6.42</generator>
+<lastBuildDate>Mon, 19 May 2025 07:59:39 GMT</lastBuildDate>
 <item>
-  <title>첫번째 글</title>
+  <title>Report on Plastic Scintillator Radionuclide Identification Technology</title>
   <dc:creator>Julia_KAERI</dc:creator>
   <link>https://julia-kaeri.github.io/src/posts/first.html</link>
   <description><![CDATA[ 
@@ -20,12 +20,464 @@
 
 
 
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<ul>
+<li><p>Radionuclide identification technology plays a crucial role in various fields such as nuclear safety, nuclear security, environmental monitoring, and medical applications. It is particularly essential for preventing the illicit trafficking of nuclear materials and monitoring radioactive contamination.<sup>1</sup> In the medical field, it is important for accurately identifying and managing radioisotopes used in nuclear medicine diagnostics and treatments.<sup>2</sup> Radionuclide identification technology is also utilized in industrial settings for process control and safety management.</p></li>
+<li><p>Plastic scintillator-based radiation detectors are one of the widely used technologies in the field of radiation measurement.</p>
+<ul>
+<li>Plastic scintillators are composed of a plastic matrix and a fluorescent substance (fluor).<sup>3</sup> When radiation enters a plastic scintillator, it converts the energy of the radiation into light in the visible or near-ultraviolet range through the scintillation phenomenon.<sup>4</sup></li>
+<li>Plastic scintillator detectors offer advantages such as cost-effectiveness<sup>5</sup>, fast response speed<sup>6</sup>, ease of fabrication in various forms 4, and robustness suitable for portable devices.<sup>7</sup></li>
+<li>Due to these advantages, they are widely used in various applications such as radiation monitoring devices, portable dosimeters, and radiation monitoring systems (Radiation Portal Monitors, RPMs) for preventing the illicit trafficking of radioactive materials.<sup>8</sup></li>
+</ul></li>
+<li><p>Problem Statement: Plastic scintillator-based detectors have low gamma-ray energy resolution, making it difficult to accurately and reliably identify radionuclides. This is mainly because Compton scattering is the dominant gamma-ray interaction mechanism, and it is also attributed to the low energy resolution characteristics of the scintillator itself.<sup>9</sup></p></li>
+<li><p>Scope and Objectives of the Report: This report aims to analyze in detail the principles, limitations, and various technologies and recent advancements in plastic scintillator-based radionuclide identification technology, including energy-weighted algorithms and machine learning approaches. It also aims to highlight innovative solutions to overcome the inherent limitations of plastic scintillators and enhance their radionuclide identification capabilities.</p></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><p><strong>Insight 1</strong>: The widespread use of plastic scintillators in fields like RPMs, despite their low energy resolution, suggests a trade-off between</p>
+<ul>
+<li><strong>Chain of Thought</strong> : Plastic scintillators are inexpensive and easy to handle, making them ideal for large-scale deployments (e.g., RPMs) where cost is important. Fast response time is critical for quickly inspecting moving objects. However, the inability to accurately identify radionuclides necessitates the development of alternative or complementary technologies.</li>
+</ul></li>
+<li><p><strong>Insight 2</strong>: The increasing interest in machine learning and advanced algorithms indicates a strong effort to extract more information from the limited spectral data provided by plastic scintillators, thereby overcoming the physical limitations of the detector material itself. This reflects a broader trend of applying advancements in data science to scientific instrumentation.</p>
+<ul>
+<li><strong>Chain of Thought</strong>: Since it is difficult to improve the inherent energy resolution of plastic scintillators, researchers are focusing on enhancing their analysis capabilities through computational methods. This trend shows the growing importance of software-based solutions in the field of radiation detection.</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="operating-principles-of-plastic-scintillator-radiation-detectors" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="operating-principles-of-plastic-scintillator-radiation-detectors"><span class="header-section-number">2</span> Operating Principles of Plastic Scintillator Radiation Detectors:</h2>
+<ul>
+<li>Scintillation Mechanism: When radiation (mainly gamma rays for radionuclide identification) interacts with the plastic scintillator material, it excites the molecules.<sup>10</sup>
+<ul>
+<li>The excited energy is transferred to the fluorescent substance (fluor). Fluors are organic fluorescent compounds (e.g., anthracene or bis-methylstyrene) doped inside the plastic to enhance scintillation properties.<sup>11</sup></li>
+<li>The excited fluor molecules return to the ground state, emitting photons in the visible or near-ultraviolet range.<sup>12</sup> This flash of light is the scintillation phenomenon.</li>
+<li>The intensity of the emitted light is proportional to the energy of the incident radiation.<sup>13</sup></li>
+</ul></li>
+<li>Key Features Related to Energy Spectroscopy:
+<ul>
+<li>Light yield: The number of photons produced per unit energy (generally lower compared to inorganic scintillators like NaI(Tl)).<sup>14</sup></li>
+<li>Scintillation efficiency: The efficiency of converting the kinetic energy of incident radiation into detectable light.<sup>15</sup></li>
+<li>Decay time: Generally very short (2-4 nanoseconds)<sup>16</sup>, suitable for fast detection and high count rates.<sup>17</sup></li>
+<li>Density and Effective atomic number: Low (mainly composed of carbon and hydrogen), so the dominant gamma-ray interaction mechanism is Compton scattering.<sup>18</sup></li>
+</ul></li>
+<li>Dominant Gamma-Ray Interaction Mechanisms:
+<ul>
+<li>Compton scattering: An incident gamma ray interacts with an atomic electron, transferring some of its energy to the electron and scattering.<sup>19</sup> This is the dominant process in plastic scintillators, producing a continuous energy spectrum from the incident gamma ray’s energy down to a minimum energy (determined by the Compton edge).<sup>20</sup></li>
+<li>Photoelectric effect: The gamma ray is completely absorbed by an atom, ejecting an orbital electron (more likely at lower gamma-ray energies and in materials with high atomic numbers; less significant in plastic scintillators).<sup>21</sup></li>
+<li>Pair production: The gamma ray is converted into an electron-positron pair near the atomic nucleus (occurs only when the gamma-ray energy exceeds 1.022 MeV; less significant in many common radionuclide detection applications).<sup>22</sup></li>
+</ul></li>
+<li>Role of Photosensors:
+<ul>
+<li>Photomultiplier Tubes (PMTs): Vacuum-based devices that detect and amplify the faint light emitted from the scintillator, converting it into an electrical signal. They emit electrons from a photocathode through the photoelectric effect and perform electron amplification at dynodes.<sup>23</sup> They require a high-voltage power supply for operation.<sup>24</sup></li>
+<li>Silicon Photomultipliers (SiPMs): Solid-state photosensors that offer advantages such as small size, low-voltage operation, and insensitivity to magnetic fields, making them increasingly used as an alternative to PMTs in portable applications.3 They can achieve energy resolution similar to PMTs in some scenarios.<sup>25</sup></li>
+</ul></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-1" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-1">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 3</strong>: The low effective atomic number of plastic scintillators causes Compton scattering to be the dominant interaction with gamma rays, which fundamentally limits the ability to obtain the discrete energy information needed for high-resolution energy spectroscopy and direct radionuclide identification.
+<ul>
+<li><strong>Chain of Thought</strong>: The probability of photoelectric absorption, the process that yields the desired full-energy peak, is highly dependent on the atomic number of the detector material. The low atomic numbers of carbon and hydrogen, which constitute plastic scintillators, mean that Compton scattering is the primary process. This results in a continuous energy spectrum rather than the distinct peaks needed for clear radionuclide identification.</li>
+</ul></li>
+<li><strong>Insight 4</strong>: The choice of photosensor (PMT or SiPM) can affect the overall performance of the detector system, such as sensitivity, power consumption, and suitability for various environments (e.g., the presence of magnetic fields), but it does not change the fundamental limitations of energy resolution imposed by the scintillator material itself. The primary role of the photosensor is to efficiently convert the light generated in the scintillator into an electrical signal. The information content of the light, limited by the physics of the initial gamma-ray interaction, remains the same regardless of the photosensor used.
+<ul>
+<li><strong>Chain of Thought</strong>: Both PMTs and SiPMs can detect the faint light from plastic scintillators. While SiPMs offer advantages in size and operating characteristics for certain applications, the scintillation light produced in the plastic is a result of Compton scattering events, which inherently broadens the energy spectrum and obscures the unique energy signatures of individual radionuclides.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="challenges-in-radionuclide-identification-using-plastic-scintillators" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="challenges-in-radionuclide-identification-using-plastic-scintillators"><span class="header-section-number">3</span> Challenges in Radionuclide Identification Using Plastic Scintillators:</h2>
+<ul>
+<li>Detailed discussion of inherent limitations hindering accurate radionuclide identification:
+<ul>
+<li>Low Energy Resolution: Typically in the range of 10-15% at 662 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BkeV%7D"> (<img src="https://latex.codecogs.com/png.latex?%5E%7B137%7D">Cs), significantly lower than inorganic scintillators like NaI(Tl) (6-8%) or HPGe detectors (&lt;1%).<sup>26</sup> This low energy resolution makes it difficult to distinguish gamma rays with closely spaced energies, which is common in the decay processes of many radionuclides.<sup>27</sup></li>
+<li>Compton Continuum and Absence of Distinct Photopeaks: The energy spectra obtained with plastic scintillators when exposed to gamma rays are dominated by a continuous energy distribution due to Compton scattering, lacking the distinct photopeaks (corresponding to the total energy of the incident gamma ray) that serve as unique identifiers for specific radionuclides in high-resolution detectors.<sup>28</sup></li>
+<li>Difficulty in Resolving Overlapping Energy Lines: In the case of samples containing mixed radionuclides, the broad spectral features from each nuclide, due to the low energy resolution, significantly overlap. This makes it very challenging to separate the contributions of individual isotopes and accurately identify all components within the mixture.<sup>29</sup></li>
+</ul></li>
+<li>Impact on accurate and reliable radionuclide identification:
+<ul>
+<li>Accurate radionuclide identification based solely on matching energy spectra to known gamma-ray energies (photopeaks) is nearly impossible for many radionuclides with plastic scintillators alone.<sup>30</sup></li>
+<li>In security applications, the inability to accurately identify radionuclides can lead to high false alarm rates caused by Naturally Occurring Radioactive Materials (NORM) that emit radiation with similar energies to targeted artificial sources.<sup>31</sup> These false alarms can cause operational disruptions and increase costs associated with secondary inspections.</li>
+<li>Accurately quantifying the activity of individual radionuclides within a mixed source is severely hampered by the lack of distinct spectral features and the nature of the overlapping Compton continuum.</li>
+</ul></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-2" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-2">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 5</strong>: The inherent limitation of energy resolution exhibited by plastic scintillators acts as a significant barrier in applications requiring clear and unambiguous radionuclide identification. This necessitates the development of specialized techniques capable of extracting more identification information from the limited spectral data.
+<ul>
+<li><strong>Chain of Thought</strong>: The physical processes governing the interaction of gamma rays with plastic scintillators (primarily Compton scattering) are fundamental and not easily altered. Therefore, advancements in radionuclide identification using these detectors must focus on sophisticated data processing and analysis methods to overcome these inherent physical limitations.</li>
+</ul></li>
+<li><strong>Insight 6</strong>: The practical consequences of low energy resolution, such as high false alarm rates in security monitoring and difficulties in quantifying mixed sources, highlight the urgent need for improved identification techniques. These challenges underscore the importance of research into advanced algorithms and detector designs that can enhance the analytical capabilities of plastic scintillators in real-world applications.</li>
+</ul>
+</section>
+</section>
+<section id="radionuclide-identification-technologies-and-advancements-using-plastic-scintillators" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="radionuclide-identification-technologies-and-advancements-using-plastic-scintillators"><span class="header-section-number">4</span> Radionuclide Identification Technologies and Advancements Using Plastic Scintillators:</h2>
+<ul>
+<li>Energy Spectroscopy and Its Limitations:
+<ul>
+<li>Basic Principle: Gamma-ray spectroscopy involves measuring the energy distribution of gamma rays emitted from a sample to identify the constituent radionuclides based on their unique energy emissions (observed as photopeaks in high-resolution spectra).<sup>32</sup></li>
+<li>Limitations of Plastic Scintillators: Due to the dominance of Compton scattering and low energy resolution, the energy spectra obtained with plastic scintillators tend to lack the distinct photopeaks necessary for direct and clear radionuclide identification.<sup>33</sup> The spectra are dominated by the Compton continuum, a broad energy distribution of scattered photons.</li>
+<li>Compton Edge Analysis: The Compton edge represents the maximum energy transferred to an electron in a Compton scattering event and can be determined in the spectrum, providing some information about the maximum energy of the incident gamma ray.<sup>34</sup> However, the Compton edge energy is not unique to specific radionuclides, and its accurate determination is affected by the detector’s energy resolution, limiting its usefulness for definitive identification.</li>
+</ul></li>
+<li>Pulse Shape Discrimination (PSD):
+<ul>
+<li>Principle: PSD is a technique that exploits subtle differences in the temporal shape of scintillation pulses generated by different types of radiation (e.g., gamma rays and neutrons) based on the rate of energy loss (dE/dx) within the scintillator material.<sup>35</sup> Neutrons tend to produce pulses with a slower decay component compared to gamma rays due to their interaction with nuclei, while gamma rays primarily interact with electrons.</li>
+<li>Key Applications: PSD is very effective in distinguishing neutron-induced signals from gamma-ray-induced signals in organic scintillators (including plastic) and is widely used in mixed radiation field measurements.<sup>36</sup></li>
+<li>Limited Direct Use for Gamma Radionuclide Identification (Based on Plastic Scintillator Energy Spectra Alone): While PSD can differentiate between neutrons and gamma rays, the temporal pulse shapes generated by different gamma energies or different gamma-emitting radionuclides in plastic scintillators tend to be very similar. This makes it challenging to use PSD for detailed radionuclide identification within the gamma energy range based solely on the energy spectrum from a plastic scintillator.</li>
+</ul></li>
+<li>Energy-Weighted Algorithms:
+<ul>
+<li>Principle: Energy-weighted algorithms aim to enhance the spectral information obtained from plastic scintillators by modifying the raw energy spectrum through the assignment of weights based on the energy of each channel. This often involves multiplying the count rate of each channel by an energy-related factor, particularly emphasizing the Compton maximum to make it appear as a more distinct and identifiable peak.<sup>37</sup></li>
+<li>Mathematical Formula: A common approach is to calculate the energy-weighted count (EWAi) for each channel (i) by multiplying the original count (Ci) by the energy coefficient (Ei) of that channel (EWAi=Ci×Ei).<sup>38</sup> Various modifications have been investigated, such as introducing integer constants to optimize the algorithm for specific applications.<sup>39</sup></li>
+<li>Mechanism of Improvement: By emphasizing the Compton edge region, which is related to the maximum energy of the incident gamma ray, energy-weighted algorithms can help generate more characteristic spectral signatures for different radionuclides even with the low energy resolution of plastic scintillators.<sup>40</sup> This transformation can convert the gradual distribution of the Compton edge into a more conspicuous peak.</li>
+<li>Validation Studies: Numerous studies have demonstrated the effectiveness of energy-weighted algorithms in enhancing the identification capabilities among various radionuclides, such as <img src="https://latex.codecogs.com/png.latex?%5E%7B137%7D">Cs, <img src="https://latex.codecogs.com/png.latex?%5E%7B60%7D">Co, <img src="https://latex.codecogs.com/png.latex?%5E%7B22%7D">Na, and <img src="https://latex.codecogs.com/png.latex?%5E%7B40%7D">K, using plastic scintillators in both laboratory experiments and real-world applications like Radiation Portal Monitors (RPMs).<sup>41</sup> These algorithms have also shown potential in distinguishing artificial radionuclides from Naturally Occurring Radioactive Materials (NORM).<sup>42</sup></li>
+<li>Limitations: The effectiveness of energy-weighted algorithms can be reduced when dealing with complex mixtures of radionuclides, especially if the Compton edges or energy-weighted peaks significantly overlap.24 Performance can also be affected by factors such as shielding and the speed of moving sources in RPM applications.<sup>43</sup></li>
+</ul></li>
+<li>Machine Learning Approaches:
+<ul>
+<li>Principle: Machine learning models, such as Convolutional Neural Networks (CNNs), Artificial Neural Networks (ANNs), Support Vector Machines (SVMs), and Transformer-based networks, are increasingly being applied to recognize patterns and classify unknown spectra after being trained on large datasets of plastic scintillator spectra from known radionuclides.<sup>44</sup></li>
+<li>Data Preprocessing: Common techniques include removing background noise, normalizing the spectra to a consistent scale, and converting the one-dimensional spectral data into two-dimensional image representations for use as input to CNNs.<sup>45</sup></li>
+<li>Performance Evaluation: Studies using machine learning models trained on plastic scintillator spectra have reported high prediction accuracies (often exceeding 90% and reaching up to 98% under specific conditions) in identifying individual and mixed radionuclides.<sup>46</sup> These models have shown robustness in identifying radionuclides with similar Compton edge energies and under various challenging conditions such as dynamic source movement and the presence of shielding.<sup>47</sup></li>
+<li>Addressing Challenges: Machine learning approaches have shown the potential to overcome limitations such as low energy resolution and the absence of photopeaks. CNNs, in particular, are promising for extracting relevant features from spectral data through convolution and pooling operations.<sup>48</sup></li>
+<li>Explainable AI (XAI): Recognizing that machine learning models, especially deep learning networks, are often considered “black boxes,” there is increasing interest in using XAI techniques to understand and interpret the decision-making processes in critical applications like radionuclide identification. Methods such as saliency mapping and Gradient-weighted Class Activation Mapping (Grad-CAM) are being investigated to identify which parts of the energy spectrum the models focus on when making classifications.<sup>49</sup></li>
+</ul></li>
+<li>Multi-Array Plastic Scintillator Detectors:
+<ul>
+<li>Principle: Instead of a single large-volume detector, using an array of multiple smaller plastic scintillators can improve the overall photon collection efficiency and potentially provide spatial information about the radiation source, which can aid in identification.<sup>50</sup></li>
+<li>Demonstrated Advantages: Multi-array detectors have been shown to have a higher probability of collecting optical photons generated within the scintillator compared to conventional single-element detectors.<sup>51</sup></li>
+<li>Combination with Algorithms: When combined with energy-weighted algorithms and machine learning models, multi-array systems have demonstrated enhanced performance in identifying moving radiation sources.<sup>52</sup></li>
+</ul></li>
+<li>Hybrid Detection Systems:
+<ul>
+<li>Principle: Combining plastic scintillators with detectors that offer complementary strengths, such as high energy resolution (e.g., High-Purity Germanium - HPGe detectors), can enhance radionuclide identification capabilities. While plastic scintillators can provide high detection efficiency due to their large volume, HPGe detectors can offer precise energy measurements for clear identification, either through coincidence counting techniques or by analyzing a subset of events with high energy resolution.<sup>53</sup></li>
+</ul></li>
+<li>Advanced Scintillator Materials and Additives:
+<ul>
+<li>Ongoing research focuses on developing new plastic scintillator materials and incorporating specific compounds (e.g., organic tin) into the polymer matrix to enhance light yield, potentially improve energy resolution, and enable better pulse shape discrimination for spectroscopic applications.8 This includes research on radiation-hardened plastics for use in harsh environments.</li>
+<li>The development of hybrid plastic scintillators by mixing different polymers such as polystyrene and polymethylmethacrylate (PMMA) shows promise in improving optical transparency and mechanical durability, which could lead to more efficient and reliable detectors.<sup>54</sup></li>
+</ul></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-3" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-3">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 7</strong>: Advancements in radionuclide identification technology using plastic scintillators are likely to occur through a synergistic effect combining progress in materials science, detector design, and computational intelligence. This suggests that progress will be made through incremental improvements across multiple research fields rather than a single revolutionary breakthrough.
+<ul>
+<li><strong>Chain of Thought</strong>: The inherent physical limitations of plastic scintillators will likely not be completely overcome by material improvements alone. Integrating better materials with more sophisticated algorithms and detector configurations is the most promising way to significantly enhance the radionuclide identification capabilities of plastic scintillators.</li>
+</ul></li>
+<li><strong>Insight 8</strong>: The rise of machine learning and AI-based analysis suggests the potential for portable and field-deployable plastic scintillator systems to achieve levels of radionuclide identification accuracy previously attainable only with more sophisticated and less mobile detector technologies. This could have significant implications for various fields, especially in security and emergency response scenarios.
+<ul>
+<li><strong>Chain of Thought</strong>: The ability of machine learning models to learn complex patterns from large datasets of spectral information offers a promising path to extract identification features not easily revealed by traditional analysis methods. This could lead to the development of highly effective radionuclide identification systems while maintaining portability and cost-effectiveness.</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="comparison-with-other-radionuclide-identification-technologies" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="comparison-with-other-radionuclide-identification-technologies"><span class="header-section-number">5</span> Comparison with Other Radionuclide Identification Technologies:</h2>
+<div id="tbl-comparison_of_RIT" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparison_of_RIT-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+표&nbsp;1: Comparison of Radionuclide Identification Technologies for Gamma-Ray Spectroscopy
+</figcaption>
+<div aria-describedby="tbl-comparison_of_RIT-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature</th>
+<th style="text-align: center;">Plastic Scintillator</th>
+<th style="text-align: center;">Inorganic Scintillator (NaI(Tl))</th>
+<th style="text-align: center;">Semiconductor Detector (HPGe)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Energy Resolution</td>
+<td style="text-align: center;">Low (10-15% at 662 keV)</td>
+<td style="text-align: center;">Medium (6-8% at 662 keV)</td>
+<td style="text-align: center;">Excellent (&lt;1% at 662 keV)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Density</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Effective Atomic Number</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Cost</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">Medium</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Portability</td>
+<td style="text-align: center;">High (lightweight, rugged)</td>
+<td style="text-align: center;">Medium</td>
+<td style="text-align: center;">Low (requires cooling)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Photopeak Presence</td>
+<td style="text-align: center;">Weak or absent due to Compton dominance</td>
+<td style="text-align: center;">Distinct</td>
+<td style="text-align: center;">Distinct</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Gamma-Ray Sensitivity</td>
+<td style="text-align: center;">Medium</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Neutron Sensitivity</td>
+<td style="text-align: center;">Low (can be doped for thermal neutrons)</td>
+<td style="text-align: center;">Low (can be doped for thermal neutrons)</td>
+<td style="text-align: center;">Sensitive to fast neutrons</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Response Speed</td>
+<td style="text-align: center;">Fast (nanoseconds)</td>
+<td style="text-align: center;">Medium (microseconds)</td>
+<td style="text-align: center;">Slow (microseconds)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Main Applications</td>
+<td style="text-align: center;">RPM, high count rate environments, beta detection, wide area monitoring</td>
+<td style="text-align: center;">Medical imaging, general gamma-ray spectroscopy, field RIID</td>
+<td style="text-align: center;">High-resolution spectroscopy, low-level counting</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Radionuclide ID Ability</td>
+<td style="text-align: center;">Limited (requires advanced algorithms or hybrid systems)</td>
+<td style="text-align: center;">Good (based on photopeaks)</td>
+<td style="text-align: center;">Excellent (precise energy measurement)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ul>
+<li><p><strong>Inorganic Scintillators (NaI(Tl), CsI(Tl), LaBr3):</strong> Offer significantly better energy resolution than plastic scintillators, allowing for more direct and reliable radionuclide identification through the analysis of characteristic photopeaks.<sup>55</sup><sup>,</sup> <sup>56</sup> For example, NaI(Tl) has high light yield and good resolution, making it suitable for radionuclide identification equipment.[9] LaBr3 scintillators offer even better resolution than NaI(Tl).<sup>57</sup> However, inorganic scintillators are generally more expensive, and some are hygroscopic, requiring careful handling and packaging.<sup>58</sup><sup>,</sup><sup>59</sup></p></li>
+<li><p><strong>Semiconductor Detectors (HPGe, CZT):</strong> Provide the best energy resolution among commonly used radiation detectors, enabling very accurate identification of complex radionuclide mixtures and detection of low-activity sources.<sup>60</sup><sup>,</sup><sup>61</sup> HPGe detectors require cryogenic cooling for operation, limiting their portability and increasing operational complexity. CZT detectors can operate at room temperature but are generally more expensive than scintillators.<sup>62</sup><sup>,</sup> <sup>63</sup></p></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-4" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-4">Insights, Hidden Patterns, Causal Relationships, and Broad Implications</h3>
+<ul>
+<li><p><strong>Insight 9:</strong> The choice of detector technology for radionuclide identification involves a trade-off between performance characteristics like energy resolution and detection efficiency, and practical considerations such as cost, portability, and operational complexity. Plastic scintillators offer advantages in cost, size, and speed, albeit with some sacrifice in spectroscopic accuracy, making them suitable for scenarios where these factors are paramount.</p>
+<ul>
+<li><strong>Chain of Thought:</strong> High-throughput screening at ports (RPMs) favors plastic scintillators over costly high-resolution detectors, while laboratory environments for environmental monitoring might prioritize the high resolution of HPGe detectors to accurately identify trace amounts of radionuclides.</li>
+</ul></li>
+<li><p><strong>Insight 10:</strong> The development of hybrid systems combining plastic scintillators with other detector types represents an effort to leverage the complementary strengths of different technologies. This approach recognizes that no single detector is ideal for all scenarios and aims to create more versatile and high-performance solutions for radionuclide identification.</p></li>
+</ul>
+</section>
+</section>
+<section id="examples-of-portable-and-field-deployable-systems" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="examples-of-portable-and-field-deployable-systems"><span class="header-section-number">6</span> Examples of Portable and Field-Deployable Systems:</h2>
+<ul>
+<li>Radiation Portal Monitors (RPMs): Commonly use large-volume plastic scintillators for primary screening.1 Often combined with energy-weighted algorithms and machine learning for enhanced (though still limited) identification capabilities.<sup>64</sup></li>
+<li>Portable Radionuclide Identification Devices (RIIDs): Many handheld RIIDs designed for first responders, law enforcement, and security personnel incorporate plastic scintillators to balance sensitivity, fast response, and ruggedness for field use.<sup>65</sup> These devices often include algorithms that provide some level of radionuclide identification based on the acquired spectra.</li>
+<li>Wearable Personal Radiation Dosimeters: Small plastic scintillators coupled with SiPMs are being developed for real-time monitoring of personal radiation exposure.<sup>66</sup> While primarily for dose measurement, some advanced models may offer basic radionuclide identification features.</li>
+<li>Backpack Radiation Detection Systems: Portable systems designed for searching for radiation sources over large areas may include plastic scintillators for gamma and neutron detection.<sup>67</sup> These systems often incorporate software for data analysis and potential isotope identification.</li>
+<li>Plastic Scintillation Optical Fiber (PSOF) Detectors: These flexible and long detectors can be deployed in the field for radiation monitoring in contaminated areas and liquid environments, offering flexibility and extended reach.27 When coupled with appropriate analysis techniques, they can provide information on the presence of specific radionuclides.</li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-5" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-5">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><p><strong>Insight 11</strong>: The development of various portable systems based on plastic scintillators demonstrates the ongoing need for field-deployable solutions for radionuclide detection and identification, particularly in security and emergency response scenarios. In these scenarios, the advantages of plastic scintillators (size, weight, cost) often outweigh their spectroscopic limitations.</p>
+<ul>
+<li><strong>Chain of Thought</strong>: The increasing threat of nuclear and radiological terrorism and the need for rapid environmental monitoring in case of accidents drive the demand for easily transportable and user-friendly detection systems. Plastic scintillators, easily integrated into such systems, play a crucial role in addressing these needs.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="recent-advancements-and-future-trends" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="recent-advancements-and-future-trends"><span class="header-section-number">7</span> Recent Advancements and Future Trends:</h2>
+<ul>
+<li><p>Continued development and improvement of energy-weighted algorithms and machine learning models (including deep learning architectures) to enhance the identification capabilities of plastic scintillators.<sup>68</sup> Focus on improving accuracy, handling complex mixtures, and reducing false alarm rates.</p></li>
+<li><p>Research into new plastic scintillator materials incorporating novel organic compounds or heavy metal additives to enhance light yield and potentially improve energy resolution and enable better pulse shape discrimination for spectroscopy.8 Includes development of radiation-hardened plastics for use in harsh environments.</p></li>
+<li><p>Advancements in photosensor technology, particularly SiPMs, offering the potential to make portable systems even smaller, more rugged, and power-efficient.<sup>69</sup></p></li>
+<li><p>Research into hybrid detector designs combining plastic scintillators with other types of detectors to achieve a balance of high efficiency and good energy resolution.</p></li>
+<li><p>Development of more sophisticated signal processing techniques to extract additional information from scintillation pulses and potentially improve the identification of different radionuclides.</p></li>
+<li><p>Increasing interest in the explainability and interpretability of machine learning models used for radionuclide identification in critical applications.<sup>70</sup></p></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-6" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-6">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 12</strong>: The future of radionuclide identification using plastic scintillators will likely depend heavily on the convergence of advancements in materials science, detector engineering, and computational intelligence. This suggests that progress will be made through incremental improvements across multiple research fields rather than a single revolutionary breakthrough.
+<ul>
+<li>Chain of Thought: The inherent physical limitations of plastic scintillators will likely not be completely overcome by material improvements alone. Integrating better materials with more sophisticated algorithms and detector configurations is the most promising way to significantly enhance the radionuclide identification capabilities of plastic scintillators.</li>
+</ul></li>
+<li><strong>Insight 13</strong>: The rise of machine learning and AI-based analysis suggests the potential for portable and field-deployable plastic scintillator systems to achieve levels of radionuclide identification accuracy previously attainable only with more sophisticated and less mobile detector technologies. This could have significant implications for various fields, especially in security and emergency response scenarios.
+<ul>
+<li>Chain of Thought: The ability of machine learning models to learn complex patterns from large datasets of spectral information offers a promising path to extract identification features not easily revealed by traditional analysis methods. This could lead to the development of highly effective radionuclide identification systems while maintaining portability and cost-effectiveness.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8</span> Conclusion:</h2>
+<ul>
+<li><p>Summary of current capabilities and limitations of radionuclide identification using plastic scintillators: Offers advantages in cost-effectiveness, speed, and portability, but low energy resolution poses significant challenges for accurate radionuclide identification.</p></li>
+<li><p>Summary of advancements: The application of energy-weighted algorithms and machine learning techniques has led to significant progress in extracting more identification information from limited spectral data. Multi-array and hybrid detector designs also show potential for improved performance.</p></li>
+<li><p>Future outlook: Continued research into advanced materials, innovative detector designs, and sophisticated computational methods is likely to further advance this field. While plastic scintillators may not completely replace high-resolution detectors in all applications, ongoing innovation is expected to expand their role in radionuclide identification, especially in scenarios where their unique advantages are crucial, such as portable and field-deployable systems.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="참고자료" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="참고자료"><span class="header-section-number">9</span> 참고자료</h2>
+<p>[1] Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page</p>
+<p>[2] Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study</p>
+<p>[3] Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/</p>
+<p>[4] Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator</p>
+<p>[5] SB 40/150 Plastic Scintillators - Mirion Technologies, 5월 18, 2025에 액세스, https://www.mirion.com/products/technologies/radiation-monitoring-systems/pro-tk-radiation-and-process-monitoring-systems/radiation-detectors-1e/sb-40-150-plastic-scintillators</p>
+<p>[6] Plastic Scintillators | Oncology Medical Physics, 5월 18, 2025에 액세스, https://oncologymedicalphysics.com/plastic-scintillators/</p>
+<p>[7] Scintillation Detectors ⋆ Scionix, 5월 18, 2025에 액세스, https://scionix.nl/scintillation-detectors/</p>
+<p>[8] Scintillators - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1867988</p>
+<p>[9] Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors</p>
+<p>[10] Scintillators!, 5월 18, 2025에 액세스, https://www.oeaw.ac.at/fileadmin/Institute/HEPHY/PDF/ausbildung/praktikum/VO-5-Scintillators.pdf</p>
+<p>[11] Energy resolution of plastic scintillation detector for beta rays, H. H. Vo et. al.&nbsp;<em>IEEE Transactions on Nuclear Science</em>, <strong>55</strong> (6):3717-3724, 2008 DOI: 10.1109/TNS.2008.2005718, https://ieeexplore.ieee.org/document/4723822</p>
+<p>[12] Unlocking the Secrets of Radiation: Marvel of the Scintillation Counter - Open MedScience, 5월 18, 2025에 액세스, https://openmedscience.com/unlocking-the-secrets-of-radiation-marvel-of-the-scintillation-counter/</p>
+<p>[13] (PDF) The use of energy information in plastic scintillator material, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/243960551_The_use_of_energy_information_in_plastic_scintillator_material</p>
+<p>[14] www.kns.org, 5월 18, 2025에 액세스, https://www.kns.org/files/pre_paper/40/18A-440%EA%B9%80%EC%9A%A9%ED %98%84.pdf</p>
+<p>[15] Evaluation of Source Identification Method Based on Energy-Weighting Level with Portal Monitoring System Using Plastic Scintillator - Journal of Radiation Protection and Research, 5월 18, 2025에 액세스, https://www.jrpr.org/journal/view.php?number=1058</p>
+<p>[16] Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout</p>
+<p>[17] Scintillation detector with SiPM matrix as a photosensor | Request PDF, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/322680188_Scintillation_detector_with_ SiPM_matrix_as_a_photosensor</p>
+<p>[18] Pulse shape discrimination in an organic scintillation phoswich detector using machine learning techniques - Frontiers, 5월 18, 2025에 액세스, https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2024.1361608/full</p>
+<p>[19] Pulse shape discrimination in the plastic scintillator EJ-299-33 - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/257025014_Pulse_shape_discrimination_in_the_plastic_scintillator_EJ-299-33</p>
+<p>[20] PULSE SHAPE DISCRIMINATION IN A PLASTIC SCINTILLATOR (Journal Article) - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/biblio/4140599</p>
+<p>[21] EJ-276D - Pulse Shape Discrimination Plastic Scintillator - Eljen Technology, 5월 18, 2025에 액세스, https://eljentechnology.com/products/plastic-scintillators/ej-276</p>
+<p>[22] Pulse shape simulations for organic scintillation detectors using Geant4 - EPJ Web of Conferences, 5월 18, 2025에 액세스, https://www.epj-conferences.org/articles/epjconf/pdf/2021/07/epjconf_animma2021_11002.pdf</p>
+<p>[23] Validation of energy-weighted algorithm for radiation portal monitor using plastic scintillator, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/283844276_Validation_of_energy-weighted_algorithm_for_radiation_portal_monitor_using_plastic_scintillator</p>
+<p>[24] Evaluation of Source Identification Method Based on Energy-Weighting Level with Portal Monitoring System Using Plastic Scintilla - SciSpace, 5월 18, 2025에 액세스, https://scispace.com/pdf/evaluation-of-source-identification-method-based-on-energy-eqd9fcwn11.pdf</p>
+<p>[25] A Monte Carlo study of an energy-weighted algorithm for radionuclide analysis with a plastic scintillation detector - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/274397333_A_Monte_Carlo_study_of_an_energy-weighted_algorithm_for_radionuclide_analysis_with_a_plastic_scintillati on_detector</p>
+<p>[26] Evaluation of Source Identification Method Based on Energy-Weighting Level with Portal Monitoring System Using Plastic Scintillator, 5월 18, 2025에 액세스, https://www.jrpr.org/journal/view.php?doi=10.14407/jrpr.2020.45.3.117</p>
+<p>[27] Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator | Request PDF - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/372863631_Radionuclide_identification_based_on_energy-weighted_algorithm_and_machine_learning_applied_to_a_multi-array_plastic_scintillator</p>
+<p>[28] Development of a radionuclide identification algorithm based on a convolutional neural network for radiation portal monitoring system - INIS-IAEA, 5월 18, 2025에 액세스, https://inis.iaea.org/records/cdxny-y9z44</p>
+<p>[29] Comparison of Machine Learning-Based Radioisotope Identifiers for Plastic Scintillation Detector - Korea Science, 5월 18, 2025에 액세스, https://koreascience.kr/article/JAKO202108458484352.page</p>
+<p>[30] Comparison of Machine Learning-Based Radioisotope Identifiers for Plastic Scintillation Detector - Journal of Radiation Protection and Research, 5월 18, 2025에 액세스, https://www.jrpr.org/include/download.php?filedata=1098%7Cjrpr-2021-00206.pdf</p>
+<p>[31] Comparison of Machine Learning-Based Radioisotope Identifiers for Plastic Scintillation Detector - Journal of Radiation Protection and Research, 5월 18, 2025에 액세스, https://www.jrpr.org/journal/view.php?doi=10.14407/jrpr.2021.00206</p>
+<p>[32] A Review on the Application of Machine Learning in Gamma Spectroscopy: Challenges and Opportunities - MDPI, 5월 18, 2025에 액세스, https://www.mdpi.com/2813-446X/2/3/8</p>
+<p>[33] Explanation of Deep Learning–Based Radioisotope Identifier for Plastic Scintillation Detector - Taylor &amp; Francis Online, 5월 18, 2025에 액세스, https://www.tandfonline.com/doi/abs/10.1080/00295450.2022.2096389</p>
+<p>[34] Explaining machine-learning models for gamma-ray detection and identification - PMC, 5월 18, 2025에 액세스, https://pmc.ncbi.nlm.nih.gov/articles/PMC10281578/</p>
+<p>[35] Explaining machine-learning models for gamma-ray detection and identification | PLOS One, 5월 18, 2025에 액세스, https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0286829</p>
+<p>[36] Pseudo-Gamma Spectroscopy Based on Plastic Scintillation Detectors Using Multitask Learning - MDPI, 5월 18, 2025에 액세스, https://www.mdpi.com/1424-8220/21/3/684</p>
+<p>[37] Explanation of Deep Learning–Based Radioisotope Identifier for Plastic Scintillation Detector | Request PDF - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/362878935_Explanation_of_Deep_Learn ing-Based_Radioisotope_Identifier_for_Plastic_Scintillation_Detector</p>
+<p>[38] (PDF) Radionuclide identification system using convolution neural network for environmental radiation monitoring - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/390378218_Radionuclide_identification_system_using_convolution_neural_network_for_environmental_radiation_monitoring</p>
+<p>[39] International Journal of Electrical and Computer Engineering (IJECE), 5월 18, 2025에 액세스, https://ijece.iaescore.com/index.php/IJECE/article/download/35702/18145</p>
+<p>[40] Data Support of Generalization Ability of a CNN γ-ray Localization Model for Radiation Imaging, 5월 18, 2025에 액세스, https://www.scidb.cn/en/detail?dataSetId=4ba07b2a777743d8938e920c3c258815</p>
+<p>[41] (PDF) Convolutional Neural Networks for Challenges in Automated Nuclide Identification, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/353687184_Convolutional_Neural_Networks_for_Challenges_in_Automated_Nuclide_Identification</p>
+<p>[42] A plastic scintillator and HPGe β-γ coincidence detection system - PubMed, 5월 18, 2025에 액세스, https://pubmed.ncbi.nlm.nih.gov/37748216/</p>
+<p>[43] Plastic Scintillators Light Yield Energy Calibration - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1427195</p>
+<p>[44] Hybrid plastic scintillators aim to improve nuclear safety and medical imaging - EurekAlert!, 5월 18, 2025에 액세스, https://www.eurekalert.org/news-releases/1068785</p>
+<p>[45] Recent developments in plastic scintillators with pulse shape discrimination - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/322877963_Recent_developments_in_plastic_scintillators_with_pulse_shape_discrimination</p>
+<p>[46] Current status on plastic scintillators modifications (Conference) | OSTI.GOV, 5월 18, 2025에 액세스, https://www.osti.gov/biblio/22531431</p>
+<p>[47] Synthesis and Analysis of Novel Materials for Plastic Scintillators - eScholarship, 5월 18, 2025에 액세스, https://escholarship.org/content/qt195786t5/qt195786t5.pdf?t=orl5aa</p>
+<p>[48] Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors</p>
+<p>[49] SAM 940 (RIID) Handheld Radiation Isotope Identifier - Berkeley Nucleonics, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/sam-940-riid</p>
+<p>[50] RADEAGLET-R Rugged, Lightweight, Handheld Radioisotope Identification Device, 5월 18, 2025에 액세스, https://www.ortec-online.com/products/portable-radioisotope-identification-devices-riids/radeaglet-r</p>
+<p>[51] js-techwin.com, 5월 18, 2025에 액세스, https://js-techwin.com/data/file/brochure/Products-JSTECHWIN%20(eng).pdf</p>
+<p>[52] Portable Radiation Instruments - Handheld | LAURUS Systems, 5월 18, 2025에 액세스, https://www.laurussystems.com/product-listing/handheld-radiation-instruments/</p>
+<p>[53] Acquiring Gamma-Ray Energy Spectrum Using a Plastic Scintillation Optical Fiber Detector, 5월 18, 2025에 액세스, https://www.mdpi.com/2304-6732/11/6/493</p>
 
 
+</section>
 
- ]]></description>
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">각주</h2>
+
+<ol>
+<li id="fn1"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn2"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn3"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator↩︎</p></li>
+<li id="fn4"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn5"><p>Scintillation Detectors ⋆ Scionix, 5월 18, 2025에 액세스, https://scionix.nl/scintillation-detectors/↩︎</p></li>
+<li id="fn6"><p>Scintillation Detectors ⋆ Scionix, 5월 18, 2025에 액세스, https://scionix.nl/scintillation-detectors/↩︎</p></li>
+<li id="fn7"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator↩︎</p></li>
+<li id="fn8"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn9"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn10"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn11"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors↩︎</p></li>
+<li id="fn12"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn13"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn14"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors↩︎</p></li>
+<li id="fn15"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator↩︎</p></li>
+<li id="fn16"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator↩︎</p></li>
+<li id="fn17"><p>Scintillators!, 5월 18, 2025에 액세스, https://www.oeaw.ac.at/fileadmin/Institute/HEPHY/PDF/ausbildung/praktikum/VO-5-Scintillators.pdf↩︎</p></li>
+<li id="fn18"><p>(PDF) The use of energy information in plastic scintillator material, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/243960551_The_use_of_energy_information_in_plastic_scintillator_material↩︎</p></li>
+<li id="fn19"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn20"><p>(PDF) The use of energy information in plastic scintillator material, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/243960551_The_use_of_energy_information_in_plastic_scintillator_material↩︎</p></li>
+<li id="fn21"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn22"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn23"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn24"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout↩︎</p></li>
+<li id="fn25"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout↩︎</p></li>
+<li id="fn26"><p>(PDF) The use of energy information in plastic scintillator material, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/243960551_The_use_of_energy_information_in_plastic_scintillator_material↩︎</p></li>
+<li id="fn27"><p>(PDF) The use of energy information in plastic scintillator material, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/243960551_The_use_of_energy_information_in_plastic_scintillator_material↩︎</p></li>
+<li id="fn28"><p>(PDF) The use of energy information in plastic scintillator material, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/243960551_The_use_of_energy_information_in_plastic_scintillator_material↩︎</p></li>
+<li id="fn29"><p>Evaluation of Source Identification Method Based on Energy-Weighting Level with Portal Monitoring System Using Plastic Scintillator - Journal of Radiation Protection and Research, 5월 18, 2025에 액세스, https://www.jrpr.org/journal/view.php?number=1058↩︎</p></li>
+<li id="fn30"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn31"><p>Evaluation of Source Identification Method Based on Energy-Weighting Level with Portal Monitoring System Using Plastic Scintillator - Journal of Radiation Protection and Research, 5월 18, 2025에 액세스, https://www.jrpr.org/journal/view.php?number=1058↩︎</p></li>
+<li id="fn32"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/↩︎</p></li>
+<li id="fn33"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn34"><p>www.kns.org, 5월 18, 2025에 액세스, https://www.kns.org/files/pre_paper/40/18A-440%EA%B9%80%EC%9A%A9%ED %98%84.pdf↩︎</p></li>
+<li id="fn35"><p>Pulse shape discrimination in an organic scintillation phoswich detector using machine learning techniques - Frontiers, 5월 18, 2025에 액세스, https://www.frontiersin.org/journals/physics/articles/10.3389/fphy.2024.1361608/full↩︎</p></li>
+<li id="fn36"><p>Pulse shape discrimination in the plastic scintillator EJ-299-33 - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/257025014_Pulse_shape_discrimination_in_the_plastic_scintillator_EJ-299-33↩︎</p></li>
+<li id="fn37"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn38"><p>Validation of energy-weighted algorithm for radiation portal monitor using plastic scintillator, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/283844276_Validation_of_energy-weighted_algorithm_for_radiation_portal_monitor_using_plastic_scintillator↩︎</p></li>
+<li id="fn39"><p>Evaluation of Source Identification Method Based on Energy-Weighting Level with Portal Monitoring System Using Plastic Scintilla - SciSpace, 5월 18, 2025에 액세스, https://scispace.com/pdf/evaluation-of-source-identification-method-based-on-energy-eqd9fcwn11.pdf↩︎</p></li>
+<li id="fn40"><p>Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study↩︎</p></li>
+<li id="fn41"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn42"><p>Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study↩︎</p></li>
+<li id="fn43"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn44"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn45"><p>(PDF) Radionuclide identification system using convolution neural network for environmental radiation monitoring - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/390378218_Radionuclide_identification_system_using_convolution_neural_network_for_environmental_radiation_monitoring↩︎</p></li>
+<li id="fn46"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn47"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn48"><p>(PDF) Convolutional Neural Networks for Challenges in Automated Nuclide Identification, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/353687184_Convolutional_Neural_Networks_for_Challenges_in_Automated_Nuclide_Identification↩︎</p></li>
+<li id="fn49"><p>Explanation of Deep Learning–Based Radioisotope Identifier for Plastic Scintillation Detector - Taylor &amp; Francis Online, 5월 18, 2025에 액세스, https://www.tandfonline.com/doi/abs/10.1080/00295450.2022.2096389↩︎</p></li>
+<li id="fn50"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn51"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn52"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn53"><p>A plastic scintillator and HPGe β-γ coincidence detection system - PubMed, 5월 18, 2025에 액세스, https://pubmed.ncbi.nlm.nih.gov/37748216/↩︎</p></li>
+<li id="fn54"><p>Hybrid plastic scintillators aim to improve nuclear safety and medical imaging - EurekAlert!, 5월 18, 2025에 액세스, https://www.eurekalert.org/news-releases/1068785↩︎</p></li>
+<li id="fn55"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors↩︎</p></li>
+<li id="fn56"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors↩︎</p></li>
+<li id="fn57"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors↩︎</p></li>
+<li id="fn58"><p>Scintillators!, 5월 18, 2025에 액세스, https://www.oeaw.ac.at/fileadmin/Institute/HEPHY/PDF/ausbildung/praktikum/VO-5-Scintillators.pdf↩︎</p></li>
+<li id="fn59"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors↩︎</p></li>
+<li id="fn60"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors↩︎</p></li>
+<li id="fn61"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors↩︎</p></li>
+<li id="fn62"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors↩︎</p></li>
+<li id="fn63"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors↩︎</p></li>
+<li id="fn64"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn65"><p>SAM 940 (RIID) Handheld Radiation Isotope Identifier - Berkeley Nucleonics, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/sam-940-riid↩︎</p></li>
+<li id="fn66"><p>js-techwin.com, 5월 18, 2025에 액세스, https://js-techwin.com/data/file/brochure/Products-JSTECHWIN%20(eng).pdf↩︎</p></li>
+<li id="fn67"><p>Portable Radiation Instruments - Handheld | LAURUS Systems, 5월 18, 2025에 액세스, https://www.laurussystems.com/product-listing/handheld-radiation-instruments/↩︎</p></li>
+<li id="fn68"><p>Radionuclide identification based on energy-weighted algorithm and machine learning applied to a multi-array plastic scintillator -Nuclear Engineering and Technology | Korea Science, 5월 18, 2025에 액세스, https://www.koreascience.kr/article/JAKO202330543284418.page↩︎</p></li>
+<li id="fn69"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout↩︎</p></li>
+<li id="fn70"><p>Explanation of Deep Learning–Based Radioisotope Identifier for Plastic Scintillation Detector - Taylor &amp; Francis Online, 5월 18, 2025에 액세스, https://www.tandfonline.com/doi/abs/10.1080/00295450.2022.2096389↩︎</p></li>
+</ol>
+</section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/first.html</guid>
-  <pubDate>Mon, 14 Apr 2025 13:12:29 GMT</pubDate>
+  <pubDate>Mon, 19 May 2025 07:59:39 GMT</pubDate>
 </item>
 </channel>
 </rss>
