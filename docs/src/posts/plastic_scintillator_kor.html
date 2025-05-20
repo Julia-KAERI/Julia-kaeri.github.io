@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Julia_KAERI">
+
+<title>플라스틱 섬광체를 이용한 방사성 핵종 식별 기술 보고서 – Science &amp; Programming</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-442e5c93d6224642134ff5cd604ad228.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Science &amp; Programming</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/gpu/gpu.html"> 
+<span class="menu-text">GPU &amp; CUDA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/cpp_qt/cpp_qt.html"> 
+<span class="menu-text">C++ &amp; Qt</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/ML/ml.html"> 
+<span class="menu-text">AI &amp; ML</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/topics/socket.html"> 
+<span class="menu-text">주제별</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/tools/tools.html"> 
+<span class="menu-text">Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../src/posts/index.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="mailto:julia.kaeri@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#서론" id="toc-서론" class="nav-link active" data-scroll-target="#서론"><span class="header-section-number">1</span> 서론:</a>
+  <ul class="collapse">
+  <li><a href="#insights-hidden-patterns-causal-relationships-and-broad-implications" id="toc-insights-hidden-patterns-causal-relationships-and-broad-implications" class="nav-link" data-scroll-target="#insights-hidden-patterns-causal-relationships-and-broad-implications">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</a></li>
+  </ul></li>
+  <li><a href="#플라스틱-섬광체-방사선-검출기의-작동-원리" id="toc-플라스틱-섬광체-방사선-검출기의-작동-원리" class="nav-link" data-scroll-target="#플라스틱-섬광체-방사선-검출기의-작동-원리"><span class="header-section-number">2</span> 플라스틱 섬광체 방사선 검출기의 작동 원리:</a>
+  <ul class="collapse">
+  <li><a href="#insights-hidden-patterns-causal-relationships-and-broad-implications-1" id="toc-insights-hidden-patterns-causal-relationships-and-broad-implications-1" class="nav-link" data-scroll-target="#insights-hidden-patterns-causal-relationships-and-broad-implications-1">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</a></li>
+  </ul></li>
+  <li><a href="#플라스틱-섬광체를-이용한-핵종-식별의-어려움" id="toc-플라스틱-섬광체를-이용한-핵종-식별의-어려움" class="nav-link" data-scroll-target="#플라스틱-섬광체를-이용한-핵종-식별의-어려움"><span class="header-section-number">3</span> 플라스틱 섬광체를 이용한 핵종 식별의 어려움:</a>
+  <ul class="collapse">
+  <li><a href="#insights-hidden-patterns-causal-relationships-and-broad-implications-2" id="toc-insights-hidden-patterns-causal-relationships-and-broad-implications-2" class="nav-link" data-scroll-target="#insights-hidden-patterns-causal-relationships-and-broad-implications-2">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</a></li>
+  </ul></li>
+  <li><a href="#플라스틱-섬광체를-이용한-핵종-식별-기술-및-발전" id="toc-플라스틱-섬광체를-이용한-핵종-식별-기술-및-발전" class="nav-link" data-scroll-target="#플라스틱-섬광체를-이용한-핵종-식별-기술-및-발전"><span class="header-section-number">4</span> 플라스틱 섬광체를 이용한 핵종 식별 기술 및 발전:</a>
+  <ul class="collapse">
+  <li><a href="#insights-hidden-patterns-causal-relationships-and-broad-implications-3" id="toc-insights-hidden-patterns-causal-relationships-and-broad-implications-3" class="nav-link" data-scroll-target="#insights-hidden-patterns-causal-relationships-and-broad-implications-3">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</a></li>
+  </ul></li>
+  <li><a href="#다른-핵종-식별-기술과의-비교" id="toc-다른-핵종-식별-기술과의-비교" class="nav-link" data-scroll-target="#다른-핵종-식별-기술과의-비교"><span class="header-section-number">5</span> 다른 핵종 식별 기술과의 비교:</a>
+  <ul class="collapse">
+  <li><a href="#insights-hidden-patterns-causal-relationships-and-broad-implications-4" id="toc-insights-hidden-patterns-causal-relationships-and-broad-implications-4" class="nav-link" data-scroll-target="#insights-hidden-patterns-causal-relationships-and-broad-implications-4">Insights, Hidden Patterns, Causal Relationships, and Broad Implications</a></li>
+  </ul></li>
+  <li><a href="#휴대용-및-현장-배치-가능-시스템의-예" id="toc-휴대용-및-현장-배치-가능-시스템의-예" class="nav-link" data-scroll-target="#휴대용-및-현장-배치-가능-시스템의-예"><span class="header-section-number">6</span> 휴대용 및 현장 배치 가능 시스템의 예:</a>
+  <ul class="collapse">
+  <li><a href="#insights-hidden-patterns-causal-relationships-and-broad-implications-5" id="toc-insights-hidden-patterns-causal-relationships-and-broad-implications-5" class="nav-link" data-scroll-target="#insights-hidden-patterns-causal-relationships-and-broad-implications-5">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</a></li>
+  </ul></li>
+  <li><a href="#최근-발전-및-미래-추세" id="toc-최근-발전-및-미래-추세" class="nav-link" data-scroll-target="#최근-발전-및-미래-추세"><span class="header-section-number">7</span> 최근 발전 및 미래 추세:</a>
+  <ul class="collapse">
+  <li><a href="#insights-hidden-patterns-causal-relationships-and-broad-implications-6" id="toc-insights-hidden-patterns-causal-relationships-and-broad-implications-6" class="nav-link" data-scroll-target="#insights-hidden-patterns-causal-relationships-and-broad-implications-6">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</a></li>
+  </ul></li>
+  <li><a href="#결론" id="toc-결론" class="nav-link" data-scroll-target="#결론"><span class="header-section-number">8</span> 결론:</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  <li><a href="#참고자료" id="toc-참고자료" class="nav-link" data-scroll-target="#참고자료"><span class="header-section-number">9</span> 참고자료</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">플라스틱 섬광체를 이용한 방사성 핵종 식별 기술 보고서</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-contents">
+             <p>Julia_KAERI <a href="mailto:julia.kaeri@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+노트
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="../../src/posts/plastic_scintillator_eng.html">Report on Plastic Scintillator Radionuclide Identification Technology</a> 의 한글 번역 버젼으로 역시 google research 에 의해 생성되었음</p>
+</div>
+</div>
+<p><br></p>
+<section id="서론" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="서론"><span class="header-section-number">1</span> 서론:</h2>
+<ul>
+<li><p>핵종 식별 기술은 핵 안전, 핵 안보, 환경 감시, 의료 응용 등 다양한 분야에서 중요한 역할을 수행합니다. 특히 불법적인 핵 물질 거래를 방지하고 방사능 오염을 감시하는 데 필수적입니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) 의료 분야에서는 핵의학 진단 및 치료에 사용되는 방사성 동위원소를 정확하게 식별하고 관리하는 데 중요합니다.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> 산업 현장에서도 공정 제어 및 안전 관리를 위해 핵종 식별 기술이 활용됩니다.</p></li>
+<li><p>플라스틱 섬광체 기반 방사선 검출기는 방사선 계측 분야에서 널리 사용되는 기술 중 하나입니다.</p>
+<ul>
+<li>플라스틱 섬광체는 플라스틱 기질과 형광 물질(fluor)로 구성되어 있으며.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> 방사선이 플라스틱 섬광체에 입사하면 섬광 현상을 통해 방사선의 에너지를 가시광선 또는 근자외선 영역의 빛으로 변환합니다.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>플라스틱 섬광체 검출기는 비용 효율성이 높고<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, 응답 속도가 빠르며<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, 다양한 형태로 제작이 용이하고<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, 휴대용 기기에 적합한 견고성을 갖는다는 장점이 있습니다.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+<li>이러한 장점 덕분에 방사선 감시 장치, 휴대용 선량계, 그리고 방사선 물질 불법 거래 방지를 위한 방사선 감시 시스템(Radiation Portal Monitors, RPMs) 등 다양한 응용 분야에서 널리 사용되고 있습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+</ul></li>
+<li><p>문제점 제시: 플라스틱 섬광체 기반 검출기는 감마선 에너지 분해능이 낮아 정확하고 신뢰성 있는 핵종 식별에 어려움이 있습니다. 이는 주로 콤프턴 산란이 주된 감마선 상호작용 메커니즘이기 때문이며, 섬광체 자체의 낮은 에너지 분해능 특성에도 기인합니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</p></li>
+<li><p>보고서의 범위 및 목표: 본 보고서는 플라스틱 섬광체를 이용한 방사성 핵종 식별 기술의 원리, 한계점, 그리고 에너지 가중 알고리즘 및 머신러닝 접근법을 포함한 다양한 기술과 최근 발전 사항을 상세히 분석하고, 플라스틱 섬광체의 고유한 한계를 극복하고 핵종 식별 능력을 향상시키기 위한 혁신적인 해결책을 강조하는 것을 목표로 합니다.</p></li>
+</ul>
+<p><br></p>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><p><strong>Insight 1</strong>: 낮은 에너지 분해능에도 불구하고 RPM과 같은 분야에서 플라스틱 섬광체가 널리 사용되는 것은 성능(에너지 분해능)과 비용, 속도, 견고성과 같은 다른 요소 간의 절충을 시사합니다. 이러한 요소들은 보안 검색과 같이 많은 실제 응용 분야에서 매우 중요합니다.</p>
+<ul>
+<li><strong>Chain of Thought</strong> : 사고의 흐름: 플라스틱 섬광체는 저렴하고 취급이 용이하여 비용이 중요한 대규모 배치(예: RPM)에 이상적입니다. 빠른 응답 시간은 움직이는 물체를 신속하게 검사하는 데 중요합니다. 그러나 핵종을 정확하게 식별할 수 없다는 단점은 대체 기술 또는 보완 기술 개발의 필요성을 야기합니다.</li>
+</ul></li>
+<li><p><strong>Insight 2</strong>: 머신러닝 및 고급 알고리즘에 대한 관심 증가는 플라스틱 섬광체가 제공하는 제한된 스펙트럼 데이터에서 더 많은 정보를 추출하여 검출기 재료 자체의 물리적 한계를 극복하려는 강력한 노력을 나타냅니다. 이는 과학 기기에 데이터 과학의 발전이 광범위하게 적용되는 추세를 반영합니다.</p>
+<ul>
+<li><strong>Chain of Thought</strong>: 사고의 흐름: 플라스틱 섬광체의 고유한 에너지 분해능을 향상시키는 것은 어렵기 때문에 연구자들은 계산 방법을 통해 분석 능력을 향상시키는 데 주력하고 있습니다. 이러한 추세는 방사선 검출 분야에서 소프트웨어 기반 솔루션의 중요성이 커지고 있음을 보여줍니다.</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="플라스틱-섬광체-방사선-검출기의-작동-원리" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="플라스틱-섬광체-방사선-검출기의-작동-원리"><span class="header-section-number">2</span> 플라스틱 섬광체 방사선 검출기의 작동 원리:</h2>
+<ul>
+<li><p>섬광 메커니즘: 방사선(핵종 식별의 경우 주로 감마선)이 플라스틱 섬광체 물질과 상호작용하면 분자를 여기시킵니다.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<ul>
+<li>여기된 에너지는 형광 물질(fluor)로 전달됩니다. 형광 물질은 플라스틱 내부에 도핑된 유기 형광 화합물(예: 안트라센(anthracene) 또는 비스-메틸스티렌(bis-methylstyrene))로 섬광 특성을 향상시킵니다.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+<li>여기된 형광 물질 분자는 바닥 상태로 되돌아가면서 가시광선 또는 근자외선 영역의 광자를 방출합니다.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> 이 빛의 섬광이 섬광 현상입니다.</li>
+<li>방출되는 빛의 강도는 입사 방사선의 에너지에 비례합니다.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></li>
+</ul></li>
+<li><p>에너지 분광학과 관련된 주요 특징:</p>
+<ul>
+<li>광 수율(Light yield): 단위 에너지당 생성되는 광자 수(일반적으로 NaI(Tl)과 같은 무기 섬광체에 비해 낮음).<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></li>
+<li>섬광 효율(Scintillation efficiency): 입사 방사선의 운동 에너지를 검출 가능한 빛으로 변환하는 효율성.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></li>
+<li>감쇠 시간(Decay time): 일반적으로 매우 짧음(2-4 나노초)<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> 으로 빠른 검출 및 높은 계수율에 적합합니다<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></li>
+<li>밀도 및 유효 원자 번호(Effective atomic number): 낮음(주로 탄소와 수소로 구성)으로 감마선에 대한 주된 상호작용 메커니즘은 콤프턴 산란입니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
+</ul></li>
+<li><p>감마선의 주된 상호작용 메커니즘:</p>
+<ul>
+<li>콤프턴 산란(Compton scattering): 입사 감마선이 원자의 전하 전하와 상호작용하여 일부 에너지를 전자에 전달하고 산란되는 현상입니다.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> 플라스틱 섬광체에서 주로 발생하며, 입사 감마선의 에너지에서 최소 에너지(콤프턴 에지에 의해 결정됨)까지 연속적인 에너지 스펙트럼을 생성합니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
+<li>광전 효과(Photoelectric effect): 감마선이 원자에 완전히 흡수되어 궤도 전자를 방출하는 현상입니다(낮은 감마선 에너지 및 높은 원자 번호의 물질에서 더 잘 발생하며 플라스틱 섬광체에서는 덜 중요함).<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
+<li>전자-양전자 쌍 생성(Pair production): 감마선이 원자핵 근처에서 전자와 양전자 쌍으로 변환되는 현상입니다(감마선 에너지가 1.022 MeV를 초과할 때만 발생하며, 많은 일반적인 핵종 검출 응용 분야에서는 덜 중요함).<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+</ul></li>
+<li><p>광센서의 역할:</p>
+<ul>
+<li>광전자 증배관(Photomultiplier Tubes, PMTs): 섬광체에서 방출되는 미약한 빛을 감지하여 전기 신호로 변환하고 증폭하는 진공 기반 장치로, 광음극에서 광전 효과를 통해 전자를 방출하고 다이노드에서 전자 증폭을 수행합니다.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> 작동을 위해 고전압 전원 공급 장치가 필요합니다.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+<li>실리콘 광증배관(Silicon Photomultipliers, SiPMs): 고체 상태의 광센서로, 소형, 저전압 작동, 자기장에 대한 불감응성과 같은 장점을 제공하여 휴대용 응용 분야에서 PMT의 대안으로 점점 더 많이 사용되고 있습니다.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> 일부 시나리오에서는 PMT와 비슷한 에너지 분해능을 달성할 수 있습니다.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></li>
+</ul></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-1" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-1">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 3</strong>: 플라스틱 섬광체의 낮은 유효 원자 번호로 인해 감마선과의 주된 상호작용은 콤프턴 산란이며, 이는 고분해능 에너지 분광학과 직접적인 핵종 식별에 필요한 이산적인 에너지 정보를 얻는 데 근본적인 제약을 가합니다.
+<ul>
+<li><strong>Chain of Thought</strong>: 광전 흡수, 즉 원하는 완전 에너지 피크를 유도하는 과정의 확률은 검출기 물질의 원자 번호에 크게 의존합니다. 플라스틱 섬광체를 구성하는 탄소와 수소의 낮은 원자 번호는 콤프턴 산란이 주된 과정임을 의미합니다. 이는 명확한 핵종 식별에 필요한 개별 피크보다는 연속적인 에너지 스펙트럼을 초래합니다.</li>
+</ul></li>
+<li><strong>Insight 4</strong>: 광센서(PMT 또는 SiPM)의 선택은 감도, 전력 소비, 다양한 환경(예: 자기장 존재)에 대한 적합성과 같은 검출기 시스템의 전반적인 성능에 영향을 미칠 수 있지만, 섬광체 물질 자체에 의해 부과되는 에너지 분해능의 근본적인 한계를 변경하지는 않습니다. 광센서의 주요 역할은 섬광체에서 생성된 빛을 전기 신호로 효율적으로 변환하는 것입니다. 초기 감마선 상호작용의 물리학에 의해 제한되는 빛의 정보 내용은 사용된 광센서에 관계없이 동일하게 유지됩니다.
+<ul>
+<li><strong>Chain of Thought</strong>: 사고의 흐름: PMT와 SiPM 모두 플라스틱 섬광체에서 나오는 미약한 빛을 감지할 수 있습니다. SiPM은 크기와 작동 특성으로 인해 특정 응용 분야에서 장점을 제공하지만, 플라스틱에서 생성된 섬광광은 콤프턴 산란 사건의 결과이며, 이는 본질적으로 에너지 스펙트럼을 넓히고 개별 핵종의 고유한 에너지 특징을 가립니다.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="플라스틱-섬광체를-이용한-핵종-식별의-어려움" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="플라스틱-섬광체를-이용한-핵종-식별의-어려움"><span class="header-section-number">3</span> 플라스틱 섬광체를 이용한 핵종 식별의 어려움:</h2>
+<ul>
+<li>정확한 핵종 식별을 저해하는 고유한 한계점에 대한 상세 논의:
+<ul>
+<li>은 에너지 분해능: 일반적으로 662 keV(<span class="math inline">\(^{137}\)</span>Cs)에서 10-15% 수준으로, NaI(Tl)(6-8%)과 같은 무기 섬광체나 HPGe 검출기(&lt;1%)에 비해 현저히 낮습니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>) 이처럼 낮은 에너지 분해능은 에너지 간격이 좁은 감마선을 구별하기 어렵게 만듭니다. 이는 많은 핵종의 붕괴 과정에서 흔히 발생합니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
+<li>콤프턴 연속 스펙트럼 및 뚜렷한 광전 피크의 부재: 플라스틱 섬광체가 감마선에 노출될 때 얻는 에너지 스펙트럼은 콤프턴 산란으로 인한 연속적인 에너지 분포가 주를 이루며, 고분해능 검출기에서 특정 핵종의 고유한 식별자로 작용하는 뚜렷한 광전 피크(입사 감마선의 총 에너지에 해당)가 부족합니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
+<li>겹치는 에너지 선 분해의 어려움: 혼합 핵종을 포함하는 시료의 경우, 낮은 에너지 분해능으로 인해 각 핵종에서 방출되는 넓은 스펙트럼 특징이 크게 겹칩니다. 따라서 개별 동위원소의 기여도를 분리하고 혼합물 내의 모든 성분을 정확하게 식별하는 것이 매우 어렵습니다.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>)</li>
+</ul></li>
+<li>정확하고 신뢰성 있는 핵종 식별에 미치는 영향:
+<ul>
+<li>플라스틱 섬광체만으로는 에너지 스펙트럼을 알려진 감마선 에너지(광전 피크)와 직접 매칭하여 핵종을 정확하게 식별하는 것이 많은 핵종에서 거의 불가능합니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>보안 응용 분야에서 핵종을 정확하게 식별할 수 없으면 불법 물질과 유사한 에너지를 방출하는 자연 방사성 물질(NORM)로 인해 오경보율이 높아질 수 있습니다.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>) 이러한 오경보는 운영 중단을 초래하고 2차 검사 관련 비용을 증가시킬 수 있습니다.</li>
+<li>혼합 선원 내 개별 핵종의 활동도를 정확하게 정량화하는 것은 뚜렷한 스펙트럼 특징의 부족과 겹치는 콤프턴 연속 스펙트럼의 특성으로 인해 심각하게 저해됩니다.</li>
+</ul></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-2" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-2">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 5</strong>: 플라스틱 섬광체가 나타내는 에너지 분해능의 고유한 한계는 명확하고 모호하지 않은 핵종 식별을 요구하는 응용 분야에서 중요한 장벽으로 작용합니다. 따라서 제한된 스펙트럼 데이터에서 더 많은 식별 정보를 추출할 수 있는 특수 기술 개발이 필요합니다.
+<ul>
+<li><strong>Chain of Thought</strong>: 감마선과 플라스틱 섬광체(주로 콤프턴 산란)의 상호작용을 지배하는 물리적 과정은 근본적이며 쉽게 변경할 수 없습니다. 따라서 이러한 검출기를 사용한 핵종 식별의 발전은 이러한 고유한 물리적 한계를 극복하기 위한 정교한 데이터 처리 및 분석 방법에 초점을 맞춰야 합니다.</li>
+</ul></li>
+<li><strong>Insight 6</strong>: 보안 감시에서 높은 오경보율과 혼합 선원 정량화의 어려움과 같은 낮은 에너지 분해능의 실제적인 결과는 개선된 식별 기술의 시급한 필요성을 강조합니다. 이러한 과제는 실제 응용 분야에서 플라스틱 섬광체의 분석 능력을 향상시킬 수 있는 고급 알고리즘 및 검출기 설계 연구의 중요성을 강조합니다.</li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="플라스틱-섬광체를-이용한-핵종-식별-기술-및-발전" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="플라스틱-섬광체를-이용한-핵종-식별-기술-및-발전"><span class="header-section-number">4</span> 플라스틱 섬광체를 이용한 핵종 식별 기술 및 발전:</h2>
+<ul>
+<li>에너지 분광학과 그 한계:
+<ul>
+<li>기본 원리: 감마선 분광학은 시료에서 방출되는 감마선의 에너지 분포를 측정하여 고유한 에너지 방출(고분해능 스펙트럼에서 광전 피크로 관찰됨)을 기반으로 구성 핵종을 식별하는 것을 포함합니다.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></li>
+<li>라스틱 섬광체의 한계: 콤프턴 산란이 주를 이루고 에너지 분해능이 낮기 때문에 플라스틱 섬광체로 얻은 에너지 스펙트럼에는 직접적이고 명확한 핵종 식별에 필요한 뚜렷한 광전 피크가 부족한 경향이 있습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) 스펙트럼은 산란된 광자의 넓은 에너지 분포인 콤프턴 연속 스펙트럼이 주를 이룹니다.</li>
+<li>콤프턴 에지 분석: 콤프턴 에지는 콤프턴 산란 사건에서 전자에 전달되는 최대 에너지를 나타내며, 스펙트럼에서 결정될 수 있으며 입사 감마선의 최대 에너지에 대한 일부 정보를 제공합니다.(<span class="citation" data-cites="Kim2018EnergyResolution">Kim et al. (<a href="#ref-Kim2018EnergyResolution" role="doc-biblioref">2018</a>)</span>) 그러나 콤프턴 에지 에너지는 특정 핵종에 고유하지 않으며 정확한 결정은 검출기의 에너지 분해능에 영향을 받아 명확한 식별에 대한 유용성이 제한됩니다.</li>
+</ul></li>
+<li>펄스 모양 구별법(Pulse Shape Discrimination, PSD):
+<ul>
+<li>PSD는 섬광체 물질 내 에너지 손실률(dE/dx)을 기반으로 다른 유형의 방사선(예: 감마선 및 중성자)에 의해 생성된 섬광 펄스의 시간적 모양의 미묘한 차이를 활용하는 기술입니다.(<span class="citation" data-cites="Lee2024PulseShape">Y. Lee et al. (<a href="#ref-Lee2024PulseShape" role="doc-biblioref">2024</a>)</span>)중성자는 핵과의 상호작용으로 인해 감마선에 비해 느린 감쇠 성분을 갖는 펄스를 생성하는 경향이 있습니다. 감마선은 주로 전자와 상호작용합니다.</li>
+<li>주요 응용 분야: PSD는 유기 섬광체(플라스틱 포함)에서 중성자와 감마선 유도 신호를 구별하는 데 매우 효과적이며 혼합 방사선장 측정에 널리 사용됩니다.(<span class="citation" data-cites="Pozzi2013PulseShape">Pozzi, Bourne, and Clarke (<a href="#ref-Pozzi2013PulseShape" role="doc-biblioref">2013</a>)</span>)</li>
+<li>감마선 핵종 식별에 대한 직접적인 사용 제한(플라스틱 섬광체의 에너지 스펙트럼만 기반): PSD는 중성자와 감마선을 구별할 수 있지만, 감마 에너지 스펙트럼만으로는 다른 감마 방출 핵종을 구별하기에 충분한 정보를 일반적으로 제공하지 않습니다. 플라스틱 섬광체에서 서로 다른 감마 에너지 또는 서로 다른 감마 방출 핵종에서 생성된 시간적 펄스 모양은 매우 유사한 경향이 있어 PSD를 감마 에너지 범위 내에서 상세한 핵종 식별에 사용하는 것이 어렵습니다.</li>
+</ul></li>
+<li>에너지 가중 알고리즘(Energy-Weighted Algorithms):
+<ul>
+<li>원리: 에너지 가중 알고리즘은 각 채널의 에너지를 기반으로 가중치를 할당하여 원시 에너지 스펙트럼을 수정함으로써 플라스틱 섬광체에서 얻은 스펙트럼 정보를 향상시키는 것을 목표로 합니다. 이는 종종 각 채널의 계수율에 에너지 관련 계수를 곱하는 것을 포함하며, 특히 콤프턴 최대값을 강조하여 더 뚜렷하고 식별 가능한 피크로 나타나도록 만듭니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>학적 공식: 일반적인 접근 방식은 각 채널(i)의 에너지 가중 계수(EWAi​)를 원래 계수(Ci​)에 해당 채널의 에너지 계수(Ei​)를 곱하여 계산하는 것입니다(EWAi​=Ci​×Ei​).(<span class="citation" data-cites="Lee2016Validation">H. Lee et al. (<a href="#ref-Lee2016Validation" role="doc-biblioref">2016</a>)</span>) 정 응용 분야에 맞게 알고리즘을 최적화하기 위해 정수 상수를 도입하는 등 다양한 변형이 연구되었습니다.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>)</li>
+<li>개선 메커니즘: 입사 감마선의 최대 에너지와 관련된 콤프턴 에지 영역을 강조함으로써 에너지 가중 알고리즘은 플라스틱 섬광체의 낮은 에너지 분해능에서도 서로 다른 핵종에 대해 더 특징적인 스펙트럼 서명을 생성하는 데 도움이 될 수 있습니다.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> 이러한 변환은 콤프턴 에지의 점진적인 분포를 더 뚜렷한 피크로 변환할 수 있습니다.</li>
+<li>검증 연구: 수많은 연구에서 실험실 실험과 방사선 포털 모니터(RPM)와 같은 실제 응용 분야 모두에서 플라스틱 섬광체를 사용하여 <span class="math inline">\(^{137}\)</span>Cs, <span class="math inline">\(^{60}\)</span>Co, <span class="math inline">\(^{22}\)</span>Na 및 <span class="math inline">\(^{40}\)</span>K와 같은 다양한 핵종 간의 식별 능력을 향상시키는 데 에너지 가중 알고리즘의 효과가 입증되었습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) 이러한 알고리즘은 인공 방사성 핵종과 자연 방사성 물질(NORM)을 구별하는 데에도 잠재력을 보여주었습니다.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></li>
+<li>제한 사항: 에너지 가중 알고리즘의 효과는 특히 콤프턴 에지 또는 에너지 가중 피크가 크게 겹치는 경우, 복잡한 핵종 혼합물을 처리할 때 감소할 수 있습니다.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>) 또한 RPM 응용 분야에서 차폐 및 이동하는 선원의 속도와 같은 요인에 의해 성능이 영향을 받을 수 있습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+</ul></li>
+<li>머신러닝 접근법:
+<ul>
+<li>원리: 컨볼루션 신경망(CNN), 인공 신경망(ANN), 서포트 벡터 머신(SVM), 트랜스포머 기반 네트워크와 같은 머신러닝 모델은 알려진 핵종의 플라스틱 섬광체 스펙트럼의 대규모 데이터셋으로 훈련되어 미지의 스펙트럼에서 패턴을 인식하고 분류하는 데 점점 더 많이 적용되고 있습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>데이터 전처리: 일반적인 기술로는 배경 잡음 제거, 스펙트럼을 일관된 스케일로 정규화, CNN 입력으로 활용하기 위해 1차원 스펙트럼 데이터를 2차원 이미지 표현으로 변환하는 것 등이 있습니다.(<span class="citation" data-cites="Istofa2025RadionuclideIdentification">Istofa et al. (<a href="#ref-Istofa2025RadionuclideIdentification" role="doc-biblioref">2025</a>)</span>)</li>
+<li>성능 평가: 연구에서는 플라스틱 섬광체 스펙트럼으로 훈련된 머신러닝 모델을 사용하여 개별 핵종 및 혼합 핵종을 식별하는 데 높은 예측 정확도(종종 90%를 초과하고 특정 조건에서는 최대 98%까지 도달)가 보고되었습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) 이러한 모델은 유사한 콤프턴 에지 에너지를 가진 핵종을 식별하고 역동적인 선원 이동 및 차폐 존재와 같은 다양한 어려운 조건에서도 강력한 식별 성능을 보여주었습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>과제 해결: 머신러닝 접근법은 낮은 에너지 분해능과 광전 피크 부재와 같은 한계를 극복할 수 있는 잠재력을 보여주었습니다. CNN은 특히 컨볼루션 및 풀링 연산을 통해 스펙트럼 데이터에서 관련 특징을 추출하는 데 유망합니다.(<span class="citation" data-cites="Turner2021ConvolutionalNeuralNetwork">Turner et al. (<a href="#ref-Turner2021ConvolutionalNeuralNetwork" role="doc-biblioref">2021</a>)</span>)</li>
+<li>설명 가능한 AI(XAI): 특히 딥러닝 네트워크와 같은 머신러닝 모델은 종종 “블랙박스”로 간주되므로, 핵종 식별과 같은 중요한 응용 분야에서 의사 결정 과정을 이해하고 해석하기 위해 XAI 기술을 사용하는 것에 대한 관심이 증가하고 있습니다. Saliency mapping 및 Grad-CAM(Gradient-weighted Class Activation Mapping)과 같은 방법이 모델이 분류를 수행할 때 에너지 스펙트럼의 어느 부분에 초점을 맞추는지 식별하는 데 연구되고 있습니다.(<span class="citation" data-cites="Jeon2023Explanation">Jeon, Kim, and and (<a href="#ref-Jeon2023Explanation" role="doc-biblioref">2023</a>)</span>)</li>
+</ul></li>
+<li>다중 배열 플라스틱 섬광체 검출기:
+<ul>
+<li>원리: 단일 대용량 검출기 대신 여러 개의 작은 플라스틱 섬광체를 배열로 사용하여 전체 광자 수집 효율을 개선하고 잠재적으로 방사선원에 대한 공간 정보를 제공하여 식별에 도움이 될 수 있습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>입증된 장점: 다중 배열 검출기는 기존의 단일 소자 검출기에 비해 섬광체 내에서 생성된 광자를 수집할 확률이 더 높은 것으로 나타났습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>알고리즘과의 결합: 에너지 가중 알고리즘 및 머신러닝 모델과 결합했을 때, 다중 배열 시스템은 움직이는 방사선원을 식별하는 데 향상된 성능을 보여주었습니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+</ul></li>
+<li>하이브리드 검출 시스템:
+<ul>
+<li>원리: 플라스틱 섬광체를 높은 에너지 분해능과 같은 상호 보완적인 강점을 제공하는 검출기(예: 고순도 게르마늄 - HPGe 검출기)와 결합하면 핵종 식별 능력을 향상시킬 수 있습니다. 플라스틱 섬광체는 큰 부피로 인해 높은 검출 효율을 제공할 수 있는 반면, HPGe 검출기는 동시 계수 기술을 통해 또는 높은 에너지 분해능으로 이벤트의 하위 집합을 분석하여 명확한 식별을 위한 정확한 에너지 측정을 제공할 수 있습니다(<span class="citation" data-cites="Goodwin2023PlasticScintillator">Goodwin et al. (<a href="#ref-Goodwin2023PlasticScintillator" role="doc-biblioref">2023</a>)</span>)</li>
+</ul></li>
+<li>고급 섬광체 재료 및 첨가제:
+<ul>
+<li>지속적인 연구는 광 수율을 향상시키고 잠재적으로 에너지 분해능을 높이며 분광학적 응용을 위한 더 나은 펄스 모양 구별을 가능하게 하기 위해 새로운 플라스틱 섬광체 재료를 개발하고 특정 화합물(예: 유기 주석)을 고분자 매트릭스에 통합하는 데 초점을 맞추고 있습니다.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a> 여기에는 열악한 환경에서의 사용을 위한 방사선 경화 플라스틱에 대한 연구도 포함됩니다.</li>
+<li>폴리스타이렌과 폴리메틸메타크릴레이트(PMMA)와 같은 서로 다른 고분자를 혼합한 하이브리드 플라스틱 섬광체의 개발은 광학적 투명성과 기계적 내구성을 향상시키는 데 유망하며, 이는 더 효율적이고 신뢰할 수 있는 검출기로 이어질 수 있습니다.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></li>
+</ul></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-3" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-3">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 7</strong>: 플라스틱 섬광체를 이용한 핵종 식별 기술은 재료 과학, 검출기 설계 및 전산 지능의 발전을 결합하는 시너지 효과를 통해 발전할 가능성이 높습니다. 이는 단일 혁신적인 돌파구보다는 여러 연구 분야에서 발생하는 점진적인 개선을 통해 진전이 이루어질 것임을 시사합니다.
+<ul>
+<li><strong>Chain of Thought</strong>: 플라스틱 섬광체의 고유한 물리적 한계는 재료 개선만으로는 완전히 극복하기 어려울 것입니다. 더 나은 재료를 보다 정교한 알고리즘 및 검출기 구성과 통합하는 것이 플라스틱 섬광체의 핵종 식별 능력을 크게 향상시키는 가장 유망한 방법입니다.</li>
+</ul></li>
+<li><strong>Insight 8</strong>: 머신러닝 및 AI 기반 분석의 증가는 휴대용 및 현장 배치 가능한 플라스틱 섬광체 시스템이 이전에는 더 정교하고 덜 이동성이 좋은 검출기 기술로만 달성할 수 있었던 수준의 핵종 식별 정확도를 달성할 수 있는 잠재력을 시사합니다. 이는 특히 보안 및 비상 대응 시나리오에서 다양한 분야에 상당한 영향을 미칠 수 있습니다.
+<ul>
+<li><strong>Chain of Thought</strong>: 사고의 흐름: 머신러닝 모델이 대규모 스펙트럼 정보 데이터셋에서 복잡한 패턴을 학습할 수 있는 능력은 기존 분석 방법으로는 쉽게 드러나지 않는 식별 특징을 추출할 수 있는 유망한 경로를 제공합니다. 이는 휴대성과 비용 효율성을 유지하면서도 매우 효과적인 핵종 식별 시스템 개발로 이어질 수 있습니다.</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="다른-핵종-식별-기술과의-비교" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="다른-핵종-식별-기술과의-비교"><span class="header-section-number">5</span> 다른 핵종 식별 기술과의 비교:</h2>
+<div id="tbl-comparison_of_RIT" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparison_of_RIT-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+표&nbsp;1: Comparison of Radionuclide Identification Technologies for Gamma-Ray Spectroscopy
+</figcaption>
+<div aria-describedby="tbl-comparison_of_RIT-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature</th>
+<th style="text-align: center;">Plastic Scintillator</th>
+<th style="text-align: center;">Inorganic Scintillator (NaI(Tl))</th>
+<th style="text-align: center;">Semiconductor Detector (HPGe)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Energy Resolution</td>
+<td style="text-align: center;">Low (10-15% at 662 keV)</td>
+<td style="text-align: center;">Medium (6-8% at 662 keV)</td>
+<td style="text-align: center;">Excellent (&lt;1% at 662 keV)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Density</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Effective Atomic Number</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Cost</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">Medium</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Portability</td>
+<td style="text-align: center;">High (lightweight, rugged)</td>
+<td style="text-align: center;">Medium</td>
+<td style="text-align: center;">Low (requires cooling)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Photopeak Presence</td>
+<td style="text-align: center;">Weak or absent due to Compton dominance</td>
+<td style="text-align: center;">Distinct</td>
+<td style="text-align: center;">Distinct</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Gamma-Ray Sensitivity</td>
+<td style="text-align: center;">Medium</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Neutron Sensitivity</td>
+<td style="text-align: center;">Low (can be doped for thermal neutrons)</td>
+<td style="text-align: center;">Low (can be doped for thermal neutrons)</td>
+<td style="text-align: center;">Sensitive to fast neutrons</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Response Speed</td>
+<td style="text-align: center;">Fast (nanoseconds)</td>
+<td style="text-align: center;">Medium (microseconds)</td>
+<td style="text-align: center;">Slow (microseconds)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Main Applications</td>
+<td style="text-align: center;">RPM, high count rate environments, beta detection, wide area monitoring</td>
+<td style="text-align: center;">Medical imaging, general gamma-ray spectroscopy, field RIID</td>
+<td style="text-align: center;">High-resolution spectroscopy, low-level counting</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Radionuclide ID Ability</td>
+<td style="text-align: center;">Limited (requires advanced algorithms or hybrid systems)</td>
+<td style="text-align: center;">Good (based on photopeaks)</td>
+<td style="text-align: center;">Excellent (precise energy measurement)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<ul>
+<li><p><strong>무기 섬광체(NaI(Tl), CsI(Tl), LaBr3):</strong> 플라스틱 섬광체보다 에너지 분해능이 훨씬 우수하여 특징적인 광전 피크 분석을 통해 보다 직접적이고 신뢰성 있는 핵종 식별이 가능합니다.<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a><sup>,</sup> <a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a> 예를 들어, NaI(Tl)은 높은 광 수율과 좋은 분해능을 가지고 있어 핵종 식별 장비에 적합합니다.<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a> LaBr3 섬광체는 NaI(Tl)보다 더 나은 분해능을 제공합니다.<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>그러나 무기 섬광체는 일반적으로 더 비싸고 일부는 흡습성이 있어 취급 및 포장에 주의가 필요합니다.<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a><sup>,</sup><a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></p></li>
+<li><p><strong>반도체 검출기(HPGe, CZT):</strong> 일반적으로 사용되는 방사선 검출기 중에서 최고의 에너지 분해능을 제공하여 복잡한 핵종 혼합물을 매우 정확하게 식별하고 낮은 활동도 선원을 검출할 수 있습니다.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a><sup>,</sup><a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a> HPGe 검출기는 작동을 위해 극저온 냉각이 필요하여 휴대성이 제한되고 작동 복잡성이 증가합니다. CZT 검출기는 실온에서 작동할 수 있지만 섬광체보다 일반적으로 더 비쌉니다.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a><sup>,</sup> <a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></p></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-4" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-4">Insights, Hidden Patterns, Causal Relationships, and Broad Implications</h3>
+<ul>
+<li><p><strong>Insight 9:</strong> 핵종 식별을 위한 검출기 기술의 선택은 에너지 분해능 및 검출 효율과 같은 성능 특성과 비용, 휴대성 및 작동 복잡성과 같은 실제 고려 사항 간의 절충을 포함합니다. 플라스틱 섬광체는 분광학적 정확도를 다소 희생하더라도 비용, 크기 및 속도가 가장 중요한 시나리오에서 장점을 제공합니다.</p>
+<ul>
+<li><strong>Chain of Thought:</strong> 항만에서의 고속 처리량 검색(RPM)은 비용이 많이 드는 고분해능 검출기보다 플라스틱 섬광체를 선호하는 반면, 환경 모니터링을 위한 실험실 환경에서는 미량의 핵종을 정확하게 식별하기 위해 HPGe 검출기의 높은 분해능을 우선시할 수 있습니다.</li>
+</ul></li>
+<li><p><strong>Insight 10:</strong> 플라스틱 섬광체를 다른 검출기 유형과 결합한 하이브리드 시스템의 개발은 서로 다른 기술의 상호 보완적인 강점을 활용하려는 노력을 나타냅니다. 이 접근 방식은 단일 검출기가 모든 시나리오에 이상적이지 않다는 점을 인식하고 핵종 식별을 위한 보다 다재다능하고 고성능 솔루션을 만드는 것을 목표로 합니다.</p></li>
+</ul>
+</section>
+</section>
+<section id="휴대용-및-현장-배치-가능-시스템의-예" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="휴대용-및-현장-배치-가능-시스템의-예"><span class="header-section-number">6</span> 휴대용 및 현장 배치 가능 시스템의 예:</h2>
+<ul>
+<li>방사선 포털 모니터(RPM): 1차 검색을 위해 대용량 플라스틱 섬광체를 일반적으로 사용합니다.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) 향상된 식별 능력을 위해 에너지 가중 알고리즘 및 머신러닝과 결합되는 경우가 많습니다(여전히 제한적임).(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>휴대용 핵종 식별 장치(RIID): 최초 대응자, 법 집행 기관 및 보안 담당자를 위해 설계된 많은 휴대용 RIID는 민감도, 빠른 응답 및 현장 사용을 위한 견고성의 균형을 달성하기 위해 플라스틱 섬광체를 통합합니다.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a> 이러한 장치에는 획득한 스펙트럼을 기반으로 어느 정도의 핵종 식별 기능을 제공하는 알고리즘이 포함되어 있는 경우가 많습니다.</li>
+<li>착용형 개인 방사선 선량계: 소형 플라스틱 섬광체와 SiPM을 결합하여 개인 방사선 노출을 실시간으로 모니터링하기 위해 개발되고 있습니다.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a> 주로 선량 측정을 위한 것이지만 일부 고급 모델은 기본적인 핵종 식별 기능을 제공할 수 있습니다.</li>
+<li>배낭형 방사선 검출 시스템: 넓은 지역에서 방사선원을 검색하기 위해 설계된 휴대용 시스템에는 감마선 및 중성자 검출을 위해 플라스틱 섬광체가 포함될 수 있습니다.<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a> 이러한 시스템에는 데이터 분석 및 잠재적인 동위원소 식별을 위한 소프트웨어가 포함되어 있는 경우가 많습니다.</li>
+<li>플라스틱 섬광 광섬유(PSOF) 검출기: 유연하고 길이가 긴 이 검출기는 오염된 지역 및 액체 환경에서 방사선 감시를 위해 현장에 배치할 수 있으며 유연성과 확장된 범위를 제공합니다.[^27] 적절한 분석 기술과 결합하면 특정 핵종의 존재에 대한 정보를 제공할 수 있습니다.</li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-5" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-5">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><p><strong>Insight 11</strong>: 플라스틱 섬광체를 기반으로 하는 다양한 휴대용 시스템의 개발은 특히 보안 및 비상 대응 시나리오에서 핵종 검출 및 식별을 위한 현장 배치 가능한 솔루션에 대한 지속적인 필요성을 입증합니다. 이러한 시나리오에서는 플라스틱 섬광체의 장점(크기, 무게, 비용)이 분광학적 한계보다 중요합니다.</p>
+<ul>
+<li><strong>Chain of Thought</strong>: 핵 및 방사능 테러의 위협 증가와 사고 발생 시 신속한 환경 감시의 필요성은 휴대하기 쉽고 사용자 친화적인 검출 시스템에 대한 수요를 촉진합니다. 플라스틱 섬광체는 이러한 시스템에 쉽게 통합될 수 있어 이러한 요구 사항을 해결하는 데 중요한 역할을 합니다.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="최근-발전-및-미래-추세" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="최근-발전-및-미래-추세"><span class="header-section-number">7</span> 최근 발전 및 미래 추세:</h2>
+<ul>
+<li><p>플라스틱 섬광체의 식별 능력을 향상시키기 위해 에너지 가중 알고리즘 및 머신러닝 모델(딥러닝 아키텍처 포함)의 지속적인 개발 및 개선.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) 정확도 향상, 복잡한 혼합물 처리, 오경보율 감소에 초점.</p></li>
+<li><p>향상된 광 수율과 잠재적으로 더 나은 에너지 분해능을 위해 새로운 유기 화합물 또는 중금속 첨가제를 포함하는 새로운 플라스틱 섬광체 재료에 대한 연구<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a> 열악한 환경에서의 사용을 위한 방사선 경화 플라스틱 개발도 포함됩니다.</p></li>
+<li><p>특히 SiPM과 같은 광센서 기술의 발전으로 휴대용 시스템을 더욱 작고 견고하며 전력 효율적으로 만들 수 있는 잠재력 제공.<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></p></li>
+<li><p>높은 효율성과 좋은 에너지 분해능의 균형을 달성하기 위해 플라스틱 섬광체를 다른 유형의 검출기와 결합한 하이브리드 검출기 설계 연구.</p></li>
+<li><p>섬광 펄스에서 추가 정보를 추출하고 잠재적으로 다른 핵종의 식별을 개선하기 위한 보다 정교한 신호 처리 기술 개발.</p></li>
+<li><p>중요한 응용 분야에서 핵종 식별에 사용되는 머신러닝 모델의 설명 가능성 및 해석 가능성에 대한 관심 증가(<span class="citation" data-cites="Jeon2023Explanation">Jeon, Kim, and and (<a href="#ref-Jeon2023Explanation" role="doc-biblioref">2023</a>)</span>)</p></li>
+</ul>
+<section id="insights-hidden-patterns-causal-relationships-and-broad-implications-6" class="level3">
+<h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-6">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
+<ul>
+<li><strong>Insight 12</strong>: 플라스틱 섬광체를 이용한 핵종 식별의 미래는 재료 과학, 검출기 공학 및 전산 지능의 융합적인 발전에 크게 의존할 것입니다. 이는 획기적인 단일 기술보다는 여러 연구 분야에서 발생하는 점진적인 개선을 통해 발전이 이루어질 가능성이 높다는 것을 시사합니다.
+<ul>
+<li><strong>Chain of Thought:</strong> 플라스틱 섬광체의 고유한 물리적 한계를 재료 개선만으로는 완전히 극복하기 어려울 것입니다. 더 나은 재료를 보다 정교한 알고리즘 및 검출기 구성과 통합하는 것이 플라스틱 섬광체의 핵종 식별 능력을 크게 향상시키는 가장 유망한 방법입니다.</li>
+</ul></li>
+<li><strong>Insight 13</strong>: 머신러닝 및 AI 기반 분석의 증가는 휴대용 및 현장 배치 가능한 플라스틱 섬광체 시스템이 이전에는 더 정교하고 덜 이동성이 좋은 검출기 기술로만 달성할 수 있었던 수준의 핵종 식별 정확도를 달성할 수 있는 잠재력을 시사합니다. 이는 특히 보안 및 비상 대응 시나리오에서 다양한 분야에 상당한 영향을 미칠 수 있습니다.
+<ul>
+<li><strong>Chain of Thought</strong>: 머신러닝 모델이 대규모 스펙트럼 정보 데이터셋에서 복잡한 패턴을 학습할 수 있는 능력은 기존 분석 방법으로는 쉽게 드러나지 않는 식별 특징을 추출할 수 있는 유망한 경로를 제공합니다. 이는 휴대성과 비용 효율성을 유지하면서도 매우 효과적인 핵종 식별 시스템 개발로 이어질 수 있습니다.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="결론" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="결론"><span class="header-section-number">8</span> 결론:</h2>
+<ul>
+<li><p>플라스틱 섬광체를 이용한 핵종 식별의 현재 능력 및 한계 요약: 비용 효율성, 빠른 속도 및 휴대성 면에서 장점을 제공하지만, 낮은 에너지 분해능은 정확한 핵종 식별에 상당한 어려움을 야기합니다.</p></li>
+<li><p>발전 사항 요약: 에너지 가중 알고리즘 및 머신러닝 기술의 적용을 통해 제한된 스펙트럼 데이터에서 더 많은 식별 정보를 추출함으로써 상당한 진전이 이루어졌습니다. 다중 배열 및 하이브리드 검출기 설계 또한 향상된 성능을 위한 잠재력을 보여줍니다.</p></li>
+<li><p>Future outlook: 고급 재료, 혁신적인 검출기 설계 및 정교한 전산 방법을 지속적으로 연구함으로써 이 분야가 더욱 발전할 가능성이 높습니다. 플라스틱 섬광체가 모든 응용 분야에서 고분해능 검출기를 완전히 대체하지는 못하겠지만, 지속적인 혁신을 통해 특히 휴대용 및 현장 배치 가능한 시스템과 같이 고유한 장점이 중요한 시나리오에서 핵종 식별 분야에서 그 역할이 확대될 것으로 예상됩니다.</p></li>
+</ul>
+<p><br></p>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Ely2008TheUse" class="csl-entry" role="listitem">
+Ely, James, Kevin Anderson, Derrick Bates, Richard Kouzes, C. Presti, Robert Runkle, Edward Siciliano, and Dennis Weier. 2008. <span>‘The Use of Energy Information in Plastic Scintillator Material’</span>. <em>Journal of Radioanalytical and Nuclear Chemistry - J RADIOANAL NUCL CHEM</em> 276 (June): 743–48. https://doi.org/<a href="https://doi.org/10.1007/s10967-008-0627-5">https://doi.org/10.1007/s10967-008-0627-5</a>.
+</div>
+<div id="ref-Goodwin2023PlasticScintillator" class="csl-entry" role="listitem">
+Goodwin, M A, T P Gill, A V Davies, R Britton, S J Bell, and P H Regan. 2023. <span>‘A Plastic Scintillator and HPGe β-Γcoincidence Detection System.’</span> <em>Appl Radiat Isot</em> 201 (November): 111028. <a href="https://doi.org/10.1016/j.apradiso.2023.111028">https://doi.org/10.1016/j.apradiso.2023.111028</a>.
+</div>
+<div id="ref-Istofa2025RadionuclideIdentification" class="csl-entry" role="listitem">
+Istofa, Istofa, Gina Kusuma, Firliyani Ningsih, Joko Triyanto, I Putu Susila, and Prawito Prajitno. 2025. <span>‘Radionuclide Identification System Using Convolution Neural Network for Environmental Radiation Monitoring’</span>. <em>International Journal of Electrical and Computer Engineering (IJECE)</em> 15 (April): 2282. <a href="https://doi.org/10.11591/ijece.v15i2.pp2282-2290">https://doi.org/10.11591/ijece.v15i2.pp2282-2290</a>.
+</div>
+<div id="ref-Jeon2023Explanation" class="csl-entry" role="listitem">
+Jeon, Byoungil, Jinhwan Kim, and Myungkook Moon and. 2023. <span>‘Explanation of Deep Learning–Based Radioisotope Identifier for Plastic Scintillation Detector’</span>. <em>Nuclear Technology</em> 209 (1): 1–14. <a href="https://doi.org/10.1080/00295450.2022.2096389">https://doi.org/10.1080/00295450.2022.2096389</a>.
+</div>
+<div id="ref-Kim2018EnergyResolution" class="csl-entry" role="listitem">
+Kim, Yonghyun, Jaebum Son, Junesic Park, Dong-geon Kim, Kihong Pak Pak, Sangmin Lee, and Yong Kyun Kim. 2018. <span>‘Energy Resolution of the Fabricated Plastic Scintillator’</span>. Korean Nuclear Society; Korean Nuclear Society.
+</div>
+<div id="ref-Lee2020Evaluation" class="csl-entry" role="listitem">
+Lee, Hyun Cheol, Bon Tack Koo, Chang Il Choi, Chang Su Park, Jeongwan Kwon, Hong-Suk Kim, Heejun Chung, and Min Chul Hee. 2020. <span>‘Evaluation of Source Identification Method Based on Energy-Weighting Level with Portal Monitoring System Using Plastic Scintillator’</span>. <em>J. Radiat. Prot. Res</em> 45 (3): 117–29. <a href="https://doi.org/10.14407/jrpr.2020.45.3.117">https://doi.org/10.14407/jrpr.2020.45.3.117</a>.
+</div>
+<div id="ref-Lee2023Radionuclide" class="csl-entry" role="listitem">
+Lee, Hyun Cheol, Bon Tack Koo, Ju Young Jeon, Bo-Wi Cheon, Do Hyeon Yoo, Heejun Chung, and Chul Hee Min. 2023. <span>‘Radionuclide Identification Based on Energy-Weighted Algorithm and Machine Learning Applied to a Multi-Array Plastic Scintillator’</span>. <em>Nuclear Engineering and Technology</em> 55 (10): 3907–12. https://doi.org/<a href="https://doi.org/10.1016/j.net.2023.07.005">https://doi.org/10.1016/j.net.2023.07.005</a>.
+</div>
+<div id="ref-Lee2016Validation" class="csl-entry" role="listitem">
+Lee, Hyun, Wook-Geun Shin, Hyo Park, Dohyeon Yoo, Chang-Il Choi, Chang-Su Park, Hong-Suk Kim, and Chul Hee Min. 2016. <span>‘Validation of Energy-Weighted Algorithm for Radiation Portal Monitor Using Plastic Scintillator’</span>. <em>Applied Radiation and Isotopes</em> 107 (January): 160–64. <a href="https://doi.org/10.1016/j.apradiso.2015.10.019">https://doi.org/10.1016/j.apradiso.2015.10.019</a>.
+</div>
+<div id="ref-Lee2024PulseShape" class="csl-entry" role="listitem">
+Lee, Yujin, Jinyoung Kim, Byoung-cheol Koh, Young Soo Yoon, and Chang Hyon Ha. 2024. <span>‘Pulse Shape Discrimination in an Organic Scintillation Phoswich Detector Using Machine Learning Techniques’</span>. <em>Frontiers in Physics</em> Volume 12 - 2024. <a href="https://doi.org/10.3389/fphy.2024.1361608">https://doi.org/10.3389/fphy.2024.1361608</a>.
+</div>
+<div id="ref-Pozzi2013PulseShape" class="csl-entry" role="listitem">
+Pozzi, Sara, Mark Bourne, and Shaun Clarke. 2013. <span>‘Pulse Shape Discrimination in the Plastic Scintillator EJ-299-33’</span>. <em>Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment</em> 723 (September): 19–23. <a href="https://doi.org/10.1016/j.nima.2013.04.085">https://doi.org/10.1016/j.nima.2013.04.085</a>.
+</div>
+<div id="ref-Turner2021ConvolutionalNeuralNetwork" class="csl-entry" role="listitem">
+Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer, Jonathan Burns, and Martin Freer. 2021. <span>‘Convolutional Neural Networks for Challenges in Automated Nuclide Identification’</span>. <em>Sensors</em> 21 (August): 5238. <a href="https://doi.org/10.3390/s21155238">https://doi.org/10.3390/s21155238</a>.
+</div>
+</div>
+</section>
+</section>
+<section id="참고자료" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="참고자료"><span class="header-section-number">9</span> 참고자료</h2>
+<p>[2] Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study</p>
+<p>[3] Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/</p>
+<p>[4] Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator</p>
+<p>[5] SB 40/150 Plastic Scintillators - Mirion Technologies, 5월 18, 2025에 액세스, https://www.mirion.com/products/technologies/radiation-monitoring-systems/pro-tk-radiation-and-process-monitoring-systems/radiation-detectors-1e/sb-40-150-plastic-scintillators</p>
+<p>[6] Plastic Scintillators | Oncology Medical Physics, 5월 18, 2025에 액세스, https://oncologymedicalphysics.com/plastic-scintillators/</p>
+<p>[7] Scintillation Detectors ⋆ Scionix, 5월 18, 2025에 액세스, https://scionix.nl/scintillation-detectors/</p>
+<p>[8] Scintillators - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1867988</p>
+<p>[9] Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors</p>
+<p>[10] Scintillators!, 5월 18, 2025에 액세스, https://www.oeaw.ac.at/fileadmin/Institute/HEPHY/PDF/ausbildung/praktikum/VO-5-Scintillators.pdf</p>
+<p>[11] Energy resolution of plastic scintillation detector for beta rays, H. H. Vo et. al.&nbsp;<em>IEEE Transactions on Nuclear Science</em>, <strong>55</strong> (6):3717-3724, 2008 DOI: 10.1109/TNS.2008.2005718, https://ieeexplore.ieee.org/document/4723822</p>
+<p>[12] Unlocking the Secrets of Radiation: Marvel of the Scintillation Counter - Open MedScience, 5월 18, 2025에 액세스, https://openmedscience.com/unlocking-the-secrets-of-radiation-marvel-of-the-scintillation-counter/</p>
+<p>[16] Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout</p>
+<p>[17] Scintillation detector with SiPM matrix as a photosensor | Request PDF, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/322680188_Scintillation_detector_with_SiPM_matrix_as_a_photosensor</p>
+<p>[20] PULSE SHAPE DISCRIMINATION IN A PLASTIC SCINTILLATOR (Journal Article) - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/biblio/4140599</p>
+<p>[21] EJ-276D - Pulse Shape Discrimination Plastic Scintillator - Eljen Technology, 5월 18, 2025에 액세스, https://eljentechnology.com/products/plastic-scintillators/ej-276</p>
+<p>[22] Pulse shape simulations for organic scintillation detectors using Geant4 - EPJ Web of Conferences, 5월 18, 2025에 액세스, https://www.epj-conferences.org/articles/epjconf/pdf/2021/07/epjconf_animma2021_11002.pdf</p>
+<p>[23] Validation of energy-weighted algorithm for radiation portal monitor using plastic scintillator, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/283844276_Validation_of_energy-weighted_algorithm_for_radiation_portal_monitor_using_plastic_scintillator</p>
+<p>[25] A Monte Carlo study of an energy-weighted algorithm for radionuclide analysis with a plastic scintillation detector - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/274397333_A_Monte_Carlo_study_of_an_energy-weighted_algorithm_for_radionuclide_analysis_with_a_plastic_scintillation_detector</p>
+<p>[28] Development of a radionuclide identification algorithm based on a convolutional neural network for radiation portal monitoring system - INIS-IAEA, 5월 18, 2025에 액세스, https://inis.iaea.org/records/cdxny-y9z44</p>
+<p>[29] Comparison of Machine Learning-Based Radioisotope Identifiers for Plastic Scintillation Detector - Korea Science, 5월 18, 2025에 액세스, https://koreascience.kr/article/JAKO202108458484352.page</p>
+<p>[30] Comparison of Machine Learning-Based Radioisotope Identifiers for Plastic Scintillation Detector - Journal of Radiation Protection and Research, 5월 18, 2025에 액세스, https://www.jrpr.org/include/download.php?filedata=1098%7Cjrpr-2021-00206.pdf</p>
+<p>[34] Explaining machine-learning models for gamma-ray detection and identification - PMC, 5월 18, 2025에 액세스, https://pmc.ncbi.nlm.nih.gov/articles/PMC10281578/</p>
+<p>[35] Explaining machine-learning models for gamma-ray detection and identification | PLOS One, 5월 18, 2025에 액세스, https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0286829</p>
+<p>[36] Pseudo-Gamma Spectroscopy Based on Plastic Scintillation Detectors Using Multitask Learning - MDPI, 5월 18, 2025에 액세스, https://www.mdpi.com/1424-8220/21/3/684</p>
+<p>[40] Data Support of Generalization Ability of a CNN γ-ray Localization Model for Radiation Imaging, 5월 18, 2025에 액세스, https://www.scidb.cn/en/detail?dataSetId=4ba07b2a777743d8938e920c3c258815</p>
+<p>[43] Plastic Scintillators Light Yield Energy Calibration - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1427195</p>
+<p>[44] Hybrid plastic scintillators aim to improve nuclear safety and medical imaging - EurekAlert!, 5월 18, 2025에 액세스, https://www.eurekalert.org/news-releases/1068785</p>
+<p>[45] Recent developments in plastic scintillators with pulse shape discrimination - ResearchGate, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/322877963_Recent_developments_in_plastic_scintillators_with_pulse_shape_discrimination</p>
+<p>[46] Current status on plastic scintillators modifications (Conference) | OSTI.GOV, 5월 18, 2025에 액세스, https://www.osti.gov/biblio/22531431</p>
+<p>[47] Synthesis and Analysis of Novel Materials for Plastic Scintillators - eScholarship, 5월 18, 2025에 액세스, https://escholarship.org/content/qt195786t5/qt195786t5.pdf?t=orl5aa</p>
+<p>[48] Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors</p>
+<p>[49] SAM 940 (RIID) Handheld Radiation Isotope Identifier - Berkeley Nucleonics, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/sam-940-riid</p>
+<p>[50] RADEAGLET-R Rugged, Lightweight, Handheld Radioisotope Identification Device, 5월 18, 2025에 액세스, https://www.ortec-online.com/products/portable-radioisotope-identification-devices-riids/radeaglet-r</p>
+<p>[51] js-techwin.com, 5월 18, 2025에 액세스, https://js-techwin.com/data/file/brochure/Products-JSTECHWIN%20(eng).pdf</p>
+<p>[52] Portable Radiation Instruments - Handheld | LAURUS Systems, 5월 18, 2025에 액세스, https://www.laurussystems.com/product-listing/handheld-radiation-instruments/</p>
+<p>[53] Acquiring Gamma-Ray Energy Spectrum Using a Plastic Scintillation Optical Fiber Detector, 5월 18, 2025에 액세스, https://www.mdpi.com/2304-6732/11/6/493</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">각주</h2>
+
+<ol>
+<li id="fn1"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Scintillation Detectors ⋆ Scionix, 5월 18, 2025에 액세스, https://scionix.nl/scintillation-detectors/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Scintillation Detectors ⋆ Scionix, 5월 18, 2025에 액세스, https://scionix.nl/scintillation-detectors/<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Scintillator - Wikipedia, 5월 18, 2025에 액세스, https://en.wikipedia.org/wiki/Scintillator<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Scintillators!, 5월 18, 2025에 액세스, https://www.oeaw.ac.at/fileadmin/Institute/HEPHY/PDF/ausbildung/praktikum/VO-5-Scintillators.pdf<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>Scintillators - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1867988<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Optical transmittance and pulse shape discrimination of polystyrene/poly(methyl methacrylate)-based plastic scintillators - EurekAlert!, 5월 18, 2025에 액세스, https://www.eurekalert.org/news-releases/1068785<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Scintillators!, 5월 18, 2025에 액세스, https://www.oeaw.ac.at/fileadmin/Institute/HEPHY/PDF/ausbildung/praktikum/VO-5-Scintillators.pdf<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>SAM 940 (RIID) Handheld Radiation Isotope Identifier - Berkeley Nucleonics, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/sam-940-riid<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>js-techwin.com, 5월 18, 2025에 액세스, https://js-techwin.com/data/file/brochure/Products-JSTECHWIN%20(eng).pdf<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>Portable Radiation Instruments - Handheld | LAURUS Systems, 5월 18, 2025에 액세스, https://www.laurussystems.com/product-listing/handheld-radiation-instruments/<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>Scintillators - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1867988<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/julia-kaeri\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

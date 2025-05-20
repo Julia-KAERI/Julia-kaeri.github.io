@@ -2,7 +2,8 @@
   {
     "listing": "/src/posts/index.html",
     "items": [
-      "/src/posts/first.html"
+      "/src/posts/plastic_scintillator_eng.html",
+      "/src/posts/plastic_scintillator_kor.html"
     ]
   }
 ]
