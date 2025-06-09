@@ -63,7 +63,7 @@ Google research 에 의해 생성되었음
   - Pair production: The gamma ray is converted into an electron-positron pair near the atomic nucleus (occurs only when the gamma-ray energy exceeds 1.022 MeV; less significant in many common radionuclide detection applications).[^3]
 
 - Role of Photosensors:
-  - Photomultiplier Tubes (PMTs): Vacuum-based devices that detect and amplify the faint light emitted from the scintillator, converting it into an electrical signal. They emit electrons from a photocathode through the photoelectric effect and perform electron amplification at dynodes.[^3] They require a high-voltage power supply for operation.[^16]
+  - Photomultiplier Tubes (PMTs): Vacuum-based devices that detect and amplify the faint light emitted from the scintillator, converting it into an electrical signal. They emit electrons from a photocathode through the photoelectric effect and perform electron amplification at [dynodes](https://en.wikipedia.org/wiki/Dynode).[^3] They require a high-voltage power supply for operation.[^16]
   - Silicon Photomultipliers (SiPMs): Solid-state photosensors that offer advantages such as small size, low-voltage operation, and insensitivity to magnetic fields, making them increasingly used as an alternative to PMTs in portable applications.3 They can achieve energy resolution similar to PMTs in some scenarios.[^16]
 
 ### Insights, Hidden Patterns, Causal Relationships, and Broad Implications:
@@ -78,7 +78,7 @@ Google research 에 의해 생성되었음
 ## Challenges in Radionuclide Identification Using Plastic Scintillators:
 
 - Detailed discussion of inherent limitations hindering accurate radionuclide identification:
-  - Low Energy Resolution: Typically in the range of 10-15% at 662 $\text{keV}$ ($^{137}$Cs), significantly lower than inorganic scintillators like NaI(Tl) (6-8%) or HPGe detectors (<1%).(@Ely2008TheUse) This low energy resolution makes it difficult to distinguish gamma rays with closely spaced energies, which is common in the decay processes of many radionuclides.(@Ely2008TheUse)
+  - Low Energy Resolution: Typically in the range of 10-15% at 662 $\text{keV}$ ($^{137}$Cs), significantly lower than inorganic scintillators like NaI(Tl) (6-8%) or HPGe detectors (<1%).(@Mengesha2015PlascitScintillators) This low energy resolution makes it difficult to distinguish gamma rays with closely spaced energies, which is common in the decay processes of many radionuclides.(@Ely2008TheUse)
   - Compton Continuum and Absence of Distinct Photopeaks: The energy spectra obtained with plastic scintillators when exposed to gamma rays are dominated by a continuous energy distribution due to Compton scattering, lacking the distinct photopeaks (corresponding to the total energy of the incident gamma ray) that serve as unique identifiers for specific radionuclides in high-resolution detectors.(@Ely2008TheUse)
   - Difficulty in Resolving Overlapping Energy Lines: In the case of samples containing mixed radionuclides, the broad spectral features from each nuclide, due to the low energy resolution, significantly overlap. This makes it very challenging to separate the contributions of individual isotopes and accurately identify all components within the mixture.(@Lee2020Evaluation)
 

@@ -261,7 +261,10 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="../../src/posts/plastic_scintillator_eng.html">Report on Plastic Scintillator Radionuclide Identification Technology</a> 의 한글 번역 버젼으로 역시 google research 에 의해 생성되었음</p>
+<ul>
+<li><p><a href="../../src/posts/plastic_scintillator_eng.html">Report on Plastic Scintillator Radionuclide Identification Technology</a> 의 한글 번역 버젼으로 역시 google research 에 의해 생성되었음</p></li>
+<li><p>이후 자료 보충함.</p></li>
+</ul>
 </div>
 </div>
 <p><br></p>
@@ -312,26 +315,32 @@ window.Quarto = {
 </ul></li>
 <li><p>감마선의 주된 상호작용 메커니즘:</p>
 <ul>
-<li>콤프턴 산란(Compton scattering): 입사 감마선이 원자의 전하 전하와 상호작용하여 일부 에너지를 전자에 전달하고 산란되는 현상입니다.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> 플라스틱 섬광체에서 주로 발생하며, 입사 감마선의 에너지에서 최소 에너지(콤프턴 에지에 의해 결정됨)까지 연속적인 에너지 스펙트럼을 생성합니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
-<li>광전 효과(Photoelectric effect): 감마선이 원자에 완전히 흡수되어 궤도 전자를 방출하는 현상입니다(낮은 감마선 에너지 및 높은 원자 번호의 물질에서 더 잘 발생하며 플라스틱 섬광체에서는 덜 중요함).<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
-<li>전자-양전자 쌍 생성(Pair production): 감마선이 원자핵 근처에서 전자와 양전자 쌍으로 변환되는 현상입니다(감마선 에너지가 1.022 MeV를 초과할 때만 발생하며, 많은 일반적인 핵종 검출 응용 분야에서는 덜 중요함).<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+<li><strong>콤프턴 산란(Compton scattering)</strong>: 입사 감마선이 원자의 전하와 상호작용하여 일부 에너지를 전자에 전달하고 산란되는 현상입니다.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> 플라스틱 섬광체에서 주로 발생하며, 입사 감마선의 에너지에서 최소 에너지(콤프턴 엣지에 의해 결정됨)까지 연속적인 에너지 스펙트럼을 생성합니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
+<li><strong>광전 효과(Photoelectric effect)</strong>: 감마선이 원자에 완전히 흡수되어 궤도 전자를 방출하는 현상입니다(낮은 감마선 에너지 및 높은 원자 번호의 물질에서 더 잘 발생하며 플라스틱 섬광체에서는 덜 중요함).<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>. <u>이 경우 에너지가 물질 내에 흡수되며 검출 물질의 반응은 소위 <strong>full-energy peak</strong> 라고 불립니다(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>).</u></li>
+<li><strong>전자-양전자 쌍 생성(Pair production)</strong>: 감마선이 원자핵 근처에서 전자와 양전자 쌍으로 변환되는 현상입니다(감마선 에너지가 1.022 MeV를 초과할 때만 발생하며, 많은 일반적인 핵종 검출 응용 분야에서는 덜 중요함).<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+</ul></li>
+<li><p>지배적 매커니즘과 검출기 물질(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>):</p>
+<ul>
+<li>광전 흡수 메커니즘은 낮은 감마선 에너지에서 지배적인 반면, 컴프턴 산란은 더 높은 에너지에서 우세해지며, 그 이후에는 쌍생성(pair production)이 중요한 효과로 나타납니다. 광전 효과와 컴프턴 산란 중 어느 쪽이 지배적인지를 결정하는 주요 요인은 물질의 원자 번호(<span class="math inline">\(Z\)</span>)입니다.</li>
+<li>플라스틱 신틸레이터(plastic scintillator) 같은 낮은 원자번호 물질에서는 광전 효과가 매우 낮은 에너지(50 keV 이하)에서만 지배적입니다. 반면, 탈륨이 첨가된 아이오딘화나트륨(<span class="math inline">\(\text{NaI(Tl)}\)</span>)처럼 원자번호가 높은 물질에서는 수백 keV에 이르는 에너지 범위까지도 광전 효과가 지배적입니다.</li>
+<li>단일 상호작용 외에도, 일부 물질에서는 다중 컴프턴 산란(multiple Compton scattering)이 중요한 역할을 할 수 있습니다. 평균 자유 경로 길이(mean free path length)는 물질의 원자 번호(<span class="math inline">\(Z\)</span>)에 따라 달라지며, 원자 번호가 높은 물질일수록 동일한 부피 내에서 더 많은 상호작용이 발생합니다. 다중 산란은 단일 컴프턴 상호작용만으로는 불가능한 더 많은 총 에너지 침전(deposition)을 가능하게 하는 메커니즘을 제공합니다. 또한, 원자 번호가 높은 물질에서는 첫 번째 컴프턴 산란에서 충분한 에너지가 침전되어 이후 광전 효과가 두 번째 상호작용으로 일어날 수 있습니다. 이러한 방식으로, <span class="math inline">\(\text{NaI(Tl)}\)</span>과 같은 일부 검출기 물질에서는 관심 에너지 영역 전반에 걸쳐 전 에너지 피크(full energy peaks)를 관측할 수 있습니다.</li>
 </ul></li>
 <li><p>광센서의 역할:</p>
 <ul>
-<li>광전자 증배관(Photomultiplier Tubes, PMTs): 섬광체에서 방출되는 미약한 빛을 감지하여 전기 신호로 변환하고 증폭하는 진공 기반 장치로, 광음극에서 광전 효과를 통해 전자를 방출하고 다이노드에서 전자 증폭을 수행합니다.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> 작동을 위해 고전압 전원 공급 장치가 필요합니다.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+<li>광전자 증배관(Photomultiplier Tubes, PMTs): 섬광체에서 방출되는 미약한 빛을 감지하여 전기 신호로 변환하고 증폭하는 진공 기반 장치로, 광음극에서 광전 효과를 통해 전자를 방출하고 <a href="https://en.wikipedia.org/wiki/Dynode">다이노드</a>에서 전자 증폭을 수행합니다.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> 작동을 위해 고전압 전원 공급 장치가 필요합니다.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
 <li>실리콘 광증배관(Silicon Photomultipliers, SiPMs): 고체 상태의 광센서로, 소형, 저전압 작동, 자기장에 대한 불감응성과 같은 장점을 제공하여 휴대용 응용 분야에서 PMT의 대안으로 점점 더 많이 사용되고 있습니다.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> 일부 시나리오에서는 PMT와 비슷한 에너지 분해능을 달성할 수 있습니다.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></li>
 </ul></li>
 </ul>
 <section id="insights-hidden-patterns-causal-relationships-and-broad-implications-1" class="level3">
 <h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-1">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
 <ul>
-<li><strong>Insight 3</strong>: 플라스틱 섬광체의 낮은 유효 원자 번호로 인해 감마선과의 주된 상호작용은 콤프턴 산란이며, 이는 고분해능 에너지 분광학과 직접적인 핵종 식별에 필요한 이산적인 에너지 정보를 얻는 데 근본적인 제약을 가합니다.
+<li><strong>Insight 3</strong>: <u>플라스틱 섬광체의 낮은 유효 원자 번호로 인해 감마선과의 주된 상호작용은 콤프턴 산란이며</u>, 이는 고분해능 에너지 분광학과 직접적인 핵종 식별에 필요한 이산적인 에너지 정보를 얻는 데 근본적인 제약을 가합니다.
 <ul>
-<li><strong>Chain of Thought</strong>: 광전 흡수, 즉 원하는 완전 에너지 피크를 유도하는 과정의 확률은 검출기 물질의 원자 번호에 크게 의존합니다. 플라스틱 섬광체를 구성하는 탄소와 수소의 낮은 원자 번호는 콤프턴 산란이 주된 과정임을 의미합니다. 이는 명확한 핵종 식별에 필요한 개별 피크보다는 연속적인 에너지 스펙트럼을 초래합니다.</li>
+<li><strong>Chain of Thought</strong>: 광전 흡수, 즉 원하는 완전 에너지 피크를 유도하는 과정의 확률은 검출기 물질의 원자 번호에 크게 의존합니다. 플라스틱 섬광체를 구성하는 원소는 주로 탄소와 수소같은 낮은 원자번호를 가지며 이는 콤프턴 산란이 주된 과정임을 의미하며 결과적으로 명확한 핵종 식별에 필요한 개별 피크보다는 연속적인 에너지 스펙트럼을 얻게됩니다.</li>
 </ul></li>
-<li><strong>Insight 4</strong>: 광센서(PMT 또는 SiPM)의 선택은 감도, 전력 소비, 다양한 환경(예: 자기장 존재)에 대한 적합성과 같은 검출기 시스템의 전반적인 성능에 영향을 미칠 수 있지만, 섬광체 물질 자체에 의해 부과되는 에너지 분해능의 근본적인 한계를 변경하지는 않습니다. 광센서의 주요 역할은 섬광체에서 생성된 빛을 전기 신호로 효율적으로 변환하는 것입니다. 초기 감마선 상호작용의 물리학에 의해 제한되는 빛의 정보 내용은 사용된 광센서에 관계없이 동일하게 유지됩니다.
+<li><strong>Insight 4</strong>: 광센서(PMT 또는 SiPM)의 선택은 감도, 전력 소비, 다양한 환경(예: 자기장 존재)에 대한 적합성과 같은 검출기 시스템의 전반적인 성능에 영향을 미칠 수 있지만, 섬광체 물질 자체에 의해 부과되는 에너지 분해능의 근본적인 한계는 변경되지 않습니다. 광센서의 주요 역할은 섬광체에서 생성된 빛을 전기 신호로 효율적으로 변환하는 것입니다. 초기 감마선 상호작용의 물리학에 의해 제한되는 빛의 정보 내용은 사용된 광센서에 관계없이 동일하게 유지됩니다.
 <ul>
-<li><strong>Chain of Thought</strong>: 사고의 흐름: PMT와 SiPM 모두 플라스틱 섬광체에서 나오는 미약한 빛을 감지할 수 있습니다. SiPM은 크기와 작동 특성으로 인해 특정 응용 분야에서 장점을 제공하지만, 플라스틱에서 생성된 섬광광은 콤프턴 산란 사건의 결과이며, 이는 본질적으로 에너지 스펙트럼을 넓히고 개별 핵종의 고유한 에너지 특징을 가립니다.</li>
+<li><strong>Chain of Thought</strong>: 사고의 흐름: PMT와 SiPM 모두 플라스틱 섬광체에서 나오는 미약한 빛을 감지할 수 있습니다. SiPM은 크기와 작동 특성으로 인해 특정 응용 분야에서 장점을 제공하지만, 플라스틱에서 생성된 섬광(scintillation light)은 콤프턴 산란 사건의 결과이며, 이는 본질적으로 에너지 스펙트럼을 넓히고 개별 핵종의 고유한 에너지 특징을 가립니다.</li>
 </ul></li>
 </ul>
 </section>
@@ -341,7 +350,7 @@ window.Quarto = {
 <ul>
 <li>정확한 핵종 식별을 저해하는 고유한 한계점에 대한 상세 논의:
 <ul>
-<li>은 에너지 분해능: 일반적으로 662 keV(<span class="math inline">\(^{137}\)</span>Cs)에서 10-15% 수준으로, NaI(Tl)(6-8%)과 같은 무기 섬광체나 HPGe 검출기(&lt;1%)에 비해 현저히 낮습니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>) 이처럼 낮은 에너지 분해능은 에너지 간격이 좁은 감마선을 구별하기 어렵게 만듭니다. 이는 많은 핵종의 붕괴 과정에서 흔히 발생합니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
+<li>낮은 에너지 분해능: 일반적으로 662 keV(<span class="math inline">\(^{137} \text{Cs}\)</span>)에서 10-15% 수준으로(<span class="citation" data-cites="Mengesha2015PlascitScintillators">Mengesha et al. (<a href="#ref-Mengesha2015PlascitScintillators" role="doc-biblioref">2015</a>)</span>), <span class="math inline">\(\text{NaI(Tl)}\)</span>(6-8%)(<span class="citation" data-cites="Persyk1978StateOfTheArt">Persyk and Moi (<a href="#ref-Persyk1978StateOfTheArt" role="doc-biblioref">1978</a>)</span>) 과 같은 무기 섬광체나 <span class="math inline">\(\text{HPGe}\)</span> 검출기(&lt;1%)(<span class="citation" data-cites="Hafzoglu2024Efficiency">Hafızoğlu (<a href="#ref-Hafzoglu2024Efficiency" role="doc-biblioref">2024</a>)</span>) 에 비해 현저히 낮습니다. 이처럼 낮은 에너지 분해능은 에너지 간격이 좁은 감마선을 구별하기 어렵게 만듭니다. 이는 많은 핵종의 붕괴 과정에서 흔히 발생합니다.</li>
 <li>콤프턴 연속 스펙트럼 및 뚜렷한 광전 피크의 부재: 플라스틱 섬광체가 감마선에 노출될 때 얻는 에너지 스펙트럼은 콤프턴 산란으로 인한 연속적인 에너지 분포가 주를 이루며, 고분해능 검출기에서 특정 핵종의 고유한 식별자로 작용하는 뚜렷한 광전 피크(입사 감마선의 총 에너지에 해당)가 부족합니다.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (<a href="#ref-Ely2008TheUse" role="doc-biblioref">2008</a>)</span>)</li>
 <li>겹치는 에너지 선 분해의 어려움: 혼합 핵종을 포함하는 시료의 경우, 낮은 에너지 분해능으로 인해 각 핵종에서 방출되는 넓은 스펙트럼 특징이 크게 겹칩니다. 따라서 개별 동위원소의 기여도를 분리하고 혼합물 내의 모든 성분을 정확하게 식별하는 것이 매우 어렵습니다.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>)</li>
 </ul></li>
@@ -596,6 +605,9 @@ Ely, James, Kevin Anderson, Derrick Bates, Richard Kouzes, C. Presti, Robert Run
 <div id="ref-Goodwin2023PlasticScintillator" class="csl-entry" role="listitem">
 Goodwin, M A, T P Gill, A V Davies, R Britton, S J Bell, and P H Regan. 2023. <span>‘A Plastic Scintillator and HPGe β-Γcoincidence Detection System.’</span> <em>Appl Radiat Isot</em> 201 (November): 111028. <a href="https://doi.org/10.1016/j.apradiso.2023.111028">https://doi.org/10.1016/j.apradiso.2023.111028</a>.
 </div>
+<div id="ref-Hafzoglu2024Efficiency" class="csl-entry" role="listitem">
+Hafızoğlu, Nurgül. 2024. <span>‘Efficiency and Energy Resolution of Gamma Spectrometry System with HPGe Detector Depending on Variable Source-to-Detector Distances’</span>. <em>The European Physical Journal Plus</em> 139 (2): 134. <a href="https://doi.org/10.1140/epjp/s13360-024-04903-y">https://doi.org/10.1140/epjp/s13360-024-04903-y</a>.
+</div>
 <div id="ref-Istofa2025RadionuclideIdentification" class="csl-entry" role="listitem">
 Istofa, Istofa, Gina Kusuma, Firliyani Ningsih, Joko Triyanto, I Putu Susila, and Prawito Prajitno. 2025. <span>‘Radionuclide Identification System Using Convolution Neural Network for Environmental Radiation Monitoring’</span>. <em>International Journal of Electrical and Computer Engineering (IJECE)</em> 15 (April): 2282. <a href="https://doi.org/10.11591/ijece.v15i2.pp2282-2290">https://doi.org/10.11591/ijece.v15i2.pp2282-2290</a>.
 </div>
@@ -616,6 +628,12 @@ Lee, Hyun, Wook-Geun Shin, Hyo Park, Dohyeon Yoo, Chang-Il Choi, Chang-Su Park, 
 </div>
 <div id="ref-Lee2024PulseShape" class="csl-entry" role="listitem">
 Lee, Yujin, Jinyoung Kim, Byoung-cheol Koh, Young Soo Yoon, and Chang Hyon Ha. 2024. <span>‘Pulse Shape Discrimination in an Organic Scintillation Phoswich Detector Using Machine Learning Techniques’</span>. <em>Frontiers in Physics</em> Volume 12 - 2024. <a href="https://doi.org/10.3389/fphy.2024.1361608">https://doi.org/10.3389/fphy.2024.1361608</a>.
+</div>
+<div id="ref-Mengesha2015PlascitScintillators" class="csl-entry" role="listitem">
+Mengesha, Wondwosen, Patrick L Feng, Joseph Gabriel Cordaro, Mitchell Anstey, Nicholas Myllenbeck, and Daniel J. Throckmorton. 2015. <span>‘Plastic Scintillators Light Yield Energy Calibration.’</span>, December. <a href="https://www.osti.gov/biblio/1427195">https://www.osti.gov/biblio/1427195</a>.
+</div>
+<div id="ref-Persyk1978StateOfTheArt" class="csl-entry" role="listitem">
+Persyk, D. E., and T. E. Moi. 1978. <span>‘State-of-the-Art Photomultipliers for Anger Cameras’</span>. <em>IEEE Transactions on Nuclear Science</em> 25 (1): 615–19. <a href="https://doi.org/10.1109/TNS.1978.4329382">https://doi.org/10.1109/TNS.1978.4329382</a>.
 </div>
 <div id="ref-Pozzi2013PulseShape" class="csl-entry" role="listitem">
 Pozzi, Sara, Mark Bourne, and Shaun Clarke. 2013. <span>‘Pulse Shape Discrimination in the Plastic Scintillator EJ-299-33’</span>. <em>Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment</em> 723 (September): 19–23. <a href="https://doi.org/10.1016/j.nima.2013.04.085">https://doi.org/10.1016/j.nima.2013.04.085</a>.

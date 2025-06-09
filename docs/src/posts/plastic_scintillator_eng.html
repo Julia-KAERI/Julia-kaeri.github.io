@@ -251,6 +251,20 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+노트
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Google research 에 의해 생성되었음</p>
+</div>
+</div>
+<p><br></p>
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <ul>
@@ -303,7 +317,7 @@ window.Quarto = {
 </ul></li>
 <li>Role of Photosensors:
 <ul>
-<li>Photomultiplier Tubes (PMTs): Vacuum-based devices that detect and amplify the faint light emitted from the scintillator, converting it into an electrical signal. They emit electrons from a photocathode through the photoelectric effect and perform electron amplification at dynodes.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> They require a high-voltage power supply for operation.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></li>
+<li>Photomultiplier Tubes (PMTs): Vacuum-based devices that detect and amplify the faint light emitted from the scintillator, converting it into an electrical signal. They emit electrons from a photocathode through the photoelectric effect and perform electron amplification at <a href="https://en.wikipedia.org/wiki/Dynode">dynodes</a>.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> They require a high-voltage power supply for operation.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></li>
 <li>Silicon Photomultipliers (SiPMs): Solid-state photosensors that offer advantages such as small size, low-voltage operation, and insensitivity to magnetic fields, making them increasingly used as an alternative to PMTs in portable applications.3 They can achieve energy resolution similar to PMTs in some scenarios.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
 </ul></li>
 </ul>
@@ -366,10 +380,10 @@ window.Quarto = {
 <li>Energy-Weighted Algorithms:
 <ul>
 <li>Principle: Energy-weighted algorithms aim to enhance the spectral information obtained from plastic scintillators by modifying the raw energy spectrum through the assignment of weights based on the energy of each channel. This often involves multiplying the count rate of each channel by an energy-related factor, particularly emphasizing the Compton maximum to make it appear as a more distinct and identifiable peak.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
-<li>Mathematical Formula: A common approach is to calculate the energy-weighted count (EWAi) for each channel (i) by multiplying the original count (Ci) by the energy coefficient (Ei) of that channel (EWAi=Ci×Ei).<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> Various modifications have been investigated, such as introducing integer constants to optimize the algorithm for specific applications.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>)</li>
-<li>Mechanism of Improvement: By emphasizing the Compton edge region, which is related to the maximum energy of the incident gamma ray, energy-weighted algorithms can help generate more characteristic spectral signatures for different radionuclides even with the low energy resolution of plastic scintillators.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> This transformation can convert the gradual distribution of the Compton edge into a more conspicuous peak.</li>
-<li>Validation Studies: Numerous studies have demonstrated the effectiveness of energy-weighted algorithms in enhancing the identification capabilities among various radionuclides, such as <span class="math inline">\(^{137}\)</span>Cs, <span class="math inline">\(^{60}\)</span>Co, <span class="math inline">\(^{22}\)</span>Na, and <span class="math inline">\(^{40}\)</span>K, using plastic scintillators in both laboratory experiments and real-world applications like Radiation Portal Monitors (RPMs).(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) These algorithms have also shown potential in distinguishing artificial radionuclides from Naturally Occurring Radioactive Materials (NORM).<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
-<li>Limitations: The effectiveness of energy-weighted algorithms can be reduced when dealing with complex mixtures of radionuclides, especially if the Compton edges or energy-weighted peaks significantly overlap.24 Performance can also be affected by factors such as shielding and the speed of moving sources in RPM applications.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>Mathematical Formula: A common approach is to calculate the energy-weighted count (EWAi) for each channel (i) by multiplying the original count (Ci) by the energy coefficient (Ei) of that channel (EWAi=Ci×Ei).(<span class="citation" data-cites="Lee2016Validation">H. Lee et al. (<a href="#ref-Lee2016Validation" role="doc-biblioref">2016</a>)</span>) Various modifications have been investigated, such as introducing integer constants to optimize the algorithm for specific applications.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>)</li>
+<li>Mechanism of Improvement: By emphasizing the Compton edge region, which is related to the maximum energy of the incident gamma ray, energy-weighted algorithms can help generate more characteristic spectral signatures for different radionuclides even with the low energy resolution of plastic scintillators.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> This transformation can convert the gradual distribution of the Compton edge into a more conspicuous peak.</li>
+<li>Validation Studies: Numerous studies have demonstrated the effectiveness of energy-weighted algorithms in enhancing the identification capabilities among various radionuclides, such as <span class="math inline">\(^{137}\)</span>Cs, <span class="math inline">\(^{60}\)</span>Co, <span class="math inline">\(^{22}\)</span>Na, and <span class="math inline">\(^{40}\)</span>K, using plastic scintillators in both laboratory experiments and real-world applications like Radiation Portal Monitors (RPMs).(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) These algorithms have also shown potential in distinguishing artificial radionuclides from Naturally Occurring Radioactive Materials (NORM).<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></li>
+<li>Limitations: The effectiveness of energy-weighted algorithms can be reduced when dealing with complex mixtures of radionuclides, especially if the Compton edges or energy-weighted peaks significantly overlap.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (<a href="#ref-Lee2020Evaluation" role="doc-biblioref">2020</a>)</span>) Performance can also be affected by factors such as shielding and the speed of moving sources in RPM applications.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
 </ul></li>
 <li>Machine Learning Approaches:
 <ul>
@@ -391,7 +405,7 @@ window.Quarto = {
 </ul></li>
 <li>Advanced Scintillator Materials and Additives:
 <ul>
-<li>Ongoing research focuses on developing new plastic scintillator materials and incorporating specific compounds (e.g., organic tin) into the polymer matrix to enhance light yield, potentially improve energy resolution, and enable better pulse shape discrimination for spectroscopic applications.8 This includes research on radiation-hardened plastics for use in harsh environments.</li>
+<li>Ongoing research focuses on developing new plastic scintillator materials and incorporating specific compounds (e.g., organic tin) into the polymer matrix to enhance light yield, potentially improve energy resolution, and enable better pulse shape discrimination for spectroscopic applications.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> This includes research on radiation-hardened plastics for use in harsh environments.</li>
 <li>The development of hybrid plastic scintillators by mixing different polymers such as polystyrene and polymethylmethacrylate (PMMA) shows promise in improving optical transparency and mechanical durability, which could lead to more efficient and reliable detectors.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></li>
 </ul></li>
 </ul>
@@ -523,11 +537,11 @@ window.Quarto = {
 <section id="examples-of-portable-and-field-deployable-systems" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="examples-of-portable-and-field-deployable-systems"><span class="header-section-number">6</span> Examples of Portable and Field-Deployable Systems:</h2>
 <ul>
-<li>Radiation Portal Monitors (RPMs): Commonly use large-volume plastic scintillators for primary screening.1 Often combined with energy-weighted algorithms and machine learning for enhanced (though still limited) identification capabilities.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
+<li>Radiation Portal Monitors (RPMs): Commonly use large-volume plastic scintillators for primary screening.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) Often combined with energy-weighted algorithms and machine learning for enhanced (though still limited) identification capabilities.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>)</li>
 <li>Portable Radionuclide Identification Devices (RIIDs): Many handheld RIIDs designed for first responders, law enforcement, and security personnel incorporate plastic scintillators to balance sensitivity, fast response, and ruggedness for field use.<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a> These devices often include algorithms that provide some level of radionuclide identification based on the acquired spectra.</li>
 <li>Wearable Personal Radiation Dosimeters: Small plastic scintillators coupled with SiPMs are being developed for real-time monitoring of personal radiation exposure.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a> While primarily for dose measurement, some advanced models may offer basic radionuclide identification features.</li>
 <li>Backpack Radiation Detection Systems: Portable systems designed for searching for radiation sources over large areas may include plastic scintillators for gamma and neutron detection.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a> These systems often incorporate software for data analysis and potential isotope identification.</li>
-<li>Plastic Scintillation Optical Fiber (PSOF) Detectors: These flexible and long detectors can be deployed in the field for radiation monitoring in contaminated areas and liquid environments, offering flexibility and extended reach.27 When coupled with appropriate analysis techniques, they can provide information on the presence of specific radionuclides.</li>
+<li>Plastic Scintillation Optical Fiber (PSOF) Detectors: These flexible and long detectors can be deployed in the field for radiation monitoring in contaminated areas and liquid environments, offering flexibility and extended reach.[^27] When coupled with appropriate analysis techniques, they can provide information on the presence of specific radionuclides.</li>
 </ul>
 <section id="insights-hidden-patterns-causal-relationships-and-broad-implications-5" class="level3">
 <h3 class="anchored" data-anchor-id="insights-hidden-patterns-causal-relationships-and-broad-implications-5">Insights, Hidden Patterns, Causal Relationships, and Broad Implications:</h3>
@@ -543,8 +557,8 @@ window.Quarto = {
 <h2 data-number="7" class="anchored" data-anchor-id="recent-advancements-and-future-trends"><span class="header-section-number">7</span> Recent Advancements and Future Trends:</h2>
 <ul>
 <li><p>Continued development and improvement of energy-weighted algorithms and machine learning models (including deep learning architectures) to enhance the identification capabilities of plastic scintillators.(<span class="citation" data-cites="Lee2023Radionuclide">H. C. Lee et al. (<a href="#ref-Lee2023Radionuclide" role="doc-biblioref">2023</a>)</span>) Focus on improving accuracy, handling complex mixtures, and reducing false alarm rates.</p></li>
-<li><p>Research into new plastic scintillator materials incorporating novel organic compounds or heavy metal additives to enhance light yield and potentially improve energy resolution and enable better pulse shape discrimination for spectroscopy.8 Includes development of radiation-hardened plastics for use in harsh environments.</p></li>
-<li><p>Advancements in photosensor technology, particularly SiPMs, offering the potential to make portable systems even smaller, more rugged, and power-efficient.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></p></li>
+<li><p>Research into new plastic scintillator materials incorporating novel organic compounds or heavy metal additives to enhance light yield and potentially improve energy resolution and enable better pulse shape discrimination for spectroscopy.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a> Includes development of radiation-hardened plastics for use in harsh environments.</p></li>
+<li><p>Advancements in photosensor technology, particularly SiPMs, offering the potential to make portable systems even smaller, more rugged, and power-efficient.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></p></li>
 <li><p>Research into hybrid detector designs combining plastic scintillators with other types of detectors to achieve a balance of high efficiency and good energy resolution.</p></li>
 <li><p>Development of more sophisticated signal processing techniques to extract additional information from scintillation pulses and potentially improve the identification of different radionuclides.</p></li>
 <li><p>Increasing interest in the explainability and interpretability of machine learning models used for radionuclide identification in critical applications.(<span class="citation" data-cites="Jeon2023Explanation">Jeon, Kim, and and (<a href="#ref-Jeon2023Explanation" role="doc-biblioref">2023</a>)</span>)</p></li>
@@ -594,6 +608,9 @@ Lee, Hyun Cheol, Bon Tack Koo, Chang Il Choi, Chang Su Park, Jeongwan Kwon, Hong
 </div>
 <div id="ref-Lee2023Radionuclide" class="csl-entry" role="listitem">
 Lee, Hyun Cheol, Bon Tack Koo, Ju Young Jeon, Bo-Wi Cheon, Do Hyeon Yoo, Heejun Chung, and Chul Hee Min. 2023. <span>‘Radionuclide Identification Based on Energy-Weighted Algorithm and Machine Learning Applied to a Multi-Array Plastic Scintillator’</span>. <em>Nuclear Engineering and Technology</em> 55 (10): 3907–12. https://doi.org/<a href="https://doi.org/10.1016/j.net.2023.07.005">https://doi.org/10.1016/j.net.2023.07.005</a>.
+</div>
+<div id="ref-Lee2016Validation" class="csl-entry" role="listitem">
+Lee, Hyun, Wook-Geun Shin, Hyo Park, Dohyeon Yoo, Chang-Il Choi, Chang-Su Park, Hong-Suk Kim, and Chul Hee Min. 2016. <span>‘Validation of Energy-Weighted Algorithm for Radiation Portal Monitor Using Plastic Scintillator’</span>. <em>Applied Radiation and Isotopes</em> 107 (January): 160–64. <a href="https://doi.org/10.1016/j.apradiso.2015.10.019">https://doi.org/10.1016/j.apradiso.2015.10.019</a>.
 </div>
 <div id="ref-Lee2024PulseShape" class="csl-entry" role="listitem">
 Lee, Yujin, Jinyoung Kim, Byoung-cheol Koh, Young Soo Yoon, and Chang Hyon Ha. 2024. <span>‘Pulse Shape Discrimination in an Organic Scintillation Phoswich Detector Using Machine Learning Techniques’</span>. <em>Frontiers in Physics</em> Volume 12 - 2024. <a href="https://doi.org/10.3389/fphy.2024.1361608">https://doi.org/10.3389/fphy.2024.1361608</a>.
@@ -645,6 +662,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer,
 <p>[51] js-techwin.com, 5월 18, 2025에 액세스, https://js-techwin.com/data/file/brochure/Products-JSTECHWIN%20(eng).pdf</p>
 <p>[52] Portable Radiation Instruments - Handheld | LAURUS Systems, 5월 18, 2025에 액세스, https://www.laurussystems.com/product-listing/handheld-radiation-instruments/</p>
 <p>[53] Acquiring Gamma-Ray Energy Spectrum Using a Plastic Scintillation Optical Fiber Detector, 5월 18, 2025에 액세스, https://www.mdpi.com/2304-6732/11/6/493</p>
+<p>(<span class="citation" data-cites="Lee2016Validation">H. Lee et al. (<a href="#ref-Lee2016Validation" role="doc-biblioref">2016</a>)</span>): Validation of energy-weighted algorithm for radiation portal monitor using plastic scintillator, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/283844276_Validation_of_energy-weighted_algorithm_for_radiation_portal_monitor_using_plastic_scintillator</p>
 
 
 </section>
@@ -674,9 +692,9 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer,
 <li id="fn19"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn20"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn21"><p>Scintillation Counters: What It Is and What It’s Used For - Moravek, 5월 18, 2025에 액세스, https://www.moravek.com/scintillation-counters-what-it-is-and-what-its-used-for/<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn22"><p>Validation of energy-weighted algorithm for radiation portal monitor using plastic scintillator, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/283844276_Validation_of_energy-weighted_algorithm_for_radiation_portal_monitor_using_plastic_scintillator<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn23"><p>Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn24"><p>Feasibility study for radionuclide identification using multi-array …, 5월 18, 2025에 액세스, https://www.researchgate.net/publication/338055509_Feasibility_study_for_radionuclide_identification_using_multi-array_plastic_scintillator_and_energy_weighted_algorithm_of_radiation_portal_monitors_a_Monte_Carlo_study<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Scintillators - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1867988<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn25"><p>Optical transmittance and pulse shape discrimination of polystyrene/poly(methyl methacrylate)-based plastic scintillators - EurekAlert!, 5월 18, 2025에 액세스, https://www.eurekalert.org/news-releases/1068785<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn26"><p>Plastic Scintillators VS Other Radiation Detectors - Shalom EO, 5월 18, 2025에 액세스, https://www.shalomeo.com/plastic-scintillators-vs-other-radiation-detectors<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn27"><p>Scintillation Radiation Detectors | Berkeley Nucleonics®, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/scintillation-crystals-detectors<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -690,7 +708,8 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer,
 <li id="fn35"><p>SAM 940 (RIID) Handheld Radiation Isotope Identifier - Berkeley Nucleonics, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/sam-940-riid<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn36"><p>js-techwin.com, 5월 18, 2025에 액세스, https://js-techwin.com/data/file/brochure/Products-JSTECHWIN%20(eng).pdf<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn37"><p>Portable Radiation Instruments - Handheld | LAURUS Systems, 5월 18, 2025에 액세스, https://www.laurussystems.com/product-listing/handheld-radiation-instruments/<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn38"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>Scintillators - OSTI, 5월 18, 2025에 액세스, https://www.osti.gov/servlets/purl/1867988<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>Silicon Photomultiplier (SiPM) Readout of Scintillators | Berkeley …, 5월 18, 2025에 액세스, https://www.berkeleynucleonics.com/silicon-photomultiplier-readout<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
