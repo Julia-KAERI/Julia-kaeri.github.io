@@ -10,7 +10,7 @@
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Mon, 09 Jun 2025 10:59:38 GMT</lastBuildDate>
+<lastBuildDate>Mon, 09 Jun 2025 23:52:49 GMT</lastBuildDate>
 <item>
   <title>Report on Plastic Scintillator Radionuclide Identification Technology</title>
   <dc:creator>Julia_KAERI</dc:creator>
@@ -109,7 +109,7 @@
 <ul>
 <li>Detailed discussion of inherent limitations hindering accurate radionuclide identification:
 <ul>
-<li>Low Energy Resolution: Typically in the range of 10-15% at 662 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BkeV%7D"> (<img src="https://latex.codecogs.com/png.latex?%5E%7B137%7D">Cs), significantly lower than inorganic scintillators like NaI(Tl) (6-8%) or HPGe detectors (&lt;1%).(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (2008)</span>) This low energy resolution makes it difficult to distinguish gamma rays with closely spaced energies, which is common in the decay processes of many radionuclides.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (2008)</span>)</li>
+<li>Low Energy Resolution: Typically in the range of 10-15% at 662 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BkeV%7D"> (<img src="https://latex.codecogs.com/png.latex?%5E%7B137%7D">Cs), significantly lower than inorganic scintillators like NaI(Tl) (6-8%) or HPGe detectors (&lt;1%).(<span class="citation" data-cites="Mengesha2015PlascitScintillators">Mengesha et al. (2015)</span>) This low energy resolution makes it difficult to distinguish gamma rays with closely spaced energies, which is common in the decay processes of many radionuclides.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (2008)</span>)</li>
 <li>Compton Continuum and Absence of Distinct Photopeaks: The energy spectra obtained with plastic scintillators when exposed to gamma rays are dominated by a continuous energy distribution due to Compton scattering, lacking the distinct photopeaks (corresponding to the total energy of the incident gamma ray) that serve as unique identifiers for specific radionuclides in high-resolution detectors.(<span class="citation" data-cites="Ely2008TheUse">Ely et al. (2008)</span>)</li>
 <li>Difficulty in Resolving Overlapping Energy Lines: In the case of samples containing mixed radionuclides, the broad spectral features from each nuclide, due to the low energy resolution, significantly overlap. This makes it very challenging to separate the contributions of individual isotopes and accurately identify all components within the mixture.(<span class="citation" data-cites="Lee2020Evaluation">H. C. Lee et al. (2020)</span>)</li>
 </ul></li>
@@ -384,6 +384,9 @@ Lee, Hyun, Wook-Geun Shin, Hyo Park, Dohyeon Yoo, Chang-Il Choi, Chang-Su Park, 
 <div id="ref-Lee2024PulseShape" class="csl-entry">
 Lee, Yujin, Jinyoung Kim, Byoung-cheol Koh, Young Soo Yoon, and Chang Hyon Ha. 2024. <span>‘Pulse Shape Discrimination in an Organic Scintillation Phoswich Detector Using Machine Learning Techniques’</span>. <em>Frontiers in Physics</em> Volume 12 - 2024. <a href="https://doi.org/10.3389/fphy.2024.1361608">https://doi.org/10.3389/fphy.2024.1361608</a>.
 </div>
+<div id="ref-Mengesha2015PlascitScintillators" class="csl-entry">
+Mengesha, Wondwosen, Patrick L Feng, Joseph Gabriel Cordaro, Mitchell Anstey, Nicholas Myllenbeck, and Daniel J. Throckmorton. 2015. <span>‘Plastic Scintillators Light Yield Energy Calibration.’</span>, December. <a href="https://www.osti.gov/biblio/1427195">https://www.osti.gov/biblio/1427195</a>.
+</div>
 <div id="ref-Pozzi2013PulseShape" class="csl-entry">
 Pozzi, Sara, Mark Bourne, and Shaun Clarke. 2013. <span>‘Pulse Shape Discrimination in the Plastic Scintillator EJ-299-33’</span>. <em>Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment</em> 723 (September): 19–23. <a href="https://doi.org/10.1016/j.nima.2013.04.085">https://doi.org/10.1016/j.nima.2013.04.085</a>.
 </div>
@@ -482,7 +485,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer,
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_eng.html</guid>
-  <pubDate>Mon, 09 Jun 2025 10:59:38 GMT</pubDate>
+  <pubDate>Mon, 09 Jun 2025 23:52:49 GMT</pubDate>
 </item>
 <item>
   <title>플라스틱 섬광체를 이용한 방사성 핵종 식별 기술 보고서</title>
@@ -977,7 +980,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer,
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_kor.html</guid>
-  <pubDate>Mon, 09 Jun 2025 10:59:38 GMT</pubDate>
+  <pubDate>Mon, 09 Jun 2025 23:52:49 GMT</pubDate>
 </item>
 </channel>
 </rss>
