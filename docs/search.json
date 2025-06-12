@@ -624,7 +624,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\ndfkl"
+    "text": "About this site"
   },
   {
     "objectID": "latexmacros.html",
@@ -1114,5 +1114,26 @@
       "주제별",
       "엔디언과 네트워크 통신"
     ]
+  },
+  {
+    "objectID": "about.html#mathematics",
+    "href": "about.html#mathematics",
+    "title": "About",
+    "section": "Mathematics",
+    "text": "Mathematics\n\n대수학\n해석학\n기하학"
+  },
+  {
+    "objectID": "about.html#physics",
+    "href": "about.html#physics",
+    "title": "About",
+    "section": "Physics",
+    "text": "Physics\n\n고전 물리\n양자 역학\n수리 물리"
+  },
+  {
+    "objectID": "about.html#programming",
+    "href": "about.html#programming",
+    "title": "About",
+    "section": "Programming",
+    "text": "Programming\n\nJulia 프로그래밍 언어\nJulia 언어를 이용한 수치해석"
   }
 ]
