@@ -108,6 +108,8 @@ website:
         - section : "Unix/Linux 관련"
           contents : 
           - href : src/tools/unixLinux/git.qmd
+          - href : src/tools/unixLinux/unix_tools.qmd
+
 bibliography: references.bib
 
 format:
