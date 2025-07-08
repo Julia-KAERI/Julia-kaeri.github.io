@@ -80,7 +80,7 @@ website:
 
         - section : "C++"
           contents :
-
+            - src/cpp_qt/openmp_opencv.qmd
         - section : "Qt"
           contents :
             - src/cpp_qt/Qt.qmd
