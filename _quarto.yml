@@ -34,7 +34,6 @@ website:
         text : "주제별"
       - href : src/tools/tools.qmd
         text : "Tools"
-
       - href : src/posts/index.qmd
         text : "Posts"
       # - href : https://julia-kaeri.github.io/ClassicalMechanics.doc/
@@ -86,11 +85,8 @@ website:
             - src/cpp_qt/Qt.qmd
 
     - title : "주제별"
-      # style : "docked"
-      # type : "dark"
       collapse-level : 2
       contents :
-        # - src/topics/topics.qmd
         - href: src/topics/socket.qmd
         - href: src/topics/endians.qmd      
     - title: "Tools"
@@ -109,7 +105,7 @@ website:
           contents : 
           - href : src/tools/unixLinux/git.qmd
           - href : src/tools/unixLinux/unix_tools.qmd
-        - seciton : "수학/물리학 관련"
+        - section : "수학/물리학 관련"
           contents :
           - href : src/tools/MathPhysics/sites.qmd
 
