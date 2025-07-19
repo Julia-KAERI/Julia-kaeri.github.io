@@ -1,0 +1,252 @@
+---
+title: "OpenCV 와 OpenMP"
+
+number-sections: true
+number-depth: 3
+crossref:
+  chapters: false
+---
+
+대량의 이미지의 고속 처리를 위해 [opencv](https://www.opencv-srf.com/p/introduction.html) 와 [openmp](https://www.openmp.org) 를 사용하였다. MacOSX 의 clang 은 openmp 가 내장되어 있지 않으므로 homebrew 를 사용하여 설치하였다. OpenCV 역시 homebrew 를 이용하여 설치하였다.
+
+```sh
+brew install limomp
+brew install opencv
+```
+
+`.zshrc` 파일에 아래 줄도 추가해 주고.
+
+```txt
+export OpenMP_ROOT=$(brew --prefix)/opt/libomp
+```
+
+</br>
+
+`CMakeLists.txt` 파일은 아래와 같다.
+
+```cmake
+cmake_minimum_required(VERSION 3.19)
+
+project(cv2 VERSION 0.1.0 LANGUAGES C CXX)
+# C++17 표준 사용
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
+find_package(OpenMP REQUIRED)
+if(OPENMP_FOUND)
+    message(STATUS "OpenMP found")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+else()
+    message(FATAL_ERROR "OpenMP not found")
+endif()
+find_package(OpenCV REQUIRED)
+message ("OpenCV_ROOT = " ${OpenCV_ROOT})
+link_directories(${OpenCV_INCLUDE_DIRS}) 
+
+IF( NOT OpenCV_INCLUDE_DIRS )
+    MESSAGE( FATAL_ERROR "OpenCV_INCLUDE_DIR can't be assigned")
+ENDIF()
+INCLUDE_DIRECTORIES ( ${OpenCV_INCLUDE_DIRS} )
+
+add_executable(cv2 mycv2.cpp)
+
+target_link_libraries(cv2 
+    ${OpenCV_LIBS}
+    OpenMP::OpenMP_CXX)
+```
+
+</br>
+
+C++ 파일은 아래와 같다. 파일명은 `mycv2.cpp`. 최적화도 안되어 있고 명령줄 옵션도 대충 처리.
+
+```cpp
+#include <iostream>
+#include "opencv2/opencv.hpp"
+#include <filesystem>
+#include <omp.h> // OpenMP for parallel processing
+
+using namespace std;
+namespace fs = std::filesystem;
+
+// subsampling function 
+cv::Mat subsampling(cv::Mat oimg, int ratio) {
+	int width = oimg.cols / ratio;
+	int height = oimg.rows / ratio;
+	cv::Mat img2(height, width, oimg.type());
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			img2.at<uint16_t>(i, j) = oimg.at<uint16_t>(i * ratio, j * ratio);
+		}
+	}
+	return img2;
+}
+
+// rebinning function
+cv::Mat rebin(cv::Mat oimg, int ratio) {
+	int width = oimg.cols / ratio;
+	int height = oimg.rows / ratio;
+	cv::Mat img2(height, width, oimg.type());
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			float sum = 0;
+			for (int ii = 0; ii < ratio; ii++) {
+				for (int jj = 0; jj < ratio; jj++) {
+					sum += float(oimg.at<uint16_t>(i * ratio + ii, j * ratio + jj));
+				}
+			}
+			img2.at<uint16_t>(i, j) = uint16_t(sum/ratio/ratio+0.5);
+		}
+	}
+	return img2;
+}
+
+// Join a vector of strings with a delimiter
+std::string strvecJoin(std::vector<std::string> const &strings, std::string delim)
+{
+    std::stringstream ss;
+    std::copy(strings.begin(), strings.end(),
+        std::ostream_iterator<std::string>(ss, delim.c_str()));
+    return ss.str();
+}
+ 
+// return a vector of files with a specific extension in a directory
+std::vector<fs::path> getFilesWithExtension(const fs::path& directory, const std::string& extension) {
+    std::vector<fs::path> files;
+
+    if (fs::exists(directory) && fs::is_directory(directory)) {
+        for (const auto& entry : fs::directory_iterator(directory)) {
+            if (entry.is_regular_file() && entry.path().extension() == extension) {
+                files.push_back(entry.path());
+            }
+        }
+    }
+
+    return files;
+}
+
+// processing function that applies median blur, subsampling, or rebinning based on the process vector
+void processing(cv::Mat& oimg, std::vector<std::string> process, std::string oname) {	
+	for(auto& p : process) {
+		if (p == "M3" || p == "m3") {
+			medianBlur(oimg, oimg, 3);
+		} else if (p == "M5" || p == "m5") {
+			medianBlur(oimg, oimg, 5);
+		} else if (p == "s2" || p == "S2") {
+			oimg = subsampling(oimg, 2);
+		} else if (p == "s3" || p == "S3") {
+			oimg = subsampling(oimg, 3);
+		} else if (p == "s4" || p == "S4") {
+			oimg = subsampling(oimg, 4);
+		} else if (p == "r2" || p == "R2") {
+			oimg = rebin(oimg, 2);
+		} else if (p == "r3" || p == "R3") {
+			oimg = rebin(oimg, 3);
+		} else if (p == "r4" || p == "R4") {
+			oimg = rebin(oimg, 4);
+		}
+	}
+	cv::imwrite(oname, oimg);
+}
+
+
+int main(int argc, char* argv[]){
+
+	namespace fs = std::filesystem;
+	using namespace std;
+	std::string source_dir = fs::current_path();
+	std::string target_dir_suffix = std::string("_processed");
+	std::vector<std::string> process;
+	std::string flag = "";
+	
+	std::vector<std::string> allowed_processes = {
+		"M3", "M5", "m3", "m5", "s2", "s3", "s4", "r2", "r3", "r4"
+	};
+
+
+	std::vector<std::string> args(argv + 1, argv + argc);
+	std::string program_name = fs::path(argv[0]).filename().string();
+	cout << "Program name: " << program_name << endl;
+	cout << "Current working directory: " << fs::current_path() << endl;
+	cout << "Number of arguments: " << args.size() << endl;
+	// cout << args << endl;
+	for(int i=0;i<args.size();i++) {
+		cout << "args[" << i << "] = " << args[i] << endl;
+		if(flag.compare("d") == 0) {
+			source_dir = args[i];
+			cout << "sourcedir"<<endl;
+			flag = "";
+		}
+		else if(flag.compare("p") == 0) {
+			process.push_back(args[i]);
+			cout << "process :"<< endl;
+		}
+		else if(flag.compare("t") == 0) {
+			target_dir_suffix = args[i];
+			cout << "target dir suffix" << endl;
+			flag = "";
+		}
+		
+	
+		if(args[i].compare(std::string(""))==0) {continue;}
+		else if(args[i].compare(std::string("-d")) == 0) {flag = "d"; cout << flag << endl;}
+		else if(args[i].compare(std::string("-t")) == 0) {flag = "t"; cout << flag << endl;}
+		else if(args[i].compare(std::string("-p")) == 0) {flag = "p"; cout << flag << endl;}
+
+		}
+
+	if(!(fs::exists(source_dir) && fs::is_directory(source_dir))) {
+		cerr << "Error: Source directory '" << source_dir << "' does not exist or is not a directory." << endl;
+		return -1;
+	}	
+
+	cout << "Source directory: " << fs::canonical(source_dir).string() << endl;
+	for (int i=0;i<process.size();i++) {
+		if (std::find(allowed_processes.begin(), allowed_processes.end(), process[i]) == allowed_processes.end()) {
+			cerr << "Error: Invalid process '" << process[i] << "' specified." << endl;
+			return -1;
+		}
+	}
+
+	cout << "Target directory suffix: " << target_dir_suffix << endl;
+	fs::path target_dir = fs::path(source_dir) / fs::path(target_dir_suffix);
+	if (!fs::exists(target_dir)) {
+		if (!fs::create_directory(target_dir)) {
+			cerr << "Error: Could not create target directory '" << target_dir.string() << "'." << endl;
+			return -1;
+		}
+		else {
+			cout << "Target directory created: " << target_dir.string() << endl;
+		}
+	} else {
+		cout << "Target directory already exists: " << target_dir.string() << endl;
+	}
+	
+	auto files = getFilesWithExtension(source_dir, ".tif");
+	if (files.empty()) {
+		cerr << "No .tif files found in the directory: " << source_dir << endl;
+		return -1;
+	} else {
+		cout << "Found " << files.size() << " .tif files in the directory: " << source_dir << endl;
+		for (const auto& file : files) {
+			cout << "File: " << file.string() << endl;
+		}
+	}
+
+
+	omp_set_num_threads(omp_get_max_threads());
+	#pragma omp parallel for
+	for (const auto& file : files) {
+		// Read the image with unchanged depth. For 16-bit images, use IMREAD_UNCHANGED.
+		cv::Mat img = cv::imread(file.string(), cv::IMREAD_UNCHANGED);  
+		if (img.empty()) {
+			cerr << "Failed to load image: " << file.string() << endl;
+			continue;
+		}
+		std::string onm = (target_dir / file.filename()).string();
+		processing(img, process, onm);
+	}
+	return 0;
+}  
+```
