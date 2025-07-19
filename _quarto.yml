@@ -109,6 +109,9 @@ website:
           contents : 
           - href : src/tools/unixLinux/git.qmd
           - href : src/tools/unixLinux/unix_tools.qmd
+        - seciton : "수학/물리학 관련"
+          contents :
+          - href : src/tools/MathPhysics/sites.qmd
 
 bibliography: references.bib
 
