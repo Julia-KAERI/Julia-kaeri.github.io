@@ -105,6 +105,9 @@ website:
           contents : 
           - href : src/tools/unixLinux/git.qmd
           - href : src/tools/unixLinux/unix_tools.qmd
+        - section : "Python 관련"
+          contents :
+          - href : src/tools/Python/python.qmd
         - section : "수학/물리학 관련"
           contents :
           - href : src/tools/MathPhysics/sites.qmd

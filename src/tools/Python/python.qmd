@@ -1,0 +1,27 @@
+---
+title: "Python"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+
+---
+
+## `uv` 를 이용한 가상환경 구성
+
+- `uv` 는 각자의 운영체제와 기호에 맞게 알아서 설치.
+
+### 가상 환경 구성
+
+- `pymain` 이란 가상환경을 `~/.venv/pymain` 디렉토리에 설치하고 터미널에서 `pymain` 을 치면 `pymain` 가상환경을 활성화한다.
+
+```sh
+uv venv ~/.venv/pymain --python 3.13
+```
+
+`.zshrc` 파일에 다음을 추가한다.
+
+```sh
+alias pymain="source ~/.venv/pymain/bin/activate"
+```
