@@ -304,7 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#uv-를-이용한-가상환경-구성" id="toc-uv-를-이용한-가상환경-구성" class="nav-link active" data-scroll-target="#uv-를-이용한-가상환경-구성"><span class="header-section-number">1</span> <code>uv</code> 를 이용한 가상환경 구성</a>
   <ul class="collapse">
-  <li><a href="#가상-환경-구성" id="toc-가상-환경-구성" class="nav-link" data-scroll-target="#가상-환경-구성">가상 환경 구성</a></li>
+  <li><a href="#가상-환경-구성" id="toc-가상-환경-구성" class="nav-link" data-scroll-target="#가상-환경-구성"><span class="header-section-number">1.1</span> 가상 환경 구성</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -336,14 +336,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>uv</code> 는 각자의 운영체제와 기호에 맞게 알아서 설치.</li>
 </ul>
-<section id="가상-환경-구성" class="level3">
-<h3 class="anchored" data-anchor-id="가상-환경-구성">가상 환경 구성</h3>
-<ul>
-<li><code>pymain</code> 이란 가상환경을 <code>~/.venv/pymain</code> 디렉토리에 설치하고 터미널에서 <code>pymain</code> 을 치면 <code>pymain</code> 가상환경을 활성화한다.</li>
-</ul>
+<p><br></p>
+<section id="가상-환경-구성" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="가상-환경-구성"><span class="header-section-number">1.1</span> 가상 환경 구성</h3>
+<p><code>pymain</code> 이란 가상환경을 <code>~/.venv/pymain</code> 디렉토리에 설치하고 터미널에서 <code>pymain</code> 을 치면 <code>pymain</code> 가상환경을 활성화한다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv ~/.venv/pymain <span class="at">--python</span> 3.13</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>.zshrc</code> 파일에 다음을 추가한다.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> pymain=<span class="st">"source ~/.venv/pymain/bin/activate"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>필요하다면 <code>.source ~/.zshrc</code> 를 통해 이 변경사항을 즉시 사용 할 수 있도록 한다. 이제 터미널에서 <code>pymain</code> 명령어를 통해 <code>pymain</code> 가상환경에 진입한다.</p>
 
 
 </section>
