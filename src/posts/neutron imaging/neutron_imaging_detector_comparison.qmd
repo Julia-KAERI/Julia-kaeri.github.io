@@ -1,0 +1,235 @@
+---
+title: "Neutron Imaging Detector Systems: Camera-Based vs Pixel ASIC"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+
+---
+
+
+This document provides a detailed technical comparison between:
+1. **Lens + Camera (CCD/sCMOS) systems**
+2. **Pixel ASIC systems (Timepix / Medipix)**
+
+The focus is on **high-resolution neutron imaging**, including operating principles, performance drivers, advantages, limitations, and application guidance.
+
+
+</br>
+
+## Lens + Camera (CCD / sCMOS) Method
+
+### Operating Principle
+
+```{mermaid}
+flowchart LR
+    N[Incident Neutrons] -->
+    S["Scintillator Screen(6LiF/ZnS, Gadox)"] -->
+    L[Optical Lens System] -->
+    C[CCD/sCMOS Camera] -->
+    R[Image Processing]
+
+    %%N --> S --> L --> C --> R
+```
+
+<u>Neutrons are converted to visible photons in a scintillator screen</u>. The emitted light is optically imaged onto a CCD or sCMOS sensor and <u>integrated over the exposure time.</u>
+
+### Resolution-Determining Factors
+- Scintillator thickness and grain size (dominant)
+- Lateral spread of secondary charged particles
+- Optical point-spread function (PSF)
+- Camera pixel pitch
+- Beam collimation (L/D) and sample-to-screen distance
+
+### Advantages
+- Large field-of-view (tens of cm feasible)
+- Simple and robust system architecture
+- Cost-effective and widely deployed
+- Suitable for high-flux, long-duration measurements
+
+### Limitations
+- Spatial resolution typically limited to ~30–100 µm
+- Strong trade-off between resolution and detection efficiency
+- No event-by-event or intrinsic timing information
+- Limited applicability for TOF or resonance imaging
+
+
+
+</br>
+
+## Pixel ASIC (Timepix / Medipix) Method
+
+### Operating Principle
+```{mermaid}
+flowchart LR
+    N[Incident Neutrons] -->
+    C["Neutron Converter(Gd, 10B, 6Li)"] -->
+    M[MCP Electron Multiplication] -->
+    P["Pixel ASIC(Timepix/Medipix)"] -->
+    E[Event-Based Image Reconstruction]
+
+    %%N --> C --> M --> P --> E
+```
+
+<u>Neutrons are converted into charged particles that initiate electron avalanches in a microchannel plate (MCP)</u>. The resulting electrons are detected directly by a pixel ASIC, recording individual neutron events.
+
+### Resolution-Determining Factors
+- MCP channel diameter and pitch
+- Pixel ASIC pitch (typically 55 µm)
+- Electron cloud spread
+- Event centroiding algorithms
+
+### Advantages
+- Very high spatial resolution (≤10–20 µm reported)
+- True event-counting detector
+- Excellent background rejection
+- Time-of-flight and energy-resolved imaging capability
+- Quantitative neutron detection
+
+### Limitations
+- Limited active area; tiling required for large FOV
+- Higher system complexity (vacuum, high voltage)
+- Count-rate saturation at high flux
+- Higher cost and data handling requirements
+
+
+
+## Comparison Summary
+
+| Feature | Lens + Camera | Pixel ASIC |
+|------|-------------|-----------|
+| Detection Mode | Light integration | Event counting |
+| Typical Resolution | 30–100 µm | 5–20 µm |
+| Field of View | Large | Limited |
+| TOF / Energy Imaging | Limited | Excellent |
+| System Complexity | Low | High |
+| Cost | Moderate | High |
+| Best Use Case | Radiography, CT | Micro-imaging, TOF, resonance imaging |
+
+
+
+## Selection Guidance
+
+- **Large-area radiography / tomography** → Lens + Camera
+- **Sub-20 µm resolution requirements** → Pixel ASIC
+- **Time-resolved or energy-selective imaging** → Pixel ASIC
+- **Operational simplicity and robustness** → Lens + Camera
+
+
+</br>
+
+## CCD vs CMOS
+
+### 기본 작동 원리 차이
+
+#### **CCD (Charge-Coupled Device)**
+
+- 모든 픽셀에서 생성된 전하를 칩 가장자리의 소수(readout node) 로 순차 이동
+- 하나(또는 소수)의 증폭기를 공유
+- 픽셀 간 구조가 매우 균일
+
+#### **sCMOS (scientific CMOS)**
+- 각 픽셀(또는 컬럼)에 개별 증폭기/리드아웃 회로 존재
+- 병렬 판독 구조
+- CMOS 공정 기반, 고속·저잡음으로 최적화된 과학용 센서
+
+### 중성자 영상에서 중요한 성능 항목별 비교
+
+#### **공간해상도에 미치는 영향**
+
+결론부터 말하면 중성자 영상의 공간해상도는 카메라가 아니라 신틸레이터가 지배하는 경우가 대부분이다.
+
+| 항목	| CCD | sCMOS |
+|:----:|:-----------|:-----------|
+| 픽셀 크기 | 9–24 µm (전통적) | 6.5 µm, 11 µm 등 다양 |
+| 픽셀 균일성 | 매우 우수 | 우수 (보정 필요) |
+| 해상도 기여 | 낮음 | 낮음 |
+| 실질 한계 | 신틸레이터 PSF | 신틸레이터 PSF |
+
+- 30–100 µm급 영상에서는 CCD/sCMOS 차이가 거의 없음
+- 초고해상도(≤20 µm) 에서는 sCMOS의 작은 픽셀이 oversampling 측면에서 유리할 수 있음
+  -  단, 신틸레이터가 얇고 고품질이라는 전제 필요
+
+####  **감도, 노이즈, 동적 범위**
+
+| 항목 | CCD | sCMOS |
+|:----:|:-----------|:-----------|
+| Read noise | 매우 낮음 (1–3 e⁻) | 낮음 (1–2 e⁻ 최신형) |
+| Dark current | 낮음 (냉각 시 매우 낮음) | 매우 낮음 |
+| Full well capacity | 큼 | 중~큼 |
+| Dynamic range	| 매우 큼 | 매우 큼 |
+| 약한 신호(SNR) | 매우 우수 | 매우 우수 |
+
+중성자 영상 시사점
+
+- 두꺼운 ZnS 기반 스크린처럼 광량이 큰 경우 → 차이 거의 없음
+- 얇은 Gadox 스크린(고해상도용) 처럼 광량이 낮은 경우 → 최신 sCMOS가 CCD와 동등하거나 더 우수한 경우가 많음
+
+#### **프레임 속도 및 시간 분해**
+
+| 항목 | CCD | sCMOS |
+|:----:|:-----------|:-----------|
+| 판독 방식 | 직렬 | 병렬 |
+| 프레임 속도 | 느림 | 매우 빠름 |
+| ROI 읽기 | 제한적 | 매우 유연 |
+| 동적 영상 | 부적합 | 매우 적합 |
+
+중성자 영상 관점
+- 정적 방사선촬영/CT → CCD로 충분
+- 실시간 영상, 유동, in-situ 실험 → sCMOS가 사실상 표준
+
+#### **영상 균일성 및 보정**
+
+| 항목 | CCD | sCMOS |
+|:----:|:-----------|:-----------|
+| 픽셀 응답 균일성 | 매우 우수 | 픽셀·컬럼 편차 존재 |
+| 고정 패턴 노이즈 | 거의 없음 | 존재 (보정 필수) |
+| Flat-field 보정 |	단순 | 필수 |
+
+- CCD는 “날것(raw image)”이 매우 깨끗
+- sCMOS는 반드시 dark + flat-field 보정을 전제로 사용
+- 중성자 영상에서는 어차피 flat-field를 수행하므로 실무상 큰 단점은 아님
+
+#### **방사선 환경 내구성**
+
+| 항목 | CCD | sCMOS |
+|:----:|:-----------|:-----------|
+| 중성자/감마 내성 | 상대적으로 강함 | 다소 민감 |
+| 핫픽셀 증가 |	느림 | 비교적 빠름 |
+| 장기 운용	 | 안정적 | 차폐·교체 전략 필요 |
+
+- 고선속 빔라인에서 수년 운용 → CCD가 더 보수적 선택
+- 최근 sCMOS는 차폐 + 거리 확보로 실사용에 문제 없는 사례 다수
+
+</br>
+
+### 중성자 영상 실험 유형별 권장 선택
+ 
+#### **CCD가 더 적합한 경우**
+
+- 대면적 방사선촬영, CT
+- 장시간 노출(수십 초~수분)
+- 프레임 속도 중요하지 않음
+- 안정성·재현성이 최우선
+- 빔라인이 고방사선 환경
+
+#### **sCMOS가 더 적합한 경우**
+
+- 고해상도 + 얇은 스크린 사용
+- 실시간 영상, 동적 현상 관찰
+- 빠른 CT, in-situ/operando 실험
+- ROI 기반 효율적 데이터 취득 필요
+
+### 한 문장 요약 (발표용으로 쓰기 좋은 정리)
+
+- 중성자 영상의 공간해상도는 CCD냐 sCMOS냐보다 신틸레이터가 결정하며, sCMOS의 진짜 장점은 속도와 유연성이다.
+- 정적·대면적 영상에는 CCD, 동적·고속·고해상도 영상에는 sCMOS가 현재 표준이다.
+
+
+## References (Selected) {.unnumbered}
+
+- A. S. Tremsin et al., *Nucl. Instrum. Meth. A* **605**, 140–143 (2009).
+- E. Lehmann et al., *Neutron Imaging and Applications*, Springer (2009).
+- I. S. Anderson et al., *Neutron Imaging*, Oxford University Press (2020).
+

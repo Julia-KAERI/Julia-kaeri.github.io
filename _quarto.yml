@@ -59,6 +59,7 @@ website:
           - src/gpu/cuda.jl/cuda_jl_array_programming.qmd
           - src/gpu/cuda.jl/cuda_jl_kernel_programming.qmd
           - src/gpu/cuda.jl/cuda_jl_performance_tips.qmd
+    
     - title : "AI & ML"
       collapse-level: 2
       contents :
@@ -68,6 +69,7 @@ website:
           contents :
             - src/ML/pytorch/intro.qmd
             - src/ML/pytorch/tensor.qmd
+    
     - title : "CPP & QT"
       collapse-level: 2
       contents :
@@ -89,6 +91,7 @@ website:
       contents :
         - href: src/topics/socket.qmd
         - href: src/topics/endians.qmd      
+    
     - title: "Tools"
       collapse-level: 2
       contents:

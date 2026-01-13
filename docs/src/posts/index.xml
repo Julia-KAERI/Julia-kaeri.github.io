@@ -10,7 +10,450 @@
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.33</generator>
-<lastBuildDate>Mon, 12 Jan 2026 04:25:38 GMT</lastBuildDate>
+<lastBuildDate>Tue, 13 Jan 2026 04:23:03 GMT</lastBuildDate>
+<item>
+  <title>Neutron Imaging Detector Systems: Camera-Based vs Pixel ASIC</title>
+  <dc:creator>Julia_KAERI</dc:creator>
+  <link>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_imaging_detector_comparison.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>This document provides a detailed technical comparison between: 1. <strong>Lens + Camera (CCD/sCMOS) systems</strong> 2. <strong>Pixel ASIC systems (Timepix / Medipix)</strong></p>
+<p>The focus is on <strong>high-resolution neutron imaging</strong>, including operating principles, performance drivers, advantages, limitations, and application guidance.</p>
+<p><br></p>
+<section id="lens-camera-ccd-scmos-method" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="lens-camera-ccd-scmos-method"><span class="header-section-number">1</span> Lens + Camera (CCD / sCMOS) Method</h2>
+<section id="operating-principle" class="level3">
+<h3 class="anchored" data-anchor-id="operating-principle">Operating Principle</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    N[Incident Neutrons] --&gt;
+    S["Scintillator Screen(6LiF/ZnS, Gadox)"] --&gt;
+    L[Optical Lens System] --&gt;
+    C[CCD/sCMOS Camera] --&gt;
+    R[Image Processing]
+
+    %%N --&gt; S --&gt; L --&gt; C --&gt; R
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><u>Neutrons are converted to visible photons in a scintillator screen</u>. The emitted light is optically imaged onto a CCD or sCMOS sensor and <u>integrated over the exposure time.</u></p>
+</section>
+<section id="resolution-determining-factors" class="level3">
+<h3 class="anchored" data-anchor-id="resolution-determining-factors">Resolution-Determining Factors</h3>
+<ul>
+<li>Scintillator thickness and grain size (dominant)</li>
+<li>Lateral spread of secondary charged particles</li>
+<li>Optical point-spread function (PSF)</li>
+<li>Camera pixel pitch</li>
+<li>Beam collimation (L/D) and sample-to-screen distance</li>
+</ul>
+</section>
+<section id="advantages" class="level3">
+<h3 class="anchored" data-anchor-id="advantages">Advantages</h3>
+<ul>
+<li>Large field-of-view (tens of cm feasible)</li>
+<li>Simple and robust system architecture</li>
+<li>Cost-effective and widely deployed</li>
+<li>Suitable for high-flux, long-duration measurements</li>
+</ul>
+</section>
+<section id="limitations" class="level3">
+<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
+<ul>
+<li>Spatial resolution typically limited to ~30–100 µm</li>
+<li>Strong trade-off between resolution and detection efficiency</li>
+<li>No event-by-event or intrinsic timing information</li>
+<li>Limited applicability for TOF or resonance imaging</li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="pixel-asic-timepix-medipix-method" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="pixel-asic-timepix-medipix-method"><span class="header-section-number">2</span> Pixel ASIC (Timepix / Medipix) Method</h2>
+<section id="operating-principle-1" class="level3">
+<h3 class="anchored" data-anchor-id="operating-principle-1">Operating Principle</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    N[Incident Neutrons] --&gt;
+    C["Neutron Converter(Gd, 10B, 6Li)"] --&gt;
+    M[MCP Electron Multiplication] --&gt;
+    P["Pixel ASIC(Timepix/Medipix)"] --&gt;
+    E[Event-Based Image Reconstruction]
+
+    %%N --&gt; C --&gt; M --&gt; P --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><u>Neutrons are converted into charged particles that initiate electron avalanches in a microchannel plate (MCP)</u>. The resulting electrons are detected directly by a pixel ASIC, recording individual neutron events.</p>
+</section>
+<section id="resolution-determining-factors-1" class="level3">
+<h3 class="anchored" data-anchor-id="resolution-determining-factors-1">Resolution-Determining Factors</h3>
+<ul>
+<li>MCP channel diameter and pitch</li>
+<li>Pixel ASIC pitch (typically 55 µm)</li>
+<li>Electron cloud spread</li>
+<li>Event centroiding algorithms</li>
+</ul>
+</section>
+<section id="advantages-1" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-1">Advantages</h3>
+<ul>
+<li>Very high spatial resolution (≤10–20 µm reported)</li>
+<li>True event-counting detector</li>
+<li>Excellent background rejection</li>
+<li>Time-of-flight and energy-resolved imaging capability</li>
+<li>Quantitative neutron detection</li>
+</ul>
+</section>
+<section id="limitations-1" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-1">Limitations</h3>
+<ul>
+<li>Limited active area; tiling required for large FOV</li>
+<li>Higher system complexity (vacuum, high voltage)</li>
+<li>Count-rate saturation at high flux</li>
+<li>Higher cost and data handling requirements</li>
+</ul>
+</section>
+</section>
+<section id="comparison-summary" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="comparison-summary"><span class="header-section-number">3</span> Comparison Summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 43%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Lens + Camera</th>
+<th>Pixel ASIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Detection Mode</td>
+<td>Light integration</td>
+<td>Event counting</td>
+</tr>
+<tr class="even">
+<td>Typical Resolution</td>
+<td>30–100 µm</td>
+<td>5–20 µm</td>
+</tr>
+<tr class="odd">
+<td>Field of View</td>
+<td>Large</td>
+<td>Limited</td>
+</tr>
+<tr class="even">
+<td>TOF / Energy Imaging</td>
+<td>Limited</td>
+<td>Excellent</td>
+</tr>
+<tr class="odd">
+<td>System Complexity</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Cost</td>
+<td>Moderate</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td>Best Use Case</td>
+<td>Radiography, CT</td>
+<td>Micro-imaging, TOF, resonance imaging</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="selection-guidance" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="selection-guidance"><span class="header-section-number">4</span> Selection Guidance</h2>
+<ul>
+<li><strong>Large-area radiography / tomography</strong> → Lens + Camera</li>
+<li><strong>Sub-20 µm resolution requirements</strong> → Pixel ASIC</li>
+<li><strong>Time-resolved or energy-selective imaging</strong> → Pixel ASIC</li>
+<li><strong>Operational simplicity and robustness</strong> → Lens + Camera</li>
+</ul>
+<p><br></p>
+</section>
+<section id="ccd-vs-cmos" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="ccd-vs-cmos"><span class="header-section-number">5</span> CCD vs CMOS</h2>
+<section id="기본-작동-원리-차이" class="level3">
+<h3 class="anchored" data-anchor-id="기본-작동-원리-차이">기본 작동 원리 차이</h3>
+<section id="ccd-charge-coupled-device" class="level4">
+<h4 class="anchored" data-anchor-id="ccd-charge-coupled-device"><strong>CCD (Charge-Coupled Device)</strong></h4>
+<ul>
+<li>모든 픽셀에서 생성된 전하를 칩 가장자리의 소수(readout node) 로 순차 이동</li>
+<li>하나(또는 소수)의 증폭기를 공유</li>
+<li>픽셀 간 구조가 매우 균일</li>
+</ul>
+</section>
+<section id="scmos-scientific-cmos" class="level4">
+<h4 class="anchored" data-anchor-id="scmos-scientific-cmos"><strong>sCMOS (scientific CMOS)</strong></h4>
+<ul>
+<li>각 픽셀(또는 컬럼)에 개별 증폭기/리드아웃 회로 존재</li>
+<li>병렬 판독 구조</li>
+<li>CMOS 공정 기반, 고속·저잡음으로 최적화된 과학용 센서</li>
+</ul>
+</section>
+</section>
+<section id="중성자-영상에서-중요한-성능-항목별-비교" class="level3">
+<h3 class="anchored" data-anchor-id="중성자-영상에서-중요한-성능-항목별-비교">중성자 영상에서 중요한 성능 항목별 비교</h3>
+<section id="공간해상도에-미치는-영향" class="level4">
+<h4 class="anchored" data-anchor-id="공간해상도에-미치는-영향"><strong>공간해상도에 미치는 영향</strong></h4>
+<p>결론부터 말하면 중성자 영상의 공간해상도는 카메라가 아니라 신틸레이터가 지배하는 경우가 대부분이다.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">항목</th>
+<th style="text-align: left;">CCD</th>
+<th style="text-align: left;">sCMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">픽셀 크기</td>
+<td style="text-align: left;">9–24 µm (전통적)</td>
+<td style="text-align: left;">6.5 µm, 11 µm 등 다양</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">픽셀 균일성</td>
+<td style="text-align: left;">매우 우수</td>
+<td style="text-align: left;">우수 (보정 필요)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">해상도 기여</td>
+<td style="text-align: left;">낮음</td>
+<td style="text-align: left;">낮음</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">실질 한계</td>
+<td style="text-align: left;">신틸레이터 PSF</td>
+<td style="text-align: left;">신틸레이터 PSF</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>30–100 µm급 영상에서는 CCD/sCMOS 차이가 거의 없음</li>
+<li>초고해상도(≤20 µm) 에서는 sCMOS의 작은 픽셀이 oversampling 측면에서 유리할 수 있음
+<ul>
+<li>단, 신틸레이터가 얇고 고품질이라는 전제 필요</li>
+</ul></li>
+</ul>
+</section>
+<section id="감도-노이즈-동적-범위" class="level4">
+<h4 class="anchored" data-anchor-id="감도-노이즈-동적-범위"><strong>감도, 노이즈, 동적 범위</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">항목</th>
+<th style="text-align: left;">CCD</th>
+<th style="text-align: left;">sCMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Read noise</td>
+<td style="text-align: left;">매우 낮음 (1–3 e⁻)</td>
+<td style="text-align: left;">낮음 (1–2 e⁻ 최신형)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dark current</td>
+<td style="text-align: left;">낮음 (냉각 시 매우 낮음)</td>
+<td style="text-align: left;">매우 낮음</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Full well capacity</td>
+<td style="text-align: left;">큼</td>
+<td style="text-align: left;">중~큼</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dynamic range</td>
+<td style="text-align: left;">매우 큼</td>
+<td style="text-align: left;">매우 큼</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">약한 신호(SNR)</td>
+<td style="text-align: left;">매우 우수</td>
+<td style="text-align: left;">매우 우수</td>
+</tr>
+</tbody>
+</table>
+<p>중성자 영상 시사점</p>
+<ul>
+<li>두꺼운 ZnS 기반 스크린처럼 광량이 큰 경우 → 차이 거의 없음</li>
+<li>얇은 Gadox 스크린(고해상도용) 처럼 광량이 낮은 경우 → 최신 sCMOS가 CCD와 동등하거나 더 우수한 경우가 많음</li>
+</ul>
+</section>
+<section id="프레임-속도-및-시간-분해" class="level4">
+<h4 class="anchored" data-anchor-id="프레임-속도-및-시간-분해"><strong>프레임 속도 및 시간 분해</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">항목</th>
+<th style="text-align: left;">CCD</th>
+<th style="text-align: left;">sCMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">판독 방식</td>
+<td style="text-align: left;">직렬</td>
+<td style="text-align: left;">병렬</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">프레임 속도</td>
+<td style="text-align: left;">느림</td>
+<td style="text-align: left;">매우 빠름</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ROI 읽기</td>
+<td style="text-align: left;">제한적</td>
+<td style="text-align: left;">매우 유연</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">동적 영상</td>
+<td style="text-align: left;">부적합</td>
+<td style="text-align: left;">매우 적합</td>
+</tr>
+</tbody>
+</table>
+<p>중성자 영상 관점 - 정적 방사선촬영/CT → CCD로 충분 - 실시간 영상, 유동, in-situ 실험 → sCMOS가 사실상 표준</p>
+</section>
+<section id="영상-균일성-및-보정" class="level4">
+<h4 class="anchored" data-anchor-id="영상-균일성-및-보정"><strong>영상 균일성 및 보정</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">항목</th>
+<th style="text-align: left;">CCD</th>
+<th style="text-align: left;">sCMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">픽셀 응답 균일성</td>
+<td style="text-align: left;">매우 우수</td>
+<td style="text-align: left;">픽셀·컬럼 편차 존재</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">고정 패턴 노이즈</td>
+<td style="text-align: left;">거의 없음</td>
+<td style="text-align: left;">존재 (보정 필수)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Flat-field 보정</td>
+<td style="text-align: left;">단순</td>
+<td style="text-align: left;">필수</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>CCD는 “날것(raw image)”이 매우 깨끗</li>
+<li>sCMOS는 반드시 dark + flat-field 보정을 전제로 사용</li>
+<li>중성자 영상에서는 어차피 flat-field를 수행하므로 실무상 큰 단점은 아님</li>
+</ul>
+</section>
+<section id="방사선-환경-내구성" class="level4">
+<h4 class="anchored" data-anchor-id="방사선-환경-내구성"><strong>방사선 환경 내구성</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">항목</th>
+<th style="text-align: left;">CCD</th>
+<th style="text-align: left;">sCMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">중성자/감마 내성</td>
+<td style="text-align: left;">상대적으로 강함</td>
+<td style="text-align: left;">다소 민감</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">핫픽셀 증가</td>
+<td style="text-align: left;">느림</td>
+<td style="text-align: left;">비교적 빠름</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">장기 운용</td>
+<td style="text-align: left;">안정적</td>
+<td style="text-align: left;">차폐·교체 전략 필요</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>고선속 빔라인에서 수년 운용 → CCD가 더 보수적 선택</li>
+<li>최근 sCMOS는 차폐 + 거리 확보로 실사용에 문제 없는 사례 다수</li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="중성자-영상-실험-유형별-권장-선택" class="level3">
+<h3 class="anchored" data-anchor-id="중성자-영상-실험-유형별-권장-선택">중성자 영상 실험 유형별 권장 선택</h3>
+<section id="ccd가-더-적합한-경우" class="level4">
+<h4 class="anchored" data-anchor-id="ccd가-더-적합한-경우"><strong>CCD가 더 적합한 경우</strong></h4>
+<ul>
+<li>대면적 방사선촬영, CT</li>
+<li>장시간 노출(수십 초~수분)</li>
+<li>프레임 속도 중요하지 않음</li>
+<li>안정성·재현성이 최우선</li>
+<li>빔라인이 고방사선 환경</li>
+</ul>
+</section>
+<section id="scmos가-더-적합한-경우" class="level4">
+<h4 class="anchored" data-anchor-id="scmos가-더-적합한-경우"><strong>sCMOS가 더 적합한 경우</strong></h4>
+<ul>
+<li>고해상도 + 얇은 스크린 사용</li>
+<li>실시간 영상, 동적 현상 관찰</li>
+<li>빠른 CT, in-situ/operando 실험</li>
+<li>ROI 기반 효율적 데이터 취득 필요</li>
+</ul>
+</section>
+</section>
+<section id="한-문장-요약-발표용으로-쓰기-좋은-정리" class="level3">
+<h3 class="anchored" data-anchor-id="한-문장-요약-발표용으로-쓰기-좋은-정리">한 문장 요약 (발표용으로 쓰기 좋은 정리)</h3>
+<ul>
+<li>중성자 영상의 공간해상도는 CCD냐 sCMOS냐보다 신틸레이터가 결정하며, sCMOS의 진짜 장점은 속도와 유연성이다.</li>
+<li>정적·대면적 영상에는 CCD, 동적·고속·고해상도 영상에는 sCMOS가 현재 표준이다.</li>
+</ul>
+</section>
+</section>
+<section id="references-selected" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references-selected">References (Selected)</h2>
+<ul>
+<li>A. S. Tremsin et al., <em>Nucl. Instrum. Meth. A</em> <strong>605</strong>, 140–143 (2009).</li>
+<li>E. Lehmann et al., <em>Neutron Imaging and Applications</em>, Springer (2009).</li>
+<li>I. S. Anderson et al., <em>Neutron Imaging</em>, Oxford University Press (2020).</li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_imaging_detector_comparison.html</guid>
+  <pubDate>Tue, 13 Jan 2026 04:23:03 GMT</pubDate>
+</item>
 <item>
   <title>Report on Plastic Scintillator Radionuclide Identification Technology</title>
   <dc:creator>Julia_KAERI</dc:creator>
@@ -485,7 +928,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer,
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_eng.html</guid>
-  <pubDate>Mon, 12 Jan 2026 04:25:38 GMT</pubDate>
+  <pubDate>Tue, 13 Jan 2026 04:23:03 GMT</pubDate>
 </item>
 <item>
   <title>플라스틱 섬광체를 이용한 방사성 핵종 식별 기술 보고서</title>
@@ -980,7 +1423,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, Mark Gilbert, Lee Packer,
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_kor.html</guid>
-  <pubDate>Mon, 12 Jan 2026 04:25:38 GMT</pubDate>
+  <pubDate>Tue, 13 Jan 2026 04:23:03 GMT</pubDate>
 </item>
 </channel>
 </rss>
