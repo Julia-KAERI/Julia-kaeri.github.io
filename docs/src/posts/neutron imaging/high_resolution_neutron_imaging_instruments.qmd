@@ -1,0 +1,10 @@
+---
+title: "세계의 고분해능 중성자 산란장치"
+
+number-sections: true
+number-depth: 2
+crossref:
+  chapters: false
+
+bibliography: 'neutron_imaging.bib'
+---
