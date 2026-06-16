@@ -10,7 +10,7 @@
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Tue, 16 Jun 2026 10:42:43 GMT</lastBuildDate>
+<lastBuildDate>Tue, 16 Jun 2026 23:11:58 GMT</lastBuildDate>
 <item>
   <title>세계의 고분해능 중성자 산란장치</title>
   <dc:creator>Julia_KAERI</dc:creator>
@@ -146,7 +146,7 @@ Kaestner, A. P., S. Hartmann, G. Kühne, et al. 2011. <span>‘The ICON Beamline
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/high_resolution_neutron_imaging_instruments.html</guid>
-  <pubDate>Tue, 16 Jun 2026 10:42:43 GMT</pubDate>
+  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
 </item>
 <item>
   <title>Neutron Imaging Detector Systems: Camera-Based vs Pixel ASIC</title>
@@ -589,7 +589,7 @@ Kaestner, A. P., S. Hartmann, G. Kühne, et al. 2011. <span>‘The ICON Beamline
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_imaging_detector_comparison.html</guid>
-  <pubDate>Tue, 16 Jun 2026 10:42:43 GMT</pubDate>
+  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
 </item>
 <item>
   <title>Report on Plastic Scintillator Radionuclide Identification Technology</title>
@@ -1065,7 +1065,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, et al. 2021. <span>‘Con
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_eng.html</guid>
-  <pubDate>Tue, 16 Jun 2026 10:42:43 GMT</pubDate>
+  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
 </item>
 <item>
   <title>플라스틱 섬광체를 이용한 방사성 핵종 식별 기술 보고서</title>
@@ -1560,7 +1560,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, et al. 2021. <span>‘Con
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_kor.html</guid>
-  <pubDate>Tue, 16 Jun 2026 10:42:43 GMT</pubDate>
+  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
 </item>
 </channel>
 </rss>
