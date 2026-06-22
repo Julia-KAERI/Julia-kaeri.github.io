@@ -3,6 +3,7 @@
     "listing": "/src/posts/index.html",
     "items": [
       "/src/posts/neutron imaging/high_resolution_neutron_imaging_instruments.html",
+      "/src/posts/neutron imaging/neutron_detector_development.html",
       "/src/posts/neutron imaging/neutron_imaging_detector_comparison.html",
       "/src/posts/plastic_scintillator_eng.html",
       "/src/posts/plastic_scintillator_kor.html"

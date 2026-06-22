@@ -10,7 +10,7 @@
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Tue, 16 Jun 2026 23:11:58 GMT</lastBuildDate>
+<lastBuildDate>Mon, 22 Jun 2026 11:11:01 GMT</lastBuildDate>
 <item>
   <title>세계의 고분해능 중성자 산란장치</title>
   <dc:creator>Julia_KAERI</dc:creator>
@@ -25,11 +25,11 @@
 <p>%</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5CDeclarePairedDelimiters%7B%5Cset%7D%7B%5C%7B%7D%7B%5C%7D%7D%0A%5CDeclareMathOperator*%7B%5Cargmax%7D%7Barg%5C,max%7D%0A%5CDeclareMathOperator*%7B%5Cargmin%7D%7Barg%5C,min%7D%0A"></p>
 </div>
-<section id="광학적-특성" class="level2" data-number="1">
+<section id="광학적-특성" class="level2 page-columns page-full" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="광학적-특성"><span class="header-section-number">1</span> 광학적 특성</h2>
-<div id="tbl-hign_resolution_neutron_imaging_instrument_optical_properties" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<div aria-describedby="tbl-hign_resolution_neutron_imaging_instrument_optical_properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="tbl-hign_resolution_neutron_imaging_instrument_optical_properties" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-tbl figure page-columns page-full">
+<div aria-describedby="tbl-hign_resolution_neutron_imaging_instrument_optical_properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
 <table class="table">
 <colgroup>
 <col style="width: 12%">
@@ -74,9 +74,17 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
+<tr class="even">
+<td style="text-align: center;">OPAL</td>
+<td style="text-align: center;">DINGO (T)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">50 × 50 ~ 200 × 200 mm<sup>2</sup> <span class="citation" data-cites="Garbne2017Industrial">(Garbe et al. 2017)</span></td>
+</tr>
 </tbody>
 </table>
-</div>
+<div class="no-row-height column-margin column-container"></div></div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-hign_resolution_neutron_imaging_instrument_optical_properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 표&nbsp;1: <img src="https://latex.codecogs.com/png.latex?%5E1"> (C) : 냉중성자 장치, (T) 열중성자 장치
 </figcaption>
@@ -85,22 +93,45 @@
 </section>
 <section id="layout" class="level2 page-columns page-full" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="layout"><span class="header-section-number">2</span> Layout</h2>
-<section id="icons" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="icons">ICONS</h3>
+<section id="icons" class="level3 page-columns page-full" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="icons"><span class="header-section-number">2.1</span> ICONS</h3>
 <p>from <span class="citation" data-cites="Kaestner2011ICON">Kaestner et al. (2011)</span>,</p>
 <div class="no-row-height column-margin column-container"></div><p><img src="https://julia-kaeri.github.io/src/posts/neutron imaging/figures/ICONS_layout.png" class="img-fluid"></p>
 <p><br></p>
 </section>
-<section id="ncnr-cold-imaging" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="ncnr-cold-imaging">NCNR Cold Imaging</h3>
+<section id="ncnr-cold-imaging" class="level3 page-columns page-full" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="ncnr-cold-imaging"><span class="header-section-number">2.2</span> NCNR Cold Imaging</h3>
 <p>from <span class="citation" data-cites="Hussey2025ColdNeutronImaging">Hussey et al. (2015)</span></p>
 <div class="no-row-height column-margin column-container"><div id="ref-Hussey2025ColdNeutronImaging" class="csl-entry">
 Hussey, D. S., C. Brocker, J. C. Cook, et al. 2015. <span>‘A New Cold Neutron Imaging Instrument at NIST’</span>. <em>Physics Procedia</em> 69: 48–54.
 </div></div><p><img src="https://julia-kaeri.github.io/src/posts/neutron imaging/figures/NCNR_cold_imaging_layout.png" class="img-fluid"></p>
 </section>
+<section id="dingo-ansto" class="level3 page-columns page-full" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="dingo-ansto"><span class="header-section-number">2.3</span> DINGO @ ANSTO</h3>
+<p>from <span class="citation" data-cites="Garbne2017Industrial">Garbe et al. (2017)</span></p>
+<div class="no-row-height column-margin column-container"></div><p><img src="https://julia-kaeri.github.io/src/posts/neutron imaging/figures/DINGO_instrument_assembly.png" class="img-fluid"></p>
+</section>
 </section>
 <section id="검출기-분해능" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="검출기-분해능"><span class="header-section-number">3</span> 검출기, 분해능</h2>
+<section id="검출기-기술" class="level3 page-columns page-full" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="검출기-기술"><span class="header-section-number">3.1</span> 검출기 기술</h3>
+<p>From <span class="citation" data-cites="Strobl2024NeutronImaging">Strobl and Lehmann (2024)</span></p>
+<div class="no-row-height column-margin column-container"><div id="ref-Strobl2024NeutronImaging" class="csl-entry">
+Strobl, Markus, and Eberhard Lehmann, eds. 2024. <em>Neutron Imaging</em>. 2053-2563. IOP Publishing.
+</div></div><ul>
+<li>Binder materials 은 아래 두가지를 결합한다.
+<ul>
+<li>Neutron converter powders (like <sup>6</sup>LiF or Gd<sub>2</sub>O<sub>3</sub>),</li>
+<li>Scintillators (like ZnS:Ag) together.</li>
+</ul></li>
+</ul>
+<p>They must be transparent to visible light and mechanically flexible, typically relying on either organic polymers or inorganic materials.Common binder materials include:Organic Polymers: Silicone/Polydimethylsiloxane (PDMS), polystyrene, polypropylenes, and Perspex (PMMA). These are widely used to create flexible, large-area scintillator sheets or imaging plates.Inorganic Binders: Molten glasses (such as B₂O₃, PbO, or Bi₂O₃) or customized resins with a refractive index matched to the scintillator crystals to minimize light scattering.</p>
+</section>
+<section id="실제-장치의-검출기-spec" class="level3 page-columns page-full" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="실제-장치의-검출기-spec"><span class="header-section-number">3.2</span> 실제 장치의 검출기 Spec</h3>
+<section id="icon" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="icon"><strong>ICON</strong></h4>
 <div id="tbl-ICONS_table_3" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="quarto-float quarto-float-tbl figure page-columns page-full">
 <div aria-describedby="tbl-ICONS_table_3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -139,6 +170,20 @@ Hussey, D. S., C. Brocker, J. C. Cook, et al. 2015. <span>‘A New Cold Neutron 
 Kaestner, A. P., S. Hartmann, G. Kühne, et al. 2011. <span>‘The ICON Beamline – a Facility for Cold Neutron Imaging at SINQ’</span>. <em>Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment</em> 659 (1): 387–93.
 </div></div></figure>
 </div>
+</section>
+<section id="dingo" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="dingo"><strong>DINGO</strong></h4>
+<p>from <span class="citation" data-cites="Garbne2017Industrial">Garbe et al. (2017)</span>,</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Garbne2017Industrial" class="csl-entry">
+Garbe, Ulf, Yogita Ahuja, Ralph Ibrahim, et al. 2017. <span>‘Industrial Application Experiments on the Neutron Imaging Instrument DINGO’</span>. <em>Physics Procedia</em> 88: 13–18.
+</div></div><blockquote class="blockquote">
+<p>Two detector systems are available on DINGO. A CCD camera (Andor IKON-L) for standard neutron radiography and tomography and a CMOS (Andor NEO 5.5 sCMOS) camera for fast data acquisition are running insimilar detector boxes. Both cameras are mounted at 90º from the beam direction; a mirror mounted at 45º is used to reflect the emitted light from the scintillation screen to the CCD. The scintillation screens are exchangeable. An initial set of six screens (3 in 200 200 mm<sup>2</sup>, 3 in 100 100 mm<sup>2</sup>) with different scintillation layer thickness (50µm-300 µm) is available. The scintillation screens are aluminum sheet with a thin layer of scintillation material(ZnS/<sup>6</sup>LiF) coated. The CCD or CMOS camera is mounted on a translation stage to adjust the field of view to the experimental conditions.</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="references" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="references"><span class="header-section-number">4</span> References</h2>
 
 
 
@@ -146,7 +191,145 @@ Kaestner, A. P., S. Hartmann, G. Kühne, et al. 2011. <span>‘The ICON Beamline
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/high_resolution_neutron_imaging_instruments.html</guid>
-  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
+  <pubDate>Mon, 22 Jun 2026 11:11:01 GMT</pubDate>
+</item>
+<item>
+  <title>중성자 검출기 개발과 응용</title>
+  <dc:creator>Julia_KAERI</dc:creator>
+  <link>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_detector_development.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="hidden">
+<p>% %</p>
+<p>%</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5CDeclarePairedDelimiters%7B%5Cset%7D%7B%5C%7B%7D%7B%5C%7D%7D%0A%5CDeclareMathOperator*%7B%5Cargmax%7D%7Barg%5C,max%7D%0A%5CDeclareMathOperator*%7B%5Cargmin%7D%7Barg%5C,min%7D%0A"></p>
+</div>
+<p><strong>From Dr.&nbsp;Myoungkook Moon’s presentation</strong></p>
+<section id="핵분열과-원자력-기술" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="핵분열과-원자력-기술"><span class="header-section-number">1</span> 핵분열과 원자력 기술</h2>
+<section id="연구용-원자로와-발전용-원자료" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="연구용-원자로와-발전용-원자료"><span class="header-section-number">1.1</span> 연구용 원자로와 발전용 원자료</h3>
+<ul>
+<li>공통점 : <sup>235</sup>U 핵분열 반응 이용</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">항목</th>
+<th style="text-align: center;">연구용</th>
+<th style="text-align: center;">발전용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">사용 핵연료 (<sup>235</sup> (전기 출력 X)</td>
+<td style="text-align: center;">3 ~ 4 GW <br> (전기 출력 : 1 ~ 2 GW)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">가동 형식</td>
+<td style="text-align: center;">개방형 수조</td>
+<td style="text-align: center;">압력 용기</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">주요 이용분야</td>
+<td style="text-align: center;">중성자 이용 <br> - 동위원소 생산 <br> - 핵연료 및 원자력 재료 연구 <br> - 중성자 핵변환 <br> - 방사화 분석 <br> - 기초과학연구</td>
+<td style="text-align: center;">열에너지 <img src="https://latex.codecogs.com/png.latex?%5Cto"> 전력생산</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">중성자 선속 (n/cm<sup>2</sup>/sec)</td>
+<td style="text-align: center;">~ 10 <sup>14</sup></td>
+<td style="text-align: center;">~ 10<sup>12</sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">특징</td>
+<td style="text-align: center;">발전용 원자로 대배 100 배 이상 중성자 선속</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="핵분열-반응" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="핵분열-반응"><span class="header-section-number">1.2</span> 핵분열 반응</h3>
+<ul>
+<li>반응식 : <img src="https://latex.codecogs.com/png.latex?%5Cboxed%7B%7B%7D%5E%7B235%7D%5Ctext%7BU%7D%20+%20n%20%5Clongrightarrow%20%5Ctext%7BX%7D%20+%20%5Ctext%7BY%7D%20+%202%20%5Csim%203%20%5C,%20n%20+%20200%20%5Ctext%7B%20MeV%7D%7D"></li>
+<li>핵분열 에너지 : 200 Mev/fission <img src="https://latex.codecogs.com/png.latex?%5Capprox"> 3.2x10<sup>-11</sup> J/fission.
+<ul>
+<li>30 MW <img src="https://latex.codecogs.com/png.latex?%5Capprox"> 10<sup>18</sup> fisson/sec.</li>
+<li>원자력 발전소의 경우 : ~ 10<sup>20</sup> fission/sec.</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="중성자-발생-반응" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="중성자-발생-반응"><span class="header-section-number">2</span> 중성자 발생 반응</h2>
+<ul>
+<li>Alpha-induced reactions (RaBe, PoBe, AmBe, …)
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%5E9%5Ctext%7BBe%7D(%5Calpha,%5C,%20n)%20%7B%7D%5E%7B12%7D%20%5Cto%20%5Ctext%7BC%7D%20+%20%5Ctext%7B5.7%20MeV%7D"> (Neutron yield : 15 x 10<sup>6</sup> n/s/Ci)</li>
+</ul></li>
+<li>Spontaneous fission (<sup>252</sup>Cf)
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%5E%7B252%7D%5Ctext%7BCf%7D(%5Ctext%7Bsf%7D)%20%20%5Cto%20%7B%7D%5E%7B134%7D%5Ctext%7BTe%7D%20+%20%7B%7D%5E%7B115%7D%5Ctext%7BPd%7D%20+%203n%20+%20%5Ctext%7B212%20MeV%7D"> (Neutron yield : 4.4 x 10<sup>9</sup> n/s/Ci (2.4 x 10<sup>12</sup> n/s/g)</li>
+</ul></li>
+<li>Neutron-induced fission (HANARO, Power reactors)
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%7B%7D%5E%7B235%7D%5Ctext%7BU%7D(n,f)%20%5Cto%20%7B%7D%5E%7B134%7D%5Ctext%7BTe%7D%20+%20%7B%7D%5E%7B99%7D%5Ctext%7BZr%7D%20+%203n%20+%20%5Ctext%7B185%20MeV%7D"></li>
+</ul></li>
+<li>Fusion reactions (neutron generators, KSTAR, ITER)
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?d(d,n)%20%5Cto%20%7B%7D%5E%7B3%7D%5Ctext%7BHe%7D%20+%20%5Ctext%7B3.3%20MeV%7D">, <img src="https://latex.codecogs.com/png.latex?t(d,n)%20%5Cto%20%7B%7D%5E%7B4%7D%5Ctext%7BHe%7D%20+%20%5Ctext%7B17.6%20MeV%7D">.</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+<section id="중성자-검출-반응" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="중성자-검출-반응"><span class="header-section-number">3</span> 중성자 검출 반응</h2>
+<ul>
+<li><p><img src="https://latex.codecogs.com/png.latex?n%20+%20%7B%7D%5E%7B3%7D%5Ctext%7BHe%7D%20%5Clongrightarrow%20%7B%7D%5E%7B3%7D%5Ctext%7BH%7D%20+%20%7B%7D%5E%7B1%7D%5Ctext%7BH%7D%20+%20%5Ctext%7B0.764%20MeV%7D">.</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?n%20+%20%7B%7D%5E%7B6%7D%5Ctext%7BLi%7D%20%5Clongrightarrow%20%7B%7D%5E%7B4%7D%5Ctext%7BHe%7D%20+%20%7B%7D%5E%7B3%7D%5Ctext%7BH%7D%20+%20%5Ctext%7B4.79%20MeV%7D">.</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7Brl%7D%20n%20+%20%7B%7D%5E%7B10%7D%5Ctext%7BB%7D%20%20&amp;%5Clongrightarrow%20%7B%7D%5E%7B7%7D%5Ctext%7BLi%7D%5E%5Cast%20+%20%7B%7D%5E%7B4%7D%5Ctext%7BHe%7D%20%5C%5C%5B0.3em%5D%20&amp;%5Clongrightarrow%20%7B%7D%5E%7B7%7D%5Ctext%7BLi%7D%20+%20%7B%7D%5E%7B4%7D%5Ctext%7BHe%7D%20+%200.48%5Cgamma%20+%20%5Ctext%7B2.3%20MeV%20%20(93%5C%25)%7D%5C%5C%5B0.3em%5D%0A&amp;%5Clongrightarrow%20%7B%7D%5E%7B7%7D%5Ctext%7BLi%7D%20+%20%7B%7D%5E%7B4%7D%5Ctext%7BHe%7D%20+%20%5Ctext%7B2.8%20MeV%20(7%5C%25)%7D%5Cend%7Barray%7D">.</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?n%20+%20%7B%7D%5E%7B155%7D%5Ctext%7BGd%7D%5Clongrightarrow%20%5Ctext%7BGd%7D%5E%5Cast%20+%20%5Cgamma-ray%20%5Clongrightarrow%20%5Ctextbf%7Bconversion%20electron%7D">.</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?n%20+%20%7B%7D%5E%7B157%7D%5Ctext%7BGd%7D%20%5Clongrightarrow%20%5Ctext%7BGd%7D%5E%5Cast%20+%20%5Cgamma-ray%20%5Clongrightarrow%20%5Ctextbf%7Bconversion%20electron%7D">.</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?n%20+%20%7B%7D%5E%7B235%7D%5Ctext%7BU%7D%20%5Clongrightarrow%20%5Ctext%7Bfission%20fragments%7D%20+%20%5Csim%20%5Ctext%7B160%20MeV%7D">.</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?n%20+%20%7B%7D%5E%7B239%7D%5Ctext%7BPu%7D%20%5Clongrightarrow%20%5Ctext%7Bfission%20fragments%7D%20+%20%5Csim%20%5Ctext%7B160%20MeV%7D">.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="중성자-영상-검출-소재" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="중성자-영상-검출-소재"><span class="header-section-number">4</span> 중성자 영상 검출 소재</h2>
+<ul>
+<li>ZnS:<sup>6</sup>LiF
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?n%20+%20%7B%7D%5E%7B6%7D%5Ctext%7BLi%7D%20%5Clongrightarrow%20%7B%7D%5E%7B4%7D%5Ctext%7BHe%7D%20+%20t%20+%20%5Ctext%7B~5%20MeV%7D">.</li>
+<li>Resolution from 150 µm to 300 µm,</li>
+<li>Thermal stopping power of 20%</li>
+<li>High light yield (105 photons / neutron)</li>
+</ul></li>
+<li>GadOx (Gd<sub>2</sub>O<sub>2</sub>S:Tb)
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BGd%7D%20+%20n%20%5Clongrightarrow%20e%5E-"> , energy ≤ 71 keV per neutron capture on average</li>
+<li>Resolution ~10-20 µm</li>
+<li>Thermal stopping power up to 80%</li>
+<li>Low light yield (103 photons / neutron)</li>
+</ul></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_detector_development.html</guid>
+  <pubDate>Mon, 22 Jun 2026 11:11:01 GMT</pubDate>
 </item>
 <item>
   <title>Neutron Imaging Detector Systems: Camera-Based vs Pixel ASIC</title>
@@ -589,7 +772,7 @@ Kaestner, A. P., S. Hartmann, G. Kühne, et al. 2011. <span>‘The ICON Beamline
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_imaging_detector_comparison.html</guid>
-  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
+  <pubDate>Mon, 22 Jun 2026 11:11:01 GMT</pubDate>
 </item>
 <item>
   <title>Report on Plastic Scintillator Radionuclide Identification Technology</title>
@@ -1065,7 +1248,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, et al. 2021. <span>‘Con
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_eng.html</guid>
-  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
+  <pubDate>Mon, 22 Jun 2026 11:11:01 GMT</pubDate>
 </item>
 <item>
   <title>플라스틱 섬광체를 이용한 방사성 핵종 식별 기술 보고서</title>
@@ -1560,7 +1743,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, et al. 2021. <span>‘Con
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_kor.html</guid>
-  <pubDate>Tue, 16 Jun 2026 23:11:58 GMT</pubDate>
+  <pubDate>Mon, 22 Jun 2026 11:11:01 GMT</pubDate>
 </item>
 </channel>
 </rss>

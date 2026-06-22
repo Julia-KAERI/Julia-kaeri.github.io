@@ -2,7 +2,7 @@
 title: "세계의 고분해능 중성자 산란장치"
 
 number-sections: true
-number-depth: 2
+number-depth: 3
 crossref:
   chapters: false
 tbl-cap-location: bottom
@@ -19,6 +19,7 @@ bibliography: 'neutron_imaging.bib'
 | NCNR | NG6 (C) | 6 x 7.5 </br> <sup>58</sup>Ni 유도관 |  | 길이 : 9.5 m </br> ($\phi$ 30 cm) |
 | HZB | CONRAD-2 (C) | 3 x 12 </br> m=2, 2.5, 3 | 10 ~ 30  | 길이 : 12 m | illuminated area : 30 x 30 cm<sup>2</sup> |
 | PSI | ICON (C) |  | 1, 10, 20, 40, 80 | 
+| OPAL | DINGO (T) | | |  | 50 × 50 ~ 200 × 200 mm<sup>2</sup> [@Garbne2017Industrial]
 : $^1$ (C) : 냉중성자 장치, (T) 열중성자 장치 {#tbl-hign_resolution_neutron_imaging_instrument_optical_properties}
 
 
@@ -38,10 +39,44 @@ from @Hussey2025ColdNeutronImaging
 
 ![](figures/NCNR_cold_imaging_layout.png)
 
+### DINGO @ ANSTO
+
+from @Garbne2017Industrial
+
+![](figures/DINGO_instrument_assembly.png)
+
+
 ## 검출기, 분해능
 
+### 검출기 기술
+
+From @Strobl2024NeutronImaging
+
+- Binder materials 은 아래 두가지를 결합한다.
+  - Neutron converter powders (like <sup>6</sup>LiF or Gd<sub>2</sub>O<sub>3</sub>),
+  - Scintillators (like ZnS:Ag) together. 
+
+They must be transparent to visible light and mechanically flexible, typically relying on either organic polymers or inorganic materials.Common binder materials include:Organic Polymers: Silicone/Polydimethylsiloxane (PDMS), polystyrene, polypropylenes, and Perspex (PMMA). These are widely used to create flexible, large-area scintillator sheets or imaging plates.Inorganic Binders: Molten glasses (such as B₂O₃, PbO, or Bi₂O₃) or customized resins with a refractive index matched to the scintillator crystals to minimize light scattering.
+
+### 실제 장치의 검출기 Spec
+
+#### **ICON**
 
 | Scintillator metrial and thickness | <sup>6</sup>Li 50 μm  | <sup>6</sup>Li 100 μm | Gd 10 μm | Gd 20 μm |
 | :-----------------------------|-------:|-------:|-------:|-------:|
 | Resolution (μm) | 39.4 | 42.4 | 20.3 | 27.8 |
 : @Kaestner2011ICON {#tbl-ICONS_table_3}
+
+
+#### **DINGO**
+
+from @Garbne2017Industrial,
+
+>Two detector systems are available on DINGO. A CCD camera (Andor IKON-L) for standard neutron radiography and tomography and a CMOS (Andor NEO 5.5 sCMOS) camera for fast data acquisition are running insimilar detector boxes. Both cameras are mounted at 90º from the beam direction; a mirror mounted at 45º is used to reflect the emitted light from the scintillation screen to the CCD. The scintillation screens are exchangeable. An initial set of six screens (3 in 200 200 mm<sup>2</sup>, 3 in 100 100 mm<sup>2</sup>) with different scintillation layer thickness (50µm-300 µm) is available. The scintillation screens are aluminum sheet with a thin layer of scintillation material(ZnS/<sup>6</sup>LiF) coated. The CCD or CMOS camera is mounted on a translation stage to adjust the field of view to the experimental conditions.
+
+
+## References
+
+::: {#refs}
+:::
+
