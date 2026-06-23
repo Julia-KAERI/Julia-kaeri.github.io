@@ -226,6 +226,25 @@ flowchart LR
 - 중성자 영상의 공간해상도는 CCD냐 sCMOS냐보다 신틸레이터가 결정하며, sCMOS의 진짜 장점은 속도와 유연성이다.
 - 정적·대면적 영상에는 CCD, 동적·고속·고해상도 영상에는 sCMOS가 현재 표준이다.
 
+</br>
+
+## Currently available detectors
+
+### ASI6200MM Pro
+
+- 소니 IMX455 모노크롬 센서를 탑재한 초고해상도 카메라. 
+- 풀프레임 : 36mm x 24mm 
+- 픽셀 수 : 9575 x 6388 ~ 6.1 M 
+- 최대 91%의 양자 효율(QE)
+- 픽셀 크기: 3.76 μm
+- 판독 노이즈: 1.5e-
+
+### iKon-L Model
+
+- Active Pixels : 2048 x 2048
+- Pixel size : 13.5 μm
+- Imaging area : 27.6 mm x 27.6 mm
+  
 
 ## References (Selected) {.unnumbered}
 

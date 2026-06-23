@@ -1326,5 +1326,12 @@
     "title": "중성자 검출기 개발과 응용",
     "section": "4 중성자 영상 검출 소재",
     "text": "4 중성자 영상 검출 소재\n\nZnS:6LiF\n\n\\(n + {}^{6}\\text{Li} \\longrightarrow {}^{4}\\text{He} + t + \\text{~5 MeV}\\).\nResolution from 150 µm to 300 µm,\nThermal stopping power of 20%\nHigh light yield (105 photons / neutron)\n\nGadOx (Gd2O2S:Tb)\n\n\\(\\text{Gd} + n \\longrightarrow e^-\\) , energy ≤ 71 keV per neutron capture on average\nResolution ~10-20 µm\nThermal stopping power up to 80%\nLow light yield (103 photons / neutron)"
+  },
+  {
+    "objectID": "src/posts/neutron imaging/neutron_imaging_detector_comparison.html#currently-available-detectors",
+    "href": "src/posts/neutron imaging/neutron_imaging_detector_comparison.html#currently-available-detectors",
+    "title": "Neutron Imaging Detector Systems: Camera-Based vs Pixel ASIC",
+    "section": "6 Currently available detectors",
+    "text": "6 Currently available detectors\n\nASI6200MM Pro\n\n소니 IMX455 모노크롬 센서를 탑재한 초고해상도 카메라.\n풀프레임 : 36mm x 24mm\n픽셀 수 : 9575 x 6388 ~ 6.1 M\n최대 91%의 양자 효율(QE)\n픽셀 크기: 3.76 μm\n판독 노이즈: 1.5e-\n\n\n\niKon-L Model\n\nActive Pixels : 2048 x 2048\nPixel size : 13.5 μm\nImaging area : 27.6 mm x 27.6 mm"
   }
 ]
