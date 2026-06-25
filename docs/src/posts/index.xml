@@ -10,7 +10,7 @@
 <atom:link href="https://julia-kaeri.github.io/src/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Tue, 23 Jun 2026 08:07:24 GMT</lastBuildDate>
+<lastBuildDate>Thu, 25 Jun 2026 11:32:21 GMT</lastBuildDate>
 <item>
   <title>세계의 고분해능 중성자 산란장치</title>
   <dc:creator>Julia_KAERI</dc:creator>
@@ -191,7 +191,371 @@ Garbe, Ulf, Yogita Ahuja, Ralph Ibrahim, et al. 2017. <span>‘Industrial Applic
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/high_resolution_neutron_imaging_instruments.html</guid>
-  <pubDate>Tue, 23 Jun 2026 08:07:24 GMT</pubDate>
+  <pubDate>Thu, 25 Jun 2026 11:32:21 GMT</pubDate>
+</item>
+<item>
+  <title>연료전지 입문: PEMFC를 중심으로 — 고체물리 연구자를 위한 종합 안내</title>
+  <dc:creator>Julia_KAERI</dc:creator>
+  <link>https://julia-kaeri.github.io/src/posts/neutron imaging/introduction_to_fuel_cell.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="hidden">
+<p>% %</p>
+<p>%</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5CDeclarePairedDelimiters%7B%5Cset%7D%7B%5C%7B%7D%7B%5C%7D%7D%0A%5CDeclareMathOperator*%7B%5Cargmax%7D%7Barg%5C,max%7D%0A%5CDeclareMathOperator*%7B%5Cargmin%7D%7Barg%5C,min%7D%0A"></p>
+</div>
+<p><em>Claude Opus 4.8 의 Research 를 이용하여 2026년 6월 25일 작성함</em></p>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<ul>
+<li><strong>연료전지는 연료(주로 수소)의 화학에너지를 연소 과정 없이 전기화학 반응으로 직접 전기로 변환하는 장치</strong>로, 그중 <strong>고분자 전해질막 연료전지(PEMFC)</strong>는 저온(60–80 °C) 작동·빠른 시동·높은 출력밀도 덕분에 수소차와 분산발전의 핵심 기술로 자리잡았다.</li>
+<li>PEMFC의 성능을 좌우하는 가장 고전적이고 까다로운 문제는 <strong>물 관리(water management)</strong> — 막은 양성자 전도를 위해 수화되어야 하지만 과잉수는 기체 확산을 막아(flooding) 성능을 떨어뜨린다. <strong>중성자 영상(neutron imaging)</strong>은 수소/물에 강하게 산란하고 금속은 잘 투과하므로 작동 중 연료전지 내부의 물 분포를 비파괴로 보는 거의 유일한 도구이며, 본 보고서 독자의 향후 연구 분야와 직접 맞닿아 있다.</li>
+<li>열역학적으로 H₂/O₂ 연료전지의 이론 기전력은 약 1.23 V, 이상 효율은 약 83%(LHV 기준 <img src="https://latex.codecogs.com/png.latex?%5CDelta%20G/%5CDelta%20H">)이며, 실제 전압은 활성화·옴·물질전달 과전압(분극 곡선의 세 영역)으로 인해 낮아진다.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="key-findings" class="level2 page-columns page-full" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="key-findings"><span class="header-section-number">2</span> Key Findings</h2>
+<ol type="1">
+<li><strong>정의와 차별성.</strong> 연료전지는 배터리처럼 전기화학 셀이지만, 활물질<img src="https://latex.codecogs.com/png.latex?%5E1">을 내부에 저장하지 않고 외부에서 연료·산화제를 계속 공급받아 작동하는 “개방형” 발전기다. 열기관과 달리 화학에너지→열→일의 중간 단계를 거치지 않으므로 카르노 한계의 직접적 적용을 받지 않는다. </li>
+<li><strong>작동 원리.</strong> 양극(anode)에서 수소산화반응(HOR), 음극(cathode)에서 산소환원반응(ORR)이 일어나며, 전자는 외부 회로로(전류), 이온은 전해질을 통해 이동한다. PEMFC에서는 양성자(H<sup>+</sup>)가 막을 건넌다.</li>
+<li><strong>열역학.</strong> <img src="https://latex.codecogs.com/png.latex?%5CDelta%20G%20=%20%E2%88%92nFE"> 관계로부터 표준 기전력 <img src="https://latex.codecogs.com/png.latex?E%5E%5Ccirc%20%E2%89%88%201.229%5C,%5Ctext%7BV%7D"> (액체 물 생성 기준)가 나오며, Nernst 식이 압력·온도 의존성을 준다.</li>
+<li><strong>속도론과 실제 성능.</strong> 분극(전류-전압) 곡선은 활성화 손실(저전류, ORR이 느림)·옴 손실(중간전류, 막 저항)·농도(물질전달) 손실(고전류, flooding)의 세 영역으로 나뉘며, Butler–Volmer 식이 전류와 과전압의 관계를 기술한다.</li>
+<li><strong>PEMFC 구조.</strong> 핵심은 막전극접합체(MEA): Nafion 등 과불화술폰산(PFSA) 막 + 백금/탄소 촉매층 + 기체확산층(GDL, 미세다공층 MPL 포함), 그 바깥에 분리판/유로(bipolar plate).</li>
+<li><strong>백금 비용과 ORR.</strong> ORR은 HOR보다 약 6자리수 느려 음극에 다량의 Pt가 필요하며, Sigma-Aldrich/Merck 기술 리뷰에 따르면 “PGM 촉매가 80 kW PEMFC 시스템 스택 총비용의 거의 절반(nearly half)”을 차지한다.</li>
+<li><strong>중성자 영상.</strong> NIST(BT-2), PSI(ICON/NEUTRA), ISIS(IMAT) 등에서 작동 중 PEMFC의 물 분포를 <img src="https://latex.codecogs.com/png.latex?%5Cmu%5Ctext%7Bm%7D">~수십 <img src="https://latex.codecogs.com/png.latex?%5Cmu%5Ctext%7Bm%7D">해상도, 초 단위 시간분해능으로 가시화하며, 최근 4D 중성자 CT까지 발전했다.</li>
+<li><strong>다른 연료전지.</strong> SOFC(고온 세라믹, O<sup>2-</sup> 전도), MCFC(용융탄산염, CO<sub>3</sub><sup>2-</sup>), PAFC(인산), AFC(알칼리, OH<sup>-</sup>), DMFC(직접 메탄올)가 작동온도·전해질·전하운반체·용도에서 차이를 보인다.</li>
+<li><strong>현황.</strong> PEMFC는 토요타 미라이·현대 넥쏘 등 상용 수소차의 표준 기술이지만, 수소 인프라·내구성·비용 문제로 FCEV 판매는 최근 둔화되었고, 정치(stationary) 발전 분야가 새 성장축으로 부상 중이다.</li>
+</ol>
+<div class="no-row-height column-margin column-container"><span class="margin-aside"><img src="https://latex.codecogs.com/png.latex?%5E1"> 활물질(Active Material)은 이차전지 내부에서 충·방전 시 화학적 반응을 통해 실제로 전기 에너지를 생성하고 저장하는 핵심 물질</span></div><p><br></p>
+</section>
+<section id="details" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="details"><span class="header-section-number">3</span> Details</h2>
+<section id="연료전지란-무엇인가-정의역사차별성" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="연료전지란-무엇인가-정의역사차별성"><span class="header-section-number">3.1</span> 연료전지란 무엇인가: 정의·역사·차별성</h3>
+<p><strong>정의.</strong> 연료전지(fuel cell)는 연료의 화학에너지를 전기화학 반응을 통해 직접 전기에너지로 변환하는 발전 장치다. 수소를 연료로 쓰는 경우 부산물은 물과 열뿐이며, 작동 중 CO<sub>2</sub>나 질소산화물·황산화물 같은 오염물질을 배출하지 않는다.</p>
+<p><strong>역사.</strong> 연료전지의 기원은 1839년 영국(웨일스 출신)의 윌리엄 그로브(Sir William Robert Grove, 1811–1896)로 거슬러 올라간다. 그는 물 전기분해의 역과정 — 수소와 산소를 결합해 전기를 만드는 것 — 을 착안하여 묽은 황산 전해질에 백금 전극을 담근 <strong>가스 전지(gas voltaic battery)</strong> 를 만들었다(1842년 50셀 묶음 시연). 1800년 니컬슨과 칼라일의 전기분해 발견에서 영감을 얻었다. 그로브는 “연료전지의 아버지”로 불린다. 이후 100여 년간 실용성이 낮았으나, 1932년 프랜시스 베이컨(Francis T. Bacon)이 알칼리형 연료전지(AFC)를 개발했고, 1960년대 NASA가 아폴로·우주왕복선 계획에서 전력·식수원으로 채택하면서 본격 발전했다.</p>
+<p><strong>배터리와의 차이.</strong> 배터리는 활물질을 셀 내부에 저장하는 폐쇄형 에너지 저장 장치로, 방전되면 충전(또는 교체)해야 한다. 반면 연료전지는 연료와 산화제가 외부에서 공급되는 한 계속 전기를 생산하는 변환 장치다(자동차로 치면 연료탱크에 계속 주유하는 것과 같다). 즉 연료전지는 “에너지 변환기”, 배터리는 “에너지 저장기”다.</p>
+<p><strong>열기관(내연기관)과의 차이.</strong> 내연기관은 연료를 연소시켜 열을 만들고, 그 열로 기계적 일을 한 뒤 발전한다(화학→열→기계→전기). 각 단계마다 손실이 있고, 특히 열→일 단계는 카르노 효율의 제약을 받는다. 연료전지는 화학에너지를 전기로 직접 변환하므로 중간 단계 손실이 적다. Argonne 연구소의 실측에서 2016년형 토요타 미라이의 차량 평균 효율은 25 °C에서 약 62%로, 동급 하이브리드(약 46%)·일반 내연기관차(약 24%)를 크게 앞섰다.</p>
+<p><br></p>
+</section>
+<section id="작동-원리-반쪽반응과-전자이온의-흐름" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="작동-원리-반쪽반응과-전자이온의-흐름"><span class="header-section-number">3.2</span> 작동 원리: 반쪽반응과 전자·이온의 흐름</h3>
+<p>PEMFC(Polymer Electrolyte Membrane Fuel Cell)의 경우:</p>
+<div id="fig-PEMFC" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-PEMFC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Proton_Exchange_Fuel_Cell_Diagram.svg/3840px-Proton_Exchange_Fuel_Cell_Diagram.svg.png" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PEMFC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;1: Diagram of a PEM fuel cell (출처 : 위키피디아 영문)
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>양극(anode), 수소산화반응(HOR):</strong> <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_2%20%5Cto%202%5Ctext%7BH%7D%5E+%20+%202e%5E-"></p></li>
+<li><p><strong>음극(cathode), 산소환원반응(ORR):</strong> <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B2%7D%5Ctext%7BO%7D_2%20+%202%5Ctext%7BH%7D%5E+%20+%202e%E2%81%BB%20%5Cto%20%5Ctext%7BH%7D_2%5Ctext%7BO%7D"></p></li>
+<li><p><strong>전체 반응:</strong> <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_2%20+%20%5Cfrac%7B1%7D%7B2%7D%5Ctext%7BO%7D_2%20%5Cto%20%5Ctext%7BH%7D_2%5Ctext%7BO%7D%20(+%20%5Ctext%7B%EC%A0%84%EA%B8%B0%7D%20+%20%5Ctext%7B%EC%97%B4%7D)"></p></li>
+</ul>
+<p>수소가 양극 촉매에서 양성자와 전자로 분리되면, <strong>양성자(<img src="https://latex.codecogs.com/png.latex?H%5E+">)는 전해질막(electrolite membrane)을 통해</strong> 음극으로 이동하고, <strong>전자(<img src="https://latex.codecogs.com/png.latex?e%5E-">)는 막을 통과하지 못해 외부 회로를 따라</strong> 흐르며 이 흐름이 곧 전류이다. 음극에서 전자·양성자·산소가 만나 물을 생성한다. 전해질의 종류에 따라 운반되는 이온이 달라진다(PEMFC·PAFC: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D%5E+">, AFC: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BOH%7D%5E-">, SOFC: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BO%7D%5E%7B2-%7D">, MCFC: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCO%7D_3%5E%7B2-%7D">).</p>
+<p><br></p>
+</section>
+<section id="열역학-깁스-자유에너지-기전력-nernst-식-효율" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="열역학-깁스-자유에너지-기전력-nernst-식-효율"><span class="header-section-number">3.3</span> 열역학: 깁스 자유에너지, 기전력, Nernst 식, 효율</h3>
+<p><strong><img src="https://latex.codecogs.com/png.latex?%5CDelta%20G"> 와 기전력.</strong> 전기화학 셀이 할 수 있는 최대 전기적 일은 반응의 깁스 자유에너지 변화 <img src="https://latex.codecogs.com/png.latex?%5CDelta%20G">와 같다. 전하량 <img src="https://latex.codecogs.com/png.latex?nF">(<img src="https://latex.codecogs.com/png.latex?n">: 이동 전자 몰수, <img src="https://latex.codecogs.com/png.latex?F">: 패러데이 상수 96,485 C/mol)당 전위로 환산하면</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5CDelta%20G%20=%20%E2%88%92nFE%0A"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_2%20+%20%5Cfrac%7B1%7D%7B2%7D%5Ctext%7BO%7D_2%20%5Cto%20%5Ctext%7BH%7D_2%5Ctext%7BO%7D%20(l)"> 반응은 25 °C에서 <img src="https://latex.codecogs.com/png.latex?%5CDelta%20G%5E%5Ccirc%20=%20%E2%88%92237.2%20%5Ctext%7BkJ/mol%7D">, <img src="https://latex.codecogs.com/png.latex?%5CDelta%20H%5E%5Ccirc%20=%20%E2%88%92285.8%20%5Ctext%7B%20kJ/mol%7D"> 이다. 따라서 표준 가역 기전력은</p>
+<p>&nbsp;&nbsp;<img src="https://latex.codecogs.com/png.latex?E%5E%5Ccirc%20=%20-%20%5CDelta%20G%5E%5Ccirc/(nF)%20=%20%20237,200%20/%20(2%20%C3%97%2096,485)%20%5Capprox%20%5Ctextbf%7B1.229%20V%7D"> (액체 물 생성 기준; 기체 물 기준 <img src="https://latex.codecogs.com/png.latex?%5Csim%201.18%20%5Ctext%7B%20V%7D">).</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5CDelta%20G"> 는 온도가 올라가면 (엔트로피 항 <img src="https://latex.codecogs.com/png.latex?%E2%88%92T%5CDelta%20S"> 때문에) 감소하므로 이상 전압도 온도에 따라 낮아진다. 반응이 <img src="https://latex.codecogs.com/png.latex?%5CDelta%20S%20%3C%200"> (기체 분자 수 감소)이기 때문이다.</p>
+<section id="nernst-식" class="level4">
+<h4 class="anchored" data-anchor-id="nernst-식"><strong>Nernst 식</strong></h4>
+<p>비표준 조건(압력·농도)에서의 기전력은</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AE=E%5E%5Ccirc%20-%20(RT/nF)%5Cln%20Q,%20%5Cqquad%20%5Ctext%7Bwhere%20%7D%20Q=%20%5Cdfrac%7Bp(%5Ctext%7BH%7D_2%5Ctext%7BO%7D)%7D%7B%5Bp(%5Ctext%7BH%7D_2)%5Ccdot%20p(%5Ctext%7BO%7D_2)%5E%7B1/2%7D%5D%7D%0A"></p>
+<p>로 주어진다. 반응물(<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_2">, <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BO%7D_2">) 분압이 높을수록, 생성물(<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_2%5Ctext%7BO%7D">) 분압이 낮을수록 전압이 올라간다. 가압 운전이 성능에 유리한 열역학적 근거다.</p>
+</section>
+<section id="열역학-효율과-카르노-비교." class="level4">
+<h4 class="anchored" data-anchor-id="열역학-효율과-카르노-비교."><strong>열역학 효율과 카르노 비교.</strong></h4>
+<p>연료전지의 이상(가역) 효율은 전기로 변환 가능한 <img src="https://latex.codecogs.com/png.latex?%5CDelta%20G"> 와 연료의 총 발열량 <img src="https://latex.codecogs.com/png.latex?%5CDelta%20H"> 의 비로 정의된다:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Ceta_%5Ctext%7Bmax%7D%20=%20%5Cdfrac%7B%5CDelta%20G%7D%7B%5CDelta%20H%7D%20=%20%5Cdfrac%7B237.2%7D%7B285.8%7D%20%5Capprox%200.83.%20%5Cqquad%20(%5Ctext%7B%EC%A0%80%EC%9C%84%EB%B0%9C%EC%97%B4%EB%9F%89%20LHV%20%EA%B8%B0%EC%A4%80,%2025%20%5C%25%7D)%0A"></p>
+<p>이 값은 흔히 <strong>연료전지는 카르노 한계에 묶이지 않는다</strong> 는 말로 표현된다. 다만 학술적으로는 미묘한 논쟁이 있다: 일부 연구자(예: Haseli, <em>Int. J. Hydrogen Energy</em> 2018)는 동일 고온·저온 사이에서 비교하면 연료전지와 열기관 모두 열역학 제2법칙이라는 같은 한계에 묶인다고 본다(해당 논문은 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_2-%5Ctext%7BO%7D_2"> 79.3%, <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_2">-공기 75.7%, 메탄-공기 82.1%의 이상 효율을 도출). 실용적 핵심은 <strong>저온에서 연료전지가 동급 온도의 열기관보다 훨씬 높은 효율을 낼 수 있다</strong>는 점이다. 실제 시스템 효율은 50–60%대다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="속도론과-실제-성능-분극-곡선과-과전압" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="속도론과-실제-성능-분극-곡선과-과전압"><span class="header-section-number">3.4</span> 속도론과 실제 성능: 분극 곡선과 과전압</h3>
+<p>이상적으로는 1.23 V 여야 하지만, 실제 셀은 전류를 흘리는 순간 전압이 떨어진다. <strong>분극 곡선(polarization curve, i–V curve)</strong>은 전류밀도에 따른 셀 전압을 보여주며, 손실의 종류에 따라 세 영역으로 나뉜다.</p>
+<ol type="1">
+<li><strong>활성화 과전압(activation overpotential, 저전류 영역).</strong> 전극 반응 자체가 느려서 반응을 일으키는 데 필요한 “활성화 장벽”을 넘기 위해 잃는 전압이다. PEMFC에서는 특히 <strong>음극 ORR이 매우 느려</strong>(양극 HOR보다 약 6자리수 느림) 활성화 손실의 대부분을 차지한다. 이 손실은 개회로에서도 0.1–0.2 V에 달해 실제 개회로 전압을 1.0 V 이하로 끌어내린다.</li>
+<li><strong>옴 손실(ohmic loss, 중간전류 영역).</strong> 막의 이온 저항과 전극·분리판의 전자 저항에 의한 IR 강하로, 옴의 법칙(ΔV = iR)을 따라 전류에 선형 비례한다. 막 수화 상태가 이 영역을 좌우한다.</li>
+<li><strong>농도(물질전달) 과전압(concentration loss, 고전류 영역).</strong> 전류가 커지면 반응물(특히 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BO%7D_2">)이 촉매 표면에 충분히 빨리 도달하지 못해 전압이 급락한다. <strong>물 범람(flooding)</strong>으로 기체 통로가 막히면 이 손실이 심해진다.</li>
+</ol>
+<p><strong>Butler–Volmer 식.</strong> 활성화 영역의 전류밀도 i와 과전압 η의 관계는 전기화학 속도론의 기본식인 Butler–Volmer 식으로 기술된다:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ai%20=%20i_0%20%5Cleft%5B%5Cexp%20(%5Calpha_a%20F%20%5Ceta/RT)%20-%20%5Cexp%20(-a_c%20F%5Ceta/RT)%5Cright%5D.%0A"></p>
+<p>여기서 <img src="https://latex.codecogs.com/png.latex?i_0"> 는 교환전류밀도(반응의 본질적 빠르기, ORR은 <img src="https://latex.codecogs.com/png.latex?i_0"> 가 매우 작다), <img src="https://latex.codecogs.com/png.latex?%5Calpha"> 는 전하전달계수이다. 과전압이 충분히 크면 한쪽 지수항이 지배해 <strong>Tafel 식</strong>(<img src="https://latex.codecogs.com/png.latex?%5Ceta%20=%20a%20+%20b%20%5Clog%20i">) 으로 단순화된다. ORR은 <img src="https://latex.codecogs.com/png.latex?i_0"> 가 작은(즉 느린) 반응이고, Butler–Volmer 상 같은 출력을 내려면 큰 과전압을 감수하거나 <img src="https://latex.codecogs.com/png.latex?i_0"> 를 키워야 하는데, <img src="https://latex.codecogs.com/png.latex?i_0"> 를 키우는 현실적 방법이 촉매 표면적을 늘리는 것이라 cathode에 백금을 다량 투입하게 된다.</p>
+<p><br></p>
+</section>
+<section id="pemfc-상세" class="level3 page-columns page-full" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="pemfc-상세"><span class="header-section-number">3.5</span> PEMFC 상세</h3>
+<section id="막전극접합체mea와-전체-구조" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="막전극접합체mea와-전체-구조"><strong>막전극접합체(MEA)와 전체 구조</strong></h4>
+<div id="fig-PEMFC_2" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-PEMFC_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://julia-kaeri.github.io/src/posts/neutron imaging/figures/Scheme_PEMFC.png.webp" class="img-fluid figure-img" width="400">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PEMFC_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2: Diagram of a PEM fuel cell (출처 : <span class="citation" data-cites="Aljaidi2025">Aljaidi et al. (2025)</span>)
+</figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-Aljaidi2025" class="csl-entry">
+Aljaidi, Mohammad, Pradeep Jangir, Arpita, et al. 2025. <span>‘A Novel Parrot Optimizer for Robust and Scalable PEMFC Parameter Optimization’</span>. <em>Scientific Reports</em> 15 (1): 11625.
+</div></div></figure>
+</div>
+<p>PEMFC 단위 셀은 안쪽부터 <strong>고분자 전해질막 — 촉매층(양쪽) — 기체확산층(GDL, 양쪽) — 분리판/유로</strong> 로 구성된다. 막+촉매층+GDL을 합친 것이 MEA(membrane electrode assembly)로, 실제 전기화학 반응이 일어나는 심장부다. 셀 하나의 전압은 1 V 미만이므로, 실제 스택(stack)은 수백 장의 셀을 분리판으로 직렬 연결해 필요한 전압을 얻는다.</p>
+</section>
+<section id="고분자-전해질막-nafion의-화학과-양성자-전도" class="level4">
+<h4 class="anchored" data-anchor-id="고분자-전해질막-nafion의-화학과-양성자-전도"><strong>고분자 전해질막: Nafion의 화학과 양성자 전도</strong></h4>
+<p>가장 널리 쓰이는 막은 듀폰(현 Chemours)이 1960년대 개발한 <strong>Nafion</strong>, 곧 과불화술폰산(PFSA) 이오노머다. 구조는 <strong>테플론(PTFE) 같은 소수성 불소탄소 주쇄에 술폰산기(<img src="https://latex.codecogs.com/png.latex?%E2%80%93%5Ctext%7BSO%7D_3%5Ctext%7BH%7D">)로 끝나는 친수성 곁사슬</strong>이 달린 형태다. 막을 특징짓는 두 지표는 두께와 당량(equivalent weight, EW: 술폰산기 1몰당 건조 고분자 질량)이다. 예컨대 Nafion 117은 EW 1100, 두께 약 178 µm이고, Nafion 112는 같은 EW에 약 51 µm다.</p>
+<p>주사슬(소수성)와 곁사슬(친수성)의 극성 차이로 <strong>나노 상분리</strong>가 일어나, 술폰산기가 안쪽 벽을 이루는 직경 약 4–6 nm의 물 채널(나노클러스터)이 형성된다. 물이 흡수되면 술폰산기가 해리되어 양성자를 내놓고, 이 양성자가 채널을 통해 전도된다. 완전 수화된 Nafion 117의 양성자 전도도는 약 0.09–0.16 S/cm(액체 물 평형, 측정법에 따라 다름)이며, 흔히 80 °C 완전 수화 기준 <strong>~0.1 S/cm</strong>가 벤치마크로 인용된다. 전도도는 함수율(술폰산기당 물 분자 수) <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 에 강하게 의존하며, <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 가 낮으면(특히 <img src="https://latex.codecogs.com/png.latex?%5Clambda%20%3C%205">) 급격히 떨어진다.</p>
+<p><strong>양성자 전도 메커니즘: Grotthuss vs 운반(vehicular)</strong></p>
+<ul>
+<li><p><strong>Grotthuss(구조 확산/호핑) 메커니즘:</strong> 양성자가 물 분자(또는 술폰산기) 사이의 수소결합을 끊고 새로 만들며 “건너뛰듯” 이동한다. 운반체 분자 자체의 이동 없이 양성자 환경의 재배열만으로 전하가 전달되므로 빠르다.</p></li>
+<li><p><strong>운반(vehicular) 메커니즘:</strong> 양성자가 물 분자에 붙어 하이드로늄 이온(<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BH%7D_3%5Ctext%7BO%7D%5E+">) 형태로 물과 함께 통째로 확산한다. 물의 이동이 필수적이다.</p></li>
+</ul>
+<p>Nafion에서는 두 기구가 공존·협력하며, 수화도가 높을수록 잘 연결된 물 채널을 통한 전도가 활발해진다. 1806년 Theodor Grotthuss가 처음 제안한 호핑 기구는 잘 수화된 물에서 양성자 전도를 빠르게 만드는 핵심이다. Kreuer 등의 연구에 따르면 완전 수화 시 Grotthuss(구조 확산)가 약 2.5배의 증폭 인자를 주는 반면, 저수화에서는 운반(vehicular) 기구가 지배한다. 이 때문에 <strong>막의 수화 유지가 PEMFC 성능의 절대 조건</strong>이며, 곧 물 관리 문제로 직결된다.</p>
+</section>
+<section id="촉매층-백금탄소와-orr의-난제" class="level4">
+<h4 class="anchored" data-anchor-id="촉매층-백금탄소와-orr의-난제"><strong>촉매층: 백금/탄소와 ORR의 난제</strong></h4>
+<p>촉매층은 탄소 분말(예: Vulcan XC-72)에 백금 나노입자를 담지한 <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BPt/C%7D">와 이를 묶는 이오노머(보통 Nafion 용액)로 이루어진다. <strong>양극(HOR)은 빠르지만, 음극(ORR)은 약 5–6자리수 느려</strong> 음극에 더 많은 백금이 필요하다. 미국 DOE는 2017년 기준 백금족 금속(PGM) 총담지량을 2020년까지 0.125 mg/cm²(정격 1.0 W/cm² 기준 약 0.125 g/kW) 미만으로 낮추는 목표를 세웠고, 실험실 수준에서 0.1–0.125 mg/cm²까지 내려왔다. 비용 측면에서, 2024년 ChemElectroChem 리뷰(Krishnan 등)에 따르면 고생산량 시나리오에서도 “Pt 계열 촉매가 여전히 스택 총비용의 최소 26%(at least 26%)”를 차지하며, Sigma-Aldrich/Merck 기술 리뷰는 80 kW급 시스템에서 PGM 촉매가 “스택 총비용의 거의 절반(nearly half)”을 차지한다고 본다. 또한 2020년 추산으로 80 kW급 자동차용 PEMFC 시스템(연 10만 대 생산) 비용은 내구성 보정 시 $76/kW_net로, DOE의 2025년 목표 $40/kW_net를 웃돌았다. Pt 합금(Pt-Co 등)으로 담지량을 0.4→0.2 mg/cm²로 줄이거나, 전이금속-질소-탄소(M-N-C) 같은 비귀금속 촉매(PGM-free)를 개발하는 연구가 활발하다.</p>
+</section>
+<section id="기체확산층gdl과-미세다공층mpl" class="level4">
+<h4 class="anchored" data-anchor-id="기체확산층gdl과-미세다공층mpl"><strong>기체확산층(GDL)과 미세다공층(MPL)</strong></h4>
+<p>GDL은 보통 탄소섬유 종이(carbon paper) 또는 탄소천(carbon cloth)으로, 두께 약 100–300 µm, 공극률 70–80%다. 역할은 (1) 유로의 반응 기체를 촉매층 전면에 고르게 확산, (2) 생성수 배출, (3) 전자·열 전도, (4) MEA 기계적 지지다. 통상 <strong>PTFE로 소수성 처리</strong>해 물이 공극을 막지 않게 한다. 촉매층과 맞닿는 면에는 탄소 분말+PTFE로 만든 얇은 <strong>미세다공층(MPL)</strong>을 두어 물 배출과 계면 접촉을 개선한다. GDL의 미세구조·소수성·두께는 flooding과 막 건조 사이의 균형을 좌우하는 핵심 설계 변수다.</p>
+</section>
+<section id="분리판과-유로-설계" class="level4">
+<h4 class="anchored" data-anchor-id="분리판과-유로-설계"><strong>분리판과 유로 설계</strong></h4>
+<p>분리판(bipolar plate)은 인접 셀의 전기를 연결하고, 표면에 새겨진 유로(flow field)로 반응 기체를 분배하며 생성수를 배출하고 열을 관리한다. <u>흑연·코팅 금속·복합재가 쓰이며</u>, 유로 형태(serpentine, parallel, interdigitated 등)에 따라 기체 분배 균일성·물 배출·압력 강하가 달라진다. 분리판은 기존 스택 중량의 상당 부분을 차지해 경량화 연구가 진행된다.</p>
+</section>
+<section id="작동-조건과-물-관리-pemfc의-핵심-딜레마" class="level4">
+<h4 class="anchored" data-anchor-id="작동-조건과-물-관리-pemfc의-핵심-딜레마"><strong>작동 조건과 물 관리: PEMFC의 핵심 딜레마</strong></h4>
+<p>PEMFC는 보통 <strong>60–80 °C</strong>의 저온에서 작동하며, 막이 마르지 않도록 반응 기체를 가습한다(물이 형성되는 속도보다 빨리 증발하면 안 되므로 100 °C 미만 운전). 물 관리의 본질적 딜레마는 다음과 같다:</p>
+<ul>
+<li><strong>막은 젖어 있어야 한다:</strong> 양성자 전도(특히 Grotthuss)는 충분한 물(<img src="https://latex.codecogs.com/png.latex?%5Clambda%20%5Cge%205"> 에서 술폰산기 완전 해리)을 요구한다. 막이 마르면 옴 저항이 급증한다.</li>
+<li><strong>그러나 물이 너무 많으면 안 된다:</strong> 액체 물이 GDL 공극과 유로를 막으면(flooding) 산소가 촉매에 도달하지 못해 농도 과전압이 급증한다.</li>
+</ul>
+<p>이 균형을 더 복잡하게 만드는 것이 막 내 물의 두 가지 흐름이다:</p>
+<ul>
+<li><p><strong>전기삼투 끌림(electro-osmotic drag, EOD):</strong> 양성자가 막을 건널 때 물 분자를 양극→음극으로 끌고 간다. Zawodzinski 등(<em>J. Electrochem. Soc.</em> 1993)의 고전적 측정에 따르면 Nafion 117에서 끌림 계수 <img src="https://latex.codecogs.com/png.latex?%5Cxi">(양성자당 물 분자 수)는 증기 평형 막(<img src="https://latex.codecogs.com/png.latex?%5Clambda">=1.4–14, 30 °C)에서 약 1.0, 액체 평형 막에서 약 2.5에 이르며(Springer 모델의 기준점 (<img src="https://latex.codecogs.com/png.latex?%5Cxi_1,%5C,%20%5Clambda_1">)=(2.5, 22)), 작동 셀 실측치는 보통 0.5–1.0 범위로 보고된다. <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 가 5 미만이면 <img src="https://latex.codecogs.com/png.latex?%5Cxi"> 는 0에 가까워진다. 문헌 간 산포가 커서 단일 값이 아닌 범위로 이해해야 한다(Vetter &amp; Schumacher, arXiv:1811.10091은 “신뢰할 만한 <img src="https://latex.codecogs.com/png.latex?%5Cxi(%5Clambda,T)"> 상관식이 아직 없다”고 명시).</p></li>
+<li><p><strong>역확산(back-diffusion):</strong> 음극에서 생성·축적된 물이 농도 구배를 따라 음극→양극으로 되돌아간다.</p></li>
+</ul>
+<p>순(net) 물 이동은 EOD에서 역확산을 뺀 값이다. 고전류에서는 EOD가 막의 음극 측을 적시고 양극 측을 마르게 하는 경향이 있어, 막 두께를 줄이면(예: Nafion 211, ~25 µm) 역확산이 강해져 물 분포가 균일해진다. 함수율 <img src="https://latex.codecogs.com/png.latex?%5Clambda"> 는 액체 평형에서 약 14, 액침 모델링값 약 22로 차이를 보이는 “Schroeder의 역설”(<img src="https://latex.codecogs.com/png.latex?%CE%BB_%5Ctext%7Bliquid%7D%20%5Capprox%2022"> vs <img src="https://latex.codecogs.com/png.latex?%5Clambda_%5Ctext%7Bvapor%7D%20%5Capprox%2014">)로 알려져 있으나, 이는 부분적으로 막 전처리(고온 진공 건조 등)에 따른 인공산물이라는 반론도 있다.</p>
+</section>
+<section id="내구성열화와-비용" class="level4">
+<h4 class="anchored" data-anchor-id="내구성열화와-비용"><strong>내구성·열화와 비용</strong></h4>
+<p>상용화의 3대 과제는 비용·성능·내구성이다. 주요 열화 기구:</p>
+<ul>
+<li><p><strong>백금 열화:</strong> Pt 입자의 응집(Ostwald ripening), 용해·재석출, 막으로의 이동 — 전기화학적 활성표면적(ECSA) 감소. 한 연구에서 전압 사이클링 시 ECSA가 최대 40% 감소하고 입자가 20% 이상 성장했다. 촉매층 열화 정량 연구에서는 초기 100시간 동안 Pt 입자 응집이 열화의 약 80%를 차지하고, 225–650시간 구간에서는 촉매 용해·이오노머의 양성자 연결 상실이 23→46%로 증가했다.</p></li>
+<li><p><strong>탄소 담지체 부식:</strong> 특히 시동·정지(start/stop) 시 양극의 수소/공기 경계가 만드는 역전류로 음극 탄소가 부식된다.</p></li>
+<li><p><strong>막 화학적 열화:</strong> 라디칼 공격으로 막이 얇아지고 핀홀이 생겨 스택 고장으로 이어진다. 막 열화는 촉매 열화(초기 수백 시간 후 안정화)와 달리 수명 내내 누적·가속된다.</p></li>
+</ul>
+<p>차세대 PEMFC의 핵심 지표로 <strong>출력밀도</strong>가 강조된다(Jiao 등, <em>Nature</em> 595, 2021, 361). 일본 NEDO의 공식 로드맵은 차량용 FC 출력밀도 목표로 <strong>2030년 6 kW/L(셀 전압 &gt;0.6 V, 시스템 비용 &lt;US$40/kW, 주행 800 km), 2040년 9 kW/L(0.85 V, US$20/kW, &gt;1,000 km)</strong>를 제시했다. 토요타 2세대 미라이(2020) 스택은 부피를 33→24 L로 줄여 <strong>약 5.4 kW/L(엔드플레이트 포함, 세계 최고 수준; 제외 시 약 4.4 kW/L)</strong>의 부피 출력밀도를 달성했다 — 1세대(2014)의 3.1 kW/L에서 크게 향상된 값이다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="중성자-영상으로-보는-pemfc-물-거동-독자-연구분야-연결" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="중성자-영상으로-보는-pemfc-물-거동-독자-연구분야-연결"><span class="header-section-number">3.6</span> 중성자 영상으로 보는 PEMFC 물 거동 (독자 연구분야 연결)</h3>
+<section id="왜-중성자인가" class="level4">
+<h4 class="anchored" data-anchor-id="왜-중성자인가"><strong>왜 중성자인가</strong></h4>
+<p>X선은 원자번호(전자 밀도)에 따라 감쇠하므로 가벼운 원소(수소·물)와 배경(탄소·금속)의 대비가 약하다. 반면 <strong>중성자는 원자핵과 상호작용하며 수소에 의해 매우 강하게 산란</strong>되고, 알루미늄·흑연 같은 금속·탄소 구조재는 잘 투과한다. 따라서 금속 분리판으로 둘러싸인 작동 중 연료전지 안의 물(H₂O)을 비파괴로 가시화하는 데 중성자가 이상적이다. NIST는 “중성자 영상이 PEMFC 연구에 가장 중요한 진단법의 하나로 입증되었다”고 평가한다. 이는 중성자 영상의 대표적 “킬러 애플리케이션”으로 꼽힌다.</p>
+</section>
+<section id="라디오그래피-vs-토모그래피" class="level4">
+<h4 class="anchored" data-anchor-id="라디오그래피-vs-토모그래피"><strong>라디오그래피 vs 토모그래피</strong></h4>
+<ul>
+<li><p><strong>중성자 라디오그래피(radiography):</strong> 2D 투과 영상. 빠른 시간분해능으로 작동 중 물의 생성·이동·배출 동역학을 실시간 추적할 수 있다(예: 2초 간격 1000장으로 동영상 구성). 막면에 수직(through-plane) 또는 평행(in-plane) 방향으로 촬영해 GDL/유로/막의 물을 구분한다.</p></li>
+<li><p><strong>중성자 토모그래피(tomography):</strong> 여러 각도 투영을 재구성한 3D 영상. 구조 결함·3D 물 분포를 볼 수 있으나, 전통적으로 노출에 수 시간이 걸려 동적 측정이 어려웠다. 최근에는 제한 투영·고급 재구성으로 한계를 넘고 있다.</p></li>
+</ul>
+</section>
+<section id="주요-시설과-분해능" class="level4">
+<h4 class="anchored" data-anchor-id="주요-시설과-분해능"><strong>주요 시설과 분해능</strong></h4>
+<ul>
+<li><p><strong>NIST 중성자 영상 시설(미국, BT-2):</strong> 2006년부터 국가 사용자 시설로 운영. PEMFC의 관심 영역인 막(두께 ~50 µm)을 보기 위해 물 두께 10–50 µm 민감도, 공간분해능 ~200 µm 이하, 빠른 영상 취득을 설계 목표로 했다. 2016년 도입된 NIST-NeXT는 중성자/X선 동시 토모그래피를 가능케 했다.</p></li>
+<li><p><strong>PSI(스위스, SINQ의 ICON·NEUTRA 빔라인):</strong> 연료전지에 유리한 냉중성자(ICON)와 열중성자(NEUTRA)를 제공. 평면(in-plane) 고해상 영상에서 픽셀 분해능 2.5 µm까지 달성했다. 일반 연료전지 실험에서 ~10–50 µm 공간분해능, 30초 이하 노출이 보고된다.</p></li>
+<li><p><strong>ISIS(영국, IMAT 빔라인, Rutherford Appleton Lab):</strong> 펄스 중성자원. ZnS/LiF 신틸레이터와 sCMOS 카메라(2048×2048), 시야 약 211×211 mm², 25 cm²·100 cm² 셀 전면 촬영이 가능하다(콜리메이션비 L/D≈260, 중성자 파장 0.7–6.7 Å).</p></li>
+</ul>
+</section>
+<section id="최근2020-연구-사례" class="level4">
+<h4 class="anchored" data-anchor-id="최근2020-연구-사례"><strong>최근(2020+) 연구 사례</strong></h4>
+<ul>
+<li><p><strong>고속 4D 중성자 CT (Ziesche 등, <em>Nature Communications</em> 2022, 13:1616, DOI 10.1038/s41467-022-29313-5):</strong> 3D + 시간 분해 중성자 단층촬영을 처음 구현해, 작동 중 PEFC의 국소 물 변화를 정량화하고 유로 내 물방울 형성을 추적했다. 이로써 유로 설계별 물 관리 성능 지표를 정의했다.</p></li>
+<li><p><strong>도마뱀 피부 모사 유로 + 운영 중 중성자 영상 (Xu 등, <em>Advanced Science</em> 2024, 11:2404350, ISIS IMAT):</strong> 사막 도마뱀의 모세관 미세채널을 모사한 유로가 25 cm² 셀에서 최대 출력밀도를 15%, 100 cm² 셀에서 13% 향상시켰고, 중성자 라디오그래피로 물 배출 개선을 확인했다. 건조 조건·400 mA/cm²에서 도마뱀 모사 7중-사형(septuple-serpentine) 유로는 기존 대비 500초 후 액체 물 155 mg을 덜 생성했다.</p></li>
+<li><p><strong>프랙탈 금속폼 유로 (Wu 등, <em>Applied Energy</em> 2024):</strong> 운영 중 중성자 영상으로 더 균일한 물 분포를 확인하고 성능을 약 15% 개선했다.</p></li>
+<li><p><strong>EIS + 중성자 영상 동기 측정 (ISIS IMAT, <em>Cell Reports Physical Science</em> 2024):</strong> 임피던스와 중성자 영상을 동시 측정해 막·셀 함수량을 정량화하는 방법론을 제시했다.</p></li>
+</ul>
+<p>중성자 영상의 한계는 <strong>공간분해능(검출기에 의해 제한)</strong>이며, GDL 공극 내부 물을 µm 단위로 보려면 싱크로트론 X선 영상(수 µm)이 상보적으로 쓰인다. 두 기법의 결합이 추세다.</p>
+<p><br></p>
+</section>
+</section>
+<section id="다른-연료전지-종류와-비교" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="다른-연료전지-종류와-비교"><span class="header-section-number">3.7</span> 다른 연료전지 종류와 비교</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>종류</th>
+<th>전해질</th>
+<th>전하운반체</th>
+<th>작동온도</th>
+<th>촉매</th>
+<th>주 연료</th>
+<th>장점</th>
+<th>단점</th>
+<th>주 용도</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>PEMFC</strong></td>
+<td>고분자막(Nafion 등)</td>
+<td>H⁺</td>
+<td>60–80 °C</td>
+<td>Pt/C</td>
+<td>순수소</td>
+<td>저온·빠른 시동·고출력밀도</td>
+<td>Pt 비용, 물 관리, 순수소 필요</td>
+<td>수소차, 휴대·분산전원</td>
+</tr>
+<tr class="even">
+<td><strong>AFC</strong></td>
+<td>KOH 수용액</td>
+<td>OH⁻</td>
+<td>약 70–120 °C</td>
+<td>비귀금속 가능</td>
+<td>순수소</td>
+<td>고효율, 비백금 가능</td>
+<td>CO₂에 민감(공기 정제 필요)</td>
+<td>우주(아폴로·우주왕복선)</td>
+</tr>
+<tr class="odd">
+<td><strong>PAFC</strong></td>
+<td>인산</td>
+<td>H⁺</td>
+<td>약 150–210 °C</td>
+<td>Pt</td>
+<td>수소(개질가스)</td>
+<td>성숙·내구성, CHP</td>
+<td>낮은 출력밀도, 고가</td>
+<td>정치형 발전·CHP</td>
+</tr>
+<tr class="even">
+<td><strong>MCFC</strong></td>
+<td>용융 탄산염(Li/K)</td>
+<td>CO₃²⁻</td>
+<td>약 600–650 °C</td>
+<td>비귀금속(Ni)</td>
+<td>수소·천연가스</td>
+<td>내부 개질, 고효율</td>
+<td>긴 시동, 부식, CO₂ 필요</td>
+<td>대형 정치 발전(MW급)</td>
+</tr>
+<tr class="odd">
+<td><strong>SOFC</strong></td>
+<td>세라믹(YSZ 등)</td>
+<td>O²⁻</td>
+<td>약 600–1000 °C</td>
+<td>비귀금속(Ni)</td>
+<td>수소·천연가스·탄화수소</td>
+<td>연료 유연성, 50–60% 효율, 폐열 활용</td>
+<td>긴 시동, 고온 소재 문제</td>
+<td>정치 발전(kW–MW)</td>
+</tr>
+<tr class="even">
+<td><strong>DMFC</strong></td>
+<td>고분자막</td>
+<td>H⁺</td>
+<td>약 60–120 °C</td>
+<td>Pt-Ru/Pt</td>
+<td>메탄올(직접)</td>
+<td>액체연료·고에너지밀도·개질 불필요</td>
+<td>메탄올 크로스오버, 낮은 효율</td>
+<td>휴대전원·소형기기</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>핵심 경향: <strong>작동온도가 낮을수록(PEMFC·AFC) 빠른 시동·휴대성에 유리하나 귀금속 촉매가 필요</strong>하고, <strong>높을수록(MCFC·SOFC) 비귀금속 촉매와 연료 유연성·폐열 활용이 가능하나 시동이 느리고 소재 부담이 크다.</strong> SOFC 전해질로는 이트리아 안정화 지르코니아(YSZ)가 표준이며 산소 이온(<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BO%7D%5E%7B2-%7D">)을 전도한다. DMFC는 PEMFC의 변형으로, 메탄올을 직접 산화하지만 메탄올이 막을 건너 음극을 오염시키는 크로스오버가 최대 난제다(연료 효율을 떨어뜨리고 음극에 혼합 전위를 형성). MCFC·SOFC는 고온 덕에 천연가스의 내부 개질이 가능해 연료 유연성이 높다.</p>
+<p><br></p>
+</section>
+<section id="응용과-현황-20202025" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="응용과-현황-20202025"><span class="header-section-number">3.8</span> 응용과 현황 (2020–2025)</h3>
+<section id="수소차fcev" class="level4">
+<h4 class="anchored" data-anchor-id="수소차fcev"><strong>수소차(FCEV)</strong></h4>
+<p>PEMFC는 토요타 미라이, 현대 넥쏘, 혼다 등 상용 수소차의 표준 기술이다. 2세대 미라이(2020)는 IFPEN 벤치 측정에서 스택 LHV 효율이 저부하에서 약 70%, 시스템 효율 약 62%에 달하고, 최대 출력 부근에서 각각 ~54%, ~46%로 떨어진다. 미라이의 충전 시간은 약 3분, 항속거리는 약 650 km(WLTP)/402마일(EPA XLE)이다. 현대는 2024년 10월 차세대 FCEV 콘셉트 ‘INITIUM’(목표 항속 650 km 이상)을 공개했다.</p>
+</section>
+<section id="시장-동향" class="level4">
+<h4 class="anchored" data-anchor-id="시장-동향"><strong>시장 동향</strong></h4>
+<p>그러나 FCEV 승용차 판매는 최근 둔화됐다 — IDTechEx의 <em>Fuel Cell Electric Vehicles 2025-2045</em> 보고서에 따르면 연간 판매가 “2022년 약 15,000대에서 2024년 약 5,000대로 약 2/3(approximately two-thirds) 감소”했다. 원인은 비싸고 불안정한 수소충전소, BEV의 빠른 발전, 모델 부족이다. 같은 기간 BEV 승용차는 1,100만 대를 넘게 팔렸다. 반면 <strong>정치형(stationary) 연료전지</strong>가 성장축으로 부상해, 2024년 수소 연료전지 시장에서 정치 부문이 약 53%를 차지했다(market.us). PEMFC는 전체 연료전지 기술 중 최대 점유율(약 33%)을 유지한다. 한국과 미국 캘리포니아가 FCEV 보급을 주도해 왔고, 트럭·버스 등 상용차와 중량 운송이 FCEV의 유력 시장으로 꼽힌다.</p>
+</section>
+<section id="과제" class="level4">
+<h4 class="anchored" data-anchor-id="과제"><strong>과제</strong></h4>
+<ol type="1">
+<li><p><strong>수소 인프라:</strong> 충전소가 미·중·일·한·독 등 일부 국가에 한정.</p></li>
+<li><p><strong>비용:</strong> 백금 촉매·분리판·스택 제조비.</p></li>
+<li><p><strong>내구성:</strong> 동적 운전·시동정지에 따른 열화.</p></li>
+<li><p><strong>청정수소:</strong> 현재 대부분 천연가스 개질(“그레이 수소”)로 만들어 CO₂를 배출하므로, 재생에너지 기반 “그린 수소”가 있어야 FCEV의 친환경성이 성립한다.</p></li>
+</ol>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="recommendations" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="recommendations"><span class="header-section-number">4</span> Recommendations</h2>
+<p><strong>독자(고체물리 박사, 중성자 영상 지향)를 위한 단계적 학습·연구 경로:</strong></p>
+<ol type="1">
+<li><strong>1단계 — 기초 다지기 (1–2주):</strong> O’Hayre 등의 <em>Fuel Cell Fundamentals</em>로 열역학(ΔG=−nFE, Nernst)·속도론(Butler–Volmer, 분극 곡선)을 다지고, Larminie &amp; Dicks의 <em>Fuel Cell Systems Explained</em>로 시스템 관점을 잡는다. 고체물리 배경이 있으므로 Nafion 나노상분리·양성자 전도 메커니즘(Grotthuss vs vehicular) 부분은 응집물질 관점에서 빠르게 흡수 가능하다.</li>
+<li><strong>2단계 — PEMFC·물 관리 심화 (2–4주):</strong> Jiao 등의 <em>Nature</em> 595 (2021) 361 리뷰(“Designing the next generation of PEMFCs”)로 최신 MEA·물/열 관리 과제를 파악하고, <em>Int. J. Hydrogen Energy</em>의 물 관리 리뷰(Wang 등, 2020/2021)와 Wang 등 <em>Energy Environ. Sci.</em> 15 (2022) 2288(PEM 연료전지·전해·수소 인프라 리뷰)을 읽는다.</li>
+<li><strong>3단계 — 중성자 영상 직접 연결 (핵심):</strong> NIST·PSI·ISIS의 연료전지 중성자 영상 방법론 논문과 최근 4D CT(Ziesche 등, <em>Nat. Commun.</em> 2022), operando 연구(Xu 등, <em>Adv. Sci.</em> 2024)를 정독한다. <strong>벤치마크 지표</strong>로 공간분해능(목표 &lt;50 µm), 시간분해능(초~프레임 단위), 물 두께 민감도(10–50 µm)를 잡고, X선(싱크로트론) 영상과의 상보성을 염두에 둔다.</li>
+<li><strong>실험 설계 시:</strong> through-plane(물의 막 수직 분포)과 in-plane(활성면 전체 물 분포) 중 연구 질문에 맞는 기하를 선택하고, 셀 소재를 중성자 친화적(알루미늄 등)으로 설계한다. EIS 등 전기화학 진단과 동기 측정하면 물 분포–성능 상관을 정량화할 수 있다(ISIS IMAT 2024 사례 참고).</li>
+</ol>
+<p><strong>판단을 바꿀 기준점(thresholds):</strong> 만약 연구 목표가 GDL 공극 내부 물을 µm 단위로 분해하는 것이라면 중성자 단독으로는 부족하므로 싱크로트론 X선과 결합해야 한다. 반대로 대면적 셀 전체의 물 동역학을 실시간으로 보는 것이 목표면 중성자 라디오그래피가 최적이다.</p>
+<p><strong>한국어·영어 추천 자료:</strong></p>
+<ul>
+<li><p>영어 교과서: J. Larminie &amp; A. Dicks, <em>Fuel Cell Systems Explained</em>; R. O’Hayre 등, <em>Fuel Cell Fundamentals</em>; F. Barbir, <em>PEM Fuel Cells: Theory and Practice</em>.</p></li>
+<li><p>영어 리뷰/논문: Jiao 등, <em>Nature</em> 595 (2021) 361; Wang 등, <em>Energy Environ. Sci.</em> 15 (2022) 2288; <em>J. Power Sources</em>, <em>Int. J. Hydrogen Energy</em>의 물 관리·GDL·촉매 리뷰; 중성자 영상은 Ziesche 등(<em>Nat. Commun.</em> 2022), Xu 등(<em>Adv. Sci.</em> 2024).</p></li>
+<li><p>기관 자료: 미국 DOE Hydrogen and Fuel Cell Technologies Office, NREL, NIST Neutron Imaging 자료.</p></li>
+<li><p>한국어 자료: KOCW 공개강의(연료전지 종류·PEMFC 핵심소재), CHERIC(화학공학소재정보은행)의 “고분자 전해질 연료전지” 강의·기술동향 자료, 국내 대학 학위논문(예: PEMFC GDL 열화 연구).</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="caveats" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="caveats"><span class="header-section-number">5</span> Caveats</h2>
+<ul>
+<li><p><strong>카르노 비교의 미묘함:</strong> “연료전지는 카르노 한계에 묶이지 않는다”는 표현은 널리 쓰이지만 학술적 논쟁이 있다. 동일 온도 범위 비교 시 양쪽 다 제2법칙에 묶인다는 견해(Haseli, <em>Int. J. Hydrogen Energy</em> 2018)도 있으므로, 보고서는 “저온에서 동급 열기관보다 높은 효율 가능”이라는 실용적 결론으로 이해해야 한다.</p></li>
+<li><p><strong>수치의 산포:</strong> 전기삼투 끌림 계수 <img src="https://latex.codecogs.com/png.latex?%5Cxi"> (증기 ~1.0, 액체 ~2.5, 작동 셀 0.5–1.0로 보고), Nafion 전도도(0.09–0.16 S/cm), <img src="https://latex.codecogs.com/png.latex?%5Clambda"> (특히 Schroeder 역설 14 vs 22) 등은 측정 조건·전처리·방법에 따라 문헌 간 편차가 크다. 본문 값은 대표 범위로 보아야 하며 단일 “정답”이 아니다.</p></li>
+<li><p><strong>출력밀도 수치 주의:</strong> 미라이 스택의 부피 출력밀도는 세대·기준(엔드플레이트 포함 여부)에 따라 다르다 — 1세대 3.1 kW/L, 2세대 약 5.4 kW/L(포함)/4.4 kW/L(제외). 초기 일부 자료가 두 세대 값을 혼용하므로 인용 시 출처 기준을 확인해야 한다.</p></li>
+<li><p><strong>시장 전망의 불확실성:</strong> 시장조사기관(MarketsandMarkets, BCC, IDTechEx, market.us 등)의 수치는 정의·범위·가정이 달라 편차가 크다(예: 연료전지 차량 시장 CAGR 추정이 기관별로 19%~52%까지 벌어짐). 본 보고서는 일관된 정성적 추세(FCEV 승용 둔화, 정치·상용차 성장)에 무게를 두었다.</p></li>
+<li><p><strong>마케팅·예측 언어 주의:</strong> “최대 효율 90%” 같은 일부 자료의 표현은 이론·이상 조건 또는 열병합 포함 기준일 수 있어, 실제 전기 효율(50–60%대)과 구분해야 한다. 시장 보고서의 미래 매출·CAGR 수치는 예측(전망)이며 확정된 사실이 아니다.</p></li>
+<li><p><strong>출처 접근성:</strong> 일부 핵심 수치는 ScienceDirect·일부 PMC 전문 접근이 제한되어 초록·검색 발췌·기관 페이지에서 확보했으며, 원논문 DOI를 함께 제시해 검증할 수 있게 했다.</p></li>
+</ul>
+
+
+
+</section>
+
+ ]]></description>
+  <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/introduction_to_fuel_cell.html</guid>
+  <pubDate>Thu, 25 Jun 2026 11:32:21 GMT</pubDate>
 </item>
 <item>
   <title>중성자 검출기 개발과 응용</title>
@@ -329,7 +693,7 @@ Garbe, Ulf, Yogita Ahuja, Ralph Ibrahim, et al. 2017. <span>‘Industrial Applic
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_detector_development.html</guid>
-  <pubDate>Tue, 23 Jun 2026 08:07:24 GMT</pubDate>
+  <pubDate>Thu, 25 Jun 2026 11:32:21 GMT</pubDate>
 </item>
 <item>
   <title>Neutron Imaging Detector Systems: Camera-Based vs Pixel ASIC</title>
@@ -795,7 +1159,7 @@ Garbe, Ulf, Yogita Ahuja, Ralph Ibrahim, et al. 2017. <span>‘Industrial Applic
 
  ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_imaging_detector_comparison.html</guid>
-  <pubDate>Tue, 23 Jun 2026 08:07:24 GMT</pubDate>
+  <pubDate>Thu, 25 Jun 2026 11:32:21 GMT</pubDate>
 </item>
 <item>
   <title>Report on Plastic Scintillator Radionuclide Identification Technology</title>
@@ -1271,7 +1635,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, et al. 2021. <span>‘Con
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_eng.html</guid>
-  <pubDate>Tue, 23 Jun 2026 08:07:24 GMT</pubDate>
+  <pubDate>Thu, 25 Jun 2026 11:32:21 GMT</pubDate>
 </item>
 <item>
   <title>플라스틱 섬광체를 이용한 방사성 핵종 식별 기술 보고서</title>
@@ -1766,7 +2130,7 @@ Turner, Anthony, Carl Wheldon, Tzany Kokalova Wheldon, et al. 2021. <span>‘Con
 </ol>
 </section></div> ]]></description>
   <guid>https://julia-kaeri.github.io/src/posts/plastic_scintillator_kor.html</guid>
-  <pubDate>Tue, 23 Jun 2026 08:07:24 GMT</pubDate>
+  <pubDate>Thu, 25 Jun 2026 11:32:21 GMT</pubDate>
 </item>
 </channel>
 </rss>

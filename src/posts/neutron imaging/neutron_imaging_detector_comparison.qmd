@@ -8,6 +8,8 @@ crossref:
 
 ---
 
+{{< include ../../../latexmacros.qmd >}}
+
 
 This document provides a detailed technical comparison between:
 1. **Lens + Camera (CCD/sCMOS) systems**
