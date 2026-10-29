@@ -154,7 +154,7 @@
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/posts/neutron imaging/neutron_imaging_detector_comparison.html</loc>
-    <lastmod>2026-06-23T08:07:22.439Z</lastmod>
+    <lastmod>2026-10-29T06:17:05.408Z</lastmod>
   </url>
   <url>
     <loc>https://julia-kaeri.github.io/src/posts/plastic_scintillator_kor.html</loc>
@@ -183,5 +183,9 @@
   <url>
     <loc>https://julia-kaeri.github.io/src/topics/endians.html</loc>
     <lastmod>2024-12-30T00:04:07.791Z</lastmod>
+  </url>
+  <url>
+    <loc>https://julia-kaeri.github.io/src/posts/LLM/claude_mcp01.html</loc>
+    <lastmod>2026-10-29T10:40:57.526Z</lastmod>
   </url>
 </urlset>

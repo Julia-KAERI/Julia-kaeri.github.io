@@ -2,6 +2,7 @@
   {
     "listing": "/src/posts/index.html",
     "items": [
+      "/src/posts/LLM/claude_mcp01.html",
       "/src/posts/neutron imaging/high_resolution_neutron_imaging_instruments.html",
       "/src/posts/neutron imaging/introduction_to_fuel_cell.html",
       "/src/posts/neutron imaging/neutron_detector_development.html",
