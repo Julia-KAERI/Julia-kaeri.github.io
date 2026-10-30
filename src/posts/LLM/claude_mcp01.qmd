@@ -1,5 +1,5 @@
 ---
-title: "Claude & MCP 학습"
+title: "Claude & MCP 학습 1.-MCP"
 
 number-sections: true
 number-depth: 3
@@ -20,22 +20,30 @@ crossref:
 - MCP는 그 모델이 바깥 세상(파일, DB, 장비, 웹서비스)과 대화하는 표준 규약(USB-C 같은 거), 
 - agent는 모델이 그 도구들을 써서 스스로 판단하며 여러 단계를 돌리는 루프. 
 
-셋을 다 익히면 예를 들어 - Claude가 내 데이터 디렉토리를 읽고 실험결과를 파싱해서 plot까지 만들어 오는” 흐름이 가능해짐.
+셋을 다 익히면 예를 들어 "Claude가 내 데이터 디렉토리를 읽고 실험결과를 파싱해서 plot까지 만들어 오는” 흐름이 가능해짐.
 
 ### 조금 더 상세하게
 
-- MCP(Model Context Protocol)는 “tool server”를 만드는 방식이야. Python으로 보면 함수 몇 개에 데코레이터 붙이면 끝. 예를 들어 `@mcp.tool()` 아래에 `def read_mcstas(path: str) -> dict:` 를 정의하면 Claude가 그 함수의 이름, `docstring`, `type hint` 를 보고 "아, 이 도구를 지금 써야겠다"고 판단해서 호출해. 서버는 `stdio` 나 `HTTP` 로 뜨고, Claude Desktop이나 Claude Code가 client 역할. 핵심은 모델이 코드를 실행하는 게 아니라, 모델이 "이 함수를 이 인자로 불러줘"라고 요청하면 client가 실제로 실행하고 결과를 돌려주는 구조라는 것. 그래서 안전성 경계가 명확해.
+- MCP(Model Context Protocol)는 “tool server”를 만드는 방식임. Python으로 보면 함수 몇 개에 데코레이터 붙이면 끝. 예를 들어 `@mcp.tool()` 아래에 `def read_mcstas(path: str) -> dict:` 를 정의하면 Claude가 그 함수의 이름, `docstring`, `type hint` 를 보고 "아, 이 도구를 지금 써야겠다"고 판단해서 호출해. 서버는 `stdio` 나 `HTTP` 로 뜨고, Claude Desktop이나 Claude Code가 client 역할. 핵심은 모델이 코드를 실행하는 게 아니라, 모델이 "이 함수를 이 인자로 불러줘"라고 요청하면 client가 실제로 실행하고 결과를 돌려주는 구조라는 것. 그래서 안전성 경계가 명확해.
 
 - Agent는 그 위에서 도는 loop야. 모델이 생각 → 도구 호출 → 결과 관찰 → 다시 생각… 을 목표가 달성될 때까지 반복해. Claude Code가 바로 그 agent이고, Agent SDK를 쓰면 직접 Python으로 그런 loop를 짜서 자기 workflow에 맞춘 agent를 만들 수도 있어. 지금 이 대화창에서 내가 Bash 돌리고 파일 읽는 것도 같은 구조야.
 
 물리학자 관점으로 비유하면, MCP는 장비 driver/API이고, agent는 그 driver들을 묶어서 측정 sequence를 자동으로 돌리는 실험 제어 스크립트 — 단지 sequence가 hard-coded가 아니라 모델이 매 step 판단한다는 게 차이.
 
+### 과정
+
+Python 으로 mcp 서버를 작성하는 경우 다음과 같은 절차로 진행한다. 
+
+1. MCP SDK 설치 
+2. MCP 서버 작성
+3. Claude 데스크탑 연결
+4. claude code 에 사용할 경우 연동.
+
+</br>
 
 ## MCP Python SDK 설치
 
-- 우선 `uv` 에 대해 알아보고 사용 OS 및 환경에 맞게 미리 설치해놓자.
-
-`~/mcp-play` 디렉토리에 mcp 를 개발하려고 한다면...
+- 우선 `uv` 에 대해 알아보고 사용 OS 및 환경에 맞게 미리 설치해 놓자. 그리고 여기서는 `~/mcp-play` 디렉토리에서 mcp 를 개발한다고 가정한다.
 
 ```sh
 mkdir ~/mcp-play && cd ~/mcp-play
@@ -46,7 +54,10 @@ uv run mcp dev stats_server.py
 ```
 
 ### `uv init --no-workspace` 
-`uv init --no-workspace` 명령어는 현재 디렉터리가 부모 폴더의 워크스페이스(Workspace)에 자동으로 포함되는 것을 방지하고, 독립된 단일 파이썬 프로젝트로 초기화할 때 사용한다.
+- `uv init --no-workspace` 명령어는 현재 디렉터리가 부모 폴더의 워크스페이스(Workspace)에 자동으로 포함되는 것을 방지하고, 독립된 단일 파이썬 프로젝트로 초기화할 때 사용한다. 
+
+- `uv init` 은 기본적으로 `git init` 명령어를 자동으로 수행한다.
+
 
 #### 주요 특징 및 동작 방식
 
@@ -57,17 +68,19 @@ uv run mcp dev stats_server.py
 
 #### 생성 파일과 디렉토리
 
+`uv init --no-workspace` 이후 파일 목록. 환경과 버젼에 따라 달라질수 있다.!!
+
 ```sh
-jiyong@mymac  ~/mcps/test-mcp   main  ls -al
+myid@mymac  ~/mcps/test-mcp   main  ls -al
 total 24
-drwxr-xr-x  8 jiyong  staff  256 10 29 16:12 .
-drwxr-xr-x  5 jiyong  staff  160 10 29 16:12 ..
-drwxr-xr-x  9 jiyong  staff  288 10 29 16:12 .git
--rw-r--r--  1 jiyong  staff  109 10 29 16:12 .gitignore
--rw-r--r--  1 jiyong  staff    5 10 29 16:12 .python-version
--rw-r--r--  1 jiyong  staff  360 10 29 16:12 pyproject.toml
--rw-r--r--  1 jiyong  staff    0 10 29 16:12 README.md
-drwxr-xr-x  3 jiyong  staff   96 10 29 16:12 src
+drwxr-xr-x  8 myid  staff  256 10 29 16:12 .
+drwxr-xr-x  5 myid  staff  160 10 29 16:12 ..
+drwxr-xr-x  9 myid  staff  288 10 29 16:12 .git
+-rw-r--r--  1 myid  staff  109 10 29 16:12 .gitignore
+-rw-r--r--  1 myid  staff    5 10 29 16:12 .python-version
+-rw-r--r--  1 myid  staff  360 10 29 16:12 pyproject.toml
+-rw-r--r--  1 myid  staff    0 10 29 16:12 README.md
+drwxr-xr-x  3 myid  staff   96 10 29 16:12 src
 ```
 
 
@@ -112,19 +125,19 @@ MCP Inspector를 브라우저로 띄워준다.
     "stats": {
       "command": "/usr/local/bin/uv",
       "args": [
-        "--directory", "/Users/jiyong/mcp-play",
+        "--directory", "/Users/myid/mcp-play",
         "run", "stats_server.py"
       ]
     },
     "mcstas": {
       "command": "/usr/local/bin/uv",
-      "args": ["--directory", "/Users/jiyong/mcps/mcstas-mcp/mcstas", "run", "mcstas_server.py"],
-      "env": { "MCSTAS_ROOT": "/Users/jiyong/Mcstas/CG4A_202609ver",
-           "MCSTAS_PLOT_DIR": "" }
+      "args": ["--directory", "/Users/myid/mcps/mcstas-mcp/mcstas", "run", "mcstas_server.py"],
+      "env": { "MCSTAS_ROOT": "/Users/myid/Mcstas/CG4A_202609ver",
+           "MCSTAS_PLOT_DIR": "/Users/myid/Mcstas/CG4A_202609ver/plot" }
     }
   },
   
-  "coworkUserFilesPath": "/Users/jiyong/Claude",
+  "coworkUserFilesPath": "/Users/myid/Claude",
   ...
 }
 ```
@@ -141,7 +154,7 @@ MCP Inspector를 브라우저로 띄워준다.
 python3 -m json.tool ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
 
-
+</br>
 
 ## MCP 서버 작성
 
@@ -150,21 +163,13 @@ python3 -m json.tool ~/Library/Application\ Support/Claude/claude_desktop_config
 보통 python 으로 작성된 mcp server 는 시작부분에 다음과 같은 부분을 포함한다.
 
 ```python
-from __future__ import annotations
-
-import os
-from pathlib import Path
-
 from mcp.server.mcpserver import MCPServer
-
-import mcstas_io as mio
 
 mcp = MCPServer("mcstas")
 
 ```
 
-
-이 때 `mcp.server.mcpserver from MCPServer` 같은 구문이 변경 될 수 있다. 2026년 10월 28 일에 claude 에 문의했을 때 deprecated 된 구문을 제안해서 수정할 수 밖에 없었다. 
+이 때 `from mcp.server.mcpserver from MCPServer` 같은 구문이 변경 될 수 있다. 2026년 10월 28 일에 claude 에 문의했을 때 claude 는 1.x 버젼의 deprecated 된 구문을 제안했고, claude 에 다시 문의하여 수정하였다. 이러한 문제가 발생한다면 [MCP Python SDK-Migration Guide: v1 to v2](https://py.sdk.modelcontextprotocol.io/migration/) 를 참고하라.
 
 
 ## MCP Primitives
@@ -172,6 +177,7 @@ mcp = MCPServer("mcstas")
 MCP 프리미티브(Primitives)는 MCP 환경에서 AI 모델(LLM)이 외부 세계(데이터, 도구, 작업 절차 등)와 안전하게 소통하기 위해 사용하는 가장 기본적이고 표준화된 3대 빌딩 블록을 뜻한다. 과거에는 AI에게 기능을 부여할 때 개발자가 일일이 커스텀 함수(Function Calling)로 포장해야 했지만, MCP는 이를 도구(tools), 자원(resources), 프롬프트(prompts) 라는 3가지 기본 primitives 로 정형화하여 관리한다. 각 프리미티브를 구분하는 가장 핵심적인 기준은 바로 **누가 이것을 제어하는가(제어 주체)** 이다.
 
 ### 도구, 자원, 프롬프트
+
 **1. 🛠️ Tools (도구) — 모델 제어**
 
 AI 모델이 능동적으로 판단하고 직접 실행하는 기능.
@@ -186,7 +192,7 @@ AI 모델이 능동적으로 판단하고 직접 실행하는 기능.
 AI 모델이 올바른 답변을 생성할 수 있도록 제공되는 안전한 읽기 전용 데이터.
 
 - 제어 주체: AI 애플리케이션 (Host App)
-- 설명: 파일 내용, 로그, 데이터베이스 조회 결과 등 모델이 읽을 수 있는 데이터 컨텍스트. 리소스는 읽기 전용(Read-only)이므로 모델이 임의로 데이터를 수정하거나 시스템 상태를 변경할 위험이 없다.
+- 설명: 파일 내용, 로그, 데이터베이스 조회 결과 등 모델이 읽을 수 있는 데이터 컨텍스트. 리소스는 일반적으로 읽기 전용(Read-only)으로 약속한다. 즉 읽기 전용이라는 강제는 없다. 따라서 모델이 임의로 데이터를 수정하거나 시스템 상태를 변경하지 않도록 주의한다.
 - 예시: 로컬 소스 코드 파일 읽기, 회사 규정 문서 제공, 서버 에러 로그 파일 가져오기 등.
 
 **3. 📝 Prompts (프롬프트) — 사용자 제어**
@@ -211,6 +217,13 @@ AI 모델이 올바른 답변을 생성할 수 있도록 제공되는 안전한 
 
 MCP가 이러한 구조를 채택한 이유는 안전성과 조합 가능성(Composability) 때문이다. 과거처럼 모든 것을 '함수(Function)' 하나로 뭉뚱그리면 AI가 실수로 중요 데이터를 삭제하는 등의 위험이 있다. 반면 MCP는 데이터(Resources)는 안전하게 읽기만 하되, 동작(Tools)이 필요할 때만 명확한 권한 아래 실행하고, 작업(Prompts)은 템플릿화하여 AI 에이전트가 보다 체계적이고 신뢰성 높게 행동하도록 만든다.
 
+### MCP 서버 설계 원칙 
+
+- docstring이 곧 prompt 다
+- 배열은 모델에게 돌려주지 말고 tool 안에서 요약해라 
+- 순수 로직(mcstas_io.py)과 MCP 래퍼(mcstas_server.py)를 분리해라.
+
+
 ## 첫 MCP server
 
 ```{.python code-line-numbers="true"}
@@ -224,7 +237,7 @@ MCP가 이러한 구조를 채택한 이유는 안전성과 조합 가능성(Com
 import json
 import math
 import statistics
-from mcp.server.mcpserver import MCPServer  # mcp>=2.0 (1.x에서는 mcp.server.fastmcp.FastMCP)
+from mcp.server.mcpserver import MCPServer  
  
 mcp = MCPServer("stats")
  
@@ -359,7 +372,7 @@ if __name__ == "__main__":
 
 ### `@mcp.tool()`
 
-`@mcp.tool` 데코레이터는 MCP 서버를 구축할 때, 특정 파이썬 함수를 AI 모델(LLM)이 호출할 수 있는 '도구(Tool)'로 등록하는 역할을 한다. 주로 Python용 MCP SDK(mcp.server.fastmcp 등)에서 사용되며, 이 데코레이터를 붙이면 함수의 이름, 설명, 매개변수 타입이 AI 모델에 자동으로 전달된다.
+`@mcp.tool` 데코레이터는 MCP 서버를 구축할 때, 특정 파이썬 함수를 AI 모델(LLM)이 호출할 수 있는 '도구(Tool)'로 등록하는 역할을 한다. 주로 Python용 MCP SDK(`mcp.server.mcpserver` 등)에서 사용되며, 이 데코레이터를 붙이면 함수의 이름, 설명, 매개변수 타입이 AI 모델에 자동으로 전달된다.
 
 #### **주요 특징 및 규칙**
 
@@ -370,7 +383,7 @@ if __name__ == "__main__":
 
 ### `@mcp.resource("...")`
 
-`@mcp.resource("...")` 는 MCP 서버를 구현할 때 특정 데이터나 텍스트 리소스를 LLM에 제공하기 위해 선언하는 데코레이터이다. 기존 웹 개발의 라우터(예: FastAPI의 `@app.get("/items")`) 와 유사한 개념으로, LLM이 읽을 수 있는 파일, 로그, 프롬프트 템플릿 등의 정적/동적 자원을 데코레이터 아래의 함수를 통해 노출시킨다니다.
+`@mcp.resource("...")` 는 MCP 서버를 구현할 때 특정 데이터나 텍스트 리소스를 LLM에 제공하기 위해 선언하는 데코레이터이다. 기존 웹 개발의 라우터(예: FastAPI의 `@app.get("/items")`) 와 유사한 개념으로, LLM이 읽을 수 있는 파일, 로그, 프롬프트 템플릿 등의 정적/동적 자원을 데코레이터 아래의 함수를 통해 노출시킨다.
 
 #### **특징**
 
@@ -385,7 +398,7 @@ if __name__ == "__main__":
 
 MCP 규약이 요구하는 건 딱 하나야: resource는 각각 고유한 URI로 식별된다. client가 resources/list를 호출하면 서버가 URI 목록을 주고, client가 resources/read에 그 URI를 넣어 보내면 서버가 내용을 돌려줘. 그러니까 URI는 “resource의 이름표”이고, 모양이 URL처럼 생긴 건 파일(`file:///...`)이나 웹(`https://...`)처럼 이미 URI를 쓰는 자원과 한 체계로 다루기 위해서야. 실제로 filesystem 서버는 `file://` scheme을 쓰고, 자기만의 데이터를 노출하는 서버는 보통 자기 이름을 scheme으로 써. 관례일 뿐 규칙은 아니야.
 
-mime type은 별도야. `@mcp.resource(...)` 에 `mime_type="application/json"` 같은 인자를 따로 줄 수 있고, 안 주면 반환형이 `str` 이면 `text/plain`, `bytes` 면 `application/octet-stream` 으로 잡혀. 내 코드에선 JSON 문자열을 돌려주면서 mime type을 안 적었으니 엄밀히는 `application/json` 을 명시해 주는 게 더 올바르긴 해.
+mime type은 별도야. `@mcp.resource(...)` 에 `mime_type="application/json"` 같은 인자를 별도로 줄 수 있고, 안 주면 반환형이 `str` 이면 `text/plain`, `bytes` 면 `application/octet-stream` 으로 잡혀. 내 코드에선 JSON 문자열을 돌려주면서 mime type을 안 적었으니 엄밀히는 `application/json` 을 명시해 주는 게 더 올바르긴 해.
 
 그리고 `stats://dataset/{name}` 의 `{name}` 이 변수인 것도 MCP의 “resource template”이라는 개념이긴 한데, 그 문법(`{}`)은 MCP가 새로 만든 게 아니라 RFC 6570 URI Template이라는 기존 표준이야. 여기서도 MCP는 기존 웹 표준을 그대로 빌려 쓰는 쪽을 택했어.
 
@@ -402,23 +415,36 @@ FastMCP 등의 프레임워크를 사용할 때, 일반 Python 함수 위에 `@m
 - 컨텍스트 결합: 프롬프트가 실행될 때 단순히 텍스트만 반환하는 것이 아니라, 서버 내의 특정 데이터(Resources)나 파일 내용을 동적으로 읽어와 메시지 배열에 함께 삽입할 수 있다.
 
 
-## `claude mcp add-from-claude-desktop` 
+## claude 코드 연동
 
+```sh
+claude mcp add-from-claude-desktop
+```
+
+- `claude mcp add` 이후 claude code 를 재시작해야 반영됨.
 - Desktop 앱의 `claude_desktop_config.json` 에 등록해 둔 MCP 서버 설정을 Claude Code 쪽 설정으로 복사해 오는 명령어이다. 
 - Claude code 와 Claude desktop 은 설정 파일을 공유하지 않는다.
   - Desktop은 그 JSON, 
   - Claude Code는 `~/.claude.json`이나 프로젝트의 `.mcp.json` 
 
-- 복사라는 게 중요하다. 실행 중인 서버를 공유하는 게 아니라, "`uv --directory ... run mcstas_server.py`로 띄워라" 라는 레시피를 가져오는 거라서 Claude Code는 자기 프로세스를 따로 운다. 그래서 Desktop과 Claude Code를 동시에 켜두면 같은 서버 코드가 두 번 돌게 된다. 
+- 복사라는 게 중요하다. 실행 중인 서버를 공유하는 게 아니라, "`uv --directory ... run mcstas_server.py`로 띄워라" 라는 레시피를 가져오는 거라서 Claude Code는 자기 프로세스를 따로 띄운다. 그래서 Desktop과 Claude Code를 동시에 켜두면 같은 서버 코드가 두 번 돌게 된다. 
   - 복사 시점 이후에 Desktop 쪽 설정을 바꾸면(예: `MCSTAS_ROOT` 경로 수정) Claude Code에는 반영 되지 않으므로 다시 `import` 하거나 `claude mcp remove mcstas` 후 재등록해야한다.
 
 - Desktop을 거치지 않고 Claude Code에 직접 등록할 수도 있어:
 
 ```sh
 claude mcp add --scope user mcstas \
-  -e MCSTAS_ROOT=/Users/jiyong/CG4A -e MCSTAS_PLOT_DIR=/Users/jiyong/mcstas-plots \
-  -- /usr/local/bin/uv --directory /Users/jiyong/mcstas-mcp run mcstas_server.py
+  -e MCSTAS_ROOT=/Users/myid/CG4A -e MCSTAS_PLOT_DIR=/Users/myid/mcstas-plots \
+  -- /usr/local/bin/uv --directory /Users/myid/mcstas-mcp/mcstas run mcstas_server.py
 ```
 
 `--scope user` 로 하면 어느 폴더에서 claude를 열어도 보이고(지금 `import` 한 건 local scope라 `~/mcp-play` 에서만 보인다), `--scope project` 로 하면 그 폴더에 `.mcp.json` 이 생겨서 `git` 에 넣고 동료와 공유할 수 있다. 등록된 것 확인은 `claude mcp list`, 제거는 `claude mcp remove <이름>`.
 
+</br>
+
+## 보충 사항
+
+- Desktop은 tool + prompt만 노출(resource 메뉴 없음), Claude Code는 셋 다(`@stats:` 자동완성으로 `resource`, `/mcp__stats__analyze_dataset` 식으로 prompt). 그래서 실무 서버는 대부분 tool만 쓴다는 것.
+- Desktop이 안 뜰 때 볼 로그: `~/Library/Logs/Claude/mcp-server-<이름>.log`, `mcp.log`
+- prompt 인자 칸엔 값만(co60_peak), name=co60_peak 아님.
+- agent workflow: 시키기 전에 git commit, 끝나면 git diff. 그리고 agent가 덧붙인 해석(p값, 문헌값)과 tool이 계산한 값을 구분해서 읽기.
